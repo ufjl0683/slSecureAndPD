@@ -1,0 +1,123 @@
+﻿<sdk:Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:secureCtl="clr-namespace:slSecure.Controls"
+                   xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:converter="clr-namespace:MapControl.Converters;assembly=MapControl"      
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" xmlns:Controls="clr-namespace:slSecure.Controls" x:Class="slSecure.Main" 
+           mc:Ignorable="d"
+           d:DesignWidth="1021" d:DesignHeight="692"
+           Title="Main Page" MouseMove="Page_MouseMove" Unloaded="Page_Unloaded">
+    <sdk:Page.Resources>
+        <converter:AlarmStatusColorConverter x:Key="AlarmStatusColorConverter" />
+        <Style x:Key="ButtonStyle1" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <CompositeTransform ScaleY="0.55" ScaleX="0.7"/>
+                            </Grid.RenderTransform>
+                            <Path Width="47" VerticalAlignment="Top" UseLayoutRounding="False" StrokeThickness="6" Stroke="White" Stretch="Fill" Margin="0,-1.5,0,0" Height="68" HorizontalAlignment="Left" Data="M344.25,612.75 L344.25,554.75 L405.25,554.75 L405.25,612.75"/>
+                            <Path Width="39" VerticalAlignment="Top" UseLayoutRounding="False" StrokeThickness="6" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Margin="6.25,9.75,0,0" Height="52" HorizontalAlignment="Left" Fill="#FFFDFCFC" Data="M0,0 L39,0 L39,52 L0,52 z M14,27 C14,30.866 11.9853,34 9.5,34 C7.01472,34 5,30.866 5,27 C5,23.134 7.01472,20 9.5,20 C11.9853,20 14,23.134 14,27 z">
+                                <Path.RenderTransform>
+                                    <CompositeTransform ScaleX="1.45"/>
+                                </Path.RenderTransform>
+                                <Path.Projection>
+                                    <PlaneProjection RotationY="62"/>
+                                </Path.Projection>
+                            </Path>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="8,81,11,-20"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    
+    </sdk:Page.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="83"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="284"/>
+        </Grid.ColumnDefinitions>
+
+        <sdk:Frame x:Name="frameMain" Grid.Column="1" Grid.Row="1" BorderBrush="White" Margin="5,41,5,5" />
+        <sdk:GridSplitter HorizontalAlignment="Stretch" Height="14" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="2"/>
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Stretch" Width="Auto" Grid.RowSpan="3" >
+
+
+            <!--<i:Interaction.Behaviors>
+				<ei:FluidMoveBehavior AppliesTo="Children"/>
+			</i:Interaction.Behaviors>-->
+
+
+            <toolkit:Accordion x:Name="acdMenu"   FontSize="{StaticResource NormalFontSize}"  HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Stretch" Width="200" SelectedItemsChanged="acdMenu_SelectedItemsChanged" SelectionMode="OneOrMore" >
+                <toolkit:Accordion.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding GroupMenu}" />
+                    </DataTemplate>
+                </toolkit:Accordion.ItemTemplate>
+
+                <toolkit:Accordion.ContentTemplate>
+                    <DataTemplate>
+                        <ScrollViewer   BorderBrush="Transparent"  Margin="0"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                            <ItemsControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" ItemsSource="{Binding Menus}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <HyperlinkButton Click="HyperlinkButton_Click"   Content="{Binding MenuName}"  TargetName="frameMain" Width="Auto"   Foreground="White"  Margin="50,5,0,5" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </toolkit:Accordion.ContentTemplate>
+            </toolkit:Accordion>
+            <Button Width="50" Content="選單" FontSize="{StaticResource NormalFontSize}" Click="Button_Click" />
+        </StackPanel>
+        <TextBlock x:Name="txtTitle" Grid.Column="1"  FontSize="36"   HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding MenuName}" Margin="19,17,0,16" Height="50" VerticalAlignment="Center" Width="Auto"/>
+        <Button x:Name="btnLogout" Content="登出 "  FontSize="{StaticResource NormalFontSize}" Foreground="White" Grid.Column="2" HorizontalAlignment="Right" Height="90" Margin="0,-2,33,0" Style="{StaticResource ButtonStyle1}" VerticalAlignment="Top" Width="56" RenderTransformOrigin="0.5,0.5" Click="btnLogout_Click" Grid.RowSpan="2">
+            <Button.RenderTransform>
+                <CompositeTransform ScaleX="0.7"/>
+            </Button.RenderTransform>
+        </Button>
+        <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0,37,0,0" x:Name="lstCCTVLock"  >
+            <i:Interaction.Behaviors>
+                <ei:FluidMoveBehavior AppliesTo="Children"/>
+            </i:Interaction.Behaviors>
+
+
+        </StackPanel>
+        <Button   Grid.Column="2" Height="36" Grid.Row="1" VerticalAlignment="Top" Click="BtbCCTVLock_Click"  >
+            <StackPanel Orientation="Horizontal"  >
+                <Image Source="icons/cctv.png" />
+                <TextBlock Text="事件" FontSize="20" Margin="10,0,0,0"  />
+            </StackPanel>
+        </Button>
+
+        <Button   Grid.Column="1" Height="36" Grid.Row="1" VerticalAlignment="Top"  Margin="5,0,0,0"    >
+            <StackPanel Orientation="Horizontal"  >
+                <!--<Image Source="icons/cctv.png" />-->
+                <TextBlock Text="工作區" FontSize="20" Margin="10,0,0,0"  />
+            </StackPanel>
+        </Button>
+        <ListBox  x:Name="lstMessage" SelectionChanged="lstMessage_SelectionChanged"  Grid.Column="1" Margin="0,14,0,0" Grid.Row="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown"  >
+                        <Image Source="{Binding Type,StringFormat=/slSecure;component/icons/\{0\}.png}" Width="30" Height="30" Margin="5" />
+                        <TextBlock Text="{Binding Message}" FontSize="16"  Foreground="{Binding  AlarmStatus, Converter={StaticResource AlarmStatusColorConverter}}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</sdk:Page>

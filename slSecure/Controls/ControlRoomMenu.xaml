@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="slSecure.Controls.ControlRoomMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:MapControl.Converters;assembly=MapControl"
+    mc:Ignorable="d"
+    d:DesignHeight="68" d:DesignWidth="210">
+    <UserControl.Resources>
+        <converter:AlarmStatusColorConverter x:Key="AlarmStatusColorConverter" />
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="White"    >
+        <Rectangle Fill="{Binding  AlarmStatus, Converter={StaticResource AlarmStatusColorConverter}}"/>
+        <Image HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="5,0,0,0" Width="42" Source="/MapControl;component/Icons/house.png"/>
+        <TextBlock Margin="64,0,0,0" TextWrapping="Wrap" Text="{Binding Name}" FontSize="16"      VerticalAlignment="Center"/>
+
+    </Grid>
+</UserControl>

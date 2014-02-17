@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SecureModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SecureModelStoreContainer">
+          <EntitySet Name="tblMenu" EntityType="SecureModel.Store.tblMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMenuGroup" EntityType="SecureModel.Store.tblMenuGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUser" EntityType="SecureModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUserGroup" EntityType="SecureModel.Store.tblUserGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUserGroupMenu" EntityType="SecureModel.Store.tblUserGroupMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureModel.Store.vwUserGroupMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserGroupMenuAllow">
+            <DefiningQuery>SELECT 
+      [vwUserGroupMenuAllow].[GroupID] AS [GroupID], 
+      [vwUserGroupMenuAllow].[GroupName] AS [GroupName], 
+      [vwUserGroupMenuAllow].[IsAllow] AS [IsAllow], 
+      [vwUserGroupMenuAllow].[MenuID] AS [MenuID], 
+      [vwUserGroupMenuAllow].[MenuName] AS [MenuName]
+      FROM [dbo].[vwUserGroupMenuAllow] AS [vwUserGroupMenuAllow]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwUserMenuAllow" EntityType="SecureModel.Store.vwUserMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserMenuAllow">
+            <DefiningQuery>SELECT 
+      [vwUserMenuAllow].[GroupID] AS [GroupID], 
+      [vwUserMenuAllow].[MenuID] AS [MenuID], 
+      [vwUserMenuAllow].[IsAllow] AS [IsAllow], 
+      [vwUserMenuAllow].[MenuName] AS [MenuName], 
+      [vwUserMenuAllow].[MenuGroupID] AS [MenuGroupID], 
+      [vwUserMenuAllow].[XAML] AS [XAML], 
+      [vwUserMenuAllow].[GroupName] AS [GroupName], 
+      [vwUserMenuAllow].[UserID] AS [UserID], 
+      [vwUserMenuAllow].[MenuOrder] AS [MenuOrder]
+      FROM [dbo].[vwUserMenuAllow] AS [vwUserMenuAllow]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tblGroupMenu_tblMenu" Association="SecureModel.Store.FK_tblGroupMenu_tblMenu">
+            <End Role="tblMenu" EntitySet="tblMenu" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupMenu_tblUserGroup" Association="SecureModel.Store.FK_tblGroupMenu_tblUserGroup">
+            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMenu_tblMenuGroup" Association="SecureModel.Store.FK_tblMenu_tblMenuGroup">
+            <End Role="tblMenuGroup" EntitySet="tblMenuGroup" />
+            <End Role="tblMenu" EntitySet="tblMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblUserGroup" Association="SecureModel.Store.FK_tblUser_tblUserGroup">
+            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuGroupID" Type="int" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="XAML" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblMenuGroup">
+          <Key>
+            <PropertyRef Name="MenuGroupID" />
+          </Key>
+          <Property Name="MenuGroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="MenuOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblUserGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblUserGroupMenu">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="IsAllow" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'Secure.dbo.vwUserGroupMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwUserGroupMenuAllow">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="GroupName" />
+            <PropertyRef Name="IsAllow" />
+            <PropertyRef Name="MenuID" />
+            <PropertyRef Name="MenuName" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="IsAllow" Type="bit" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'Secure.dbo.vwUserMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwUserMenuAllow">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MenuID" />
+            <PropertyRef Name="IsAllow" />
+            <PropertyRef Name="MenuName" />
+            <PropertyRef Name="MenuGroupID" />
+            <PropertyRef Name="XAML" />
+            <PropertyRef Name="GroupName" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="IsAllow" Type="bit" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MenuGroupID" Type="int" Nullable="false" />
+          <Property Name="XAML" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="MenuOrder" Type="int" />
+        </EntityType>
+        <Association Name="FK_tblGroupMenu_tblMenu">
+          <End Role="tblMenu" Type="SecureModel.Store.tblMenu" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="SecureModel.Store.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenu">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroupMenu_tblUserGroup">
+          <End Role="tblUserGroup" Type="SecureModel.Store.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="SecureModel.Store.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMenu_tblMenuGroup">
+          <End Role="tblMenuGroup" Type="SecureModel.Store.tblMenuGroup" Multiplicity="1" />
+          <End Role="tblMenu" Type="SecureModel.Store.tblMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenuGroup">
+              <PropertyRef Name="MenuGroupID" />
+            </Principal>
+            <Dependent Role="tblMenu">
+              <PropertyRef Name="MenuGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblUserGroup">
+          <End Role="tblUserGroup" Type="SecureModel.Store.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUser" Type="SecureModel.Store.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SecureModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="SecureDB" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tblMenu" EntityType="SecureModel.tblMenu" />
+          <EntitySet Name="tblMenuGroup" EntityType="SecureModel.tblMenuGroup" />
+          <EntitySet Name="tblUser" EntityType="SecureModel.tblUser" />
+          <EntitySet Name="tblUserGroup" EntityType="SecureModel.tblUserGroup" />
+          <EntitySet Name="tblUserGroupMenu" EntityType="SecureModel.tblUserGroupMenu" />
+          <AssociationSet Name="FK_tblGroupMenu_tblMenu" Association="SecureModel.FK_tblGroupMenu_tblMenu">
+            <End Role="tblMenu" EntitySet="tblMenu" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMenu_tblMenuGroup" Association="SecureModel.FK_tblMenu_tblMenuGroup">
+            <End Role="tblMenuGroup" EntitySet="tblMenuGroup" />
+            <End Role="tblMenu" EntitySet="tblMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblUserGroup" Association="SecureModel.FK_tblUser_tblUserGroup">
+            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupMenu_tblUserGroup" Association="SecureModel.FK_tblGroupMenu_tblUserGroup">
+            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+          <EntitySet Name="vwUserMenuAllow" EntityType="SecureModel.vwUserMenuAllow" />
+          <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureModel.vwUserGroupMenuAllow" />
+        </EntityContainer>
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuGroupID" Type="Int32" Nullable="false" />
+          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="XAML" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblUserGroupMenu" Relationship="SecureModel.FK_tblGroupMenu_tblMenu" FromRole="tblMenu" ToRole="tblUserGroupMenu" />
+          <NavigationProperty Name="tblMenuGroup" Relationship="SecureModel.FK_tblMenu_tblMenuGroup" FromRole="tblMenu" ToRole="tblMenuGroup" />
+        </EntityType>
+        <EntityType Name="tblMenuGroup">
+          <Key>
+            <PropertyRef Name="MenuGroupID" />
+          </Key>
+          <Property Name="MenuGroupID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MenuOrder" Type="Int32" />
+          <NavigationProperty Name="tblMenu" Relationship="SecureModel.FK_tblMenu_tblMenuGroup" FromRole="tblMenuGroup" ToRole="tblMenu" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblUserGroup" Relationship="SecureModel.FK_tblUser_tblUserGroup" FromRole="tblUser" ToRole="tblUserGroup" />
+        </EntityType>
+        <EntityType Name="tblUserGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblUser" Relationship="SecureModel.FK_tblUser_tblUserGroup" FromRole="tblUserGroup" ToRole="tblUser" />
+          <NavigationProperty Name="tblUserGroupMenu" Relationship="SecureModel.FK_tblGroupMenu_tblUserGroup" FromRole="tblUserGroup" ToRole="tblUserGroupMenu" />
+        </EntityType>
+        <EntityType Name="tblUserGroupMenu">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="IsAllow" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblMenu" Relationship="SecureModel.FK_tblGroupMenu_tblMenu" FromRole="tblUserGroupMenu" ToRole="tblMenu" />
+          <NavigationProperty Name="tblUserGroup" Relationship="SecureModel.FK_tblGroupMenu_tblUserGroup" FromRole="tblUserGroupMenu" ToRole="tblUserGroup" />
+        </EntityType>
+        <Association Name="FK_tblGroupMenu_tblMenu">
+          <End Role="tblMenu" Type="SecureModel.tblMenu" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="SecureModel.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenu">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMenu_tblMenuGroup">
+          <End Role="tblMenuGroup" Type="SecureModel.tblMenuGroup" Multiplicity="1" />
+          <End Role="tblMenu" Type="SecureModel.tblMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenuGroup">
+              <PropertyRef Name="MenuGroupID" />
+            </Principal>
+            <Dependent Role="tblMenu">
+              <PropertyRef Name="MenuGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblUserGroup">
+          <End Role="tblUserGroup" Type="SecureModel.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUser" Type="SecureModel.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroupMenu_tblUserGroup">
+          <End Role="tblUserGroup" Type="SecureModel.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="SecureModel.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vwUserMenuAllow">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MenuID" />
+            <PropertyRef Name="IsAllow" />
+            <PropertyRef Name="MenuName" />
+            <PropertyRef Name="MenuGroupID" />
+            <PropertyRef Name="XAML" />
+            <PropertyRef Name="GroupName" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Boolean" Name="IsAllow" Nullable="false" />
+          <Property Type="String" Name="MenuName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MenuGroupID" Nullable="false" />
+          <Property Type="String" Name="XAML" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GroupName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MenuOrder" />
+        </EntityType>
+        <EntityType Name="vwUserGroupMenuAllow">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="GroupName" />
+            <PropertyRef Name="IsAllow" />
+            <PropertyRef Name="MenuID" />
+            <PropertyRef Name="MenuName" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsAllow" Nullable="false" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="String" Name="MenuName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SecureModelStoreContainer" CdmEntityContainer="SecureDB">
+          <EntitySetMapping Name="tblMenu">
+            <EntityTypeMapping TypeName="SecureModel.tblMenu">
+              <MappingFragment StoreEntitySet="tblMenu">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="XAML" ColumnName="XAML" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMenuGroup">
+            <EntityTypeMapping TypeName="SecureModel.tblMenuGroup">
+              <MappingFragment StoreEntitySet="tblMenuGroup">
+                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="SecureModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserGroup">
+            <EntityTypeMapping TypeName="SecureModel.tblUserGroup">
+              <MappingFragment StoreEntitySet="tblUserGroup">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserGroupMenu">
+            <EntityTypeMapping TypeName="SecureModel.tblUserGroupMenu">
+              <MappingFragment StoreEntitySet="tblUserGroupMenu">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwUserMenuAllow">
+            <EntityTypeMapping TypeName="SecureModel.vwUserMenuAllow">
+              <MappingFragment StoreEntitySet="vwUserMenuAllow">
+                <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="XAML" ColumnName="XAML" />
+                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwUserGroupMenuAllow">
+            <EntityTypeMapping TypeName="SecureModel.vwUserGroupMenuAllow">
+              <MappingFragment StoreEntitySet="vwUserGroupMenuAllow">
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="預設值" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>

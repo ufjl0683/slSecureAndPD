@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="240f1df9deff4571b95684b5e0529c92" Name="圖表1" ZoomLevel="88">
+        <EntityTypeShape EntityType="SecureModel.tblMenu" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureModel.tblMenuGroup" Width="1.5" PointX="1.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureModel.tblUser" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureModel.tblUserGroup" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureModel.tblUserGroupMenu" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SecureModel.FK_tblGroupMenu_tblMenu" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureModel.FK_tblMenu_tblMenuGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureModel.FK_tblUser_tblUserGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureModel.FK_tblGroupMenu_tblUserGroup" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SecureModel.vwUserMenuAllow" Width="1.5" PointX="5.25" PointY="3.875" />
+        <EntityTypeShape EntityType="SecureModel.vwUserGroupMenuAllow" Width="1.5" PointX="3.75" PointY="8.375" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

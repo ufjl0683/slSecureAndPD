@@ -1,0 +1,51 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="slSecure.Controls.AI"
+    mc:Ignorable="d"
+    d:DesignHeight="30" d:DesignWidth="240">
+    <UserControl.Resources>
+        <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot">
+        		<DiscreteObjectKeyFrame KeyTime="0">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Collapsed</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:1">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Collapsed</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        	</ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    	<Storyboard x:Name="stbDemo" RepeatBehavior="Forever">
+    		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+    			<EasingColorKeyFrame KeyTime="0" Value="Black"/>
+    			<DiscreteColorKeyFrame KeyTime="0:0:1" Value="#FFE79813"/>
+    			<DiscreteColorKeyFrame KeyTime="0:0:2" Value="#FFFD410A"/>
+    			<DiscreteColorKeyFrame KeyTime="0:0:3" Value="#FFFD410A"/>
+    		</ColorAnimationUsingKeyFrames>
+    	</Storyboard>
+    </UserControl.Resources>
+	<Grid x:Name="LayoutRoot" Background="White">
+		<i:Interaction.Triggers>
+			<i:EventTrigger EventName="Loaded">
+				<ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}"/>
+			</i:EventTrigger>
+		</i:Interaction.Triggers>
+		<TextBlock x:Name="textBlock" TextWrapping="Wrap" FontSize="16"    >
+			<Run Text="電壓" />
+			<Run Text=":"/>
+			<Run Text="110"   /><Run Text="V" />
+		</TextBlock>
+
+	</Grid>
+</UserControl>

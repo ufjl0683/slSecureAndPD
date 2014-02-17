@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecure", "slSecure\slSecure.csproj", "{BD4B7145-7513-4120-A19B-E9A373D4F7CF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecure.Web", "slSecure.Web\slSecure.Web.csproj", "{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecureLib", "slSecureLib\slSecureLib.csproj", "{759AD6E6-21D7-48A1-93F8-9E9872C72C64}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{E8A4C97F-53DF-4C7C-873B-03611A1A021A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapControl", "MapControl\MapControl.csproj", "{AFFA9F88-0EB6-403C-9836-A1BA3C0AC8E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISLib", "ArcGISLib\ArcGISLib\ArcGISLib.csproj", "{7FBE7288-03C5-488D-8760-2462FE66BFC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C17031FF-68E1-4D7C-BD94-C72EB2AB98AA}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD4B7145-7513-4120-A19B-E9A373D4F7CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4B7145-7513-4120-A19B-E9A373D4F7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4B7145-7513-4120-A19B-E9A373D4F7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4B7145-7513-4120-A19B-E9A373D4F7CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759AD6E6-21D7-48A1-93F8-9E9872C72C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759AD6E6-21D7-48A1-93F8-9E9872C72C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759AD6E6-21D7-48A1-93F8-9E9872C72C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759AD6E6-21D7-48A1-93F8-9E9872C72C64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8A4C97F-53DF-4C7C-873B-03611A1A021A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A4C97F-53DF-4C7C-873B-03611A1A021A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A4C97F-53DF-4C7C-873B-03611A1A021A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A4C97F-53DF-4C7C-873B-03611A1A021A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFFA9F88-0EB6-403C-9836-A1BA3C0AC8E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFFA9F88-0EB6-403C-9836-A1BA3C0AC8E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFFA9F88-0EB6-403C-9836-A1BA3C0AC8E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFFA9F88-0EB6-403C-9836-A1BA3C0AC8E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FBE7288-03C5-488D-8760-2462FE66BFC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FBE7288-03C5-488D-8760-2462FE66BFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FBE7288-03C5-488D-8760-2462FE66BFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FBE7288-03C5-488D-8760-2462FE66BFC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
