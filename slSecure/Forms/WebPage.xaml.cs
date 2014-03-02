@@ -20,6 +20,7 @@ namespace slSecure.Forms
         public WebPage()
         {
             InitializeComponent();
+         
         }
 
         // 使用者巡覽至這個頁面時執行。

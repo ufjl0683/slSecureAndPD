@@ -36,28 +36,52 @@ namespace slSecure
 
            
             EntityQuery<tblUser> q = db.GetTblUserQuery().Where(n => n.UserID == txtAccount.Text.Trim() && n.Password == pwdPassword.Password.Trim());
-            var result = await db.LoadAsync<tblUser>(q);
+            
+            
+             //var  result= await db.LoadAsync<tblUser>(q);
+            LoadOperation<tblUser> lo = db.Load(q);
+            lo.Completed += (s, a) =>
+                {
+                    if (lo.Error != null)
+                    {
+                        MessageBox.Show(lo.Error.Message);
+                        return;
+                    }
+
+
+                    tblUser user = lo.Entities.FirstOrDefault();
+                    if (user == null)
+                    {
+                        MessageBox.Show("帳號密碼錯誤!");
+                        return;
+                    }
+                    (App.Current as App).UserID = user.UserID;
+                    (App.Current as App).UserName = user.UserName;
+
+
+
+                    this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", user.UserID, user.UserName), UriKind.Relative));
+
+
+                };
            
-            //  LoadOperation<tblUser> lo = await db.Load(q).ToTask(); ;
-            ////  LoadOperation<Employee> loadOperation = await context.Load<Employee>(context.GetAllEmployeesQuery()).ToTask();
-            //  var result = lo.Entities;
 
-            //    LoadOperation lo = db.Load(q);
+           
 
-            tblUser user = result.FirstOrDefault();
-            if (user == null)
-            {
-                MessageBox.Show("帳號密碼錯誤!");
-                return;
-            }
+            //tblUser user = result.FirstOrDefault();
+            //if (user == null)
+            //{
+            //    MessageBox.Show("帳號密碼錯誤!");
+            //    return;
+            //}
 
 
-            (App.Current as App).UserID = user.UserID;
-            (App.Current as App).UserName = user.UserName;
+            //(App.Current as App).UserID = user.UserID;
+            //(App.Current as App).UserName = user.UserName;
 
 
-            //
-            this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", user.UserID, user.UserName), UriKind.Relative));
+           
+            //this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", user.UserID, user.UserName), UriKind.Relative));
 
         }
     }

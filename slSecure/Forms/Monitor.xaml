@@ -16,7 +16,7 @@
         <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
             <toolkit:WrapPanel x:Name="wrap" Loaded="wrap_Loaded" >
                 <i:Interaction.Behaviors>
-                    <ei:FluidMoveBehavior AppliesTo="Children" Duration="0:0:0.5"  />
+                    <ei:FluidMoveBehavior AppliesTo="Children" Duration="0:0:0.5"  InitialTag="Element" />
                 </i:Interaction.Behaviors>
             </toolkit:WrapPanel>
         </ItemsPanelTemplate>

@@ -15,15 +15,34 @@ namespace slSecure.Controls
     public partial class CCTVLock : UserControl
     {
         public event MouseButtonEventHandler Click;
+        MjpegProcessor.MjpegDecoder decoder;
         public CCTVLock(int ch )
         {
             InitializeComponent();
+
+             decoder = new MjpegProcessor.MjpegDecoder();
+             decoder.FrameReady += decoder_FrameReady;
+             decoder.Error += decoder_Error;
+            decoder.ParseStream(new Uri("http://117.56.89.19/axis-cgi/mjpg/video.cgi?camera="+ch, UriKind.Absolute));
+
 #if DEBUG
-            this.browser.Navigate(new Uri("http://localhost:65254/CCTVLock.aspx?ch=" + ch, UriKind.Absolute));
+            //this.browser.Navigate(new Uri("http://localhost:65254/CCTVLock.aspx?ch=" + ch, UriKind.Absolute));
 #else
-            this.browser.Navigate(new Uri("http://192.192.85.40/sl/CCTVLock.aspx?ch=" + ch, UriKind.Absolute));
+          //  this.browser.Navigate(new Uri("http://192.192.85.40/sl/CCTVLock.aspx?ch=" + ch, UriKind.Absolute));
 #endif
            // this.browser.Source=new Uri("http://localhost:65254/CCTVLock.aspx?ch="+ch,UriKind.Absolute);
+           
+        
+        }
+
+        void decoder_Error(object sender, MjpegProcessor.ErrorEventArgs e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        void decoder_FrameReady(object sender, MjpegProcessor.FrameReadyEventArgs e)
+        {
+            this.cctv.Source = e.BitmapImage;
         }
 
         private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

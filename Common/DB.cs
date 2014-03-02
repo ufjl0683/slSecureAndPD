@@ -49,6 +49,7 @@ namespace Common
                 if (loadOperation.HasError && !loadOperation.IsErrorHandled)
                 {
                     taskCompletionSource.TrySetException(loadOperation.Error);
+                    MessageBox.Show(loadOperation.Error.Message+","+loadOperation.Error.InnerException.Message);
                     loadOperation.MarkErrorAsHandled();
                 }
                 else if (loadOperation.IsCanceled)

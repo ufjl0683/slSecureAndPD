@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CCTVLock.aspx.cs" Inherits="slSecure.Web.CCTVLock" %>
 
-<!DOCTYPE html>
+<!doctype html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html >
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta charset="utf-8"/>
     <style>
 			body {  
 				overflow: hidden; 
@@ -24,7 +24,16 @@
                 </tr>-->
                 <tr >
                     <td   >
-					 <SCRIPT id="cctvframe"  LANGUAGE="JavaScript" SRC="http://117.56.89.19:80/axis-cgi/mjpg.cgi?ch=<%=Request.QueryString["ch"] %>&imagesize=CIF"></SCRIPT>
+					 <script id="cctvframe"  language="JavaScript" SRC="http://117.56.89.19:80/axis-cgi/mjpg.cgi?ch=<%=Request.QueryString["ch"] %>&imagesize=CIF"   >
+                        <!--SRC="http://117.56.89.19:80/axis-cgi/mjpg.cgi?ch=<%=Request.QueryString["ch"] %>&imagesize=CIF" -->
+         //                 theDate = new Date();
+   //var output = "<img src=\"http://117.56.89.19/axis-cgi/mjpg/video.cgi?camera=<%=Request.QueryString["ch"] %>";
+   
+  // output += "\" width=\"352\" height=\"240\" alt=\"Press Reload if no image is displayed\">";
+  // document.write(output);
+
+
+					 </script>
                       <!--  <script language="javascript" >
                             var ch = QueryString('ch');
                             var s="<"+"scr"+"ipt LANGUAGE='JavaScript' SRC='http://117.56.89.19:80/axis-cgi/mjpg.cgi?ch=";

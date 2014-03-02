@@ -6,7 +6,7 @@
          xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     xmlns:Controls="clr-namespace:slSecure.Controls" x:Class="slSecure.Login"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400">
+    d:DesignHeight="343" d:DesignWidth="528">
 
     <Grid x:Name="LayoutRoot"    >
         <Border     HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -19,6 +19,7 @@
 
             </Grid>
         </Border>
+        <TextBlock HorizontalAlignment="Center"   Margin="0,40,0,0" TextWrapping="Wrap" Text="華電聯網機房門禁系統展示" VerticalAlignment="Top" FontSize="20" Width="Auto"/>
 
     </Grid>
 </navigation:Page>
