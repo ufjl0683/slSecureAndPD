@@ -23,8 +23,12 @@ namespace slSecure.Controls
              decoder = new MjpegProcessor.MjpegDecoder();
              decoder.FrameReady += decoder_FrameReady;
              decoder.Error += decoder_Error;
-            decoder.ParseStream(new Uri("http://117.56.89.19/axis-cgi/mjpg/video.cgi?camera="+ch, UriKind.Absolute));
+            //#	Result	Protocol	Host	URL	Body	Caching	Content-Type	Process	Comments	Custom	
+//24	 - 	HTTP	210.241.67.167	/abs2mjpg/mjpg?camera=14&resolution=352x240&1399178264829	-1			chrome:25404			
 
+             decoder.ParseStream(new Uri("http://210.241.67.167/abs2mjpg/mjpg?resolution=352x240&camera="+ch, UriKind.Absolute));
+             
+          //  decoder.ParseStream(new Uri("http://192.192.161.17:90/axis-cgi/mjpg/video.cgi?resolution=CIF&camera=1", UriKind.Absolute),"admin","admin");
 #if DEBUG
             //this.browser.Navigate(new Uri("http://localhost:65254/CCTVLock.aspx?ch=" + ch, UriKind.Absolute));
 #else

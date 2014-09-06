@@ -19,6 +19,8 @@ namespace slSecure
         public MainPage()
         {
             InitializeComponent();
+            if (!App.Current.HasElevatedPermissions)
+                MessageBox.Show(" No Elevated trust!");
 #if DEBUG
            this.frame.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
 #else

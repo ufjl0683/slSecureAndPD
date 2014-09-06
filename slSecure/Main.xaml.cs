@@ -42,9 +42,9 @@ namespace slSecure
         protected  async  override void OnNavigatedTo(NavigationEventArgs e)
         {
          
-            tmr.Interval = TimeSpan.FromSeconds(30);
-            tmr.Tick += tmr_Tick;
-            tmr.Start();
+            //tmr.Interval = TimeSpan.FromSeconds(30);
+            //tmr.Tick += tmr_Tick;
+            //tmr.Start();
         
            
           //  Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior bev = new Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior();
@@ -89,7 +89,7 @@ namespace slSecure
             this.txtTitle.DataContext = (sender as Control).DataContext;
             vwUserMenuAllow menu = (sender as Control).DataContext as vwUserMenuAllow;
             if (menu.XAML.Trim().ToUpper().StartsWith("HTTP:"))
-                this.frameMain.Navigate(new Uri("/Forms/WebPage.xaml?url=" + menu.XAML, UriKind.Relative));
+                this.frameMain.Navigate(new Uri("/WebPage.xaml?url=" + menu.XAML, UriKind.Relative));
             else
                 this.frameMain.Navigate(new Uri(menu.XAML, UriKind.Relative));
         }
