@@ -6,5 +6,21 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="SecureDBContext" Identifier="slSecure.Web.SecureDBContext" ProviderType="Microsoft.VisualStudio.DataDesign.RiaComponents.DataSourceProvider.RiaServiceDataSourceProvider" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <Children>
+      <GenericObjectDataSource DisplayName="tblUserGroup" Identifier="slSecure.Web.SecureDBContext" ProviderType="Microsoft.VisualStudio.DataDesign.RiaComponents.DataSourceProvider.RiaServiceDataSourceProvider" Version="1.0">
+         <TypeInfo>slSecure.Web.tblUserGroup</TypeInfo>
+         <TypeUISetting>
+            <PropertyUISettings>
+               <PropertyUISetting Name="GroupName">
+                  <ControlSettings>
+                     <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
+                        <BindableControlInfo Name="TextBlock" Type="System.Windows.Controls.TextBlock" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+                     </ControlSetting>
+                  </ControlSettings>
+               </PropertyUISetting>
+            </PropertyUISettings>
+         </TypeUISetting>
+      </GenericObjectDataSource>
+   </Children>
    <TypeInfo>slSecure.Web.SecureDBContext</TypeInfo>
 </GenericObjectDataSource>

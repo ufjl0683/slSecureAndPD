@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using ESRI.ArcGIS.Client.Geometry;
-using Common.Info;
+using slSecure.Info;
 using slSecure.Controls;
 
 namespace slSecure.Forms

@@ -27,8 +27,11 @@
 		</Storyboard>
 	</UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="White">
+    <Grid x:Name="LayoutRoot" Background="White" MouseLeftButtonDown="LayoutRoot_MouseLeftButtonDown"    >
+        <Grid.RenderTransform>
+            <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
+        </Grid.RenderTransform>
         <Image HorizontalAlignment="Left"  Stretch="None"  VerticalAlignment="Top"   Source="/slSecure;component/icons/cctv.png"/>
-
+        <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
     </Grid>
 </UserControl>

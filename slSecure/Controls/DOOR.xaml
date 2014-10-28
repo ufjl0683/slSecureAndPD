@@ -8,7 +8,7 @@
     d:DesignHeight="22" d:DesignWidth="400">
     <UserControl.Resources>
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
-        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot">
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot"   >
         		<DiscreteObjectKeyFrame KeyTime="0">
         			<DiscreteObjectKeyFrame.Value>
         				<Visibility>Visible</Visibility>
@@ -36,11 +36,15 @@
     	</Storyboard>
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
-		<i:Interaction.Triggers>
+        <Grid.RenderTransform>
+            <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
+        </Grid.RenderTransform>
+        <i:Interaction.Triggers>
 			<i:EventTrigger>
-				<ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}"/>
+                <ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}" ControlStoryboardOption="Stop"   />
 			</i:EventTrigger>
 		</i:Interaction.Triggers>
 		<Path x:Name="path" Data="M5.75,13.5 L401.676,13.5" Margin="0" Stretch="Fill" Stroke="LightGreen" StrokeThickness="20" UseLayoutRounding="False" VerticalAlignment="Top"/>
-	</Grid>
+        <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
+    </Grid>
 </UserControl>

@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 
 
-namespace Common
+namespace slSecure
 {
     public  static  class DB
     {    public static SecureDBContext GetDB()

@@ -35,17 +35,21 @@
     		</ColorAnimationUsingKeyFrames>
     	</Storyboard>
     </UserControl.Resources>
-	<Grid x:Name="LayoutRoot" Background="White">
-		<i:Interaction.Triggers>
+	<Grid x:Name="LayoutRoot" Background="White" HorizontalAlignment="Right" Width="240" RenderTransformOrigin="0.5,0.5">
+        
+        <Grid.RenderTransform>
+            <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
+        </Grid.RenderTransform>
+        <i:Interaction.Triggers>
 			<i:EventTrigger EventName="Loaded">
-				<ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}"/>
+				<ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}" ControlStoryboardOption="Stop"/>
 			</i:EventTrigger>
 		</i:Interaction.Triggers>
-		<TextBlock x:Name="textBlock" TextWrapping="Wrap" FontSize="16"    >
-			<Run Text="電壓" />
+		<TextBlock x:Name="txtContent" TextWrapping="Wrap" FontSize="16"    >
+			<Run Text="{Binding Label}" />
 			<Run Text=":"/>
-			<Run Text="110"   /><Run Text="V" />
+			<Run Text="{Binding Value,StringFormat=\{0:0.00\}}"   /> <Run Text="{Binding Unit}" />
 		</TextBlock>
-
-	</Grid>
+        <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
+    </Grid>
 </UserControl>

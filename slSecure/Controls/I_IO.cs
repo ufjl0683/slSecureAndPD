@@ -14,7 +14,7 @@ namespace slSecure.Controls
     public interface I_IO
     {
          void SetBlind(bool IsBlind);
-         
+         bool IsSelect { get; set; }
 
     }
 }

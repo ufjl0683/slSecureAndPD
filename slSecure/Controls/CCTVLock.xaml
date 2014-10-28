@@ -8,7 +8,7 @@
 
     <Grid x:Name="LayoutRoot" Background="White" MouseLeftButtonDown="LayoutRoot_MouseLeftButtonDown" >
         <!--<WebBrowser x:Name="browser"  Source="{Binding Url}" MouseLeftButtonDown="browser_MouseLeftButtonDown" Margin="0,28,0,0" />-->
-        <Image x:Name="cctv" Margin="0,28,0,0" />
+        <Image x:Name="cctv" Margin="0,28,0,0" Unloaded="cctv_Unloaded" />
         <Button Content="" Click="Button_Click" Height="28" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

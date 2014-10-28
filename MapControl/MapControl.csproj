@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\slSecure.Web.SecureDBContext.datasource" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\house.png" />

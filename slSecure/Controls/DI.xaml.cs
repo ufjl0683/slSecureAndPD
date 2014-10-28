@@ -19,12 +19,78 @@ namespace slSecure.Controls
             InitializeComponent();
         }
 
+        public object Value
+        {
+            get { return (object)this.GetValue(ValueProperty); }
+            set { this.SetValue(ValueProperty, value); }
+        }
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
+          "Value", typeof(object), typeof(DI), new PropertyMetadata(false, new PropertyChangedCallback(OnValueChanged)
+      ));
+        public static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+        }
         public void SetBlind(bool IsBlind)
         {
             if (IsBlind)
                 (this.Resources["stbBlind"] as Storyboard).Begin();
             else
                 (this.Resources["stbBlind"] as Storyboard).Stop();
+        }
+
+        public int Degreee
+        {
+            get { return (int)this.GetValue(DegreeeProperty); }
+            set { this.SetValue(DegreeeProperty, value); }
+        }
+        public static readonly DependencyProperty DegreeeProperty = DependencyProperty.Register(
+          "Degreee", typeof(int), typeof(DI), new PropertyMetadata(0, new PropertyChangedCallback(OnDegreeeChanged)
+      ));
+
+        public static void OnDegreeeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            int Degreee = (int)e.NewValue;
+            if (Degreee == 0)
+            {
+                (d as DI).ellipse.Fill = new SolidColorBrush(Colors.Green);
+            }
+            //else if (Degreee == 1)
+            //    (d as DI).ellipse.Fill = new SolidColorBrush(Colors.Orange);
+
+            else
+                (d as DI).ellipse.Fill = new SolidColorBrush(Colors.Red);
+        }
+        private bool _IsSelect;
+        public bool IsSelect
+        {
+            get
+            {
+                return _IsSelect;
+            }
+            set
+            {
+                if (value != _IsSelect)
+                {
+                    _IsSelect = value;
+                    if (value == true)
+                    {
+                        SelectLine.Visibility = System.Windows.Visibility.Visible;
+                        //System.Windows.Threading.DispatcherTimer tmr = new System.Windows.Threading.DispatcherTimer();
+                        //tmr.Interval = TimeSpan.FromSeconds(3);
+
+                        //tmr.Tick += (s, e) =>
+                        //{
+                        //    tmr.Stop();
+                        //    SetBlind(false);
+                        //};
+                        //tmr.Start();
+                    }
+                    else
+                        SelectLine.Visibility = System.Windows.Visibility.Collapsed;
+
+                  //  SetBlind(value);
+                }
+            }
         }
     }
 }

@@ -4,8 +4,9 @@
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-           xmlns:slSecure="clr-namespace:slSecure" xmlns:Controls="clr-namespace:slSecure.Controls" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="slSecure.Forms.ControlRoom"
-           mc:Ignorable="d"
+           xmlns:slSecure="clr-namespace:slSecure" xmlns:Controls="clr-namespace:slSecure.Controls"   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="slSecure.Forms.ControlRoom"
+      xmlns:lib="clr-namespace:slSecureLib.Forms" 
+    mc:Ignorable="d"
            d:DesignWidth="644" d:DesignHeight="495"
            Title="ControlRoom Page">
 	<Grid x:Name="LayoutRoot">
@@ -19,7 +20,7 @@
           
 				<Grid x:Name="Canvas" >
 					<Image x:Name="image" Source="/slSecure;component/Diagrams/ControlRoom.jpg" Stretch="None"     />
-
+ 
 					<Controls:DOOR Height="12" Canvas.Left="39" Canvas.Top="418" Width="84" Margin="56,417,399,66"  />
 					<Controls:CCTV HorizontalAlignment="Left" MouseLeftButtonDown="CCTV_MouseLeftButtonDown"  VerticalAlignment="Top" RenderTransformOrigin="0.34,0.083"   Margin="436,449,0,0"/>
 					<Controls:DOOR Height="12" Canvas.Left="165" Canvas.Top="444" Width="84" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Margin="188.5,446.5,266.5,36.5">
@@ -33,6 +34,7 @@
 					<Controls:AI HorizontalAlignment="Left" VerticalAlignment="Top"   Margin="78,75,0,0"/>
 					<Controls:AI HorizontalAlignment="Left" VerticalAlignment="Top"   Margin="391,303,0,0"/>
 					<Controls:AI HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="380,103,0,0"/>
+                    
 				</Grid>
           
 

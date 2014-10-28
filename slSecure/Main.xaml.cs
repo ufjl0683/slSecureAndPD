@@ -10,12 +10,13 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
-using Common;
-using Common.Info;
+using slSecure;
+using slSecure.Info;
 using slSecure.Web;
 using System.ServiceModel.DomainServices.Client;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Common;
 
 
 namespace slSecure

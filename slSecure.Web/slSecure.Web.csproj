@@ -19,7 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <SilverlightApplicationList>{BD4B7145-7513-4120-A19B-E9A373D4F7CF}|..\slSecure\slSecure.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{BD4B7145-7513-4120-A19B-E9A373D4F7CF}|..\slSecure\slSecure.csproj|ClientBin|False,{A6F2E470-2111-4572-8DC9-A784913DD98B}|..\slEditor\slEditor.csproj|ClientBin|False</SilverlightApplicationList>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -59,10 +59,18 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel.DomainServices.EntityFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.ServiceModel.DomainServices.Hosting.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.EntityFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.Hosting.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -80,16 +88,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CCTVLock.aspx" />
-    <Content Include="ClientBin\Diagrams\ControlRoom.jpg">
+    <Content Include="ClientBin\Diagrams\1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ClientBin\slEditor.xap" />
     <Content Include="ClientBin\slSecure.xap" />
     <Content Include="Silverlight.js" />
+    <Content Include="SilverlightApplication2TestPage.aspx" />
+    <Content Include="SilverlightApplication2TestPage.html" />
+    <Content Include="slEditor.aspx" />
+    <Content Include="slEditor.html" />
     <Content Include="slSecure.aspx" />
     <Content Include="slSecure.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CCTVLock.aspx.cs">
@@ -107,17 +121,25 @@
     </Compile>
     <Compile Include="SecureDBService.cs" />
     <Compile Include="SecureDBService.metadata.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\192.192.85.40 sl.pubxml" />
     <EntityDeploy Include="SecureDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SecureDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="packages.config" />
     <Content Include="SecureDB.edmx.diagram">
       <DependentUpon>SecureDB.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\192.192.85.40 sl.pubxml" />
+    <None Include="Properties\PublishProfiles\192.192.85.64 sl.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

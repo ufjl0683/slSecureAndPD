@@ -4,14 +4,41 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SecureModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="SecureModelStoreContainer">
-          <EntitySet Name="tblMenu" EntityType="SecureModel.Store.tblMenu" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblMenuGroup" EntityType="SecureModel.Store.tblMenuGroup" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblUser" EntityType="SecureModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblUserGroup" EntityType="SecureModel.Store.tblUserGroup" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblUserGroupMenu" EntityType="SecureModel.Store.tblUserGroupMenu" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureModel.Store.vwUserGroupMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserGroupMenuAllow">
+    <Schema Namespace="SecureDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SecureDBModelStoreContainer">
+          <EntitySet Name="tblAIItem1HourLog" EntityType="SecureDBModel.Store.tblAIItem1HourLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblAlarmLog" EntityType="SecureDBModel.Store.tblAlarmLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCardReaderConfig" EntityType="SecureDBModel.Store.tblCardReaderConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCCTVConfig" EntityType="SecureDBModel.Store.tblCCTVConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblControllerCard" EntityType="SecureDBModel.Store.tblControllerCard" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblControllerConfig" EntityType="SecureDBModel.Store.tblControllerConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblControlSetting" EntityType="SecureDBModel.Store.tblControlSetting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblDeviceStateLog" EntityType="SecureDBModel.Store.tblDeviceStateLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblEngineRoomConfig" EntityType="SecureDBModel.Store.tblEngineRoomConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblEngineRoomLog" EntityType="SecureDBModel.Store.tblEngineRoomLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblEntranceGuardConfig" EntityType="SecureDBModel.Store.tblEntranceGuardConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblERDoorPasscode" EntityType="SecureDBModel.Store.tblERDoorPasscode" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblERDoorPassword" EntityType="SecureDBModel.Store.tblERDoorPassword" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblERPlane" EntityType="SecureDBModel.Store.tblERPlane" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblHostConfig" EntityType="SecureDBModel.Store.tblHostConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblItemConfig" EntityType="SecureDBModel.Store.tblItemConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMagneticCard" EntityType="SecureDBModel.Store.tblMagneticCard" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMagneticCardNormalGroup" EntityType="SecureDBModel.Store.tblMagneticCardNormalGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMenu" EntityType="SecureDBModel.Store.tblMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMenuGroup" EntityType="SecureDBModel.Store.tblMenuGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSchConfig" EntityType="SecureDBModel.Store.tblSchConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSchLog" EntityType="SecureDBModel.Store.tblSchLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSingalIO" EntityType="SecureDBModel.Store.tblSingalIO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSingalIOLog" EntityType="SecureDBModel.Store.tblSingalIOLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSysOperation" EntityType="SecureDBModel.Store.tblSysOperation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSysParameter" EntityType="SecureDBModel.Store.tblSysParameter" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSysRole" EntityType="SecureDBModel.Store.tblSysRole" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSysRoleAuthority" EntityType="SecureDBModel.Store.tblSysRoleAuthority" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTypeDetail" EntityType="SecureDBModel.Store.tblTypeDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUser" EntityType="SecureDBModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUserGroup" EntityType="SecureDBModel.Store.tblUserGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUserGroupMenu" EntityType="SecureDBModel.Store.tblUserGroupMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureDBModel.Store.vwUserGroupMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserGroupMenuAllow">
             <DefiningQuery>SELECT 
       [vwUserGroupMenuAllow].[GroupID] AS [GroupID], 
       [vwUserGroupMenuAllow].[GroupName] AS [GroupName], 
@@ -20,7 +47,7 @@
       [vwUserGroupMenuAllow].[MenuName] AS [MenuName]
       FROM [dbo].[vwUserGroupMenuAllow] AS [vwUserGroupMenuAllow]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwUserMenuAllow" EntityType="SecureModel.Store.vwUserMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserMenuAllow">
+          <EntitySet Name="vwUserMenuAllow" EntityType="SecureDBModel.Store.vwUserMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserMenuAllow">
             <DefiningQuery>SELECT 
       [vwUserMenuAllow].[GroupID] AS [GroupID], 
       [vwUserMenuAllow].[MenuID] AS [MenuID], 
@@ -33,55 +60,473 @@
       [vwUserMenuAllow].[MenuOrder] AS [MenuOrder]
       FROM [dbo].[vwUserMenuAllow] AS [vwUserMenuAllow]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_tblGroupMenu_tblMenu" Association="SecureModel.Store.FK_tblGroupMenu_tblMenu">
-            <End Role="tblMenu" EntitySet="tblMenu" />
-            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          <AssociationSet Name="FK_tblAIItem1HourLog_tblItemConfig" Association="SecureDBModel.Store.FK_tblAIItem1HourLog_tblItemConfig">
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+            <End Role="tblAIItem1HourLog" EntitySet="tblAIItem1HourLog" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblGroupMenu_tblUserGroup" Association="SecureModel.Store.FK_tblGroupMenu_tblUserGroup">
-            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
-            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          <AssociationSet Name="FK_tblAlarmLog_tblTypeDetail" Association="SecureDBModel.Store.FK_tblAlarmLog_tblTypeDetail">
+            <End Role="tblTypeDetail" EntitySet="tblTypeDetail" />
+            <End Role="tblAlarmLog" EntitySet="tblAlarmLog" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblMenu_tblMenuGroup" Association="SecureModel.Store.FK_tblMenu_tblMenuGroup">
+          <AssociationSet Name="FK_tblCardReaderConfig_tblControllerConfig" Association="SecureDBModel.Store.FK_tblCardReaderConfig_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblCardReaderConfig" EntitySet="tblCardReaderConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCCTVConfig_tblEngineRoomConfig" Association="SecureDBModel.Store.FK_tblCCTVConfig_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblCCTVConfig" EntitySet="tblCCTVConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblControllerConfig_tblEngineRoomConfig" Association="SecureDBModel.Store.FK_tblControllerConfig_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblControlSetting_tblControllerConfig" Association="SecureDBModel.Store.FK_tblControlSetting_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblControlSetting" EntitySet="tblControlSetting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDeviceStateLog_tblControllerConfig" Association="SecureDBModel.Store.FK_tblDeviceStateLog_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblDeviceStateLog" EntitySet="tblDeviceStateLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDeviceStateLog_tblTypeDetail" Association="SecureDBModel.Store.FK_tblDeviceStateLog_tblTypeDetail">
+            <End Role="tblTypeDetail" EntitySet="tblTypeDetail" />
+            <End Role="tblDeviceStateLog" EntitySet="tblDeviceStateLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEntranceGuardConfig_tblEngineRoomConfig" Association="SecureDBModel.Store.FK_tblEntranceGuardConfig_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblEntranceGuardConfig" EntitySet="tblEntranceGuardConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblERDoorPasscode_tblControllerConfig" Association="SecureDBModel.Store.FK_tblERDoorPasscode_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblERDoorPasscode" EntitySet="tblERDoorPasscode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblERPlane_tblEngineRoomConfig" Association="SecureDBModel.Store.FK_tblERPlane_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblERPlane" EntitySet="tblERPlane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItemConfig_tblControllerConfig" Association="SecureDBModel.Store.FK_tblItemConfig_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMagneticCard_tblSysRole" Association="SecureDBModel.Store.FK_tblMagneticCard_tblSysRole">
+            <End Role="tblSysRole" EntitySet="tblSysRole" />
+            <End Role="tblMagneticCard" EntitySet="tblMagneticCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMenu_tblMenuGroup" Association="SecureDBModel.Store.FK_tblMenu_tblMenuGroup">
             <End Role="tblMenuGroup" EntitySet="tblMenuGroup" />
             <End Role="tblMenu" EntitySet="tblMenu" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblUser_tblUserGroup" Association="SecureModel.Store.FK_tblUser_tblUserGroup">
+          <AssociationSet Name="FK_tblSchConfig_tblUser" Association="SecureDBModel.Store.FK_tblSchConfig_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblSchConfig" EntitySet="tblSchConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSchLog_tblSchConfig" Association="SecureDBModel.Store.FK_tblSchLog_tblSchConfig">
+            <End Role="tblSchConfig" EntitySet="tblSchConfig" />
+            <End Role="tblSchLog" EntitySet="tblSchLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSingalIO_tblControllerConfig" Association="SecureDBModel.Store.FK_tblSingalIO_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblSingalIO" EntitySet="tblSingalIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSingalIOLog_tblSingalIO" Association="SecureDBModel.Store.FK_tblSingalIOLog_tblSingalIO">
+            <End Role="tblSingalIO" EntitySet="tblSingalIO" />
+            <End Role="tblSingalIOLog" EntitySet="tblSingalIOLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSysOperation_tblUser" Association="SecureDBModel.Store.FK_tblSysOperation_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblSysOperation" EntitySet="tblSysOperation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSysRoleAuthority_tblSysRole" Association="SecureDBModel.Store.FK_tblSysRoleAuthority_tblSysRole">
+            <End Role="tblSysRole" EntitySet="tblSysRole" />
+            <End Role="tblSysRoleAuthority" EntitySet="tblSysRoleAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblUserGroup" Association="SecureDBModel.Store.FK_tblUser_tblUserGroup">
             <End Role="tblUserGroup" EntitySet="tblUserGroup" />
             <End Role="tblUser" EntitySet="tblUser" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblUserGroupMenu_tblMenu" Association="SecureDBModel.Store.FK_tblUserGroupMenu_tblMenu">
+            <End Role="tblMenu" EntitySet="tblMenu" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserGroupMenu_tblUserGroup" Association="SecureDBModel.Store.FK_tblUserGroupMenu_tblUserGroup">
+            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblAIItem1HourLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblAlarmLog">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="TypeCode" Type="smallint" Nullable="false" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="Value" Type="float" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblCardReaderConfig">
+          <Key>
+            <PropertyRef Name="ReaderID" />
+          </Key>
+          <Property Name="ReaderID" Type="int" Nullable="false" />
+          <Property Name="EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ControlID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReaderType" Type="smallint" />
+          <Property Name="ReaderNO" Type="smallint" />
+          <Property Name="RoomIO" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tblCCTVConfig">
+          <Key>
+            <PropertyRef Name="CCTVID" />
+          </Key>
+          <Property Name="CCTVID" Type="int" Nullable="false" />
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="NVRName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="ScaleX" Type="float" Nullable="false" />
+          <Property Name="ScaleY" Type="float" Nullable="false" />
+          <Property Name="Rotation" Type="float" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblControllerCard">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="ABA" />
+          </Key>
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblControllerConfig">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ControlType" Type="smallint" Nullable="false" />
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Loop" Type="char" MaxLength="1" />
+          <Property Name="IsEnable" Type="bit" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ScaleX" Type="float" />
+          <Property Name="ScaleY" Type="float" />
+          <Property Name="Rotation" Type="float" />
+          <Property Name="PlanID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblControlSetting">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="RemoOpenTime" Type="smallint" />
+          <Property Name="DelayTime" Type="smallint" />
+          <Property Name="LoopErrorAlarmTime" Type="smallint" />
+          <Property Name="Alarm_Sec" Type="smallint" />
+          <Property Name="Light_Sec" Type="smallint" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblDeviceStateLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="TypeCode" Type="smallint" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="ReaderID" Type="int" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SingalName" Type="nvarchar" MaxLength="20" />
+          <Property Name="ABA" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tblEngineRoomConfig">
+          <Key>
+            <PropertyRef Name="ERID" />
+          </Key>
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="ERName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LineID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Direction" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="GPSX" Type="float" Nullable="false" />
+          <Property Name="GPSY" Type="float" Nullable="false" />
+          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="CallOpenDoor" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblEngineRoomLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="ControlID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Result" Type="smallint" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="Endtime" Type="datetime" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="TypeID" Type="smallint" />
+          <Property Name="TypeCode" Type="smallint" />
+        </EntityType>
+        <EntityType Name="tblEntranceGuardConfig">
+          <Key>
+            <PropertyRef Name="EntranceCode" />
+          </Key>
+          <Property Name="EntranceCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="Floor" Type="smallint" />
+          <Property Name="EntranceType" Type="nvarchar" MaxLength="20" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblERDoorPasscode">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="DoorPassword" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblERDoorPassword">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="DoorPassword" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblERPlane">
+          <Key>
+            <PropertyRef Name="PlaneID" />
+          </Key>
+          <Property Name="PlaneID" Type="int" Nullable="false" />
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="PlaneName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PictureDesc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblHostConfig">
+          <Key>
+            <PropertyRef Name="HostID" />
+          </Key>
+          <Property Name="HostID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="HostType" Type="smallint" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblItemConfig">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Lable" Type="nvarchar" MaxLength="50" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="10" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="Rotation" Type="float" Nullable="false" />
+          <Property Name="ScaleX" Type="float" Nullable="false" />
+          <Property Name="ScaleY" Type="float" Nullable="false" />
+          <Property Name="Degree" Type="int" Nullable="false" />
+          <Property Name="WarningUpper" Type="float" Nullable="false" />
+          <Property Name="WarningLower" Type="float" Nullable="false" />
+          <Property Name="AlarmUpper" Type="float" Nullable="false" />
+          <Property Name="AlarmLower" Type="float" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="Address" Type="int" Nullable="false" />
+          <Property Name="BitNo" Type="int" Nullable="false" />
+          <Property Name="Length" Type="int" Nullable="false" />
+          <Property Name="Depiction" Type="nvarchar" MaxLength="100" />
+          <Property Name="AlarmMode" Type="nvarchar" MaxLength="100" />
+          <Property Name="AlarmContent" Type="nvarchar" MaxLength="100" />
+          <Property Name="AbnormalRecoveryContent" Type="nvarchar" MaxLength="100" />
+          <Property Name="AbnormalRecoveryMode" Type="nvarchar" MaxLength="100" />
+          <Property Name="WarningValue" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblMagneticCard">
+          <Key>
+            <PropertyRef Name="MagneticID" />
+          </Key>
+          <Property Name="MagneticID" Type="int" Nullable="false" />
+          <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="WEG1" Type="nvarchar" MaxLength="30" />
+          <Property Name="WEG2" Type="nvarchar" MaxLength="30" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="Enable" Type="char" MaxLength="1" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmployeeNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="20" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="Type" Type="smallint" />
+          <Property Name="NormalID" Type="int" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMagneticCardNormalGroup">
+          <Key>
+            <PropertyRef Name="NormalID" />
+          </Key>
+          <Property Name="NormalID" Type="int" Nullable="false" />
+          <Property Name="NormalName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="tblMenu">
           <Key>
             <PropertyRef Name="MenuID" />
           </Key>
-          <Property Name="MenuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
           <Property Name="MenuGroupID" Type="int" Nullable="false" />
-          <Property Name="MenuName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="XAML" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="50" />
+          <Property Name="XAML" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tblMenuGroup">
           <Key>
             <PropertyRef Name="MenuGroupID" />
           </Key>
-          <Property Name="MenuGroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="MenuGroupID" Type="int" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
           <Property Name="MenuOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSchConfig">
+          <Key>
+            <PropertyRef Name="SchID" />
+          </Key>
+          <Property Name="SchID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="SchName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SchDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="SchType" Type="smallint" />
+          <Property Name="Week1" Type="bit" />
+          <Property Name="Week2" Type="bit" />
+          <Property Name="Week3" Type="bit" />
+          <Property Name="Week4" Type="bit" />
+          <Property Name="Week5" Type="bit" />
+          <Property Name="Week6" Type="bit" />
+          <Property Name="Week7" Type="bit" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="Enable" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblSchLog">
+          <Key>
+            <PropertyRef Name="SchID" />
+          </Key>
+          <Property Name="SchID" Type="bigint" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="Result" Type="bit" Nullable="false" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblSingalIO">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="SingalName" />
+          </Key>
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SingalName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="SingalType" Type="nvarchar" MaxLength="2" />
+          <Property Name="Place" Type="smallint" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblSingalIOLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SingalName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="smallint" />
+        </EntityType>
+        <EntityType Name="tblSysOperation">
+          <Key>
+            <PropertyRef Name="OPID" />
+          </Key>
+          <Property Name="OPID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OPTime" Type="datetime" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="OPItem" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="OPDesc" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="OPResult" Type="bit" Nullable="false" />
+          <Property Name="ControlID" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeID" Type="smallint" />
+          <Property Name="TypeCode" Type="smallint" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblSysParameter">
+          <Key>
+            <PropertyRef Name="SysID" />
+          </Key>
+          <Property Name="SysID" Type="bigint" Nullable="false" />
+          <Property Name="VariableName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="VariableValue" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tblSysRole">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblSysRoleAuthority">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="ControlID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Enable" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tblTypeDetail">
+          <Key>
+            <PropertyRef Name="TypeId" />
+            <PropertyRef Name="TypeCode" />
+          </Key>
+          <Property Name="TypeId" Type="smallint" Nullable="false" />
+          <Property Name="TypeCode" Type="smallint" Nullable="false" />
+          <Property Name="Explain" Type="nvarchar" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="GroupID" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Enable" Type="bit" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tblUserGroup">
           <Key>
             <PropertyRef Name="GroupID" />
           </Key>
-          <Property Name="GroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblUserGroupMenu">
           <Key>
@@ -90,76 +535,205 @@
           </Key>
           <Property Name="GroupID" Type="int" Nullable="false" />
           <Property Name="MenuID" Type="int" Nullable="false" />
-          <Property Name="IsAllow" Type="bit" Nullable="false" />
+          <Property Name="IsAllow" Type="bit" />
         </EntityType>
         <!--產生期間發現錯誤:
-      警告 6002: 資料表/檢視 'Secure.dbo.vwUserGroupMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwUserGroupMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
       -->
         <EntityType Name="vwUserGroupMenuAllow">
           <Key>
             <PropertyRef Name="GroupID" />
-            <PropertyRef Name="GroupName" />
-            <PropertyRef Name="IsAllow" />
             <PropertyRef Name="MenuID" />
-            <PropertyRef Name="MenuName" />
           </Key>
           <Property Name="GroupID" Type="int" Nullable="false" />
-          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="IsAllow" Type="bit" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsAllow" Type="bit" />
           <Property Name="MenuID" Type="int" Nullable="false" />
-          <Property Name="MenuName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--產生期間發現錯誤:
-      警告 6002: 資料表/檢視 'Secure.dbo.vwUserMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwUserMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
       -->
         <EntityType Name="vwUserMenuAllow">
           <Key>
             <PropertyRef Name="GroupID" />
             <PropertyRef Name="MenuID" />
-            <PropertyRef Name="IsAllow" />
-            <PropertyRef Name="MenuName" />
             <PropertyRef Name="MenuGroupID" />
-            <PropertyRef Name="XAML" />
-            <PropertyRef Name="GroupName" />
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="GroupID" Type="int" Nullable="false" />
           <Property Name="MenuID" Type="int" Nullable="false" />
-          <Property Name="IsAllow" Type="bit" Nullable="false" />
-          <Property Name="MenuName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IsAllow" Type="bit" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="50" />
           <Property Name="MenuGroupID" Type="int" Nullable="false" />
-          <Property Name="XAML" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="XAML" Type="nvarchar" MaxLength="100" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="MenuOrder" Type="int" />
         </EntityType>
-        <Association Name="FK_tblGroupMenu_tblMenu">
-          <End Role="tblMenu" Type="SecureModel.Store.tblMenu" Multiplicity="1" />
-          <End Role="tblUserGroupMenu" Type="SecureModel.Store.tblUserGroupMenu" Multiplicity="*" />
+        <Association Name="FK_tblAIItem1HourLog_tblItemConfig">
+          <End Role="tblItemConfig" Type="SecureDBModel.Store.tblItemConfig" Multiplicity="1" />
+          <End Role="tblAIItem1HourLog" Type="SecureDBModel.Store.tblAIItem1HourLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblMenu">
-              <PropertyRef Name="MenuID" />
+            <Principal Role="tblItemConfig">
+              <PropertyRef Name="ItemID" />
             </Principal>
-            <Dependent Role="tblUserGroupMenu">
-              <PropertyRef Name="MenuID" />
+            <Dependent Role="tblAIItem1HourLog">
+              <PropertyRef Name="ItemID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblGroupMenu_tblUserGroup">
-          <End Role="tblUserGroup" Type="SecureModel.Store.tblUserGroup" Multiplicity="1" />
-          <End Role="tblUserGroupMenu" Type="SecureModel.Store.tblUserGroupMenu" Multiplicity="*" />
+        <Association Name="FK_tblAlarmLog_tblTypeDetail">
+          <End Role="tblTypeDetail" Type="SecureDBModel.Store.tblTypeDetail" Multiplicity="1" />
+          <End Role="tblAlarmLog" Type="SecureDBModel.Store.tblAlarmLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblUserGroup">
-              <PropertyRef Name="GroupID" />
+            <Principal Role="tblTypeDetail">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="TypeCode" />
             </Principal>
-            <Dependent Role="tblUserGroupMenu">
-              <PropertyRef Name="GroupID" />
+            <Dependent Role="tblAlarmLog">
+              <PropertyRef Name="TypeID" />
+              <PropertyRef Name="TypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCardReaderConfig_tblControllerConfig">
+          <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="0..1" />
+          <End Role="tblCardReaderConfig" Type="SecureDBModel.Store.tblCardReaderConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblCardReaderConfig">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCCTVConfig_tblEngineRoomConfig">
+          <End Role="tblEngineRoomConfig" Type="SecureDBModel.Store.tblEngineRoomConfig" Multiplicity="1" />
+          <End Role="tblCCTVConfig" Type="SecureDBModel.Store.tblCCTVConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblCCTVConfig">
+              <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblControllerConfig_tblEngineRoomConfig">
+          <End Role="tblEngineRoomConfig" Type="SecureDBModel.Store.tblEngineRoomConfig" Multiplicity="1" />
+          <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblControllerConfig">
+              <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblControlSetting_tblControllerConfig">
+          <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="1" />
+          <End Role="tblControlSetting" Type="SecureDBModel.Store.tblControlSetting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblControlSetting">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDeviceStateLog_tblControllerConfig">
+          <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="1" />
+          <End Role="tblDeviceStateLog" Type="SecureDBModel.Store.tblDeviceStateLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblDeviceStateLog">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDeviceStateLog_tblTypeDetail">
+          <End Role="tblTypeDetail" Type="SecureDBModel.Store.tblTypeDetail" Multiplicity="1" />
+          <End Role="tblDeviceStateLog" Type="SecureDBModel.Store.tblDeviceStateLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTypeDetail">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="TypeCode" />
+            </Principal>
+            <Dependent Role="tblDeviceStateLog">
+              <PropertyRef Name="TypeID" />
+              <PropertyRef Name="TypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEntranceGuardConfig_tblEngineRoomConfig">
+          <End Role="tblEngineRoomConfig" Type="SecureDBModel.Store.tblEngineRoomConfig" Multiplicity="1" />
+          <End Role="tblEntranceGuardConfig" Type="SecureDBModel.Store.tblEntranceGuardConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblEntranceGuardConfig">
+              <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblERDoorPasscode_tblControllerConfig">
+          <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="1" />
+          <End Role="tblERDoorPasscode" Type="SecureDBModel.Store.tblERDoorPasscode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblERDoorPasscode">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblERPlane_tblEngineRoomConfig">
+          <End Role="tblEngineRoomConfig" Type="SecureDBModel.Store.tblEngineRoomConfig" Multiplicity="1" />
+          <End Role="tblERPlane" Type="SecureDBModel.Store.tblERPlane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblERPlane">
+              <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItemConfig_tblControllerConfig">
+          <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="1" />
+          <End Role="tblItemConfig" Type="SecureDBModel.Store.tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMagneticCard_tblSysRole">
+          <End Role="tblSysRole" Type="SecureDBModel.Store.tblSysRole" Multiplicity="1" />
+          <End Role="tblMagneticCard" Type="SecureDBModel.Store.tblMagneticCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSysRole">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="tblMagneticCard">
+              <PropertyRef Name="RoleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMenu_tblMenuGroup">
-          <End Role="tblMenuGroup" Type="SecureModel.Store.tblMenuGroup" Multiplicity="1" />
-          <End Role="tblMenu" Type="SecureModel.Store.tblMenu" Multiplicity="*" />
+          <End Role="tblMenuGroup" Type="SecureDBModel.Store.tblMenuGroup" Multiplicity="1" />
+          <End Role="tblMenu" Type="SecureDBModel.Store.tblMenu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMenuGroup">
               <PropertyRef Name="MenuGroupID" />
@@ -169,14 +743,112 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblSchConfig_tblUser">
+          <End Role="tblUser" Type="SecureDBModel.Store.tblUser" Multiplicity="1" />
+          <End Role="tblSchConfig" Type="SecureDBModel.Store.tblSchConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblSchConfig">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSchLog_tblSchConfig">
+          <End Role="tblSchConfig" Type="SecureDBModel.Store.tblSchConfig" Multiplicity="1" />
+          <End Role="tblSchLog" Type="SecureDBModel.Store.tblSchLog" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblSchConfig">
+              <PropertyRef Name="SchID" />
+            </Principal>
+            <Dependent Role="tblSchLog">
+              <PropertyRef Name="SchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSingalIO_tblControllerConfig">
+          <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="1" />
+          <End Role="tblSingalIO" Type="SecureDBModel.Store.tblSingalIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblSingalIO">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSingalIOLog_tblSingalIO">
+          <End Role="tblSingalIO" Type="SecureDBModel.Store.tblSingalIO" Multiplicity="1" />
+          <End Role="tblSingalIOLog" Type="SecureDBModel.Store.tblSingalIOLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSingalIO">
+              <PropertyRef Name="ControlID" />
+              <PropertyRef Name="SingalName" />
+            </Principal>
+            <Dependent Role="tblSingalIOLog">
+              <PropertyRef Name="ControlID" />
+              <PropertyRef Name="SingalName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSysOperation_tblUser">
+          <End Role="tblUser" Type="SecureDBModel.Store.tblUser" Multiplicity="1" />
+          <End Role="tblSysOperation" Type="SecureDBModel.Store.tblSysOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblSysOperation">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSysRoleAuthority_tblSysRole">
+          <End Role="tblSysRole" Type="SecureDBModel.Store.tblSysRole" Multiplicity="1" />
+          <End Role="tblSysRoleAuthority" Type="SecureDBModel.Store.tblSysRoleAuthority" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblSysRole">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="tblSysRoleAuthority">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblUser_tblUserGroup">
-          <End Role="tblUserGroup" Type="SecureModel.Store.tblUserGroup" Multiplicity="1" />
-          <End Role="tblUser" Type="SecureModel.Store.tblUser" Multiplicity="*" />
+          <End Role="tblUserGroup" Type="SecureDBModel.Store.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUser" Type="SecureDBModel.Store.tblUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblUserGroup">
               <PropertyRef Name="GroupID" />
             </Principal>
             <Dependent Role="tblUser">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserGroupMenu_tblMenu">
+          <End Role="tblMenu" Type="SecureDBModel.Store.tblMenu" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="SecureDBModel.Store.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenu">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserGroupMenu_tblUserGroup">
+          <End Role="tblUserGroup" Type="SecureDBModel.Store.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="SecureDBModel.Store.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
               <PropertyRef Name="GroupID" />
             </Dependent>
           </ReferentialConstraint>
@@ -184,97 +856,768 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SecureModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
-        <EntityContainer Name="SecureDB" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="tblMenu" EntityType="SecureModel.tblMenu" />
-          <EntitySet Name="tblMenuGroup" EntityType="SecureModel.tblMenuGroup" />
-          <EntitySet Name="tblUser" EntityType="SecureModel.tblUser" />
-          <EntitySet Name="tblUserGroup" EntityType="SecureModel.tblUserGroup" />
-          <EntitySet Name="tblUserGroupMenu" EntityType="SecureModel.tblUserGroupMenu" />
-          <AssociationSet Name="FK_tblGroupMenu_tblMenu" Association="SecureModel.FK_tblGroupMenu_tblMenu">
-            <End Role="tblMenu" EntitySet="tblMenu" />
-            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+      <Schema Namespace="SecureDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SecureDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAIItem1HourLog" EntityType="SecureDBModel.tblAIItem1HourLog" />
+          <EntitySet Name="tblAlarmLog" EntityType="SecureDBModel.tblAlarmLog" />
+          <EntitySet Name="tblCardReaderConfig" EntityType="SecureDBModel.tblCardReaderConfig" />
+          <EntitySet Name="tblCCTVConfig" EntityType="SecureDBModel.tblCCTVConfig" />
+          <EntitySet Name="tblControllerCard" EntityType="SecureDBModel.tblControllerCard" />
+          <EntitySet Name="tblControllerConfig" EntityType="SecureDBModel.tblControllerConfig" />
+          <EntitySet Name="tblControlSetting" EntityType="SecureDBModel.tblControlSetting" />
+          <EntitySet Name="tblDeviceStateLog" EntityType="SecureDBModel.tblDeviceStateLog" />
+          <EntitySet Name="tblEngineRoomConfig" EntityType="SecureDBModel.tblEngineRoomConfig" />
+          <EntitySet Name="tblEngineRoomLog" EntityType="SecureDBModel.tblEngineRoomLog" />
+          <EntitySet Name="tblEntranceGuardConfig" EntityType="SecureDBModel.tblEntranceGuardConfig" />
+          <EntitySet Name="tblERDoorPasscode" EntityType="SecureDBModel.tblERDoorPasscode" />
+          <EntitySet Name="tblERDoorPassword" EntityType="SecureDBModel.tblERDoorPassword" />
+          <EntitySet Name="tblERPlane" EntityType="SecureDBModel.tblERPlane" />
+          <EntitySet Name="tblHostConfig" EntityType="SecureDBModel.tblHostConfig" />
+          <EntitySet Name="tblItemConfig" EntityType="SecureDBModel.tblItemConfig" />
+          <EntitySet Name="tblMagneticCard" EntityType="SecureDBModel.tblMagneticCard" />
+          <EntitySet Name="tblMagneticCardNormalGroup" EntityType="SecureDBModel.tblMagneticCardNormalGroup" />
+          <EntitySet Name="tblMenu" EntityType="SecureDBModel.tblMenu" />
+          <EntitySet Name="tblMenuGroup" EntityType="SecureDBModel.tblMenuGroup" />
+          <EntitySet Name="tblSchConfig" EntityType="SecureDBModel.tblSchConfig" />
+          <EntitySet Name="tblSchLog" EntityType="SecureDBModel.tblSchLog" />
+          <EntitySet Name="tblSingalIO" EntityType="SecureDBModel.tblSingalIO" />
+          <EntitySet Name="tblSingalIOLog" EntityType="SecureDBModel.tblSingalIOLog" />
+          <EntitySet Name="tblSysOperation" EntityType="SecureDBModel.tblSysOperation" />
+          <EntitySet Name="tblSysParameter" EntityType="SecureDBModel.tblSysParameter" />
+          <EntitySet Name="tblSysRole" EntityType="SecureDBModel.tblSysRole" />
+          <EntitySet Name="tblSysRoleAuthority" EntityType="SecureDBModel.tblSysRoleAuthority" />
+          <EntitySet Name="tblTypeDetail" EntityType="SecureDBModel.tblTypeDetail" />
+          <EntitySet Name="tblUser" EntityType="SecureDBModel.tblUser" />
+          <EntitySet Name="tblUserGroup" EntityType="SecureDBModel.tblUserGroup" />
+          <EntitySet Name="tblUserGroupMenu" EntityType="SecureDBModel.tblUserGroupMenu" />
+          <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureDBModel.vwUserGroupMenuAllow" />
+          <EntitySet Name="vwUserMenuAllow" EntityType="SecureDBModel.vwUserMenuAllow" />
+          <AssociationSet Name="FK_tblAIItem1HourLog_tblItemConfig" Association="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig">
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+            <End Role="tblAIItem1HourLog" EntitySet="tblAIItem1HourLog" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblMenu_tblMenuGroup" Association="SecureModel.FK_tblMenu_tblMenuGroup">
+          <AssociationSet Name="FK_tblAlarmLog_tblTypeDetail" Association="SecureDBModel.FK_tblAlarmLog_tblTypeDetail">
+            <End Role="tblTypeDetail" EntitySet="tblTypeDetail" />
+            <End Role="tblAlarmLog" EntitySet="tblAlarmLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCardReaderConfig_tblControllerConfig" Association="SecureDBModel.FK_tblCardReaderConfig_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblCardReaderConfig" EntitySet="tblCardReaderConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCCTVConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblCCTVConfig" EntitySet="tblCCTVConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblControllerConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblControllerConfig_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblControlSetting_tblControllerConfig" Association="SecureDBModel.FK_tblControlSetting_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblControlSetting" EntitySet="tblControlSetting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDeviceStateLog_tblControllerConfig" Association="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblDeviceStateLog" EntitySet="tblDeviceStateLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblERDoorPasscode_tblControllerConfig" Association="SecureDBModel.FK_tblERDoorPasscode_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblERDoorPasscode" EntitySet="tblERDoorPasscode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItemConfig_tblControllerConfig" Association="SecureDBModel.FK_tblItemConfig_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSingalIO_tblControllerConfig" Association="SecureDBModel.FK_tblSingalIO_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblSingalIO" EntitySet="tblSingalIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDeviceStateLog_tblTypeDetail" Association="SecureDBModel.FK_tblDeviceStateLog_tblTypeDetail">
+            <End Role="tblTypeDetail" EntitySet="tblTypeDetail" />
+            <End Role="tblDeviceStateLog" EntitySet="tblDeviceStateLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEntranceGuardConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblEntranceGuardConfig_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblEntranceGuardConfig" EntitySet="tblEntranceGuardConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblERPlane_tblEngineRoomConfig" Association="SecureDBModel.FK_tblERPlane_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblERPlane" EntitySet="tblERPlane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMagneticCard_tblSysRole" Association="SecureDBModel.FK_tblMagneticCard_tblSysRole">
+            <End Role="tblSysRole" EntitySet="tblSysRole" />
+            <End Role="tblMagneticCard" EntitySet="tblMagneticCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMenu_tblMenuGroup" Association="SecureDBModel.FK_tblMenu_tblMenuGroup">
             <End Role="tblMenuGroup" EntitySet="tblMenuGroup" />
             <End Role="tblMenu" EntitySet="tblMenu" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblUser_tblUserGroup" Association="SecureModel.FK_tblUser_tblUserGroup">
+          <AssociationSet Name="FK_tblUserGroupMenu_tblMenu" Association="SecureDBModel.FK_tblUserGroupMenu_tblMenu">
+            <End Role="tblMenu" EntitySet="tblMenu" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSchConfig_tblUser" Association="SecureDBModel.FK_tblSchConfig_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblSchConfig" EntitySet="tblSchConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSchLog_tblSchConfig" Association="SecureDBModel.FK_tblSchLog_tblSchConfig">
+            <End Role="tblSchConfig" EntitySet="tblSchConfig" />
+            <End Role="tblSchLog" EntitySet="tblSchLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSingalIOLog_tblSingalIO" Association="SecureDBModel.FK_tblSingalIOLog_tblSingalIO">
+            <End Role="tblSingalIO" EntitySet="tblSingalIO" />
+            <End Role="tblSingalIOLog" EntitySet="tblSingalIOLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSysOperation_tblUser" Association="SecureDBModel.FK_tblSysOperation_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblSysOperation" EntitySet="tblSysOperation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSysRoleAuthority_tblSysRole" Association="SecureDBModel.FK_tblSysRoleAuthority_tblSysRole">
+            <End Role="tblSysRole" EntitySet="tblSysRole" />
+            <End Role="tblSysRoleAuthority" EntitySet="tblSysRoleAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblUserGroup" Association="SecureDBModel.FK_tblUser_tblUserGroup">
             <End Role="tblUserGroup" EntitySet="tblUserGroup" />
             <End Role="tblUser" EntitySet="tblUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblGroupMenu_tblUserGroup" Association="SecureModel.FK_tblGroupMenu_tblUserGroup">
+          <AssociationSet Name="FK_tblUserGroupMenu_tblUserGroup" Association="SecureDBModel.FK_tblUserGroupMenu_tblUserGroup">
             <End Role="tblUserGroup" EntitySet="tblUserGroup" />
             <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
           </AssociationSet>
-          <EntitySet Name="vwUserMenuAllow" EntityType="SecureModel.vwUserMenuAllow" />
-          <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureModel.vwUserGroupMenuAllow" />
         </EntityContainer>
+        <EntityType Name="tblAIItem1HourLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="Double" Name="Value" Nullable="false" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" FromRole="tblAIItem1HourLog" ToRole="tblItemConfig" />
+        </EntityType>
+        <EntityType Name="tblAlarmLog">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Type="Int64" Name="EventID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ItemID" />
+          <Property Type="Double" Name="Value" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblTypeDetail" Relationship="SecureDBModel.FK_tblAlarmLog_tblTypeDetail" FromRole="tblAlarmLog" ToRole="tblTypeDetail" />
+        </EntityType>
+        <EntityType Name="tblCardReaderConfig">
+          <Key>
+            <PropertyRef Name="ReaderID" />
+          </Key>
+          <Property Type="Int32" Name="ReaderID" Nullable="false" />
+          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ReaderType" />
+          <Property Type="Int16" Name="ReaderNO" />
+          <Property Type="String" Name="RoomIO" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblCardReaderConfig_tblControllerConfig" FromRole="tblCardReaderConfig" ToRole="tblControllerConfig" />
+        </EntityType>
+        <EntityType Name="tblCCTVConfig">
+          <Key>
+            <PropertyRef Name="CCTVID" />
+          </Key>
+          <Property Type="Int32" Name="CCTVID" Nullable="false" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="NVRName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="Double" Name="X" Nullable="false" />
+          <Property Type="Double" Name="Y" Nullable="false" />
+          <Property Type="Double" Name="ScaleX" Nullable="false" />
+          <Property Type="Double" Name="ScaleY" Nullable="false" />
+          <Property Type="Double" Name="Rotation" Nullable="false" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" FromRole="tblCCTVConfig" ToRole="tblEngineRoomConfig" />
+        </EntityType>
+        <EntityType Name="tblControllerCard">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="ABA" />
+          </Key>
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblControllerConfig">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ControlType" Nullable="false" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Loop" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="IsEnable" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="Double" Name="ScaleX" />
+          <Property Type="Double" Name="ScaleY" />
+          <Property Type="Double" Name="Rotation" />
+          <Property Type="Int32" Name="PlanID" />
+          <NavigationProperty Name="tblCardReaderConfig" Relationship="SecureDBModel.FK_tblCardReaderConfig_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblCardReaderConfig" />
+          <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblControllerConfig_tblEngineRoomConfig" FromRole="tblControllerConfig" ToRole="tblEngineRoomConfig" />
+          <NavigationProperty Name="tblControlSetting" Relationship="SecureDBModel.FK_tblControlSetting_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblControlSetting" />
+          <NavigationProperty Name="tblDeviceStateLog" Relationship="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblDeviceStateLog" />
+          <NavigationProperty Name="tblERDoorPasscode" Relationship="SecureDBModel.FK_tblERDoorPasscode_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblERDoorPasscode" />
+          <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblItemConfig" />
+          <NavigationProperty Name="tblSingalIO" Relationship="SecureDBModel.FK_tblSingalIO_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblSingalIO" />
+        </EntityType>
+        <EntityType Name="tblControlSetting">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="RemoOpenTime" />
+          <Property Type="Int16" Name="DelayTime" />
+          <Property Type="Int16" Name="LoopErrorAlarmTime" />
+          <Property Type="Int16" Name="Alarm_Sec" />
+          <Property Type="Int16" Name="Light_Sec" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblControlSetting_tblControllerConfig" FromRole="tblControlSetting" ToRole="tblControllerConfig" />
+        </EntityType>
+        <EntityType Name="tblDeviceStateLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ReaderID" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingalName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig" FromRole="tblDeviceStateLog" ToRole="tblControllerConfig" />
+          <NavigationProperty Name="tblTypeDetail" Relationship="SecureDBModel.FK_tblDeviceStateLog_tblTypeDetail" FromRole="tblDeviceStateLog" ToRole="tblTypeDetail" />
+        </EntityType>
+        <EntityType Name="tblEngineRoomConfig">
+          <Key>
+            <PropertyRef Name="ERID" />
+          </Key>
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Double" Name="GPSX" Nullable="false" />
+          <Property Type="Double" Name="GPSY" Nullable="false" />
+          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CallOpenDoor" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCCTVConfig" Relationship="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblCCTVConfig" />
+          <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblControllerConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblControllerConfig" />
+          <NavigationProperty Name="tblEntranceGuardConfig" Relationship="SecureDBModel.FK_tblEntranceGuardConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblEntranceGuardConfig" />
+          <NavigationProperty Name="tblERPlane" Relationship="SecureDBModel.FK_tblERPlane_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblERPlane" />
+        </EntityType>
+        <EntityType Name="tblEngineRoomLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Result" Nullable="false" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Endtime" Precision="3" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="TypeID" />
+          <Property Type="Int16" Name="TypeCode" />
+        </EntityType>
+        <EntityType Name="tblEntranceGuardConfig">
+          <Key>
+            <PropertyRef Name="EntranceCode" />
+          </Key>
+          <Property Type="String" Name="EntranceCode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="Int16" Name="Floor" />
+          <Property Type="String" Name="EntranceType" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblEntranceGuardConfig_tblEngineRoomConfig" FromRole="tblEntranceGuardConfig" ToRole="tblEngineRoomConfig" />
+        </EntityType>
+        <EntityType Name="tblERDoorPasscode">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="DoorPassword" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblERDoorPasscode_tblControllerConfig" FromRole="tblERDoorPasscode" ToRole="tblControllerConfig" />
+        </EntityType>
+        <EntityType Name="tblERDoorPassword">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="DoorPassword" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblERPlane">
+          <Key>
+            <PropertyRef Name="PlaneID" />
+          </Key>
+          <Property Type="Int32" Name="PlaneID" Nullable="false" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="PlaneName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PictureDesc" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblERPlane_tblEngineRoomConfig" FromRole="tblERPlane" ToRole="tblEngineRoomConfig" />
+        </EntityType>
+        <EntityType Name="tblHostConfig">
+          <Key>
+            <PropertyRef Name="HostID" />
+          </Key>
+          <Property Type="String" Name="HostID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="HostType" Nullable="false" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblItemConfig">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lable" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Unit" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="X" Nullable="false" />
+          <Property Type="Double" Name="Y" Nullable="false" />
+          <Property Type="Double" Name="Rotation" Nullable="false" />
+          <Property Type="Double" Name="ScaleX" Nullable="false" />
+          <Property Type="Double" Name="ScaleY" Nullable="false" />
+          <Property Type="Int32" Name="Degree" Nullable="false" />
+          <Property Type="Double" Name="WarningUpper" Nullable="false" />
+          <Property Type="Double" Name="WarningLower" Nullable="false" />
+          <Property Type="Double" Name="AlarmUpper" Nullable="false" />
+          <Property Type="Double" Name="AlarmLower" Nullable="false" />
+          <Property Type="Double" Name="Value" Nullable="false" />
+          <Property Type="Int32" Name="Address" Nullable="false" />
+          <Property Type="Int32" Name="BitNo" Nullable="false" />
+          <Property Type="Int32" Name="Length" Nullable="false" />
+          <Property Type="String" Name="Depiction" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AlarmMode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AlarmContent" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AbnormalRecoveryContent" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AbnormalRecoveryMode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WarningValue" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblAIItem1HourLog" Relationship="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" FromRole="tblItemConfig" ToRole="tblAIItem1HourLog" />
+          <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblControllerConfig" FromRole="tblItemConfig" ToRole="tblControllerConfig" />
+        </EntityType>
+        <EntityType Name="tblMagneticCard">
+          <Key>
+            <PropertyRef Name="MagneticID" />
+          </Key>
+          <Property Type="Int32" Name="MagneticID" Nullable="false" />
+          <Property Type="String" Name="ABA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WEG1" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WEG2" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDate" Precision="3" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Company" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IDNumber" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmployeeNo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JobTitle" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Tel" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mobile" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Type" />
+          <Property Type="Int32" Name="NormalID" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <NavigationProperty Name="tblSysRole" Relationship="SecureDBModel.FK_tblMagneticCard_tblSysRole" FromRole="tblMagneticCard" ToRole="tblSysRole" />
+        </EntityType>
+        <EntityType Name="tblMagneticCardNormalGroup">
+          <Key>
+            <PropertyRef Name="NormalID" />
+          </Key>
+          <Property Type="Int32" Name="NormalID" Nullable="false" />
+          <Property Type="String" Name="NormalName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdateDate" Precision="3" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tblMenu">
           <Key>
             <PropertyRef Name="MenuID" />
           </Key>
-          <Property Name="MenuID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="MenuGroupID" Type="Int32" Nullable="false" />
-          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="XAML" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="tblUserGroupMenu" Relationship="SecureModel.FK_tblGroupMenu_tblMenu" FromRole="tblMenu" ToRole="tblUserGroupMenu" />
-          <NavigationProperty Name="tblMenuGroup" Relationship="SecureModel.FK_tblMenu_tblMenuGroup" FromRole="tblMenu" ToRole="tblMenuGroup" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Int32" Name="MenuGroupID" Nullable="false" />
+          <Property Type="String" Name="MenuName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="XAML" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMenuGroup" Relationship="SecureDBModel.FK_tblMenu_tblMenuGroup" FromRole="tblMenu" ToRole="tblMenuGroup" />
+          <NavigationProperty Name="tblUserGroupMenu" Relationship="SecureDBModel.FK_tblUserGroupMenu_tblMenu" FromRole="tblMenu" ToRole="tblUserGroupMenu" />
         </EntityType>
         <EntityType Name="tblMenuGroup">
           <Key>
             <PropertyRef Name="MenuGroupID" />
           </Key>
-          <Property Name="MenuGroupID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="MenuOrder" Type="Int32" />
-          <NavigationProperty Name="tblMenu" Relationship="SecureModel.FK_tblMenu_tblMenuGroup" FromRole="tblMenuGroup" ToRole="tblMenu" />
+          <Property Type="Int32" Name="MenuGroupID" Nullable="false" />
+          <Property Type="String" Name="GroupName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MenuOrder" />
+          <NavigationProperty Name="tblMenu" Relationship="SecureDBModel.FK_tblMenu_tblMenuGroup" FromRole="tblMenuGroup" ToRole="tblMenu" />
+        </EntityType>
+        <EntityType Name="tblSchConfig">
+          <Key>
+            <PropertyRef Name="SchID" />
+          </Key>
+          <Property Type="Int64" Name="SchID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="SchName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SchDesc" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="SchType" />
+          <Property Type="Boolean" Name="Week1" />
+          <Property Type="Boolean" Name="Week2" />
+          <Property Type="Boolean" Name="Week3" />
+          <Property Type="Boolean" Name="Week4" />
+          <Property Type="Boolean" Name="Week5" />
+          <Property Type="Boolean" Name="Week6" />
+          <Property Type="Boolean" Name="Week7" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Enable" />
+          <NavigationProperty Name="tblUser" Relationship="SecureDBModel.FK_tblSchConfig_tblUser" FromRole="tblSchConfig" ToRole="tblUser" />
+          <NavigationProperty Name="tblSchLog" Relationship="SecureDBModel.FK_tblSchLog_tblSchConfig" FromRole="tblSchConfig" ToRole="tblSchLog" />
+        </EntityType>
+        <EntityType Name="tblSchLog">
+          <Key>
+            <PropertyRef Name="SchID" />
+          </Key>
+          <Property Type="Int64" Name="SchID" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Result" Nullable="false" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSchConfig" Relationship="SecureDBModel.FK_tblSchLog_tblSchConfig" FromRole="tblSchLog" ToRole="tblSchConfig" />
+        </EntityType>
+        <EntityType Name="tblSingalIO">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="SingalName" />
+          </Key>
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingalName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingalType" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Place" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblSingalIO_tblControllerConfig" FromRole="tblSingalIO" ToRole="tblControllerConfig" />
+          <NavigationProperty Name="tblSingalIOLog" Relationship="SecureDBModel.FK_tblSingalIOLog_tblSingalIO" FromRole="tblSingalIO" ToRole="tblSingalIOLog" />
+        </EntityType>
+        <EntityType Name="tblSingalIOLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingalName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int16" Name="Status" />
+          <NavigationProperty Name="tblSingalIO" Relationship="SecureDBModel.FK_tblSingalIOLog_tblSingalIO" FromRole="tblSingalIOLog" ToRole="tblSingalIO" />
+        </EntityType>
+        <EntityType Name="tblSysOperation">
+          <Key>
+            <PropertyRef Name="OPID" />
+          </Key>
+          <Property Type="Int64" Name="OPID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="OPTime" Nullable="false" Precision="3" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="OPItem" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="OPDesc" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="OPResult" Nullable="false" />
+          <Property Type="String" Name="ControlID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="TypeID" />
+          <Property Type="Int16" Name="TypeCode" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUser" Relationship="SecureDBModel.FK_tblSysOperation_tblUser" FromRole="tblSysOperation" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblSysParameter">
+          <Key>
+            <PropertyRef Name="SysID" />
+          </Key>
+          <Property Type="Int64" Name="SysID" Nullable="false" />
+          <Property Type="String" Name="VariableName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VariableValue" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblSysRole">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="String" Name="RoleName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdateDate" Precision="3" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMagneticCard" Relationship="SecureDBModel.FK_tblMagneticCard_tblSysRole" FromRole="tblSysRole" ToRole="tblMagneticCard" />
+          <NavigationProperty Name="tblSysRoleAuthority" Relationship="SecureDBModel.FK_tblSysRoleAuthority_tblSysRole" FromRole="tblSysRole" ToRole="tblSysRoleAuthority" />
+        </EntityType>
+        <EntityType Name="tblSysRoleAuthority">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="String" Name="ControlID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tblSysRole" Relationship="SecureDBModel.FK_tblSysRoleAuthority_tblSysRole" FromRole="tblSysRoleAuthority" ToRole="tblSysRole" />
+        </EntityType>
+        <EntityType Name="tblTypeDetail">
+          <Key>
+            <PropertyRef Name="TypeId" />
+            <PropertyRef Name="TypeCode" />
+          </Key>
+          <Property Type="Int16" Name="TypeId" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblAlarmLog" Relationship="SecureDBModel.FK_tblAlarmLog_tblTypeDetail" FromRole="tblTypeDetail" ToRole="tblAlarmLog" />
+          <NavigationProperty Name="tblDeviceStateLog" Relationship="SecureDBModel.FK_tblDeviceStateLog_tblTypeDetail" FromRole="tblTypeDetail" ToRole="tblDeviceStateLog" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="tblUserGroup" Relationship="SecureModel.FK_tblUser_tblUserGroup" FromRole="tblUser" ToRole="tblUserGroup" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdateDate" Precision="3" />
+          <Property Type="Boolean" Name="Enable" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSchConfig" Relationship="SecureDBModel.FK_tblSchConfig_tblUser" FromRole="tblUser" ToRole="tblSchConfig" />
+          <NavigationProperty Name="tblSysOperation" Relationship="SecureDBModel.FK_tblSysOperation_tblUser" FromRole="tblUser" ToRole="tblSysOperation" />
+          <NavigationProperty Name="tblUserGroup" Relationship="SecureDBModel.FK_tblUser_tblUserGroup" FromRole="tblUser" ToRole="tblUserGroup" />
         </EntityType>
         <EntityType Name="tblUserGroup">
           <Key>
             <PropertyRef Name="GroupID" />
           </Key>
-          <Property Name="GroupID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="tblUser" Relationship="SecureModel.FK_tblUser_tblUserGroup" FromRole="tblUserGroup" ToRole="tblUser" />
-          <NavigationProperty Name="tblUserGroupMenu" Relationship="SecureModel.FK_tblGroupMenu_tblUserGroup" FromRole="tblUserGroup" ToRole="tblUserGroupMenu" />
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="String" Name="GroupName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUser" Relationship="SecureDBModel.FK_tblUser_tblUserGroup" FromRole="tblUserGroup" ToRole="tblUser" />
+          <NavigationProperty Name="tblUserGroupMenu" Relationship="SecureDBModel.FK_tblUserGroupMenu_tblUserGroup" FromRole="tblUserGroup" ToRole="tblUserGroupMenu" />
         </EntityType>
         <EntityType Name="tblUserGroupMenu">
           <Key>
             <PropertyRef Name="GroupID" />
             <PropertyRef Name="MenuID" />
           </Key>
-          <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <Property Name="MenuID" Type="Int32" Nullable="false" />
-          <Property Name="IsAllow" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblMenu" Relationship="SecureModel.FK_tblGroupMenu_tblMenu" FromRole="tblUserGroupMenu" ToRole="tblMenu" />
-          <NavigationProperty Name="tblUserGroup" Relationship="SecureModel.FK_tblGroupMenu_tblUserGroup" FromRole="tblUserGroupMenu" ToRole="tblUserGroup" />
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Boolean" Name="IsAllow" />
+          <NavigationProperty Name="tblMenu" Relationship="SecureDBModel.FK_tblUserGroupMenu_tblMenu" FromRole="tblUserGroupMenu" ToRole="tblMenu" />
+          <NavigationProperty Name="tblUserGroup" Relationship="SecureDBModel.FK_tblUserGroupMenu_tblUserGroup" FromRole="tblUserGroupMenu" ToRole="tblUserGroup" />
         </EntityType>
-        <Association Name="FK_tblGroupMenu_tblMenu">
-          <End Role="tblMenu" Type="SecureModel.tblMenu" Multiplicity="1" />
-          <End Role="tblUserGroupMenu" Type="SecureModel.tblUserGroupMenu" Multiplicity="*" />
+        <EntityType Name="vwUserGroupMenuAllow">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="String" Name="GroupName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsAllow" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="String" Name="MenuName" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwUserMenuAllow">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MenuID" />
+            <PropertyRef Name="MenuGroupID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Boolean" Name="IsAllow" />
+          <Property Type="String" Name="MenuName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MenuGroupID" Nullable="false" />
+          <Property Type="String" Name="XAML" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GroupName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MenuOrder" />
+        </EntityType>
+        <Association Name="FK_tblAIItem1HourLog_tblItemConfig">
+          <End Type="SecureDBModel.tblItemConfig" Role="tblItemConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblAIItem1HourLog" Role="tblAIItem1HourLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblMenu">
-              <PropertyRef Name="MenuID" />
+            <Principal Role="tblItemConfig">
+              <PropertyRef Name="ItemID" />
             </Principal>
-            <Dependent Role="tblUserGroupMenu">
-              <PropertyRef Name="MenuID" />
+            <Dependent Role="tblAIItem1HourLog">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAlarmLog_tblTypeDetail">
+          <End Type="SecureDBModel.tblTypeDetail" Role="tblTypeDetail" Multiplicity="1" />
+          <End Type="SecureDBModel.tblAlarmLog" Role="tblAlarmLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTypeDetail">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="TypeCode" />
+            </Principal>
+            <Dependent Role="tblAlarmLog">
+              <PropertyRef Name="TypeID" />
+              <PropertyRef Name="TypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCardReaderConfig_tblControllerConfig">
+          <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="0..1" />
+          <End Type="SecureDBModel.tblCardReaderConfig" Role="tblCardReaderConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblCardReaderConfig">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCCTVConfig_tblEngineRoomConfig">
+          <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblCCTVConfig" Role="tblCCTVConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblCCTVConfig">
+              <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblControllerConfig_tblEngineRoomConfig">
+          <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblControllerConfig">
+              <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblControlSetting_tblControllerConfig">
+          <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblControlSetting" Role="tblControlSetting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblControlSetting">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDeviceStateLog_tblControllerConfig">
+          <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblDeviceStateLog" Role="tblDeviceStateLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblDeviceStateLog">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblERDoorPasscode_tblControllerConfig">
+          <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblERDoorPasscode" Role="tblERDoorPasscode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblERDoorPasscode">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItemConfig_tblControllerConfig">
+          <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblItemConfig" Role="tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSingalIO_tblControllerConfig">
+          <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblSingalIO" Role="tblSingalIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblSingalIO">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDeviceStateLog_tblTypeDetail">
+          <End Type="SecureDBModel.tblTypeDetail" Role="tblTypeDetail" Multiplicity="1" />
+          <End Type="SecureDBModel.tblDeviceStateLog" Role="tblDeviceStateLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTypeDetail">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="TypeCode" />
+            </Principal>
+            <Dependent Role="tblDeviceStateLog">
+              <PropertyRef Name="TypeID" />
+              <PropertyRef Name="TypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEntranceGuardConfig_tblEngineRoomConfig">
+          <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblEntranceGuardConfig" Role="tblEntranceGuardConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblEntranceGuardConfig">
+              <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblERPlane_tblEngineRoomConfig">
+          <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblERPlane" Role="tblERPlane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblERPlane">
+              <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMagneticCard_tblSysRole">
+          <End Type="SecureDBModel.tblSysRole" Role="tblSysRole" Multiplicity="1" />
+          <End Type="SecureDBModel.tblMagneticCard" Role="tblMagneticCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSysRole">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="tblMagneticCard">
+              <PropertyRef Name="RoleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMenu_tblMenuGroup">
-          <End Role="tblMenuGroup" Type="SecureModel.tblMenuGroup" Multiplicity="1" />
-          <End Role="tblMenu" Type="SecureModel.tblMenu" Multiplicity="*" />
+          <End Type="SecureDBModel.tblMenuGroup" Role="tblMenuGroup" Multiplicity="1" />
+          <End Type="SecureDBModel.tblMenu" Role="tblMenu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMenuGroup">
               <PropertyRef Name="MenuGroupID" />
@@ -284,9 +1627,83 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblUserGroupMenu_tblMenu">
+          <End Type="SecureDBModel.tblMenu" Role="tblMenu" Multiplicity="1" />
+          <End Type="SecureDBModel.tblUserGroupMenu" Role="tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenu">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSchConfig_tblUser">
+          <End Type="SecureDBModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="SecureDBModel.tblSchConfig" Role="tblSchConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblSchConfig">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSchLog_tblSchConfig">
+          <End Type="SecureDBModel.tblSchConfig" Role="tblSchConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblSchLog" Role="tblSchLog" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblSchConfig">
+              <PropertyRef Name="SchID" />
+            </Principal>
+            <Dependent Role="tblSchLog">
+              <PropertyRef Name="SchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSingalIOLog_tblSingalIO">
+          <End Type="SecureDBModel.tblSingalIO" Role="tblSingalIO" Multiplicity="1" />
+          <End Type="SecureDBModel.tblSingalIOLog" Role="tblSingalIOLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSingalIO">
+              <PropertyRef Name="ControlID" />
+              <PropertyRef Name="SingalName" />
+            </Principal>
+            <Dependent Role="tblSingalIOLog">
+              <PropertyRef Name="ControlID" />
+              <PropertyRef Name="SingalName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSysOperation_tblUser">
+          <End Type="SecureDBModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="SecureDBModel.tblSysOperation" Role="tblSysOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblSysOperation">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSysRoleAuthority_tblSysRole">
+          <End Type="SecureDBModel.tblSysRole" Role="tblSysRole" Multiplicity="1" />
+          <End Type="SecureDBModel.tblSysRoleAuthority" Role="tblSysRoleAuthority" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblSysRole">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="tblSysRoleAuthority">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblUser_tblUserGroup">
-          <End Role="tblUserGroup" Type="SecureModel.tblUserGroup" Multiplicity="1" />
-          <End Role="tblUser" Type="SecureModel.tblUser" Multiplicity="*" />
+          <End Type="SecureDBModel.tblUserGroup" Role="tblUserGroup" Multiplicity="1" />
+          <End Type="SecureDBModel.tblUser" Role="tblUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblUserGroup">
               <PropertyRef Name="GroupID" />
@@ -296,9 +1713,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblGroupMenu_tblUserGroup">
-          <End Role="tblUserGroup" Type="SecureModel.tblUserGroup" Multiplicity="1" />
-          <End Role="tblUserGroupMenu" Type="SecureModel.tblUserGroupMenu" Multiplicity="*" />
+        <Association Name="FK_tblUserGroupMenu_tblUserGroup">
+          <End Type="SecureDBModel.tblUserGroup" Role="tblUserGroup" Multiplicity="1" />
+          <End Type="SecureDBModel.tblUserGroupMenu" Role="tblUserGroupMenu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblUserGroup">
               <PropertyRef Name="GroupID" />
@@ -308,95 +1725,437 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vwUserMenuAllow">
-          <Key>
-            <PropertyRef Name="GroupID" />
-            <PropertyRef Name="MenuID" />
-            <PropertyRef Name="IsAllow" />
-            <PropertyRef Name="MenuName" />
-            <PropertyRef Name="MenuGroupID" />
-            <PropertyRef Name="XAML" />
-            <PropertyRef Name="GroupName" />
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Type="Int32" Name="GroupID" Nullable="false" />
-          <Property Type="Int32" Name="MenuID" Nullable="false" />
-          <Property Type="Boolean" Name="IsAllow" Nullable="false" />
-          <Property Type="String" Name="MenuName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="MenuGroupID" Nullable="false" />
-          <Property Type="String" Name="XAML" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="GroupName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="UserID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="MenuOrder" />
-        </EntityType>
-        <EntityType Name="vwUserGroupMenuAllow">
-          <Key>
-            <PropertyRef Name="GroupID" />
-            <PropertyRef Name="GroupName" />
-            <PropertyRef Name="IsAllow" />
-            <PropertyRef Name="MenuID" />
-            <PropertyRef Name="MenuName" />
-          </Key>
-          <Property Type="Int32" Name="GroupID" Nullable="false" />
-          <Property Type="String" Name="GroupName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="IsAllow" Nullable="false" />
-          <Property Type="Int32" Name="MenuID" Nullable="false" />
-          <Property Type="String" Name="MenuName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SecureModelStoreContainer" CdmEntityContainer="SecureDB">
+        <EntityContainerMapping StorageEntityContainer="SecureDBModelStoreContainer" CdmEntityContainer="SecureDBEntities">
+          <EntitySetMapping Name="tblAIItem1HourLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblAIItem1HourLog">
+              <MappingFragment StoreEntitySet="tblAIItem1HourLog">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAlarmLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblAlarmLog">
+              <MappingFragment StoreEntitySet="tblAlarmLog">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCardReaderConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblCardReaderConfig">
+              <MappingFragment StoreEntitySet="tblCardReaderConfig">
+                <ScalarProperty Name="RoomIO" ColumnName="RoomIO" />
+                <ScalarProperty Name="ReaderNO" ColumnName="ReaderNO" />
+                <ScalarProperty Name="ReaderType" ColumnName="ReaderType" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+                <ScalarProperty Name="ReaderID" ColumnName="ReaderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCCTVConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblCCTVConfig">
+              <MappingFragment StoreEntitySet="tblCCTVConfig">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="NVRName" ColumnName="NVRName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="CCTVID" ColumnName="CCTVID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblControllerCard">
+            <EntityTypeMapping TypeName="SecureDBModel.tblControllerCard">
+              <MappingFragment StoreEntitySet="tblControllerCard">
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblControllerConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblControllerConfig">
+              <MappingFragment StoreEntitySet="tblControllerConfig">
+                <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="Loop" ColumnName="Loop" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblControlSetting">
+            <EntityTypeMapping TypeName="SecureDBModel.tblControlSetting">
+              <MappingFragment StoreEntitySet="tblControlSetting">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Light_Sec" ColumnName="Light_Sec" />
+                <ScalarProperty Name="Alarm_Sec" ColumnName="Alarm_Sec" />
+                <ScalarProperty Name="LoopErrorAlarmTime" ColumnName="LoopErrorAlarmTime" />
+                <ScalarProperty Name="DelayTime" ColumnName="DelayTime" />
+                <ScalarProperty Name="RemoOpenTime" ColumnName="RemoOpenTime" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDeviceStateLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblDeviceStateLog">
+              <MappingFragment StoreEntitySet="tblDeviceStateLog">
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="SingalName" ColumnName="SingalName" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ReaderID" ColumnName="ReaderID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEngineRoomConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblEngineRoomConfig">
+              <MappingFragment StoreEntitySet="tblEngineRoomConfig">
+                <ScalarProperty Name="CallOpenDoor" ColumnName="CallOpenDoor" />
+                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
+                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
+                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEngineRoomLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblEngineRoomLog">
+              <MappingFragment StoreEntitySet="tblEngineRoomLog">
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Endtime" ColumnName="Endtime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEntranceGuardConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblEntranceGuardConfig">
+              <MappingFragment StoreEntitySet="tblEntranceGuardConfig">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="EntranceType" ColumnName="EntranceType" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblERDoorPasscode">
+            <EntityTypeMapping TypeName="SecureDBModel.tblERDoorPasscode">
+              <MappingFragment StoreEntitySet="tblERDoorPasscode">
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="DoorPassword" ColumnName="DoorPassword" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblERDoorPassword">
+            <EntityTypeMapping TypeName="SecureDBModel.tblERDoorPassword">
+              <MappingFragment StoreEntitySet="tblERDoorPassword">
+                <ScalarProperty Name="DoorPassword" ColumnName="DoorPassword" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblERPlane">
+            <EntityTypeMapping TypeName="SecureDBModel.tblERPlane">
+              <MappingFragment StoreEntitySet="tblERPlane">
+                <ScalarProperty Name="PictureDesc" ColumnName="PictureDesc" />
+                <ScalarProperty Name="PlaneName" ColumnName="PlaneName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHostConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblHostConfig">
+              <MappingFragment StoreEntitySet="tblHostConfig">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="HostType" ColumnName="HostType" />
+                <ScalarProperty Name="HostID" ColumnName="HostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblItemConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblItemConfig">
+              <MappingFragment StoreEntitySet="tblItemConfig">
+                <ScalarProperty Name="WarningValue" ColumnName="WarningValue" />
+                <ScalarProperty Name="AbnormalRecoveryMode" ColumnName="AbnormalRecoveryMode" />
+                <ScalarProperty Name="AbnormalRecoveryContent" ColumnName="AbnormalRecoveryContent" />
+                <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
+                <ScalarProperty Name="AlarmMode" ColumnName="AlarmMode" />
+                <ScalarProperty Name="Depiction" ColumnName="Depiction" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="BitNo" ColumnName="BitNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="AlarmLower" ColumnName="AlarmLower" />
+                <ScalarProperty Name="AlarmUpper" ColumnName="AlarmUpper" />
+                <ScalarProperty Name="WarningLower" ColumnName="WarningLower" />
+                <ScalarProperty Name="WarningUpper" ColumnName="WarningUpper" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Lable" ColumnName="Lable" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMagneticCard">
+            <EntityTypeMapping TypeName="SecureDBModel.tblMagneticCard">
+              <MappingFragment StoreEntitySet="tblMagneticCard">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="NormalID" ColumnName="NormalID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="WEG2" ColumnName="WEG2" />
+                <ScalarProperty Name="WEG1" ColumnName="WEG1" />
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="MagneticID" ColumnName="MagneticID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMagneticCardNormalGroup">
+            <EntityTypeMapping TypeName="SecureDBModel.tblMagneticCardNormalGroup">
+              <MappingFragment StoreEntitySet="tblMagneticCardNormalGroup">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="NormalName" ColumnName="NormalName" />
+                <ScalarProperty Name="NormalID" ColumnName="NormalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblMenu">
-            <EntityTypeMapping TypeName="SecureModel.tblMenu">
+            <EntityTypeMapping TypeName="SecureDBModel.tblMenu">
               <MappingFragment StoreEntitySet="tblMenu">
-                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
-                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="XAML" ColumnName="XAML" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblMenuGroup">
-            <EntityTypeMapping TypeName="SecureModel.tblMenuGroup">
+            <EntityTypeMapping TypeName="SecureDBModel.tblMenuGroup">
               <MappingFragment StoreEntitySet="tblMenuGroup">
-                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSchConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSchConfig">
+              <MappingFragment StoreEntitySet="tblSchConfig">
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Week7" ColumnName="Week7" />
+                <ScalarProperty Name="Week6" ColumnName="Week6" />
+                <ScalarProperty Name="Week5" ColumnName="Week5" />
+                <ScalarProperty Name="Week4" ColumnName="Week4" />
+                <ScalarProperty Name="Week3" ColumnName="Week3" />
+                <ScalarProperty Name="Week2" ColumnName="Week2" />
+                <ScalarProperty Name="Week1" ColumnName="Week1" />
+                <ScalarProperty Name="SchType" ColumnName="SchType" />
+                <ScalarProperty Name="SchDesc" ColumnName="SchDesc" />
+                <ScalarProperty Name="SchName" ColumnName="SchName" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="SchID" ColumnName="SchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSchLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSchLog">
+              <MappingFragment StoreEntitySet="tblSchLog">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="SchID" ColumnName="SchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSingalIO">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSingalIO">
+              <MappingFragment StoreEntitySet="tblSingalIO">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="SingalType" ColumnName="SingalType" />
+                <ScalarProperty Name="SingalName" ColumnName="SingalName" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSingalIOLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSingalIOLog">
+              <MappingFragment StoreEntitySet="tblSingalIOLog">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="SingalName" ColumnName="SingalName" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSysOperation">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSysOperation">
+              <MappingFragment StoreEntitySet="tblSysOperation">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="OPResult" ColumnName="OPResult" />
+                <ScalarProperty Name="OPDesc" ColumnName="OPDesc" />
+                <ScalarProperty Name="OPItem" ColumnName="OPItem" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OPTime" ColumnName="OPTime" />
+                <ScalarProperty Name="OPID" ColumnName="OPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSysParameter">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSysParameter">
+              <MappingFragment StoreEntitySet="tblSysParameter">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="VariableValue" ColumnName="VariableValue" />
+                <ScalarProperty Name="VariableName" ColumnName="VariableName" />
+                <ScalarProperty Name="SysID" ColumnName="SysID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSysRole">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSysRole">
+              <MappingFragment StoreEntitySet="tblSysRole">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSysRoleAuthority">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSysRoleAuthority">
+              <MappingFragment StoreEntitySet="tblSysRoleAuthority">
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTypeDetail">
+            <EntityTypeMapping TypeName="SecureDBModel.tblTypeDetail">
+              <MappingFragment StoreEntitySet="tblTypeDetail">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUser">
-            <EntityTypeMapping TypeName="SecureModel.tblUser">
+            <EntityTypeMapping TypeName="SecureDBModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUserGroup">
-            <EntityTypeMapping TypeName="SecureModel.tblUserGroup">
+            <EntityTypeMapping TypeName="SecureDBModel.tblUserGroup">
               <MappingFragment StoreEntitySet="tblUserGroup">
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUserGroupMenu">
-            <EntityTypeMapping TypeName="SecureModel.tblUserGroupMenu">
+            <EntityTypeMapping TypeName="SecureDBModel.tblUserGroupMenu">
               <MappingFragment StoreEntitySet="tblUserGroupMenu">
+                <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwUserGroupMenuAllow">
+            <EntityTypeMapping TypeName="SecureDBModel.vwUserGroupMenuAllow">
+              <MappingFragment StoreEntitySet="vwUserGroupMenuAllow">
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="MenuID" ColumnName="MenuID" />
                 <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vwUserMenuAllow">
-            <EntityTypeMapping TypeName="SecureModel.vwUserMenuAllow">
+            <EntityTypeMapping TypeName="SecureDBModel.vwUserMenuAllow">
               <MappingFragment StoreEntitySet="vwUserMenuAllow">
                 <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -406,17 +2165,6 @@
                 <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
                 <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwUserGroupMenuAllow">
-            <EntityTypeMapping TypeName="SecureModel.vwUserGroupMenuAllow">
-              <MappingFragment StoreEntitySet="vwUserGroupMenuAllow">
-                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
-                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-                <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -441,6 +2189,6 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams />
+    <Diagrams></Diagrams>
   </Designer>
 </edmx:Edmx>

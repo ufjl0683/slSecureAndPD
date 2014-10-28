@@ -32,7 +32,7 @@ namespace MapControl
             
         }
 
-        public void AddControllRoomPin(Common.Info.ControlRoomInfo info)
+        public void AddControllRoomPin(slSecure.Info.ControlRoomInfo info)
         {
             Pins.CotrolRoomPin pin = new Pins.CotrolRoomPin() { Width = 24, Height = 24 };
             pin.DataContext = info;

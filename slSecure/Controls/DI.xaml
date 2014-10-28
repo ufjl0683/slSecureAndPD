@@ -35,12 +35,16 @@
     	</Storyboard>
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot" Background="White" HorizontalAlignment="Left" >
-		<i:Interaction.Triggers>
+        <Grid.RenderTransform>
+            <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
+        </Grid.RenderTransform>
+        <i:Interaction.Triggers>
 			<i:EventTrigger EventName="Loaded">
-				<ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}"/>
+                <ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}"  ControlStoryboardOption="Stop"  />
 			</i:EventTrigger>
 		</i:Interaction.Triggers>
 		<Ellipse x:Name="ellipse" Fill="GreenYellow" StrokeThickness="1"/>
-		<TextBlock Text="開關" HorizontalAlignment="Left" Foreground="Black"  FontSize="14" Margin="25,0,-189,3" Width="184"   />
-	</Grid>
+		<TextBlock Text="{Binding Label}" HorizontalAlignment="Left" Foreground="Black"  FontSize="14" Margin="25,0,-189,3" Width="184"   />
+        <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
+    </Grid>
 </UserControl>

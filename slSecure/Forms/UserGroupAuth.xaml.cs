@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using slSecure.Web;
-using Common;
+using slSecure;
 
 
 namespace slSecure.Forms
@@ -19,7 +19,7 @@ namespace slSecure.Forms
     public partial class UserGroupAuth : Page
     {
 
-        SecureDBContext db = Common.DB.GetDB();
+        SecureDBContext db = slSecure.DB.GetDB();
         tblUserGroupMenu[] menus;
         public UserGroupAuth()
         {
@@ -44,7 +44,7 @@ namespace slSecure.Forms
             {
                 this.cboUserGroup.SelectedIndex = 0;
 
-                var q = await  db.LoadAsync <tblUserGroupMenu>(db.GetTblUserGroupMenuQuery());
+                var q = await db.LoadAsync<tblUserGroupMenu>(db.GetTblUserGroupMenuIncludeMenuQuery());
                 menus = q.ToArray();
               
                 //this.tblUserGroupMenuDomainDataSource.AutoLoad = true;
@@ -100,6 +100,16 @@ namespace slSecure.Forms
         {
             if (db.HasChanges)
                 db.SubmitChanges();
+        }
+
+        private void tblUserGroupDomainDataSource_LoadedData_1(object sender, LoadedDataEventArgs e)
+        {
+
+            if (e.HasError)
+            {
+                System.Windows.MessageBox.Show(e.Error.ToString(), "Load Error", System.Windows.MessageBoxButton.OK);
+                e.MarkErrorAsHandled();
+            }
         }
 
        

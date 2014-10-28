@@ -12,16 +12,47 @@
          <TypeUISetting>
             <PropertyUISettings>
                <PropertyUISetting Name="MenuName">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+                        <BindableControlInfo Name="TextBox" Type="System.Windows.Controls.TextBox" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+                     </ControlSetting></ControlSettings>
+               </PropertyUISetting>
+               <PropertyUISetting Name="SecureDBContext.tblUserGroupMenu.tblMenu">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+                        <BindableControlInfo Name="詳細資料" Type="Microsoft.VSDesigner.Data.DataForm.Windows.DetailView" />
+                     </ControlSetting></ControlSettings>
+               </PropertyUISetting>
+            </PropertyUISettings>
+         </TypeUISetting>
+      </GenericObjectDataSource>
+      <GenericObjectDataSource DisplayName="tblUser" Identifier="slSecure.Web.SecureDBContext" ProviderType="Microsoft.VisualStudio.DataDesign.RiaComponents.DataSourceProvider.RiaServiceDataSourceProvider" Version="1.0">
+         <TypeInfo>slSecure.Web.tblUser</TypeInfo>
+         <TypeUISetting>
+            <PropertyUISettings>
+               <PropertyUISetting Name="Memo">
                   <ControlSettings>
                      <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
                         <BindableControlInfo Name="TextBox" Type="System.Windows.Controls.TextBox" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
                      </ControlSetting>
                   </ControlSettings>
                </PropertyUISetting>
-               <PropertyUISetting Name="SecureDBContext.tblUserGroupMenu.tblMenu">
+               <PropertyUISetting Name="Password">
                   <ControlSettings>
                      <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
-                        <BindableControlInfo Name="詳細資料" Type="Microsoft.VSDesigner.Data.DataForm.Windows.DetailView" />
+                        <BindableControlInfo Name="TextBox" Type="System.Windows.Controls.TextBox" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+                     </ControlSetting>
+                  </ControlSettings>
+               </PropertyUISetting>
+               <PropertyUISetting Name="UserID">
+                  <ControlSettings>
+                     <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
+                        <BindableControlInfo Name="TextBox" Type="System.Windows.Controls.TextBox" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+                     </ControlSetting>
+                  </ControlSettings>
+               </PropertyUISetting>
+               <PropertyUISetting Name="UserName">
+                  <ControlSettings>
+                     <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
+                        <BindableControlInfo Name="TextBox" Type="System.Windows.Controls.TextBox" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
                      </ControlSetting>
                   </ControlSettings>
                </PropertyUISetting>
@@ -42,26 +73,19 @@
             </PropertyUISettings>
          </TypeUISetting>
       </GenericObjectDataSource>
-      <GenericObjectDataSource DisplayName="tblUserGroupMenu" Identifier="slSecure.Web.SecureDBContext" ProviderType="Microsoft.VisualStudio.DataDesign.RiaComponents.DataSourceProvider.RiaServiceDataSourceProvider" Version="1.0">
-         <TypeInfo>slSecure.Web.tblUserGroupMenu</TypeInfo>
-      </GenericObjectDataSource>
       <GenericObjectDataSource DisplayName="vwUserGroupMenuAllow" Identifier="slSecure.Web.SecureDBContext" ProviderType="Microsoft.VisualStudio.DataDesign.RiaComponents.DataSourceProvider.RiaServiceDataSourceProvider" Version="1.0">
          <TypeInfo>slSecure.Web.vwUserGroupMenuAllow</TypeInfo>
          <TypeUISetting>
             <PropertyUISettings>
                <PropertyUISetting Name="GroupName">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
                         <BindableControlInfo Name="TextBlock" Type="System.Windows.Controls.TextBlock" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
-                     </ControlSetting>
-                  </ControlSettings>
+                     </ControlSetting></ControlSettings>
                </PropertyUISetting>
                <PropertyUISetting Name="MenuName">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
                         <BindableControlInfo Name="TextBlock" Type="System.Windows.Controls.TextBlock" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
-                     </ControlSetting>
-                  </ControlSettings>
+                     </ControlSetting></ControlSettings>
                </PropertyUISetting>
             </PropertyUISettings>
          </TypeUISetting>
@@ -71,32 +95,24 @@
          <TypeUISetting>
             <PropertyUISettings>
                <PropertyUISetting Name="GroupName">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
                         <BindableControlInfo Name="TextBlock" Type="System.Windows.Controls.TextBlock" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
-                     </ControlSetting>
-                  </ControlSettings>
+                     </ControlSetting></ControlSettings>
                </PropertyUISetting>
                <PropertyUISetting Name="MenuName">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
                         <BindableControlInfo Name="TextBlock" Type="System.Windows.Controls.TextBlock" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
-                     </ControlSetting>
-                  </ControlSettings>
+                     </ControlSetting></ControlSettings>
                </PropertyUISetting>
                <PropertyUISetting Name="UserID">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
                         <BindableControlInfo Name="TextBlock" Type="System.Windows.Controls.TextBlock" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
-                     </ControlSetting>
-                  </ControlSettings>
+                     </ControlSetting></ControlSettings>
                </PropertyUISetting>
                <PropertyUISetting Name="XAML">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:Silverlight" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
                         <BindableControlInfo Name="TextBlock" Type="System.Windows.Controls.TextBlock" AssemblyName="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
-                     </ControlSetting>
-                  </ControlSettings>
+                     </ControlSetting></ControlSettings>
                </PropertyUISetting>
             </PropertyUISettings>
          </TypeUISetting>
