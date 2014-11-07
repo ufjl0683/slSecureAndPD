@@ -19,7 +19,7 @@ namespace slSecure.Forms
     public partial class UserGroupAuth : Page
     {
 
-        SecureDBContext db = slSecure.DB.GetDB();
+        SecureDBContext db = new SecureDBContext(); //slSecure.DB.GetDB();
         tblUserGroupMenu[] menus;
         public UserGroupAuth()
         {
@@ -43,7 +43,7 @@ namespace slSecure.Forms
             else
             {
                 this.cboUserGroup.SelectedIndex = 0;
-
+                
                 var q = await db.LoadAsync<tblUserGroupMenu>(db.GetTblUserGroupMenuIncludeMenuQuery());
                 menus = q.ToArray();
               

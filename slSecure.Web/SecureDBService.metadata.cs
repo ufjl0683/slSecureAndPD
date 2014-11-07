@@ -91,6 +91,47 @@ namespace slSecure.Web
         }
     }
 
+    // MetadataTypeAttribute 會將 tblCardCommandLogMetadata 識別為
+    // 帶有 tblCardCommandLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblCardCommandLog.tblCardCommandLogMetadata))]
+    public partial class tblCardCommandLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblCardCommandLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblCardCommandLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblCardCommandLogMetadata()
+            {
+            }
+
+            public string ABA { get; set; }
+
+            public string CommandType { get; set; }
+
+            public string ControlID { get; set; }
+
+            public string Describe { get; set; }
+
+            public long FlowID { get; set; }
+
+            public bool IsSuccess { get; set; }
+
+            public Nullable<DateTime> Timestamp { get; set; }
+
+            public string CardType { get; set; }
+        }
+    }
+
     // MetadataTypeAttribute 會將 tblCardReaderConfigMetadata 識別為
     // 帶有 tblCardReaderConfig 類別其他中繼資料的類別。
     [MetadataTypeAttribute(typeof(tblCardReaderConfig.tblCardReaderConfigMetadata))]
@@ -159,9 +200,11 @@ namespace slSecure.Web
 
             public string IP { get; set; }
 
-            public string NVRName { get; set; }
+            public string CCTVName { get; set; }
 
             public string Password { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
 
             public int Port { get; set; }
 
@@ -178,6 +221,8 @@ namespace slSecure.Web
             public double X { get; set; }
 
             public double Y { get; set; }
+            public Nullable<int> NVRID { get; set; }
+            public Nullable<int> NVRChNO { get; set; }
         }
     }
 
@@ -210,73 +255,7 @@ namespace slSecure.Web
         }
     }
 
-    // MetadataTypeAttribute 會將 tblControllerConfigMetadata 識別為
-    // 帶有 tblControllerConfig 類別其他中繼資料的類別。
-    [MetadataTypeAttribute(typeof(tblControllerConfig.tblControllerConfigMetadata))]
-    public partial class tblControllerConfig
-    {
-
-        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblControllerConfig 類別
-        // 的 properties。
-        //
-        // 例如，下列程式碼將 Xyz 屬性標記為
-        // 必要的屬性，並指定有效值的格式:
-        //    [Required]
-        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
-        //    [StringLength(32)]
-        //    public string Xyz { get; set; }
-        internal sealed class tblControllerConfigMetadata
-        {
-
-            // 中繼資料類別本就不應該具現化。
-            private tblControllerConfigMetadata()
-            {
-            }
-
-            public string ControlID { get; set; }
-
-            public short ControlType { get; set; }
-
-            public string EntranceCode { get; set; }
-
-            public int ERID { get; set; }
-
-            public string IP { get; set; }
-
-            public Nullable<bool> IsEnable { get; set; }
-
-            public string Loop { get; set; }
-
-            public Nullable<int> PlanID { get; set; }
-
-            public int Port { get; set; }
-
-            public Nullable<double> Rotation { get; set; }
-
-            public Nullable<double> ScaleX { get; set; }
-
-            public Nullable<double> ScaleY { get; set; }
-
-            public EntityCollection<tblCardReaderConfig> tblCardReaderConfig { get; set; }
-
-            public tblControlSetting tblControlSetting { get; set; }
-
-            public EntityCollection<tblDeviceStateLog> tblDeviceStateLog { get; set; }
-
-            public tblEngineRoomConfig tblEngineRoomConfig { get; set; }
-
-            public EntityCollection<tblERDoorPasscode> tblERDoorPasscode { get; set; }
-
-            public EntityCollection<tblItemConfig> tblItemConfig { get; set; }
-
-            public EntityCollection<tblSingalIO> tblSingalIO { get; set; }
-
-            public Nullable<double> X { get; set; }
-
-            public Nullable<double> Y { get; set; }
-        }
-    }
-
+ 
     // MetadataTypeAttribute 會將 tblControlSettingMetadata 識別為
     // 帶有 tblControlSetting 類別其他中繼資料的類別。
     [MetadataTypeAttribute(typeof(tblControlSetting.tblControlSettingMetadata))]
@@ -363,54 +342,7 @@ namespace slSecure.Web
         }
     }
 
-    // MetadataTypeAttribute 會將 tblEngineRoomConfigMetadata 識別為
-    // 帶有 tblEngineRoomConfig 類別其他中繼資料的類別。
-    [MetadataTypeAttribute(typeof(tblEngineRoomConfig.tblEngineRoomConfigMetadata))]
-    public partial class tblEngineRoomConfig
-    {
-
-        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblEngineRoomConfig 類別
-        // 的 properties。
-        //
-        // 例如，下列程式碼將 Xyz 屬性標記為
-        // 必要的屬性，並指定有效值的格式:
-        //    [Required]
-        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
-        //    [StringLength(32)]
-        //    public string Xyz { get; set; }
-        internal sealed class tblEngineRoomConfigMetadata
-        {
-
-            // 中繼資料類別本就不應該具現化。
-            private tblEngineRoomConfigMetadata()
-            {
-            }
-
-            public string CallOpenDoor { get; set; }
-
-            public string Direction { get; set; }
-
-            public int ERID { get; set; }
-
-            public string ERName { get; set; }
-
-            public string ERNo { get; set; }
-
-            public double GPSX { get; set; }
-
-            public double GPSY { get; set; }
-
-            public string LineID { get; set; }
-
-            public EntityCollection<tblCCTVConfig> tblCCTVConfig { get; set; }
-
-            public EntityCollection<tblControllerConfig> tblControllerConfig { get; set; }
-
-            public EntityCollection<tblEntranceGuardConfig> tblEntranceGuardConfig { get; set; }
-
-            public EntityCollection<tblERPlane> tblERPlane { get; set; }
-        }
-    }
+   
 
     // MetadataTypeAttribute 會將 tblEngineRoomLogMetadata 識別為
     // 帶有 tblEngineRoomLog 類別其他中繼資料的類別。
@@ -457,75 +389,7 @@ namespace slSecure.Web
         }
     }
 
-    // MetadataTypeAttribute 會將 tblEntranceGuardConfigMetadata 識別為
-    // 帶有 tblEntranceGuardConfig 類別其他中繼資料的類別。
-    [MetadataTypeAttribute(typeof(tblEntranceGuardConfig.tblEntranceGuardConfigMetadata))]
-    public partial class tblEntranceGuardConfig
-    {
-
-        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblEntranceGuardConfig 類別
-        // 的 properties。
-        //
-        // 例如，下列程式碼將 Xyz 屬性標記為
-        // 必要的屬性，並指定有效值的格式:
-        //    [Required]
-        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
-        //    [StringLength(32)]
-        //    public string Xyz { get; set; }
-        internal sealed class tblEntranceGuardConfigMetadata
-        {
-
-            // 中繼資料類別本就不應該具現化。
-            private tblEntranceGuardConfigMetadata()
-            {
-            }
-
-            public string EntranceCode { get; set; }
-
-            public string EntranceType { get; set; }
-
-            public int ERID { get; set; }
-
-            public Nullable<short> Floor { get; set; }
-
-            public string Memo { get; set; }
-
-            public tblEngineRoomConfig tblEngineRoomConfig { get; set; }
-        }
-    }
-
-    // MetadataTypeAttribute 會將 tblERDoorPasscodeMetadata 識別為
-    // 帶有 tblERDoorPasscode 類別其他中繼資料的類別。
-    [MetadataTypeAttribute(typeof(tblERDoorPasscode.tblERDoorPasscodeMetadata))]
-    public partial class tblERDoorPasscode
-    {
-
-        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblERDoorPasscode 類別
-        // 的 properties。
-        //
-        // 例如，下列程式碼將 Xyz 屬性標記為
-        // 必要的屬性，並指定有效值的格式:
-        //    [Required]
-        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
-        //    [StringLength(32)]
-        //    public string Xyz { get; set; }
-        internal sealed class tblERDoorPasscodeMetadata
-        {
-
-            // 中繼資料類別本就不應該具現化。
-            private tblERDoorPasscodeMetadata()
-            {
-            }
-
-            public string ControlID { get; set; }
-
-            public string DoorPassword { get; set; }
-
-            public tblControllerConfig tblControllerConfig { get; set; }
-
-            public DateTime Timestamp { get; set; }
-        }
-    }
+  
 
     // MetadataTypeAttribute 會將 tblERDoorPasswordMetadata 識別為
     // 帶有 tblERDoorPassword 類別其他中繼資料的類別。
@@ -679,6 +543,8 @@ namespace slSecure.Web
 
             public int Length { get; set; }
 
+            public Nullable<int> PlaneID { get; set; }
+
             public double Rotation { get; set; }
 
             public double ScaleX { get; set; }
@@ -690,6 +556,8 @@ namespace slSecure.Web
             public tblControllerConfig tblControllerConfig { get; set; }
 
             public string Type { get; set; }
+
+            public string UIType { get; set; }
 
             public string Unit { get; set; }
 
@@ -709,99 +577,9 @@ namespace slSecure.Web
 
     // MetadataTypeAttribute 會將 tblMagneticCardMetadata 識別為
     // 帶有 tblMagneticCard 類別其他中繼資料的類別。
-    [MetadataTypeAttribute(typeof(tblMagneticCard.tblMagneticCardMetadata))]
-    public partial class tblMagneticCard
-    {
+   
 
-        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblMagneticCard 類別
-        // 的 properties。
-        //
-        // 例如，下列程式碼將 Xyz 屬性標記為
-        // 必要的屬性，並指定有效值的格式:
-        //    [Required]
-        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
-        //    [StringLength(32)]
-        //    public string Xyz { get; set; }
-        internal sealed class tblMagneticCardMetadata
-        {
-
-            // 中繼資料類別本就不應該具現化。
-            private tblMagneticCardMetadata()
-            {
-            }
-
-            public string ABA { get; set; }
-
-            public string Company { get; set; }
-
-            public string EmployeeNo { get; set; }
-
-            public string Enable { get; set; }
-
-            public DateTime EndDate { get; set; }
-
-            public string IDNumber { get; set; }
-
-            public string JobTitle { get; set; }
-
-            public int MagneticID { get; set; }
-
-            public string Memo { get; set; }
-
-            public string Mobile { get; set; }
-
-            public string Name { get; set; }
-
-            public Nullable<int> NormalID { get; set; }
-
-            public int RoleID { get; set; }
-
-            public Nullable<DateTime> StartDate { get; set; }
-
-            public tblSysRole tblSysRole { get; set; }
-
-            public string Tel { get; set; }
-
-            public Nullable<short> Type { get; set; }
-
-            public string WEG1 { get; set; }
-
-            public string WEG2 { get; set; }
-        }
-    }
-
-    // MetadataTypeAttribute 會將 tblMagneticCardNormalGroupMetadata 識別為
-    // 帶有 tblMagneticCardNormalGroup 類別其他中繼資料的類別。
-    [MetadataTypeAttribute(typeof(tblMagneticCardNormalGroup.tblMagneticCardNormalGroupMetadata))]
-    public partial class tblMagneticCardNormalGroup
-    {
-
-        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblMagneticCardNormalGroup 類別
-        // 的 properties。
-        //
-        // 例如，下列程式碼將 Xyz 屬性標記為
-        // 必要的屬性，並指定有效值的格式:
-        //    [Required]
-        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
-        //    [StringLength(32)]
-        //    public string Xyz { get; set; }
-        internal sealed class tblMagneticCardNormalGroupMetadata
-        {
-
-            // 中繼資料類別本就不應該具現化。
-            private tblMagneticCardNormalGroupMetadata()
-            {
-            }
-
-            public string Memo { get; set; }
-
-            public int NormalID { get; set; }
-
-            public string NormalName { get; set; }
-
-            public Nullable<DateTime> UpdateDate { get; set; }
-        }
-    }
+    
 
     // MetadataTypeAttribute 會將 tblMenuMetadata 識別為
     // 帶有 tblMenu 類別其他中繼資料的類別。
@@ -868,7 +646,7 @@ namespace slSecure.Web
             public int MenuGroupID { get; set; }
 
             public Nullable<int> MenuOrder { get; set; }
-            
+
             public EntityCollection<tblMenu> tblMenu { get; set; }
         }
     }
@@ -1123,76 +901,9 @@ namespace slSecure.Web
         }
     }
 
-    // MetadataTypeAttribute 會將 tblSysRoleMetadata 識別為
-    // 帶有 tblSysRole 類別其他中繼資料的類別。
-    [MetadataTypeAttribute(typeof(tblSysRole.tblSysRoleMetadata))]
-    public partial class tblSysRole
-    {
+  
 
-        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblSysRole 類別
-        // 的 properties。
-        //
-        // 例如，下列程式碼將 Xyz 屬性標記為
-        // 必要的屬性，並指定有效值的格式:
-        //    [Required]
-        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
-        //    [StringLength(32)]
-        //    public string Xyz { get; set; }
-        internal sealed class tblSysRoleMetadata
-        {
-
-            // 中繼資料類別本就不應該具現化。
-            private tblSysRoleMetadata()
-            {
-            }
-
-            public string Memo { get; set; }
-
-            public int RoleID { get; set; }
-
-            public string RoleName { get; set; }
-
-            public EntityCollection<tblMagneticCard> tblMagneticCard { get; set; }
-
-            public tblSysRoleAuthority tblSysRoleAuthority { get; set; }
-
-            public Nullable<DateTime> UpdateDate { get; set; }
-        }
-    }
-
-    // MetadataTypeAttribute 會將 tblSysRoleAuthorityMetadata 識別為
-    // 帶有 tblSysRoleAuthority 類別其他中繼資料的類別。
-    [MetadataTypeAttribute(typeof(tblSysRoleAuthority.tblSysRoleAuthorityMetadata))]
-    public partial class tblSysRoleAuthority
-    {
-
-        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblSysRoleAuthority 類別
-        // 的 properties。
-        //
-        // 例如，下列程式碼將 Xyz 屬性標記為
-        // 必要的屬性，並指定有效值的格式:
-        //    [Required]
-        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
-        //    [StringLength(32)]
-        //    public string Xyz { get; set; }
-        internal sealed class tblSysRoleAuthorityMetadata
-        {
-
-            // 中繼資料類別本就不應該具現化。
-            private tblSysRoleAuthorityMetadata()
-            {
-            }
-
-            public string ControlID { get; set; }
-
-            public string Enable { get; set; }
-
-            public int RoleID { get; set; }
-
-            public tblSysRole tblSysRole { get; set; }
-        }
-    }
-
+   
     // MetadataTypeAttribute 會將 tblTypeDetailMetadata 識別為
     // 帶有 tblTypeDetail 類別其他中繼資料的類別。
     [MetadataTypeAttribute(typeof(tblTypeDetail.tblTypeDetailMetadata))]
@@ -1420,4 +1131,336 @@ namespace slSecure.Web
             public string XAML { get; set; }
         }
     }
+
+    // 帶有 tblControllerConfig 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblControllerConfig.tblControllerConfigMetadata))]
+    public partial class tblControllerConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblControllerConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblControllerConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblControllerConfigMetadata()
+            {
+            }
+
+            public string ControlID { get; set; }
+
+            public short ControlType { get; set; }
+
+            public string EntranceCode { get; set; }
+
+            public int ERID { get; set; }
+
+            public string IP { get; set; }
+
+            public Nullable<bool> IsEnable { get; set; }
+
+            public string Loop { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public int Port { get; set; }
+
+            public Nullable<double> Rotation { get; set; }
+
+            public Nullable<double> ScaleX { get; set; }
+
+            public Nullable<double> ScaleY { get; set; }
+
+            public EntityCollection<tblCardReaderConfig> tblCardReaderConfig { get; set; }
+
+            public tblControlSetting tblControlSetting { get; set; }
+
+            public EntityCollection<tblDeviceStateLog> tblDeviceStateLog { get; set; }
+
+            public tblEngineRoomConfig tblEngineRoomConfig { get; set; }
+
+            public EntityCollection<tblItemConfig> tblItemConfig { get; set; }
+
+            public EntityCollection<tblSingalIO> tblSingalIO { get; set; }
+
+            public Nullable<double> X { get; set; }
+
+            public Nullable<double> Y { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblEngineRoomConfigMetadata 識別為
+    // 帶有 tblEngineRoomConfig 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblEngineRoomConfig.tblEngineRoomConfigMetadata))]
+    public partial class tblEngineRoomConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblEngineRoomConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblEngineRoomConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblEngineRoomConfigMetadata()
+            {
+            }
+
+            public string CallOpenDoor { get; set; }
+
+            public string Direction { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string ERNo { get; set; }
+
+            public double GPSX { get; set; }
+
+            public double GPSY { get; set; }
+
+            public string LineID { get; set; }
+            //master
+
+            //yahoo
+
+
+
+
+            //  
+            public EntityCollection<tblCCTVConfig> tblCCTVConfig { get; set; }
+            [Include]
+            public EntityCollection<tblControllerConfig> tblControllerConfig { get; set; }
+            [Include]
+            public EntityCollection<tblEntranceGuardConfig> tblEntranceGuardConfig { get; set; }
+
+            public EntityCollection<tblERPlane> tblERPlane { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblEntranceGuardConfigMetadata 識別為
+    // 帶有 tblEntranceGuardConfig 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblEntranceGuardConfig.tblEntranceGuardConfigMetadata))]
+    public partial class tblEntranceGuardConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblEntranceGuardConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblEntranceGuardConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblEntranceGuardConfigMetadata()
+            {
+            }
+
+            public string EntranceCode { get; set; }
+
+            public string EntranceType { get; set; }
+
+            public int ERID { get; set; }
+
+            public Nullable<short> Floor { get; set; }
+
+            public string Memo { get; set; }
+
+            public tblEngineRoomConfig tblEngineRoomConfig { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblMagneticCardMetadata 識別為
+    // 帶有 tblMagneticCard 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblMagneticCard.tblMagneticCardMetadata))]
+    public partial class tblMagneticCard
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblMagneticCard 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblMagneticCardMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblMagneticCardMetadata()
+            {
+            }
+
+            public string ABA { get; set; }
+
+            public string Company { get; set; }
+
+            public string EmployeeNo { get; set; }
+
+            public string Enable { get; set; }
+
+            public DateTime EndDate { get; set; }
+
+            public string IDNumber { get; set; }
+
+            public string JobTitle { get; set; }
+
+            public int MagneticID { get; set; }
+
+            public string Memo { get; set; }
+
+            public string Mobile { get; set; }
+
+            public string Name { get; set; }
+
+            public Nullable<int> NormalID { get; set; }
+
+            public Nullable<DateTime> ReturnDate { get; set; }
+
+            public int RoleID { get; set; }
+
+            public Nullable<DateTime> StartDate { get; set; }
+
+            public tblSysRole tblSysRole { get; set; }
+
+            public string Tel { get; set; }
+
+            public DateTime Timestamp { get; set; }
+
+            public Nullable<short> Type { get; set; }
+
+            public string WEG1 { get; set; }
+
+            public string WEG2 { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblMagneticCardNormalGroupMetadata 識別為
+    // 帶有 tblMagneticCardNormalGroup 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblMagneticCardNormalGroup.tblMagneticCardNormalGroupMetadata))]
+    public partial class tblMagneticCardNormalGroup
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblMagneticCardNormalGroup 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblMagneticCardNormalGroupMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblMagneticCardNormalGroupMetadata()
+            {
+            }
+
+            public string Memo { get; set; }
+
+            public int NormalID { get; set; }
+
+            public string NormalName { get; set; }
+
+            public Nullable<DateTime> UpdateDate { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblSysRoleMetadata 識別為
+    // 帶有 tblSysRole 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblSysRole.tblSysRoleMetadata))]
+    public partial class tblSysRole
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblSysRole 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblSysRoleMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblSysRoleMetadata()
+            {
+            }
+
+            public string Memo { get; set; }
+
+            public int RoleID { get; set; }
+
+            public string RoleName { get; set; }
+
+            [Include]
+            public EntityCollection<tblMagneticCard> tblMagneticCard { get; set; }
+            [Include]
+            public EntityCollection<tblSysRoleAuthority> tblSysRoleAuthority { get; set; }
+
+            public Nullable<DateTime> UpdateDate { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblSysRoleAuthorityMetadata 識別為
+    // 帶有 tblSysRoleAuthority 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblSysRoleAuthority.tblSysRoleAuthorityMetadata))]
+    public partial class tblSysRoleAuthority
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblSysRoleAuthority 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblSysRoleAuthorityMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblSysRoleAuthorityMetadata()
+            {
+            }
+
+            public string ControlID { get; set; }
+
+            public string Enable { get; set; }
+
+            public int RoleID { get; set; }
+
+            public tblControllerConfig tblControllerConfig { get; set; }
+
+            public tblSysRole tblSysRole { get; set; }
+        }
+    }
+
+    
 }

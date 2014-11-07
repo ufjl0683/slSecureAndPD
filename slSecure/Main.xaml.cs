@@ -50,7 +50,7 @@ namespace slSecure
            
           //  Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior bev = new Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior();
 
-        SecureDBContext db= DB.GetDB();
+            SecureDBContext db = new SecureDBContext();// DB.GetDB();
 
         EntityQuery<vwUserMenuAllow> q=   db.GetVwUserMenuAllowQuery().Where(n => n.UserID == Util.GetICommon().GetUserID());
             var UserMenus =  await  db.LoadAsync(q);

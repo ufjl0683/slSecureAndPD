@@ -32,7 +32,7 @@ namespace slSecure
         {
 
 
-            SecureDBContext db = DB.GetDB();
+            SecureDBContext db = new SecureDBContext();//DB.GetDB();
 
            
             EntityQuery<tblUser> q = db.GetTblUserQuery().Where(n => n.UserID == txtAccount.Text.Trim() && n.Password == pwdPassword.Password.Trim());

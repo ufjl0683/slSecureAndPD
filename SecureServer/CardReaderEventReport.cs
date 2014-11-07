@@ -45,11 +45,11 @@ namespace SecureServer
            }
        }
 
-       public int CardNo
+       public uint CardNo
        {
            get
            {
-               return Word0*65536   + Word1 ;
+               return (uint)(Word0*65536   + Word1) ;
            }
        }
 
@@ -102,9 +102,10 @@ namespace SecureServer
        string[] StatusMapping = new string[]
        {
            "無動作","開鎖","停","關","號碼錯誤","卡號刪除","卡號重複","按鈕開門","密碼開門","F1開門","反脅迫","開門超時",
-           "門開啟","門關閉","卡號連續錯誤","自我學習","測試","系統開門","系統關門","門位異常","防拆異常"
+           "門開啟","門關閉","卡號連續錯誤","自我學習","測試","系統開門","系統關門","異常入侵","外力破壞"
  
        };
+      
        public string StatusString {
          
            get{
@@ -116,4 +117,29 @@ namespace SecureServer
            return    TimeStamp.ToLongDateString()+ ","+CardNo+","+StatusString;
        }
     }
+
+   public enum CardReaderStatusEnum : int
+   {
+       無動作,
+       開鎖,
+       停,
+       關,
+       號碼錯誤,
+       卡號刪除,
+       卡號重複,
+       按鈕開門,
+       密碼開門,
+       F1開門,
+       反脅迫,
+       門位異常,
+       門開啟,
+       門關閉,
+       卡號連續錯誤,
+       自我學習,
+       測試,
+       系統開門,
+       系統關門,
+        異常入侵,
+       外力破壞
+   }
 }

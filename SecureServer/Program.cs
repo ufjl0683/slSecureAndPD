@@ -1,15 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 
 namespace SecureServer
 {
     class Program
     {
+        public static SecureServer.SecureService  MyServiceObject;
         static void Main(string[] args)
         {
-            CardReaderTest();
+
+          
+          //  CardReaderTest();
+
+            //SecureDBEntities1 db = new SecureDBEntities1();
+            
+            //Random rnd = new Random();
+            //DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            //int passwd = rnd.Next(0, 10000);
+            //string pwdString = passwd.ToString("{0000}");
+            //tblERDoorPassword  tbl = new tblERDoorPassword() { Timestamp = dt, DoorPassword = pwdString };
+            //db.tblERDoorPassword.Add(tbl);
+            //db.SaveChanges();
+
+            ServiceHost host = new ServiceHost(MyServiceObject = new SecureServer.SecureService());
+            host.Open();
+            System.Console.WriteLine("Secure Server started!");
+          
 
             Console.ReadLine();
            
@@ -18,7 +37,7 @@ namespace SecureServer
         static void CardReaderTest()
         {
 
-            CardReader cr = new CardReader("192.168.1.168");
+            CardReader cr = new CardReader("test","192.168.1.168",1,1);
 
             Console.WriteLine("設定開門延時警報 10  sec");
             cr.SetOpenDoorDetectionAlarmTime(10);

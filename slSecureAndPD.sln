@@ -36,6 +36,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slEditor", "slEditor\slEdit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureServer", "SecureServer\SecureServer.csproj", "{A3B90D63-3B64-4929-A771-8225EE7A9C6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{26D34E33-1406-4F33-885C-05F775654662}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slWCFModule", "slWCFModule\slWCFModule.csproj", "{36C2EB23-CAAB-456B-912F-ED107DDCCD0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +78,14 @@ Global
 		{A3B90D63-3B64-4929-A771-8225EE7A9C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3B90D63-3B64-4929-A771-8225EE7A9C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3B90D63-3B64-4929-A771-8225EE7A9C6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26D34E33-1406-4F33-885C-05F775654662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26D34E33-1406-4F33-885C-05F775654662}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26D34E33-1406-4F33-885C-05F775654662}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26D34E33-1406-4F33-885C-05F775654662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C2EB23-CAAB-456B-912F-ED107DDCCD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C2EB23-CAAB-456B-912F-ED107DDCCD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C2EB23-CAAB-456B-912F-ED107DDCCD0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C2EB23-CAAB-456B-912F-ED107DDCCD0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

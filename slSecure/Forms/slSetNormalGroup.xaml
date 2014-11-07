@@ -1,0 +1,108 @@
+﻿<navigation:Page x:Class="slSecure.Forms.slSetNormalGroup" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"	
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="842" d:DesignHeight="697"
+           Title="slSetNormalGroup Page" Loaded="Page_Loaded" >
+    <Grid x:Name="LayoutRoot" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border x:Name="NormalGroupData" BorderBrush="#FFCBD5E1" BorderThickness="3" Margin="4,1,0,4">
+            <ScrollViewer Padding="0" BorderThickness="0" >
+                <Border BorderBrush="White" BorderThickness="1">
+                    <Grid Background="White">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="#FFCBD2DB" BorderThickness="0,0,0,3" Height="50">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFE9ECF0" Offset="0" />
+                                    <GradientStop Color="#FFDDE1E7" Offset="0.2" />
+                                    <GradientStop Color="#FFCCD3DC" Offset="0.2" />
+                                    <GradientStop Color="#FFFAFAFB" Offset="0.647" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Border Grid.Row="1" Height="30" VerticalAlignment="Top" Margin="0,1,0,0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFE0E4EA" Offset="0" />
+                                    <GradientStop Color="White" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <!-- Logo -->
+                        <!-- Header -->
+                        <Rectangle Height="35" VerticalAlignment="Bottom" Grid.Row="1">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFDBE3EB" Offset="0.8" />
+                                    <GradientStop Color="#FFC8D5E0" Offset="0.8" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                        <!-- Header -->
+
+                        <StackPanel Grid.Row="1" Margin="20,10,20,35" DataContext="{Binding ElementName=dataGrid, Path=SelectedItem}">
+                            <!-- Privacy Policy -->
+
+                            <!-- 定期卡群組編號 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" Visibility="Collapsed" >
+                                <TextBlock  Width="190" FontSize="16"  >
+									<Run Text="定期卡群組編號"/>
+                                </TextBlock>
+                                <TextBox x:Name="txt_NormalID" Width="120"  Text="{Binding NormalID, Mode=TwoWay}"  />
+                            </StackPanel>
+
+                            <!-- 定期卡群組名稱 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock  Width="190" FontSize="16" >
+										<Run Text="定期卡群組名稱"/>
+                                </TextBlock>
+                                <TextBox x:Name="txt_NormalName" Width="120"  Text="{Binding NormalName, Mode=TwoWay}" FontSize="16"  />
+                            </StackPanel>
+
+                            <!-- 備註 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock  Width="190" Text="備註" FontSize="16" />
+                                <TextBox x:Name="tb_Memo" TextWrapping="Wrap"  Text="{Binding Memo, Mode=TwoWay}"  Width="278" Height="88" FontSize="16" />
+                            </StackPanel>
+
+
+                            <!-- DataGrid -->
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                                <sdk:DataGrid Margin="0" x:Name="dataGrid" IsReadOnly="True" AutoGenerateColumns="False" Height="150" FontSize="16" SelectionChanged="dataGrid_SelectionChanged">
+                                    <sdk:DataGrid.Columns>
+                                        <!--<sdk:DataGridTextColumn Header="定期卡群組編號" Binding="{Binding NormalID}" />-->
+                                        <sdk:DataGridTextColumn Header="定期卡群組名稱" Binding="{Binding NormalName}" />
+                                        <sdk:DataGridTextColumn Header="更新日期" Binding="{Binding UpdateDate, StringFormat=\{0:yyyy-MM-dd\}}"/>
+                                        <sdk:DataGridTextColumn Header="備註" Binding="{Binding Memo}"/>
+                                    </sdk:DataGrid.Columns>
+                                </sdk:DataGrid>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBlock Margin="76,10,0,12" TextWrapping="NoWrap" FontFamily="Trebuchet MS" FontSize="24" Foreground="#FF507494" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" >
+							<Run Text="定期卡群組"/>
+							<Run Text="設定"/>
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" Margin="300,10,10,10">
+                            <Button x:Name="bu_New" Content="新增" Width="100" FontSize="16" Click="bu_New_Click"/>
+                            <Button x:Name="bu_Add" Content="儲存" Width="100" Height="30" VerticalAlignment="Top" FontSize="16" Click="bu_Add_Click"/>
+                            <Button x:Name="bu_Del" Content="刪除" Width="100" FontSize="16" Click="bu_Del_Click" Visibility="Collapsed"/>
+                            <Button x:Name="bu_Query" Content="查詢" Width="100" FontSize="16" Click="bu_Query_Click"/>
+                            <Button x:Name="bu_Back" Content="返回" Width="100" FontSize="16" Click="bu_Back_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</navigation:Page>

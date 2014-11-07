@@ -93,7 +93,7 @@ namespace slSecure.Forms
 
         public MyUserGroupList()
         {
-            Context = slSecure.DB.GetDB();
+            Context = new SecureDBContext(); // slSecure.DB.GetDB();
         }
         public slSecure.Web.SecureDBContext Context
         {

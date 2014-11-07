@@ -19,18 +19,40 @@ using System.Windows.Shapes;
 namespace slSecure
 {
     public  static  class DB
-    {    public static SecureDBContext GetDB()
+    {
+        public static SecureDBContext GetDB()
         {
             return new SecureDBContext();
         }
 
-
+         
     public static void Test()
     {
         //SecureDBContext db = new SecureDBContext();
         // EntityQuery <tblUser> q=  from n in db.GetTblUserQuery() where n.
     }
 
+
+    public static Task<bool> SubmitChangesAsync(this DomainContext source)
+    {
+        TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
+
+        SubmitOperation so = source.SubmitChanges();
+        so.Completed += (s, a) =>
+        {
+            if (so.Error != null)
+            {
+                taskCompletionSource.TrySetException(so.Error);
+                MessageBox.Show(so.Error.Message + "," + so.Error.InnerException.Message);
+                so.MarkErrorAsHandled();
+                taskCompletionSource.TrySetResult(false);
+
+            }
+            taskCompletionSource.TrySetResult(true);
+
+        };
+        return taskCompletionSource.Task;
+    }
     public static Task<IEnumerable<T>> LoadAsync<T>(this DomainContext source, EntityQuery<T> query) where T : Entity
     {
         return source.LoadAsync(   query, LoadBehavior.KeepCurrent);

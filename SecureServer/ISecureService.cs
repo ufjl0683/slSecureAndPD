@@ -7,11 +7,20 @@ using System.Runtime.Serialization;
 
 namespace SecureServer
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract=typeof(ISecureServiceCallBack))]
    public  interface ISecureService
     {
         [OperationContract]
-        string  Register();
+        string  Register(string pcname);
+         [OperationContract]
+        void NotifyDBChange(DBChangedConstant constant);
+         [OperationContract]
+         void ToServerHello();
+         [OperationContract]
+         void UnRegist(string guid);
+
+         [OperationContract]
+         void ForceOpenDoor(string ControllID);
     }
 
 
@@ -29,5 +38,11 @@ namespace SecureServer
     public class SecureServiceRegistInfo
     {
 
+    }
+
+
+    public enum DBChangedConstant
+    {
+        AuthorityChanged
     }
 }

@@ -26,9 +26,9 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblControllerConfig_tblEngineRoomConfig", "tblEngineRoomConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblEngineRoomConfig), "tblControllerConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblControllerConfig), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblControlSetting_tblControllerConfig", "tblControllerConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblControllerConfig), "tblControlSetting", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblControlSetting), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblDeviceStateLog_tblControllerConfig", "tblControllerConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblControllerConfig), "tblDeviceStateLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblDeviceStateLog), true)]
-[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblERDoorPasscode_tblControllerConfig", "tblControllerConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblControllerConfig), "tblERDoorPasscode", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblERDoorPasscode), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblItemConfig_tblControllerConfig", "tblControllerConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblControllerConfig), "tblItemConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblItemConfig), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSingalIO_tblControllerConfig", "tblControllerConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblControllerConfig), "tblSingalIO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSingalIO), true)]
+[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSysRoleAuthority_tblControllerConfig", "tblControllerConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblControllerConfig), "tblSysRoleAuthority", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSysRoleAuthority), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblDeviceStateLog_tblTypeDetail", "tblTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblTypeDetail), "tblDeviceStateLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblDeviceStateLog), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblEntranceGuardConfig_tblEngineRoomConfig", "tblEngineRoomConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblEngineRoomConfig), "tblEntranceGuardConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblEntranceGuardConfig), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblERPlane_tblEngineRoomConfig", "tblEngineRoomConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblEngineRoomConfig), "tblERPlane", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblERPlane), true)]
@@ -39,7 +39,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSchLog_tblSchConfig", "tblSchConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSchConfig), "tblSchLog", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblSchLog), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSingalIOLog_tblSingalIO", "tblSingalIO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSingalIO), "tblSingalIOLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSingalIOLog), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSysOperation_tblUser", "tblUser", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblUser), "tblSysOperation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSysOperation), true)]
-[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSysRoleAuthority_tblSysRole", "tblSysRole", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSysRole), "tblSysRoleAuthority", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblSysRoleAuthority), true)]
+[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSysRoleAuthority_tblSysRole", "tblSysRole", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSysRole), "tblSysRoleAuthority", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSysRoleAuthority), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblUser_tblUserGroup", "tblUserGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblUserGroup), "tblUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblUser), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblUserGroupMenu_tblUserGroup", "tblUserGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblUserGroup), "tblUserGroupMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblUserGroupMenu), true)]
 
@@ -124,6 +124,22 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<tblAlarmLog> _tblAlarmLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblCardCommandLog> tblCardCommandLog
+        {
+            get
+            {
+                if ((_tblCardCommandLog == null))
+                {
+                    _tblCardCommandLog = base.CreateObjectSet<tblCardCommandLog>("tblCardCommandLog");
+                }
+                return _tblCardCommandLog;
+            }
+        }
+        private ObjectSet<tblCardCommandLog> _tblCardCommandLog;
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -268,22 +284,6 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<tblEntranceGuardConfig> _tblEntranceGuardConfig;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<tblERDoorPasscode> tblERDoorPasscode
-        {
-            get
-            {
-                if ((_tblERDoorPasscode == null))
-                {
-                    _tblERDoorPasscode = base.CreateObjectSet<tblERDoorPasscode>("tblERDoorPasscode");
-                }
-                return _tblERDoorPasscode;
-            }
-        }
-        private ObjectSet<tblERDoorPasscode> _tblERDoorPasscode;
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -608,6 +608,22 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
+        public ObjectSet<vwEntranceGuardDetail> vwEntranceGuardDetail
+        {
+            get
+            {
+                if ((_vwEntranceGuardDetail == null))
+                {
+                    _vwEntranceGuardDetail = base.CreateObjectSet<vwEntranceGuardDetail>("vwEntranceGuardDetail");
+                }
+                return _vwEntranceGuardDetail;
+            }
+        }
+        private ObjectSet<vwEntranceGuardDetail> _vwEntranceGuardDetail;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
         public ObjectSet<vwUserGroupMenuAllow> vwUserGroupMenuAllow
         {
             get
@@ -655,6 +671,14 @@ namespace slSecure.Web
         public void AddTotblAlarmLog(tblAlarmLog tblAlarmLog)
         {
             base.AddObject("tblAlarmLog", tblAlarmLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblCardCommandLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblCardCommandLog(tblCardCommandLog tblCardCommandLog)
+        {
+            base.AddObject("tblCardCommandLog", tblCardCommandLog);
         }
     
         /// <summary>
@@ -727,14 +751,6 @@ namespace slSecure.Web
         public void AddTotblEntranceGuardConfig(tblEntranceGuardConfig tblEntranceGuardConfig)
         {
             base.AddObject("tblEntranceGuardConfig", tblEntranceGuardConfig);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 tblERDoorPasscode EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTotblERDoorPasscode(tblERDoorPasscode tblERDoorPasscode)
-        {
-            base.AddObject("tblERDoorPasscode", tblERDoorPasscode);
         }
     
         /// <summary>
@@ -895,6 +911,14 @@ namespace slSecure.Web
         public void AddTotblUserGroupMenu(tblUserGroupMenu tblUserGroupMenu)
         {
             base.AddObject("tblUserGroupMenu", tblUserGroupMenu);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwEntranceGuardDetail EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwEntranceGuardDetail(vwEntranceGuardDetail vwEntranceGuardDetail)
+        {
+            base.AddObject("vwEntranceGuardDetail", vwEntranceGuardDetail);
         }
     
         /// <summary>
@@ -1398,6 +1422,238 @@ namespace slSecure.Web
     /// <summary>
     /// 沒有可用的中繼資料文件。
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblCardCommandLog")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblCardCommandLog : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 tblCardCommandLog 物件。
+        /// </summary>
+        /// <param name="flowID">FlowID 屬性的初始值。</param>
+        /// <param name="aBA">ABA 屬性的初始值。</param>
+        /// <param name="controlID">ControlID 屬性的初始值。</param>
+        /// <param name="commandType">CommandType 屬性的初始值。</param>
+        /// <param name="isSuccess">IsSuccess 屬性的初始值。</param>
+        public static tblCardCommandLog CreatetblCardCommandLog(global::System.Int64 flowID, global::System.String aBA, global::System.String controlID, global::System.String commandType, global::System.Boolean isSuccess)
+        {
+            tblCardCommandLog tblCardCommandLog = new tblCardCommandLog();
+            tblCardCommandLog.FlowID = flowID;
+            tblCardCommandLog.ABA = aBA;
+            tblCardCommandLog.ControlID = controlID;
+            tblCardCommandLog.CommandType = commandType;
+            tblCardCommandLog.IsSuccess = isSuccess;
+            return tblCardCommandLog;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 FlowID
+        {
+            get
+            {
+                return _FlowID;
+            }
+            set
+            {
+                if (_FlowID != value)
+                {
+                    OnFlowIDChanging(value);
+                    ReportPropertyChanging("FlowID");
+                    _FlowID = StructuralObject.SetValidValue(value, "FlowID");
+                    ReportPropertyChanged("FlowID");
+                    OnFlowIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _FlowID;
+        partial void OnFlowIDChanging(global::System.Int64 value);
+        partial void OnFlowIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ABA
+        {
+            get
+            {
+                return _ABA;
+            }
+            set
+            {
+                OnABAChanging(value);
+                ReportPropertyChanging("ABA");
+                _ABA = StructuralObject.SetValidValue(value, false, "ABA");
+                ReportPropertyChanged("ABA");
+                OnABAChanged();
+            }
+        }
+        private global::System.String _ABA;
+        partial void OnABAChanging(global::System.String value);
+        partial void OnABAChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ControlID
+        {
+            get
+            {
+                return _ControlID;
+            }
+            set
+            {
+                OnControlIDChanging(value);
+                ReportPropertyChanging("ControlID");
+                _ControlID = StructuralObject.SetValidValue(value, false, "ControlID");
+                ReportPropertyChanged("ControlID");
+                OnControlIDChanged();
+            }
+        }
+        private global::System.String _ControlID;
+        partial void OnControlIDChanging(global::System.String value);
+        partial void OnControlIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Timestamp
+        {
+            get
+            {
+                return _Timestamp;
+            }
+            set
+            {
+                OnTimestampChanging(value);
+                ReportPropertyChanging("Timestamp");
+                _Timestamp = StructuralObject.SetValidValue(value, "Timestamp");
+                ReportPropertyChanged("Timestamp");
+                OnTimestampChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Timestamp;
+        partial void OnTimestampChanging(Nullable<global::System.DateTime> value);
+        partial void OnTimestampChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CommandType
+        {
+            get
+            {
+                return _CommandType;
+            }
+            set
+            {
+                OnCommandTypeChanging(value);
+                ReportPropertyChanging("CommandType");
+                _CommandType = StructuralObject.SetValidValue(value, false, "CommandType");
+                ReportPropertyChanged("CommandType");
+                OnCommandTypeChanged();
+            }
+        }
+        private global::System.String _CommandType;
+        partial void OnCommandTypeChanging(global::System.String value);
+        partial void OnCommandTypeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsSuccess
+        {
+            get
+            {
+                return _IsSuccess;
+            }
+            set
+            {
+                OnIsSuccessChanging(value);
+                ReportPropertyChanging("IsSuccess");
+                _IsSuccess = StructuralObject.SetValidValue(value, "IsSuccess");
+                ReportPropertyChanged("IsSuccess");
+                OnIsSuccessChanged();
+            }
+        }
+        private global::System.Boolean _IsSuccess;
+        partial void OnIsSuccessChanging(global::System.Boolean value);
+        partial void OnIsSuccessChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Describe
+        {
+            get
+            {
+                return _Describe;
+            }
+            set
+            {
+                OnDescribeChanging(value);
+                ReportPropertyChanging("Describe");
+                _Describe = StructuralObject.SetValidValue(value, true, "Describe");
+                ReportPropertyChanged("Describe");
+                OnDescribeChanged();
+            }
+        }
+        private global::System.String _Describe;
+        partial void OnDescribeChanging(global::System.String value);
+        partial void OnDescribeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CardType
+        {
+            get
+            {
+                return _CardType;
+            }
+            set
+            {
+                OnCardTypeChanging(value);
+                ReportPropertyChanging("CardType");
+                _CardType = StructuralObject.SetValidValue(value, true, "CardType");
+                ReportPropertyChanged("CardType");
+                OnCardTypeChanged();
+            }
+        }
+        private global::System.String _CardType;
+        partial void OnCardTypeChanging(global::System.String value);
+        partial void OnCardTypeChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblCardReaderConfig")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -1628,7 +1884,7 @@ namespace slSecure.Web
         /// </summary>
         /// <param name="cCTVID">CCTVID 屬性的初始值。</param>
         /// <param name="eRID">ERID 屬性的初始值。</param>
-        /// <param name="nVRName">NVRName 屬性的初始值。</param>
+        /// <param name="cCTVName">CCTVName 屬性的初始值。</param>
         /// <param name="iP">IP 屬性的初始值。</param>
         /// <param name="port">Port 屬性的初始值。</param>
         /// <param name="x">X 屬性的初始值。</param>
@@ -1636,12 +1892,12 @@ namespace slSecure.Web
         /// <param name="scaleX">ScaleX 屬性的初始值。</param>
         /// <param name="scaleY">ScaleY 屬性的初始值。</param>
         /// <param name="rotation">Rotation 屬性的初始值。</param>
-        public static tblCCTVConfig CreatetblCCTVConfig(global::System.Int32 cCTVID, global::System.Int32 eRID, global::System.String nVRName, global::System.String iP, global::System.Int32 port, global::System.Double x, global::System.Double y, global::System.Double scaleX, global::System.Double scaleY, global::System.Double rotation)
+        public static tblCCTVConfig CreatetblCCTVConfig(global::System.Int32 cCTVID, global::System.Int32 eRID, global::System.String cCTVName, global::System.String iP, global::System.Int32 port, global::System.Double x, global::System.Double y, global::System.Double scaleX, global::System.Double scaleY, global::System.Double rotation)
         {
             tblCCTVConfig tblCCTVConfig = new tblCCTVConfig();
             tblCCTVConfig.CCTVID = cCTVID;
             tblCCTVConfig.ERID = eRID;
-            tblCCTVConfig.NVRName = nVRName;
+            tblCCTVConfig.CCTVName = cCTVName;
             tblCCTVConfig.IP = iP;
             tblCCTVConfig.Port = port;
             tblCCTVConfig.X = x;
@@ -1712,24 +1968,24 @@ namespace slSecure.Web
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String NVRName
+        public global::System.String CCTVName
         {
             get
             {
-                return _NVRName;
+                return _CCTVName;
             }
             set
             {
-                OnNVRNameChanging(value);
-                ReportPropertyChanging("NVRName");
-                _NVRName = StructuralObject.SetValidValue(value, false, "NVRName");
-                ReportPropertyChanged("NVRName");
-                OnNVRNameChanged();
+                OnCCTVNameChanging(value);
+                ReportPropertyChanging("CCTVName");
+                _CCTVName = StructuralObject.SetValidValue(value, false, "CCTVName");
+                ReportPropertyChanged("CCTVName");
+                OnCCTVNameChanged();
             }
         }
-        private global::System.String _NVRName;
-        partial void OnNVRNameChanging(global::System.String value);
-        partial void OnNVRNameChanged();
+        private global::System.String _CCTVName;
+        partial void OnCCTVNameChanging(global::System.String value);
+        partial void OnCCTVNameChanged();
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -1946,6 +2202,78 @@ namespace slSecure.Web
         private global::System.String _Password;
         partial void OnPasswordChanging(global::System.String value);
         partial void OnPasswordChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PlaneID
+        {
+            get
+            {
+                return _PlaneID;
+            }
+            set
+            {
+                OnPlaneIDChanging(value);
+                ReportPropertyChanging("PlaneID");
+                _PlaneID = StructuralObject.SetValidValue(value, "PlaneID");
+                ReportPropertyChanged("PlaneID");
+                OnPlaneIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PlaneID;
+        partial void OnPlaneIDChanging(Nullable<global::System.Int32> value);
+        partial void OnPlaneIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NVRID
+        {
+            get
+            {
+                return _NVRID;
+            }
+            set
+            {
+                OnNVRIDChanging(value);
+                ReportPropertyChanging("NVRID");
+                _NVRID = StructuralObject.SetValidValue(value, "NVRID");
+                ReportPropertyChanged("NVRID");
+                OnNVRIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NVRID;
+        partial void OnNVRIDChanging(Nullable<global::System.Int32> value);
+        partial void OnNVRIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NVRChNO
+        {
+            get
+            {
+                return _NVRChNO;
+            }
+            set
+            {
+                OnNVRChNOChanging(value);
+                ReportPropertyChanging("NVRChNO");
+                _NVRChNO = StructuralObject.SetValidValue(value, "NVRChNO");
+                ReportPropertyChanged("NVRChNO");
+                OnNVRChNOChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NVRChNO;
+        partial void OnNVRChNOChanging(Nullable<global::System.Int32> value);
+        partial void OnNVRChNOChanged();
 
         #endregion
 
@@ -2431,24 +2759,24 @@ namespace slSecure.Web
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> PlanID
+        public Nullable<global::System.Int32> PlaneID
         {
             get
             {
-                return _PlanID;
+                return _PlaneID;
             }
             set
             {
-                OnPlanIDChanging(value);
-                ReportPropertyChanging("PlanID");
-                _PlanID = StructuralObject.SetValidValue(value, "PlanID");
-                ReportPropertyChanged("PlanID");
-                OnPlanIDChanged();
+                OnPlaneIDChanging(value);
+                ReportPropertyChanging("PlaneID");
+                _PlaneID = StructuralObject.SetValidValue(value, "PlaneID");
+                ReportPropertyChanged("PlaneID");
+                OnPlaneIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _PlanID;
-        partial void OnPlanIDChanging(Nullable<global::System.Int32> value);
-        partial void OnPlanIDChanged();
+        private Nullable<global::System.Int32> _PlaneID;
+        partial void OnPlaneIDChanging(Nullable<global::System.Int32> value);
+        partial void OnPlaneIDChanged();
 
         #endregion
 
@@ -2580,28 +2908,6 @@ namespace slSecure.Web
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblERDoorPasscode_tblControllerConfig", "tblERDoorPasscode")]
-        public EntityCollection<tblERDoorPasscode> tblERDoorPasscode
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblERDoorPasscode>("SecureDBModel.FK_tblERDoorPasscode_tblControllerConfig", "tblERDoorPasscode");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblERDoorPasscode>("SecureDBModel.FK_tblERDoorPasscode_tblControllerConfig", "tblERDoorPasscode", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblItemConfig_tblControllerConfig", "tblItemConfig")]
         public EntityCollection<tblItemConfig> tblItemConfig
         {
@@ -2636,6 +2942,28 @@ namespace slSecure.Web
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblSingalIO>("SecureDBModel.FK_tblSingalIO_tblControllerConfig", "tblSingalIO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblSysRoleAuthority_tblControllerConfig", "tblSysRoleAuthority")]
+        public EntityCollection<tblSysRoleAuthority> tblSysRoleAuthority
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblSysRoleAuthority>("SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig", "tblSysRoleAuthority");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblSysRoleAuthority>("SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig", "tblSysRoleAuthority", value);
                 }
             }
         }
@@ -4001,156 +4329,6 @@ namespace slSecure.Web
     /// <summary>
     /// 沒有可用的中繼資料文件。
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblERDoorPasscode")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class tblERDoorPasscode : EntityObject
-    {
-        #region Factory 方法
-    
-        /// <summary>
-        /// 建立新 tblERDoorPasscode 物件。
-        /// </summary>
-        /// <param name="timestamp">Timestamp 屬性的初始值。</param>
-        /// <param name="doorPassword">DoorPassword 屬性的初始值。</param>
-        /// <param name="controlID">ControlID 屬性的初始值。</param>
-        public static tblERDoorPasscode CreatetblERDoorPasscode(global::System.DateTime timestamp, global::System.String doorPassword, global::System.String controlID)
-        {
-            tblERDoorPasscode tblERDoorPasscode = new tblERDoorPasscode();
-            tblERDoorPasscode.Timestamp = timestamp;
-            tblERDoorPasscode.DoorPassword = doorPassword;
-            tblERDoorPasscode.ControlID = controlID;
-            return tblERDoorPasscode;
-        }
-
-        #endregion
-
-        #region 簡單屬性
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime Timestamp
-        {
-            get
-            {
-                return _Timestamp;
-            }
-            set
-            {
-                if (_Timestamp != value)
-                {
-                    OnTimestampChanging(value);
-                    ReportPropertyChanging("Timestamp");
-                    _Timestamp = StructuralObject.SetValidValue(value, "Timestamp");
-                    ReportPropertyChanged("Timestamp");
-                    OnTimestampChanged();
-                }
-            }
-        }
-        private global::System.DateTime _Timestamp;
-        partial void OnTimestampChanging(global::System.DateTime value);
-        partial void OnTimestampChanged();
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String DoorPassword
-        {
-            get
-            {
-                return _DoorPassword;
-            }
-            set
-            {
-                OnDoorPasswordChanging(value);
-                ReportPropertyChanging("DoorPassword");
-                _DoorPassword = StructuralObject.SetValidValue(value, false, "DoorPassword");
-                ReportPropertyChanged("DoorPassword");
-                OnDoorPasswordChanged();
-            }
-        }
-        private global::System.String _DoorPassword;
-        partial void OnDoorPasswordChanging(global::System.String value);
-        partial void OnDoorPasswordChanged();
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String ControlID
-        {
-            get
-            {
-                return _ControlID;
-            }
-            set
-            {
-                OnControlIDChanging(value);
-                ReportPropertyChanging("ControlID");
-                _ControlID = StructuralObject.SetValidValue(value, false, "ControlID");
-                ReportPropertyChanged("ControlID");
-                OnControlIDChanged();
-            }
-        }
-        private global::System.String _ControlID;
-        partial void OnControlIDChanging(global::System.String value);
-        partial void OnControlIDChanged();
-
-        #endregion
-
-        #region 導覽屬性
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblERDoorPasscode_tblControllerConfig", "tblControllerConfig")]
-        public tblControllerConfig tblControllerConfig
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblControllerConfig>("SecureDBModel.FK_tblERDoorPasscode_tblControllerConfig", "tblControllerConfig").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblControllerConfig>("SecureDBModel.FK_tblERDoorPasscode_tblControllerConfig", "tblControllerConfig").Value = value;
-            }
-        }
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<tblControllerConfig> tblControllerConfigReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblControllerConfig>("SecureDBModel.FK_tblERDoorPasscode_tblControllerConfig", "tblControllerConfig");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblControllerConfig>("SecureDBModel.FK_tblERDoorPasscode_tblControllerConfig", "tblControllerConfig", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// 沒有可用的中繼資料文件。
-    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblERDoorPassword")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -5247,6 +5425,54 @@ namespace slSecure.Web
         private global::System.String _WarningValue;
         partial void OnWarningValueChanging(global::System.String value);
         partial void OnWarningValueChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PlaneID
+        {
+            get
+            {
+                return _PlaneID;
+            }
+            set
+            {
+                OnPlaneIDChanging(value);
+                ReportPropertyChanging("PlaneID");
+                _PlaneID = StructuralObject.SetValidValue(value, "PlaneID");
+                ReportPropertyChanged("PlaneID");
+                OnPlaneIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PlaneID;
+        partial void OnPlaneIDChanging(Nullable<global::System.Int32> value);
+        partial void OnPlaneIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UIType
+        {
+            get
+            {
+                return _UIType;
+            }
+            set
+            {
+                OnUITypeChanging(value);
+                ReportPropertyChanging("UIType");
+                _UIType = StructuralObject.SetValidValue(value, true, "UIType");
+                ReportPropertyChanged("UIType");
+                OnUITypeChanged();
+            }
+        }
+        private global::System.String _UIType;
+        partial void OnUITypeChanging(global::System.String value);
+        partial void OnUITypeChanged();
 
         #endregion
 
@@ -5333,13 +5559,15 @@ namespace slSecure.Web
         /// <param name="aBA">ABA 屬性的初始值。</param>
         /// <param name="endDate">EndDate 屬性的初始值。</param>
         /// <param name="roleID">RoleID 屬性的初始值。</param>
-        public static tblMagneticCard CreatetblMagneticCard(global::System.Int32 magneticID, global::System.String aBA, global::System.DateTime endDate, global::System.Int32 roleID)
+        /// <param name="timestamp">Timestamp 屬性的初始值。</param>
+        public static tblMagneticCard CreatetblMagneticCard(global::System.Int32 magneticID, global::System.String aBA, global::System.DateTime endDate, global::System.Int32 roleID, global::System.DateTime timestamp)
         {
             tblMagneticCard tblMagneticCard = new tblMagneticCard();
             tblMagneticCard.MagneticID = magneticID;
             tblMagneticCard.ABA = aBA;
             tblMagneticCard.EndDate = endDate;
             tblMagneticCard.RoleID = roleID;
+            tblMagneticCard.Timestamp = timestamp;
             return tblMagneticCard;
         }
 
@@ -5781,6 +6009,54 @@ namespace slSecure.Web
         private global::System.Int32 _RoleID;
         partial void OnRoleIDChanging(global::System.Int32 value);
         partial void OnRoleIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Timestamp
+        {
+            get
+            {
+                return _Timestamp;
+            }
+            set
+            {
+                OnTimestampChanging(value);
+                ReportPropertyChanging("Timestamp");
+                _Timestamp = StructuralObject.SetValidValue(value, "Timestamp");
+                ReportPropertyChanged("Timestamp");
+                OnTimestampChanged();
+            }
+        }
+        private global::System.DateTime _Timestamp;
+        partial void OnTimestampChanging(global::System.DateTime value);
+        partial void OnTimestampChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ReturnDate
+        {
+            get
+            {
+                return _ReturnDate;
+            }
+            set
+            {
+                OnReturnDateChanging(value);
+                ReportPropertyChanging("ReturnDate");
+                _ReturnDate = StructuralObject.SetValidValue(value, "ReturnDate");
+                ReportPropertyChanged("ReturnDate");
+                OnReturnDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ReturnDate;
+        partial void OnReturnDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnReturnDateChanged();
 
         #endregion
 
@@ -7968,33 +8244,17 @@ namespace slSecure.Web
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblSysRoleAuthority_tblSysRole", "tblSysRoleAuthority")]
-        public tblSysRoleAuthority tblSysRoleAuthority
+        public EntityCollection<tblSysRoleAuthority> tblSysRoleAuthority
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblSysRoleAuthority>("SecureDBModel.FK_tblSysRoleAuthority_tblSysRole", "tblSysRoleAuthority").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblSysRoleAuthority>("SecureDBModel.FK_tblSysRoleAuthority_tblSysRole", "tblSysRoleAuthority").Value = value;
-            }
-        }
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<tblSysRoleAuthority> tblSysRoleAuthorityReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblSysRoleAuthority>("SecureDBModel.FK_tblSysRoleAuthority_tblSysRole", "tblSysRoleAuthority");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblSysRoleAuthority>("SecureDBModel.FK_tblSysRoleAuthority_tblSysRole", "tblSysRoleAuthority");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblSysRoleAuthority>("SecureDBModel.FK_tblSysRoleAuthority_tblSysRole", "tblSysRoleAuthority", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblSysRoleAuthority>("SecureDBModel.FK_tblSysRoleAuthority_tblSysRole", "tblSysRoleAuthority", value);
                 }
             }
         }
@@ -8017,10 +8277,12 @@ namespace slSecure.Web
         /// 建立新 tblSysRoleAuthority 物件。
         /// </summary>
         /// <param name="roleID">RoleID 屬性的初始值。</param>
-        public static tblSysRoleAuthority CreatetblSysRoleAuthority(global::System.Int32 roleID)
+        /// <param name="controlID">ControlID 屬性的初始值。</param>
+        public static tblSysRoleAuthority CreatetblSysRoleAuthority(global::System.Int32 roleID, global::System.String controlID)
         {
             tblSysRoleAuthority tblSysRoleAuthority = new tblSysRoleAuthority();
             tblSysRoleAuthority.RoleID = roleID;
+            tblSysRoleAuthority.ControlID = controlID;
             return tblSysRoleAuthority;
         }
 
@@ -8058,7 +8320,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String ControlID
         {
@@ -8068,11 +8330,14 @@ namespace slSecure.Web
             }
             set
             {
-                OnControlIDChanging(value);
-                ReportPropertyChanging("ControlID");
-                _ControlID = StructuralObject.SetValidValue(value, true, "ControlID");
-                ReportPropertyChanged("ControlID");
-                OnControlIDChanged();
+                if (_ControlID != value)
+                {
+                    OnControlIDChanging(value);
+                    ReportPropertyChanging("ControlID");
+                    _ControlID = StructuralObject.SetValidValue(value, false, "ControlID");
+                    ReportPropertyChanged("ControlID");
+                    OnControlIDChanged();
+                }
             }
         }
         private global::System.String _ControlID;
@@ -8106,6 +8371,44 @@ namespace slSecure.Web
         #endregion
 
         #region 導覽屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblSysRoleAuthority_tblControllerConfig", "tblControllerConfig")]
+        public tblControllerConfig tblControllerConfig
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblControllerConfig>("SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig", "tblControllerConfig").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblControllerConfig>("SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig", "tblControllerConfig").Value = value;
+            }
+        }
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tblControllerConfig> tblControllerConfigReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblControllerConfig>("SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig", "tblControllerConfig");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblControllerConfig>("SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig", "tblControllerConfig", value);
+                }
+            }
+        }
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -8934,6 +9237,134 @@ namespace slSecure.Web
                 }
             }
         }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="vwEntranceGuardDetail")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class vwEntranceGuardDetail : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 vwEntranceGuardDetail 物件。
+        /// </summary>
+        /// <param name="eRID">ERID 屬性的初始值。</param>
+        public static vwEntranceGuardDetail CreatevwEntranceGuardDetail(global::System.Int32 eRID)
+        {
+            vwEntranceGuardDetail vwEntranceGuardDetail = new vwEntranceGuardDetail();
+            vwEntranceGuardDetail.ERID = eRID;
+            return vwEntranceGuardDetail;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ERID
+        {
+            get
+            {
+                return _ERID;
+            }
+            set
+            {
+                if (_ERID != value)
+                {
+                    OnERIDChanging(value);
+                    ReportPropertyChanging("ERID");
+                    _ERID = StructuralObject.SetValidValue(value, "ERID");
+                    ReportPropertyChanged("ERID");
+                    OnERIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ERID;
+        partial void OnERIDChanging(global::System.Int32 value);
+        partial void OnERIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ERName
+        {
+            get
+            {
+                return _ERName;
+            }
+            set
+            {
+                OnERNameChanging(value);
+                ReportPropertyChanging("ERName");
+                _ERName = StructuralObject.SetValidValue(value, true, "ERName");
+                ReportPropertyChanged("ERName");
+                OnERNameChanged();
+            }
+        }
+        private global::System.String _ERName;
+        partial void OnERNameChanging(global::System.String value);
+        partial void OnERNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Memo
+        {
+            get
+            {
+                return _Memo;
+            }
+            set
+            {
+                OnMemoChanging(value);
+                ReportPropertyChanging("Memo");
+                _Memo = StructuralObject.SetValidValue(value, true, "Memo");
+                ReportPropertyChanged("Memo");
+                OnMemoChanged();
+            }
+        }
+        private global::System.String _Memo;
+        partial void OnMemoChanging(global::System.String value);
+        partial void OnMemoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ControlID
+        {
+            get
+            {
+                return _ControlID;
+            }
+            set
+            {
+                OnControlIDChanging(value);
+                ReportPropertyChanging("ControlID");
+                _ControlID = StructuralObject.SetValidValue(value, true, "ControlID");
+                ReportPropertyChanged("ControlID");
+                OnControlIDChanged();
+            }
+        }
+        private global::System.String _ControlID;
+        partial void OnControlIDChanging(global::System.String value);
+        partial void OnControlIDChanged();
 
         #endregion
 

@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SecureDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SecureDBModelStoreContainer">
+          <EntitySet Name="tblCardCommandLog" EntityType="SecureDBModel.Store.tblCardCommandLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblControllerConfig" EntityType="SecureDBModel.Store.tblControllerConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblEngineRoomLog" EntityType="SecureDBModel.Store.tblEngineRoomLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblERDoorPassword" EntityType="SecureDBModel.Store.tblERDoorPassword" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="tblCardCommandLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" />
+          <Property Name="CommandType" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="IsSuccess" Type="bit" Nullable="false" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="100" />
+          <Property Name="CardType" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tblControllerConfig">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ControlType" Type="smallint" Nullable="false" />
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Loop" Type="char" MaxLength="1" />
+          <Property Name="IsEnable" Type="bit" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ScaleX" Type="float" />
+          <Property Name="ScaleY" Type="float" />
+          <Property Name="Rotation" Type="float" />
+          <Property Name="PlaneID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblEngineRoomLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="ControlID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Result" Type="smallint" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="Endtime" Type="datetime" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="TypeID" Type="smallint" />
+          <Property Name="TypeCode" Type="smallint" />
+        </EntityType>
+        <EntityType Name="tblERDoorPassword">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="DoorPassword" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SecureDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SecureDBEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tblControllerConfig" EntityType="SecureDBModel.tblControllerConfig" />
+          <EntitySet Name="tblERDoorPassword" EntityType="SecureDBModel.tblERDoorPassword" />
+          <EntitySet Name="tblEngineRoomLog" EntityType="SecureDBModel.tblEngineRoomLog" />
+          <EntitySet Name="tblCardCommandLog" EntityType="SecureDBModel.tblCardCommandLog" />
+        </EntityContainer>
+        <EntityType Name="tblControllerConfig">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Name="ControlID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ControlType" Type="Int16" Nullable="false" />
+          <Property Name="ERID" Type="Int32" Nullable="false" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Port" Type="Int32" Nullable="false" />
+          <Property Name="EntranceCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Loop" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IsEnable" Type="Boolean" />
+          <Property Name="X" Type="Double" />
+          <Property Name="Y" Type="Double" />
+          <Property Name="ScaleX" Type="Double" />
+          <Property Name="ScaleY" Type="Double" />
+          <Property Name="Rotation" Type="Double" />
+          <Property Name="PlaneID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblERDoorPassword">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="DoorPassword" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblEngineRoomLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Result" Nullable="false" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Endtime" Precision="3" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="TypeID" />
+          <Property Type="Int16" Name="TypeCode" />
+        </EntityType>
+        <EntityType Name="tblCardCommandLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ABA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Timestamp" Precision="3" />
+          <Property Type="String" Name="CommandType" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="IsSuccess" Nullable="false" />
+          <Property Type="String" Name="Describe" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CardType" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SecureDBModelStoreContainer" CdmEntityContainer="SecureDBEntities1">
+          <EntitySetMapping Name="tblControllerConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblControllerConfig">
+              <MappingFragment StoreEntitySet="tblControllerConfig">
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+                <ScalarProperty Name="Loop" ColumnName="Loop" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblERDoorPassword">
+            <EntityTypeMapping TypeName="SecureDBModel.tblERDoorPassword">
+              <MappingFragment StoreEntitySet="tblERDoorPassword">
+                <ScalarProperty Name="DoorPassword" ColumnName="DoorPassword" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEngineRoomLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblEngineRoomLog">
+              <MappingFragment StoreEntitySet="tblEngineRoomLog">
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Endtime" ColumnName="Endtime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCardCommandLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblCardCommandLog">
+              <MappingFragment StoreEntitySet="tblCardCommandLog">
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
+                <ScalarProperty Name="CommandType" ColumnName="CommandType" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

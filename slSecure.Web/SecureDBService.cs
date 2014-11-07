@@ -30,6 +30,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblAIItem1HourLog;
         }
 
+        public void InsertTblAIItem1HourLog(tblAIItem1HourLog tblAIItem1HourLog)
+        {
+            if ((tblAIItem1HourLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblAIItem1HourLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblAIItem1HourLog.AddObject(tblAIItem1HourLog);
+            }
+        }
+
+        public void UpdateTblAIItem1HourLog(tblAIItem1HourLog currenttblAIItem1HourLog)
+        {
+            this.ObjectContext.tblAIItem1HourLog.AttachAsModified(currenttblAIItem1HourLog, this.ChangeSet.GetOriginal(currenttblAIItem1HourLog));
+        }
+
+        public void DeleteTblAIItem1HourLog(tblAIItem1HourLog tblAIItem1HourLog)
+        {
+            if ((tblAIItem1HourLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblAIItem1HourLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblAIItem1HourLog.Attach(tblAIItem1HourLog);
+                this.ObjectContext.tblAIItem1HourLog.DeleteObject(tblAIItem1HourLog);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -37,6 +67,75 @@ namespace slSecure.Web
         public IQueryable<tblAlarmLog> GetTblAlarmLog()
         {
             return this.ObjectContext.tblAlarmLog;
+        }
+
+        public void InsertTblAlarmLog(tblAlarmLog tblAlarmLog)
+        {
+            if ((tblAlarmLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblAlarmLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblAlarmLog.AddObject(tblAlarmLog);
+            }
+        }
+
+        public void UpdateTblAlarmLog(tblAlarmLog currenttblAlarmLog)
+        {
+            this.ObjectContext.tblAlarmLog.AttachAsModified(currenttblAlarmLog, this.ChangeSet.GetOriginal(currenttblAlarmLog));
+        }
+
+        public void DeleteTblAlarmLog(tblAlarmLog tblAlarmLog)
+        {
+            if ((tblAlarmLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblAlarmLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblAlarmLog.Attach(tblAlarmLog);
+                this.ObjectContext.tblAlarmLog.DeleteObject(tblAlarmLog);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'tblCardCommandLog' 查詢。
+        public IQueryable<tblCardCommandLog> GetTblCardCommandLog()
+        {
+            return this.ObjectContext.tblCardCommandLog;
+        }
+
+        public void InsertTblCardCommandLog(tblCardCommandLog tblCardCommandLog)
+        {
+            if ((tblCardCommandLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCardCommandLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblCardCommandLog.AddObject(tblCardCommandLog);
+            }
+        }
+
+        public void UpdateTblCardCommandLog(tblCardCommandLog currenttblCardCommandLog)
+        {
+            this.ObjectContext.tblCardCommandLog.AttachAsModified(currenttblCardCommandLog, this.ChangeSet.GetOriginal(currenttblCardCommandLog));
+        }
+
+        public void DeleteTblCardCommandLog(tblCardCommandLog tblCardCommandLog)
+        {
+            if ((tblCardCommandLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCardCommandLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblCardCommandLog.Attach(tblCardCommandLog);
+                this.ObjectContext.tblCardCommandLog.DeleteObject(tblCardCommandLog);
+            }
         }
 
         // TODO:
@@ -48,6 +147,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblCardReaderConfig;
         }
 
+        public void InsertTblCardReaderConfig(tblCardReaderConfig tblCardReaderConfig)
+        {
+            if ((tblCardReaderConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCardReaderConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblCardReaderConfig.AddObject(tblCardReaderConfig);
+            }
+        }
+
+        public void UpdateTblCardReaderConfig(tblCardReaderConfig currenttblCardReaderConfig)
+        {
+            this.ObjectContext.tblCardReaderConfig.AttachAsModified(currenttblCardReaderConfig, this.ChangeSet.GetOriginal(currenttblCardReaderConfig));
+        }
+
+        public void DeleteTblCardReaderConfig(tblCardReaderConfig tblCardReaderConfig)
+        {
+            if ((tblCardReaderConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCardReaderConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblCardReaderConfig.Attach(tblCardReaderConfig);
+                this.ObjectContext.tblCardReaderConfig.DeleteObject(tblCardReaderConfig);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -55,6 +184,36 @@ namespace slSecure.Web
         public IQueryable<tblCCTVConfig> GetTblCCTVConfig()
         {
             return this.ObjectContext.tblCCTVConfig;
+        }
+
+        public void InsertTblCCTVConfig(tblCCTVConfig tblCCTVConfig)
+        {
+            if ((tblCCTVConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCCTVConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblCCTVConfig.AddObject(tblCCTVConfig);
+            }
+        }
+
+        public void UpdateTblCCTVConfig(tblCCTVConfig currenttblCCTVConfig)
+        {
+            this.ObjectContext.tblCCTVConfig.AttachAsModified(currenttblCCTVConfig, this.ChangeSet.GetOriginal(currenttblCCTVConfig));
+        }
+
+        public void DeleteTblCCTVConfig(tblCCTVConfig tblCCTVConfig)
+        {
+            if ((tblCCTVConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCCTVConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblCCTVConfig.Attach(tblCCTVConfig);
+                this.ObjectContext.tblCCTVConfig.DeleteObject(tblCCTVConfig);
+            }
         }
 
         // TODO:
@@ -66,6 +225,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblControllerCard;
         }
 
+        public void InsertTblControllerCard(tblControllerCard tblControllerCard)
+        {
+            if ((tblControllerCard.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblControllerCard, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblControllerCard.AddObject(tblControllerCard);
+            }
+        }
+
+        public void UpdateTblControllerCard(tblControllerCard currenttblControllerCard)
+        {
+            this.ObjectContext.tblControllerCard.AttachAsModified(currenttblControllerCard, this.ChangeSet.GetOriginal(currenttblControllerCard));
+        }
+
+        public void DeleteTblControllerCard(tblControllerCard tblControllerCard)
+        {
+            if ((tblControllerCard.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblControllerCard, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblControllerCard.Attach(tblControllerCard);
+                this.ObjectContext.tblControllerCard.DeleteObject(tblControllerCard);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -73,6 +262,36 @@ namespace slSecure.Web
         public IQueryable<tblControllerConfig> GetTblControllerConfig()
         {
             return this.ObjectContext.tblControllerConfig;
+        }
+
+        public void InsertTblControllerConfig(tblControllerConfig tblControllerConfig)
+        {
+            if ((tblControllerConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblControllerConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblControllerConfig.AddObject(tblControllerConfig);
+            }
+        }
+
+        public void UpdateTblControllerConfig(tblControllerConfig currenttblControllerConfig)
+        {
+            this.ObjectContext.tblControllerConfig.AttachAsModified(currenttblControllerConfig, this.ChangeSet.GetOriginal(currenttblControllerConfig));
+        }
+
+        public void DeleteTblControllerConfig(tblControllerConfig tblControllerConfig)
+        {
+            if ((tblControllerConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblControllerConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblControllerConfig.Attach(tblControllerConfig);
+                this.ObjectContext.tblControllerConfig.DeleteObject(tblControllerConfig);
+            }
         }
 
         // TODO:
@@ -84,6 +303,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblControlSetting;
         }
 
+        public void InsertTblControlSetting(tblControlSetting tblControlSetting)
+        {
+            if ((tblControlSetting.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblControlSetting, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblControlSetting.AddObject(tblControlSetting);
+            }
+        }
+
+        public void UpdateTblControlSetting(tblControlSetting currenttblControlSetting)
+        {
+            this.ObjectContext.tblControlSetting.AttachAsModified(currenttblControlSetting, this.ChangeSet.GetOriginal(currenttblControlSetting));
+        }
+
+        public void DeleteTblControlSetting(tblControlSetting tblControlSetting)
+        {
+            if ((tblControlSetting.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblControlSetting, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblControlSetting.Attach(tblControlSetting);
+                this.ObjectContext.tblControlSetting.DeleteObject(tblControlSetting);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -93,13 +342,73 @@ namespace slSecure.Web
             return this.ObjectContext.tblDeviceStateLog;
         }
 
+        public void InsertTblDeviceStateLog(tblDeviceStateLog tblDeviceStateLog)
+        {
+            if ((tblDeviceStateLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblDeviceStateLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblDeviceStateLog.AddObject(tblDeviceStateLog);
+            }
+        }
+
+        public void UpdateTblDeviceStateLog(tblDeviceStateLog currenttblDeviceStateLog)
+        {
+            this.ObjectContext.tblDeviceStateLog.AttachAsModified(currenttblDeviceStateLog, this.ChangeSet.GetOriginal(currenttblDeviceStateLog));
+        }
+
+        public void DeleteTblDeviceStateLog(tblDeviceStateLog tblDeviceStateLog)
+        {
+            if ((tblDeviceStateLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblDeviceStateLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblDeviceStateLog.Attach(tblDeviceStateLog);
+                this.ObjectContext.tblDeviceStateLog.DeleteObject(tblDeviceStateLog);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
         // 為支援分頁，您必須將排序加入至 'tblEngineRoomConfig' 查詢。
         public IQueryable<tblEngineRoomConfig> GetTblEngineRoomConfig()
         {
-            return this.ObjectContext.tblEngineRoomConfig;
+            return this.ObjectContext.tblEngineRoomConfig.Include("tblControllerConfig").Include("tblEntranceGuardConfig") ;
+        }
+
+        public void InsertTblEngineRoomConfig(tblEngineRoomConfig tblEngineRoomConfig)
+        {
+            if ((tblEngineRoomConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblEngineRoomConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblEngineRoomConfig.AddObject(tblEngineRoomConfig);
+            }
+        }
+
+        public void UpdateTblEngineRoomConfig(tblEngineRoomConfig currenttblEngineRoomConfig)
+        {
+            this.ObjectContext.tblEngineRoomConfig.AttachAsModified(currenttblEngineRoomConfig, this.ChangeSet.GetOriginal(currenttblEngineRoomConfig));
+        }
+
+        public void DeleteTblEngineRoomConfig(tblEngineRoomConfig tblEngineRoomConfig)
+        {
+            if ((tblEngineRoomConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblEngineRoomConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblEngineRoomConfig.Attach(tblEngineRoomConfig);
+                this.ObjectContext.tblEngineRoomConfig.DeleteObject(tblEngineRoomConfig);
+            }
         }
 
         // TODO:
@@ -111,6 +420,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblEngineRoomLog;
         }
 
+        public void InsertTblEngineRoomLog(tblEngineRoomLog tblEngineRoomLog)
+        {
+            if ((tblEngineRoomLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblEngineRoomLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblEngineRoomLog.AddObject(tblEngineRoomLog);
+            }
+        }
+
+        public void UpdateTblEngineRoomLog(tblEngineRoomLog currenttblEngineRoomLog)
+        {
+            this.ObjectContext.tblEngineRoomLog.AttachAsModified(currenttblEngineRoomLog, this.ChangeSet.GetOriginal(currenttblEngineRoomLog));
+        }
+
+        public void DeleteTblEngineRoomLog(tblEngineRoomLog tblEngineRoomLog)
+        {
+            if ((tblEngineRoomLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblEngineRoomLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblEngineRoomLog.Attach(tblEngineRoomLog);
+                this.ObjectContext.tblEngineRoomLog.DeleteObject(tblEngineRoomLog);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -120,13 +459,34 @@ namespace slSecure.Web
             return this.ObjectContext.tblEntranceGuardConfig;
         }
 
-        // TODO:
-        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
-        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
-        // 為支援分頁，您必須將排序加入至 'tblERDoorPasscode' 查詢。
-        public IQueryable<tblERDoorPasscode> GetTblERDoorPasscode()
+        public void InsertTblEntranceGuardConfig(tblEntranceGuardConfig tblEntranceGuardConfig)
         {
-            return this.ObjectContext.tblERDoorPasscode;
+            if ((tblEntranceGuardConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblEntranceGuardConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblEntranceGuardConfig.AddObject(tblEntranceGuardConfig);
+            }
+        }
+
+        public void UpdateTblEntranceGuardConfig(tblEntranceGuardConfig currenttblEntranceGuardConfig)
+        {
+            this.ObjectContext.tblEntranceGuardConfig.AttachAsModified(currenttblEntranceGuardConfig, this.ChangeSet.GetOriginal(currenttblEntranceGuardConfig));
+        }
+
+        public void DeleteTblEntranceGuardConfig(tblEntranceGuardConfig tblEntranceGuardConfig)
+        {
+            if ((tblEntranceGuardConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblEntranceGuardConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblEntranceGuardConfig.Attach(tblEntranceGuardConfig);
+                this.ObjectContext.tblEntranceGuardConfig.DeleteObject(tblEntranceGuardConfig);
+            }
         }
 
         // TODO:
@@ -138,6 +498,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblERDoorPassword;
         }
 
+        public void InsertTblERDoorPassword(tblERDoorPassword tblERDoorPassword)
+        {
+            if ((tblERDoorPassword.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblERDoorPassword, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblERDoorPassword.AddObject(tblERDoorPassword);
+            }
+        }
+
+        public void UpdateTblERDoorPassword(tblERDoorPassword currenttblERDoorPassword)
+        {
+            this.ObjectContext.tblERDoorPassword.AttachAsModified(currenttblERDoorPassword, this.ChangeSet.GetOriginal(currenttblERDoorPassword));
+        }
+
+        public void DeleteTblERDoorPassword(tblERDoorPassword tblERDoorPassword)
+        {
+            if ((tblERDoorPassword.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblERDoorPassword, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblERDoorPassword.Attach(tblERDoorPassword);
+                this.ObjectContext.tblERDoorPassword.DeleteObject(tblERDoorPassword);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -145,6 +535,36 @@ namespace slSecure.Web
         public IQueryable<tblERPlane> GetTblERPlane()
         {
             return this.ObjectContext.tblERPlane;
+        }
+
+        public void InsertTblERPlane(tblERPlane tblERPlane)
+        {
+            if ((tblERPlane.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblERPlane, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblERPlane.AddObject(tblERPlane);
+            }
+        }
+
+        public void UpdateTblERPlane(tblERPlane currenttblERPlane)
+        {
+            this.ObjectContext.tblERPlane.AttachAsModified(currenttblERPlane, this.ChangeSet.GetOriginal(currenttblERPlane));
+        }
+
+        public void DeleteTblERPlane(tblERPlane tblERPlane)
+        {
+            if ((tblERPlane.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblERPlane, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblERPlane.Attach(tblERPlane);
+                this.ObjectContext.tblERPlane.DeleteObject(tblERPlane);
+            }
         }
 
         // TODO:
@@ -156,6 +576,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblHostConfig;
         }
 
+        public void InsertTblHostConfig(tblHostConfig tblHostConfig)
+        {
+            if ((tblHostConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblHostConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblHostConfig.AddObject(tblHostConfig);
+            }
+        }
+
+        public void UpdateTblHostConfig(tblHostConfig currenttblHostConfig)
+        {
+            this.ObjectContext.tblHostConfig.AttachAsModified(currenttblHostConfig, this.ChangeSet.GetOriginal(currenttblHostConfig));
+        }
+
+        public void DeleteTblHostConfig(tblHostConfig tblHostConfig)
+        {
+            if ((tblHostConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblHostConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblHostConfig.Attach(tblHostConfig);
+                this.ObjectContext.tblHostConfig.DeleteObject(tblHostConfig);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -163,6 +613,36 @@ namespace slSecure.Web
         public IQueryable<tblItemConfig> GetTblItemConfig()
         {
             return this.ObjectContext.tblItemConfig;
+        }
+
+        public void InsertTblItemConfig(tblItemConfig tblItemConfig)
+        {
+            if ((tblItemConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblItemConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblItemConfig.AddObject(tblItemConfig);
+            }
+        }
+
+        public void UpdateTblItemConfig(tblItemConfig currenttblItemConfig)
+        {
+            this.ObjectContext.tblItemConfig.AttachAsModified(currenttblItemConfig, this.ChangeSet.GetOriginal(currenttblItemConfig));
+        }
+
+        public void DeleteTblItemConfig(tblItemConfig tblItemConfig)
+        {
+            if ((tblItemConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblItemConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblItemConfig.Attach(tblItemConfig);
+                this.ObjectContext.tblItemConfig.DeleteObject(tblItemConfig);
+            }
         }
 
         // TODO:
@@ -174,6 +654,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblMagneticCard;
         }
 
+        public void InsertTblMagneticCard(tblMagneticCard tblMagneticCard)
+        {
+            if ((tblMagneticCard.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMagneticCard, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblMagneticCard.AddObject(tblMagneticCard);
+            }
+        }
+
+        public void UpdateTblMagneticCard(tblMagneticCard currenttblMagneticCard)
+        {
+            this.ObjectContext.tblMagneticCard.AttachAsModified(currenttblMagneticCard, this.ChangeSet.GetOriginal(currenttblMagneticCard));
+        }
+
+        public void DeleteTblMagneticCard(tblMagneticCard tblMagneticCard)
+        {
+            if ((tblMagneticCard.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMagneticCard, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblMagneticCard.Attach(tblMagneticCard);
+                this.ObjectContext.tblMagneticCard.DeleteObject(tblMagneticCard);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -181,6 +691,36 @@ namespace slSecure.Web
         public IQueryable<tblMagneticCardNormalGroup> GetTblMagneticCardNormalGroup()
         {
             return this.ObjectContext.tblMagneticCardNormalGroup;
+        }
+
+        public void InsertTblMagneticCardNormalGroup(tblMagneticCardNormalGroup tblMagneticCardNormalGroup)
+        {
+            if ((tblMagneticCardNormalGroup.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMagneticCardNormalGroup, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblMagneticCardNormalGroup.AddObject(tblMagneticCardNormalGroup);
+            }
+        }
+
+        public void UpdateTblMagneticCardNormalGroup(tblMagneticCardNormalGroup currenttblMagneticCardNormalGroup)
+        {
+            this.ObjectContext.tblMagneticCardNormalGroup.AttachAsModified(currenttblMagneticCardNormalGroup, this.ChangeSet.GetOriginal(currenttblMagneticCardNormalGroup));
+        }
+
+        public void DeleteTblMagneticCardNormalGroup(tblMagneticCardNormalGroup tblMagneticCardNormalGroup)
+        {
+            if ((tblMagneticCardNormalGroup.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMagneticCardNormalGroup, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblMagneticCardNormalGroup.Attach(tblMagneticCardNormalGroup);
+                this.ObjectContext.tblMagneticCardNormalGroup.DeleteObject(tblMagneticCardNormalGroup);
+            }
         }
 
         // TODO:
@@ -192,6 +732,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblMenu;
         }
 
+        public void InsertTblMenu(tblMenu tblMenu)
+        {
+            if ((tblMenu.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMenu, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblMenu.AddObject(tblMenu);
+            }
+        }
+
+        public void UpdateTblMenu(tblMenu currenttblMenu)
+        {
+            this.ObjectContext.tblMenu.AttachAsModified(currenttblMenu, this.ChangeSet.GetOriginal(currenttblMenu));
+        }
+
+        public void DeleteTblMenu(tblMenu tblMenu)
+        {
+            if ((tblMenu.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMenu, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblMenu.Attach(tblMenu);
+                this.ObjectContext.tblMenu.DeleteObject(tblMenu);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -201,7 +771,35 @@ namespace slSecure.Web
             return this.ObjectContext.tblMenuGroup;
         }
 
-       
+        public void InsertTblMenuGroup(tblMenuGroup tblMenuGroup)
+        {
+            if ((tblMenuGroup.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMenuGroup, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblMenuGroup.AddObject(tblMenuGroup);
+            }
+        }
+
+        public void UpdateTblMenuGroup(tblMenuGroup currenttblMenuGroup)
+        {
+            this.ObjectContext.tblMenuGroup.AttachAsModified(currenttblMenuGroup, this.ChangeSet.GetOriginal(currenttblMenuGroup));
+        }
+
+        public void DeleteTblMenuGroup(tblMenuGroup tblMenuGroup)
+        {
+            if ((tblMenuGroup.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMenuGroup, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblMenuGroup.Attach(tblMenuGroup);
+                this.ObjectContext.tblMenuGroup.DeleteObject(tblMenuGroup);
+            }
+        }
 
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
@@ -210,6 +808,36 @@ namespace slSecure.Web
         public IQueryable<tblSchConfig> GetTblSchConfig()
         {
             return this.ObjectContext.tblSchConfig;
+        }
+
+        public void InsertTblSchConfig(tblSchConfig tblSchConfig)
+        {
+            if ((tblSchConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblSchConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblSchConfig.AddObject(tblSchConfig);
+            }
+        }
+
+        public void UpdateTblSchConfig(tblSchConfig currenttblSchConfig)
+        {
+            this.ObjectContext.tblSchConfig.AttachAsModified(currenttblSchConfig, this.ChangeSet.GetOriginal(currenttblSchConfig));
+        }
+
+        public void DeleteTblSchConfig(tblSchConfig tblSchConfig)
+        {
+            if ((tblSchConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblSchConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblSchConfig.Attach(tblSchConfig);
+                this.ObjectContext.tblSchConfig.DeleteObject(tblSchConfig);
+            }
         }
 
         // TODO:
@@ -221,6 +849,36 @@ namespace slSecure.Web
             return this.ObjectContext.tblSchLog;
         }
 
+        public void InsertTblSchLog(tblSchLog tblSchLog)
+        {
+            if ((tblSchLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblSchLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblSchLog.AddObject(tblSchLog);
+            }
+        }
+
+        public void UpdateTblSchLog(tblSchLog currenttblSchLog)
+        {
+            this.ObjectContext.tblSchLog.AttachAsModified(currenttblSchLog, this.ChangeSet.GetOriginal(currenttblSchLog));
+        }
+
+        public void DeleteTblSchLog(tblSchLog tblSchLog)
+        {
+            if ((tblSchLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblSchLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblSchLog.Attach(tblSchLog);
+                this.ObjectContext.tblSchLog.DeleteObject(tblSchLog);
+            }
+        }
+
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
@@ -228,6 +886,36 @@ namespace slSecure.Web
         public IQueryable<tblSingalIO> GetTblSingalIO()
         {
             return this.ObjectContext.tblSingalIO;
+        }
+
+        public void InsertTblSingalIO(tblSingalIO tblSingalIO)
+        {
+            if ((tblSingalIO.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblSingalIO, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblSingalIO.AddObject(tblSingalIO);
+            }
+        }
+
+        public void UpdateTblSingalIO(tblSingalIO currenttblSingalIO)
+        {
+            this.ObjectContext.tblSingalIO.AttachAsModified(currenttblSingalIO, this.ChangeSet.GetOriginal(currenttblSingalIO));
+        }
+
+        public void DeleteTblSingalIO(tblSingalIO tblSingalIO)
+        {
+            if ((tblSingalIO.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblSingalIO, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblSingalIO.Attach(tblSingalIO);
+                this.ObjectContext.tblSingalIO.DeleteObject(tblSingalIO);
+            }
         }
 
         // TODO:
@@ -353,7 +1041,7 @@ namespace slSecure.Web
         // 為支援分頁，您必須將排序加入至 'tblSysRole' 查詢。
         public IQueryable<tblSysRole> GetTblSysRole()
         {
-            return this.ObjectContext.tblSysRole;
+            return this.ObjectContext.tblSysRole.Include("tblMagneticCard");
         }
 
         public void InsertTblSysRole(tblSysRole tblSysRole)
@@ -550,7 +1238,9 @@ namespace slSecure.Web
         {
             return this.ObjectContext.tblUserGroupMenu;
         }
+        //錯誤	13	'slSecure.Web.SecureDBContext' 不包含 'GetTblUserGroupMenuIncludeMenuQuery' 的定義，也找不到擴充方法 'GetTblUserGroupMenuIncludeMenuQuery' 來接受類型 'slSecure.Web.SecureDBContext' 的第一個引數 (您是否遺漏 using 指示詞或組件參考?)	D:\backd\hwacom\機房門禁\slSecureAndPD\slSecure\Forms\UserGroupAuth.xaml.cs	47	65	slSecure
 
+        
         public IQueryable<tblUserGroupMenu> GetTblUserGroupMenuIncludeMenu()
         {
             return this.ObjectContext.tblUserGroupMenu.Include("tblMenu");

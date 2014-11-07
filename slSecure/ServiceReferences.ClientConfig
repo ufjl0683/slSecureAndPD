@@ -1,0 +1,17 @@
+﻿<configuration>
+  <system.serviceModel>
+    <bindings>
+      <customBinding>
+        <binding name="CustomBinding_ISecureService">
+          <binaryMessageEncoding />
+          <tcpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
+        </binding>
+      </customBinding>
+    </bindings>
+    <client>
+      <endpoint address="net.tcp://192.192.85.64:4502/" binding="customBinding"
+          bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
+          name="CustomBinding_ISecureService" />
+    </client>
+  </system.serviceModel>
+</configuration>
