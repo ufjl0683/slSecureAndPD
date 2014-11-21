@@ -28,8 +28,7 @@
     <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
     <UsePlatformExtensions>false</UsePlatformExtensions>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <LinkedServerProject>
-    </LinkedServerProject>
+    <LinkedServerProject>..\slSecure.Web\slSecure.Web.csproj</LinkedServerProject>
     <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
     <InBrowserSettingsFile>Properties\InBrowserSettings.xml</InBrowserSettingsFile>
     <RequireInBrowserElevation>true</RequireInBrowserElevation>
@@ -168,6 +167,7 @@
       <DependentUpon>IOMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\I_IO.cs" />
+    <Compile Include="Converters\ColorStringValueConverter.cs" />
     <Compile Include="Dialog\CCTVDialog.xaml.cs">
       <DependentUpon>CCTVDialog.xaml</DependentUpon>
     </Compile>
@@ -176,9 +176,6 @@
     </Compile>
     <Compile Include="Forms\Monitor.xaml.cs">
       <DependentUpon>Monitor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\R13\slSetMagneticCard.xaml.cs">
-      <DependentUpon>slSetMagneticCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\slSetNormalGroup.xaml.cs">
       <DependentUpon>slSetNormalGroup.xaml</DependentUpon>
@@ -207,7 +204,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,10 +251,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\R13\slSetMagneticCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Forms\slSetNormalGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -297,7 +289,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="slSecureLib.dll" />
+    <Content Include="slSecureLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\DataSources\slSecure.Web.SecureDBContext.datasource" />
@@ -334,8 +328,8 @@
     <None Include="Properties\InBrowserSettings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
     <Folder Include="Diagrams\" />
+    <Folder Include="Forms\R13\" />
     <Folder Include="Forms\R23\" />
     <Folder Include="Pins\" />
     <Folder Include="Source\" />

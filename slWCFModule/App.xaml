@@ -1,8 +1,11 @@
 ﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib" 
              x:Class="slWCFModule.App"
              >
     <Application.Resources>
-        
+
+        <System:String x:Key="DevExpress.Xpf.License">BE-E4-3A-13-8A-15-28-76-6B-A5-90-0C-8A-88-45-21-AC-3B-45-25</System:String>
+
     </Application.Resources>
 </Application>

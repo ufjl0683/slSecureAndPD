@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer
+namespace SecureServer.CardReader
 {
     using System;
     using System.Data.Entity;
@@ -29,5 +29,9 @@ namespace SecureServer
         public DbSet<tblERDoorPassword> tblERDoorPassword { get; set; }
         public DbSet<tblEngineRoomLog> tblEngineRoomLog { get; set; }
         public DbSet<tblCardCommandLog> tblCardCommandLog { get; set; }
+        public DbSet<tblERPlane> tblERPlane { get; set; }
+        public DbSet<tblMagneticCard> tblMagneticCard { get; set; }
+        public DbSet<vwMagneticCardAllowController> vwMagneticCardAllowController { get; set; }
+        public DbSet<tblCCTVConfig> tblCCTVConfig { get; set; }
     }
 }

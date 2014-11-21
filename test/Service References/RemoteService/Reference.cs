@@ -10,6 +10,7 @@
 
 namespace test.RemoteService {
     using System.Runtime.Serialization;
+    using System;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -18,6 +19,241 @@ namespace test.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         AuthorityChanged = 0,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData")]
+    [System.SerializableAttribute()]
+    public partial class DoorBindingData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ControlIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DoorColorStringField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsConnectedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsDoorOpenField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ControlID {
+            get {
+                return this.ControlIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ControlIDField, value) != true)) {
+                    this.ControlIDField = value;
+                    this.RaisePropertyChanged("ControlID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DoorColorString {
+            get {
+                return this.DoorColorStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DoorColorStringField, value) != true)) {
+                    this.DoorColorStringField = value;
+                    this.RaisePropertyChanged("DoorColorString");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsConnected {
+            get {
+                return this.IsConnectedField;
+            }
+            set {
+                if ((this.IsConnectedField.Equals(value) != true)) {
+                    this.IsConnectedField = value;
+                    this.RaisePropertyChanged("IsConnected");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsDoorOpen {
+            get {
+                return this.IsDoorOpenField;
+            }
+            set {
+                if ((this.IsDoorOpenField.Equals(value) != true)) {
+                    this.IsDoorOpenField = value;
+                    this.RaisePropertyChanged("IsDoorOpen");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
+    public enum DoorEventType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorOpen = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorClose = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Connected = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DisConnected = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
+    [System.SerializableAttribute()]
+    public partial class AlarmData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AlarmTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ColorStringField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PlaneIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PlaneNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeStampField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AlarmType {
+            get {
+                return this.AlarmTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AlarmTypeField, value) != true)) {
+                    this.AlarmTypeField = value;
+                    this.RaisePropertyChanged("AlarmType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ColorString {
+            get {
+                return this.ColorStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColorStringField, value) != true)) {
+                    this.ColorStringField = value;
+                    this.RaisePropertyChanged("ColorString");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PlaneID {
+            get {
+                return this.PlaneIDField;
+            }
+            set {
+                if ((this.PlaneIDField.Equals(value) != true)) {
+                    this.PlaneIDField = value;
+                    this.RaisePropertyChanged("PlaneID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PlaneName {
+            get {
+                return this.PlaneNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlaneNameField, value) != true)) {
+                    this.PlaneNameField = value;
+                    this.RaisePropertyChanged("PlaneName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -29,6 +265,24 @@ namespace test.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/NotifyDBChange", ReplyAction="http://tempuri.org/ISecureService/NotifyDBChangeResponse")]
         void NotifyDBChange(test.RemoteService.DBChangedConstant constant);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/ToServerHello", ReplyAction="http://tempuri.org/ISecureService/ToServerHelloResponse")]
+        void ToServerHello();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/UnRegist", ReplyAction="http://tempuri.org/ISecureService/UnRegistResponse")]
+        void UnRegist(string guid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/ForceOpenDoor", ReplyAction="http://tempuri.org/ISecureService/ForceOpenDoorResponse")]
+        void ForceOpenDoor(string ControllID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/HookCardReaderEvent", ReplyAction="http://tempuri.org/ISecureService/HookCardReaderEventResponse")]
+        void HookCardReaderEvent(string key, int PlaneId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/HookAlarmEvent", ReplyAction="http://tempuri.org/ISecureService/HookAlarmEventResponse")]
+        void HookAlarmEvent(string key);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetALLDoorBindingData", ReplyAction="http://tempuri.org/ISecureService/GetALLDoorBindingDataResponse")]
+        test.RemoteService.DoorBindingData[] GetALLDoorBindingData(int PlaneID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -36,6 +290,12 @@ namespace test.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/SayHello")]
         void SayHello(string hello);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/SecureDoorEvent")]
+        void SecureDoorEvent(test.RemoteService.DoorEventType evttype, test.RemoteService.DoorBindingData doorBindingData);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/SecureAlarm")]
+        void SecureAlarm(test.RemoteService.AlarmData alarmdata);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -72,6 +332,30 @@ namespace test.RemoteService {
         
         public void NotifyDBChange(test.RemoteService.DBChangedConstant constant) {
             base.Channel.NotifyDBChange(constant);
+        }
+        
+        public void ToServerHello() {
+            base.Channel.ToServerHello();
+        }
+        
+        public void UnRegist(string guid) {
+            base.Channel.UnRegist(guid);
+        }
+        
+        public void ForceOpenDoor(string ControllID) {
+            base.Channel.ForceOpenDoor(ControllID);
+        }
+        
+        public void HookCardReaderEvent(string key, int PlaneId) {
+            base.Channel.HookCardReaderEvent(key, PlaneId);
+        }
+        
+        public void HookAlarmEvent(string key) {
+            base.Channel.HookAlarmEvent(key);
+        }
+        
+        public test.RemoteService.DoorBindingData[] GetALLDoorBindingData(int PlaneID) {
+            return base.Channel.GetALLDoorBindingData(PlaneID);
         }
     }
 }

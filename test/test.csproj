@@ -58,6 +58,9 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\RemoteService\SecureServer.BindingData.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\RemoteService\SecureServer.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -67,6 +70,9 @@
     </None>
     <None Include="Service References\RemoteService\service1.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RemoteService\test.RemoteService.DoorBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

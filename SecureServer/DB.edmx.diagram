@@ -4,11 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9850894955f6426aa4284a82d27c0baf" Name="圖表1" ZoomLevel="94">
+      <Diagram DiagramId="9850894955f6426aa4284a82d27c0baf" Name="圖表1" ZoomLevel="49">
         <EntityTypeShape EntityType="SecureDBModel.tblControllerConfig" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SecureDBModel.tblERDoorPassword" Width="1.5" PointX="4.875" PointY="1" />
         <EntityTypeShape EntityType="SecureDBModel.tblEngineRoomLog" Width="1.5" PointX="2.75" PointY="1" />
-        <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="4.75" PointY="3" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="6.625" PointY="1" />
+        <EntityTypeShape EntityType="SecureDBModel.tblERPlane" Width="1.5" PointX="8.375" PointY="1" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMagneticCard" Width="1.5" PointX="12.125" PointY="0.875" />
+        <EntityTypeShape EntityType="SecureDBModel.vwMagneticCardAllowController" Width="1.5" PointX="10.25" PointY="0.875" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCCTVConfig" Width="1.5" PointX="7.0368135473862363" PointY="12.056356063138859" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

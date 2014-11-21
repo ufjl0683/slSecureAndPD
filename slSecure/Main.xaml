@@ -6,13 +6,13 @@
            xmlns:secureCtl="clr-namespace:slSecure.Controls"
                    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-    xmlns:converter="clr-namespace:MapControl.Converters;assembly=MapControl"      
+    xmlns:converter="clr-namespace:slSecure.Converters"      
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" xmlns:Controls="clr-namespace:slSecure.Controls" x:Class="slSecure.Main" 
            mc:Ignorable="d"
            d:DesignWidth="1021" d:DesignHeight="692"
            Title="Main Page" MouseMove="Page_MouseMove" Unloaded="Page_Unloaded">
     <sdk:Page.Resources>
-        <converter:AlarmStatusColorConverter x:Key="AlarmStatusColorConverter" />
+        <converter:ColorStringValueConverter x:Key="ColorStringValueConverter"  />
         <Style x:Key="ButtonStyle1" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -112,9 +112,10 @@
         <ListBox  x:Name="lstMessage" SelectionChanged="lstMessage_SelectionChanged"  Grid.Column="1" Margin="0,14,0,0" Grid.Row="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown"  >
-                        <Image Source="{Binding Type,StringFormat=/slSecure;component/icons/\{0\}.png}" Width="30" Height="30" Margin="5" />
-                        <TextBlock Text="{Binding Message}" FontSize="16"  Foreground="{Binding  AlarmStatus, Converter={StaticResource AlarmStatusColorConverter}}" />
+                    <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown"   >
+                        <Image Source="{Binding AlarmType,StringFormat=/slSecure;component/icons/\{0\}.png}" Width="30" Height="30" Margin="5" />
+                        <TextBlock Text="{Binding PlaneName}"/>
+                        <TextBlock Text="{Binding Description}" FontSize="16"  Foreground="{Binding  ColorString, Converter={StaticResource ColorStringValueConverter}}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

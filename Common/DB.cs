@@ -46,7 +46,7 @@ namespace slSecure
                 MessageBox.Show(so.Error.Message + "," + so.Error.InnerException.Message);
                 so.MarkErrorAsHandled();
                 taskCompletionSource.TrySetResult(false);
-
+                return;
             }
             taskCompletionSource.TrySetResult(true);
 
@@ -81,6 +81,7 @@ namespace slSecure
                 else
                 {
                     taskCompletionSource.TrySetResult(loadOperation.Entities);
+                    return;
                 }
             },
             null);

@@ -90,14 +90,30 @@ namespace slSecure.Controls
 
         private void LayoutRoot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(Url!=""  &&  UserName!=""   &&  Password !="")
-                new CCTVDialog(Url,UserName,Password).Show();
-            else if(Url!="")
-                new CCTVDialog(Url ).Show();
-            //else
-            //    new CCTVDialog(3).Show();
 
 
+            if (Url != "" && UserName != "" && Password != "")
+                new CCTVDialog(Url, UserName, Password).Show();
+            else if (Url != "")
+                new CCTVDialog(Url).Show();
+        }
+
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+          
+           
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+           
+
+           
+        }
+
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+           
         }
     }
 }

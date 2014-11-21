@@ -4,34 +4,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="34" d:DesignWidth="35" Width="36" Height="36" >
-	<UserControl.Resources>
-		<Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot">
-				<DiscreteObjectKeyFrame KeyTime="0">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Visible</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-				<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Collapsed</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-				<DiscreteObjectKeyFrame KeyTime="0:0:1">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Collapsed</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-			</ObjectAnimationUsingKeyFrames>
-		</Storyboard>
-	</UserControl.Resources>
+    d:DesignHeight="34" d:DesignWidth="35" Width="36" Height="36" DataContextChanged="UserControl_DataContextChanged" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" >
+    <UserControl.Resources>
+        <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Background="White" MouseLeftButtonDown="LayoutRoot_MouseLeftButtonDown"    >
         <Grid.RenderTransform>
             <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
         </Grid.RenderTransform>
-        <Image HorizontalAlignment="Left"  Stretch="None"  VerticalAlignment="Top"   Source="/slSecure;component/icons/cctv.png"/>
+        <Image HorizontalAlignment="Left"  Stretch="None"  VerticalAlignment="Top"   Source="/slSecure;component/icons/cctv.png" MouseLeftButtonDown="Image_MouseLeftButtonDown"   />
         <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
+        <TextBlock HorizontalAlignment="Center" Height="35" Margin="-132,41,-132,-40" Foreground="Black" TextWrapping="NoWrap" TextAlignment="Center" Text="{Binding CCTVName}" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </UserControl>

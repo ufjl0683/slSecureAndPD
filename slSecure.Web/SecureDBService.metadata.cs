@@ -223,6 +223,8 @@ namespace slSecure.Web
             public double Y { get; set; }
             public Nullable<int> NVRID { get; set; }
             public Nullable<int> NVRChNO { get; set; }
+            public Nullable<int> Type { get; set; }
+           
         }
     }
 

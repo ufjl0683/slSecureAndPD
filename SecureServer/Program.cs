@@ -4,17 +4,17 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 
-namespace SecureServer
+namespace SecureServer.CardReader
 {
     class Program
     {
-        public static SecureServer.SecureService  MyServiceObject;
+        public static SecureServer.CardReader.SecureService  MyServiceObject;
         static void Main(string[] args)
         {
 
-          
-          //  CardReaderTest();
-
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+     //      CardReaderTest();
+        //   Console.ReadKey();
             //SecureDBEntities1 db = new SecureDBEntities1();
             
             //Random rnd = new Random();
@@ -25,13 +25,22 @@ namespace SecureServer
             //db.tblERDoorPassword.Add(tbl);
             //db.SaveChanges();
 
-            ServiceHost host = new ServiceHost(MyServiceObject = new SecureServer.SecureService());
+            ServiceHost host = new ServiceHost(MyServiceObject = new SecureServer.CardReader.SecureService());
             host.Open();
             System.Console.WriteLine("Secure Server started!");
           
 
             Console.ReadLine();
            
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+          Exception ex =e.ExceptionObject as Exception;
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "unhandleerr.log");
+            sw.WriteLine(ex.Message+","+ex.StackTrace);
+            sw.Flush();
+            sw.Close();
         }
 
         static void CardReaderTest()

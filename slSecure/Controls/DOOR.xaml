@@ -3,10 +3,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:con="clr-namespace:slSecure.Converters"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="slSecure.Controls.DOOR"
     mc:Ignorable="d"
-    d:DesignHeight="22" d:DesignWidth="400">
+    d:DesignHeight="22" d:DesignWidth="400" DataContextChanged="UserControl_DataContextChanged" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
     <UserControl.Resources>
+        <con:ColorStringValueConverter x:Key="ColorStringValueConverter" />
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
         	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot"   >
         		<DiscreteObjectKeyFrame KeyTime="0">
@@ -44,7 +46,8 @@
                 <ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}" ControlStoryboardOption="Stop"   />
 			</i:EventTrigger>
 		</i:Interaction.Triggers>
-		<Path x:Name="path" Data="M5.75,13.5 L401.676,13.5" Margin="0" Stretch="Fill" Stroke="LightGreen" StrokeThickness="20" UseLayoutRounding="False" VerticalAlignment="Top"/>
+        <Path x:Name="path" Data="M5.75,13.5 L401.676,13.5" Margin="0" Stretch="Fill" Stroke="{Binding DoorColorString,Converter={StaticResource ColorStringValueConverter}}" StrokeThickness="20" UseLayoutRounding="False" VerticalAlignment="Top"/>
         <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
+        <TextBlock Foreground="Black" HorizontalAlignment="Center" Margin="0,41,0,0" TextWrapping="Wrap" Text="{Binding ControlID}" VerticalAlignment="Center" FontSize="18" Height="20"  />
     </Grid>
 </UserControl>

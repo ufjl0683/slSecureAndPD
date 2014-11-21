@@ -42,6 +42,7 @@ namespace slSecure.Dialog
             this.Url = url;
             this.UserName = username;
             this.Pwd = pwd;
+            LoginType = 3;
         }
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {

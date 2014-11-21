@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="SecureDBModel.tblAlarmLog" Width="1.5" PointX="0.79186211377003324" PointY="24.057055216309173" />
         <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="3.8645852505530165" PointY="29.690465166089343" />
         <EntityTypeShape EntityType="SecureDBModel.tblCardReaderConfig" Width="1.5" PointX="8.40918311309497" PointY="19.777312124044315" />
-        <EntityTypeShape EntityType="SecureDBModel.tblCCTVConfig" Width="1.5" PointX="6.25869437412298" PointY="16.40268605221188" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCCTVConfig" Width="1.5" PointX="15.375" PointY="16.625" />
         <EntityTypeShape EntityType="SecureDBModel.tblControllerCard" Width="1.5" PointX="1.3807988042853767" PointY="26.124498021846868" />
         <EntityTypeShape EntityType="SecureDBModel.tblControllerConfig" Width="1.5" PointX="7.338215117965925" PointY="30.068943335706809" />
         <EntityTypeShape EntityType="SecureDBModel.tblControlSetting" Width="1.5" PointX="5.60932252444761" PointY="30.24754711903983" />

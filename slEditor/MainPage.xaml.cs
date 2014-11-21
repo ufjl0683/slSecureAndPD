@@ -1,4 +1,5 @@
 ﻿using Common;
+using slSecure;
 using slSecure.Controls;
 using slSecure.Web;
 using System;
@@ -30,8 +31,14 @@ namespace slEditor
             InitializeComponent();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+               db =  slSecure.DB.GetDB();
+            var q = from n in db.GetTblERPlaneQuery() select n;
+
+
+            cbDiagramSelect.ItemsSource = await slSecure.DB.LoadAsync<tblERPlane>(db, q);
+
             
          //   AI ai = new AI();
          //   tblItem info = CreateInputItemInfo("AI", "AI", "Unit", 99.9, 0);
@@ -167,13 +174,73 @@ namespace slEditor
 
         }
 
-        private void cbDiagramSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void cbDiagramSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            int planeid= (cbDiagramSelect.SelectedItem as tblERPlane).PlaneID;
+             this.imgPic.Source = new BitmapImage(new Uri("/Diagrams/" + (cbDiagramSelect.SelectedItem as tblERPlane).PlaneID+".jpg", UriKind.Relative));
+             foreach (UIElement c in grdDeviceLayer.Children)
+             {
+                 if (c is Image) continue;
+                 grdDeviceLayer.Children.Remove(c);
+             }
+             #region  Door
+             var q = from n in db.GetTblControllerConfigQuery() where (n.ControlType == 1 || n.ControlType == 2  ) && n.PlaneID== (cbDiagramSelect.SelectedValue as tblERPlane).PlaneID   select n;
+             var res= await   DB.LoadAsync<tblControllerConfig>(db, q);
 
-          //  this.imgPic.Source = new BitmapImage(new Uri("/Diagrams/" + (cbDiagramSelect.SelectedItem as tblSite).SiteID+".jpg", UriKind.Relative));
-            
-           
+             foreach (tblControllerConfig tbl in res)
+             {
+                DOOR item = new DOOR();
+                item.Name = "Door"+tbl.ControlID;
+             //  tblItem info = CreateInputItemInfo("DOOR", "DOOR", "", 1, 0);
+                
+                item.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                item.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                item.SetValue(Grid.MarginProperty, new Thickness(tbl.X??0, tbl.Y??0, 0, 0));
+              
+              //  item.Margin = new Thickness(0);
+
+              // grdSetting.DataContext = 
+                item.DataContext = tbl;
+                 
+                item.SetDefaultColor();
+                
+
+                this.grdDeviceLayer.Children.Add(item);
+
+                item.MouseLeftButtonDown += selectedDevice_MouseLeftButtonDown;
+                item.MouseLeftButtonUp += selectedDevice_MouseLeftButtonUp;
+                item.MouseMove += selectedDevice_MouseMove;
+               // ctl = item;
+
+             }
+             #endregion
+            #region          CCTV
+             var q2 = from n in db.GetTblCCTVConfigQuery() where n.PlaneID == planeid select n;
+             var res2 = await DB.LoadAsync<tblCCTVConfig>(db, q2);
+             foreach (tblCCTVConfig tbl in res2)
+             {
+                 CCTV item = new CCTV();
+                 item.Name = "CCTV" + tbl.CCTVID;
+                 item.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                 item.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                 item.SetValue(Grid.MarginProperty, new Thickness(tbl.X, tbl.Y, 0, 0));
+                 //  item.Margin = new Thickness(0);
+
+                 //  grdSetting.DataContext = 
+                 item.DataContext = tbl;
+
+
+
+                 this.grdDeviceLayer.Children.Add(item);
+
+                 item.MouseLeftButtonDown += selectedDevice_MouseLeftButtonDown;
+                 item.MouseLeftButtonUp += selectedDevice_MouseLeftButtonUp;
+                 item.MouseMove += selectedDevice_MouseMove;
+             }
+
+            #endregion
+
         }
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
@@ -277,17 +344,26 @@ namespace slEditor
 
         void selectedDevice_MouseMove(object sender, MouseEventArgs e)
         {
-        
 
 
-            //if (selectedDevice == null)
-            //    return;
-            //Point p = e.GetPosition(grdDeviceLayer);
-            //txtBlock2.Text = string.Format("x:{0:0.0},y:{1:0.00}", p .X, p.Y);
-            //selectedDevice.SetValue(Grid.MarginProperty,
-            //    new Thickness(p.X - deltaX, p.Y - deltaY, 0, 0));
-            //(selectedDevice.DataContext as tblItem).X = (int)(p.X - deltaX);
-            //(selectedDevice.DataContext as tblItem).Y = (int)(p.Y - deltaY);
+
+            if (selectedDevice == null)
+                return;
+            Point p = e.GetPosition(grdDeviceLayer);
+           // txtBlock2.Text = string.Format("x:{0:0.0},y:{1:0.00}", p.X, p.Y);
+            selectedDevice.SetValue(Grid.MarginProperty,
+                new Thickness(p.X - deltaX, p.Y - deltaY, 0, 0));
+            if (selectedDevice is DOOR)
+            {
+                (selectedDevice.DataContext as tblControllerConfig).X = (int)(p.X - deltaX);
+                (selectedDevice.DataContext as tblControllerConfig).Y = (int)(p.Y - deltaY);
+            }
+            else if (selectedDevice is CCTV)
+            {
+                (selectedDevice.DataContext as tblCCTVConfig).X = (int)(p.X - deltaX);
+                (selectedDevice.DataContext as tblCCTVConfig).Y = (int)(p.Y - deltaY);
+            }
+            txtBlock2.Text = string.Format("x:{0:0.0},y:{1:0.00}", (int)(p.X - deltaX), (int)(p.Y - deltaY));
              
         }
 
@@ -337,6 +413,15 @@ namespace slEditor
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
+        }
+
+        private async void cmdSave_Click(object sender, RoutedEventArgs e)
+        {
+          bool res=await  this.db.SubmitChangesAsync();
+          if (res)
+          {
+              MessageBox.Show("ok");
+          }
         }
     }
 }

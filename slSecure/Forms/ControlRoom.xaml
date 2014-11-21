@@ -5,43 +5,34 @@
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
            xmlns:slSecure="clr-namespace:slSecure" xmlns:Controls="clr-namespace:slSecure.Controls"   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="slSecure.Forms.ControlRoom"
-      xmlns:lib="clr-namespace:slSecureLib.Forms" 
+       
     mc:Ignorable="d"
            d:DesignWidth="644" d:DesignHeight="495"
-           Title="ControlRoom Page">
-	<Grid x:Name="LayoutRoot">
+           Title="ControlRoom Page" Unloaded="Page_Unloaded">
+	<Grid x:Name="LayoutRoot" MouseMove="LayoutRoot_MouseMove">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="77*"/>
 			<ColumnDefinition Width="15*"/>
 		</Grid.ColumnDefinitions>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="scrollViewer" SizeChanged="ScrollViewer_SizeChanged"  >
-			<Viewbox Stretch="Uniform" x:Name="viewBox" Grid.ColumnSpan="1" SizeChanged="Viewbox_SizeChanged" >
+			<Viewbox x:Name="viewBox" Grid.ColumnSpan="1" SizeChanged="Viewbox_SizeChanged" >
 
           
-				<Grid x:Name="Canvas" >
-					<Image x:Name="image" Source="/slSecure;component/Diagrams/ControlRoom.jpg" Stretch="None"     />
- 
-					<Controls:DOOR Height="12" Canvas.Left="39" Canvas.Top="418" Width="84" Margin="56,417,399,66"  />
-					<Controls:CCTV HorizontalAlignment="Left" MouseLeftButtonDown="CCTV_MouseLeftButtonDown"  VerticalAlignment="Top" RenderTransformOrigin="0.34,0.083"   Margin="436,449,0,0"/>
-					<Controls:DOOR Height="12" Canvas.Left="165" Canvas.Top="444" Width="84" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Margin="188.5,446.5,266.5,36.5">
-						<Controls:DOOR.RenderTransform>
-							<CompositeTransform Rotation="17.196"/>
-						</Controls:DOOR.RenderTransform>
-					</Controls:DOOR>
-					<Controls:DI Canvas.Left="338"   Margin="252,89,267,386"/>
+				<Grid x:Name="Canvas"    >
+                    <Image x:Name="image" Source="/slSecure;component/Diagrams/ControlRoom.jpg" Stretch="None"     />
+                    <!--<Controls:CCTV HorizontalAlignment="Left" MouseLeftButtonDown="CCTV_MouseLeftButtonDown"  VerticalAlignment="Top" RenderTransformOrigin="0.34,0.083"   Margin="200,419,0,0"/>
+                    <Controls:DI Canvas.Left="338"   Margin="252,89,267,386"/>
 					<Controls:DI Canvas.Left="309"  Margin="78,307,441,168"/>
-					<Controls:DI Canvas.Left="103"   Margin="319,333,200,142"/>
-					<Controls:AI HorizontalAlignment="Left" VerticalAlignment="Top"   Margin="78,75,0,0"/>
-					<Controls:AI HorizontalAlignment="Left" VerticalAlignment="Top"   Margin="391,303,0,0"/>
-					<Controls:AI HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="380,103,0,0"/>
-                    
-				</Grid>
+					<Controls:DI Canvas.Left="103"   Margin="319,333,200,142"/>--> 
+                  
+
+                </Grid>
           
 
 			</Viewbox>
 		</ScrollViewer>
 		<Button Content="返回" Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Width="85" Height="34" Grid.Column="1" Margin="0,3,7,0"/>
-
+      
 
 
 

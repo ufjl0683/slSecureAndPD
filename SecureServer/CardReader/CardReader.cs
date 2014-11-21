@@ -4,16 +4,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace SecureServer
+namespace SecureServer.CardReader
 {
-   public  class CardReader
+    public enum DoorEventType{
+        DoorOpen,
+        DoorClose,
+        Connected,
+        DisConnected
+
+    }
+
+    public delegate void DoorEventHandler(CardReader reader,DoorEventType enumEventType);
+    public delegate void AlarmEventHandler(CardReader reader,AlarmData alarmdata);
+
+    public delegate void  StatusChangeHandler(CardReader reader,CardReaderEventReport report);
+   
+   public  class CardReader : SecureServer.CardReader.ICardReader
     {
+       public event DoorEventHandler OnDoorEvent;
+       public event AlarmEventHandler OnAlarmEvent;
+       public event StatusChangeHandler OnStatusChanged;
        public string IP { get; set; }
-       public bool IsConnected = false;
+       
+       public bool _IsConnected = false;
+       public bool IsConnected
+       {
+           get
+           {
+               return _IsConnected;
+           }
+           set
+           {
+               if (value != _IsConnected)
+               {
+                   _IsConnected = value;
+                   if (OnDoorEvent != null)
+                   {
+                       if (value)
+                           OnDoorEvent(this, DoorEventType.Connected);
+                       else
+                           OnDoorEvent(this, DoorEventType.DisConnected);
+                   }
+
+               }
+           }
+       }
        public string ControllerID { get; set; }
        public int PlaneID { get; set; }
        public int ERID { get; set; }
+       public int TriggerCCTVID { get; set; }
+
+       public bool _IsDoorOpen;
+       public bool IsDoorOpen
+       {
+           get
+           {
+               return _IsDoorOpen;
+           }
+           set
+           {
+               if (value != _IsDoorOpen)
+               {
+                   _IsDoorOpen = value;
+                   if (this.OnDoorEvent != null)
+                   {
+                       if (value)
+                           this.OnDoorEvent(this, DoorEventType.DoorOpen);
+                       else
+                           this.OnDoorEvent(this, DoorEventType.DoorClose);
+                   }
+               }
+           }
+       }
        ClassSockets.ClientSocket ClientSocket;
        ClassSockets.ServerSocket ServerScoket;
        System.Threading.Timer tmr; 
@@ -33,19 +97,53 @@ namespace SecureServer
                     Console.WriteLine("Card Reader Server Socket is Listening!");
 
            tmr= new System.Threading.Timer(OneSecTask);
-           tmr.Change(0, 1000);
+           tmr.Change(0, 1000*60);
        }
 
+       public BindingData.DoorBindingData ToBindingData()
+       {
+           BindingData.DoorBindingData data = new BindingData.DoorBindingData()
+           {
+                ControlID=this.ControllerID,
+                 IsConnected=this.IsConnected,
+                 IsDoorOpen=this.IsDoorOpen
+                  
+           };
+           if (IsConnected)
+           {
+               if (IsDoorOpen)
+                   data.DoorColorString = "Red";
+               else
+                   data.DoorColorString = "Green";
+
+           }
+           else
+               data.DoorColorString = "Gray";
+           return data;
+       }
+       
 
        void OneSecTask(object a)
        {
            try
            {
-            int status=   ClientSocket.ReadAllState(1,IP);
+#if DEBUG
+                        return;
+#endif           
+               int status=   ClientSocket.ReadAllState(1,IP);
             if (status == -2)
+            {
+
                 this.IsConnected = false;
+                Console.WriteLine(IP + "測試斷線!");
+            }
             else
+            {
                 this.IsConnected = true;
+              //  Console.WriteLine(IP + "測試連線!");
+            }
+
+            
                
               // System.Collections.BitArray ba=new System.Collections.BitArray(new int[]{status});
               // if (ba.Get(0))
@@ -76,10 +174,14 @@ namespace SecureServer
 
        }
 
+      
+
+       
+
        private void Server_OnRead(Socket soc)
        {
            byte[] SRbuf = ServerScoket.ReceivedBytes;
-          
+
            if (SRbuf != null)
            {
                if (SRbuf.Length != 25)
@@ -87,58 +189,14 @@ namespace SecureServer
                string SRhexstr = BitConverter.ToString(SRbuf);
                CardReaderEventReport rpt = new CardReaderEventReport(SRbuf);
                Console.WriteLine(rpt);
-               if (rpt.Status == (int)CardReaderStatusEnum.開鎖 ||
-                   rpt.Status == (int)CardReaderStatusEnum.按鈕開門 ||
-                   rpt.Status == (int)CardReaderStatusEnum.密碼開門 || rpt.Status == (int)CardReaderStatusEnum.系統開門 ||
-                   rpt.Status == (int)CardReaderStatusEnum.異常入侵 )
-                    
-               {
-                   SecureDBEntities1 db = new SecureDBEntities1();
+               if (rpt.Status == (int)CardReaderStatusEnum.門開啟)
+                   this.IsDoorOpen = true;
 
-                   db.tblEngineRoomLog.Add(
+               if (rpt.Status == (int)CardReaderStatusEnum.門關閉)
+                   this.IsDoorOpen = false;
 
-                         new tblEngineRoomLog()
-                         {
-                             ControlID = ControllerID,
-                             ABA = rpt.CardNo.ToString(),
-                             StartTime = DateTime.Now,
-                             TypeID = 8,
-                             Memo = rpt.StatusString,
-                             TypeCode = (short)rpt.Status,
-                             ERNo=this.PlaneID.ToString()
-                         }
-                       );
-                   db.SaveChanges();
-                  
-               }
-
-
-               if (rpt.Status == (int)CardReaderStatusEnum.號碼錯誤 ||
-                 rpt.Status == (int)CardReaderStatusEnum.卡號連續錯誤 ||
-                 rpt.Status == (int)CardReaderStatusEnum.外力破壞  
-                 )
-               {
-                   SecureDBEntities1 db = new SecureDBEntities1();
-
-                   db.tblEngineRoomLog.Add(
-
-                         new tblEngineRoomLog()
-                         {
-                             ControlID = ControllerID,
-                             ABA = rpt.CardNo.ToString(),
-                             StartTime = DateTime.Now,
-                             TypeID = 8,
-                             Memo = rpt.StatusString,
-                             TypeCode = (short)rpt.Status,
-                             ERNo = this.PlaneID.ToString()
-                         }
-                       );
-                   db.SaveChanges();
-
-               }
-               
-             //  SRhexstr = SRhexstr.Replace("-", " ");
-           //    ShowSMsg((soc.RemoteEndPoint.ToString()).Substring(0, soc.RemoteEndPoint.ToString().IndexOf(':')) + " ::: Received data" + " -> " + SRhexstr + "\r");
+               if (this.OnStatusChanged != null)
+                   this.OnStatusChanged(this, rpt);
            }
 
        }

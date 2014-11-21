@@ -13,6 +13,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/SecureServer" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ISecureService_Register_InputMessage">
@@ -27,8 +28,50 @@
   <wsdl:message name="ISecureService_NotifyDBChange_OutputMessage">
     <wsdl:part name="parameters" element="tns:NotifyDBChangeResponse" />
   </wsdl:message>
+  <wsdl:message name="ISecureService_ToServerHello_InputMessage">
+    <wsdl:part name="parameters" element="tns:ToServerHello" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_ToServerHello_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ToServerHelloResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_UnRegist_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnRegist" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_UnRegist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnRegistResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_ForceOpenDoor_InputMessage">
+    <wsdl:part name="parameters" element="tns:ForceOpenDoor" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_ForceOpenDoor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ForceOpenDoorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_HookCardReaderEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:HookCardReaderEvent" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_HookCardReaderEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HookCardReaderEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_HookAlarmEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:HookAlarmEvent" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_HookAlarmEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HookAlarmEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetALLDoorBindingData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetALLDoorBindingData" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetALLDoorBindingData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetALLDoorBindingDataResponse" />
+  </wsdl:message>
   <wsdl:message name="ISecureService_SayHello_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SayHello" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SecureDoorEvent_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SecureDoorEvent" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SecureAlarm_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SecureAlarm" />
   </wsdl:message>
   <wsdl:portType name="ISecureService">
     <wsdl:operation name="Register">
@@ -39,8 +82,38 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/NotifyDBChange" message="tns:ISecureService_NotifyDBChange_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/NotifyDBChangeResponse" message="tns:ISecureService_NotifyDBChange_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ToServerHello">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/ToServerHello" message="tns:ISecureService_ToServerHello_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/ToServerHelloResponse" message="tns:ISecureService_ToServerHello_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnRegist">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/UnRegist" message="tns:ISecureService_UnRegist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/UnRegistResponse" message="tns:ISecureService_UnRegist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ForceOpenDoor">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/ForceOpenDoor" message="tns:ISecureService_ForceOpenDoor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/ForceOpenDoorResponse" message="tns:ISecureService_ForceOpenDoor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HookCardReaderEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/HookCardReaderEvent" message="tns:ISecureService_HookCardReaderEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/HookCardReaderEventResponse" message="tns:ISecureService_HookCardReaderEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HookAlarmEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/HookAlarmEvent" message="tns:ISecureService_HookAlarmEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/HookAlarmEventResponse" message="tns:ISecureService_HookAlarmEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetALLDoorBindingData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetALLDoorBindingData" message="tns:ISecureService_GetALLDoorBindingData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetALLDoorBindingDataResponse" message="tns:ISecureService_GetALLDoorBindingData_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SayHello">
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SayHello" message="tns:ISecureService_SayHello_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SecureDoorEvent">
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SecureDoorEvent" message="tns:ISecureService_SecureDoorEvent_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SecureAlarm">
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SecureAlarm" message="tns:ISecureService_SecureAlarm_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CustomBinding_ISecureService" type="tns:ISecureService">
@@ -64,8 +137,74 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ToServerHello">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/ToServerHello" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnRegist">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/UnRegist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForceOpenDoor">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/ForceOpenDoor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HookCardReaderEvent">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/HookCardReaderEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HookAlarmEvent">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/HookAlarmEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetALLDoorBindingData">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetALLDoorBindingData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SayHello">
       <soap12:operation soapAction="http://tempuri.org/ISecureService/SayHello" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SecureDoorEvent">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/SecureDoorEvent" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SecureAlarm">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/SecureAlarm" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

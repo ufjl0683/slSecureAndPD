@@ -2274,6 +2274,30 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _NVRChNO;
         partial void OnNVRChNOChanging(Nullable<global::System.Int32> value);
         partial void OnNVRChNOChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value, "Type");
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Type;
+        partial void OnTypeChanging(Nullable<global::System.Int32> value);
+        partial void OnTypeChanged();
 
         #endregion
 
@@ -2777,6 +2801,30 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _PlaneID;
         partial void OnPlaneIDChanging(Nullable<global::System.Int32> value);
         partial void OnPlaneIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> TriggerCCTVID
+        {
+            get
+            {
+                return _TriggerCCTVID;
+            }
+            set
+            {
+                OnTriggerCCTVIDChanging(value);
+                ReportPropertyChanging("TriggerCCTVID");
+                _TriggerCCTVID = StructuralObject.SetValidValue(value, "TriggerCCTVID");
+                ReportPropertyChanged("TriggerCCTVID");
+                OnTriggerCCTVIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _TriggerCCTVID;
+        partial void OnTriggerCCTVIDChanging(Nullable<global::System.Int32> value);
+        partial void OnTriggerCCTVIDChanged();
 
         #endregion
 

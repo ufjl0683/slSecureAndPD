@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer
+namespace SecureServer.CardReader
 {
     using System;
     using System.Collections.Generic;

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using SecureServer.CardReader.BindingData;
 
-namespace SecureServer
+namespace SecureServer.CardReader
 {
     [ServiceContract(CallbackContract=typeof(ISecureServiceCallBack))]
    public  interface ISecureService
@@ -21,6 +22,15 @@ namespace SecureServer
 
          [OperationContract]
          void ForceOpenDoor(string ControllID);
+         [OperationContract]
+         void HookCardReaderEvent(string key,int PlaneId);
+         [OperationContract]
+         void HookAlarmEvent(string key );
+         [OperationContract]
+         BindingData.DoorBindingData[] GetALLDoorBindingData(int PlaneID);
+         [OperationContract]
+         BindingData.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID);
+
     }
 
 
@@ -30,6 +40,10 @@ namespace SecureServer
         
         [OperationContract(IsOneWay = true)]
         void SayHello(string hello);
+        [OperationContract(IsOneWay = true)]
+        void SecureDoorEvent(DoorEventType evttype, DoorBindingData doorBindingData);
+        [OperationContract(IsOneWay = true)]
+        void SecureAlarm(AlarmData alarmdata);
 
         
     }

@@ -227,6 +227,7 @@
           <Property Name="PlaneID" Type="int" />
           <Property Name="NVRID" Type="int" />
           <Property Name="NVRChNO" Type="int" />
+          <Property Name="Type" Type="int" />
         </EntityType>
         <EntityType Name="tblControllerCard">
           <Key>
@@ -254,6 +255,7 @@
           <Property Name="ScaleY" Type="float" />
           <Property Name="Rotation" Type="float" />
           <Property Name="PlaneID" Type="int" />
+          <Property Name="TriggerCCTVID" Type="int" />
         </EntityType>
         <EntityType Name="tblControlSetting">
           <Key>
@@ -1089,6 +1091,7 @@
           <Property Type="Int32" Name="NVRID" />
           <Property Type="Int32" Name="NVRChNO" />
           <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" FromRole="tblCCTVConfig" ToRole="tblEngineRoomConfig" />
+          <Property Type="Int32" Name="Type" />
         </EntityType>
         <EntityType Name="tblControllerCard">
           <Key>
@@ -1123,6 +1126,7 @@
           <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblItemConfig" />
           <NavigationProperty Name="tblSingalIO" Relationship="SecureDBModel.FK_tblSingalIO_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblSingalIO" />
           <NavigationProperty Name="tblSysRoleAuthority" Relationship="SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblSysRoleAuthority" />
+          <Property Type="Int32" Name="TriggerCCTVID" />
         </EntityType>
         <EntityType Name="tblControlSetting">
           <Key>
@@ -1841,6 +1845,7 @@
           <EntitySetMapping Name="tblCCTVConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblCCTVConfig">
               <MappingFragment StoreEntitySet="tblCCTVConfig">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="NVRChNO" ColumnName="NVRChNO" />
                 <ScalarProperty Name="NVRID" ColumnName="NVRID" />
                 <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
@@ -1870,6 +1875,7 @@
           <EntitySetMapping Name="tblControllerConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblControllerConfig">
               <MappingFragment StoreEntitySet="tblControllerConfig">
+                <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
                 <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
                 <ScalarProperty Name="Rotation" ColumnName="Rotation" />
                 <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />

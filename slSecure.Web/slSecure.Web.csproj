@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="SecureDBService.cs" />
     <Compile Include="SecureDBService.metadata.cs" />
+    <Compile Include="SecureDBService.shared.cs" />
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

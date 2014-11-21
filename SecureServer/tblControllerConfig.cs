@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer
+namespace SecureServer.CardReader
 {
     using System;
     using System.Collections.Generic;
@@ -28,5 +28,6 @@ namespace SecureServer
         public Nullable<double> ScaleY { get; set; }
         public Nullable<double> Rotation { get; set; }
         public Nullable<int> PlaneID { get; set; }
+        public Nullable<int> TriggerCCTVID { get; set; }
     }
 }

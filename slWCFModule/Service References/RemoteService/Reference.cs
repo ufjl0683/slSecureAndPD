@@ -16,11 +16,343 @@ namespace slWCFModule.RemoteService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DBChangedConstant", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DBChangedConstant", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
     public enum DBChangedConstant : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         AuthorityChanged = 0,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData")]
+    public partial class DoorBindingData : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string ControlIDField;
+        
+        private string DoorColorStringField;
+        
+        private bool IsConnectedField;
+        
+        private bool IsDoorOpenField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ControlID {
+            get {
+                return this.ControlIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ControlIDField, value) != true)) {
+                    this.ControlIDField = value;
+                    this.RaisePropertyChanged("ControlID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DoorColorString {
+            get {
+                return this.DoorColorStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DoorColorStringField, value) != true)) {
+                    this.DoorColorStringField = value;
+                    this.RaisePropertyChanged("DoorColorString");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsConnected {
+            get {
+                return this.IsConnectedField;
+            }
+            set {
+                if ((this.IsConnectedField.Equals(value) != true)) {
+                    this.IsConnectedField = value;
+                    this.RaisePropertyChanged("IsConnected");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsDoorOpen {
+            get {
+                return this.IsDoorOpenField;
+            }
+            set {
+                if ((this.IsDoorOpenField.Equals(value) != true)) {
+                    this.IsDoorOpenField = value;
+                    this.RaisePropertyChanged("IsDoorOpen");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CCTVBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData")]
+    public partial class CCTVBindingData : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int CCTVIDField;
+        
+        private string CCTVNameField;
+        
+        private string IPField;
+        
+        private string MjpegCgiStringField;
+        
+        private string PasswordField;
+        
+        private int PlaneIDField;
+        
+        private int PortField;
+        
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CCTVID {
+            get {
+                return this.CCTVIDField;
+            }
+            set {
+                if ((this.CCTVIDField.Equals(value) != true)) {
+                    this.CCTVIDField = value;
+                    this.RaisePropertyChanged("CCTVID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CCTVName {
+            get {
+                return this.CCTVNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CCTVNameField, value) != true)) {
+                    this.CCTVNameField = value;
+                    this.RaisePropertyChanged("CCTVName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IP {
+            get {
+                return this.IPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IPField, value) != true)) {
+                    this.IPField = value;
+                    this.RaisePropertyChanged("IP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MjpegCgiString {
+            get {
+                return this.MjpegCgiStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MjpegCgiStringField, value) != true)) {
+                    this.MjpegCgiStringField = value;
+                    this.RaisePropertyChanged("MjpegCgiString");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PlaneID {
+            get {
+                return this.PlaneIDField;
+            }
+            set {
+                if ((this.PlaneIDField.Equals(value) != true)) {
+                    this.PlaneIDField = value;
+                    this.RaisePropertyChanged("PlaneID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Port {
+            get {
+                return this.PortField;
+            }
+            set {
+                if ((this.PortField.Equals(value) != true)) {
+                    this.PortField = value;
+                    this.RaisePropertyChanged("Port");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    public enum DoorEventType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorOpen = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorClose = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Connected = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DisConnected = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    public partial class AlarmData : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string AlarmTypeField;
+        
+        private string ColorStringField;
+        
+        private string DescriptionField;
+        
+        private int PlaneIDField;
+        
+        private string PlaneNameField;
+        
+        private System.DateTime TimeStampField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AlarmType {
+            get {
+                return this.AlarmTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AlarmTypeField, value) != true)) {
+                    this.AlarmTypeField = value;
+                    this.RaisePropertyChanged("AlarmType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ColorString {
+            get {
+                return this.ColorStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColorStringField, value) != true)) {
+                    this.ColorStringField = value;
+                    this.RaisePropertyChanged("ColorString");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PlaneID {
+            get {
+                return this.PlaneIDField;
+            }
+            set {
+                if ((this.PlaneIDField.Equals(value) != true)) {
+                    this.PlaneIDField = value;
+                    this.RaisePropertyChanged("PlaneID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PlaneName {
+            get {
+                return this.PlaneNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlaneNameField, value) != true)) {
+                    this.PlaneNameField = value;
+                    this.RaisePropertyChanged("PlaneName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -51,6 +383,26 @@ namespace slWCFModule.RemoteService {
         System.IAsyncResult BeginForceOpenDoor(string ControllID, System.AsyncCallback callback, object asyncState);
         
         void EndForceOpenDoor(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/HookCardReaderEvent", ReplyAction="http://tempuri.org/ISecureService/HookCardReaderEventResponse")]
+        System.IAsyncResult BeginHookCardReaderEvent(string key, int PlaneId, System.AsyncCallback callback, object asyncState);
+        
+        void EndHookCardReaderEvent(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/HookAlarmEvent", ReplyAction="http://tempuri.org/ISecureService/HookAlarmEventResponse")]
+        System.IAsyncResult BeginHookAlarmEvent(string key, System.AsyncCallback callback, object asyncState);
+        
+        void EndHookAlarmEvent(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetALLDoorBindingData", ReplyAction="http://tempuri.org/ISecureService/GetALLDoorBindingDataResponse")]
+        System.IAsyncResult BeginGetALLDoorBindingData(int PlaneID, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.DoorBindingData> EndGetALLDoorBindingData(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetAllCCTVBindingData", ReplyAction="http://tempuri.org/ISecureService/GetAllCCTVBindingDataResponse")]
+        System.IAsyncResult BeginGetAllCCTVBindingData(int PlaneID, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData> EndGetAllCCTVBindingData(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -58,6 +410,12 @@ namespace slWCFModule.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/SayHello")]
         void SayHello(string hello);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/SecureDoorEvent")]
+        void SecureDoorEvent(slWCFModule.RemoteService.DoorEventType evttype, slWCFModule.RemoteService.DoorBindingData doorBindingData);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/SecureAlarm")]
+        void SecureAlarm(slWCFModule.RemoteService.AlarmData alarmdata);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -79,6 +437,44 @@ namespace slWCFModule.RemoteService {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetALLDoorBindingDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetALLDoorBindingDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.DoorBindingData> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.DoorBindingData>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllCCTVBindingDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllCCTVBindingDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData>)(this.results[0]));
             }
         }
     }
@@ -116,6 +512,30 @@ namespace slWCFModule.RemoteService {
         private EndOperationDelegate onEndForceOpenDoorDelegate;
         
         private System.Threading.SendOrPostCallback onForceOpenDoorCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginHookCardReaderEventDelegate;
+        
+        private EndOperationDelegate onEndHookCardReaderEventDelegate;
+        
+        private System.Threading.SendOrPostCallback onHookCardReaderEventCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginHookAlarmEventDelegate;
+        
+        private EndOperationDelegate onEndHookAlarmEventDelegate;
+        
+        private System.Threading.SendOrPostCallback onHookAlarmEventCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetALLDoorBindingDataDelegate;
+        
+        private EndOperationDelegate onEndGetALLDoorBindingDataDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetALLDoorBindingDataCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAllCCTVBindingDataDelegate;
+        
+        private EndOperationDelegate onEndGetAllCCTVBindingDataDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllCCTVBindingDataCompletedDelegate;
         
         private bool useGeneratedCallback;
         
@@ -212,7 +632,19 @@ namespace slWCFModule.RemoteService {
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> ForceOpenDoorCompleted;
         
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> HookCardReaderEventCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> HookAlarmEventCompleted;
+        
+        public event System.EventHandler<GetALLDoorBindingDataCompletedEventArgs> GetALLDoorBindingDataCompleted;
+        
+        public event System.EventHandler<GetAllCCTVBindingDataCompletedEventArgs> GetAllCCTVBindingDataCompleted;
+        
         public event System.EventHandler<SayHelloReceivedEventArgs> SayHelloReceived;
+        
+        public event System.EventHandler<SecureDoorEventReceivedEventArgs> SecureDoorEventReceived;
+        
+        public event System.EventHandler<SecureAlarmReceivedEventArgs> SecureAlarmReceived;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -447,6 +879,194 @@ namespace slWCFModule.RemoteService {
                         ControllID}, this.onEndForceOpenDoorDelegate, this.onForceOpenDoorCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginHookCardReaderEvent(string key, int PlaneId, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginHookCardReaderEvent(key, PlaneId, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void slWCFModule.RemoteService.ISecureService.EndHookCardReaderEvent(System.IAsyncResult result) {
+            base.Channel.EndHookCardReaderEvent(result);
+        }
+        
+        private System.IAsyncResult OnBeginHookCardReaderEvent(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            string key = ((string)(inValues[0]));
+            int PlaneId = ((int)(inValues[1]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginHookCardReaderEvent(key, PlaneId, callback, asyncState);
+        }
+        
+        private object[] OnEndHookCardReaderEvent(System.IAsyncResult result) {
+            ((slWCFModule.RemoteService.ISecureService)(this)).EndHookCardReaderEvent(result);
+            return null;
+        }
+        
+        private void OnHookCardReaderEventCompleted(object state) {
+            if ((this.HookCardReaderEventCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.HookCardReaderEventCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void HookCardReaderEventAsync(string key, int PlaneId) {
+            this.HookCardReaderEventAsync(key, PlaneId, null);
+        }
+        
+        public void HookCardReaderEventAsync(string key, int PlaneId, object userState) {
+            if ((this.onBeginHookCardReaderEventDelegate == null)) {
+                this.onBeginHookCardReaderEventDelegate = new BeginOperationDelegate(this.OnBeginHookCardReaderEvent);
+            }
+            if ((this.onEndHookCardReaderEventDelegate == null)) {
+                this.onEndHookCardReaderEventDelegate = new EndOperationDelegate(this.OnEndHookCardReaderEvent);
+            }
+            if ((this.onHookCardReaderEventCompletedDelegate == null)) {
+                this.onHookCardReaderEventCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnHookCardReaderEventCompleted);
+            }
+            base.InvokeAsync(this.onBeginHookCardReaderEventDelegate, new object[] {
+                        key,
+                        PlaneId}, this.onEndHookCardReaderEventDelegate, this.onHookCardReaderEventCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginHookAlarmEvent(string key, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginHookAlarmEvent(key, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void slWCFModule.RemoteService.ISecureService.EndHookAlarmEvent(System.IAsyncResult result) {
+            base.Channel.EndHookAlarmEvent(result);
+        }
+        
+        private System.IAsyncResult OnBeginHookAlarmEvent(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            string key = ((string)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginHookAlarmEvent(key, callback, asyncState);
+        }
+        
+        private object[] OnEndHookAlarmEvent(System.IAsyncResult result) {
+            ((slWCFModule.RemoteService.ISecureService)(this)).EndHookAlarmEvent(result);
+            return null;
+        }
+        
+        private void OnHookAlarmEventCompleted(object state) {
+            if ((this.HookAlarmEventCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.HookAlarmEventCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void HookAlarmEventAsync(string key) {
+            this.HookAlarmEventAsync(key, null);
+        }
+        
+        public void HookAlarmEventAsync(string key, object userState) {
+            if ((this.onBeginHookAlarmEventDelegate == null)) {
+                this.onBeginHookAlarmEventDelegate = new BeginOperationDelegate(this.OnBeginHookAlarmEvent);
+            }
+            if ((this.onEndHookAlarmEventDelegate == null)) {
+                this.onEndHookAlarmEventDelegate = new EndOperationDelegate(this.OnEndHookAlarmEvent);
+            }
+            if ((this.onHookAlarmEventCompletedDelegate == null)) {
+                this.onHookAlarmEventCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnHookAlarmEventCompleted);
+            }
+            base.InvokeAsync(this.onBeginHookAlarmEventDelegate, new object[] {
+                        key}, this.onEndHookAlarmEventDelegate, this.onHookAlarmEventCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetALLDoorBindingData(int PlaneID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetALLDoorBindingData(PlaneID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.DoorBindingData> slWCFModule.RemoteService.ISecureService.EndGetALLDoorBindingData(System.IAsyncResult result) {
+            return base.Channel.EndGetALLDoorBindingData(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetALLDoorBindingData(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            int PlaneID = ((int)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetALLDoorBindingData(PlaneID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetALLDoorBindingData(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.DoorBindingData> retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetALLDoorBindingData(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetALLDoorBindingDataCompleted(object state) {
+            if ((this.GetALLDoorBindingDataCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetALLDoorBindingDataCompleted(this, new GetALLDoorBindingDataCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetALLDoorBindingDataAsync(int PlaneID) {
+            this.GetALLDoorBindingDataAsync(PlaneID, null);
+        }
+        
+        public void GetALLDoorBindingDataAsync(int PlaneID, object userState) {
+            if ((this.onBeginGetALLDoorBindingDataDelegate == null)) {
+                this.onBeginGetALLDoorBindingDataDelegate = new BeginOperationDelegate(this.OnBeginGetALLDoorBindingData);
+            }
+            if ((this.onEndGetALLDoorBindingDataDelegate == null)) {
+                this.onEndGetALLDoorBindingDataDelegate = new EndOperationDelegate(this.OnEndGetALLDoorBindingData);
+            }
+            if ((this.onGetALLDoorBindingDataCompletedDelegate == null)) {
+                this.onGetALLDoorBindingDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetALLDoorBindingDataCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetALLDoorBindingDataDelegate, new object[] {
+                        PlaneID}, this.onEndGetALLDoorBindingDataDelegate, this.onGetALLDoorBindingDataCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetAllCCTVBindingData(int PlaneID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllCCTVBindingData(PlaneID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData> slWCFModule.RemoteService.ISecureService.EndGetAllCCTVBindingData(System.IAsyncResult result) {
+            return base.Channel.EndGetAllCCTVBindingData(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllCCTVBindingData(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            int PlaneID = ((int)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetAllCCTVBindingData(PlaneID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllCCTVBindingData(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData> retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetAllCCTVBindingData(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllCCTVBindingDataCompleted(object state) {
+            if ((this.GetAllCCTVBindingDataCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllCCTVBindingDataCompleted(this, new GetAllCCTVBindingDataCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllCCTVBindingDataAsync(int PlaneID) {
+            this.GetAllCCTVBindingDataAsync(PlaneID, null);
+        }
+        
+        public void GetAllCCTVBindingDataAsync(int PlaneID, object userState) {
+            if ((this.onBeginGetAllCCTVBindingDataDelegate == null)) {
+                this.onBeginGetAllCCTVBindingDataDelegate = new BeginOperationDelegate(this.OnBeginGetAllCCTVBindingData);
+            }
+            if ((this.onEndGetAllCCTVBindingDataDelegate == null)) {
+                this.onEndGetAllCCTVBindingDataDelegate = new EndOperationDelegate(this.OnEndGetAllCCTVBindingData);
+            }
+            if ((this.onGetAllCCTVBindingDataCompletedDelegate == null)) {
+                this.onGetAllCCTVBindingDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllCCTVBindingDataCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllCCTVBindingDataDelegate, new object[] {
+                        PlaneID}, this.onEndGetAllCCTVBindingDataDelegate, this.onGetAllCCTVBindingDataCompletedDelegate, userState);
+        }
+        
         private void OnSayHelloReceived(object state) {
             if ((this.SayHelloReceived != null)) {
                 object[] results = ((object[])(state));
@@ -454,9 +1074,25 @@ namespace slWCFModule.RemoteService {
             }
         }
         
+        private void OnSecureDoorEventReceived(object state) {
+            if ((this.SecureDoorEventReceived != null)) {
+                object[] results = ((object[])(state));
+                this.SecureDoorEventReceived(this, new SecureDoorEventReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
+        private void OnSecureAlarmReceived(object state) {
+            if ((this.SecureAlarmReceived != null)) {
+                object[] results = ((object[])(state));
+                this.SecureAlarmReceived(this, new SecureAlarmReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
         private void VerifyCallbackEvents() {
             if (((this.useGeneratedCallback != true) 
-                        && (this.SayHelloReceived != null))) {
+                        && (((this.SayHelloReceived != null) 
+                        || (this.SecureDoorEventReceived != null)) 
+                        || (this.SecureAlarmReceived != null)))) {
                 throw new System.InvalidOperationException("指定回呼 InstanceContext 後即無法使用回呼事件。請選擇指定回呼 InstanceContext，或是描述回呼事件。");
             }
         }
@@ -544,6 +1180,17 @@ namespace slWCFModule.RemoteService {
                 this.proxy.OnSayHelloReceived(new object[] {
                             hello});
             }
+            
+            public void SecureDoorEvent(slWCFModule.RemoteService.DoorEventType evttype, slWCFModule.RemoteService.DoorBindingData doorBindingData) {
+                this.proxy.OnSecureDoorEventReceived(new object[] {
+                            evttype,
+                            doorBindingData});
+            }
+            
+            public void SecureAlarm(slWCFModule.RemoteService.AlarmData alarmdata) {
+                this.proxy.OnSecureAlarmReceived(new object[] {
+                            alarmdata});
+            }
         }
         
         private class SecureServiceClientChannel : ChannelBase<slWCFModule.RemoteService.ISecureService>, slWCFModule.RemoteService.ISecureService {
@@ -611,6 +1258,57 @@ namespace slWCFModule.RemoteService {
                 object[] _args = new object[0];
                 base.EndInvoke("ForceOpenDoor", _args, result);
             }
+            
+            public System.IAsyncResult BeginHookCardReaderEvent(string key, int PlaneId, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = key;
+                _args[1] = PlaneId;
+                System.IAsyncResult _result = base.BeginInvoke("HookCardReaderEvent", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndHookCardReaderEvent(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("HookCardReaderEvent", _args, result);
+            }
+            
+            public System.IAsyncResult BeginHookAlarmEvent(string key, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = key;
+                System.IAsyncResult _result = base.BeginInvoke("HookAlarmEvent", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndHookAlarmEvent(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("HookAlarmEvent", _args, result);
+            }
+            
+            public System.IAsyncResult BeginGetALLDoorBindingData(int PlaneID, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = PlaneID;
+                System.IAsyncResult _result = base.BeginInvoke("GetALLDoorBindingData", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.DoorBindingData> EndGetALLDoorBindingData(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.DoorBindingData> _result = ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.DoorBindingData>)(base.EndInvoke("GetALLDoorBindingData", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetAllCCTVBindingData(int PlaneID, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = PlaneID;
+                System.IAsyncResult _result = base.BeginInvoke("GetAllCCTVBindingData", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData> EndGetAllCCTVBindingData(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData> _result = ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData>)(base.EndInvoke("GetAllCCTVBindingData", _args, result)));
+                return _result;
+            }
         }
     }
     
@@ -627,6 +1325,47 @@ namespace slWCFModule.RemoteService {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    public class SecureDoorEventReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SecureDoorEventReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public slWCFModule.RemoteService.DoorEventType evttype {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((slWCFModule.RemoteService.DoorEventType)(this.results[0]));
+            }
+        }
+        
+        public slWCFModule.RemoteService.DoorBindingData doorBindingData {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((slWCFModule.RemoteService.DoorBindingData)(this.results[1]));
+            }
+        }
+    }
+    
+    public class SecureAlarmReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SecureAlarmReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public slWCFModule.RemoteService.AlarmData alarmdata {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((slWCFModule.RemoteService.AlarmData)(this.results[0]));
             }
         }
     }

@@ -13,5 +13,9 @@
           bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
           name="CustomBinding_ISecureService" />
     </client>
+    <!--<endpoint address="net.tcp://127.0.0.1:4502/" binding="customBinding"
+         bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
+         name="CustomBinding_ISecureService" />
+    </client>-->
   </system.serviceModel>
 </configuration>

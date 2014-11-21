@@ -4,15 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecureServer
+namespace SecureServer.CardReader
 {
    public  class RegisterInfo
     {
       public  string PCName { get; set; }
       public string Key { get; set; }
       public ISecureServiceCallBack CallBack { get; set; }
-     public   RegisterInfo()
+      public int PlaneID {get;set;}
+      public bool IsRegistDoorEvent { get; set; }
+
+      public bool IsRegistAlarm { get; set; }
+      
+      public   RegisterInfo()
        {
+           PlaneID = -1;//無註冊
        }
 
 

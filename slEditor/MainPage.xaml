@@ -13,9 +13,9 @@
         <RadioButton Content="原比例" Height="19" Margin="109,10,0,0" Name="rdNone" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78" Checked="rdNone_Checked" Loaded="rdNone_Loaded" />
         <ScrollViewer Margin="0,46,12,12" x:Name="scrollViewer1"  HorizontalScrollBarVisibility="Auto" SizeChanged="scrollViewer1_SizeChanged">
             <Viewbox    Stretch="Uniform" x:Name="vbImage">
-                <Grid x:Name="grdDeviceLayer"  MouseMove="imgPic_MouseMove"    >
+                <Grid x:Name="grdDeviceLayer"  MouseMove="imgPic_MouseMove"  Background="Pink"  >
 
-                    <Image x:Name="imgPic" Stretch="None"   HorizontalAlignment="Left" VerticalAlignment="Top"  />
+                    <Image x:Name="imgPic" Stretch="None"     />
 
 
                 </Grid>
@@ -35,7 +35,7 @@
             </StackPanel>
 
         </Border>
-        <ComboBox x:Name="cbDiagramSelect" HorizontalAlignment="Left" Height="23" Margin="278,6,0,0" VerticalAlignment="Top" Width="117" SelectionChanged="cbDiagramSelect_SelectionChanged"/>
+        <ComboBox x:Name="cbDiagramSelect" HorizontalAlignment="Left" Height="23" Margin="278,6,0,0" VerticalAlignment="Top" Width="117"  DisplayMemberPath="PlaneID"   SelectionChanged="cbDiagramSelect_SelectionChanged"/>
         <TextBlock HorizontalAlignment="Left" Height="23" Margin="192,12,0,0" TextWrapping="Wrap" Text="SiteID:" VerticalAlignment="Top" Width="65"/>
         <Grid x:Name="grdSetting" Margin="430,6,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="418">
             <Slider Margin="76,3,0,1" SmallChange="1" Maximum="360" Value="{Binding Rotation, Mode=TwoWay}" LargeChange="5" ValueChanged="Slider_ValueChanged" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="83"  >
@@ -49,7 +49,7 @@
         		<LineBreak/>
         		<Run/>
             </TextBlock>
-            <TextBox HorizontalAlignment="Left" Margin="225,0,0,5" TextWrapping="Wrap" Text="{Binding ScaleX, Mode=TwoWay}" Width="65"/>
+            <TextBox HorizontalAlignment="Left" Margin="225,0,0,5" TextWrapping="Wrap" Text="{Binding ScaleX, Mode=TwoWay}" Width="65" Height="24" VerticalAlignment="Bottom"/>
             <TextBlock HorizontalAlignment="Left" Margin="304,4,0,2" TextWrapping="Wrap" Width="44">
         		<Run Text="ScaleY:"/>
         		<LineBreak/>
@@ -59,6 +59,7 @@
 
         </Grid>
         <TextBlock x:Name="txtBlock2" Height="23" Margin="0,6,25,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="142"/>
+        <Button x:Name="cmdSave" Content="儲存" HorizontalAlignment="Left" Height="21" Margin="875,9,0,0" VerticalAlignment="Top" Width="56" Click="cmdSave_Click"/>
 
     </Grid>
 </UserControl>

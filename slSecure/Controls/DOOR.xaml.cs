@@ -40,6 +40,12 @@ namespace slSecure.Controls
                 (this.Resources["stbBlind"] as Storyboard).Stop();
         }
 
+        
+        public void SetDefaultColor()
+        {
+
+            path.Stroke = new SolidColorBrush(Colors.Green);
+        }
 
         private bool _IsSelect;
         public bool IsSelect
@@ -72,6 +78,16 @@ namespace slSecure.Controls
                     //SetBlind(value);
                 }
             }
+        }
+
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

@@ -25,6 +25,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cbeb1538-49cf-4480-95e1-f41f4f52ebc1" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="89b0ac52-aa62-4d40-be4a-c6a7a4970372" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
     <MetadataFile FileName="SecureServer.xsd" MetadataType="Schema" ID="edc692d6-7cba-4f43-9915-96b40620bfaf" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer.BindingData.xsd" MetadataType="Schema" ID="9c59f84e-1682-4f76-857a-1319539cd31d" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

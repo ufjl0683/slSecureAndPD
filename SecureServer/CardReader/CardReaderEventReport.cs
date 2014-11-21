@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SecureServer
+namespace SecureServer.CardReader
 {
    public class CardReaderEventReport
     {
@@ -131,7 +131,7 @@ namespace SecureServer
        密碼開門,
        F1開門,
        反脅迫,
-       門位異常,
+       開門超時,
        門開啟,
        門關閉,
        卡號連續錯誤,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -9,8 +10,27 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace slEditor
+
+namespace   slSecure.Web
 {
+
+    //public partial class tblControllerConfig
+    //{
+    //    //public string DoorColorString
+    //    //{
+
+    //    //    get
+    //    //    {
+    //    //        return "Green";
+    //    //    }
+    //    //    set
+    //    //    {
+               
+
+    //    //        // return;
+    //    //    }
+    //   // }
+    //}
     public class InputItemInfo 
     {
        
@@ -27,4 +47,6 @@ namespace slEditor
 
         
     }
+
+  
 }

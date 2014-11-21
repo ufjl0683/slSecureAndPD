@@ -17,6 +17,8 @@ using System.ServiceModel.DomainServices.Client;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Common;
+using slWCFModule;
+using slWCFModule.RemoteService;
 
 
 namespace slSecure
@@ -26,22 +28,26 @@ namespace slSecure
         ObservableCollection< CCTVLockInfo> cctvLocks = new ObservableCollection< CCTVLockInfo>();
         DateTime LastOperationDatetime = System.DateTime.Now;
         System.Windows.Threading.DispatcherTimer tmr = new System.Windows.Threading.DispatcherTimer();
-        MessageInfo[] msgInfos = new MessageInfo[] { 
-           new MessageInfo(){ DateTime=DateTime.Now, Type="A", AlarmStatus=2, Message="Message1Message1"},
-           new MessageInfo(){ DateTime=DateTime.Now, Type="D", AlarmStatus=1, Message="Message1Message1"},
-           new MessageInfo(){ DateTime=DateTime.Now, Type="A", AlarmStatus=0, Message="Message1Message1"}
-        };
+        //MessageInfo[] msgInfos = new MessageInfo[] { 
+        //   new MessageInfo(){ DateTime=DateTime.Now, Type="A", AlarmStatus=2, Message="Message1Message1"},
+        //   new MessageInfo(){ DateTime=DateTime.Now, Type="D", AlarmStatus=1, Message="Message1Message1"},
+        //   new MessageInfo(){ DateTime=DateTime.Now, Type="A", AlarmStatus=0, Message="Message1Message1"}
+        //};
+        ObservableCollection<AlarmData> lstAlarm = new ObservableCollection<AlarmData>();
+        MyClient client ;
         public Main()
         {
             InitializeComponent();
             Util.GetICommon().SetMain(this);
-            this.lstMessage.ItemsSource = msgInfos;
+           // this.lstMessage.ItemsSource = msgInfos;
 
         }
 
         // 使用者巡覽至這個頁面時執行。
         protected  async  override void OnNavigatedTo(NavigationEventArgs e)
         {
+
+           
          
             //tmr.Interval = TimeSpan.FromSeconds(30);
             //tmr.Tick += tmr_Tick;
@@ -60,6 +66,57 @@ namespace slSecure
            this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
            txtTitle.DataContext = new tblMenu() { MenuName = "門禁監控" };
             this.acdMenu.SelectedIndex =1;
+
+             client = new MyClient("CustomBinding_ISecureService",true);
+             client.OnRegistEvent +=async  (s) =>
+                 {
+
+                     await HookAlarmEvent();
+                     client.OnAlarm += client_OnAlarm;
+
+
+                 };
+          //   await client.RegistAndGetKey();
+        
+          
+           
+             //client.SecureService.HookAlarmEventCompleted += (s, a) =>
+             //    {
+
+             //    };
+
+
+
+        }
+
+        Task HookAlarmEvent( )
+        {
+            TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
+            client.SecureService.HookAlarmEventCompleted += (s, a) =>
+            {
+                if (a.Error != null)
+                {
+                    taskCompletionSource.TrySetResult(false);
+
+                }
+                taskCompletionSource.TrySetResult(true);
+
+
+            };
+            client.SecureService.HookAlarmEventAsync(client.Key );
+
+            return taskCompletionSource.Task;
+        }
+
+        void client_OnAlarm(slWCFModule.RemoteService.AlarmData alarmdata)
+        {
+
+            lstAlarm.Add(alarmdata);
+            lstAlarm.OrderByDescending(n => n.TimeStamp);
+            this.lstMessage.ItemsSource = lstAlarm.OrderByDescending(n => n.TimeStamp); 
+
+
+          //  this.lstMessage.Items.Add(alarmdata.Description);
         }
 
         void tmr_Tick(object sender, EventArgs e)
@@ -148,6 +205,7 @@ namespace slSecure
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             this.lstCCTVLock.Children.Clear();
+            client.Dispose();
         }
 
         private void lstMessage_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -157,7 +215,17 @@ namespace slSecure
 
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml", UriKind.Relative));
+
+            AlarmData alarmdata = (sender as StackPanel).DataContext as AlarmData;
+            client.Dispose();
+            this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID=" + alarmdata.PlaneID, UriKind.Relative));
+            //this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml", UriKind.Relative));
+        }
+
+        private void StackPanel_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+           
+
         }
 
       
