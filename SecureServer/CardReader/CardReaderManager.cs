@@ -1,4 +1,5 @@
 ﻿using SecureServer.CardReader.BindingData;
+using SecureServer.CardReader.CCTV;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace SecureServer.CardReader
         public event AlarmEventHandler OnAlarmEvent;
         System.Collections.Generic.Dictionary<string, ICardReader> dictCardReaders = new Dictionary<string, ICardReader>();
         System.Threading.Timer tmr;
+        SecureService serivce;
 
         public ICardReader this[string ControllID]
         {
@@ -46,14 +48,15 @@ namespace SecureServer.CardReader
 
             return list.ToArray();
         }
-        public CardReaderManager()
+        public CardReaderManager(SecureService service)
         {
+            this.serivce = service;
             SecureDBEntities1 db = new SecureDBEntities1();
             var q = from n in db.tblControllerConfig where (n.ControlType == 2 || n.ControlType == 1) && n.IsEnable==true select n;
             foreach (tblControllerConfig data in q)
             {
 
-                CardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID);
+                CardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID,data.TriggerCCTVID??0);
                 dictCardReaders.Add(data.ControlID,cardreader );
                 cardreader.OnDoorEvent += cardreader_OnDoorEvent;
              //   cardreader.OnAlarmEvent += cardreader_OnAlarmEvent;
@@ -77,16 +80,26 @@ namespace SecureServer.CardReader
                {
                   if(this.OnAlarmEvent!=null)
                   {
-                      AlarmData data=new AlarmData()
+                      ICCTV  cctv = (ICCTV)this.serivce.cctv_mgr[reader.TriggerCCTVID];
+                      AlarmData data = new AlarmData()
                       {
-                          TimeStamp=DateTime.Now,
-                           AlarmType="Door",
-                            ColorString="Red",
-                             Description=reader.ControllerID + "," + rpt.StatusString,
-                               PlaneID=reader.PlaneID,
-                               PlaneName=Global.GetPlaneNameByPlaneID(reader.PlaneID)
-                               
+                          TimeStamp = DateTime.Now,
+                          AlarmType = AlarmType.Secure,
+                          ColorString = "Red",
+                          Description = reader.ControllerID + "," + rpt.StatusString,
+                          PlaneID = reader.PlaneID,
+                          IsForkCCTVEvent = true,
+                          PlaneName = Global.GetPlaneNameByPlaneID(reader.PlaneID),
+                          CCTVBindingData =cctv.ToBindingData()
+                          
+
+
+
+
+
                       };
+
+
                       this.OnAlarmEvent(reader,data );
 
                   }
@@ -116,6 +129,26 @@ namespace SecureServer.CardReader
                          }
                        );
                    db.SaveChanges();
+
+                   if (this.serivce != null)
+                   {
+
+                       Task.Factory.StartNew(() =>
+                           {
+                               try
+                               {
+
+                                   Console.WriteLine("Trigger "+reader.TriggerCCTVID);
+                                   this.serivce.cctv_mgr[reader.TriggerCCTVID].Preset(2);
+                                   System.Threading.Thread.Sleep(1000 * 10);
+                                   this.serivce.cctv_mgr[reader.TriggerCCTVID].Preset(1);
+                               }
+                               catch (Exception ex)
+                               {
+                                   Console.WriteLine("May be trigger cctv not found" + ex.Message + "," + ex.StackTrace);
+                               }
+                           });
+                   }
                   
                }
 

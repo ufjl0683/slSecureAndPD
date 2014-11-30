@@ -56,7 +56,7 @@ namespace SecureServer.CardReader.CCTV
 
         public string GetMjpgCGIString( )
         {
-            return string.Format("http://{0}:{1}/getimage",IP,Port);
+            return string.Format("http://{0}:{1}/getimage?fmt=cif",IP,Port);
         }
 
 

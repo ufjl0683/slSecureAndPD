@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using Common;
 using slWCFModule;
 using slWCFModule.RemoteService;
+using slSecure.Controls;
 
 
 namespace slSecure
@@ -108,13 +109,26 @@ namespace slSecure
             return taskCompletionSource.Task;
         }
 
-        void client_OnAlarm(slWCFModule.RemoteService.AlarmData alarmdata)
+        async void client_OnAlarm(slWCFModule.RemoteService.AlarmData alarmdata)
         {
 
             lstAlarm.Add(alarmdata);
             lstAlarm.OrderByDescending(n => n.TimeStamp);
-            this.lstMessage.ItemsSource = lstAlarm.OrderByDescending(n => n.TimeStamp); 
+            this.lstMessage.ItemsSource = lstAlarm.OrderByDescending(n => n.TimeStamp);
+            if (alarmdata.IsForkCCTVEvent)
+            {
+                await AddCCTVAsync(alarmdata.CCTVBindingData.MjpegCgiString,alarmdata.CCTVBindingData.UserName,alarmdata.CCTVBindingData.Password,alarmdata);
+            }
 
+            while (lstCCTVLock.Children.Count > 8)
+            {
+                CCTVLock cctvlock = lstCCTVLock.Children.Skip(8).FirstOrDefault() as CCTVLock;
+                if (cctvlock != null)
+                {
+                    lstCCTVLock.Children.Remove(cctvlock);
+                }
+            }
+            
 
           //  this.lstMessage.Items.Add(alarmdata.Description);
         }
@@ -174,15 +188,26 @@ namespace slSecure
            
          //   cctvLocks.Add(new Source.CCTVLockInfo() { DateTime = DateTime.Now });
          //   lstCCTVLock.ItemsSource = from n in cctvLocks orderby n.DateTime descending select n; 
-          //  this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock() { Width = 200, Height = 150 });
-            await AddCCTVAsync();
+            //this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock(1) { Width = 200, Height = 150 });
+            //while (lstCCTVLock.Children.Count > 8)
+            //{
+            //    CCTVLock cctvlock = lstCCTVLock.Children.Skip(8).FirstOrDefault() as CCTVLock;
+            //    if (cctvlock != null)
+            //    {
+            //        lstCCTVLock.Children.Remove(cctvlock);
+            //    }
+            //}
+            
           //  MessageBox.Show("ok");
         }
 
-        public Task<object> AddCCTVAsync()
+        public Task<object> AddCCTVAsync(string url,string username,string pasword,AlarmData adata)
         {
-            slSecure.Controls.CCTVLock cctv=new slSecure.Controls.CCTVLock(new Random().Next(1,40)) { Width = 250, Height =200, Margin = new Thickness(10) };
+            slSecure.Controls.CCTVLock cctv = new Controls.CCTVLock(url, username, pasword) { Width = 250, Height = 200, Margin = new Thickness(10) };
+
+                //new slSecure.Controls.CCTVLock(new Random().Next(1,40)) { Width = 250, Height =200, Margin = new Thickness(10) };
             System.Threading.Tasks.TaskCompletionSource<object> source = new TaskCompletionSource<object>();
+            cctv.DataContext = adata;
             cctv.Click += cctv_Click;
             this.lstCCTVLock.Children.Insert(0,cctv );
             source.SetResult(new object());
@@ -191,7 +216,8 @@ namespace slSecure
 
         void cctv_Click(object sender, MouseButtonEventArgs e)
         {
-            this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml", UriKind.Relative));
+            AlarmData data = (sender as Button).DataContext  as AlarmData;
+            this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID="+data.PlaneID, UriKind.Relative));
         }
 
         

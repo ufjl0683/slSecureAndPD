@@ -107,7 +107,10 @@ namespace slSecure.Controls
         private void cctv_Unloaded(object sender, RoutedEventArgs e)
         {
             if (decoder != null)
+            {
                 decoder.StopStream();
+                decoder = null;
+            }
 
            
         }

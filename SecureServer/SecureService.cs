@@ -20,7 +20,7 @@ namespace SecureServer.CardReader
 
         public  SecureService()
         {
-           card_mgr = new CardReaderManager();
+           card_mgr = new CardReaderManager(this);
 
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
            card_mgr.OnAlarmEvent += card_mgr_OnAlarmEvent;
@@ -28,7 +28,7 @@ namespace SecureServer.CardReader
            ExactOneHourTmr = new ExactIntervalTimer(0, 0);
            ExactOneHourTmr.OnElapsed += ExactOneHourTmr_OnElapsed;
 
-           cctv_mgr = new CCTV.CCTVManager();
+           cctv_mgr = new CCTV.CCTVManager(this);
          
         }
 
@@ -86,9 +86,12 @@ namespace SecureServer.CardReader
         void card_mgr_OnAlarmEvent(CardReader reader, AlarmData alarmdata)
         {
             try{
+                Console.WriteLine("DispathcAlarm!");
                 DispatchAlarmEvent(alarmdata);
             }
-            catch{;}
+            catch(Exception ex){
+                Console.WriteLine(ex.Message + "," + ex.StackTrace);
+            }
             //throw new NotImplementedException();
         }
 
@@ -278,8 +281,11 @@ namespace SecureServer.CardReader
                     throw new Exception("Key not found!");
                 RegisterInfo info = dictClientCallBacks[key];
                 info.IsRegistAlarm = true;
+                Console.WriteLine("hook alarm+," + key);
             }
-            catch { ;}
+            catch(Exception ex) {
+                Console.WriteLine(ex.Message+","+ex.StackTrace);
+            }
            
         }
 
@@ -291,10 +297,16 @@ namespace SecureServer.CardReader
                 foreach (RegisterInfo info in dictClientCallBacks.Values.ToArray())
                 {
                     if (info.IsRegistAlarm)
+                    {
+                        Console.WriteLine("Call back!");
                         info.CallBack.SecureAlarm(alarmdata);
+                    }
                 }
             }
-            catch { ;}
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                ;}
         }
 
 

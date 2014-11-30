@@ -81,8 +81,9 @@ namespace SecureServer.CardReader
        ClassSockets.ClientSocket ClientSocket;
        ClassSockets.ServerSocket ServerScoket;
        System.Threading.Timer tmr; 
-       public CardReader(string  controllerid,string ip,int ERID,int PlaneID)
+       public CardReader(string  controllerid,string ip,int ERID,int PlaneID,int TriggerCCTVID)
        {
+           this.TriggerCCTVID = TriggerCCTVID;
            this.IP = ip;
            this.ControllerID = controllerid;
            this.ERID = ERID;

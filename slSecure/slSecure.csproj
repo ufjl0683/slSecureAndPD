@@ -89,10 +89,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\sl4\Microsoft.Threading.Tasks.Extensions.Silverlight.dll</HintPath>
     </Reference>
-    <Reference Include="MjpegProcessorSL, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\SSHMC1000\Desktop\temp\MJPEG_bin\MjpegProcessorSL.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="slSecureLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -313,6 +309,10 @@
       <Project>{AFFA9F88-0EB6-403C-9836-A1BA3C0AC8E2}</Project>
       <Name>MapControl</Name>
     </ProjectReference>
+    <ProjectReference Include="..\mjpeg-101253\MJPEG\MjpegProcessorSL\MjpegProcessorSL.csproj">
+      <Project>{b5c64e2b-f0b0-4aa4-8852-cd000388fc51}</Project>
+      <Name>MjpegProcessorSL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\slWCFModule\slWCFModule.csproj">
       <Project>{36c2eb23-caab-456b-912f-ed107ddccd0d}</Project>
       <Name>slWCFModule</Name>
@@ -340,9 +340,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MjpegProcessorSL.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

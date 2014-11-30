@@ -58,10 +58,10 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RemoteService\SecureServer.BindingData.xsd">
+    <None Include="Service References\RemoteService\SecureServer.CardReader.BindingData.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RemoteService\SecureServer.xsd">
+    <None Include="Service References\RemoteService\SecureServer.CardReader.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RemoteService\service.wsdl" />
@@ -70,6 +70,9 @@
     </None>
     <None Include="Service References\RemoteService\service1.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RemoteService\test.RemoteService.CCTVBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RemoteService\test.RemoteService.DoorBindingData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

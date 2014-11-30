@@ -59,12 +59,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v14.1, Version=14.1.7.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Mvvm.v14.1, Version=14.1.7.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.PivotGrid.v14.1.Core, Version=14.1.7.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Core.v14.1, Version=14.1.7.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.LayoutControl.v14.1, Version=14.1.7.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="devexpress.xpf.pivotgrid.v14.1, Version=14.1.7.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -107,17 +101,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
+    <None Include="Service References\RemoteService\configuration91.svcinfo" />
+    <None Include="Service References\RemoteService\configuration.svcinfo" />
+    <None Include="Service References\RemoteService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Service References\RemoteService\SecureServer.CardReader.BindingData.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RemoteService\SecureServer.CardReader.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RemoteService\service1.wsdl" />
-    <None Include="Service References\RemoteService\service2.xsd">
+    <None Include="Service References\RemoteService\service.wsdl" />
+    <None Include="Service References\RemoteService\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RemoteService\service21.xsd">
+    <None Include="Service References\RemoteService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RemoteService\slWCFModule.RemoteService.CCTVBindingData.datasource">
@@ -126,27 +129,12 @@
     <None Include="Service References\RemoteService\slWCFModule.RemoteService.DoorBindingData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <Content Include="ServiceReferences.ClientConfig">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\RemoteService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RemoteService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RemoteService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RemoteService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -255,11 +255,15 @@ namespace slWCFModule.RemoteService {
     [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
     public partial class AlarmData : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private string AlarmTypeField;
+        private slWCFModule.RemoteService.AlarmType AlarmTypeField;
+        
+        private slWCFModule.RemoteService.CCTVBindingData CCTVBindingDataField;
         
         private string ColorStringField;
         
         private string DescriptionField;
+        
+        private bool IsForkCCTVEventField;
         
         private int PlaneIDField;
         
@@ -267,15 +271,30 @@ namespace slWCFModule.RemoteService {
         
         private System.DateTime TimeStampField;
         
+        private string TimeStampStringField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AlarmType {
+        public slWCFModule.RemoteService.AlarmType AlarmType {
             get {
                 return this.AlarmTypeField;
             }
             set {
-                if ((object.ReferenceEquals(this.AlarmTypeField, value) != true)) {
+                if ((this.AlarmTypeField.Equals(value) != true)) {
                     this.AlarmTypeField = value;
                     this.RaisePropertyChanged("AlarmType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public slWCFModule.RemoteService.CCTVBindingData CCTVBindingData {
+            get {
+                return this.CCTVBindingDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CCTVBindingDataField, value) != true)) {
+                    this.CCTVBindingDataField = value;
+                    this.RaisePropertyChanged("CCTVBindingData");
                 }
             }
         }
@@ -302,6 +321,19 @@ namespace slWCFModule.RemoteService {
                 if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
                     this.DescriptionField = value;
                     this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsForkCCTVEvent {
+            get {
+                return this.IsForkCCTVEventField;
+            }
+            set {
+                if ((this.IsForkCCTVEventField.Equals(value) != true)) {
+                    this.IsForkCCTVEventField = value;
+                    this.RaisePropertyChanged("IsForkCCTVEvent");
                 }
             }
         }
@@ -345,6 +377,19 @@ namespace slWCFModule.RemoteService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TimeStampString {
+            get {
+                return this.TimeStampStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TimeStampStringField, value) != true)) {
+                    this.TimeStampStringField = value;
+                    this.RaisePropertyChanged("TimeStampString");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -353,6 +398,14 @@ namespace slWCFModule.RemoteService {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    public enum AlarmType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Secure = 0,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

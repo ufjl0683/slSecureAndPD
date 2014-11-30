@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -11,15 +12,41 @@ namespace test
     {
         static void Main(string[] args)
         {
+            System.Collections.ArrayList list = new System.Collections.ArrayList();
+
+           
           //  new Wrapper();
-         CCTV_TYPE1 cctv=   new CCTV_TYPE1("192.192.85.20", 11000, "admin", "pass");
-         cctv.Preset(1);
-           Console.ReadKey();
-           cctv.Preset(3);
+         //CCTV_TYPE1 cctv=   new CCTV_TYPE1("192.192.85.20", 11000, "admin", "pass");
+         //cctv.Preset(1);
+         //  Console.ReadKey();
+         //  cctv.Preset(3);
+
+            int i = 10;
+            list.Add(i);
+
+            dynamic v = new { Name = "david", Age = 123 };
+          //  int var2= ((List<int> )list)[0];
+
+
+            try
+            {
+               int  j=0;
+               int k= i/j;
+            }
+            catch (Exception ex)
+            {
+                throw  ;
+            }
+            test(v);
+           // Trace.Assert(false);
+          // Console.WriteLine("{0:hh:mm",DateTime.Now);
            Console.ReadKey();
         }
 
-        
+        static void test(dynamic d)
+        {
+            Console.WriteLine(d.Name);
+        }
     }
 
 

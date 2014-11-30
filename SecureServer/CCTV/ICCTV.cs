@@ -13,6 +13,8 @@ namespace SecureServer.CardReader.CCTV
        void Preset(int preset);
        string GetMjpgCGIString( );
        CCTVBindingData ToBindingData();
-         int PlaneID { get; set; }
+       int PlaneID { get; set; }
+       string UserName { get; set; }
+       string Password { get; set; }
     }
 }

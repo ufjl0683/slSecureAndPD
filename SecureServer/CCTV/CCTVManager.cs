@@ -12,6 +12,7 @@ namespace SecureServer.CardReader.CCTV
 
         System.Collections.Generic.Dictionary<int, ICCTV> dictCCTVs = new Dictionary<int, ICCTV>();
         System.Threading.Timer tmr;
+        SecureService service;
 
         public ICCTV this[int CCTVID]
         {
@@ -24,8 +25,10 @@ namespace SecureServer.CardReader.CCTV
             }
         }
 
-        public CCTVManager()
+        public CCTVManager(SecureService service)
         {
+
+            this.service = service;
             SecureDBEntities1 db = new SecureDBEntities1();
             var q = from n in  db.tblCCTVConfig   select n;
             foreach (tblCCTVConfig data in q)

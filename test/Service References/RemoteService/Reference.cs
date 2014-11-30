@@ -14,7 +14,7 @@ namespace test.RemoteService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DBChangedConstant", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DBChangedConstant", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
     public enum DBChangedConstant : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -23,7 +23,7 @@ namespace test.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DoorBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData")]
     [System.SerializableAttribute()]
     public partial class DoorBindingData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -114,8 +114,165 @@ namespace test.RemoteService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CCTVBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData")]
+    [System.SerializableAttribute()]
+    public partial class CCTVBindingData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CCTVIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CCTVNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MjpegCgiStringField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PlaneIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PortField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CCTVID {
+            get {
+                return this.CCTVIDField;
+            }
+            set {
+                if ((this.CCTVIDField.Equals(value) != true)) {
+                    this.CCTVIDField = value;
+                    this.RaisePropertyChanged("CCTVID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CCTVName {
+            get {
+                return this.CCTVNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CCTVNameField, value) != true)) {
+                    this.CCTVNameField = value;
+                    this.RaisePropertyChanged("CCTVName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IP {
+            get {
+                return this.IPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IPField, value) != true)) {
+                    this.IPField = value;
+                    this.RaisePropertyChanged("IP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MjpegCgiString {
+            get {
+                return this.MjpegCgiStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MjpegCgiStringField, value) != true)) {
+                    this.MjpegCgiStringField = value;
+                    this.RaisePropertyChanged("MjpegCgiString");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PlaneID {
+            get {
+                return this.PlaneIDField;
+            }
+            set {
+                if ((this.PlaneIDField.Equals(value) != true)) {
+                    this.PlaneIDField = value;
+                    this.RaisePropertyChanged("PlaneID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Port {
+            get {
+                return this.PortField;
+            }
+            set {
+                if ((this.PortField.Equals(value) != true)) {
+                    this.PortField = value;
+                    this.RaisePropertyChanged("Port");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
     public enum DoorEventType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -133,7 +290,7 @@ namespace test.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
     [System.SerializableAttribute()]
     public partial class AlarmData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -141,13 +298,19 @@ namespace test.RemoteService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AlarmTypeField;
+        private test.RemoteService.AlarmType AlarmTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private test.RemoteService.CCTVBindingData CCTVBindingDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ColorStringField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsForkCCTVEventField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PlaneIDField;
@@ -157,6 +320,9 @@ namespace test.RemoteService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime TimeStampField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TimeStampStringField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -169,14 +335,27 @@ namespace test.RemoteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AlarmType {
+        public test.RemoteService.AlarmType AlarmType {
             get {
                 return this.AlarmTypeField;
             }
             set {
-                if ((object.ReferenceEquals(this.AlarmTypeField, value) != true)) {
+                if ((this.AlarmTypeField.Equals(value) != true)) {
                     this.AlarmTypeField = value;
                     this.RaisePropertyChanged("AlarmType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public test.RemoteService.CCTVBindingData CCTVBindingData {
+            get {
+                return this.CCTVBindingDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CCTVBindingDataField, value) != true)) {
+                    this.CCTVBindingDataField = value;
+                    this.RaisePropertyChanged("CCTVBindingData");
                 }
             }
         }
@@ -203,6 +382,19 @@ namespace test.RemoteService {
                 if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
                     this.DescriptionField = value;
                     this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsForkCCTVEvent {
+            get {
+                return this.IsForkCCTVEventField;
+            }
+            set {
+                if ((this.IsForkCCTVEventField.Equals(value) != true)) {
+                    this.IsForkCCTVEventField = value;
+                    this.RaisePropertyChanged("IsForkCCTVEvent");
                 }
             }
         }
@@ -246,6 +438,19 @@ namespace test.RemoteService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TimeStampString {
+            get {
+                return this.TimeStampStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TimeStampStringField, value) != true)) {
+                    this.TimeStampStringField = value;
+                    this.RaisePropertyChanged("TimeStampString");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -254,6 +459,14 @@ namespace test.RemoteService {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    public enum AlarmType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Secure = 0,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -283,6 +496,9 @@ namespace test.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetALLDoorBindingData", ReplyAction="http://tempuri.org/ISecureService/GetALLDoorBindingDataResponse")]
         test.RemoteService.DoorBindingData[] GetALLDoorBindingData(int PlaneID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetAllCCTVBindingData", ReplyAction="http://tempuri.org/ISecureService/GetAllCCTVBindingDataResponse")]
+        test.RemoteService.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -356,6 +572,10 @@ namespace test.RemoteService {
         
         public test.RemoteService.DoorBindingData[] GetALLDoorBindingData(int PlaneID) {
             return base.Channel.GetALLDoorBindingData(PlaneID);
+        }
+        
+        public test.RemoteService.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID) {
+            return base.Channel.GetAllCCTVBindingData(PlaneID);
         }
     }
 }

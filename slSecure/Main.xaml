@@ -89,13 +89,15 @@
                 <CompositeTransform ScaleX="0.7"/>
             </Button.RenderTransform>
         </Button>
-        <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0,37,0,0" x:Name="lstCCTVLock"  >
-            <i:Interaction.Behaviors>
-                <ei:FluidMoveBehavior AppliesTo="Children"  InitialTag="Element" />
-            </i:Interaction.Behaviors>
+        <ScrollViewer Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0,37,0,0" >
+        	<StackPanel x:Name="lstCCTVLock"  >
+        		<i:Interaction.Behaviors>
+        			<ei:FluidMoveBehavior AppliesTo="Children"  InitialTag="Element" />
+        		</i:Interaction.Behaviors>
 
 
-        </StackPanel>
+        	</StackPanel>
+        </ScrollViewer>
         <Button   Grid.Column="2" Height="36" Grid.Row="1" VerticalAlignment="Top" Click="BtbCCTVLock_Click"  >
             <StackPanel Orientation="Horizontal"  >
                 <Image Source="icons/cctv.png" />
