@@ -21,6 +21,27 @@ namespace slWCFModule.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         AuthorityChanged = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DelayTime = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorPasswordTimeCycle = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventIntrusion = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventDoorOpenOverTime = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventInvalidCard = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventExternalForce = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventDoorOpen = 7,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -418,7 +439,7 @@ namespace slWCFModule.RemoteService {
         string EndRegister(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/NotifyDBChange", ReplyAction="http://tempuri.org/ISecureService/NotifyDBChangeResponse")]
-        System.IAsyncResult BeginNotifyDBChange(slWCFModule.RemoteService.DBChangedConstant constant, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginNotifyDBChange(slWCFModule.RemoteService.DBChangedConstant constant, string value, System.AsyncCallback callback, object asyncState);
         
         void EndNotifyDBChange(System.IAsyncResult result);
         
@@ -751,8 +772,8 @@ namespace slWCFModule.RemoteService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginNotifyDBChange(slWCFModule.RemoteService.DBChangedConstant constant, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginNotifyDBChange(constant, callback, asyncState);
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginNotifyDBChange(slWCFModule.RemoteService.DBChangedConstant constant, string value, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginNotifyDBChange(constant, value, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -763,7 +784,8 @@ namespace slWCFModule.RemoteService {
         private System.IAsyncResult OnBeginNotifyDBChange(object[] inValues, System.AsyncCallback callback, object asyncState) {
             this.VerifyCallbackEvents();
             slWCFModule.RemoteService.DBChangedConstant constant = ((slWCFModule.RemoteService.DBChangedConstant)(inValues[0]));
-            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginNotifyDBChange(constant, callback, asyncState);
+            string value = ((string)(inValues[1]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginNotifyDBChange(constant, value, callback, asyncState);
         }
         
         private object[] OnEndNotifyDBChange(System.IAsyncResult result) {
@@ -778,11 +800,11 @@ namespace slWCFModule.RemoteService {
             }
         }
         
-        public void NotifyDBChangeAsync(slWCFModule.RemoteService.DBChangedConstant constant) {
-            this.NotifyDBChangeAsync(constant, null);
+        public void NotifyDBChangeAsync(slWCFModule.RemoteService.DBChangedConstant constant, string value) {
+            this.NotifyDBChangeAsync(constant, value, null);
         }
         
-        public void NotifyDBChangeAsync(slWCFModule.RemoteService.DBChangedConstant constant, object userState) {
+        public void NotifyDBChangeAsync(slWCFModule.RemoteService.DBChangedConstant constant, string value, object userState) {
             if ((this.onBeginNotifyDBChangeDelegate == null)) {
                 this.onBeginNotifyDBChangeDelegate = new BeginOperationDelegate(this.OnBeginNotifyDBChange);
             }
@@ -793,7 +815,8 @@ namespace slWCFModule.RemoteService {
                 this.onNotifyDBChangeCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnNotifyDBChangeCompleted);
             }
             base.InvokeAsync(this.onBeginNotifyDBChangeDelegate, new object[] {
-                        constant}, this.onEndNotifyDBChangeDelegate, this.onNotifyDBChangeCompletedDelegate, userState);
+                        constant,
+                        value}, this.onEndNotifyDBChangeDelegate, this.onNotifyDBChangeCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1265,9 +1288,10 @@ namespace slWCFModule.RemoteService {
                 return _result;
             }
             
-            public System.IAsyncResult BeginNotifyDBChange(slWCFModule.RemoteService.DBChangedConstant constant, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
+            public System.IAsyncResult BeginNotifyDBChange(slWCFModule.RemoteService.DBChangedConstant constant, string value, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
                 _args[0] = constant;
+                _args[1] = value;
                 System.IAsyncResult _result = base.BeginInvoke("NotifyDBChange", _args, callback, asyncState);
                 return _result;
             }

@@ -27,7 +27,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="White" MouseLeftButtonDown="LayoutRoot_MouseLeftButtonDown"    >
+    <Grid x:Name="LayoutRoot"  MouseLeftButtonDown="LayoutRoot_MouseLeftButtonDown"    >
         <Grid.RenderTransform>
             <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
         </Grid.RenderTransform>

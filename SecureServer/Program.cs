@@ -12,6 +12,13 @@ namespace SecureServer.CardReader
         static void Main(string[] args)
         {
 
+
+            //NVR.NVR_Type1 nr = new NVR.NVR_Type1() { ERID = 1, IP = "192.192.85.20", Port = 10000, NVRID = 1, UserName = "admin", Password = "1111", PlaneID = 1 };
+
+            //nr.SaveRecord(1, DateTime.Now.AddSeconds(-10), DateTime.Now.AddSeconds(10), @"d:\test.avi");
+
+            //Console.ReadKey();
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
      //      CardReaderTest();
         //   Console.ReadKey();
@@ -46,7 +53,7 @@ namespace SecureServer.CardReader
         static void CardReaderTest()
         {
 
-            CardReader cr = new CardReader("test","192.168.1.168",1,1,1);
+            CardReader cr = new CardReader("test","192.168.1.168",1,1,1,1,1);
 
             Console.WriteLine("設定開門延時警報 10  sec");
             cr.SetOpenDoorDetectionAlarmTime(10);

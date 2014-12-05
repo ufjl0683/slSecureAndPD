@@ -4,6 +4,13 @@
   <xs:simpleType name="DBChangedConstant">
     <xs:restriction base="xs:string">
       <xs:enumeration value="AuthorityChanged" />
+      <xs:enumeration value="DelayTime" />
+      <xs:enumeration value="DoorPasswordTimeCycle" />
+      <xs:enumeration value="EventIntrusion" />
+      <xs:enumeration value="EventDoorOpenOverTime" />
+      <xs:enumeration value="EventInvalidCard" />
+      <xs:enumeration value="EventExternalForce" />
+      <xs:enumeration value="EventDoorOpen" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="DBChangedConstant" nillable="true" type="tns:DBChangedConstant" />

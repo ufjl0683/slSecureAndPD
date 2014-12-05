@@ -33,5 +33,6 @@ namespace SecureServer.CardReader
         public DbSet<tblMagneticCard> tblMagneticCard { get; set; }
         public DbSet<vwMagneticCardAllowController> vwMagneticCardAllowController { get; set; }
         public DbSet<tblCCTVConfig> tblCCTVConfig { get; set; }
+        public DbSet<tblNVRConfig> tblNVRConfig { get; set; }
     }
 }

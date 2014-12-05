@@ -14,7 +14,7 @@
 			<ColumnDefinition Width="77*"/>
 			<ColumnDefinition Width="15*"/>
 		</Grid.ColumnDefinitions>
-		<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="scrollViewer" SizeChanged="ScrollViewer_SizeChanged"  >
+		<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="scrollViewer" SizeChanged="ScrollViewer_SizeChanged" Margin="0,20,0,0"  >
 			<Viewbox x:Name="viewBox" Grid.ColumnSpan="1" SizeChanged="Viewbox_SizeChanged" >
 
           
@@ -37,9 +37,10 @@
 
 
 		<sdk:GridSplitter Grid.Column="1" HorizontalAlignment="Left"   Margin="0" Width="10"/>
+        <TextBlock x:Name="txtTitle" HorizontalAlignment="Center" Margin="1,1,0,0" TextWrapping="Wrap" Text="{Binding PlaneName}" VerticalAlignment="Top" FontSize="18"/>
 
 
 
 
-	</Grid>
+    </Grid>
 </navigation:Page>

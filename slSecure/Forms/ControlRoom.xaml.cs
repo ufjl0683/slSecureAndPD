@@ -29,6 +29,7 @@ namespace slSecure.Forms
         CCTVBindingData[] CCTVBindingDatas;
         MyClient client;
         int PlaneID;
+        tblERPlane tblPlane;
         public ControlRoom()
         {
             InitializeComponent();
@@ -107,14 +108,16 @@ namespace slSecure.Forms
             await client.RegistAndGetKey();
 
 
-            this.image.Source = new BitmapImage(new Uri("/Diagrams/" + PlaneID + ".jpg", UriKind.Relative));
+            this.image.Source = new BitmapImage(new Uri("/Diagrams/" + PlaneID + ".png", UriKind.Relative));
             await GetALLDoorBindingData(PlaneID);
             await GetALLCCTVBindingData(PlaneID);
             PlaceDoor();
             PlaceCCTV();
-          
 
-
+            var erplanes= await  db.LoadAsync<tblERPlane>(db.GetTblERPlaneQuery().Where(n=>n.PlaneID==this.PlaneID));
+           this.tblPlane= erplanes.FirstOrDefault();
+           this.DataContext = tblPlane;
+           // tblPlane.PlaneName
         }
 
         void client_OnDoorEvent(DoorEventType evttype, DoorBindingData bindingdata)

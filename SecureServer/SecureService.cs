@@ -13,13 +13,16 @@ namespace SecureServer.CardReader
 
         public System.Collections.Generic.Dictionary<string, RegisterInfo> dictClientCallBacks = new Dictionary<string, RegisterInfo>();
         public CardReaderManager card_mgr  ;
-
+        public NVR.NVRManager nvr_mgr;
         public CCTV.CCTVManager cctv_mgr;
         ExactIntervalTimer ExactOneHourTmr;
 
 
         public  SecureService()
         {
+            nvr_mgr = new NVR.NVRManager();
+            cctv_mgr = new CCTV.CCTVManager(this);
+       
            card_mgr = new CardReaderManager(this);
 
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
@@ -28,7 +31,7 @@ namespace SecureServer.CardReader
            ExactOneHourTmr = new ExactIntervalTimer(0, 0);
            ExactOneHourTmr.OnElapsed += ExactOneHourTmr_OnElapsed;
 
-           cctv_mgr = new CCTV.CCTVManager(this);
+        
          
         }
 
@@ -173,7 +176,7 @@ namespace SecureServer.CardReader
         //}
 
 
-        public void NotifyDBChange(DBChangedConstant constant)
+        public void NotifyDBChange(DBChangedConstant constant,string value)
         {
 
          
@@ -228,6 +231,9 @@ namespace SecureServer.CardReader
                         }
                     }
                     db.SaveChanges();
+                    break;
+                default:
+                    Console.WriteLine(constant + "," + value);
                     break;
             }
 

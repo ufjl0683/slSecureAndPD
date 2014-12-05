@@ -13,6 +13,7 @@
           <EntitySet Name="tblERDoorPassword" EntityType="SecureDBModel.Store.tblERDoorPassword" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblERPlane" EntityType="SecureDBModel.Store.tblERPlane" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblMagneticCard" EntityType="SecureDBModel.Store.tblMagneticCard" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblNVRConfig" EntityType="SecureDBModel.Store.tblNVRConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="vwMagneticCardAllowController" EntityType="SecureDBModel.Store.vwMagneticCardAllowController" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCardAllowController">
             <DefiningQuery>SELECT 
       [vwMagneticCardAllowController].[ControlID] AS [ControlID], 
@@ -93,6 +94,7 @@
           <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="30" />
           <Property Name="TypeID" Type="smallint" />
           <Property Name="TypeCode" Type="smallint" />
+          <Property Name="NVRFile" Type="nchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="tblERDoorPassword">
           <Key>
@@ -135,6 +137,20 @@
           <Property Name="Timestamp" Type="datetime" Nullable="false" />
           <Property Name="ReturnDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="tblNVRConfig">
+          <Key>
+            <PropertyRef Name="NVRID" />
+          </Key>
+          <Property Name="NVRID" Type="int" Nullable="false" />
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="NVRName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlaneID" Type="int" />
+          <Property Name="Type" Type="int" />
+        </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwMagneticCardAllowController' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
       -->
@@ -166,6 +182,7 @@
           <EntitySet Name="tblMagneticCard" EntityType="SecureDBModel.tblMagneticCard" />
           <EntitySet Name="vwMagneticCardAllowController" EntityType="SecureDBModel.vwMagneticCardAllowController" />
           <EntitySet Name="tblCCTVConfig" EntityType="SecureDBModel.tblCCTVConfig" />
+          <EntitySet Name="tblNVRConfig" EntityType="SecureDBModel.tblNVRConfig" />
         </EntityContainer>
         <EntityType Name="tblControllerConfig">
           <Key>
@@ -208,6 +225,7 @@
           <Property Type="String" Name="ABA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="TypeID" />
           <Property Type="Int16" Name="TypeCode" />
+          <Property Type="String" Name="NVRFile" MaxLength="30" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="tblCardCommandLog">
           <Key>
@@ -292,6 +310,20 @@
           <Property Type="Int32" Name="NVRChNO" />
           <Property Type="Int32" Name="Type" />
         </EntityType>
+        <EntityType Name="tblNVRConfig">
+          <Key>
+            <PropertyRef Name="NVRID" />
+          </Key>
+          <Property Type="Int32" Name="NVRID" Nullable="false" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="NVRName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PlaneID" />
+          <Property Type="Int32" Name="Type" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -330,6 +362,7 @@
           <EntitySetMapping Name="tblEngineRoomLog">
             <EntityTypeMapping TypeName="SecureDBModel.tblEngineRoomLog">
               <MappingFragment StoreEntitySet="tblEngineRoomLog">
+                <ScalarProperty Name="NVRFile" ColumnName="NVRFile" />
                 <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
                 <ScalarProperty Name="TypeID" ColumnName="TypeID" />
                 <ScalarProperty Name="ABA" ColumnName="ABA" />
@@ -425,6 +458,21 @@
                 <ScalarProperty Name="CCTVName" ColumnName="CCTVName" />
                 <ScalarProperty Name="ERID" ColumnName="ERID" />
                 <ScalarProperty Name="CCTVID" ColumnName="CCTVID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNVRConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblNVRConfig">
+              <MappingFragment StoreEntitySet="tblNVRConfig">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="NVRName" ColumnName="NVRName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="NVRID" ColumnName="NVRID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

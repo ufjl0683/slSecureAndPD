@@ -17,7 +17,9 @@ namespace SecureServer.CardReader.CCTV
          public int CCTVID { get; set; }
          public string CCTVName { get; set; }
          public int PlaneID {get;set;}
-         public CCTV_TYPE1(int CCTVID,string CCTVName,int PlaneID,string IP, int  Port, string UserName, string Password)
+         public int NVRID { get; set; }
+         public int NVRChNo { get; set; }
+         public CCTV_TYPE1(int CCTVID,string CCTVName,int PlaneID,string IP, int  Port, string UserName, string Password,int NVRID,int NVRChanno)
          {
              this.CCTVID=CCTVID;
              this.UserName = UserName;
@@ -26,6 +28,8 @@ namespace SecureServer.CardReader.CCTV
              this.Port = Port;
              this.CCTVName = CCTVName;
              this.PlaneID = PlaneID;
+             this.NVRChNo = NVRChanno;
+             this.NVRID = NVRID;
          }
         public void Preset(int preset)
         {

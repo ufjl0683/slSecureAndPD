@@ -36,7 +36,7 @@ namespace SecureServer.CardReader.CCTV
 
                 ICCTV cctv=null ;
                 if (data.Type == 1)  //華電牌  利凌企業 LILIN
-                    cctv = new CCTV_TYPE1(data.CCTVID,data.CCTVName,data.PlaneID??0,data.IP, data.Port, data.UserName, data.Password);
+                    cctv = new CCTV_TYPE1(data.CCTVID,data.CCTVName,data.PlaneID??0,data.IP, data.Port, data.UserName, data.Password,data.NVRID??-1,data.NVRChNO??-1);
                 if(cctv!=null)
                      dictCCTVs.Add(data.CCTVID, cctv);
                 //cardreader.OnDoorEvent += cardreader_OnDoorEvent;

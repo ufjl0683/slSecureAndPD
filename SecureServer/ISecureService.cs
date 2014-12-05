@@ -14,7 +14,7 @@ namespace SecureServer.CardReader
         [OperationContract]
         string  Register(string pcname);
          [OperationContract]
-        void NotifyDBChange(DBChangedConstant constant);
+        void NotifyDBChange(DBChangedConstant constant,string value);
          [OperationContract]
          void ToServerHello();
          [OperationContract]
@@ -57,6 +57,18 @@ namespace SecureServer.CardReader
 
     public enum DBChangedConstant
     {
-        AuthorityChanged
+        AuthorityChanged,
+        DelayTime,
+        DoorPasswordTimeCycle,
+        EventIntrusion,
+        EventDoorOpenOverTime,
+        EventInvalidCard,
+        EventExternalForce,
+        EventDoorOpen
+
+
+
+
+
     }
 }

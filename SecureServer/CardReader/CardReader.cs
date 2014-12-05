@@ -55,7 +55,8 @@ namespace SecureServer.CardReader
        public int PlaneID { get; set; }
        public int ERID { get; set; }
        public int TriggerCCTVID { get; set; }
-
+       public int NVRID { get; set; }
+       public int NVRChNo { get; set; }
        public bool _IsDoorOpen;
        public bool IsDoorOpen
        {
@@ -80,14 +81,16 @@ namespace SecureServer.CardReader
        }
        ClassSockets.ClientSocket ClientSocket;
        ClassSockets.ServerSocket ServerScoket;
-       System.Threading.Timer tmr; 
-       public CardReader(string  controllerid,string ip,int ERID,int PlaneID,int TriggerCCTVID)
+       System.Threading.Timer tmr;
+       public CardReader(string controllerid, string ip, int ERID, int PlaneID, int TriggerCCTVID, int NVRID, int NVRChNo)
        {
            this.TriggerCCTVID = TriggerCCTVID;
            this.IP = ip;
            this.ControllerID = controllerid;
            this.ERID = ERID;
            this.PlaneID = PlaneID;
+          this.NVRID = NVRID;
+          this.NVRChNo = NVRChNo;
 
            ClientSocket = new ClassSockets.ClientSocket();
 

@@ -100,6 +100,9 @@
     <Compile Include="ExactIntervalTimer.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="CardReader\ICardReader.cs" />
+    <Compile Include="NVR\INVR.cs" />
+    <Compile Include="NVR\NVR_Type1.cs" />
+    <Compile Include="NVR\NVRManager.cs" />
     <Compile Include="RegisterInfo.cs" />
     <Compile Include="SecureService.cs" />
     <Compile Include="ISecureService.cs" />
@@ -124,6 +127,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblMagneticCard.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblNVRConfig.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="vwMagneticCardAllowController.cs">
@@ -159,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClassSockets.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ffmpeg.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

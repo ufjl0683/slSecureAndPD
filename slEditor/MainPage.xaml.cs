@@ -176,14 +176,20 @@ namespace slEditor
 
         private async void cbDiagramSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            System.Collections.Generic.List<UIElement> Removelist = new System.Collections.Generic.List<UIElement>();
 
             int planeid= (cbDiagramSelect.SelectedItem as tblERPlane).PlaneID;
-             this.imgPic.Source = new BitmapImage(new Uri("/Diagrams/" + (cbDiagramSelect.SelectedItem as tblERPlane).PlaneID+".jpg", UriKind.Relative));
+             this.imgPic.Source = new BitmapImage(new Uri("/Diagrams/" + (cbDiagramSelect.SelectedItem as tblERPlane).PlaneID+".png", UriKind.Relative));
              foreach (UIElement c in grdDeviceLayer.Children)
              {
                  if (c is Image) continue;
-                 grdDeviceLayer.Children.Remove(c);
+                 Removelist.Add(c);
+                 //grdDeviceLayer.Children.Remove(c);
              }
+
+            foreach(UIElement ui in Removelist)
+                grdDeviceLayer.Children.Remove(ui);
+            Removelist.Clear();
              #region  Door
              var q = from n in db.GetTblControllerConfigQuery() where (n.ControlType == 1 || n.ControlType == 2  ) && n.PlaneID== (cbDiagramSelect.SelectedValue as tblERPlane).PlaneID   select n;
              var res= await   DB.LoadAsync<tblControllerConfig>(db, q);

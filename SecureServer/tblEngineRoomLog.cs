@@ -24,5 +24,6 @@ namespace SecureServer.CardReader
         public string ABA { get; set; }
         public Nullable<short> TypeID { get; set; }
         public Nullable<short> TypeCode { get; set; }
+        public string NVRFile { get; set; }
     }
 }

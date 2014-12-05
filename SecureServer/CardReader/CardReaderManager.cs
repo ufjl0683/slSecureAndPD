@@ -55,8 +55,13 @@ namespace SecureServer.CardReader
             var q = from n in db.tblControllerConfig where (n.ControlType == 2 || n.ControlType == 1) && n.IsEnable==true select n;
             foreach (tblControllerConfig data in q)
             {
-
-                CardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID,data.TriggerCCTVID??0);
+                 int nvrid=-1,nvrchano=-1;
+                if(data.TriggerCCTVID!=null)
+                {
+                      nvrid=service.cctv_mgr[(int)data.TriggerCCTVID].NVRID;
+                      nvrchano=service.cctv_mgr[(int)data.TriggerCCTVID].NVRChNo;
+                }
+                CardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano);
                 dictCardReaders.Add(data.ControlID,cardreader );
                 cardreader.OnDoorEvent += cardreader_OnDoorEvent;
              //   cardreader.OnAlarmEvent += cardreader_OnAlarmEvent;
@@ -72,6 +77,10 @@ namespace SecureServer.CardReader
 
         }
 
+
+        //public int  LastOperationCCTVID=-1;
+        //public DateTime LastOperationCCTVTime;
+        System.Collections.Generic.List<int> InOperationCCTV = new List<int>();
         void cardreader_OnStatusChanged(CardReader reader, CardReaderEventReport rpt)
         {
                 if(rpt.Status==(int)CardReaderStatusEnum.卡號連續錯誤||rpt.Status==(int)CardReaderStatusEnum.外力破壞 ||
@@ -114,10 +123,7 @@ namespace SecureServer.CardReader
                     
                {
                    SecureDBEntities1 db = new SecureDBEntities1();
-
-                   db.tblEngineRoomLog.Add(
-
-                         new tblEngineRoomLog()
+                   tblEngineRoomLog log = new tblEngineRoomLog()
                          {
                              ControlID = reader.ControllerID,
                              ABA = rpt.CardNo.ToString(),
@@ -125,29 +131,87 @@ namespace SecureServer.CardReader
                              TypeID = 8,
                              Memo = rpt.StatusString,
                              TypeCode = (short)rpt.Status,
-                             ERNo=reader.PlaneID.ToString()
-                         }
-                       );
-                   db.SaveChanges();
+                             ERNo = reader.PlaneID.ToString()
+                         };
+                   db.tblEngineRoomLog.Add(
 
-                   if (this.serivce != null)
+                       log
+                       );
+                    
+                   
+
+
+
+
+                   db.SaveChanges();
+                   //開門錄影
+                   if (rpt.Status == (int)CardReaderStatusEnum.開鎖 ||
+                  rpt.Status == (int)CardReaderStatusEnum.按鈕開門 ||
+                  rpt.Status == (int)CardReaderStatusEnum.密碼開門 || rpt.Status == (int)CardReaderStatusEnum.系統開門)
                    {
 
-                       Task.Factory.StartNew(() =>
+                    
+                       if(reader.NVRID==-1)
+                           return;
+                 
+                       Task task=Task.Factory.StartNew(()=>
                            {
+                         
+                               DateTime dt = DateTime.Now;
+                               System.Threading.Thread.Sleep(1000 *20);
+                            
+                               long flowid = log.FlowID;
+                               Console.WriteLine("nvrid:" + reader.NVRID);
                                try
                                {
+                                   NVR.INVR nvr=this.serivce.nvr_mgr[reader.NVRID];
+                                   if(nvr==null)
+                                   {
+                                       Console.WriteLine(reader.NVRID+" is null");
+                                       return;
+                                   }
+                                   bool success = nvr.SaveRecord(
+                                    reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"D:\web\Secure\ClientBin\VideoRecord\" + flowid + ".avi");
 
-                                   Console.WriteLine("Trigger "+reader.TriggerCCTVID);
-                                   this.serivce.cctv_mgr[reader.TriggerCCTVID].Preset(2);
-                                   System.Threading.Thread.Sleep(1000 * 10);
-                                   this.serivce.cctv_mgr[reader.TriggerCCTVID].Preset(1);
+                                   log.NVRFile = flowid + ".wmv";
+                                   db.SaveChanges();
+                                   Console.WriteLine(success);
                                }
                                catch (Exception ex)
                                {
-                                   Console.WriteLine("May be trigger cctv not found" + ex.Message + "," + ex.StackTrace);
+                                   Console.WriteLine(ex.Message + "," + ex.StackTrace);
                                }
                            });
+                    
+                         
+
+                   }
+
+                   if (this.serivce != null  && reader.TriggerCCTVID!=0 )
+                   {
+
+
+                       if (InOperationCCTV.Where(n => n == reader.TriggerCCTVID).Count() > 0)
+                       {
+                           Task.Factory.StartNew(() =>
+                               {
+                                   try
+                                   {
+
+
+                                       Console.WriteLine("Trigger " + reader.TriggerCCTVID);
+                                       this.serivce.cctv_mgr[reader.TriggerCCTVID].Preset(2);
+                                       System.Threading.Thread.Sleep(1000 * 10);
+                                       this.serivce.cctv_mgr[reader.TriggerCCTVID].Preset(1);
+                                   }
+                                   catch (Exception ex)
+                                   {
+                                       Console.WriteLine("May be trigger cctv not found" + ex.Message + "," + ex.StackTrace);
+                                   }
+                                   InOperationCCTV.Remove(reader.TriggerCCTVID);
+                               });
+
+                       }
                    }
                   
                }
