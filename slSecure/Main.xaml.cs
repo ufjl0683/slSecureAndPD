@@ -117,8 +117,15 @@ namespace slSecure
             this.lstMessage.ItemsSource = lstAlarm.OrderByDescending(n => n.TimeStamp);
             if (alarmdata.IsForkCCTVEvent)
             {
-                await AddCCTVAsync(alarmdata.CCTVBindingData.MjpegCgiString,alarmdata.CCTVBindingData.UserName,alarmdata.CCTVBindingData.Password,alarmdata);
-            }
+                try
+                {
+                    await AddCCTVAsync(alarmdata.CCTVBindingData.MjpegCgiString, alarmdata.CCTVBindingData.UserName, alarmdata.CCTVBindingData.Password, alarmdata);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "," + ex.StackTrace);
+                }
+                }
 
             while (lstCCTVLock.Children.Count > 8)
             {
@@ -161,7 +168,7 @@ namespace slSecure
             this.txtTitle.DataContext = (sender as Control).DataContext;
             vwUserMenuAllow menu = (sender as Control).DataContext as vwUserMenuAllow;
             if (menu.XAML.Trim().ToUpper().StartsWith("HTTP:"))
-                this.frameMain.Navigate(new Uri("/WebPage.xaml?url=" + menu.XAML, UriKind.Relative));
+                this.frameMain.Navigate(new Uri("/Forms/WebPage.xaml?url=" + menu.XAML, UriKind.Relative));
             else
                 this.frameMain.Navigate(new Uri(menu.XAML, UriKind.Relative));
         }
@@ -185,10 +192,10 @@ namespace slSecure
 
         private async void BtbCCTVLock_Click(object sender, RoutedEventArgs e)
         {
-           
-         //   cctvLocks.Add(new Source.CCTVLockInfo() { DateTime = DateTime.Now });
-         //   lstCCTVLock.ItemsSource = from n in cctvLocks orderby n.DateTime descending select n; 
-            //this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock(1) { Width = 200, Height = 150 });
+
+            //cctvLocks.Add(new Source.CCTVLockInfo() { DateTime = DateTime.Now });
+            //lstCCTVLock.ItemsSource = from n in cctvLocks orderby n.DateTime descending select n;
+            this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock(1) { Width = 250, Height =200 });
             //while (lstCCTVLock.Children.Count > 8)
             //{
             //    CCTVLock cctvlock = lstCCTVLock.Children.Skip(8).FirstOrDefault() as CCTVLock;

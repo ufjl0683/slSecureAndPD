@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
-using SecureServer.CardReader.BindingData;
+using SecureServer.BindingData;
+using SecureServer.CardReader;
 
-namespace SecureServer.CardReader
+namespace SecureServer
 {
     [ServiceContract(CallbackContract=typeof(ISecureServiceCallBack))]
    public  interface ISecureService
@@ -41,7 +42,7 @@ namespace SecureServer.CardReader
         [OperationContract(IsOneWay = true)]
         void SayHello(string hello);
         [OperationContract(IsOneWay = true)]
-        void SecureDoorEvent(DoorEventType evttype, DoorBindingData doorBindingData);
+        void SecureDoorEvent(DoorEventType evttype, SecureServer.BindingData.DoorBindingData doorBindingData);
         [OperationContract(IsOneWay = true)]
         void SecureAlarm(AlarmData alarmdata);
 
@@ -58,7 +59,8 @@ namespace SecureServer.CardReader
     public enum DBChangedConstant
     {
         AuthorityChanged,
-        DelayTime,
+        DoorOpenAutoCloseTime,
+        DoorOpenAlarmTime,
         DoorPasswordTimeCycle,
         EventIntrusion,
         EventDoorOpenOverTime,

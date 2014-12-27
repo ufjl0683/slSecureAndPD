@@ -22,7 +22,7 @@ namespace SecureServer.CardReader
         void SetOpenDoorDetectionAlarmTime(int sec);
         void SetOpenDoorTimeoutDetectionTime(int sec);
         void SetSuperOpenDoorPassword(int password);
-        SecureServer.CardReader.BindingData.DoorBindingData ToBindingData();
+        SecureServer.BindingData.DoorBindingData ToBindingData();
         void WriteCardReaderID(int id);
     }
 }

@@ -4,7 +4,8 @@
   <xs:simpleType name="DBChangedConstant">
     <xs:restriction base="xs:string">
       <xs:enumeration value="AuthorityChanged" />
-      <xs:enumeration value="DelayTime" />
+      <xs:enumeration value="DoorOpenAutoCloseTime" />
+      <xs:enumeration value="DoorOpenAlarmTime" />
       <xs:enumeration value="DoorPasswordTimeCycle" />
       <xs:enumeration value="EventIntrusion" />
       <xs:enumeration value="EventDoorOpenOverTime" />

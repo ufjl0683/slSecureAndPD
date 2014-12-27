@@ -23,6 +23,8 @@ namespace slSecureLib.Forms
         // 使用者巡覽至這個頁面時執行。
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+
+            
         }
 
         private void tblUserGroupDomainDataSource_LoadedData(object sender, LoadedDataEventArgs e)

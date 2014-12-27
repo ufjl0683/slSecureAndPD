@@ -96,8 +96,17 @@ namespace MjpegProcessor
 			HttpWebRequest.RegisterPrefix("http://", WebRequestCreator.ClientHttp);
 #endif
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-			if(!string.IsNullOrEmpty(username) || !string.IsNullOrEmpty(password))
-				request.Credentials = new NetworkCredential(username, password);
+
+
+            if (!string.IsNullOrEmpty(username) || !string.IsNullOrEmpty(password))
+            {
+
+                request.Credentials = new NetworkCredential(username, password);
+#if SILVERLIGHT
+                request.UseDefaultCredentials = false;
+#endif
+
+            }
 
 #if SILVERLIGHT
 			// start the stream immediately

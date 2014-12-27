@@ -1,4 +1,5 @@
-﻿using System;
+﻿using slSecure.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -69,7 +70,9 @@ namespace slSecure.Dialog
                 break;
 
              case 3:
-                this.LayoutRoot.Children.Add(new Controls.CCTVLock(Url,UserName,Pwd));
+                CCTVLock cctv = new Controls.CCTVLock(Url, UserName, Pwd);
+                cctv.SetCCTVTitleVisivle(false);
+                this.LayoutRoot.Children.Add(cctv);
                 break;
 
 

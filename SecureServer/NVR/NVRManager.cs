@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecureServer.CardReader.NVR
+namespace SecureServer.NVR
 {
   public   class NVRManager
     {

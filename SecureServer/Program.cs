@@ -1,18 +1,34 @@
-﻿using System;
+﻿using ModbusTCP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
 
-namespace SecureServer.CardReader
+namespace SecureServer
 {
     class Program
     {
-        public static SecureServer.CardReader.SecureService  MyServiceObject;
+        public static SecureServer.SecureService  MyServiceObject;
         static void Main(string[] args)
         {
 
 
+           
+            //ModbusTCP.RTU rtu = new ModbusTCP.RTU("rtu-101", 1, "192.192.85.20", 502, 2001, 46);
+            //while (!rtu.IsConnected) ;
+            //for (int i = 2001; i <= 2046; i++)
+            //    rtu.WriteRegister((ushort)i, (ushort)(i - 2001 + 1));
+            //while (true)
+            //{
+               
+            //    int? temp = rtu.ReadRegister(2045);
+            //    Console.WriteLine(temp==null?"null":temp.ToString());
+            //    Console.WriteLine(rtu.ReadRegister(2046));
+            //    Console.WriteLine(rtu.ToString());
+            //    System.Threading.Thread.Sleep(1000);
+            //}
+            //Console.ReadKey();
             //NVR.NVR_Type1 nr = new NVR.NVR_Type1() { ERID = 1, IP = "192.192.85.20", Port = 10000, NVRID = 1, UserName = "admin", Password = "1111", PlaneID = 1 };
 
             //nr.SaveRecord(1, DateTime.Now.AddSeconds(-10), DateTime.Now.AddSeconds(10), @"d:\test.avi");
@@ -32,7 +48,7 @@ namespace SecureServer.CardReader
             //db.tblERDoorPassword.Add(tbl);
             //db.SaveChanges();
 
-            ServiceHost host = new ServiceHost(MyServiceObject = new SecureServer.CardReader.SecureService());
+            ServiceHost host = new ServiceHost(MyServiceObject = new SecureServer.SecureService());
             host.Open();
             System.Console.WriteLine("Secure Server started!");
           
@@ -53,7 +69,7 @@ namespace SecureServer.CardReader
         static void CardReaderTest()
         {
 
-            CardReader cr = new CardReader("test","192.168.1.168",1,1,1,1,1);
+            CardReader.CardReader cr = new CardReader.CardReader("test","192.168.1.168",1,1,1,1,1);
 
             Console.WriteLine("設定開門延時警報 10  sec");
             cr.SetOpenDoorDetectionAlarmTime(10);

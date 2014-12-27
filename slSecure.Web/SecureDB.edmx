@@ -724,14 +724,6 @@
         <EntityType Name="vwCardCommandLog">
           <Key>
             <PropertyRef Name="FlowID" />
-            <PropertyRef Name="ABA" />
-            <PropertyRef Name="ControlID" />
-            <PropertyRef Name="CommandType" />
-            <PropertyRef Name="IsSuccess" />
-            <PropertyRef Name="ERName" />
-            <PropertyRef Name="IsSuccessName" />
-            <PropertyRef Name="CommandTypeName" />
-            <PropertyRef Name="CardTypeName" />
           </Key>
           <Property Name="FlowID" Type="bigint" Nullable="false" />
           <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="30" />
@@ -843,11 +835,7 @@
         <EntityType Name="vwMagneticCardDetail">
           <Key>
             <PropertyRef Name="MagneticID" />
-            <PropertyRef Name="ABA" />
-            <PropertyRef Name="EndDate" />
-            <PropertyRef Name="RoleID" />
-            <PropertyRef Name="Timestamp" />
-            <PropertyRef Name="TypeName" />
+            <PropertyRef Name="ControlID" />
           </Key>
           <Property Name="MagneticID" Type="int" Nullable="false" />
           <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="30" />
@@ -874,7 +862,7 @@
           <Property Name="ERID" Type="int" />
           <Property Name="ERName" Type="nvarchar" MaxLength="50" />
           <Property Name="Door" Type="nvarchar" MaxLength="100" />
-          <Property Name="ControlID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ControlID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="6" />
           <Property Name="IsEnable" Type="bit" />
         </EntityType>
@@ -2198,14 +2186,6 @@
         <EntityType Name="vwCardCommandLog">
           <Key>
             <PropertyRef Name="FlowID" />
-            <PropertyRef Name="ABA" />
-            <PropertyRef Name="ControlID" />
-            <PropertyRef Name="CommandType" />
-            <PropertyRef Name="IsSuccess" />
-            <PropertyRef Name="ERName" />
-            <PropertyRef Name="IsSuccessName" />
-            <PropertyRef Name="CommandTypeName" />
-            <PropertyRef Name="CardTypeName" />
           </Key>
           <Property Type="Int64" Name="FlowID" Nullable="false" />
           <Property Type="String" Name="ABA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -2289,11 +2269,7 @@
         <EntityType Name="vwMagneticCardDetail">
           <Key>
             <PropertyRef Name="MagneticID" />
-            <PropertyRef Name="ABA" />
-            <PropertyRef Name="EndDate" />
-            <PropertyRef Name="RoleID" />
-            <PropertyRef Name="Timestamp" />
-            <PropertyRef Name="TypeName" />
+            <PropertyRef Name="ControlID" />
           </Key>
           <Property Type="Int32" Name="MagneticID" Nullable="false" />
           <Property Type="String" Name="ABA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -2320,7 +2296,7 @@
           <Property Type="Int32" Name="ERID" />
           <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Door" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ControlID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Type="String" Name="TypeName" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="IsEnable" />
         </EntityType>

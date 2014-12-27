@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace SecureServer.CardReader.NVR
+namespace SecureServer.NVR
 {
 
     // LiLin  NVR
@@ -61,10 +61,13 @@ namespace SecureServer.CardReader.NVR
        public bool SaveRecord(int Chno, DateTime BeginDateTime, DateTime EndDateTime, string SavePathFilename)
        {
          //  throw new NotImplementedException();
-           Console.WriteLine("call SaveRecordAction");
-          bool success= SaveRecordAction(Chno, BeginDateTime, EndDateTime, SavePathFilename);
-          Console.WriteLine(success);
-          return success;
+           lock (this)
+           {
+               Console.WriteLine("call SaveRecordAction");
+               bool success = SaveRecordAction(Chno, BeginDateTime, EndDateTime, SavePathFilename);
+               Console.WriteLine(success);
+               return success;
+           }
        }
 
 
@@ -127,6 +130,8 @@ namespace SecureServer.CardReader.NVR
                        return false;
 
                    Console.WriteLine("begin download " + DownloadUrl);
+
+                  
                    Download(DownloadUrl, SavePathFilename);
 
 
@@ -251,20 +256,30 @@ namespace SecureServer.CardReader.NVR
        {
            //string remoteUri = "http://192.192.85.20:10000/Download/20141203170000_CAM01.avi";
            //string localUri = "D:\\123.avi"
-
+           WebClient myWebClient=null;
 
            // Create a new WebClient instance.
-           WebClient myWebClient = new WebClient();
+           try
+           {
+                myWebClient = new WebClient();
 
 
 
-           Console.WriteLine("Downloading File \"{0}\" from \"{1}\" .......\n\n", localUri, remoteUri);
+               Console.WriteLine("Downloading File \"{0}\" from \"{1}\" .......\n\n", localUri, remoteUri);
 
 
-           // Download the Web resource and save it into the current filesystem folder.
-           myWebClient.DownloadFile(remoteUri, localUri);
-           Console.WriteLine("Successfully Downloaded File \"{0}\" from \"{1}\"", localUri, remoteUri);
-           Console.WriteLine("\nDownloaded file saved in the following file system folder:\n\t");
+               // Download the Web resource and save it into the current filesystem folder.
+               myWebClient.DownloadFile(remoteUri, localUri);
+               Console.WriteLine("Successfully Downloaded File \"{0}\" from \"{1}\"", localUri, remoteUri);
+               Console.WriteLine("\nDownloaded file saved in the following file system folder:\n\t");
+           }
+           catch (Exception ex)
+           {
+               myWebClient.Dispose();
+               throw;
+           }
+           
+        
        }
 
 

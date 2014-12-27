@@ -10163,7 +10163,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String ABA
         {
@@ -10173,14 +10173,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_ABA != value)
-                {
-                    OnABAChanging(value);
-                    ReportPropertyChanging("ABA");
-                    _ABA = StructuralObject.SetValidValue(value, false, "ABA");
-                    ReportPropertyChanged("ABA");
-                    OnABAChanged();
-                }
+                OnABAChanging(value);
+                ReportPropertyChanging("ABA");
+                _ABA = StructuralObject.SetValidValue(value, false, "ABA");
+                ReportPropertyChanged("ABA");
+                OnABAChanged();
             }
         }
         private global::System.String _ABA;
@@ -10190,7 +10187,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String ControlID
         {
@@ -10200,14 +10197,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_ControlID != value)
-                {
-                    OnControlIDChanging(value);
-                    ReportPropertyChanging("ControlID");
-                    _ControlID = StructuralObject.SetValidValue(value, false, "ControlID");
-                    ReportPropertyChanged("ControlID");
-                    OnControlIDChanged();
-                }
+                OnControlIDChanging(value);
+                ReportPropertyChanging("ControlID");
+                _ControlID = StructuralObject.SetValidValue(value, false, "ControlID");
+                ReportPropertyChanged("ControlID");
+                OnControlIDChanged();
             }
         }
         private global::System.String _ControlID;
@@ -10241,7 +10235,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String CommandType
         {
@@ -10251,14 +10245,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_CommandType != value)
-                {
-                    OnCommandTypeChanging(value);
-                    ReportPropertyChanging("CommandType");
-                    _CommandType = StructuralObject.SetValidValue(value, false, "CommandType");
-                    ReportPropertyChanged("CommandType");
-                    OnCommandTypeChanged();
-                }
+                OnCommandTypeChanging(value);
+                ReportPropertyChanging("CommandType");
+                _CommandType = StructuralObject.SetValidValue(value, false, "CommandType");
+                ReportPropertyChanged("CommandType");
+                OnCommandTypeChanged();
             }
         }
         private global::System.String _CommandType;
@@ -10268,7 +10259,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Boolean IsSuccess
         {
@@ -10278,14 +10269,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_IsSuccess != value)
-                {
-                    OnIsSuccessChanging(value);
-                    ReportPropertyChanging("IsSuccess");
-                    _IsSuccess = StructuralObject.SetValidValue(value, "IsSuccess");
-                    ReportPropertyChanged("IsSuccess");
-                    OnIsSuccessChanged();
-                }
+                OnIsSuccessChanging(value);
+                ReportPropertyChanging("IsSuccess");
+                _IsSuccess = StructuralObject.SetValidValue(value, "IsSuccess");
+                ReportPropertyChanged("IsSuccess");
+                OnIsSuccessChanged();
             }
         }
         private global::System.Boolean _IsSuccess;
@@ -10343,7 +10331,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String ERName
         {
@@ -10353,14 +10341,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_ERName != value)
-                {
-                    OnERNameChanging(value);
-                    ReportPropertyChanging("ERName");
-                    _ERName = StructuralObject.SetValidValue(value, false, "ERName");
-                    ReportPropertyChanged("ERName");
-                    OnERNameChanged();
-                }
+                OnERNameChanging(value);
+                ReportPropertyChanging("ERName");
+                _ERName = StructuralObject.SetValidValue(value, false, "ERName");
+                ReportPropertyChanged("ERName");
+                OnERNameChanged();
             }
         }
         private global::System.String _ERName;
@@ -10442,7 +10427,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String IsSuccessName
         {
@@ -10452,14 +10437,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_IsSuccessName != value)
-                {
-                    OnIsSuccessNameChanging(value);
-                    ReportPropertyChanging("IsSuccessName");
-                    _IsSuccessName = StructuralObject.SetValidValue(value, false, "IsSuccessName");
-                    ReportPropertyChanged("IsSuccessName");
-                    OnIsSuccessNameChanged();
-                }
+                OnIsSuccessNameChanging(value);
+                ReportPropertyChanging("IsSuccessName");
+                _IsSuccessName = StructuralObject.SetValidValue(value, false, "IsSuccessName");
+                ReportPropertyChanged("IsSuccessName");
+                OnIsSuccessNameChanged();
             }
         }
         private global::System.String _IsSuccessName;
@@ -10469,7 +10451,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String CommandTypeName
         {
@@ -10479,14 +10461,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_CommandTypeName != value)
-                {
-                    OnCommandTypeNameChanging(value);
-                    ReportPropertyChanging("CommandTypeName");
-                    _CommandTypeName = StructuralObject.SetValidValue(value, false, "CommandTypeName");
-                    ReportPropertyChanged("CommandTypeName");
-                    OnCommandTypeNameChanged();
-                }
+                OnCommandTypeNameChanging(value);
+                ReportPropertyChanging("CommandTypeName");
+                _CommandTypeName = StructuralObject.SetValidValue(value, false, "CommandTypeName");
+                ReportPropertyChanged("CommandTypeName");
+                OnCommandTypeNameChanged();
             }
         }
         private global::System.String _CommandTypeName;
@@ -10496,7 +10475,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String CardTypeName
         {
@@ -10506,14 +10485,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_CardTypeName != value)
-                {
-                    OnCardTypeNameChanging(value);
-                    ReportPropertyChanging("CardTypeName");
-                    _CardTypeName = StructuralObject.SetValidValue(value, false, "CardTypeName");
-                    ReportPropertyChanged("CardTypeName");
-                    OnCardTypeNameChanged();
-                }
+                OnCardTypeNameChanging(value);
+                ReportPropertyChanging("CardTypeName");
+                _CardTypeName = StructuralObject.SetValidValue(value, false, "CardTypeName");
+                ReportPropertyChanged("CardTypeName");
+                OnCardTypeNameChanged();
             }
         }
         private global::System.String _CardTypeName;
@@ -11921,8 +11897,9 @@ namespace slSecure.Web
         /// <param name="endDate">EndDate 屬性的初始值。</param>
         /// <param name="roleID">RoleID 屬性的初始值。</param>
         /// <param name="timestamp">Timestamp 屬性的初始值。</param>
+        /// <param name="controlID">ControlID 屬性的初始值。</param>
         /// <param name="typeName">TypeName 屬性的初始值。</param>
-        public static vwMagneticCardDetail CreatevwMagneticCardDetail(global::System.Int32 magneticID, global::System.String aBA, global::System.DateTime endDate, global::System.Int32 roleID, global::System.DateTime timestamp, global::System.String typeName)
+        public static vwMagneticCardDetail CreatevwMagneticCardDetail(global::System.Int32 magneticID, global::System.String aBA, global::System.DateTime endDate, global::System.Int32 roleID, global::System.DateTime timestamp, global::System.String controlID, global::System.String typeName)
         {
             vwMagneticCardDetail vwMagneticCardDetail = new vwMagneticCardDetail();
             vwMagneticCardDetail.MagneticID = magneticID;
@@ -11930,6 +11907,7 @@ namespace slSecure.Web
             vwMagneticCardDetail.EndDate = endDate;
             vwMagneticCardDetail.RoleID = roleID;
             vwMagneticCardDetail.Timestamp = timestamp;
+            vwMagneticCardDetail.ControlID = controlID;
             vwMagneticCardDetail.TypeName = typeName;
             return vwMagneticCardDetail;
         }
@@ -11968,7 +11946,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String ABA
         {
@@ -11978,14 +11956,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_ABA != value)
-                {
-                    OnABAChanging(value);
-                    ReportPropertyChanging("ABA");
-                    _ABA = StructuralObject.SetValidValue(value, false, "ABA");
-                    ReportPropertyChanged("ABA");
-                    OnABAChanged();
-                }
+                OnABAChanging(value);
+                ReportPropertyChanging("ABA");
+                _ABA = StructuralObject.SetValidValue(value, false, "ABA");
+                ReportPropertyChanged("ABA");
+                OnABAChanged();
             }
         }
         private global::System.String _ABA;
@@ -12067,7 +12042,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime EndDate
         {
@@ -12077,14 +12052,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_EndDate != value)
-                {
-                    OnEndDateChanging(value);
-                    ReportPropertyChanging("EndDate");
-                    _EndDate = StructuralObject.SetValidValue(value, "EndDate");
-                    ReportPropertyChanged("EndDate");
-                    OnEndDateChanged();
-                }
+                OnEndDateChanging(value);
+                ReportPropertyChanging("EndDate");
+                _EndDate = StructuralObject.SetValidValue(value, "EndDate");
+                ReportPropertyChanged("EndDate");
+                OnEndDateChanged();
             }
         }
         private global::System.DateTime _EndDate;
@@ -12358,7 +12330,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 RoleID
         {
@@ -12368,14 +12340,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_RoleID != value)
-                {
-                    OnRoleIDChanging(value);
-                    ReportPropertyChanging("RoleID");
-                    _RoleID = StructuralObject.SetValidValue(value, "RoleID");
-                    ReportPropertyChanged("RoleID");
-                    OnRoleIDChanged();
-                }
+                OnRoleIDChanging(value);
+                ReportPropertyChanging("RoleID");
+                _RoleID = StructuralObject.SetValidValue(value, "RoleID");
+                ReportPropertyChanged("RoleID");
+                OnRoleIDChanged();
             }
         }
         private global::System.Int32 _RoleID;
@@ -12385,7 +12354,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime Timestamp
         {
@@ -12395,14 +12364,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_Timestamp != value)
-                {
-                    OnTimestampChanging(value);
-                    ReportPropertyChanging("Timestamp");
-                    _Timestamp = StructuralObject.SetValidValue(value, "Timestamp");
-                    ReportPropertyChanged("Timestamp");
-                    OnTimestampChanged();
-                }
+                OnTimestampChanging(value);
+                ReportPropertyChanging("Timestamp");
+                _Timestamp = StructuralObject.SetValidValue(value, "Timestamp");
+                ReportPropertyChanged("Timestamp");
+                OnTimestampChanged();
             }
         }
         private global::System.DateTime _Timestamp;
@@ -12556,7 +12522,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String ControlID
         {
@@ -12566,11 +12532,14 @@ namespace slSecure.Web
             }
             set
             {
-                OnControlIDChanging(value);
-                ReportPropertyChanging("ControlID");
-                _ControlID = StructuralObject.SetValidValue(value, true, "ControlID");
-                ReportPropertyChanged("ControlID");
-                OnControlIDChanged();
+                if (_ControlID != value)
+                {
+                    OnControlIDChanging(value);
+                    ReportPropertyChanging("ControlID");
+                    _ControlID = StructuralObject.SetValidValue(value, false, "ControlID");
+                    ReportPropertyChanged("ControlID");
+                    OnControlIDChanged();
+                }
             }
         }
         private global::System.String _ControlID;
@@ -12580,7 +12549,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String TypeName
         {
@@ -12590,14 +12559,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_TypeName != value)
-                {
-                    OnTypeNameChanging(value);
-                    ReportPropertyChanging("TypeName");
-                    _TypeName = StructuralObject.SetValidValue(value, false, "TypeName");
-                    ReportPropertyChanged("TypeName");
-                    OnTypeNameChanged();
-                }
+                OnTypeNameChanging(value);
+                ReportPropertyChanging("TypeName");
+                _TypeName = StructuralObject.SetValidValue(value, false, "TypeName");
+                ReportPropertyChanged("TypeName");
+                OnTypeNameChanged();
             }
         }
         private global::System.String _TypeName;

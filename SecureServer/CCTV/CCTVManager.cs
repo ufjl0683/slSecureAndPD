@@ -1,11 +1,11 @@
-﻿using SecureServer.CardReader.BindingData;
+﻿using SecureServer.BindingData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecureServer.CardReader.CCTV
+namespace SecureServer.CCTV
 {
     public class CCTVManager
     {

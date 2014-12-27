@@ -1353,6 +1353,51 @@ namespace slSecure.Web
                 this.ObjectContext.vwUserMenuAllow.DeleteObject(vwUserMenuAllow);
             }
         }
+
+
+        public IQueryable<vwCardCommandLog> GetVwCardCommandLog()
+        {
+
+            return this.ObjectContext.vwCardCommandLog;
+
+        }
+
+
+
+        public IQueryable<vwEngineRoomLog> GetVwEngineRoomLog()
+        {
+
+            return this.ObjectContext.vwEngineRoomLog;
+
+        }
+
+
+
+        public IQueryable<vwEntranceGuardDetail> GetVwEntranceGuardDetail()
+        {
+
+            return this.ObjectContext.vwEntranceGuardDetail;
+
+        }
+
+
+
+        public IQueryable<vwMagneticCard> GetVwMagneticCard()
+        {
+
+            return this.ObjectContext.vwMagneticCard;
+
+        }
+
+
+
+        public IQueryable<vwMagneticCardDetail> GetVwMagneticCardDetail()
+        {
+
+            return this.ObjectContext.vwMagneticCardDetail;
+
+        }
+
     }
 }
 

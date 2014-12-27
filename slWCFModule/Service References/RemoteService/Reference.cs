@@ -23,25 +23,28 @@ namespace slWCFModule.RemoteService {
         AuthorityChanged = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        DelayTime = 1,
+        DoorOpenAutoCloseTime = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        DoorPasswordTimeCycle = 2,
+        DoorOpenAlarmTime = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        EventIntrusion = 3,
+        DoorPasswordTimeCycle = 3,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        EventDoorOpenOverTime = 4,
+        EventIntrusion = 4,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        EventInvalidCard = 5,
+        EventDoorOpenOverTime = 5,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        EventExternalForce = 6,
+        EventInvalidCard = 6,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        EventDoorOpen = 7,
+        EventExternalForce = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventDoorOpen = 8,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

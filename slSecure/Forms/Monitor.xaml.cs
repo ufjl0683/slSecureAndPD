@@ -114,7 +114,7 @@ namespace slSecure.Forms
             if (wrap == null)
                 return;
             this.wrap.Width = lstMenu.Width.Equals(double.NaN) ? lstMenu.ActualWidth : lstMenu.Width;
-            this.wrap.Height = lstMenu.Height.Equals(double.NaN) ? lstMenu.ActualHeight : lstMenu.Height;
+            //this.wrap.Height = lstMenu.Height.Equals(double.NaN) ? lstMenu.ActualHeight : lstMenu.Height;
         }
 
         private void ControlRoomMenu_MouseEnter(object sender, MouseEventArgs e)

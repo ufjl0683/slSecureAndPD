@@ -1,4 +1,5 @@
-﻿using SecureServer.CardReader.BindingData;
+﻿using SecureServer.BindingData;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecureServer.CardReader.CCTV
+namespace SecureServer.CCTV
 {
      public  class CCTV_TYPE1:ICCTV
     {
@@ -60,7 +61,7 @@ namespace SecureServer.CardReader.CCTV
 
         public string GetMjpgCGIString( )
         {
-            return string.Format("http://{0}:{1}/getimage?fmt=cif",IP,Port);
+            return string.Format("http://{0}:{1}/getimage?fmt=320x240",IP,Port);
         }
 
 

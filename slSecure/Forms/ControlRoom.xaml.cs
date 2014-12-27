@@ -111,7 +111,7 @@ namespace slSecure.Forms
             this.image.Source = new BitmapImage(new Uri("/Diagrams/" + PlaneID + ".png", UriKind.Relative));
             await GetALLDoorBindingData(PlaneID);
             await GetALLCCTVBindingData(PlaneID);
-            PlaceDoor();
+              PlaceDoor();
             PlaceCCTV();
 
             var erplanes= await  db.LoadAsync<tblERPlane>(db.GetTblERPlaneQuery().Where(n=>n.PlaneID==this.PlaneID));

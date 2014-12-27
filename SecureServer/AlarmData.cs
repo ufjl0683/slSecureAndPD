@@ -1,4 +1,4 @@
-﻿using SecureServer.CardReader.BindingData;
+﻿using SecureServer.BindingData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecureServer.CardReader
+namespace SecureServer
 {
 
     public enum AlarmType

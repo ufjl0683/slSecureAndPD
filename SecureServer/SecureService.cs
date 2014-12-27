@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.Net;
+using SecureServer.CardReader;
 
-namespace SecureServer.CardReader
+namespace SecureServer
 {
     [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single)] 
    public  class SecureService:ISecureService
     {
 
         public System.Collections.Generic.Dictionary<string, RegisterInfo> dictClientCallBacks = new Dictionary<string, RegisterInfo>();
-        public CardReaderManager card_mgr  ;
-        public NVR.NVRManager nvr_mgr;
-        public CCTV.CCTVManager cctv_mgr;
+        public static CardReaderManager card_mgr  ;
+        public static NVR.NVRManager nvr_mgr;
+        public static CCTV.CCTVManager cctv_mgr;
+        public static RTU.RTUManager rtu_mgr;
+        public static RTU.ItemManager item_mgr;
         ExactIntervalTimer ExactOneHourTmr;
 
 
@@ -24,7 +27,9 @@ namespace SecureServer.CardReader
             cctv_mgr = new CCTV.CCTVManager(this);
        
            card_mgr = new CardReaderManager(this);
-
+           rtu_mgr = new RTU.RTUManager();
+           item_mgr = new RTU.ItemManager();
+            
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
            card_mgr.OnAlarmEvent += card_mgr_OnAlarmEvent;
            new System.Threading.Thread(CheckCardReaderConnectionTask).Start();
@@ -86,7 +91,7 @@ namespace SecureServer.CardReader
            // NotifyDBChange(DBChangedConstant.AuthorityChanged);
         }
 
-        void card_mgr_OnAlarmEvent(CardReader reader, AlarmData alarmdata)
+        void card_mgr_OnAlarmEvent(CardReader.CardReader reader, AlarmData alarmdata)
         {
             try{
                 Console.WriteLine("DispathcAlarm!");
@@ -98,7 +103,7 @@ namespace SecureServer.CardReader
             //throw new NotImplementedException();
         }
 
-        void card_mgr_OnDoorEvent(CardReader reader, DoorEventType enumEventType)
+        void card_mgr_OnDoorEvent(CardReader.CardReader reader, DoorEventType enumEventType)
         {
             Console.WriteLine(reader.ControllerID + "," + enumEventType.ToString());
 
@@ -232,6 +237,19 @@ namespace SecureServer.CardReader
                     }
                     db.SaveChanges();
                     break;
+
+                case DBChangedConstant.DoorOpenAutoCloseTime:
+                case  DBChangedConstant.DoorOpenAlarmTime:
+                     card_mgr.LoadSystemParameter();
+                    card_mgr.SendAllReaderParameter();
+                    break;
+                case DBChangedConstant.EventDoorOpen:
+                case DBChangedConstant.EventDoorOpenOverTime:
+                case DBChangedConstant.EventExternalForce:
+                case DBChangedConstant.EventIntrusion:
+                case DBChangedConstant.EventInvalidCard:
+                    card_mgr.LoadSystemParameter();
+                    break;
                 default:
                     Console.WriteLine(constant + "," + value);
                     break;
@@ -275,7 +293,7 @@ namespace SecureServer.CardReader
 
         public BindingData.DoorBindingData[] GetALLDoorBindingData(int PlaneID)
         {
-            return this.card_mgr.GetAllDoorBindingData(PlaneID);
+            return card_mgr.GetAllDoorBindingData(PlaneID);
         }
 
 
@@ -318,7 +336,7 @@ namespace SecureServer.CardReader
 
         public BindingData.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID)
         {
-            return this.cctv_mgr.GetAllCCTVBindingData(PlaneID);
+            return cctv_mgr.GetAllCCTVBindingData(PlaneID);
         }
     }
 }

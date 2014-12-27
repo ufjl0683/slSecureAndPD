@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer.CardReader
+namespace SecureServer
 {
     using System;
     using System.Data.Entity;
@@ -25,7 +25,6 @@ namespace SecureServer.CardReader
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<tblControllerConfig> tblControllerConfig { get; set; }
         public DbSet<tblERDoorPassword> tblERDoorPassword { get; set; }
         public DbSet<tblEngineRoomLog> tblEngineRoomLog { get; set; }
         public DbSet<tblCardCommandLog> tblCardCommandLog { get; set; }
@@ -34,5 +33,10 @@ namespace SecureServer.CardReader
         public DbSet<vwMagneticCardAllowController> vwMagneticCardAllowController { get; set; }
         public DbSet<tblCCTVConfig> tblCCTVConfig { get; set; }
         public DbSet<tblNVRConfig> tblNVRConfig { get; set; }
+        public DbSet<tblSysParameter> tblSysParameter { get; set; }
+        public DbSet<vwMagneticCardDetail> vwMagneticCardDetail { get; set; }
+        public DbSet<tblControllerConfig> tblControllerConfig { get; set; }
+        public DbSet<tblItemConfig> tblItemConfig { get; set; }
+        public DbSet<tblItemGroup> tblItemGroup { get; set; }
     }
 }

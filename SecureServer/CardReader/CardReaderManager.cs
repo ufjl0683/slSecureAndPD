@@ -1,5 +1,5 @@
-﻿using SecureServer.CardReader.BindingData;
-using SecureServer.CardReader.CCTV;
+﻿using SecureServer.BindingData;
+using SecureServer.CCTV;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +12,128 @@ namespace SecureServer.CardReader
     {
         public event DoorEventHandler OnDoorEvent;
         public event AlarmEventHandler OnAlarmEvent;
+        int DoorPasswordGenerateDuration=24;
+      //  int OpenDoorDetectionAlarmTime = 20;
+        int DoorOpenAlarmTime = 20;
+        int OpenDoorAutoCloseTime = 10;
         System.Collections.Generic.Dictionary<string, ICardReader> dictCardReaders = new Dictionary<string, ICardReader>();
         System.Threading.Timer tmr;
         SecureService serivce;
+       // bool IntrusionAlarm = false;
+        bool EventIntrusionAlarm = false;
+        bool EventDoorOpenOverTimeAlarm = false;
+        bool EventInvalidCardAlarm = false;
+        bool EventExternalForceAlarm = false;
+        bool EventDoorOpenAlarm = false;
 
+        public CardReaderManager(SecureService service)
+        {
+            this.serivce = service;
+            SecureDBEntities1 db = new SecureDBEntities1();
+            var q = from n in db.tblControllerConfig where (n.ControlType == 2 || n.ControlType == 1) && n.IsEnable == true select n;
+            foreach (tblControllerConfig data in q)
+            {
+                int nvrid = -1, nvrchano = -1;
+                if (data.TriggerCCTVID != null)
+                {
+                    nvrid = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRID;
+                    nvrchano = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRChNo;
+                }
+                CardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano);
+                dictCardReaders.Add(data.ControlID, cardreader);
+                cardreader.OnDoorEvent += cardreader_OnDoorEvent;
+                //   cardreader.OnAlarmEvent += cardreader_OnAlarmEvent;
+                cardreader.OnStatusChanged += cardreader_OnStatusChanged;
+                Console.WriteLine("加入卡機:" + data.ControlID);
+            }
+
+            tmr = new System.Threading.Timer(OneMinTask);
+            tmr.Change(0, 1000 * 60);
+
+            this.LoadSystemParameter();
+            this.SendAllReaderParameter();
+
+
+        }
+
+        public void LoadSystemParameter()
+        {
+            SecureDBEntities1 db = new SecureDBEntities1();
+          //tblSysParameter tbl=  db.tblSysParameter.FirstOrDefault();
+          //if (tbl == null)
+          //    return;
+
+            //開門延時偵測警報時間
+            tblSysParameter tbl=db.tblSysParameter.Where(n=>n.SysID==4).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.DoorOpenAlarmTime= System.Convert.ToInt32(tbl.VariableValue);
+            }
+
+            //電磁鎖回復時間
+            tbl = db.tblSysParameter.Where(n => n.SysID== 1).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.OpenDoorAutoCloseTime = System.Convert.ToInt32(tbl.VariableValue);
+            }
+
+            //異常入侵
+            tbl = db.tblSysParameter.Where(n => n.SysID == 5).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.EventIntrusionAlarm = tbl.VariableValue=="Y";
+            }
+
+            //超過某時段未關門警告
+            tbl = db.tblSysParameter.Where(n => n.SysID == 6).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.EventDoorOpenOverTimeAlarm = tbl.VariableValue == "Y";
+            }
+            //無效卡讀卡超次警告
+            tbl = db.tblSysParameter.Where(n => n.SysID == 7).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.EventInvalidCardAlarm = tbl.VariableValue == "Y";
+            }
+            //讀卡機遇外力破壞或拆機警告
+            tbl = db.tblSysParameter.Where(n => n.SysID == 8).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.EventExternalForceAlarm = tbl.VariableValue == "Y";
+            }
+            //開門(電磁鎖開啟/鐵捲門開啟)
+            tbl = db.tblSysParameter.Where(n => n.SysID == 9).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.EventDoorOpenAlarm = tbl.VariableValue == "Y";
+            }
+
+            SendAllReaderParameter();
+        }
+
+        public void SendAllReaderParameter()
+        {
+            foreach (CardReader reader in dictCardReaders.Values)
+            {
+                try
+                {
+                    reader.SetOpenDoorAutoCloseTime(OpenDoorAutoCloseTime);
+                    reader.SetOpenDoorTimeoutDetectionTime(DoorOpenAlarmTime);
+                    reader.SetOpenDoorDetectionAlarmTime(0);
+                }
+                catch { ;}
+            }
+
+
+        }
+
+        public void SendReaderParameter( CardReader reader)
+        {
+                     reader.SetOpenDoorAutoCloseTime(OpenDoorAutoCloseTime);
+                    reader.SetOpenDoorTimeoutDetectionTime(DoorOpenAlarmTime);
+                    reader.SetOpenDoorDetectionAlarmTime(0);
+        }
         public ICardReader this[string ControllID]
         {
 
@@ -48,34 +166,7 @@ namespace SecureServer.CardReader
 
             return list.ToArray();
         }
-        public CardReaderManager(SecureService service)
-        {
-            this.serivce = service;
-            SecureDBEntities1 db = new SecureDBEntities1();
-            var q = from n in db.tblControllerConfig where (n.ControlType == 2 || n.ControlType == 1) && n.IsEnable==true select n;
-            foreach (tblControllerConfig data in q)
-            {
-                 int nvrid=-1,nvrchano=-1;
-                if(data.TriggerCCTVID!=null)
-                {
-                      nvrid=service.cctv_mgr[(int)data.TriggerCCTVID].NVRID;
-                      nvrchano=service.cctv_mgr[(int)data.TriggerCCTVID].NVRChNo;
-                }
-                CardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano);
-                dictCardReaders.Add(data.ControlID,cardreader );
-                cardreader.OnDoorEvent += cardreader_OnDoorEvent;
-             //   cardreader.OnAlarmEvent += cardreader_OnAlarmEvent;
-                cardreader.OnStatusChanged += cardreader_OnStatusChanged;
-                Console.WriteLine("加入卡機:" + data.ControlID);
-            }
-
-            tmr = new System.Threading.Timer(OneMinTask);
-            tmr.Change(0, 1000 * 60);
-           
-
-
-
-        }
+     
 
 
         //public int  LastOperationCCTVID=-1;
@@ -83,13 +174,14 @@ namespace SecureServer.CardReader
         System.Collections.Generic.List<int> InOperationCCTV = new List<int>();
         void cardreader_OnStatusChanged(CardReader reader, CardReaderEventReport rpt)
         {
-                if(rpt.Status==(int)CardReaderStatusEnum.卡號連續錯誤||rpt.Status==(int)CardReaderStatusEnum.外力破壞 ||
-                     rpt.Status == (int)CardReaderStatusEnum.異常入侵 || rpt.Status == (int)CardReaderStatusEnum.開門超時 
+                if(rpt.Status==(int)CardReaderStatusEnum.卡號連續錯誤  && this.EventInvalidCardAlarm ||rpt.Status==(int)CardReaderStatusEnum.外力破壞  && this.EventExternalForceAlarm ||
+                     rpt.Status == (int)CardReaderStatusEnum.異常入侵 && this.EventIntrusionAlarm || rpt.Status == (int)CardReaderStatusEnum.開門超時 && this.EventDoorOpenOverTimeAlarm ||
+                     rpt.Status == (int)CardReaderStatusEnum.開鎖 && this.EventDoorOpenAlarm
                    )
                {
                   if(this.OnAlarmEvent!=null)
                   {
-                      ICCTV  cctv = (ICCTV)this.serivce.cctv_mgr[reader.TriggerCCTVID];
+                      ICCTV cctv = (ICCTV)SecureService.cctv_mgr[reader.TriggerCCTVID];
                       AlarmData data = new AlarmData()
                       {
                           TimeStamp = DateTime.Now,
@@ -153,7 +245,7 @@ namespace SecureServer.CardReader
                     
                        if(reader.NVRID==-1)
                            return;
-                 
+                       #region 擷取錄影
                        Task task=Task.Factory.StartNew(()=>
                            {
                          
@@ -164,14 +256,16 @@ namespace SecureServer.CardReader
                                Console.WriteLine("nvrid:" + reader.NVRID);
                                try
                                {
-                                   NVR.INVR nvr=this.serivce.nvr_mgr[reader.NVRID];
+                                   NVR.INVR nvr = SecureService.nvr_mgr[reader.NVRID];
                                    if(nvr==null)
                                    {
                                        Console.WriteLine(reader.NVRID+" is null");
                                        return;
                                    }
                                    bool success = nvr.SaveRecord(
-                                    reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"D:\web\Secure\ClientBin\VideoRecord\" + flowid + ".avi");
+                                    reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"E:\web\Secure\ClientBin\VideoRecord\" + flowid + ".avi");
+                                   //bool success = nvr.SaveRecord(
+                                  //reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"D:\" + flowid + ".avi");
 
                                    log.NVRFile = flowid + ".wmv";
                                    db.SaveChanges();
@@ -182,8 +276,10 @@ namespace SecureServer.CardReader
                                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
                                }
                            });
-                    
-                         
+
+                       #endregion
+
+
 
                    }
 
@@ -200,9 +296,9 @@ namespace SecureServer.CardReader
 
 
                                        Console.WriteLine("Trigger " + reader.TriggerCCTVID);
-                                       this.serivce.cctv_mgr[reader.TriggerCCTVID].Preset(2);
+                                       SecureService.cctv_mgr[reader.TriggerCCTVID].Preset(2);
                                        System.Threading.Thread.Sleep(1000 * 10);
-                                       this.serivce.cctv_mgr[reader.TriggerCCTVID].Preset(1);
+                                       SecureService.cctv_mgr[reader.TriggerCCTVID].Preset(1);
                                    }
                                    catch (Exception ex)
                                    {

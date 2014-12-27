@@ -7,13 +7,15 @@
     d:DesignHeight="300" d:DesignWidth="400" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
 
     <Grid x:Name="LayoutRoot" Background="White" MouseLeftButtonDown="LayoutRoot_MouseLeftButtonDown" >
+        <StackPanel Orientation="Vertical">
+            <Button x:Name="btnTitle"  Click="Button_Click" Height="42" VerticalAlignment="Top">
+                <TextBlock>
+    				<Run  Text="{Binding TimeStampString}" />  <Run/>    <Run Text="{Binding PlaneName}" /> <LineBreak/>
+    				<Run Text="{Binding Description}" />
+                </TextBlock>
+            </Button>
+            <Image x:Name="cctv" Unloaded="cctv_Unloaded" Height="258"  VerticalAlignment="Top" Stretch="UniformToFill" />
+        </StackPanel>
         <!--<WebBrowser x:Name="browser"  Source="{Binding Url}" MouseLeftButtonDown="browser_MouseLeftButtonDown" Margin="0,28,0,0" />-->
-        <Image x:Name="cctv" Margin="0,42,0,0" Unloaded="cctv_Unloaded" />
-        <Button  Click="Button_Click" Height="42" VerticalAlignment="Top">
-            <TextBlock>
-                <Run  Text="{Binding TimeStampString}" />  <Run>     </Run>    <Run Text="{Binding PlaneName}" /> <LineBreak></LineBreak>
-                <Run Text="{Binding Description }" />
-            </TextBlock>
-        </Button>
     </Grid>
 </UserControl>

@@ -86,7 +86,11 @@ namespace slSecure.Controls
         {
 
         }
+        public void SetCCTVTitleVisivle(bool visible)
+        {
 
+            this.btnTitle.Visibility = visible ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+        }
         private void browser_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
            

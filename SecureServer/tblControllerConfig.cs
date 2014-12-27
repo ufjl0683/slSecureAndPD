@@ -7,13 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer.CardReader
+namespace SecureServer
 {
     using System;
     using System.Collections.Generic;
     
     public partial class tblControllerConfig
     {
+        public tblControllerConfig()
+        {
+            this.tblItemConfig = new HashSet<tblItemConfig>();
+        }
+    
         public string ControlID { get; set; }
         public short ControlType { get; set; }
         public int ERID { get; set; }
@@ -29,5 +34,9 @@ namespace SecureServer.CardReader
         public Nullable<double> Rotation { get; set; }
         public Nullable<int> PlaneID { get; set; }
         public Nullable<int> TriggerCCTVID { get; set; }
+        public Nullable<int> RTUBaseAddress { get; set; }
+        public Nullable<int> RTURegisterLength { get; set; }
+    
+        public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
     }
 }
