@@ -159,7 +159,7 @@
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\MapControl\MapControl.csproj">
-      <Project>{AFFA9F88-0EB6-403C-9836-A1BA3C0AC8E2}</Project>
+      <Project>{affa9f88-0eb6-403c-9836-a1ba3c0ac8e2}</Project>
       <Name>MapControl</Name>
     </ProjectReference>
     <ProjectReference Include="..\slSecure\slSecure.csproj">

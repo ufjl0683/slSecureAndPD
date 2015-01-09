@@ -156,11 +156,17 @@
     <Compile Include="Controls\DI.xaml.cs">
       <DependentUpon>DI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DO.xaml.cs">
+      <DependentUpon>DO.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DOOR.xaml.cs">
       <DependentUpon>DOOR.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\IOMenu.xaml.cs">
       <DependentUpon>IOMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemGroup.xaml.cs">
+      <DependentUpon>ItemGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\I_IO.cs" />
     <Compile Include="Converters\ColorStringValueConverter.cs" />
@@ -227,11 +233,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\DO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\DOOR.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\IOMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,11 +19,13 @@ namespace slWCFModule
     public delegate void OnDoorEventHandler(DoorEventType  evttype,DoorBindingData bindingdata);
     public delegate void OnAlarmEventHandler(AlarmData  alammdata);
     public delegate void OnRegistHandler(MyClient client);
+    public delegate void OnItemValueChangedHandler(ItemBindingData itemdata);
     public class MyClient:slWCFModule.RemoteService.ISecureServiceCallback,IDisposable
     {
         public event OnDoorEventHandler OnDoorEvent ;
         public event OnAlarmEventHandler OnAlarm ;
         public event OnRegistHandler OnRegistEvent;
+        public event OnItemValueChangedHandler OnItemValueChangedEvent;
        // string GUID;
         public SecureServiceClient SecureService;
         public string Key { set; get; }
@@ -230,6 +232,13 @@ namespace slWCFModule
         {
             if (this.OnAlarm != null)
                 this.OnAlarm(alarmdata);
+        }
+
+
+        public void ItemValueChangedEvenr(ItemBindingData ItemBindingData)
+        {
+            if (this.OnItemValueChangedEvent != null)
+                this.OnItemValueChangedEvent(ItemBindingData);
         }
     }
 }

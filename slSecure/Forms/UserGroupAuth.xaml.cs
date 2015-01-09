@@ -43,7 +43,7 @@ namespace slSecure.Forms
             else
             {
                 this.cboUserGroup.SelectedIndex = 0;
-                
+              
                 var q = await db.LoadAsync<tblUserGroupMenu>(db.GetTblUserGroupMenuIncludeMenuQuery());
                 menus = q.ToArray();
               

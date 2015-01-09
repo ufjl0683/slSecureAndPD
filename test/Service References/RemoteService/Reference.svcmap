@@ -24,8 +24,9 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="bd8055ad-184f-4a96-908c-03ba3c4a238f" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cbeb1538-49cf-4480-95e1-f41f4f52ebc1" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="89b0ac52-aa62-4d40-be4a-c6a7a4970372" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer.xsd" MetadataType="Schema" ID="ef37772d-2d71-4516-a7ab-af4222b3d96a" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer.BindingData.xsd" MetadataType="Schema" ID="bae79a1c-feb2-4253-91e1-75ad05ce3442" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
     <MetadataFile FileName="SecureServer.CardReader.xsd" MetadataType="Schema" ID="77515eb5-23f0-4587-818c-e3fa0075c039" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
-    <MetadataFile FileName="SecureServer.CardReader.BindingData.xsd" MetadataType="Schema" ID="d88e045b-03b4-4e10-9a84-cb0930ce401a" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

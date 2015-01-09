@@ -16,7 +16,7 @@ namespace slWCFModule.RemoteService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DBChangedConstant", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DBChangedConstant", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
     public enum DBChangedConstant : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -49,7 +49,7 @@ namespace slWCFModule.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DoorBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData")]
     public partial class DoorBindingData : object, System.ComponentModel.INotifyPropertyChanged {
         
         private string ControlIDField;
@@ -124,7 +124,7 @@ namespace slWCFModule.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CCTVBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CCTVBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData")]
     public partial class CCTVBindingData : object, System.ComponentModel.INotifyPropertyChanged {
         
         private int CCTVIDField;
@@ -257,6 +257,111 @@ namespace slWCFModule.RemoteService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData")]
+    public partial class ItemBindingData : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string ColorStringField;
+        
+        private string ContentField;
+        
+        private int ItemIDField;
+        
+        private int PlaneIDField;
+        
+        private string TypeField;
+        
+        private double ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ColorString {
+            get {
+                return this.ColorStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColorStringField, value) != true)) {
+                    this.ColorStringField = value;
+                    this.RaisePropertyChanged("ColorString");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Content {
+            get {
+                return this.ContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
+                    this.ContentField = value;
+                    this.RaisePropertyChanged("Content");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ItemID {
+            get {
+                return this.ItemIDField;
+            }
+            set {
+                if ((this.ItemIDField.Equals(value) != true)) {
+                    this.ItemIDField = value;
+                    this.RaisePropertyChanged("ItemID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PlaneID {
+            get {
+                return this.PlaneIDField;
+            }
+            set {
+                if ((this.PlaneIDField.Equals(value) != true)) {
+                    this.PlaneIDField = value;
+                    this.RaisePropertyChanged("PlaneID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((this.ValueField.Equals(value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
     public enum DoorEventType : int {
@@ -276,7 +381,7 @@ namespace slWCFModule.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
     public partial class AlarmData : object, System.ComponentModel.INotifyPropertyChanged {
         
         private slWCFModule.RemoteService.AlarmType AlarmTypeField;
@@ -425,7 +530,7 @@ namespace slWCFModule.RemoteService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
     public enum AlarmType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -480,6 +585,21 @@ namespace slWCFModule.RemoteService {
         System.IAsyncResult BeginGetAllCCTVBindingData(int PlaneID, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData> EndGetAllCCTVBindingData(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/HookItemValueChangedEvent", ReplyAction="http://tempuri.org/ISecureService/HookItemValueChangedEventResponse")]
+        System.IAsyncResult BeginHookItemValueChangedEvent(string key, int PlaneId, System.AsyncCallback callback, object asyncState);
+        
+        void EndHookItemValueChangedEvent(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetAllItemBindingData", ReplyAction="http://tempuri.org/ISecureService/GetAllItemBindingDataResponse")]
+        System.IAsyncResult BeginGetAllItemBindingData(int PlaneID, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemBindingData> EndGetAllItemBindingData(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/SetItemDOValue", ReplyAction="http://tempuri.org/ISecureService/SetItemDOValueResponse")]
+        System.IAsyncResult BeginSetItemDOValue(int ItemID, bool val, System.AsyncCallback callback, object asyncState);
+        
+        void EndSetItemDOValue(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -493,6 +613,9 @@ namespace slWCFModule.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/SecureAlarm")]
         void SecureAlarm(slWCFModule.RemoteService.AlarmData alarmdata);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/ItemValueChangedEvenr")]
+        void ItemValueChangedEvenr(slWCFModule.RemoteService.ItemBindingData ItemBindingData);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -558,6 +681,25 @@ namespace slWCFModule.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllItemBindingDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllItemBindingDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemBindingData> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemBindingData>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SecureServiceClient : System.ServiceModel.DuplexClientBase<slWCFModule.RemoteService.ISecureService>, slWCFModule.RemoteService.ISecureService {
         
         private BeginOperationDelegate onBeginRegisterDelegate;
@@ -613,6 +755,24 @@ namespace slWCFModule.RemoteService {
         private EndOperationDelegate onEndGetAllCCTVBindingDataDelegate;
         
         private System.Threading.SendOrPostCallback onGetAllCCTVBindingDataCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginHookItemValueChangedEventDelegate;
+        
+        private EndOperationDelegate onEndHookItemValueChangedEventDelegate;
+        
+        private System.Threading.SendOrPostCallback onHookItemValueChangedEventCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAllItemBindingDataDelegate;
+        
+        private EndOperationDelegate onEndGetAllItemBindingDataDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllItemBindingDataCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSetItemDOValueDelegate;
+        
+        private EndOperationDelegate onEndSetItemDOValueDelegate;
+        
+        private System.Threading.SendOrPostCallback onSetItemDOValueCompletedDelegate;
         
         private bool useGeneratedCallback;
         
@@ -717,11 +877,19 @@ namespace slWCFModule.RemoteService {
         
         public event System.EventHandler<GetAllCCTVBindingDataCompletedEventArgs> GetAllCCTVBindingDataCompleted;
         
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> HookItemValueChangedEventCompleted;
+        
+        public event System.EventHandler<GetAllItemBindingDataCompletedEventArgs> GetAllItemBindingDataCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SetItemDOValueCompleted;
+        
         public event System.EventHandler<SayHelloReceivedEventArgs> SayHelloReceived;
         
         public event System.EventHandler<SecureDoorEventReceivedEventArgs> SecureDoorEventReceived;
         
         public event System.EventHandler<SecureAlarmReceivedEventArgs> SecureAlarmReceived;
+        
+        public event System.EventHandler<ItemValueChangedEvenrReceivedEventArgs> ItemValueChangedEvenrReceived;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -1146,6 +1314,149 @@ namespace slWCFModule.RemoteService {
                         PlaneID}, this.onEndGetAllCCTVBindingDataDelegate, this.onGetAllCCTVBindingDataCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginHookItemValueChangedEvent(string key, int PlaneId, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginHookItemValueChangedEvent(key, PlaneId, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void slWCFModule.RemoteService.ISecureService.EndHookItemValueChangedEvent(System.IAsyncResult result) {
+            base.Channel.EndHookItemValueChangedEvent(result);
+        }
+        
+        private System.IAsyncResult OnBeginHookItemValueChangedEvent(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            string key = ((string)(inValues[0]));
+            int PlaneId = ((int)(inValues[1]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginHookItemValueChangedEvent(key, PlaneId, callback, asyncState);
+        }
+        
+        private object[] OnEndHookItemValueChangedEvent(System.IAsyncResult result) {
+            ((slWCFModule.RemoteService.ISecureService)(this)).EndHookItemValueChangedEvent(result);
+            return null;
+        }
+        
+        private void OnHookItemValueChangedEventCompleted(object state) {
+            if ((this.HookItemValueChangedEventCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.HookItemValueChangedEventCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void HookItemValueChangedEventAsync(string key, int PlaneId) {
+            this.HookItemValueChangedEventAsync(key, PlaneId, null);
+        }
+        
+        public void HookItemValueChangedEventAsync(string key, int PlaneId, object userState) {
+            if ((this.onBeginHookItemValueChangedEventDelegate == null)) {
+                this.onBeginHookItemValueChangedEventDelegate = new BeginOperationDelegate(this.OnBeginHookItemValueChangedEvent);
+            }
+            if ((this.onEndHookItemValueChangedEventDelegate == null)) {
+                this.onEndHookItemValueChangedEventDelegate = new EndOperationDelegate(this.OnEndHookItemValueChangedEvent);
+            }
+            if ((this.onHookItemValueChangedEventCompletedDelegate == null)) {
+                this.onHookItemValueChangedEventCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnHookItemValueChangedEventCompleted);
+            }
+            base.InvokeAsync(this.onBeginHookItemValueChangedEventDelegate, new object[] {
+                        key,
+                        PlaneId}, this.onEndHookItemValueChangedEventDelegate, this.onHookItemValueChangedEventCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetAllItemBindingData(int PlaneID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllItemBindingData(PlaneID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemBindingData> slWCFModule.RemoteService.ISecureService.EndGetAllItemBindingData(System.IAsyncResult result) {
+            return base.Channel.EndGetAllItemBindingData(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllItemBindingData(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            int PlaneID = ((int)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetAllItemBindingData(PlaneID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllItemBindingData(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemBindingData> retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetAllItemBindingData(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllItemBindingDataCompleted(object state) {
+            if ((this.GetAllItemBindingDataCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllItemBindingDataCompleted(this, new GetAllItemBindingDataCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllItemBindingDataAsync(int PlaneID) {
+            this.GetAllItemBindingDataAsync(PlaneID, null);
+        }
+        
+        public void GetAllItemBindingDataAsync(int PlaneID, object userState) {
+            if ((this.onBeginGetAllItemBindingDataDelegate == null)) {
+                this.onBeginGetAllItemBindingDataDelegate = new BeginOperationDelegate(this.OnBeginGetAllItemBindingData);
+            }
+            if ((this.onEndGetAllItemBindingDataDelegate == null)) {
+                this.onEndGetAllItemBindingDataDelegate = new EndOperationDelegate(this.OnEndGetAllItemBindingData);
+            }
+            if ((this.onGetAllItemBindingDataCompletedDelegate == null)) {
+                this.onGetAllItemBindingDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllItemBindingDataCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllItemBindingDataDelegate, new object[] {
+                        PlaneID}, this.onEndGetAllItemBindingDataDelegate, this.onGetAllItemBindingDataCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginSetItemDOValue(int ItemID, bool val, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSetItemDOValue(ItemID, val, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void slWCFModule.RemoteService.ISecureService.EndSetItemDOValue(System.IAsyncResult result) {
+            base.Channel.EndSetItemDOValue(result);
+        }
+        
+        private System.IAsyncResult OnBeginSetItemDOValue(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            int ItemID = ((int)(inValues[0]));
+            bool val = ((bool)(inValues[1]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginSetItemDOValue(ItemID, val, callback, asyncState);
+        }
+        
+        private object[] OnEndSetItemDOValue(System.IAsyncResult result) {
+            ((slWCFModule.RemoteService.ISecureService)(this)).EndSetItemDOValue(result);
+            return null;
+        }
+        
+        private void OnSetItemDOValueCompleted(object state) {
+            if ((this.SetItemDOValueCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SetItemDOValueCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SetItemDOValueAsync(int ItemID, bool val) {
+            this.SetItemDOValueAsync(ItemID, val, null);
+        }
+        
+        public void SetItemDOValueAsync(int ItemID, bool val, object userState) {
+            if ((this.onBeginSetItemDOValueDelegate == null)) {
+                this.onBeginSetItemDOValueDelegate = new BeginOperationDelegate(this.OnBeginSetItemDOValue);
+            }
+            if ((this.onEndSetItemDOValueDelegate == null)) {
+                this.onEndSetItemDOValueDelegate = new EndOperationDelegate(this.OnEndSetItemDOValue);
+            }
+            if ((this.onSetItemDOValueCompletedDelegate == null)) {
+                this.onSetItemDOValueCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSetItemDOValueCompleted);
+            }
+            base.InvokeAsync(this.onBeginSetItemDOValueDelegate, new object[] {
+                        ItemID,
+                        val}, this.onEndSetItemDOValueDelegate, this.onSetItemDOValueCompletedDelegate, userState);
+        }
+        
         private void OnSayHelloReceived(object state) {
             if ((this.SayHelloReceived != null)) {
                 object[] results = ((object[])(state));
@@ -1167,11 +1478,19 @@ namespace slWCFModule.RemoteService {
             }
         }
         
+        private void OnItemValueChangedEvenrReceived(object state) {
+            if ((this.ItemValueChangedEvenrReceived != null)) {
+                object[] results = ((object[])(state));
+                this.ItemValueChangedEvenrReceived(this, new ItemValueChangedEvenrReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
         private void VerifyCallbackEvents() {
             if (((this.useGeneratedCallback != true) 
-                        && (((this.SayHelloReceived != null) 
+                        && ((((this.SayHelloReceived != null) 
                         || (this.SecureDoorEventReceived != null)) 
-                        || (this.SecureAlarmReceived != null)))) {
+                        || (this.SecureAlarmReceived != null)) 
+                        || (this.ItemValueChangedEvenrReceived != null)))) {
                 throw new System.InvalidOperationException("指定回呼 InstanceContext 後即無法使用回呼事件。請選擇指定回呼 InstanceContext，或是描述回呼事件。");
             }
         }
@@ -1269,6 +1588,11 @@ namespace slWCFModule.RemoteService {
             public void SecureAlarm(slWCFModule.RemoteService.AlarmData alarmdata) {
                 this.proxy.OnSecureAlarmReceived(new object[] {
                             alarmdata});
+            }
+            
+            public void ItemValueChangedEvenr(slWCFModule.RemoteService.ItemBindingData ItemBindingData) {
+                this.proxy.OnItemValueChangedEvenrReceived(new object[] {
+                            ItemBindingData});
             }
         }
         
@@ -1389,6 +1713,45 @@ namespace slWCFModule.RemoteService {
                 System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData> _result = ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData>)(base.EndInvoke("GetAllCCTVBindingData", _args, result)));
                 return _result;
             }
+            
+            public System.IAsyncResult BeginHookItemValueChangedEvent(string key, int PlaneId, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = key;
+                _args[1] = PlaneId;
+                System.IAsyncResult _result = base.BeginInvoke("HookItemValueChangedEvent", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndHookItemValueChangedEvent(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("HookItemValueChangedEvent", _args, result);
+            }
+            
+            public System.IAsyncResult BeginGetAllItemBindingData(int PlaneID, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = PlaneID;
+                System.IAsyncResult _result = base.BeginInvoke("GetAllItemBindingData", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemBindingData> EndGetAllItemBindingData(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemBindingData> _result = ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemBindingData>)(base.EndInvoke("GetAllItemBindingData", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginSetItemDOValue(int ItemID, bool val, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = ItemID;
+                _args[1] = val;
+                System.IAsyncResult _result = base.BeginInvoke("SetItemDOValue", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndSetItemDOValue(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("SetItemDOValue", _args, result);
+            }
         }
     }
     
@@ -1446,6 +1809,23 @@ namespace slWCFModule.RemoteService {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((slWCFModule.RemoteService.AlarmData)(this.results[0]));
+            }
+        }
+    }
+    
+    public class ItemValueChangedEvenrReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ItemValueChangedEvenrReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public slWCFModule.RemoteService.ItemBindingData ItemBindingData {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((slWCFModule.RemoteService.ItemBindingData)(this.results[0]));
             }
         }
     }

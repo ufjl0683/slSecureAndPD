@@ -44,7 +44,8 @@ namespace   slSecure.Web
             public double Rotation { get; set; }
             public double ScaleX { get; set; }
             public double ScaleY { get; set; }
-
+            public string Content { get; set; }
+             
         
     }
 

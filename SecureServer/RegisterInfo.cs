@@ -15,6 +15,8 @@ namespace SecureServer
       public bool IsRegistDoorEvent { get; set; }
 
       public bool IsRegistAlarm { get; set; }
+
+      public bool IsRegistItemEvent { get; set; }
       
       public   RegisterInfo()
        {

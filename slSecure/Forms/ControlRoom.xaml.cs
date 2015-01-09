@@ -27,6 +27,7 @@ namespace slSecure.Forms
         slSecure.Web.SecureDBContext db;
         DoorBindingData[] DoorBindingDatas;
         CCTVBindingData[] CCTVBindingDatas;
+        ItemBindingData[] ItemBindingDatas;
         MyClient client;
         int PlaneID;
         tblERPlane tblPlane;
@@ -71,6 +72,24 @@ namespace slSecure.Forms
                 client.SecureService.GetAllCCTVBindingDataAsync(planeid);
                 return taskCompletionSource.Task;
             }
+
+            Task<bool> GetAllItemBindingData(int planeid)
+            {
+                TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
+
+                client.SecureService.GetAllItemBindingDataCompleted += (s, a) =>
+                {
+                    if (a.Error != null)
+                    {
+                        taskCompletionSource.TrySetResult(false);
+                        return;
+                    }
+                    ItemBindingDatas = a.Result.ToArray();
+                    taskCompletionSource.TrySetResult(true);
+                };
+                client.SecureService.GetAllItemBindingDataAsync(planeid);
+                return taskCompletionSource.Task;
+            }
             Task HookDoorEvent(int planeid)
           {
               TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
@@ -89,6 +108,25 @@ namespace slSecure.Forms
 
               return taskCompletionSource.Task;
           }
+
+        Task HookItemValueChangeEvent(int planeid)
+        {
+            TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
+            client.SecureService.HookItemValueChangedEventCompleted += (s, a) =>
+            {
+                if (a.Error != null)
+                {
+                    taskCompletionSource.TrySetResult(false);
+
+                }
+                taskCompletionSource.TrySetResult(true);
+
+
+            };
+            client.SecureService.HookItemValueChangedEventAsync(client.Key, planeid);
+
+            return taskCompletionSource.Task;
+        }
         protected async  override void OnNavigatedTo(NavigationEventArgs e)
         {
          
@@ -102,22 +140,37 @@ namespace slSecure.Forms
 
 
                 await HookDoorEvent(PlaneID);
+                await HookItemValueChangeEvent(PlaneID);
 
             };
             client.OnDoorEvent += client_OnDoorEvent;
+            client.OnItemValueChangedEvent += client_OnItemValueChangedEvent;
             await client.RegistAndGetKey();
 
 
             this.image.Source = new BitmapImage(new Uri("/Diagrams/" + PlaneID + ".png", UriKind.Relative));
             await GetALLDoorBindingData(PlaneID);
             await GetALLCCTVBindingData(PlaneID);
+            await GetAllItemBindingData(PlaneID);
               PlaceDoor();
             PlaceCCTV();
-
+            PlaceItem();
             var erplanes= await  db.LoadAsync<tblERPlane>(db.GetTblERPlaneQuery().Where(n=>n.PlaneID==this.PlaneID));
            this.tblPlane= erplanes.FirstOrDefault();
            this.DataContext = tblPlane;
            // tblPlane.PlaneName
+        }
+
+        void client_OnItemValueChangedEvent(ItemBindingData itemdata)
+        {
+            ItemBindingData data = this.ItemBindingDatas.Where(n => n.ItemID == itemdata.ItemID).FirstOrDefault();
+
+         if (data == null)
+             return;
+
+         data.Content = itemdata.Content;
+         data.ColorString = itemdata.ColorString;
+
         }
 
         void client_OnDoorEvent(DoorEventType evttype, DoorBindingData bindingdata)
@@ -174,7 +227,7 @@ namespace slSecure.Forms
         {
            
         }
-          async void PlaceDoor()
+        async void PlaceDoor()
         {
             var q = from n in db.GetTblControllerConfigQuery() where (n.ControlType == 1 || n.ControlType == 3) && n.PlaneID == this.PlaneID select n;
             var res = await db.LoadAsync<tblControllerConfig>(q);
@@ -209,6 +262,51 @@ namespace slSecure.Forms
             }
         }
 
+        async void  PlaceItem()
+        {
+             var q = from n in db.GetTblItemConfigQuery()  where   n.tblItemGroup.PlaneID == this.PlaneID select n;
+             var res = await db.LoadAsync<tblItemConfig>(q);
+
+             foreach (tblItemConfig tbl in res)
+             {
+
+                 I_IO item;
+                 if (tbl.Type == "AI")
+                 {
+                     item = new AI() { Name = "AI" + tbl.ItemID };
+
+                 }
+                 else if (tbl.Type == "DI")
+                     item = new DI() { Name = "DI" + tbl.ItemID };
+                 else if (tbl.Type == "DO")
+                     item = new DO() { Name = "DO" + tbl.ItemID };
+                 else
+                     continue;
+                // item.Name = "Door" + tbl.ControlID;
+
+
+                 (item as Control).HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                 (item as Control).VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                 (item as Control).SetValue(Grid.MarginProperty, new Thickness(tbl.X ?? 0, tbl.Y ?? 0, 0, 0));
+                 CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation ?? 0, ScaleX = tbl.ScaleX ?? 0, ScaleY = tbl.ScaleY ?? 0 };
+                 (item as Control).RenderTransform = transform;
+                (item as Control).DataContext = ItemBindingDatas.FirstOrDefault(n=>n.PlaneID==this.PlaneID && n.ItemID==tbl.ItemID);
+
+                if (tbl.Type == "DO") 
+                (item as Control).MouseLeftButtonDown += DO_MouseLeftButtonDown;
+                 this.Canvas.Children.Add(item as Control);
+             }
+        }
+
+        void DO_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DO Do=sender as DO;
+            if((int)(Do.DataContext as ItemBindingData).Value==0)
+                client.SecureService.SetItemDOValueAsync((Do.DataContext as ItemBindingData).ItemID,true);
+            else
+                client.SecureService.SetItemDOValueAsync((Do.DataContext as ItemBindingData).ItemID, false);
+
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();

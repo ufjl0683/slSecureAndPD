@@ -35,11 +35,12 @@ namespace SecureServer
         public string AlarmContent { get; set; }
         public string AbnormalRecoveryContent { get; set; }
         public string AbnormalRecoveryMode { get; set; }
-        public string WarningValue { get; set; }
         public string UIType { get; set; }
         public double ValueScale { get; set; }
         public double Offset { get; set; }
         public double Coefficient { get; set; }
+        public Nullable<int> DIInvokeWarningValue { get; set; }
+        public bool IsShow { get; set; }
     
         public virtual tblControllerConfig tblControllerConfig { get; set; }
         public virtual tblItemGroup tblItemGroup { get; set; }

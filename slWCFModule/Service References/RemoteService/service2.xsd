@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/SecureServer" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" />
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData" />
   <xs:element name="Register">
     <xs:complexType>
       <xs:sequence>
@@ -19,7 +20,7 @@
   <xs:element name="NotifyDBChange">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="constant" type="q1:DBChangedConstant" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SecureServer" minOccurs="0" name="constant" type="q1:DBChangedConstant" />
         <xs:element minOccurs="0" name="value" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -98,7 +99,7 @@
   <xs:element name="GetALLDoorBindingDataResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData" minOccurs="0" name="GetALLDoorBindingDataResult" nillable="true" type="q2:ArrayOfDoorBindingData" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="GetALLDoorBindingDataResult" nillable="true" type="q2:ArrayOfDoorBindingData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -112,8 +113,48 @@
   <xs:element name="GetAllCCTVBindingDataResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData" minOccurs="0" name="GetAllCCTVBindingDataResult" nillable="true" type="q3:ArrayOfCCTVBindingData" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="GetAllCCTVBindingDataResult" nillable="true" type="q3:ArrayOfCCTVBindingData" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HookItemValueChangedEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="key" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PlaneId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HookItemValueChangedEventResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllItemBindingData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllItemBindingDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="GetAllItemBindingDataResult" nillable="true" type="q4:ArrayOfItemBindingData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetItemDOValue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ItemID" type="xs:int" />
+        <xs:element minOccurs="0" name="val" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetItemDOValueResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="SayHello">
@@ -126,15 +167,22 @@
   <xs:element name="SecureDoorEvent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="evttype" type="q4:DoorEventType" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData" minOccurs="0" name="doorBindingData" nillable="true" type="q5:DoorBindingData" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="evttype" type="q5:DoorEventType" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="doorBindingData" nillable="true" type="q6:DoorBindingData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SecureAlarm">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="alarmdata" nillable="true" type="q6:AlarmData" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SecureServer" minOccurs="0" name="alarmdata" nillable="true" type="q7:AlarmData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemValueChangedEvenr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="ItemBindingData" nillable="true" type="q8:ItemBindingData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

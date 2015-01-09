@@ -38,6 +38,16 @@ namespace slSecure.Controls
                 (this.Resources["stbBlind"] as Storyboard).Stop();
         }
 
+        public string Content{
+            get
+            {
+                return this.txtContent.Text;
+            }
+            set
+            {
+                this.txtContent.Text = value;
+            }
+            }
         public int Degreee
         {
             get { return (int)this.GetValue(DegreeeProperty); }

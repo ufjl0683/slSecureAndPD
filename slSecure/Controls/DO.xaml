@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="slSecure.Controls.DO"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:conveter="clr-namespace:slSecure.Converters"
+    mc:Ignorable="d"
+    d:DesignHeight="40" d:DesignWidth="52" Width="52" Height="40"  >
+    <UserControl.Resources>
+        <conveter:ColorStringValueConverter x:Key="ColorStringValueConverter" />
+        <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="stbDemo" RepeatBehavior="Forever">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                <EasingColorKeyFrame KeyTime="0" Value="Black"/>
+                <DiscreteColorKeyFrame KeyTime="0:0:1" Value="#FFE79813"/>
+                <DiscreteColorKeyFrame KeyTime="0:0:2" Value="#FFFD410A"/>
+                <DiscreteColorKeyFrame KeyTime="0:0:3" Value="#FFFD410A"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RenderTransform>
+            <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
+        </Grid.RenderTransform>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}" ControlStoryboardOption="Stop"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Ellipse Margin="5,0,6,-1">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF959595" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.019"/>
+                    <GradientStop Color="White" Offset="0.659"/>
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock x:Name="txtContent" Height="22" Margin="0,40,0,-22" Text="{Binding Content}" FontSize="16" TextWrapping="NoWrap" Width="Auto"  VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <Ellipse Margin="10,5,11,4" Fill="{Binding ColorString}"/>
+        <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
+    </Grid>
+</UserControl>

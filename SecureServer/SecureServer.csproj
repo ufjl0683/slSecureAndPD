@@ -76,6 +76,7 @@
     <Compile Include="AlarmData.cs" />
     <Compile Include="BindingData\CCTVBindingData.cs" />
     <Compile Include="BindingData\DoorBindingData.cs" />
+    <Compile Include="BindingData\ItemBindingData.cs" />
     <Compile Include="CardReader\CardReader.cs" />
     <Compile Include="CardReader\CardReaderEventReport.cs" />
     <Compile Include="CardReader\CardReaderManager.cs" />
@@ -204,6 +205,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{e8a4c97f-53df-4c7c-873b-03611a1a021a}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModbusTCP\ModbusTCP\ModbusTCP.csproj">
       <Project>{78a23b5b-cb72-4edb-b594-5370d086197d}</Project>
       <Name>ModbusTCP</Name>

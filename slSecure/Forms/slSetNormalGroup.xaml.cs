@@ -19,7 +19,7 @@ namespace slSecure.Forms
 {
     public partial class slSetNormalGroup : Page
     {
-        slSecure.Web.SecureDBContext db;
+         SecureDBContext db;
         string actType;
 
         public slSetNormalGroup()

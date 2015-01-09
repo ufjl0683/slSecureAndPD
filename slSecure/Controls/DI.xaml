@@ -3,10 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="clr-namespace:slSecure.Converters"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="slSecure.Controls.DI"
     mc:Ignorable="d"
     d:DesignHeight="30" d:DesignWidth="30" Width="20" Height="20">
+    
     <UserControl.Resources>
+        <converter:ColorStringValueConverter x:Key="ColorStringValueConverter" />
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
         	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot">
         		<DiscreteObjectKeyFrame KeyTime="0">
@@ -34,7 +37,7 @@
     		</ColorAnimationUsingKeyFrames>
     	</Storyboard>
     </UserControl.Resources>
-	<Grid x:Name="LayoutRoot" Background="White" HorizontalAlignment="Left" >
+	<Grid x:Name="LayoutRoot" HorizontalAlignment="Left" >
         <Grid.RenderTransform>
             <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
         </Grid.RenderTransform>
@@ -43,8 +46,8 @@
                 <ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}"  ControlStoryboardOption="Stop"  />
 			</i:EventTrigger>
 		</i:Interaction.Triggers>
-		<Ellipse x:Name="ellipse" Fill="GreenYellow" StrokeThickness="1"/>
-		<TextBlock Text="{Binding Label}" HorizontalAlignment="Left" Foreground="Black"  FontSize="14" Margin="25,0,-189,3" Width="184"   />
+        <Ellipse x:Name="ellipse" Fill="{Binding ColorString,Converter={StaticResource ColorStringValueConverter}}" StrokeThickness="1"/>
+		<TextBlock Text="{Binding Content}" HorizontalAlignment="Left" Foreground="Black"  FontSize="14" Margin="25,0,-189,3" Width="184" x:Name="txtContent"  />
         <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
     </Grid>
 </UserControl>

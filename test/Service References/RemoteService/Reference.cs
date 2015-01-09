@@ -14,16 +14,40 @@ namespace test.RemoteService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DBChangedConstant", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DBChangedConstant", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
     public enum DBChangedConstant : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         AuthorityChanged = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorOpenAutoCloseTime = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorOpenAlarmTime = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorPasswordTimeCycle = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventIntrusion = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventDoorOpenOverTime = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventInvalidCard = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventExternalForce = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EventDoorOpen = 8,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DoorBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData")]
     [System.SerializableAttribute()]
     public partial class DoorBindingData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -116,7 +140,7 @@ namespace test.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CCTVBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader.BindingData")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CCTVBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData")]
     [System.SerializableAttribute()]
     public partial class CCTVBindingData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -290,7 +314,7 @@ namespace test.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
     [System.SerializableAttribute()]
     public partial class AlarmData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -462,11 +486,40 @@ namespace test.RemoteService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
     public enum AlarmType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Secure = 0,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemBindingData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData")]
+    [System.SerializableAttribute()]
+    public partial class ItemBindingData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -477,7 +530,7 @@ namespace test.RemoteService {
         string Register(string pcname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/NotifyDBChange", ReplyAction="http://tempuri.org/ISecureService/NotifyDBChangeResponse")]
-        void NotifyDBChange(test.RemoteService.DBChangedConstant constant);
+        void NotifyDBChange(test.RemoteService.DBChangedConstant constant, string value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/ToServerHello", ReplyAction="http://tempuri.org/ISecureService/ToServerHelloResponse")]
         void ToServerHello();
@@ -499,6 +552,9 @@ namespace test.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetAllCCTVBindingData", ReplyAction="http://tempuri.org/ISecureService/GetAllCCTVBindingDataResponse")]
         test.RemoteService.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/HookItemValueChangedEvent", ReplyAction="http://tempuri.org/ISecureService/HookItemValueChangedEventResponse")]
+        void HookItemValueChangedEvent(string key, int PlaneId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -512,6 +568,9 @@ namespace test.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/SecureAlarm")]
         void SecureAlarm(test.RemoteService.AlarmData alarmdata);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISecureService/ItemValueChangedEvenr")]
+        void ItemValueChangedEvenr(test.RemoteService.ItemBindingData ItemBindingData);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -546,8 +605,8 @@ namespace test.RemoteService {
             return base.Channel.Register(pcname);
         }
         
-        public void NotifyDBChange(test.RemoteService.DBChangedConstant constant) {
-            base.Channel.NotifyDBChange(constant);
+        public void NotifyDBChange(test.RemoteService.DBChangedConstant constant, string value) {
+            base.Channel.NotifyDBChange(constant, value);
         }
         
         public void ToServerHello() {
@@ -576,6 +635,10 @@ namespace test.RemoteService {
         
         public test.RemoteService.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID) {
             return base.Channel.GetAllCCTVBindingData(PlaneID);
+        }
+        
+        public void HookItemValueChangedEvent(string key, int PlaneId) {
+            base.Channel.HookItemValueChangedEvent(key, PlaneId);
         }
     }
 }

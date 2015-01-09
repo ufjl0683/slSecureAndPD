@@ -18,7 +18,7 @@ namespace slSecure.Forms
     public partial class User : Page
     {
 
-        slSecure.Web.SecureDBContext db;
+         SecureDBContext db;
         tblUserGroup[] userGroups;
         public User()
         {

@@ -61,7 +61,7 @@ namespace ModbusTCP
                   
                     if (RTUDevice != null && RTUDevice.connected)
                     {
-                        RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)255, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
+                        RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)255, (ushort)(StartAddress-1 ), this.RegisterLength, ref tempdata);
                         if (tempdata != null && tempdata.Length != 0)
                         {
                             for (int i = 0; i < tempdata.Length; i++)

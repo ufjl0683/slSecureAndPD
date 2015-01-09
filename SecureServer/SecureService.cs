@@ -5,6 +5,7 @@ using System.Text;
 using System.ServiceModel;
 using System.Net;
 using SecureServer.CardReader;
+using SecureServer.BindingData;
 
 namespace SecureServer
 {
@@ -36,8 +37,11 @@ namespace SecureServer
            ExactOneHourTmr = new ExactIntervalTimer(0, 0);
            ExactOneHourTmr.OnElapsed += ExactOneHourTmr_OnElapsed;
 
-        
-         
+         //BindingData.ItemBindingData [] datas=  item_mgr.GetAllItemBindingData(1);
+         //foreach (ItemBindingData data in datas)
+         //{
+         //    Console.WriteLine(data.ItemID);
+         //}
         }
 
         void ExactOneHourTmr_OnElapsed(object sender)
@@ -275,7 +279,19 @@ namespace SecureServer
             card_mgr[ControllID].ForceOpenDoor( );
         }
 
+        public void HookItemValueChangedEvent(string key, int PlaneId)
+        {
+            try
+            {
+                if (!dictClientCallBacks.ContainsKey(key))
+                    throw new Exception("Key not found!");
+                RegisterInfo info = dictClientCallBacks[key];
+                info.PlaneID = PlaneId;
+                info.IsRegistItemEvent = true;
+            }
+            catch { ;}
 
+        }
         public void HookCardReaderEvent(string key, int PlaneId)
         {
             try
@@ -296,7 +312,10 @@ namespace SecureServer
             return card_mgr.GetAllDoorBindingData(PlaneID);
         }
 
-
+        public BindingData.ItemBindingData[] GetAllItemBindingData(int PlaneID)
+        {
+            return item_mgr.GetAllItemBindingData(PlaneID);
+        }
         public void HookAlarmEvent(string key)
         {
             try
@@ -333,10 +352,37 @@ namespace SecureServer
                 ;}
         }
 
+        public void DispatchItemValueChangedEvent(BindingData.ItemBindingData itemBindingData)
+        {
+            try
+            {
+                foreach (RegisterInfo info in dictClientCallBacks.Values.ToArray())
+                {
+                    if (info.IsRegistItemEvent  && info.PlaneID==itemBindingData.PlaneID)
+                    {
+                        Console.WriteLine("Call back!");
+                        info.CallBack.ItemValueChangedEvenr(itemBindingData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                ;
+            }
+        }
+
 
         public BindingData.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID)
         {
             return cctv_mgr.GetAllCCTVBindingData(PlaneID);
         }
+
+        public void SetItemDOValue(int ItemID, bool val)
+        {
+            if (item_mgr[ItemID] != null)
+                item_mgr[ItemID].SetDOValue(val);
+        }
+
     }
 }

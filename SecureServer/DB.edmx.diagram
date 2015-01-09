@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="SecureDBModel.tblSysParameter" Width="1.5" PointX="0.5" PointY="1.375" />
         <EntityTypeShape EntityType="SecureDBModel.vwMagneticCardDetail" Width="1.5" PointX="0.625" PointY="3.375" />
         <EntityTypeShape EntityType="SecureDBModel.tblControllerConfig" Width="1.5" PointX="6.25" PointY="4" />
-        <EntityTypeShape EntityType="SecureDBModel.tblItemConfig" Width="1.5" PointX="0.035464474947873727" PointY="6.6846236617698445" />
+        <EntityTypeShape EntityType="SecureDBModel.tblItemConfig" Width="1.5" PointX="2.625" PointY="6.875" />
         <EntityTypeShape EntityType="SecureDBModel.tblItemGroup" Width="1.5" PointX="2.3897684600156586" PointY="30.803944825569143" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblControllerConfig" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroup" />

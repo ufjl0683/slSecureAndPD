@@ -20,14 +20,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.192.85.64:8080/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://127.0.0.1:8080/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="3c15f35d-6e21-45a5-ad5b-5e6dfc65d914" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="56821a51-4b24-4ba3-9d83-d7b915bb5db0" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c02d1099-8ec9-4422-bae8-0feaae1c08b0" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
-    <MetadataFile FileName="SecureServer.CardReader.xsd" MetadataType="Schema" ID="c564f621-9852-41b1-a94c-c7f68365f405" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
-    <MetadataFile FileName="SecureServer.CardReader.BindingData.xsd" MetadataType="Schema" ID="7a138239-aa23-4023-840b-1117e8af1b9b" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="6d18f716-c116-48bb-b416-2f7d0df2275a" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="9a637bdd-eed4-4a74-944f-966c9d7b2f89" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="1fb9365f-1f03-40a2-b08a-72afb092b4e3" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="SecureServer1.xsd" MetadataType="Schema" ID="bac94c7e-0884-4566-95fa-8ab28176773e" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="SecureServer.BindingData1.xsd" MetadataType="Schema" ID="3938ae20-39f1-4c69-ba16-57c1c7e3bf8b" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="SecureServer.CardReader1.xsd" MetadataType="Schema" ID="f0f3e41b-5d9b-4409-8314-523ead0bd806" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

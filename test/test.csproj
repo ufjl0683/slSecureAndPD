@@ -58,10 +58,13 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RemoteService\SecureServer.CardReader.BindingData.xsd">
+    <None Include="Service References\RemoteService\SecureServer.BindingData.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RemoteService\SecureServer.CardReader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RemoteService\SecureServer.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RemoteService\service.wsdl" />

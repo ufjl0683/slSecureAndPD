@@ -14,21 +14,26 @@ namespace SecureServer
         {
 
 
-           
-            //ModbusTCP.RTU rtu = new ModbusTCP.RTU("rtu-101", 1, "192.192.85.20", 502, 2001, 46);
-            //while (!rtu.IsConnected) ;
-            //for (int i = 2001; i <= 2046; i++)
-            //    rtu.WriteRegister((ushort)i, (ushort)(i - 2001 + 1));
-            //while (true)
-            //{
-               
-            //    int? temp = rtu.ReadRegister(2045);
-            //    Console.WriteLine(temp==null?"null":temp.ToString());
-            //    Console.WriteLine(rtu.ReadRegister(2046));
-            //    Console.WriteLine(rtu.ToString());
-            //    System.Threading.Thread.Sleep(1000);
-            //}
-            //Console.ReadKey();
+
+         //   ModbusTCP.RTU rtu = new ModbusTCP.RTU("rtu-101", 1, "192.168.0.10", 502, 0001, 46);
+         //   while (!rtu.IsConnected) ;
+         //   //for (int i = 2001; i <= 2046; i++)
+         //   //    rtu.WriteRegister((ushort)i, (ushort)(i - 2001 + 1));
+         ////   rtu.WriteRegister(11, 1);
+         //   ushort output=0;
+         //   while (true)
+         //   {
+         //       output ^= 1;
+         //       rtu.WriteRegister(11,output);
+         //       int? temp = rtu.GetRegisterReading(045);
+         //       Console.WriteLine(temp == null ? "null" : temp.ToString());
+         //       Console.WriteLine(rtu.GetRegisterReading(046));
+         //       Console.WriteLine(rtu.ToString());
+         //       System.Threading.Thread.Sleep(1000);
+
+         //   }
+
+         //   Console.ReadKey();
             //NVR.NVR_Type1 nr = new NVR.NVR_Type1() { ERID = 1, IP = "192.192.85.20", Port = 10000, NVRID = 1, UserName = "admin", Password = "1111", PlaneID = 1 };
 
             //nr.SaveRecord(1, DateTime.Now.AddSeconds(-10), DateTime.Now.AddSeconds(10), @"d:\test.avi");

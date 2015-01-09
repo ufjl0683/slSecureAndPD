@@ -16,13 +16,16 @@ using System.Windows.Shapes;
 
 
 
+
 namespace slSecure
 {
     public  static  class DB
     {
-        public static SecureDBContext GetDB()
+        public static slSecure.Web.SecureDBContext GetDB()
         {
-            return new SecureDBContext();
+
+
+            return new slSecure.Web.SecureDBContext();
         }
 
          

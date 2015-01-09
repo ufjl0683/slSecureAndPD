@@ -219,6 +219,45 @@ namespace slSecure.Web
         // TODO:
         // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
         // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'tblCCTVType' 查詢。
+        public IQueryable<tblCCTVType> GetTblCCTVType()
+        {
+            return this.ObjectContext.tblCCTVType;
+        }
+
+        public void InsertTblCCTVType(tblCCTVType tblCCTVType)
+        {
+            if ((tblCCTVType.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCCTVType, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblCCTVType.AddObject(tblCCTVType);
+            }
+        }
+
+        public void UpdateTblCCTVType(tblCCTVType currenttblCCTVType)
+        {
+            this.ObjectContext.tblCCTVType.AttachAsModified(currenttblCCTVType, this.ChangeSet.GetOriginal(currenttblCCTVType));
+        }
+
+        public void DeleteTblCCTVType(tblCCTVType tblCCTVType)
+        {
+            if ((tblCCTVType.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCCTVType, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblCCTVType.Attach(tblCCTVType);
+                this.ObjectContext.tblCCTVType.DeleteObject(tblCCTVType);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
         // 為支援分頁，您必須將排序加入至 'tblControllerCard' 查詢。
         public IQueryable<tblControllerCard> GetTblControllerCard()
         {
@@ -378,7 +417,7 @@ namespace slSecure.Web
         // 為支援分頁，您必須將排序加入至 'tblEngineRoomConfig' 查詢。
         public IQueryable<tblEngineRoomConfig> GetTblEngineRoomConfig()
         {
-            return this.ObjectContext.tblEngineRoomConfig.Include("tblControllerConfig").Include("tblEntranceGuardConfig") ;
+            return this.ObjectContext.tblEngineRoomConfig;
         }
 
         public void InsertTblEngineRoomConfig(tblEngineRoomConfig tblEngineRoomConfig)
@@ -606,10 +645,10 @@ namespace slSecure.Web
             }
         }
 
-         //TODO:
-         //考慮限制查詢方法的結果。如果需要其他輸入，可以將
-         //參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
-         //為支援分頁，您必須將排序加入至 'tblItemConfig' 查詢。
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'tblItemConfig' 查詢。
         public IQueryable<tblItemConfig> GetTblItemConfig()
         {
             return this.ObjectContext.tblItemConfig;
@@ -642,6 +681,45 @@ namespace slSecure.Web
             {
                 this.ObjectContext.tblItemConfig.Attach(tblItemConfig);
                 this.ObjectContext.tblItemConfig.DeleteObject(tblItemConfig);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'tblItemGroup' 查詢。
+        public IQueryable<tblItemGroup> GetTblItemGroup()
+        {
+            return this.ObjectContext.tblItemGroup;
+        }
+
+        public void InsertTblItemGroup(tblItemGroup tblItemGroup)
+        {
+            if ((tblItemGroup.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblItemGroup, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblItemGroup.AddObject(tblItemGroup);
+            }
+        }
+
+        public void UpdateTblItemGroup(tblItemGroup currenttblItemGroup)
+        {
+            this.ObjectContext.tblItemGroup.AttachAsModified(currenttblItemGroup, this.ChangeSet.GetOriginal(currenttblItemGroup));
+        }
+
+        public void DeleteTblItemGroup(tblItemGroup tblItemGroup)
+        {
+            if ((tblItemGroup.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblItemGroup, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblItemGroup.Attach(tblItemGroup);
+                this.ObjectContext.tblItemGroup.DeleteObject(tblItemGroup);
             }
         }
 
@@ -798,6 +876,45 @@ namespace slSecure.Web
             {
                 this.ObjectContext.tblMenuGroup.Attach(tblMenuGroup);
                 this.ObjectContext.tblMenuGroup.DeleteObject(tblMenuGroup);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'tblNVRConfig' 查詢。
+        public IQueryable<tblNVRConfig> GetTblNVRConfig()
+        {
+            return this.ObjectContext.tblNVRConfig;
+        }
+
+        public void InsertTblNVRConfig(tblNVRConfig tblNVRConfig)
+        {
+            if ((tblNVRConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblNVRConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblNVRConfig.AddObject(tblNVRConfig);
+            }
+        }
+
+        public void UpdateTblNVRConfig(tblNVRConfig currenttblNVRConfig)
+        {
+            this.ObjectContext.tblNVRConfig.AttachAsModified(currenttblNVRConfig, this.ChangeSet.GetOriginal(currenttblNVRConfig));
+        }
+
+        public void DeleteTblNVRConfig(tblNVRConfig tblNVRConfig)
+        {
+            if ((tblNVRConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblNVRConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblNVRConfig.Attach(tblNVRConfig);
+                this.ObjectContext.tblNVRConfig.DeleteObject(tblNVRConfig);
             }
         }
 
@@ -1041,7 +1158,7 @@ namespace slSecure.Web
         // 為支援分頁，您必須將排序加入至 'tblSysRole' 查詢。
         public IQueryable<tblSysRole> GetTblSysRole()
         {
-            return this.ObjectContext.tblSysRole.Include("tblMagneticCard");
+            return this.ObjectContext.tblSysRole;
         }
 
         public void InsertTblSysRole(tblSysRole tblSysRole)
@@ -1238,13 +1355,8 @@ namespace slSecure.Web
         {
             return this.ObjectContext.tblUserGroupMenu;
         }
-        //錯誤	13	'slSecure.Web.SecureDBContext' 不包含 'GetTblUserGroupMenuIncludeMenuQuery' 的定義，也找不到擴充方法 'GetTblUserGroupMenuIncludeMenuQuery' 來接受類型 'slSecure.Web.SecureDBContext' 的第一個引數 (您是否遺漏 using 指示詞或組件參考?)	D:\backd\hwacom\機房門禁\slSecureAndPD\slSecure\Forms\UserGroupAuth.xaml.cs	47	65	slSecure
+     
 
-        
-        public IQueryable<tblUserGroupMenu> GetTblUserGroupMenuIncludeMenu()
-        {
-            return this.ObjectContext.tblUserGroupMenu.Include("tblMenu");
-        }
 
         public void InsertTblUserGroupMenu(tblUserGroupMenu tblUserGroupMenu)
         {
@@ -1273,6 +1385,240 @@ namespace slSecure.Web
             {
                 this.ObjectContext.tblUserGroupMenu.Attach(tblUserGroupMenu);
                 this.ObjectContext.tblUserGroupMenu.DeleteObject(tblUserGroupMenu);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwCardCommandLog' 查詢。
+        public IQueryable<vwCardCommandLog> GetVwCardCommandLog()
+        {
+            return this.ObjectContext.vwCardCommandLog;
+        }
+
+        public void InsertVwCardCommandLog(vwCardCommandLog vwCardCommandLog)
+        {
+            if ((vwCardCommandLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwCardCommandLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.vwCardCommandLog.AddObject(vwCardCommandLog);
+            }
+        }
+
+        public void UpdateVwCardCommandLog(vwCardCommandLog currentvwCardCommandLog)
+        {
+            this.ObjectContext.vwCardCommandLog.AttachAsModified(currentvwCardCommandLog, this.ChangeSet.GetOriginal(currentvwCardCommandLog));
+        }
+
+        public void DeleteVwCardCommandLog(vwCardCommandLog vwCardCommandLog)
+        {
+            if ((vwCardCommandLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwCardCommandLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.vwCardCommandLog.Attach(vwCardCommandLog);
+                this.ObjectContext.vwCardCommandLog.DeleteObject(vwCardCommandLog);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwEngineRoomLog' 查詢。
+        public IQueryable<vwEngineRoomLog> GetVwEngineRoomLog()
+        {
+            return this.ObjectContext.vwEngineRoomLog;
+        }
+
+        public void InsertVwEngineRoomLog(vwEngineRoomLog vwEngineRoomLog)
+        {
+            if ((vwEngineRoomLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwEngineRoomLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.vwEngineRoomLog.AddObject(vwEngineRoomLog);
+            }
+        }
+
+        public void UpdateVwEngineRoomLog(vwEngineRoomLog currentvwEngineRoomLog)
+        {
+            this.ObjectContext.vwEngineRoomLog.AttachAsModified(currentvwEngineRoomLog, this.ChangeSet.GetOriginal(currentvwEngineRoomLog));
+        }
+
+        public void DeleteVwEngineRoomLog(vwEngineRoomLog vwEngineRoomLog)
+        {
+            if ((vwEngineRoomLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwEngineRoomLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.vwEngineRoomLog.Attach(vwEngineRoomLog);
+                this.ObjectContext.vwEngineRoomLog.DeleteObject(vwEngineRoomLog);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwEntranceGuardDetail' 查詢。
+        public IQueryable<vwEntranceGuardDetail> GetVwEntranceGuardDetail()
+        {
+            return this.ObjectContext.vwEntranceGuardDetail;
+        }
+
+        public void InsertVwEntranceGuardDetail(vwEntranceGuardDetail vwEntranceGuardDetail)
+        {
+            if ((vwEntranceGuardDetail.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwEntranceGuardDetail, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.vwEntranceGuardDetail.AddObject(vwEntranceGuardDetail);
+            }
+        }
+
+        public void UpdateVwEntranceGuardDetail(vwEntranceGuardDetail currentvwEntranceGuardDetail)
+        {
+            this.ObjectContext.vwEntranceGuardDetail.AttachAsModified(currentvwEntranceGuardDetail, this.ChangeSet.GetOriginal(currentvwEntranceGuardDetail));
+        }
+
+        public void DeleteVwEntranceGuardDetail(vwEntranceGuardDetail vwEntranceGuardDetail)
+        {
+            if ((vwEntranceGuardDetail.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwEntranceGuardDetail, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.vwEntranceGuardDetail.Attach(vwEntranceGuardDetail);
+                this.ObjectContext.vwEntranceGuardDetail.DeleteObject(vwEntranceGuardDetail);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwMagneticCard' 查詢。
+        public IQueryable<vwMagneticCard> GetVwMagneticCard()
+        {
+            return this.ObjectContext.vwMagneticCard;
+        }
+
+        public void InsertVwMagneticCard(vwMagneticCard vwMagneticCard)
+        {
+            if ((vwMagneticCard.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwMagneticCard, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.vwMagneticCard.AddObject(vwMagneticCard);
+            }
+        }
+
+        public void UpdateVwMagneticCard(vwMagneticCard currentvwMagneticCard)
+        {
+            this.ObjectContext.vwMagneticCard.AttachAsModified(currentvwMagneticCard, this.ChangeSet.GetOriginal(currentvwMagneticCard));
+        }
+
+        public void DeleteVwMagneticCard(vwMagneticCard vwMagneticCard)
+        {
+            if ((vwMagneticCard.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwMagneticCard, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.vwMagneticCard.Attach(vwMagneticCard);
+                this.ObjectContext.vwMagneticCard.DeleteObject(vwMagneticCard);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwMagneticCardAllowController' 查詢。
+        public IQueryable<vwMagneticCardAllowController> GetVwMagneticCardAllowController()
+        {
+            return this.ObjectContext.vwMagneticCardAllowController;
+        }
+
+        public void InsertVwMagneticCardAllowController(vwMagneticCardAllowController vwMagneticCardAllowController)
+        {
+            if ((vwMagneticCardAllowController.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwMagneticCardAllowController, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.vwMagneticCardAllowController.AddObject(vwMagneticCardAllowController);
+            }
+        }
+
+        public void UpdateVwMagneticCardAllowController(vwMagneticCardAllowController currentvwMagneticCardAllowController)
+        {
+            this.ObjectContext.vwMagneticCardAllowController.AttachAsModified(currentvwMagneticCardAllowController, this.ChangeSet.GetOriginal(currentvwMagneticCardAllowController));
+        }
+
+        public void DeleteVwMagneticCardAllowController(vwMagneticCardAllowController vwMagneticCardAllowController)
+        {
+            if ((vwMagneticCardAllowController.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwMagneticCardAllowController, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.vwMagneticCardAllowController.Attach(vwMagneticCardAllowController);
+                this.ObjectContext.vwMagneticCardAllowController.DeleteObject(vwMagneticCardAllowController);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwMagneticCardDetail' 查詢。
+        public IQueryable<vwMagneticCardDetail> GetVwMagneticCardDetail()
+        {
+            return this.ObjectContext.vwMagneticCardDetail;
+        }
+
+        public void InsertVwMagneticCardDetail(vwMagneticCardDetail vwMagneticCardDetail)
+        {
+            if ((vwMagneticCardDetail.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwMagneticCardDetail, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.vwMagneticCardDetail.AddObject(vwMagneticCardDetail);
+            }
+        }
+
+        public void UpdateVwMagneticCardDetail(vwMagneticCardDetail currentvwMagneticCardDetail)
+        {
+            this.ObjectContext.vwMagneticCardDetail.AttachAsModified(currentvwMagneticCardDetail, this.ChangeSet.GetOriginal(currentvwMagneticCardDetail));
+        }
+
+        public void DeleteVwMagneticCardDetail(vwMagneticCardDetail vwMagneticCardDetail)
+        {
+            if ((vwMagneticCardDetail.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(vwMagneticCardDetail, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.vwMagneticCardDetail.Attach(vwMagneticCardDetail);
+                this.ObjectContext.vwMagneticCardDetail.DeleteObject(vwMagneticCardDetail);
             }
         }
 
@@ -1355,48 +1701,25 @@ namespace slSecure.Web
         }
 
 
-        public IQueryable<vwCardCommandLog> GetVwCardCommandLog()
+        //-------------------------------------------------------------------Append-------------------------------------
+        public IQueryable<tblEngineRoomConfig> GetTblEngineRoomConfigInclude()
         {
 
-            return this.ObjectContext.vwCardCommandLog;
+            return this.ObjectContext.tblEngineRoomConfig.Include("tblControllerConfig").Include("tblEntranceGuardConfig");
 
         }
 
 
 
-        public IQueryable<vwEngineRoomLog> GetVwEngineRoomLog()
+        public IQueryable<tblUserGroupMenu> GetTblUserGroupMenuIncludeMenu()
         {
 
-            return this.ObjectContext.vwEngineRoomLog;
+            return this.ObjectContext.tblUserGroupMenu.Include("tblMenu");
 
         }
 
+      
 
-
-        public IQueryable<vwEntranceGuardDetail> GetVwEntranceGuardDetail()
-        {
-
-            return this.ObjectContext.vwEntranceGuardDetail;
-
-        }
-
-
-
-        public IQueryable<vwMagneticCard> GetVwMagneticCard()
-        {
-
-            return this.ObjectContext.vwMagneticCard;
-
-        }
-
-
-
-        public IQueryable<vwMagneticCardDetail> GetVwMagneticCardDetail()
-        {
-
-            return this.ObjectContext.vwMagneticCardDetail;
-
-        }
 
     }
 }

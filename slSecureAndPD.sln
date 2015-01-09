@@ -46,8 +46,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MjpegProcessorSL", "mjpeg-1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusTCP", "ModbusTCP\ModbusTCP\ModbusTCP.csproj", "{78A23B5B-CB72-4EDB-B594-5370D086197D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFIDTest", "RFIDTest\RFIDTest.csproj", "{68D74F12-60B0-4D6C-9FAF-1544FE99121E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,10 +100,6 @@ Global
 		{78A23B5B-CB72-4EDB-B594-5370D086197D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A23B5B-CB72-4EDB-B594-5370D086197D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A23B5B-CB72-4EDB-B594-5370D086197D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68D74F12-60B0-4D6C-9FAF-1544FE99121E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68D74F12-60B0-4D6C-9FAF-1544FE99121E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68D74F12-60B0-4D6C-9FAF-1544FE99121E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68D74F12-60B0-4D6C-9FAF-1544FE99121E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

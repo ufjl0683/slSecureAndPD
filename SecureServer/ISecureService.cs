@@ -32,6 +32,15 @@ namespace SecureServer
          [OperationContract]
          BindingData.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID);
 
+        [OperationContract]
+         void HookItemValueChangedEvent(string key, int PlaneId);
+
+        [OperationContract]
+        BindingData.ItemBindingData[] GetAllItemBindingData(int PlaneID);
+
+        [OperationContract]
+        void SetItemDOValue(int ItemID, bool val);
+
     }
 
 
@@ -45,7 +54,8 @@ namespace SecureServer
         void SecureDoorEvent(DoorEventType evttype, SecureServer.BindingData.DoorBindingData doorBindingData);
         [OperationContract(IsOneWay = true)]
         void SecureAlarm(AlarmData alarmdata);
-
+        [OperationContract(IsOneWay = true)]
+        void ItemValueChangedEvenr(BindingData.ItemBindingData ItemBindingData);
         
     }
 

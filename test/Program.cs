@@ -18,10 +18,12 @@ namespace test
             System.Collections.ArrayList list = new System.Collections.ArrayList();
             byte[] data = new byte[100]; ;
             Master modbus = new Master();
-            modbus.connect("192.168.0.10", 502);
+            modbus.connect("192.168.0.50", 502);
           //  modbus.OnResponseData += modbus_OnResponseData;
           //  modbus.ReadHoldingRegister(1, 0, 0, 100);
-            modbus.ReadHoldingRegister(1, 1, 000, 100, ref data);
+
+          
+            modbus.ReadHoldingRegister(1, 1, 2000, 46, ref data);
             
             //  new Wrapper();
             //CCTV_TYPE1 cctv=   new CCTV_TYPE1("192.192.85.20", 11000, "admin", "pass");
@@ -29,18 +31,31 @@ namespace test
             //  Console.ReadKey();
             //  cctv.Preset(3);
 
-          //  RTU rtu = new RTU("rtu-101", 1, "192.168.10.50", 502,2001, 46);
+           RTU rtu = new RTU("rtu-101", 1, "192.168.0.50", 502,2001, 46);
          //   RTU rtu = new RTU("rtu-101", 1, "192.168.0.10", 502, 0001, 46);
             //while (!rtu.IsConnected) ;
             ////for (int i = 1; i <= 22; i++)
             ////    rtu.WriteRegister((ushort)i, (ushort)(i - 2001 + 1));
             //while (true)
             //{
+           while (true)
+           {
+               int? temp = rtu.GetRegisterReading(2045);
+               int? r = rtu.GetRegisterReading(2046);
 
-            //    int? temp = rtu.GetRegisterReading(0021);
-            //    Console.WriteLine(temp == null ? "null" : temp.ToString());
-            //    Console.WriteLine(rtu.GetRegisterReading( 0043));
-            //    Console.WriteLine(rtu.ToString());
+               Console.WriteLine(temp == null ? "null" : "temp:" + (temp/10.0).ToString());
+               Console.WriteLine(temp == null ? "null" : "r:" + (r/10.0).ToString());
+               Console.WriteLine("di0:"+ ((rtu.GetRegisterReading(2001)>>8) &0x01)  );
+               Console.WriteLine("di1:"+((rtu.GetRegisterReading(2001)>>9) *0x01));
+               Console.WriteLine("do:"+rtu.GetRegisterReading(2009));
+               System.Threading.Thread.Sleep(2000);
+               rtu.WriteRegister(2009, 1);
+             
+               System.Threading.Thread.Sleep(2000);
+               rtu.WriteRegister(2009, 0);
+           }
+       //   Console.WriteLine(rtu.GetRegisterReading(0043));
+         // Console.WriteLine(rtu.GetRegisterReading());
             //    System.Threading.Thread.Sleep(1000);
             //}
             Console.ReadKey();
@@ -77,6 +92,12 @@ namespace test
             }
 
             public void SecureAlarm(AlarmData alarmdata)
+            {
+                throw new NotImplementedException();
+            }
+
+
+            public void ItemValueChangedEvenr(ItemBindingData ItemBindingData)
             {
                 throw new NotImplementedException();
             }

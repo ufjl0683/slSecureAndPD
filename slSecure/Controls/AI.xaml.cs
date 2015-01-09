@@ -67,6 +67,19 @@ namespace slSecure.Controls
                 (this.Resources["stbBlind"] as Storyboard).Stop();
         }
 
+
+        public string Content
+        {
+            get
+            {
+                return this.txtContent.Text;
+            }
+            set
+            {
+                this.txtContent.Text = value;
+            }
+        }
+
         private bool _IsSelect;
         public bool IsSelect
         {

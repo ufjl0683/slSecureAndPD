@@ -110,23 +110,29 @@
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Service References\RemoteService\SecureServer.CardReader.BindingData.xsd">
+    <None Include="Service References\RemoteService\SecureServer.BindingData1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RemoteService\SecureServer.CardReader.xsd">
+    <None Include="Service References\RemoteService\SecureServer.CardReader1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RemoteService\service.wsdl" />
-    <None Include="Service References\RemoteService\service.xsd">
+    <None Include="Service References\RemoteService\SecureServer1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RemoteService\service1.xsd">
+    <None Include="Service References\RemoteService\service1.wsdl" />
+    <None Include="Service References\RemoteService\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RemoteService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RemoteService\slWCFModule.RemoteService.CCTVBindingData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RemoteService\slWCFModule.RemoteService.DoorBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RemoteService\slWCFModule.RemoteService.ItemBindingData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>

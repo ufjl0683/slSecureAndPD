@@ -182,11 +182,12 @@
           <Property Name="AlarmContent" Type="nvarchar" MaxLength="100" />
           <Property Name="AbnormalRecoveryContent" Type="nvarchar" MaxLength="100" />
           <Property Name="AbnormalRecoveryMode" Type="nvarchar" MaxLength="100" />
-          <Property Name="WarningValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIInvokeWarningValue" Type="int" />
           <Property Name="UIType" Type="nvarchar" MaxLength="5" />
           <Property Name="ValueScale" Type="float" Nullable="false" />
           <Property Name="Offset" Type="float" Nullable="false" />
           <Property Name="Coefficient" Type="float" Nullable="false" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -573,13 +574,14 @@
           <Property Type="String" Name="AlarmContent" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="AbnormalRecoveryContent" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="AbnormalRecoveryMode" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="WarningValue" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="UIType" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblControllerConfig" FromRole="tblItemConfig" ToRole="tblControllerConfig" />
           <NavigationProperty Name="tblItemGroup" Relationship="SecureDBModel.FK_tblItemConfig_tblItemGroup" FromRole="tblItemConfig" ToRole="tblItemGroup" />
           <Property Type="Double" Name="ValueScale" Nullable="false" />
           <Property Type="Double" Name="Offset" Nullable="false" />
           <Property Type="Double" Name="Coefficient" Nullable="false" />
+          <Property Type="Int32" Name="DIInvokeWarningValue" />
+          <Property Type="Boolean" Name="IsShow" Nullable="false" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -821,11 +823,12 @@
           <EntitySetMapping Name="tblItemConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblItemConfig">
               <MappingFragment StoreEntitySet="tblItemConfig">
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="DIInvokeWarningValue" ColumnName="DIInvokeWarningValue" />
                 <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
                 <ScalarProperty Name="Offset" ColumnName="Offset" />
                 <ScalarProperty Name="ValueScale" ColumnName="ValueScale" />
                 <ScalarProperty Name="UIType" ColumnName="UIType" />
-                <ScalarProperty Name="WarningValue" ColumnName="WarningValue" />
                 <ScalarProperty Name="AbnormalRecoveryMode" ColumnName="AbnormalRecoveryMode" />
                 <ScalarProperty Name="AbnormalRecoveryContent" ColumnName="AbnormalRecoveryContent" />
                 <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
