@@ -28,6 +28,7 @@ namespace slSecure.Forms
         DoorBindingData[] DoorBindingDatas;
         CCTVBindingData[] CCTVBindingDatas;
         ItemBindingData[] ItemBindingDatas;
+        ItemGroupBindingData[] ItemGroupBindingDatas;
         MyClient client;
         int PlaneID;
         tblERPlane tblPlane;
@@ -90,6 +91,27 @@ namespace slSecure.Forms
                 client.SecureService.GetAllItemBindingDataAsync(planeid);
                 return taskCompletionSource.Task;
             }
+
+
+            Task<bool> GetAllItemGroupBindingData(int planeid)
+            {
+                TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
+
+                client.SecureService.GetAllItemGroupBindingDataCompleted += (s, a) =>
+                {
+                    if (a.Error != null)
+                    {
+                        taskCompletionSource.TrySetResult(false);
+                        return;
+                    }
+                    ItemGroupBindingDatas = a.Result.ToArray();
+                    taskCompletionSource.TrySetResult(true);
+                };
+                client.SecureService.GetAllItemGroupBindingDataAsync(planeid);
+                return taskCompletionSource.Task;
+            }
+
+
             Task HookDoorEvent(int planeid)
           {
               TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
@@ -152,9 +174,11 @@ namespace slSecure.Forms
             await GetALLDoorBindingData(PlaneID);
             await GetALLCCTVBindingData(PlaneID);
             await GetAllItemBindingData(PlaneID);
-              PlaceDoor();
+            await GetAllItemGroupBindingData(PlaneID);
+            PlaceDoor();
             PlaceCCTV();
             PlaceItem();
+            PlaceItemGroup();
             var erplanes= await  db.LoadAsync<tblERPlane>(db.GetTblERPlaneQuery().Where(n=>n.PlaneID==this.PlaneID));
            this.tblPlane= erplanes.FirstOrDefault();
            this.DataContext = tblPlane;
@@ -163,6 +187,9 @@ namespace slSecure.Forms
 
         void client_OnItemValueChangedEvent(ItemBindingData itemdata)
         {
+            if (this.ItemBindingDatas == null)
+                return;
+
             ItemBindingData data = this.ItemBindingDatas.Where(n => n.ItemID == itemdata.ItemID).FirstOrDefault();
 
          if (data == null)
@@ -170,9 +197,30 @@ namespace slSecure.Forms
 
          data.Content = itemdata.Content;
          data.ColorString = itemdata.ColorString;
-
+         data.Value = itemdata.Value;
+        
+            if(itemdata.GroupID!=null)
+                   UpdateItemGroup((int)itemdata.GroupID);
         }
+        void UpdateItemGroup(int GroupID)
+        {
+            if (ItemGroupBindingDatas == null)
+                return;
+            client.SecureService.GetAllItemGroupBindingDataCompleted += (s, a) =>
+                {
+                    if (a.Error != null)
+                        return;
+                    ItemGroupBindingData[] datas = a.Result.ToArray();
 
+                    ItemGroupBindingData source = datas.Where(n => n.GroupID == GroupID).FirstOrDefault();
+                   
+                   ItemGroupBindingData  dest = ItemGroupBindingDatas.Where(n=>n.GroupID==GroupID).FirstOrDefault();
+                    if(dest!=null && source!=null)
+                        dest.ColorString=source.ColorString;
+
+                };
+            client.SecureService.GetAllItemGroupBindingDataAsync(this.PlaneID);
+        }
         void client_OnDoorEvent(DoorEventType evttype, DoorBindingData bindingdata)
         {
 
@@ -223,10 +271,7 @@ namespace slSecure.Forms
             }
         }
 
-        void item_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-           
-        }
+    
         async void PlaceDoor()
         {
             var q = from n in db.GetTblControllerConfigQuery() where (n.ControlType == 1 || n.ControlType == 3) && n.PlaneID == this.PlaneID select n;
@@ -262,9 +307,34 @@ namespace slSecure.Forms
             }
         }
 
+
+        async void PlaceItemGroup()
+        {
+            var q = from n in db.GetTblItemGroupQuery() where n.PlaneID == this.PlaneID && n.IsShow select n ;
+            var res = await db.LoadAsync<tblItemGroup>(q);
+            foreach (tblItemGroup tbl in res)
+            {
+                ItemGroup item = new ItemGroup() { Name = "Grp" + tbl.GroupID };
+
+                (item as Control).HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                (item as Control).VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                (item as Control).SetValue(Grid.MarginProperty, new Thickness(tbl.X , tbl.Y , 0, 0));
+                CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation , ScaleX = tbl.ScaleX  , ScaleY = tbl.ScaleY   };
+                (item as Control).RenderTransform = transform;
+                (item as Control).DataContext = ItemGroupBindingDatas.FirstOrDefault(n => n.PlaneID == this.PlaneID && n.GroupID == tbl.GroupID);
+                item.MouseLeftButtonDown += itemGroup_MouseLeftButtonDown;
+                this.Canvas.Children.Add(item);
+            }
+        }
+        void itemGroup_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            int gid = ((sender as ItemGroup).DataContext as ItemGroupBindingData).GroupID;
+
+            this.lstIOMenu.ItemsSource = ItemBindingDatas.Where(n => n.GroupID == gid && (n.Type == "AI" || n.Type == "DI"));
+        }
         async void  PlaceItem()
         {
-             var q = from n in db.GetTblItemConfigQuery()  where   n.tblItemGroup.PlaneID == this.PlaneID select n;
+             var q = from n in db.GetTblItemConfigQuery()  where   n.tblItemGroup.PlaneID == this.PlaneID  && n.IsShow select n;
              var res = await db.LoadAsync<tblItemConfig>(q);
 
              foreach (tblItemConfig tbl in res)
@@ -290,7 +360,7 @@ namespace slSecure.Forms
                  (item as Control).SetValue(Grid.MarginProperty, new Thickness(tbl.X ?? 0, tbl.Y ?? 0, 0, 0));
                  CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation ?? 0, ScaleX = tbl.ScaleX ?? 0, ScaleY = tbl.ScaleY ?? 0 };
                  (item as Control).RenderTransform = transform;
-                (item as Control).DataContext = ItemBindingDatas.FirstOrDefault(n=>n.PlaneID==this.PlaneID && n.ItemID==tbl.ItemID);
+                (item as Control).DataContext = ItemBindingDatas.FirstOrDefault(n=>n.PlaneID==this.PlaneID && n.ItemID==tbl.ItemID  );
 
                 if (tbl.Type == "DO") 
                 (item as Control).MouseLeftButtonDown += DO_MouseLeftButtonDown;

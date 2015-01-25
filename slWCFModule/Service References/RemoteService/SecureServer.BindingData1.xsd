@@ -44,6 +44,9 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="ColorString" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Degree" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsAlarm" type="xs:boolean" />
       <xs:element minOccurs="0" name="ItemID" type="xs:int" />
       <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
@@ -51,4 +54,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ItemBindingData" nillable="true" type="tns:ItemBindingData" />
+  <xs:complexType name="ArrayOfItemGroupBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemGroupBindingData" nillable="true" type="tns:ItemGroupBindingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItemGroupBindingData" nillable="true" type="tns:ArrayOfItemGroupBindingData" />
+  <xs:complexType name="ItemGroupBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColorString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemGroupBindingData" nillable="true" type="tns:ItemGroupBindingData" />
 </xs:schema>

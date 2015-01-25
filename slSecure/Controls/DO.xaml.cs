@@ -29,7 +29,7 @@ namespace slSecure.Controls
                 (this.Resources["stbBlind"] as Storyboard).Stop();
         }
 
-        public    string Content
+        public new    string Content
         {
             get
             {

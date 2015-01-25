@@ -1,4 +1,5 @@
-﻿using System;
+﻿using slWCFModule.RemoteService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -57,7 +58,24 @@ namespace slSecure.Controls
         public AI()
         {
             InitializeComponent();
+
+            this.DataContextChanged += AI_DataContextChanged;
         }
+
+        void AI_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ItemBindingData data = this.DataContext as ItemBindingData;
+
+            if (data.IsAlarm && data.Degree > 0)
+                this.SetBlind(true);
+            else
+                this.SetBlind(false);
+            
+           // throw new NotImplementedException();
+        }
+
+
+   
 
         public void SetBlind(bool IsBlind)
         {

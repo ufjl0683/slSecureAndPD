@@ -246,8 +246,8 @@ namespace slEditor
              }
 
             #endregion
-#region AI
-             var qai = from n in db.GetTblItemConfigQuery() where n.IsShow && n.tblItemGroup.PlaneID==planeid select n;
+#region AI DI DO  
+             var qai = from n in db.GetTblItemConfigQuery() where n.IsShow && n.tblItemGroup.PlaneID==planeid   select n;
              var resqai = await DB.LoadAsync<tblItemConfig>(db, qai);
 
              foreach (tblItemConfig tbl in resqai)
@@ -258,7 +258,7 @@ namespace slEditor
                      ai.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                      ai.VerticalAlignment = System.Windows.VerticalAlignment.Top;
                      ai.SetValue(Grid.MarginProperty, new Thickness(tbl.X ?? 0, tbl.Y ?? 0, 0, 0));
-                     ai.Content = "100V";
+                     ai.Content ="AI:"+ tbl.ItemName;
                      //CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation ?? 0, ScaleX = tbl.ScaleX ?? 1, ScaleY = tbl.ScaleY ?? 1 };
                      //ai.RenderTransform = transform;
                      ai.DataContext = tbl;    //new SecureServer.BindingData.ItemBindingData { ColorString = "Green", Content = "100V", ItemID =1, Type=  "AI" };
@@ -273,7 +273,7 @@ namespace slEditor
                      di.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                      di.VerticalAlignment = System.Windows.VerticalAlignment.Top;
                      di.SetValue(Grid.MarginProperty, new Thickness(tbl.X ?? 0, tbl.Y ?? 0, 0, 0));
-                     di.Content = "100V";
+                     di.Content ="DI:"+ tbl.ItemName;
                      
                      //CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation ?? 0, ScaleX = tbl.ScaleX ?? 1, ScaleY = tbl.ScaleY ?? 1 };
                      //ai.RenderTransform = transform;
@@ -291,8 +291,7 @@ namespace slEditor
                      di.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                      di.VerticalAlignment = System.Windows.VerticalAlignment.Top;
                      di.SetValue(Grid.MarginProperty, new Thickness(tbl.X ?? 0, tbl.Y ?? 0, 0, 0));
-                     di.Content = "DO";
-
+                     di.Content ="DO:"+ tbl.ItemName;
                      //CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation ?? 0, ScaleX = tbl.ScaleX ?? 1, ScaleY = tbl.ScaleY ?? 1 };
                      //ai.RenderTransform = transform;
                      di.DataContext = tbl;    //new SecureServer.BindingData.ItemBindingData { ColorString = "Green", Content = "100V", ItemID =1, Type=  "AI" };
@@ -306,6 +305,27 @@ namespace slEditor
                  }
                  
              }
+
+#endregion
+
+#region ItemGroup
+             var qgrouo = from n in db.GetTblItemGroupQuery() where n.IsShow && n.PlaneID == planeid select n;
+             var resgroup = await DB.LoadAsync<tblItemGroup>(db, qgrouo);
+             foreach (tblItemGroup tbl in resgroup)
+             {
+                 ItemGroup grp = new ItemGroup();
+                 grp.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                 grp.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                 grp.SetValue(Grid.MarginProperty, new Thickness(tbl.X  , tbl.Y , 0, 0));
+                 grp.Content ="Group:"+ tbl.GroupName;
+                
+                 grp.DataContext = tbl;
+                 this.grdDeviceLayer.Children.Add(grp);
+                 grp.MouseLeftButtonDown += selectedDevice_MouseLeftButtonDown;
+                 grp.MouseLeftButtonUp += selectedDevice_MouseLeftButtonUp;
+                 grp.MouseMove += selectedDevice_MouseMove;
+             }
+
 
 #endregion
 
@@ -440,6 +460,16 @@ namespace slEditor
             {
                 (selectedDevice.DataContext as tblItemConfig).X = (int)(p.X - deltaX);
                 (selectedDevice.DataContext as tblItemConfig).Y = (int)(p.Y - deltaY);
+            }
+            else if (selectedDevice is DI)
+            {
+                (selectedDevice.DataContext as tblItemConfig).X = (int)(p.X - deltaX);
+                (selectedDevice.DataContext as tblItemConfig).Y = (int)(p.Y - deltaY);
+            }
+            else if (selectedDevice is ItemGroup)
+            {
+                (selectedDevice.DataContext as tblItemGroup).X = (int)(p.X - deltaX);
+                (selectedDevice.DataContext as tblItemGroup).Y = (int)(p.Y - deltaY);
             }
             txtBlock2.Text = string.Format("x:{0:0.0},y:{1:0.00}", (int)(p.X - deltaX), (int)(p.Y - deltaY));
              

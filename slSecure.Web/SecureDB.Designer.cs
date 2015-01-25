@@ -6122,7 +6122,8 @@ namespace slSecure.Web
         /// <param name="rotation">Rotation 屬性的初始值。</param>
         /// <param name="scaleX">ScaleX 屬性的初始值。</param>
         /// <param name="scaleY">ScaleY 屬性的初始值。</param>
-        public static tblItemGroup CreatetblItemGroup(global::System.Int32 groupID, global::System.String groupName, global::System.Double x, global::System.Double y, global::System.Double rotation, global::System.Double scaleX, global::System.Double scaleY)
+        /// <param name="isShow">IsShow 屬性的初始值。</param>
+        public static tblItemGroup CreatetblItemGroup(global::System.Int32 groupID, global::System.String groupName, global::System.Double x, global::System.Double y, global::System.Double rotation, global::System.Double scaleX, global::System.Double scaleY, global::System.Boolean isShow)
         {
             tblItemGroup tblItemGroup = new tblItemGroup();
             tblItemGroup.GroupID = groupID;
@@ -6132,6 +6133,7 @@ namespace slSecure.Web
             tblItemGroup.Rotation = rotation;
             tblItemGroup.ScaleX = scaleX;
             tblItemGroup.ScaleY = scaleY;
+            tblItemGroup.IsShow = isShow;
             return tblItemGroup;
         }
 
@@ -6357,6 +6359,30 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _PlaneID;
         partial void OnPlaneIDChanging(Nullable<global::System.Int32> value);
         partial void OnPlaneIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsShow
+        {
+            get
+            {
+                return _IsShow;
+            }
+            set
+            {
+                OnIsShowChanging(value);
+                ReportPropertyChanging("IsShow");
+                _IsShow = StructuralObject.SetValidValue(value, "IsShow");
+                ReportPropertyChanged("IsShow");
+                OnIsShowChanged();
+            }
+        }
+        private global::System.Boolean _IsShow;
+        partial void OnIsShowChanging(global::System.Boolean value);
+        partial void OnIsShowChanged();
 
         #endregion
 

@@ -19,6 +19,7 @@ namespace SecureServer
         public static CCTV.CCTVManager cctv_mgr;
         public static RTU.RTUManager rtu_mgr;
         public static RTU.ItemManager item_mgr;
+        public static RTU.ItemGroupManager itemgrp_mgr;
         ExactIntervalTimer ExactOneHourTmr;
 
 
@@ -30,7 +31,8 @@ namespace SecureServer
            card_mgr = new CardReaderManager(this);
            rtu_mgr = new RTU.RTUManager();
            item_mgr = new RTU.ItemManager();
-            
+           itemgrp_mgr = new RTU.ItemGroupManager();
+
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
            card_mgr.OnAlarmEvent += card_mgr_OnAlarmEvent;
            new System.Threading.Thread(CheckCardReaderConnectionTask).Start();
@@ -354,22 +356,25 @@ namespace SecureServer
 
         public void DispatchItemValueChangedEvent(BindingData.ItemBindingData itemBindingData)
         {
-            try
-            {
+            
                 foreach (RegisterInfo info in dictClientCallBacks.Values.ToArray())
                 {
+                    try
+                    {
                     if (info.IsRegistItemEvent  && info.PlaneID==itemBindingData.PlaneID)
                     {
-                        Console.WriteLine("Call back!");
+                      
                         info.CallBack.ItemValueChangedEvenr(itemBindingData);
+                        Console.WriteLine("Call back!");
+                    }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                       dictClientCallBacks.Remove(info.Key) ;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + "," + ex.StackTrace);
-                ;
-            }
+           
         }
 
 
@@ -381,8 +386,23 @@ namespace SecureServer
         public void SetItemDOValue(int ItemID, bool val)
         {
             if (item_mgr[ItemID] != null)
+            {
                 item_mgr[ItemID].SetDOValue(val);
+              //new System.Threading.Tasks.Task(()=>
+              //    {
+              
+              //    }).Start();
+            }
         }
+
+
+
+        public ItemGroupBindingData[] GetAllItemGroupBindingData(int PlaneID)
+        {
+            return itemgrp_mgr.GetAllItemGroupBindingData(PlaneID);
+        }
+
+
 
     }
 }

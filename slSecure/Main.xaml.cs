@@ -168,7 +168,18 @@ namespace slSecure
             this.txtTitle.DataContext = (sender as Control).DataContext;
             vwUserMenuAllow menu = (sender as Control).DataContext as vwUserMenuAllow;
             if (menu.XAML.Trim().ToUpper().StartsWith("HTTP:"))
-                this.frameMain.Navigate(new Uri("/Forms/WebPage.xaml?url=" + menu.XAML, UriKind.Relative));
+            {
+                MyHyperlinkButton button = new MyHyperlinkButton();
+
+                button.NavigateUri = new Uri(menu.XAML);
+
+                button.TargetName = "_blank";
+
+                button.ClickMe();
+
+            }
+            //  this.frameMain.Navigate(new Uri("/Forms/WebPage.xaml?url=" + menu.XAML, UriKind.Relative));
+            // System.Windows.Browser.HtmlPage.Window.Navigate(new Uri(System.Windows.Browser.HtmlPage.Document.DocumentUri, filePath), "_blank");
             else
                 this.frameMain.Navigate(new Uri(menu.XAML, UriKind.Relative));
         }
@@ -271,4 +282,17 @@ namespace slSecure
         public System.Collections.Generic.List<vwUserMenuAllow> Menus { get; set; }
 
     }
+
+    public class MyHyperlinkButton : HyperlinkButton
+    {
+
+        public void ClickMe()
+        {
+
+            base.OnClick();
+
+        }
+
+    }
+
 }

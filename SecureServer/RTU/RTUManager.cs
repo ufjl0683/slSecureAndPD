@@ -35,7 +35,7 @@ namespace SecureServer.RTU
 
 
                     dictRTUs.Add(tbl.ControlID, rtu);
-                    Console.WriteLine("Add RTU" + rtu.ControlID);
+                    Console.WriteLine("Add RTU" + rtu.ControlID + ",base:" + tbl.RTUBaseAddress + ",Length:" + tbl.RTURegisterLength);
                 }
             }
 

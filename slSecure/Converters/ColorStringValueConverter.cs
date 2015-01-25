@@ -26,10 +26,12 @@ namespace slSecure.Converters
                 case "Green":
                       return new SolidColorBrush(Colors.Green);
                     break;
+                case "Yellow":
                 case "Orange":
                     return new SolidColorBrush(Colors.Orange);
                     break;
                 case "Gray":
+                case "Grey":
                     return new SolidColorBrush(Colors.Gray);
                     break;
                 default:

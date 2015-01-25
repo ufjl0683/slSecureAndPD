@@ -819,6 +819,8 @@ namespace slSecure.Web
             public double X { get; set; }
 
             public double Y { get; set; }
+
+            public bool IsShow { get; set; }
         }
     }
 

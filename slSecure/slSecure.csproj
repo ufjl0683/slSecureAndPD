@@ -299,6 +299,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="icons\AI.png" />
+    <Resource Include="icons\DI.png" />
     <Content Include="slSecureLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

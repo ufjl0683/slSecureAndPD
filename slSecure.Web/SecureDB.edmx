@@ -544,6 +544,7 @@
           <Property Name="ScaleX" Type="float" Nullable="false" />
           <Property Name="ScaleY" Type="float" Nullable="false" />
           <Property Name="PlaneID" Type="int" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblMagneticCard">
           <Key>
@@ -1629,6 +1630,7 @@
           <Property Type="Double" Name="ScaleY" Nullable="false" />
           <Property Type="Int32" Name="PlaneID" />
           <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblItemGroup" FromRole="tblItemGroup" ToRole="tblItemConfig" />
+          <Property Type="Boolean" Name="IsShow" Nullable="false" />
         </EntityType>
         <EntityType Name="tblMagneticCard">
           <Key>
@@ -2595,6 +2597,7 @@
           <EntitySetMapping Name="tblItemGroup">
             <EntityTypeMapping TypeName="SecureDBModel.tblItemGroup">
               <MappingFragment StoreEntitySet="tblItemGroup">
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
                 <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
                 <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
                 <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />

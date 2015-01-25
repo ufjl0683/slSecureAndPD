@@ -63,7 +63,7 @@
         <AssociationConnector Association="SecureDBModel.FK_tblUserGroupMenu_tblUserGroup" />
         <EntityTypeShape EntityType="SecureDBModel.vwUserGroupMenuAllow" Width="1.5" PointX="6.375" PointY="7.25" />
         <EntityTypeShape EntityType="SecureDBModel.vwUserMenuAllow" Width="1.5" PointX="1.0612059221887988" PointY="8.33888161570713" />
-        <EntityTypeShape EntityType="SecureDBModel.tblItemConfig" Width="1.5" PointX="1.4251920680632777" PointY="2.1916627447082022" />
+        <EntityTypeShape EntityType="SecureDBModel.tblItemConfig" Width="1.5" PointX="2.75" PointY="2.375" />
         <AssociationConnector Association="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblControllerConfig" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroup" />

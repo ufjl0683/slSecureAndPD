@@ -70,13 +70,22 @@ namespace SecureServer
              ushort output=0;
            if (onoff)
            {
-                 output = (ushort)((ushort)Value | (1 << ItemConfig.BitNo));
+                 output = 1;// (ushort)((ushort)Value | (1 << ItemConfig.BitNo));
            }
            else
            {
-                 output = (ushort)((ushort)Value & (~(1 << ItemConfig.BitNo)));
+               output = 0;// (ushort)((ushort)Value & (~(1 << ItemConfig.BitNo)));
            }
            rtu.WriteRegister((ushort)(this.ItemConfig.Address), output);
+       }
+
+       public string AlarmMode
+       {
+
+           get
+           {
+               return this.ItemConfig.AlarmMode;
+           }
        }
 
        void ReadindAction()
@@ -91,42 +100,51 @@ namespace SecureServer
 
 
                    int? reading = rtu.GetRegisterReading((ushort)ItemConfig.Address);
-
+                   double value=0;
                    if (reading != null)
                    {
                        switch (this.ItemType)
                        {
                            case "AI":
-                               Value = (int)reading * ItemConfig.ValueScale * ItemConfig.Coefficient + ItemConfig.Offset;
-                               if (Value <= ItemConfig.WarningUpper && Value >= ItemConfig.WarningLower)
+                               value = (int)reading * ItemConfig.ValueScale * ItemConfig.Coefficient + ItemConfig.Offset;
+                               if (value <= ItemConfig.WarningUpper && value >= ItemConfig.WarningLower)
                                    Degree = 0;
-                               else if (Value <= ItemConfig.AlarmUpper && Value >= ItemConfig.AlarmLower)
+                               else if (value <= ItemConfig.AlarmUpper && value >= ItemConfig.AlarmLower)
                                    Degree = 1;
                                else
                                    Degree = 2;
+
+
+                           
                                break;
                           
                            case "DI":
+                               value =(double) reading;
+                               //if (ItemConfig.Address == 2001)
+                               //    Console.WriteLine("test");
                                if ((System.Convert.ToInt32(reading) & (1 << ItemConfig.BitNo)) > 0)
-                                   Value = 1;
+                               
+                                   value = 1;
                                else
-                                   Value = 0;
+                                   value = 0;
 
-                               if (ItemConfig.DIInvokeWarningValue == System.Convert.ToInt32(Value))
+                               if (ItemConfig.DIInvokeWarningValue == System.Convert.ToInt32(value) )
                                    this.Degree = 2;
                                else
                                    this.Degree = 0;
                                break;
                            case "DO":
-                               if ((System.Convert.ToInt32(reading) & (1 << ItemConfig.BitNo)) > 0)
+                               if (System.Convert.ToInt32(reading)>0 /*& (1 << ItemConfig.BitNo)) > 0*/)
                                {
-                                   Value = 1;
                                    Degree = 2;
+                                   value = 1;
+                               
                                }
                                else
                                {
+                                   value = 0;
                                    Degree = 0;
-                                   Value = 0;
+                                 
                                }
                                break;
  
@@ -134,7 +152,9 @@ namespace SecureServer
                          
                        }
 
-                       Console.WriteLine("ItemID"+this.ItemID + ",Value:" + Value+",Degree:"+Degree);
+                       Value = value;
+
+                //      Console.WriteLine("ItemID:"+this.ItemConfig.ItemName + ",Value:" + Value+",Degree:"+Degree);
                    }
 
 
@@ -142,6 +162,7 @@ namespace SecureServer
                }
                catch (Exception ex)
                {
+                   Console.WriteLine("RTU:{0},address:{1}",rtu.ControlID,ItemConfig.Address);
                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
 
 
@@ -152,7 +173,7 @@ namespace SecureServer
 
        public BindingData.ItemBindingData ToBindingData()
        {
-           BindingData.ItemBindingData data = new BindingData.ItemBindingData() { ItemID = this.ItemID, Type = this.ItemType };
+           BindingData.ItemBindingData data = new BindingData.ItemBindingData() { ItemID = this.ItemID, Type = this.ItemType, GroupID=this.ItemConfig.GroupID, Degree=this.Degree??0 };
            switch (this.Degree)
            {
                case 0:
@@ -165,21 +186,34 @@ namespace SecureServer
                       data.ColorString = "Red";
                    break;
                default:
-                   data.ColorString = "Grey";
+                   data.ColorString = "Gray";
                    break;
 
            }
 
-           try
+           if (this.Degree > 0 && ItemConfig.AlarmMode == "Y")
+               data.IsAlarm = true;
+           else
+               data.IsAlarm = false; 
+
+           if (!this.rtu.IsConnected)
            {
-               if (this.ItemType == "AI")
-                   data.Content = this.ItemConfig.Lable + string.Format("{0:0.0}", this.Value) + ItemConfig.Unit;
-               else
-                   data.Content = this.ItemConfig.Lable;
+               data.ColorString = "Gray";
+               data.Content = "斷線";
            }
-           catch (Exception ex)
+           else
            {
-               data.Content = this.ItemID + ",Generate content error!";
+               try
+               {
+                   if (this.ItemType == "AI")
+                       data.Content = this.ItemConfig.Lable + string.Format("{0:0.0}", this.Value) + ItemConfig.Unit;
+                   else
+                       data.Content = this.ItemConfig.Lable;
+               }
+               catch (Exception ex)
+               {
+                   data.Content = this.ItemID + ",Generate content error!";
+               }
            }
 
            data.PlaneID = this.ItemConfig.tblItemGroup.PlaneID??0;

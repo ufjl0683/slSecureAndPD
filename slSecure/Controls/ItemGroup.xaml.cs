@@ -12,11 +12,67 @@ using System.Windows.Shapes;
 
 namespace slSecure.Controls
 {
-    public partial class ItemGroup : UserControl
+    public partial class ItemGroup : UserControl, I_IO
     {
         public ItemGroup()
         {
             InitializeComponent();
+        }
+
+
+        public new string Content
+        {
+            get
+            {
+                return this.txtContent.Text;
+            }
+            set
+            {
+                this.txtContent.Text = value;
+            }
+        }
+
+        public void SetBlind(bool IsBlind)
+        {
+            if (IsBlind)
+                (this.Resources["stbBlind"] as Storyboard).Begin();
+            else
+                (this.Resources["stbBlind"] as Storyboard).Stop();
+        }
+
+        private bool _IsSelect;
+        public bool IsSelect
+        {
+            get
+            {
+                return _IsSelect;
+            }
+            set
+            {
+                if (value != _IsSelect)
+                {
+                    _IsSelect = value;
+                    if (value == true)
+                    {
+
+                        SelectLine.Visibility = System.Windows.Visibility.Visible;
+                        System.Windows.Threading.DispatcherTimer tmr = new System.Windows.Threading.DispatcherTimer();
+                        //tmr.Interval = TimeSpan.FromSeconds(3);
+
+                        //tmr.Tick += (s, e) =>
+                        //    {
+                        //        tmr.Stop();
+                        //        SetBlind(false);
+                        //    };
+                        //tmr.Start();
+                    }
+                    else
+
+                        SelectLine.Visibility = System.Windows.Visibility.Collapsed;
+
+
+                }
+            }
         }
     }
 }

@@ -41,6 +41,16 @@ namespace SecureServer.BindingData
           [DataMember]
        public int PlaneID { get; set; }
           [DataMember]
-         public double Value { get; set; }
+        public double Value { get; set; }
+
+          [DataMember]
+          public int Degree { get; set; }
+
+        [DataMember]
+        public bool IsAlarm {get;set;}
+
+        [DataMember]
+        public int? GroupID { get; set; }
+        
     }
 }

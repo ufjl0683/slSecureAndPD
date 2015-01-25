@@ -38,6 +38,11 @@ namespace SecureServer
         [OperationContract]
         BindingData.ItemBindingData[] GetAllItemBindingData(int PlaneID);
 
+
+        [OperationContract]
+        BindingData.ItemGroupBindingData[] GetAllItemGroupBindingData(int PlaneID);
+
+
         [OperationContract]
         void SetItemDOValue(int ItemID, bool val);
 

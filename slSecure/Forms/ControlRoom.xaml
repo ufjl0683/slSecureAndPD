@@ -4,40 +4,51 @@
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-           xmlns:slSecure="clr-namespace:slSecure" xmlns:Controls="clr-namespace:slSecure.Controls"   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="slSecure.Forms.ControlRoom"
+           xmlns:slSecure="clr-namespace:slSecure"
+           xmlns:Controls="clr-namespace:slSecure.Controls" 
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+           x:Class="slSecure.Forms.ControlRoom"
        
     mc:Ignorable="d"
            d:DesignWidth="644" d:DesignHeight="495"
            Title="ControlRoom Page" Unloaded="Page_Unloaded">
-	<Grid x:Name="LayoutRoot" MouseMove="LayoutRoot_MouseMove">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="77*"/>
-			<ColumnDefinition Width="15*"/>
-		</Grid.ColumnDefinitions>
-		<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="scrollViewer" SizeChanged="ScrollViewer_SizeChanged" Margin="0,20,0,0"  >
-			<Viewbox x:Name="viewBox" Grid.ColumnSpan="1" SizeChanged="Viewbox_SizeChanged" >
+    <sdk:Page.Resources>
+        <DataTemplate x:Key="DataTemplate1">
+            <Grid   Width="150" Height="45"           d:DesignWidth="365" d:DesignHeight="98">
+                <Controls:IOMenu/>
+            </Grid>
+        </DataTemplate>
+    </sdk:Page.Resources>
+    <Grid x:Name="LayoutRoot" MouseMove="LayoutRoot_MouseMove">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="scrollViewer" SizeChanged="ScrollViewer_SizeChanged" Margin="0,20,0,0"  >
+            <Viewbox x:Name="viewBox" Grid.ColumnSpan="1" SizeChanged="Viewbox_SizeChanged" >
 
-          
-				<Grid x:Name="Canvas"    >
+
+                <Grid x:Name="Canvas"    >
                     <Image x:Name="image" Source="/slSecure;component/Diagrams/ControlRoom.jpg" Stretch="None"     />
                     <!--<Controls:CCTV HorizontalAlignment="Left" MouseLeftButtonDown="CCTV_MouseLeftButtonDown"  VerticalAlignment="Top" RenderTransformOrigin="0.34,0.083"   Margin="200,419,0,0"/>
                     <Controls:DI Canvas.Left="338"   Margin="252,89,267,386"/>
 					<Controls:DI Canvas.Left="309"  Margin="78,307,441,168"/>
-					<Controls:DI Canvas.Left="103"   Margin="319,333,200,142"/>--> 
-                  
+					<Controls:DI Canvas.Left="103"   Margin="319,333,200,142"/>-->
+
 
                 </Grid>
-          
-
-			</Viewbox>
-		</ScrollViewer>
-		<Button Content="返回" Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Width="85" Height="34" Grid.Column="1" Margin="0,3,7,0"/>
-      
 
 
+            </Viewbox>
+        </ScrollViewer>
+        <Button Content="返回" Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Width="85" Height="34" Grid.Column="1" Margin="0,3,7,0"/>
 
-		<sdk:GridSplitter Grid.Column="1" HorizontalAlignment="Left"   Margin="0" Width="10"/>
+
+
+
+        <sdk:GridSplitter Grid.Column="1" HorizontalAlignment="Left"   Margin="0" Width="10"/>
         <TextBlock x:Name="txtTitle" HorizontalAlignment="Center" Margin="1,1,0,0" TextWrapping="Wrap" Text="{Binding PlaneName}" VerticalAlignment="Top" FontSize="18"/>
+        <ListBox x:Name="lstIOMenu" Grid.Column="1" Height="451" Margin="16,41,6,0" VerticalAlignment="Top" ItemTemplate="{StaticResource DataTemplate1}"/>
 
 
 

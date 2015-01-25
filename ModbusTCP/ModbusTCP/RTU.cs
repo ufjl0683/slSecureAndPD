@@ -23,10 +23,13 @@ namespace ModbusTCP
         Master RTUDevice;
         System.Threading.Timer tmr;
         byte?[] data;
+
+        object lockobj = new object();
         public RTU(string ControlID,int DevID,string IP, int Port,int StartAddress, int RegisterLength)
         {
             this.StartAddress = (ushort)StartAddress;
             data = new byte?[RegisterLength * 2];
+            Console.WriteLine(ControlID + ",DataLength:"+data.Length);
             this.ControlID = ControlID;
             this.IP = IP;
             this.Port = Port;
@@ -61,11 +64,14 @@ namespace ModbusTCP
                   
                     if (RTUDevice != null && RTUDevice.connected)
                     {
-                        RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)255, (ushort)(StartAddress-1 ), this.RegisterLength, ref tempdata);
-                        if (tempdata != null && tempdata.Length != 0)
+                        lock (lockobj)
                         {
-                            for (int i = 0; i < tempdata.Length; i++)
-                                data[i] = tempdata[i];
+                            RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)255, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
+                            if (tempdata != null && tempdata.Length != 0)
+                            {
+                                for (int i = 0; i < tempdata.Length; i++)
+                                    data[i] = tempdata[i];
+                            }
                         }
                     }
                     System.Threading.Thread.Sleep(1000);
@@ -94,8 +100,16 @@ namespace ModbusTCP
 
         public void WriteRegister(ushort address, ushort data)
         {
-            if(RTUDevice!=null &&RTUDevice.connected)
-                RTUDevice.WriteSingleRegister((ushort)1,(byte)0,(ushort)(address-1), new byte[]{(byte) (data/256),(byte)(data%256)});
+            if (!this.IsConnected)
+                return;
+            lock (lockobj)
+            {
+                byte[] result=new byte[0];
+                if (RTUDevice != null && RTUDevice.connected)
+                {
+                    RTUDevice.WriteSingleRegister((ushort)1, (byte)0, (ushort)(address - 1), new byte[] { (byte)(data / 256), (byte)(data % 256) },ref result);
+                }
+            }
         }
         public int? GetRegisterReading(ushort RTUAddress)
         {

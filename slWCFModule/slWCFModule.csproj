@@ -135,6 +135,9 @@
     <None Include="Service References\RemoteService\slWCFModule.RemoteService.ItemBindingData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\RemoteService\slWCFModule.RemoteService.ItemGroupBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

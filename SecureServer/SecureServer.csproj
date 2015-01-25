@@ -77,6 +77,7 @@
     <Compile Include="BindingData\CCTVBindingData.cs" />
     <Compile Include="BindingData\DoorBindingData.cs" />
     <Compile Include="BindingData\ItemBindingData.cs" />
+    <Compile Include="BindingData\ItemGroupBindingData.cs" />
     <Compile Include="CardReader\CardReader.cs" />
     <Compile Include="CardReader\CardReaderEventReport.cs" />
     <Compile Include="CardReader\CardReaderManager.cs" />
@@ -106,6 +107,8 @@
     <Compile Include="NVR\NVRManager.cs" />
     <Compile Include="RegisterInfo.cs" />
     <Compile Include="RTU\Item.cs" />
+    <Compile Include="RTU\ItemGroup.cs" />
+    <Compile Include="RTU\ItemGroupManager.cs" />
     <Compile Include="RTU\ItemManager.cs" />
     <Compile Include="RTU\RTUManager.cs" />
     <Compile Include="SecureService.cs" />
