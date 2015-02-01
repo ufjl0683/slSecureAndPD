@@ -130,6 +130,59 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllItemBindingData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllItemBindingDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="GetAllItemBindingDataResult" nillable="true" type="q4:ArrayOfItemBindingData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllItemGroupBindingData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllItemGroupBindingDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="GetAllItemGroupBindingDataResult" nillable="true" type="q5:ArrayOfItemGroupBindingData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetItemDOValue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ItemID" type="xs:int" />
+        <xs:element minOccurs="0" name="val" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetItemDOValueResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllPlaneInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllPlaneInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="GetAllPlaneInfoResult" nillable="true" type="q6:ArrayOfPlaneDegreeInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SayHello">
     <xs:complexType>
       <xs:sequence>
@@ -140,22 +193,22 @@
   <xs:element name="SecureDoorEvent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="evttype" type="q4:DoorEventType" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="doorBindingData" nillable="true" type="q5:DoorBindingData" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="evttype" type="q7:DoorEventType" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="doorBindingData" nillable="true" type="q8:DoorBindingData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SecureAlarm">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SecureServer" minOccurs="0" name="alarmdata" nillable="true" type="q6:AlarmData" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SecureServer" minOccurs="0" name="alarmdata" nillable="true" type="q9:AlarmData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ItemValueChangedEvenr">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="ItemBindingData" nillable="true" type="q7:ItemBindingData" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="ItemBindingData" nillable="true" type="q10:ItemBindingData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

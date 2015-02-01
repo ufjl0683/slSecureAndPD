@@ -10,7 +10,7 @@
         xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="slSecure.Forms.Monitor"
            mc:Ignorable="d"
            d:DesignWidth="728.116" d:DesignHeight="575.072"
-           Title="Monitor Page">
+           Title="Monitor Page" Unloaded="Page_Unloaded">
     <sdk:Page.Resources>
         <slsecurecnv:AlarmStatusColorConverter x:Key="AlarmStatusColorConverter" />
         <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">

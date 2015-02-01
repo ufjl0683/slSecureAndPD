@@ -77,6 +77,30 @@
   <wsdl:message name="ISecureService_HookItemValueChangedEvent_OutputMessage">
     <wsdl:part name="parameters" element="tns:HookItemValueChangedEventResponse" />
   </wsdl:message>
+  <wsdl:message name="ISecureService_GetAllItemBindingData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllItemBindingData" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetAllItemBindingData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllItemBindingDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetAllItemGroupBindingData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllItemGroupBindingData" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetAllItemGroupBindingData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllItemGroupBindingDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SetItemDOValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetItemDOValue" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SetItemDOValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetItemDOValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetAllPlaneInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPlaneInfo" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetAllPlaneInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPlaneInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="ISecureService_SayHello_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SayHello" />
   </wsdl:message>
@@ -129,6 +153,22 @@
     <wsdl:operation name="HookItemValueChangedEvent">
       <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/HookItemValueChangedEvent" message="tns:ISecureService_HookItemValueChangedEvent_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/HookItemValueChangedEventResponse" message="tns:ISecureService_HookItemValueChangedEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllItemBindingData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetAllItemBindingData" message="tns:ISecureService_GetAllItemBindingData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetAllItemBindingDataResponse" message="tns:ISecureService_GetAllItemBindingData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllItemGroupBindingData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetAllItemGroupBindingData" message="tns:ISecureService_GetAllItemGroupBindingData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetAllItemGroupBindingDataResponse" message="tns:ISecureService_GetAllItemGroupBindingData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetItemDOValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/SetItemDOValue" message="tns:ISecureService_SetItemDOValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SetItemDOValueResponse" message="tns:ISecureService_SetItemDOValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPlaneInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetAllPlaneInfo" message="tns:ISecureService_GetAllPlaneInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetAllPlaneInfoResponse" message="tns:ISecureService_GetAllPlaneInfo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SayHello">
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SayHello" message="tns:ISecureService_SayHello_OutputCallbackMessage" />
@@ -229,6 +269,42 @@
     </wsdl:operation>
     <wsdl:operation name="HookItemValueChangedEvent">
       <soap12:operation soapAction="http://tempuri.org/ISecureService/HookItemValueChangedEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllItemBindingData">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetAllItemBindingData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllItemGroupBindingData">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetAllItemGroupBindingData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetItemDOValue">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/SetItemDOValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPlaneInfo">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetAllPlaneInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -45,7 +45,15 @@ namespace SecureServer.RTU
        {
            get
            {
-             return  Items.Where(n => n.AlarmMode == "Y").Max(n => n.Degree??0);
+               try
+               {
+                   return Items.Where(n => n.AlarmMode == "Y").Max(n => n.Degree ?? 0);
+               }
+               catch
+               {
+                   return 0;
+               }
+                  
            }
 
        }

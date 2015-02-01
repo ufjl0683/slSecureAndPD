@@ -46,6 +46,9 @@ namespace SecureServer
         [OperationContract]
         void SetItemDOValue(int ItemID, bool val);
 
+        [OperationContract]
+        PlaneDegreeInfo[] GetAllPlaneInfo();
+
     }
 
 

@@ -34,8 +34,55 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CCTVBindingData" nillable="true" type="tns:CCTVBindingData" />
+  <xs:complexType name="ArrayOfItemBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemBindingData" nillable="true" type="tns:ItemBindingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItemBindingData" nillable="true" type="tns:ArrayOfItemBindingData" />
   <xs:complexType name="ItemBindingData">
-    <xs:sequence />
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColorString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Degree" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ItemID" type="xs:int" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" type="xs:double" />
+    </xs:sequence>
   </xs:complexType>
   <xs:element name="ItemBindingData" nillable="true" type="tns:ItemBindingData" />
+  <xs:complexType name="ArrayOfItemGroupBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemGroupBindingData" nillable="true" type="tns:ItemGroupBindingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItemGroupBindingData" nillable="true" type="tns:ArrayOfItemGroupBindingData" />
+  <xs:complexType name="ItemGroupBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColorString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemGroupBindingData" nillable="true" type="tns:ItemGroupBindingData" />
+  <xs:complexType name="ArrayOfPlaneDegreeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlaneDegreeInfo" nillable="true" type="tns:PlaneDegreeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlaneDegreeInfo" nillable="true" type="tns:ArrayOfPlaneDegreeInfo" />
+  <xs:complexType name="PlaneDegreeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlarmStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="ERID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlaneDegreeInfo" nillable="true" type="tns:PlaneDegreeInfo" />
 </xs:schema>

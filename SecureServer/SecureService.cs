@@ -20,25 +20,32 @@ namespace SecureServer
         public static RTU.RTUManager rtu_mgr;
         public static RTU.ItemManager item_mgr;
         public static RTU.ItemGroupManager itemgrp_mgr;
+        public static PlaneManager plane_mgr;
         ExactIntervalTimer ExactOneHourTmr;
 
 
         public  SecureService()
         {
+
+#if !R23
             nvr_mgr = new NVR.NVRManager();
+#endif
             cctv_mgr = new CCTV.CCTVManager(this);
-       
+#if !R23      
            card_mgr = new CardReaderManager(this);
+#endif
            rtu_mgr = new RTU.RTUManager();
            item_mgr = new RTU.ItemManager();
            itemgrp_mgr = new RTU.ItemGroupManager();
-
+           plane_mgr = new PlaneManager();
+#if !R23     
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
            card_mgr.OnAlarmEvent += card_mgr_OnAlarmEvent;
+#endif
            new System.Threading.Thread(CheckCardReaderConnectionTask).Start();
            ExactOneHourTmr = new ExactIntervalTimer(0, 0);
            ExactOneHourTmr.OnElapsed += ExactOneHourTmr_OnElapsed;
-
+          // CheckCardDueTask();
          //BindingData.ItemBindingData [] datas=  item_mgr.GetAllItemBindingData(1);
          //foreach (ItemBindingData data in datas)
          //{
@@ -49,8 +56,9 @@ namespace SecureServer
         void ExactOneHourTmr_OnElapsed(object sender)
         {
 
+#if !R23
             CheckCardDueTask();
-
+#endif
 
             //throw new NotImplementedException();
         }
@@ -61,6 +69,8 @@ namespace SecureServer
             var q = from n in db.vwMagneticCardAllowController  select n;
             foreach (vwMagneticCardAllowController vw in q)
             {
+                if (card_mgr[vw.ControlID] == null)
+                    continue;
                 if ((System.DateTime.Now > vw.EndDate || System.DateTime.Now < vw.StartDate) && card_mgr[vw.ControlID].IsConnected)
                 {
                     try
@@ -100,7 +110,7 @@ namespace SecureServer
         void card_mgr_OnAlarmEvent(CardReader.CardReader reader, AlarmData alarmdata)
         {
             try{
-                Console.WriteLine("DispathcAlarm!");
+                Console.WriteLine("DispatchAlarm!");
                 DispatchAlarmEvent(alarmdata);
             }
             catch(Exception ex){
@@ -356,7 +366,8 @@ namespace SecureServer
 
         public void DispatchItemValueChangedEvent(BindingData.ItemBindingData itemBindingData)
         {
-            
+
+            System.Collections.Generic.List<string> templist = new List<string>();
                 foreach (RegisterInfo info in dictClientCallBacks.Values.ToArray())
                 {
                     try
@@ -370,10 +381,21 @@ namespace SecureServer
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message + "," + ex.StackTrace);
-                       dictClientCallBacks.Remove(info.Key) ;
+                       // Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                        Console.WriteLine(info.Key + ", removed!");
+                        templist.Add(info.Key);
+                      // dictClientCallBacks.Remove(info.Key) ;
                     }
                 }
+                foreach (string key in templist)
+                {
+                    try
+                    {
+                        dictClientCallBacks.Remove(key);
+                    }
+                    catch { ;}
+                }
+
            
         }
 
@@ -404,5 +426,13 @@ namespace SecureServer
 
 
 
+
+
+        public PlaneDegreeInfo[] GetAllPlaneInfo()
+        {
+
+           return plane_mgr.GetAllPlaneDegree();
+           // throw new NotImplementedException();
+        }
     }
 }

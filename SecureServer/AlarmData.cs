@@ -11,7 +11,9 @@ namespace SecureServer
 
     public enum AlarmType
     {
-        Secure
+        Secure,
+        RTU
+        
 
     }
 

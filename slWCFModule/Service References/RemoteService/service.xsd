@@ -171,6 +171,18 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllPlaneInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllPlaneInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="GetAllPlaneInfoResult" nillable="true" type="q6:ArrayOfPlaneDegreeInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SayHello">
     <xs:complexType>
       <xs:sequence>
@@ -181,22 +193,22 @@
   <xs:element name="SecureDoorEvent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="evttype" type="q6:DoorEventType" />
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="doorBindingData" nillable="true" type="q7:DoorBindingData" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="evttype" type="q7:DoorEventType" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="doorBindingData" nillable="true" type="q8:DoorBindingData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SecureAlarm">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SecureServer" minOccurs="0" name="alarmdata" nillable="true" type="q8:AlarmData" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SecureServer" minOccurs="0" name="alarmdata" nillable="true" type="q9:AlarmData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ItemValueChangedEvenr">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="ItemBindingData" nillable="true" type="q9:ItemBindingData" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="ItemBindingData" nillable="true" type="q10:ItemBindingData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

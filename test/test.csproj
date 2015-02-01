@@ -80,6 +80,21 @@
     <None Include="Service References\RemoteService\test.RemoteService.DoorBindingData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\RemoteService\test.RemoteService.ItemBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RemoteService\test.RemoteService.ItemGroupBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RemoteService\test.RemoteService.PlaneDegreeInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModbusTCP\ModbusTCP\ModbusTCP.csproj">
+      <Project>{78a23b5b-cb72-4edb-b594-5370d086197d}</Project>
+      <Name>ModbusTCP</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\RemoteService\" />
@@ -95,12 +110,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ModbusTCP\ModbusTCP\ModbusTCP.csproj">
-      <Project>{78a23b5b-cb72-4edb-b594-5370d086197d}</Project>
-      <Name>ModbusTCP</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

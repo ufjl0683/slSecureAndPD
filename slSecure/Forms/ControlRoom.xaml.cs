@@ -197,7 +197,9 @@ namespace slSecure.Forms
 
          data.Content = itemdata.Content;
          data.ColorString = itemdata.ColorString;
+         data.IsAlarm = itemdata.IsAlarm;
          data.Value = itemdata.Value;
+         data.Degree = itemdata.Degree;
         
             if(itemdata.GroupID!=null)
                    UpdateItemGroup((int)itemdata.GroupID);

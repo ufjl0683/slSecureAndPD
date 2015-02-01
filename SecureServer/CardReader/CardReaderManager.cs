@@ -52,7 +52,7 @@ namespace SecureServer.CardReader
 
             this.LoadSystemParameter();
             this.SendAllReaderParameter();
-
+            DownloadSuperPassword();
 
         }
 
@@ -350,7 +350,27 @@ namespace SecureServer.CardReader
         void cardreader_OnDoorEvent(CardReader reader, DoorEventType enumEventType)
         {
             if (this.OnDoorEvent != null)
-                this.OnDoorEvent(reader, enumEventType);
+            {
+                try
+                {
+                    this.OnDoorEvent(reader, enumEventType);
+                }
+                catch { ;}
+            }
+
+            if (enumEventType == DoorEventType.Connected)
+            {
+                this.DownloadSuperPassword(reader.ControllerID);
+            }
+            if (enumEventType == DoorEventType.DisConnected)
+            {
+               
+                SecureDBEntities1 db = new SecureDBEntities1();
+                 tblEngineRoomLog log=new tblEngineRoomLog(){ ControlID=reader.ControllerID, ABA="0", StartTime=DateTime.Now,  TypeID=8, TypeCode=30,  Result=0};
+                 db.tblEngineRoomLog.Add(log);
+                 db.SaveChanges();
+                db.Dispose();
+            }
         }
 
 
@@ -367,6 +387,48 @@ namespace SecureServer.CardReader
            
             Console.WriteLine("In one Min task!");
 
+        }
+        void DownloadSuperPassword(string readerID)
+        {
+            SecureDBEntities1 db = new SecureDBEntities1();
+            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            tblERDoorPassword tbl = (from n in db.tblERDoorPassword
+                                     where n.Timestamp
+                                         == dt
+                                     select n).FirstOrDefault();
+
+            if (tbl == null)
+                return;
+            dictCardReaders[readerID].SetSuperOpenDoorPassword(int.Parse(tbl.DoorPassword));
+        }
+
+        void DownloadSuperPassword()
+        {
+            SecureDBEntities1 db = new SecureDBEntities1();
+            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            tblERDoorPassword tbl = (from n in db.tblERDoorPassword
+                                     where n.Timestamp
+                                         == dt
+                                     select n).FirstOrDefault();
+
+            if (tbl == null)
+                return;
+
+            foreach (CardReader reader in dictCardReaders.Values)
+            {
+                try
+                {
+                    if (reader.IsConnected)
+                    {
+                        reader.SetSuperOpenDoorPassword(int.Parse(tbl.DoorPassword));
+                        Console.WriteLine(reader.ControllerID + "設定每日開門密碼成功");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                }
+            }
         }
 
         void CheckAndGenerateDailySuperPassword()

@@ -497,6 +497,81 @@ namespace slWCFModule.RemoteService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlaneDegreeInfo", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData")]
+    public partial class PlaneDegreeInfo : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int AlarmStatusField;
+        
+        private int ERIDField;
+        
+        private string NameField;
+        
+        private int PlaneIDField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AlarmStatus {
+            get {
+                return this.AlarmStatusField;
+            }
+            set {
+                if ((this.AlarmStatusField.Equals(value) != true)) {
+                    this.AlarmStatusField = value;
+                    this.RaisePropertyChanged("AlarmStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ERID {
+            get {
+                return this.ERIDField;
+            }
+            set {
+                if ((this.ERIDField.Equals(value) != true)) {
+                    this.ERIDField = value;
+                    this.RaisePropertyChanged("ERID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PlaneID {
+            get {
+                return this.PlaneIDField;
+            }
+            set {
+                if ((this.PlaneIDField.Equals(value) != true)) {
+                    this.PlaneIDField = value;
+                    this.RaisePropertyChanged("PlaneID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
     public enum DoorEventType : int {
@@ -670,6 +745,9 @@ namespace slWCFModule.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Secure = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RTU = 1,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -740,6 +818,11 @@ namespace slWCFModule.RemoteService {
         System.IAsyncResult BeginSetItemDOValue(int ItemID, bool val, System.AsyncCallback callback, object asyncState);
         
         void EndSetItemDOValue(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetAllPlaneInfo", ReplyAction="http://tempuri.org/ISecureService/GetAllPlaneInfoResponse")]
+        System.IAsyncResult BeginGetAllPlaneInfo(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo> EndGetAllPlaneInfo(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -859,6 +942,25 @@ namespace slWCFModule.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllPlaneInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllPlaneInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SecureServiceClient : System.ServiceModel.DuplexClientBase<slWCFModule.RemoteService.ISecureService>, slWCFModule.RemoteService.ISecureService {
         
         private BeginOperationDelegate onBeginRegisterDelegate;
@@ -938,6 +1040,12 @@ namespace slWCFModule.RemoteService {
         private EndOperationDelegate onEndSetItemDOValueDelegate;
         
         private System.Threading.SendOrPostCallback onSetItemDOValueCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAllPlaneInfoDelegate;
+        
+        private EndOperationDelegate onEndGetAllPlaneInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllPlaneInfoCompletedDelegate;
         
         private bool useGeneratedCallback;
         
@@ -1049,6 +1157,8 @@ namespace slWCFModule.RemoteService {
         public event System.EventHandler<GetAllItemGroupBindingDataCompletedEventArgs> GetAllItemGroupBindingDataCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SetItemDOValueCompleted;
+        
+        public event System.EventHandler<GetAllPlaneInfoCompletedEventArgs> GetAllPlaneInfoCompleted;
         
         public event System.EventHandler<SayHelloReceivedEventArgs> SayHelloReceived;
         
@@ -1671,6 +1781,51 @@ namespace slWCFModule.RemoteService {
                         val}, this.onEndSetItemDOValueDelegate, this.onSetItemDOValueCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetAllPlaneInfo(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllPlaneInfo(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo> slWCFModule.RemoteService.ISecureService.EndGetAllPlaneInfo(System.IAsyncResult result) {
+            return base.Channel.EndGetAllPlaneInfo(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllPlaneInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetAllPlaneInfo(callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllPlaneInfo(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo> retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetAllPlaneInfo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllPlaneInfoCompleted(object state) {
+            if ((this.GetAllPlaneInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllPlaneInfoCompleted(this, new GetAllPlaneInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllPlaneInfoAsync() {
+            this.GetAllPlaneInfoAsync(null);
+        }
+        
+        public void GetAllPlaneInfoAsync(object userState) {
+            if ((this.onBeginGetAllPlaneInfoDelegate == null)) {
+                this.onBeginGetAllPlaneInfoDelegate = new BeginOperationDelegate(this.OnBeginGetAllPlaneInfo);
+            }
+            if ((this.onEndGetAllPlaneInfoDelegate == null)) {
+                this.onEndGetAllPlaneInfoDelegate = new EndOperationDelegate(this.OnEndGetAllPlaneInfo);
+            }
+            if ((this.onGetAllPlaneInfoCompletedDelegate == null)) {
+                this.onGetAllPlaneInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllPlaneInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllPlaneInfoDelegate, null, this.onEndGetAllPlaneInfoDelegate, this.onGetAllPlaneInfoCompletedDelegate, userState);
+        }
+        
         private void OnSayHelloReceived(object state) {
             if ((this.SayHelloReceived != null)) {
                 object[] results = ((object[])(state));
@@ -1978,6 +2133,18 @@ namespace slWCFModule.RemoteService {
             public void EndSetItemDOValue(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 base.EndInvoke("SetItemDOValue", _args, result);
+            }
+            
+            public System.IAsyncResult BeginGetAllPlaneInfo(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetAllPlaneInfo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo> EndGetAllPlaneInfo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo> _result = ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo>)(base.EndInvoke("GetAllPlaneInfo", _args, result)));
+                return _result;
             }
         }
     }

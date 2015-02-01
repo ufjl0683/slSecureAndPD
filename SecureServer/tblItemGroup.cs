@@ -28,6 +28,7 @@ namespace SecureServer
         public double ScaleX { get; set; }
         public double ScaleY { get; set; }
         public Nullable<int> PlaneID { get; set; }
+        public bool IsShow { get; set; }
     
         public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
     }

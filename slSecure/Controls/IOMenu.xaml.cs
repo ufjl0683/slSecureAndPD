@@ -25,13 +25,34 @@ namespace slSecure.Controls
         {
             ItemBindingData data = this.DataContext as ItemBindingData;
 
+
+            if (data == null)
+                return;
+
+
             if (data.IsAlarm && data.Degree > 0)
                 this.SetBlind(true);
             else
                 this.SetBlind(false);
-            
-           // throw new NotImplementedException();
-      
+
+            data.PropertyChanged += data_PropertyChanged;
+
+
+            // throw new NotImplementedException();
+        }
+
+        void data_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            ItemBindingData data = this.DataContext as ItemBindingData;
+
+            if (e.PropertyName == "Degree" || e.PropertyName == "IsAlarm")
+            {
+                if (data.IsAlarm && data.Degree > 0)
+                    this.SetBlind(true);
+                else
+                    this.SetBlind(false);
+            }
+            // throw new NotImplementedException();
         }
 
         public void SetBlind(bool IsBlind)

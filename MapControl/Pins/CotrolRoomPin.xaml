@@ -10,7 +10,7 @@
     d:DesignHeight="48" d:DesignWidth="48" Width="48" Height="48"  >
     <UserControl.Resources>
         <con:AlarmStatusVisibilityConverter x:Key="AlarmStatusVisibilityConverter" />
-        <con:AlarmStatusColorConverter x:Key="AlarmStatusColorConverter" />
+        <!--<con:AlarmStatusColorConverter x:Key="AlarmStatusColorConverter" />-->
         <con:AlarmStausGradientColorConverter x:Key="AlarmStausGradientColorConverter" />
         <!--<Color x:Key="GradientColor" A="255" R="0" G="255" B="0"   />-->
         <RadialGradientBrush x:Key="GradientColor"  RadiusY="0.063" RadiusX="0.063"  >

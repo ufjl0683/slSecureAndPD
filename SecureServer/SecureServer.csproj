@@ -78,6 +78,7 @@
     <Compile Include="BindingData\DoorBindingData.cs" />
     <Compile Include="BindingData\ItemBindingData.cs" />
     <Compile Include="BindingData\ItemGroupBindingData.cs" />
+    <Compile Include="BindingData\PlaneDegreeInfo.cs" />
     <Compile Include="CardReader\CardReader.cs" />
     <Compile Include="CardReader\CardReaderEventReport.cs" />
     <Compile Include="CardReader\CardReaderManager.cs" />
@@ -105,16 +106,22 @@
     <Compile Include="NVR\INVR.cs" />
     <Compile Include="NVR\NVR_Type1.cs" />
     <Compile Include="NVR\NVRManager.cs" />
+    <Compile Include="PD\PD.cs" />
+    <Compile Include="PlaneManager.cs" />
     <Compile Include="RegisterInfo.cs" />
     <Compile Include="RTU\Item.cs" />
     <Compile Include="RTU\ItemGroup.cs" />
     <Compile Include="RTU\ItemGroupManager.cs" />
     <Compile Include="RTU\ItemManager.cs" />
+    <Compile Include="RTU\Plane.cs" />
     <Compile Include="RTU\RTUManager.cs" />
     <Compile Include="SecureService.cs" />
     <Compile Include="ISecureService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tblAIItem1HourLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblCardCommandLog.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>

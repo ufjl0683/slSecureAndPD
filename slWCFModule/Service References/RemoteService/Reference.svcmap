@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="319b1be4-064a-4b19-a81c-56df49efb28b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0ef60fc3-dd3b-4935-b70d-b2c6efbd015c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -23,12 +23,12 @@
     <MetadataSource Address="http://127.0.0.1:8080/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="6d18f716-c116-48bb-b416-2f7d0df2275a" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="9a637bdd-eed4-4a74-944f-966c9d7b2f89" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="1fb9365f-1f03-40a2-b08a-72afb092b4e3" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="SecureServer1.xsd" MetadataType="Schema" ID="bac94c7e-0884-4566-95fa-8ab28176773e" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="SecureServer.BindingData1.xsd" MetadataType="Schema" ID="3938ae20-39f1-4c69-ba16-57c1c7e3bf8b" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="SecureServer.CardReader1.xsd" MetadataType="Schema" ID="f0f3e41b-5d9b-4409-8314-523ead0bd806" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="989ca062-4f2b-4047-a66b-0acdcc9ce500" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a53667e5-23a1-4f02-a486-23bacd457d61" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="eec15d6f-1677-400a-a583-b41fc0643e4c" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="SecureServer.xsd" MetadataType="Schema" ID="59a7fb64-e108-4ac2-9615-43eeb50a6f32" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="SecureServer.BindingData.xsd" MetadataType="Schema" ID="66ec8d2a-dd22-4dcd-af92-53009c46500d" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="SecureServer.CardReader.xsd" MetadataType="Schema" ID="25883040-a147-4b8a-bc0f-3de7d2d5867a" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

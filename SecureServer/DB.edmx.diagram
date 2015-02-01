@@ -20,6 +20,8 @@
         <EntityTypeShape EntityType="SecureDBModel.tblItemGroup" Width="1.5" PointX="2.3897684600156586" PointY="30.803944825569143" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblControllerConfig" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroup" />
+        <EntityTypeShape EntityType="SecureDBModel.tblAIItem1HourLog" Width="1.5" PointX="8.1715686973983281" PointY="9.3359939648471748" />
+        <AssociationConnector Association="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

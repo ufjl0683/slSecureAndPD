@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 namespace SecureServer
 {
     public delegate void ItemValueChangeEventHandler(Item sender,double NewValue);
+    public delegate void ItemDegreeChangeEventHandler(Item sender, int? NewValue);
    public  class Item
     {
        ModbusTCP.RTU rtu;
-       tblItemConfig ItemConfig;
+      internal  tblItemConfig ItemConfig;
        public int ItemID { get; set; }
        public string ItemType { get; set; }
        public event ItemValueChangeEventHandler ItemValueChanged;
+       public event ItemDegreeChangeEventHandler ItemDegreeChanged;
        private double _Value;
        public double Value {
            get
@@ -34,7 +36,26 @@ namespace SecureServer
            
            
             }
-       public int? Degree { get; set; }
+
+
+       int? _Degree;
+       public int? Degree
+       {
+           get
+           {
+               return _Degree;
+           }
+           set
+           {
+               if (value != _Degree)
+               {
+
+                   _Degree = value;
+                   if (this.ItemDegreeChanged!= null)
+                       ItemDegreeChanged(this, value);
+               }
+           }
+       }
 
 
        public int PlaneID
@@ -93,6 +114,8 @@ namespace SecureServer
            while (true)
            {
                System.Threading.Thread.Sleep(1000);
+               if (Program.MyServiceObject == null)
+                   continue;
                try
                {
                    if (rtu == null)

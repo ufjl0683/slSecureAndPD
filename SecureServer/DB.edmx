@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="SecureDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="SecureDBModelStoreContainer">
+          <EntitySet Name="tblAIItem1HourLog" EntityType="SecureDBModel.Store.tblAIItem1HourLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblCardCommandLog" EntityType="SecureDBModel.Store.tblCardCommandLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblCCTVConfig" EntityType="SecureDBModel.Store.tblCCTVConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblControllerConfig" EntityType="SecureDBModel.Store.tblControllerConfig" store:Type="Tables" Schema="dbo" />
@@ -60,6 +61,10 @@
       [vwMagneticCardDetail].[IsEnable] AS [IsEnable]
       FROM [dbo].[vwMagneticCardDetail] AS [vwMagneticCardDetail]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_tblAIItem1HourLog_tblItemConfig" Association="SecureDBModel.Store.FK_tblAIItem1HourLog_tblItemConfig">
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+            <End Role="tblAIItem1HourLog" EntitySet="tblAIItem1HourLog" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblItemConfig_tblControllerConfig" Association="SecureDBModel.Store.FK_tblItemConfig_tblControllerConfig">
             <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
             <End Role="tblItemConfig" EntitySet="tblItemConfig" />
@@ -69,6 +74,16 @@
             <End Role="tblItemConfig" EntitySet="tblItemConfig" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblAIItem1HourLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="tblCardCommandLog">
           <Key>
             <PropertyRef Name="FlowID" />
@@ -188,6 +203,11 @@
           <Property Name="Offset" Type="float" Nullable="false" />
           <Property Name="Coefficient" Type="float" Nullable="false" />
           <Property Name="IsShow" Type="bit" Nullable="false" />
+          <Property Name="ScaleX" Type="float" />
+          <Property Name="ScaleY" Type="float" />
+          <Property Name="Rotation" Type="float" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -202,6 +222,7 @@
           <Property Name="ScaleX" Type="float" Nullable="false" />
           <Property Name="ScaleY" Type="float" Nullable="false" />
           <Property Name="PlaneID" Type="int" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblMagneticCard">
           <Key>
@@ -275,15 +296,11 @@
         <EntityType Name="vwMagneticCardDetail">
           <Key>
             <PropertyRef Name="MagneticID" />
-            
-            <PropertyRef Name="EndDate" />
             <PropertyRef Name="ControlID" />
-            
-            
-            
+            <PropertyRef Name="EndDate" />
           </Key>
           <Property Name="MagneticID" Type="int" Nullable="false" />
-          <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="ABA" Type="nvarchar" MaxLength="30" />
           <Property Name="WEG1" Type="nvarchar" MaxLength="30" />
           <Property Name="WEG2" Type="nvarchar" MaxLength="30" />
           <Property Name="StartDate" Type="datetime" />
@@ -299,18 +316,30 @@
           <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
           <Property Name="Type" Type="smallint" />
           <Property Name="NormalID" Type="int" />
-          <Property Name="RoleID" Type="int" Nullable="false" />
-          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="Timestamp" Type="datetime" />
           <Property Name="ReturnDate" Type="datetime" />
           <Property Name="NormalName" Type="nvarchar" MaxLength="50" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="100" />
           <Property Name="ERID" Type="int" />
           <Property Name="ERName" Type="nvarchar" MaxLength="50" />
           <Property Name="Door" Type="nvarchar" MaxLength="100" />
-          <Property Name="ControlID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TypeName" Type="varchar" MaxLength="6" />
           <Property Name="IsEnable" Type="bit" />
         </EntityType>
+        <Association Name="FK_tblAIItem1HourLog_tblItemConfig">
+          <End Role="tblItemConfig" Type="SecureDBModel.Store.tblItemConfig" Multiplicity="1" />
+          <End Role="tblAIItem1HourLog" Type="SecureDBModel.Store.tblAIItem1HourLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemConfig">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblAIItem1HourLog">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblItemConfig_tblControllerConfig">
           <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="1" />
           <End Role="tblItemConfig" Type="SecureDBModel.Store.tblItemConfig" Multiplicity="*" />
@@ -360,6 +389,11 @@
           <AssociationSet Name="FK_tblItemConfig_tblItemGroup" Association="SecureDBModel.FK_tblItemConfig_tblItemGroup">
             <End Role="tblItemGroup" EntitySet="tblItemGroup" />
             <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <EntitySet Name="tblAIItem1HourLog" EntityType="SecureDBModel.tblAIItem1HourLog" />
+          <AssociationSet Name="FK_tblAIItem1HourLog_tblItemConfig" Association="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig">
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+            <End Role="tblAIItem1HourLog" EntitySet="tblAIItem1HourLog" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblERDoorPassword">
@@ -498,7 +532,7 @@
             <PropertyRef Name="ControlID" />
           </Key>
           <Property Type="Int32" Name="MagneticID" Nullable="false" />
-          <Property Type="String" Name="ABA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="WEG1" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="WEG2" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="StartDate" Precision="3" />
@@ -514,12 +548,12 @@
           <Property Type="String" Name="Mobile" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="Type" />
           <Property Type="Int32" Name="NormalID" />
-          <Property Type="Int32" Name="RoleID" Nullable="false" />
-          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="RoleID" />
+          <Property Type="DateTime" Name="Timestamp" Precision="3" />
           <Property Type="DateTime" Name="ReturnDate" Precision="3" />
           <Property Type="String" Name="NormalName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="RoleName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="TypeName" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TypeName" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ControlID" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Type="Int32" Name="ERID" />
           <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -582,6 +616,12 @@
           <Property Type="Double" Name="Coefficient" Nullable="false" />
           <Property Type="Int32" Name="DIInvokeWarningValue" />
           <Property Type="Boolean" Name="IsShow" Nullable="false" />
+          <Property Type="Double" Name="ScaleX" />
+          <Property Type="Double" Name="ScaleY" />
+          <Property Type="Double" Name="Rotation" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <NavigationProperty Name="tblAIItem1HourLog" Relationship="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" FromRole="tblItemConfig" ToRole="tblAIItem1HourLog" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -597,6 +637,7 @@
           <Property Type="Double" Name="ScaleY" Nullable="false" />
           <Property Type="Int32" Name="PlaneID" />
           <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblItemGroup" FromRole="tblItemGroup" ToRole="tblItemConfig" />
+          <Property Type="Boolean" Name="IsShow" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblItemConfig_tblControllerConfig">
           <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="1" />
@@ -619,6 +660,29 @@
             </Principal>
             <Dependent Role="tblItemConfig">
               <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblAIItem1HourLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="Double" Name="Value" Nullable="false" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" FromRole="tblAIItem1HourLog" ToRole="tblItemConfig" />
+        </EntityType>
+        <Association Name="FK_tblAIItem1HourLog_tblItemConfig">
+          <End Type="SecureDBModel.tblItemConfig" Role="tblItemConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblAIItem1HourLog" Role="tblAIItem1HourLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemConfig">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblAIItem1HourLog">
+              <PropertyRef Name="ItemID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -823,6 +887,11 @@
           <EntitySetMapping Name="tblItemConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblItemConfig">
               <MappingFragment StoreEntitySet="tblItemConfig">
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
                 <ScalarProperty Name="IsShow" ColumnName="IsShow" />
                 <ScalarProperty Name="DIInvokeWarningValue" ColumnName="DIInvokeWarningValue" />
                 <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
@@ -856,6 +925,7 @@
           <EntitySetMapping Name="tblItemGroup">
             <EntityTypeMapping TypeName="SecureDBModel.tblItemGroup">
               <MappingFragment StoreEntitySet="tblItemGroup">
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
                 <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
                 <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
                 <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
@@ -865,6 +935,17 @@
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="GroupType" ColumnName="GroupType" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAIItem1HourLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblAIItem1HourLog">
+              <MappingFragment StoreEntitySet="tblAIItem1HourLog">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

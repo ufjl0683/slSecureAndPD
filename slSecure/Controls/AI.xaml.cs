@@ -58,19 +58,45 @@ namespace slSecure.Controls
         public AI()
         {
             InitializeComponent();
-
+           
             this.DataContextChanged += AI_DataContextChanged;
+           
         }
+
+
+      
 
         void AI_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             ItemBindingData data = this.DataContext as ItemBindingData;
 
+        
+            if(data==null)
+                return;
+
+
             if (data.IsAlarm && data.Degree > 0)
                 this.SetBlind(true);
             else
                 this.SetBlind(false);
+
+            data.PropertyChanged += data_PropertyChanged;
             
+            
+           // throw new NotImplementedException();
+        }
+
+        void data_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            ItemBindingData data = this.DataContext as ItemBindingData;
+
+            if (e.PropertyName == "Degree" || e.PropertyName == "IsAlarm")
+            {
+                if (data.IsAlarm && data.Degree > 0)
+                    this.SetBlind(true);
+                else
+                    this.SetBlind(false);
+            }
            // throw new NotImplementedException();
         }
 

@@ -38,5 +38,6 @@ namespace SecureServer
         public DbSet<tblControllerConfig> tblControllerConfig { get; set; }
         public DbSet<tblItemConfig> tblItemConfig { get; set; }
         public DbSet<tblItemGroup> tblItemGroup { get; set; }
+        public DbSet<tblAIItem1HourLog> tblAIItem1HourLog { get; set; }
     }
 }

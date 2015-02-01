@@ -18,6 +18,10 @@ namespace test
         {
             System.Collections.ArrayList list = new System.Collections.ArrayList();
             byte[] data = new byte[100]; ;
+
+//
+          //  RemoteService.SecureServiceClient client = new SecureServiceClient();
+          
           //  Master modbus = new Master();
          //   modbus.connect("192.192.85.20", 502);
           //  modbus.OnResponseData += modbus_OnResponseData;
@@ -39,22 +43,22 @@ namespace test
             ////    rtu.WriteRegister((ushort)i, (ushort)(i - 2001 + 1));
             //while (true)
             //{
-            new System.Threading.Thread(SendTask).Start();
-           while (true)
-           {
-               int? temp = rtu.GetRegisterReading(2045);
-               int? r = rtu.GetRegisterReading(2046);
+           // new System.Threading.Thread(SendTask).Start();
+           //while (true)
+           //{
+           //    int? temp = rtu.GetRegisterReading(2045);
+           //    int? r = rtu.GetRegisterReading(2046);
 
-               Console.WriteLine(temp == null ? "null" : "temp:" + (temp/10.0).ToString());
-               Console.WriteLine(temp == null ? "null" : "r:" + (r/10.0).ToString());
-               Console.WriteLine("di0:"+ ((rtu.GetRegisterReading(2001)>>8) &0x01)  );
-               Console.WriteLine("di1:"+((rtu.GetRegisterReading(2001)>>9) *0x01));
-               Console.WriteLine("switch1:" + ((rtu.GetRegisterReading(2011) >> 0) & 0x01));
-               Console.WriteLine("switch2:" + ((rtu.GetRegisterReading(2011) >> 1) & 0x01));
-               Console.WriteLine("do:"+rtu.GetRegisterReading(2009));
-               System.Threading.Thread.Sleep(1000);
+           //    Console.WriteLine(temp == null ? "null" : "temp:" + (temp/10.0).ToString());
+           //    Console.WriteLine(temp == null ? "null" : "r:" + (r/10.0).ToString());
+           //    Console.WriteLine("di0:"+ ((rtu.GetRegisterReading(2001)>>8) &0x01)  );
+           //    Console.WriteLine("di1:"+((rtu.GetRegisterReading(2001)>>9) *0x01));
+           //    Console.WriteLine("switch1:" + ((rtu.GetRegisterReading(2011) >> 0) & 0x01));
+           //    Console.WriteLine("switch2:" + ((rtu.GetRegisterReading(2011) >> 1) & 0x01));
+           //    Console.WriteLine("do:"+rtu.GetRegisterReading(2009));
+           //    System.Threading.Thread.Sleep(1000);
                
-           }
+           //}
        //   Console.WriteLine(rtu.GetRegisterReading(0043));
          // Console.WriteLine(rtu.GetRegisterReading());
             //    System.Threading.Thread.Sleep(1000);
@@ -90,6 +94,8 @@ namespace test
                 string Key = client.Register(Environment.MachineName);
                 Console.WriteLine(data.Length);
                 Console.WriteLine("Key:" + Key);
+
+          
 
             }
 

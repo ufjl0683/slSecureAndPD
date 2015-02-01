@@ -70,4 +70,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ItemGroupBindingData" nillable="true" type="tns:ItemGroupBindingData" />
+  <xs:complexType name="ArrayOfPlaneDegreeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlaneDegreeInfo" nillable="true" type="tns:PlaneDegreeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlaneDegreeInfo" nillable="true" type="tns:ArrayOfPlaneDegreeInfo" />
+  <xs:complexType name="PlaneDegreeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlarmStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="ERID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlaneDegreeInfo" nillable="true" type="tns:PlaneDegreeInfo" />
 </xs:schema>

@@ -31,8 +31,8 @@ namespace SecureServer
         public string Mobile { get; set; }
         public Nullable<short> Type { get; set; }
         public Nullable<int> NormalID { get; set; }
-        public int RoleID { get; set; }
-        public System.DateTime Timestamp { get; set; }
+        public Nullable<int> RoleID { get; set; }
+        public Nullable<System.DateTime> Timestamp { get; set; }
         public Nullable<System.DateTime> ReturnDate { get; set; }
         public string NormalName { get; set; }
         public string RoleName { get; set; }

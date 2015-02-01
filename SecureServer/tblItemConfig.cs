@@ -14,6 +14,11 @@ namespace SecureServer
     
     public partial class tblItemConfig
     {
+        public tblItemConfig()
+        {
+            this.tblAIItem1HourLog = new HashSet<tblAIItem1HourLog>();
+        }
+    
         public int ItemID { get; set; }
         public string ItemName { get; set; }
         public Nullable<int> GroupID { get; set; }
@@ -41,8 +46,14 @@ namespace SecureServer
         public double Coefficient { get; set; }
         public Nullable<int> DIInvokeWarningValue { get; set; }
         public bool IsShow { get; set; }
+        public Nullable<double> ScaleX { get; set; }
+        public Nullable<double> ScaleY { get; set; }
+        public Nullable<double> Rotation { get; set; }
+        public Nullable<double> X { get; set; }
+        public Nullable<double> Y { get; set; }
     
         public virtual tblControllerConfig tblControllerConfig { get; set; }
         public virtual tblItemGroup tblItemGroup { get; set; }
+        public virtual ICollection<tblAIItem1HourLog> tblAIItem1HourLog { get; set; }
     }
 }

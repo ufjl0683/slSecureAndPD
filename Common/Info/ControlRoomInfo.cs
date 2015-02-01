@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,13 +12,31 @@ using System.Windows.Shapes;
 
 namespace slSecure.Info
 {
-    public class ControlRoomInfo
+    public class ControlRoomInfo:INotifyPropertyChanged
     {
         public int ERID { get; set; }
         public string  Name { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
         public string Type { get; set; }  //P:Power C: Control
-        public int AlarmStatus { get; set; }
+
+        private int _AlarmStatus;
+        public int AlarmStatus {
+            get
+            {
+                return _AlarmStatus;
+            }
+            set
+            {
+                if (value != _AlarmStatus)
+                {
+                    _AlarmStatus = value;
+                    if (PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("AlarmStatus"));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

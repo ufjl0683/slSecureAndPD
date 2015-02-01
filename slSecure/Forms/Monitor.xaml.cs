@@ -15,6 +15,8 @@ using System.ServiceModel.DomainServices.Client;
 using slSecure.Info;
 using slSecure.Controls;
 using slSecure.Web;
+using slWCFModule;
+using slWCFModule.RemoteService;
  
 
 namespace slSecure.Forms
@@ -30,8 +32,12 @@ namespace slSecure.Forms
 
         //   };
         ControlRoomInfo[] roomInfos;
-        PlaneInfo[] planeInfos;
+       /// PlaneDegreeInfo[] planeInfos;
         slSecure.Web.SecureDBContext db;
+      // ObservableCollection
+        System.Collections.ObjectModel.ObservableCollection<PlaneDegreeInfo> PlaneDegreeInfos;
+        MyClient client;
+        System.Windows.Threading.DispatcherTimer tmr = new System.Windows.Threading.DispatcherTimer();
         public Monitor()
         {
             InitializeComponent();
@@ -65,22 +71,80 @@ namespace slSecure.Forms
               
             }
 
-            var q1 = from n in db.GetTblERPlaneQuery() select n;
-            var res1= await db.LoadAsync<tblERPlane>(q1);
+            //var q1 = from n in db.GetTblERPlaneQuery() select n;
+            //var res1= await db.LoadAsync<tblERPlane>(q1);
 
-            planeInfos = (from n in res1
-                         select new PlaneInfo()
-                         {
-                              ERID=n.ERID,
-                               AlarmStatus=0,
-                                Name=n.PlaneName,
-                                PlaneID=n.PlaneID,
-                                 Type="EP"
+            //planeInfos = (from n in res1
+            //             select new PlaneInfo()
+            //             {
+            //                  ERID=n.ERID,
+            //                   AlarmStatus=0,
+            //                    Name=n.PlaneName,
+            //                    PlaneID=n.PlaneID,
+            //                     Type="EP"
                                   
-                         }).ToArray();
-           
-          lstMenu.ItemsSource = planeInfos;
+            //             }).ToArray();
+            client = new MyClient("CustomBinding_ISecureService", false);
+            client.SecureService.GetAllPlaneInfoCompleted += (s, a) =>
+                {
+                    if (a.Error != null)
+                        return;
+                  lstMenu.ItemsSource =   PlaneDegreeInfos=a.Result;
 
+                  if (roomInfos != null)
+                      foreach (ControlRoomInfo info in roomInfos)
+                      {
+                          try
+                          {
+                              info.AlarmStatus = PlaneDegreeInfos.Where(n => n.ERID == info.ERID).Max(n => n.AlarmStatus);
+                          }
+                          catch { ;}
+                      }
+
+                };
+            client.SecureService.GetAllPlaneInfoAsync();
+
+          
+            tmr.Interval = TimeSpan.FromSeconds(10);
+            tmr.Tick += tmr_Tick;
+                
+            tmr.Start();
+          //  client.OnItemValueChangedEvent += client_OnItemValueChangedEvent;
+        }
+
+       
+        void tmr_Tick(object sender, EventArgs e)
+        {
+            client.SecureService.GetAllPlaneInfoCompleted += (ss, aa) =>
+            {
+                if (aa.Error != null)
+                    return;
+                foreach (PlaneDegreeInfo info in aa.Result)
+                {
+                    PlaneDegreeInfo data = PlaneDegreeInfos.Where(n => n.PlaneID == info.PlaneID).FirstOrDefault();
+                    if (data == null)
+                        return;
+                    data.AlarmStatus = info.AlarmStatus;
+                   
+                }
+
+              if(roomInfos!=null)
+                foreach (ControlRoomInfo info in roomInfos)
+                {
+                    try
+                    {
+                        info.AlarmStatus = PlaneDegreeInfos.Where(n => n.ERID == info.ERID).Max(n => n.AlarmStatus);
+                    }
+                    catch { ;}
+                }
+                // PlaneDegreeInfos = aa.Result;
+            };
+            client.SecureService.GetAllPlaneInfoAsync();
+        }
+
+        void client_OnItemValueChangedEvent(ItemBindingData itemdata)
+        {
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -119,7 +183,7 @@ namespace slSecure.Forms
 
         private void ControlRoomMenu_MouseEnter(object sender, MouseEventArgs e)
         {
-            PlaneInfo info = (sender as ControlRoomMenu ).DataContext as PlaneInfo;
+            PlaneDegreeInfo info = (sender as ControlRoomMenu ).DataContext as PlaneDegreeInfo;
              ControlRoomInfo rinfo=( from n in roomInfos where n.ERID==info.ERID  select n).FirstOrDefault();;
             if(rinfo!=null)
             this.mapctl.ZoomToLevel(15, new MapPoint(rinfo.X, rinfo.Y));
@@ -127,26 +191,33 @@ namespace slSecure.Forms
 
         private void cboFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (lstMenu == null)
-            //    return;
-            //Rectangle r = (sender as ComboBox).SelectedItem as Rectangle;
-            //if (r.Tag.ToString() == "ALL")
-            //    lstMenu.ItemsSource = roomInfos;
-            //else if (r.Tag.ToString() == "WARNING")
-            //    lstMenu.ItemsSource = roomInfos.Where(n => n.AlarmStatus == 1);
-            //else if(r.Tag.ToString()=="ALARM")
-            //    lstMenu.ItemsSource = roomInfos.Where(n => n.AlarmStatus == 2);
-            //else if (r.Tag.ToString() == "NORMAL")
-            //    lstMenu.ItemsSource = roomInfos.Where(n => n.AlarmStatus == 0);
+            if (lstMenu == null)
+                return;
+            Rectangle r = (sender as ComboBox).SelectedItem as Rectangle;
+            if (r.Tag.ToString() == "ALL")
+                lstMenu.ItemsSource = PlaneDegreeInfos;
+            else if (r.Tag.ToString() == "WARNING")
+                lstMenu.ItemsSource = PlaneDegreeInfos.Where(n => n.AlarmStatus >= 1);
+            else if (r.Tag.ToString() == "ALARM")
+                lstMenu.ItemsSource = PlaneDegreeInfos.Where(n => n.AlarmStatus == 2);
+            else if (r.Tag.ToString() == "NORMAL")
+                lstMenu.ItemsSource = PlaneDegreeInfos.Where(n => n.AlarmStatus == 0);
 
         }
 
         private void ControlRoomMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            PlaneInfo info = (sender as ControlRoomMenu).DataContext as PlaneInfo;
+            PlaneDegreeInfo info = (sender as ControlRoomMenu).DataContext as PlaneDegreeInfo;
             this.lstMenu.ItemsSource = null;
             this.NavigationService.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID="+info.PlaneID,UriKind.Relative));
           //  Common.Util.GetICommon().Navigate(new Uri("/slSecure;component/Forms/ControlRoom.xaml",UriKind.Relative));
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            client.Dispose();
+            tmr.Stop();
+          
         }
 
     }
