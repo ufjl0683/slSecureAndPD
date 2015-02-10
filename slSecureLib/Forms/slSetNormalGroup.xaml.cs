@@ -13,13 +13,13 @@ using System.Windows.Navigation;
 using System.ServiceModel.DomainServices.Client;
 using slSecure.Web;
 using slSecure;
-using slSecureLib.Forms.R13;
+using System.Threading.Tasks;
 
-namespace slSecure.Forms
+namespace slSecureLib.Forms
 {
     public partial class slSetNormalGroup : Page
     {
-         SecureDBContext db;
+        slSecure.Web.SecureDBContext db;
         string actType;
 
         public slSetNormalGroup()
@@ -44,6 +44,8 @@ namespace slSecure.Forms
             //非同步模擬成同步
             var q = await db.LoadAsync<tblMagneticCardNormalGroup>(db.GetTblMagneticCardNormalGroupQuery());
             dataGrid.ItemsSource = q;
+
+            NewMagneticCardNormalGroup();
         }
 
         void NewMagneticCardNormalGroup()
@@ -55,7 +57,7 @@ namespace slSecure.Forms
             tb_Memo.Text = "";
         }
 
-        async void AddMagneticCardNormalGroup()
+        async Task AddMagneticCardNormalGroup()
         {
             db = slSecure.DB.GetDB();
 
@@ -67,7 +69,7 @@ namespace slSecure.Forms
 
                new tblMagneticCardNormalGroup()
                {
-                   NormalID = bc.NormalID + 1,
+                   //NormalID = bc.NormalID + 1,
                    NormalName = txt_NormalName.Text,
                    UpdateDate = DateTime.Now,
                    Memo = tb_Memo.Text
@@ -75,8 +77,8 @@ namespace slSecure.Forms
                );
             try
             {
-                db.SubmitChanges();
-                MessageBox.Show("Data added Successfully!");
+                bool res = await db.SubmitChangesAsync();
+                MessageBox.Show("新增定期卡群組成功!");
             }
             catch (Exception ex)
             {
@@ -84,7 +86,7 @@ namespace slSecure.Forms
             }
         }
 
-        async void ModifyMagneticCardNormalGroup()
+        async Task ModifyMagneticCardNormalGroup()
         {
             db = slSecure.DB.GetDB();
             var normalID = int.Parse(txt_NormalID.Text);
@@ -97,8 +99,8 @@ namespace slSecure.Forms
 
             try
             {
-                db.SubmitChanges();
-                MessageBox.Show("Data updated successfully!");
+                bool res = await db.SubmitChangesAsync();
+                MessageBox.Show("修改定期卡群組成功!");
             }
             catch (Exception ex)
             {
@@ -107,7 +109,7 @@ namespace slSecure.Forms
 
         }
 
-        async void DeleteMagneticCardNormalGroup()
+        async Task DeleteMagneticCardNormalGroup()
         {
             db = slSecure.DB.GetDB();
             var normalID = int.Parse(txt_NormalID.Text);
@@ -118,8 +120,8 @@ namespace slSecure.Forms
             db.tblMagneticCardNormalGroups.Remove(bc);
             try
             {
-                db.SubmitChanges();
-                MessageBox.Show("Data deleted successfully!");
+                bool res = await db.SubmitChangesAsync();
+                MessageBox.Show("刪除定期卡群組成功!");
             }
             catch (Exception ex)
             {
@@ -128,43 +130,37 @@ namespace slSecure.Forms
         }
 
         private void bu_New_Click(object sender, RoutedEventArgs e)
-        {
-            var result = MessageBox.Show("是否確定新增定期卡群組資料?", "新增", MessageBoxButton.OKCancel);
-            if (result == MessageBoxResult.OK)
-            {
-                NewMagneticCardNormalGroup();
-
-                QueryMagneticCardNormalGroup();
-            }
+        {   
+            QueryMagneticCardNormalGroup();
         }
 
-        private void bu_Add_Click(object sender, RoutedEventArgs e)
+        private async void bu_Add_Click(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("是否確定儲存定期卡群組資料?", "儲存", MessageBoxButton.OKCancel);
             if (result == MessageBoxResult.OK)
             {
                 if (actType == "New")
                 {
-                    AddMagneticCardNormalGroup();
+
+                    await AddMagneticCardNormalGroup();
+                    QueryMagneticCardNormalGroup();
                 }
                 else if (actType == "Update")
                 {
-                    ModifyMagneticCardNormalGroup();
+                    await ModifyMagneticCardNormalGroup();
+                    QueryMagneticCardNormalGroup();
                 }
             }
-            //QueryMagneticCardNormalGroup();
-            //NewMagneticCardNormalGroup();
         }
 
-        private void bu_Del_Click(object sender, RoutedEventArgs e)
+        private async void bu_Del_Click(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("是否確定刪除定期卡群組資料?", "刪除", MessageBoxButton.OKCancel);
             if (result == MessageBoxResult.OK)
             {
-                DeleteMagneticCardNormalGroup();
+                await DeleteMagneticCardNormalGroup();
+                QueryMagneticCardNormalGroup();
             }
-
-            //QueryMagneticCardNormalGroup();
         }
 
 
@@ -180,7 +176,8 @@ namespace slSecure.Forms
 
         private void bu_Back_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new slSetMagneticCard();
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
         }
 
 

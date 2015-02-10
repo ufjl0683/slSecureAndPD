@@ -11658,10 +11658,12 @@ namespace slSecure.Web
         /// 建立新 vwMagneticCard 物件。
         /// </summary>
         /// <param name="magneticID">MagneticID 屬性的初始值。</param>
-        public static vwMagneticCard CreatevwMagneticCard(global::System.Int32 magneticID)
+        /// <param name="roleID">RoleID 屬性的初始值。</param>
+        public static vwMagneticCard CreatevwMagneticCard(global::System.Int32 magneticID, global::System.Int32 roleID)
         {
             vwMagneticCard vwMagneticCard = new vwMagneticCard();
             vwMagneticCard.MagneticID = magneticID;
+            vwMagneticCard.RoleID = roleID;
             return vwMagneticCard;
         }
 
@@ -12083,9 +12085,9 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> RoleID
+        public global::System.Int32 RoleID
         {
             get
             {
@@ -12100,8 +12102,8 @@ namespace slSecure.Web
                 OnRoleIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _RoleID;
-        partial void OnRoleIDChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _RoleID;
+        partial void OnRoleIDChanging(global::System.Int32 value);
         partial void OnRoleIDChanged();
     
         /// <summary>

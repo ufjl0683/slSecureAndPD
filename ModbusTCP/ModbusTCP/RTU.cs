@@ -11,7 +11,7 @@ namespace ModbusTCP
 
 //public delegate  void RegisterValueChangedHandler(int address, int newValue);
 
-    public  class RTU 
+    public  class RTU : ModbusTCP.IRTU 
     {
       //  public event RegisterValueChangedHandler OnRegisterValueChangeEvent;
         public string IP { get; set; }

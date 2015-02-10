@@ -13,13 +13,13 @@ namespace SecureServer
         static void Main(string[] args)
         {
 
-            PD.PD pd = new PD.PD("test", "192.192.85.20", 16502);
+            //PD.PD pd = new PD.PD("test", "192.192.85.20", 16502);
 
-            while (true)
-            {
-                Console.WriteLine(pd.ToString());
-                System.Threading.Thread.Sleep(1000);
-            }
+            //while (true)
+            //{
+            //    Console.WriteLine(pd.ToString());
+            //    System.Threading.Thread.Sleep(1000);
+            //}
 
          //   ModbusTCP.RTU rtu = new ModbusTCP.RTU("rtu-101", 1, "192.168.0.10", 502, 0001, 46);
          //   while (!rtu.IsConnected) ;

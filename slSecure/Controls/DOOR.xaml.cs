@@ -12,9 +12,12 @@ using System.Windows.Shapes;
 
 namespace slSecure.Controls
 {
+    public delegate void MenuClickHandler(object sender, MenuItem item);
     public partial class DOOR : UserControl,I_IO
     {
 
+        public event MenuClickHandler OnMenuEvent;
+        
         public object Value
         {
             get { return this.GetValue(ValueProperty); }
@@ -30,6 +33,8 @@ namespace slSecure.Controls
         public DOOR()
         {
             InitializeComponent();
+
+             
         }
 
         public void SetBlind(bool IsBlind)
@@ -88,6 +93,12 @@ namespace slSecure.Controls
         private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void mnuForceOpen_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.OnMenuEvent != null)
+                OnMenuEvent(this, sender as MenuItem);
         }
     }
 }

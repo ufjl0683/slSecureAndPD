@@ -2,37 +2,14 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecure", "slSecure\slSecure.csproj", "{BD4B7145-7513-4120-A19B-E9A373D4F7CF}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecure.Web", "slSecure.Web\slSecure.Web.csproj", "{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecureLib", "slSecureLib\slSecureLib.csproj", "{759AD6E6-21D7-48A1-93F8-9E9872C72C64}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{E8A4C97F-53DF-4C7C-873B-03611A1A021A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapControl", "MapControl\MapControl.csproj", "{AFFA9F88-0EB6-403C-9836-A1BA3C0AC8E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISLib", "ArcGISLib\ArcGISLib\ArcGISLib.csproj", "{7FBE7288-03C5-488D-8760-2462FE66BFC5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C17031FF-68E1-4D7C-BD94-C72EB2AB98AA}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slEditor", "slEditor\slEditor.csproj", "{A6F2E470-2111-4572-8DC9-A784913DD98B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureServer", "SecureServer\SecureServer.csproj", "{A3B90D63-3B64-4929-A771-8225EE7A9C6A}"
 EndProject
@@ -41,10 +18,24 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slWCFModule", "slWCFModule\slWCFModule.csproj", "{36C2EB23-CAAB-456B-912F-ED107DDCCD0D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D95219E-DE42-42C0-9C26-15C7AEED383D}"
+	ProjectSection(SolutionItems) = preProject
+		E:\slSecureLib\slSecureLib.csproj = E:\slSecureLib\slSecureLib.csproj
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MjpegProcessorSL", "mjpeg-101253\MJPEG\MjpegProcessorSL\MjpegProcessorSL.csproj", "{B5C64E2B-F0B0-4AA4-8852-CD000388FC51}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusTCP", "ModbusTCP\ModbusTCP\ModbusTCP.csproj", "{78A23B5B-CB72-4EDB-B594-5370D086197D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8B0479A1-0B29-4B85-9E78-F2895AED3F8B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecureLib", "slSecureLib\slSecureLib.csproj", "{6459107B-1DE9-43E4-B7D4-98984C565345}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecure.Web", "slSecure.Web\slSecure.Web.csproj", "{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,14 +47,6 @@ Global
 		{BD4B7145-7513-4120-A19B-E9A373D4F7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD4B7145-7513-4120-A19B-E9A373D4F7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD4B7145-7513-4120-A19B-E9A373D4F7CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{759AD6E6-21D7-48A1-93F8-9E9872C72C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{759AD6E6-21D7-48A1-93F8-9E9872C72C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{759AD6E6-21D7-48A1-93F8-9E9872C72C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{759AD6E6-21D7-48A1-93F8-9E9872C72C64}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E8A4C97F-53DF-4C7C-873B-03611A1A021A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E8A4C97F-53DF-4C7C-873B-03611A1A021A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8A4C97F-53DF-4C7C-873B-03611A1A021A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -100,6 +83,14 @@ Global
 		{78A23B5B-CB72-4EDB-B594-5370D086197D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A23B5B-CB72-4EDB-B594-5370D086197D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A23B5B-CB72-4EDB-B594-5370D086197D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6459107B-1DE9-43E4-B7D4-98984C565345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6459107B-1DE9-43E4-B7D4-98984C565345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6459107B-1DE9-43E4-B7D4-98984C565345}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6459107B-1DE9-43E4-B7D4-98984C565345}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

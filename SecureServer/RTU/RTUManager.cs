@@ -9,9 +9,9 @@ namespace SecureServer.RTU
 {
     public  class RTUManager
     {
-        System.Collections.Generic.Dictionary<string, ModbusTCP.RTU> dictRTUs = new Dictionary<string, ModbusTCP.RTU>();
+        System.Collections.Generic.Dictionary<string, ModbusTCP.IRTU> dictRTUs = new Dictionary<string, ModbusTCP.IRTU>();
 
-        public ModbusTCP.RTU this[string  ControlID]
+        public ModbusTCP.IRTU this[string  ControlID]
         {
 
             get
@@ -29,7 +29,10 @@ namespace SecureServer.RTU
 
             foreach (tblControllerConfig tbl in q)
             {
-                ModbusTCP.RTU rtu = new ModbusTCP.RTU(tbl.ControlID, 1, tbl.IP, tbl.Port,(int) tbl.RTUBaseAddress, (int)tbl.RTURegisterLength);
+                ModbusTCP.IRTU rtu = null; ;
+                if(tbl.ControlType==3) //normal rtu
+                        rtu= new ModbusTCP.RTU(tbl.ControlID, 1, tbl.IP, tbl.Port,(int) tbl.RTUBaseAddress, (int)tbl.RTURegisterLength);
+               
                 if (!dictRTUs.ContainsKey(tbl.ControlID))
                 {
 

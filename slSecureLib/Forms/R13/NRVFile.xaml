@@ -1,0 +1,55 @@
+﻿<controls:ChildWindow x:Class="slSecureLib.Forms.R13.NRVFile"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           Width="600" Height="610"  FontFamily="Microsoft JhengHei" FontSize="16"
+           Title="錄影事件調閱">
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock  Width="200"  Text="機房名稱" />
+                <TextBlock x:Name="txt_ERName" TextWrapping="Wrap" Text="{Binding ERNo, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock  Width="200"  Text="大門名稱" />
+                <TextBlock x:Name="txt_Door" TextWrapping="Wrap" Text="{Binding ControlID, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock  Width="200"  Text="時間" />
+                <TextBlock x:Name="txt_StartTime" TextWrapping="Wrap" Text="{Binding StartTime, StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock  Width="200"  Text="事件名稱" />
+                <TextBlock x:Name="txt_EventName" TextWrapping="Wrap" Text="{Binding ControlID, Mode=TwoWay}"/>
+            </StackPanel>
+            
+            <!--Source="{Binding NVRFile, Mode=TwoWay}"-->
+            <Border BorderThickness="0" Background="Black">
+                <MediaElement x:Name="media" Height="320" MediaOpened="media_MediaOpened" MarkerReached="media_MarkerReached"/>
+            </Border>
+            <Canvas x:Name="playCanvas" Grid.Row="1" Background="#444444" Height="8">
+                <Rectangle x:Name="bufferBar" Fill="#777777" Height="8" Width="0" />
+                <Rectangle x:Name="playBar" Fill="#CC181E" Height="8" Width="0" />
+            </Canvas>
+            <Slider x:Name="timelineSlider" ValueChanged="timelineSlider_ValueChanged"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Background="#1B1B1B">
+                <Button x:Name="PlayMedia" Width="75" Height="35" Click="PlayMedia_Click" Content="播放"/>
+                <Button x:Name="PauseMedia" Width="75" Height="35" Click="PauseMedia_Click" Content="暫停"/>
+                <Button x:Name="StopMedia" Width="75" Height="35" Click="StopMedia_Click" Content="停止"/>
+                <TextBlock  Width="250"  Text="" Foreground="#FFF71818" />
+                <TextBlock x:Name="nowTime"  Width="30"  Text="0" Foreground="#FFF71818" />
+                <TextBlock  Width="20" Text="/ " Foreground="#FFF71818" />
+                <TextBlock x:Name="totalTime"  Width="30"  Text="0" Foreground="#FFF71818" />
+            </StackPanel>
+        </StackPanel>
+        <Button x:Name="CancelButton" Content="取消" Click="CancelButton_Click" Width="75" Height="35" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="確定" Click="OKButton_Click" Width="75" Height="35" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+    </Grid>
+</controls:ChildWindow>

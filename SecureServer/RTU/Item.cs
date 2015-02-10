@@ -9,7 +9,7 @@ namespace SecureServer
     public delegate void ItemDegreeChangeEventHandler(Item sender, int? NewValue);
    public  class Item
     {
-       ModbusTCP.RTU rtu;
+       ModbusTCP.IRTU rtu;
       internal  tblItemConfig ItemConfig;
        public int ItemID { get; set; }
        public string ItemType { get; set; }
@@ -75,12 +75,14 @@ namespace SecureServer
            }
        }
 
-       public Item(int ItemID,ModbusTCP.RTU rtu,string ItemType,tblItemConfig ItemConfig)
+       public Item(int ItemID,ModbusTCP.IRTU rtu,string ItemType,tblItemConfig ItemConfig)
        {
            this.rtu = rtu;
            this.ItemConfig = ItemConfig;
            this.ItemType = ItemType;
            this.ItemID = ItemID;
+           this._Value = ItemConfig.Value??0;
+           this._Degree = ItemConfig.Degree;
            Task task = Task.Run(new Action(ReadindAction));
        }
 

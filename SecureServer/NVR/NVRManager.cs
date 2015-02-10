@@ -12,35 +12,36 @@ namespace SecureServer.NVR
 
       public NVRManager()
       {
-          SecureDBEntities1 db = new SecureDBEntities1();
-
-          var q = from n in db.tblNVRConfig select n;
-
-          foreach (tblNVRConfig tbl in q)
+          using (SecureDBEntities1 db = new SecureDBEntities1())
           {
-              if (!dictNvrs.ContainsKey(tbl.NVRID))
+
+              var q = from n in db.tblNVRConfig select n;
+
+              foreach (tblNVRConfig tbl in q)
               {
-                  if (tbl.Type == 1)
+                  if (!dictNvrs.ContainsKey(tbl.NVRID))
                   {
-                      INVR nvr = new NVR_Type1()
+                      if (tbl.Type == 1)
                       {
-                          ERID = tbl.ERID,
-                          IP = tbl.IP,
-                          NVRID = tbl.NVRID,
-                          Password = tbl.Password,
-                          PlaneID = tbl.PlaneID ?? 0,
-                          Port = tbl.Port,
-                          UserName = tbl.UserName
-                      };
-                      dictNvrs.TryAdd(tbl.NVRID, nvr);
-                      Console.WriteLine("Add NVR:" + tbl.NVRName);
+                          INVR nvr = new NVR_Type1()
+                          {
+                              ERID = tbl.ERID,
+                              IP = tbl.IP,
+                              NVRID = tbl.NVRID,
+                              Password = tbl.Password,
+                              PlaneID = tbl.PlaneID ?? 0,
+                              Port = tbl.Port,
+                              UserName = tbl.UserName
+                          };
+                          dictNvrs.TryAdd(tbl.NVRID, nvr);
+                          Console.WriteLine("Add NVR:" + tbl.NVRName);
+                      }
+
                   }
-
               }
-          }
 
-           
-          
+
+          }
 
       }
 

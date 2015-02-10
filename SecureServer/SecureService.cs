@@ -21,6 +21,7 @@ namespace SecureServer
         public static RTU.ItemManager item_mgr;
         public static RTU.ItemGroupManager itemgrp_mgr;
         public static PlaneManager plane_mgr;
+        public static PD.PDManager pd_mgr ;
         ExactIntervalTimer ExactOneHourTmr;
 
 
@@ -38,7 +39,9 @@ namespace SecureServer
            item_mgr = new RTU.ItemManager();
            itemgrp_mgr = new RTU.ItemGroupManager();
            plane_mgr = new PlaneManager();
+          
 #if !R23     
+             pd_mgr = new PD.PDManager();
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
            card_mgr.OnAlarmEvent += card_mgr_OnAlarmEvent;
 #endif
@@ -63,7 +66,7 @@ namespace SecureServer
             //throw new NotImplementedException();
         }
 
-        void CheckCardDueTask()
+        void CheckCardDueTask() 
         {
             SecureDBEntities1 db = new SecureDBEntities1();
             var q = from n in db.vwMagneticCardAllowController  select n;

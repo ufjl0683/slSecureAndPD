@@ -2322,7 +2322,7 @@
           <Property Type="String" Name="Mobile" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="Type" />
           <Property Type="Int32" Name="NormalID" />
-          <Property Type="Int32" Name="RoleID" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
           <Property Type="DateTime" Name="Timestamp" Precision="3" />
           <Property Type="DateTime" Name="ReturnDate" Precision="3" />
           <Property Type="String" Name="NormalName" MaxLength="50" FixedLength="false" Unicode="true" />

@@ -70,7 +70,7 @@
         <EntityTypeShape EntityType="SecureDBModel.vwCardCommandLog" Width="1.5" PointX="7.5114867033024719" PointY="26.653327686085053" />
         <EntityTypeShape EntityType="SecureDBModel.vwEngineRoomLog" Width="1.5" PointX="1.0605102689287209" PointY="10.330161129278206" />
         <EntityTypeShape EntityType="SecureDBModel.vwEntranceGuardDetail" Width="1.5" PointX="0.28930695368410414" PointY="7.0009736600336492" />
-        <EntityTypeShape EntityType="SecureDBModel.vwMagneticCard" Width="1.5" PointX="6.664704677958369" PointY="29.069517625993825" />
+        <EntityTypeShape EntityType="SecureDBModel.vwMagneticCard" Width="2" PointX="4.25" PointY="29.125" />
         <EntityTypeShape EntityType="SecureDBModel.vwMagneticCardAllowController" Width="1.5" PointX="9.6592957925327578" PointY="7.6473098432865507" />
         <EntityTypeShape EntityType="SecureDBModel.vwMagneticCardDetail" Width="1.5" PointX="2.3832590404819971" PointY="29.557578711564457" />
       </Diagram>

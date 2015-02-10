@@ -39,5 +39,14 @@ namespace SecureServer
         public DbSet<tblItemConfig> tblItemConfig { get; set; }
         public DbSet<tblItemGroup> tblItemGroup { get; set; }
         public DbSet<tblAIItem1HourLog> tblAIItem1HourLog { get; set; }
+        public DbSet<tblPDConfig> tblPDConfig { get; set; }
+        public DbSet<tblPDAlarmLog> tblPDAlarmLog { get; set; }
+        public DbSet<tblAlarmLog> tblAlarmLog { get; set; }
+        public DbSet<vwMagneticCard> vwMagneticCard { get; set; }
+        public DbSet<vwCardCommandLog> vwCardCommandLog { get; set; }
+        public DbSet<vwEngineRoomLog> vwEngineRoomLog { get; set; }
+        public DbSet<vwEntranceGuardDetail> vwEntranceGuardDetail { get; set; }
+        public DbSet<vwUserGroupMenuAllow> vwUserGroupMenuAllow { get; set; }
+        public DbSet<vwUserMenuAllow> vwUserMenuAllow { get; set; }
     }
 }

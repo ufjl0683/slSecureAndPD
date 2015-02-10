@@ -171,11 +171,15 @@ namespace slSecure.Forms
 
 
             this.image.Source = new BitmapImage(new Uri("/Diagrams/" + PlaneID + ".png", UriKind.Relative));
+#if !R23
             await GetALLDoorBindingData(PlaneID);
+#endif
             await GetALLCCTVBindingData(PlaneID);
             await GetAllItemBindingData(PlaneID);
             await GetAllItemGroupBindingData(PlaneID);
+#if !R23
             PlaceDoor();
+#endif
             PlaceCCTV();
             PlaceItem();
             PlaceItemGroup();
@@ -301,12 +305,29 @@ namespace slSecure.Forms
                 item.RenderTransform = transform;
                 item.DataContext =  DoorBindingDatas.FirstOrDefault(n => n.ControlID == tbl.ControlID);
                 this.Canvas.Children.Add(item);
+                item.OnMenuEvent += item_OnMenuEvent;
                 //item.MouseLeftButtonDown += selectedDevice_MouseLeftButtonDown;
                 //item.MouseLeftButtonUp += selectedDevice_MouseLeftButtonUp;
                 //item.MouseMove += selectedDevice_MouseMove;
 
 
             }
+        }
+
+        void item_OnMenuEvent(object sender, MenuItem item)
+        {
+            if (item.Header == "中心開門")
+            {
+                client.SecureService.ForceOpenDoorAsync((item.DataContext as DoorBindingData).ControlID);
+                client.SecureService.ForceOpenDoorCompleted += (s, a) =>
+                    {
+                        if (a.Error != null)
+                            MessageBox.Show(a.Error.Message);
+                        else
+                            MessageBox.Show("ok!");
+                    };
+            }
+            //throw new NotImplementedException();
         }
 
 

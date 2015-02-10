@@ -18,6 +18,8 @@ namespace test
         {
             System.Collections.ArrayList list = new System.Collections.ArrayList();
             byte[] data = new byte[100]; ;
+            
+            
 
 //
           //  RemoteService.SecureServiceClient client = new SecureServiceClient();

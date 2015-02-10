@@ -1,0 +1,313 @@
+﻿<navigation:Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="slSecureLib.Forms.slReport"
+           mc:Ignorable="d"
+           d:DesignWidth="842" d:DesignHeight="697"
+           Title="slReport Page" Loaded="Page_Loaded" 
+           xmlns:local="clr-namespace:slSecureLib" FontFamily="Microsoft JhengHei" FontSize="16">
+
+    <UserControl.Resources>
+        <local:ConnectValue x:Key="ConnectValue"/>
+        <local:ConnectValueONOFF x:Key="ConnectValueONOFF"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border x:Name="ReportData" BorderBrush="#FFCBD5E1" BorderThickness="3" Margin="4,1,0,4">
+            <ScrollViewer Padding="0" BorderThickness="0" >
+                <Border BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="#FFCBD2DB" BorderThickness="0,0,0,3" Height="50">
+                            <!--<Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFE9ECF0" Offset="0" />
+                                    <GradientStop Color="#FFDDE1E7" Offset="0.2" />
+                                    <GradientStop Color="#FFCCD3DC" Offset="0.2" />
+                                    <GradientStop Color="#FFFAFAFB" Offset="0.647" />
+                                </LinearGradientBrush>
+                            </Border.Background>-->
+                        </Border>
+                        <!--<Border Grid.Row="1" Height="30" VerticalAlignment="Top" Margin="0,1,0,0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFE0E4EA" Offset="0" />
+                                    <GradientStop Color="White" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>-->
+                        <!-- Logo -->
+                        <!-- Header -->
+                        <Rectangle Height="35" VerticalAlignment="Bottom" Grid.Row="1">
+                            <!--<Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFDBE3EB" Offset="0.8" />
+                                    <GradientStop Color="#FFC8D5E0" Offset="0.8" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>-->
+                        </Rectangle>
+
+                        <!-- Header -->
+
+                        <StackPanel x:Name="sp_EngineRoomLog" Grid.Row="1" Margin="20,10,20,35">
+                            <!-- Privacy Policy -->
+                            <TextBlock Margin="76,10,0,12" TextWrapping="NoWrap" FontSize="24" Foreground="#FF507494" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" >
+							    <Run Text="機房門禁 報表"/>
+                            </TextBlock>
+
+                            <!-- 機房名稱 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock  Width="200"  Text="機房名稱" />
+                                <ComboBox x:Name="cb_ERName"  Width="200" />
+                                <Button x:Name="bu_Query" Content="查詢" Width="100"  Height="30" VerticalAlignment="Bottom" Click="bu_Query_Click"/>
+                                <Button  x:Name="bu_Excel" Content="匯出Excel" Width="100"  Height="30" VerticalAlignment="Bottom"  Click="bu_Excel_Click"/>
+                                <Button  x:Name="bu_ReportPrint" Content="報表列印" Width="100"  Height="30" VerticalAlignment="Bottom"  Click="bu_ReportPrint_Click"/>                            
+                            </StackPanel>
+
+                            <!-- ABA -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock  Width="200"  Text="磁卡(ABA)" />
+                                <TextBox x:Name="txt_ABA" Width="120"   />
+                            </StackPanel>
+
+                            <!-- 時間 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" >
+                                <TextBlock  Width="200"  Text="起迄日期時間" />
+                                <sdk:DatePicker x:Name="dp_StartDate" Width="150"  />
+                                <TextBlock  Width="20"  Text="～" />
+                                <sdk:DatePicker x:Name="dp_EndDate" Width="150"  />
+                            </StackPanel>
+                            <!-- 顯示筆數 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" >
+                                <TextBlock Text="顯示筆數"  Width="200"  />
+                                <ComboBox x:Name="cb_PageSize" Width="150"  SelectedValuePath="Tag"  HorizontalAlignment="Left" BorderThickness="1" Margin="0" SelectionChanged="cb_PageSize_SelectionChanged" >
+                                    <ComboBoxItem Content="10" Tag="10" />
+                                    <ComboBoxItem Content="20" Tag="20" />
+                                    <ComboBoxItem Content="30" Tag="30" />
+                                    <ComboBoxItem Content="40" Tag="40" />
+                                    <ComboBoxItem Content="50" Tag="50" />
+                                    <ComboBoxItem Content="60" Tag="60" />
+                                    <ComboBoxItem Content="70" Tag="70" />
+                                    <ComboBoxItem Content="80" Tag="80" />
+                                    <ComboBoxItem Content="90" Tag="90" />
+                                    <ComboBoxItem Content="100" Tag="100" />
+                                    <ComboBoxItem Content="150" Tag="150" />
+                                    <ComboBoxItem Content="200" Tag="200" />
+                                    <ComboBoxItem Content="250" Tag="250" />
+                                    <ComboBoxItem Content="300" Tag="300" />
+                                    <ComboBoxItem Content="350" Tag="350" />
+                                    <ComboBoxItem Content="400" Tag="400" />
+                                    <ComboBoxItem Content="450" Tag="450" />
+                                    <ComboBoxItem Content="500" Tag="500" />
+                                    <ComboBoxItem Content="1000" Tag="1000" />
+                                    <ComboBoxItem Content="1500" Tag="1500" />
+                                    <ComboBoxItem Content="2000" Tag="2000" />
+                                </ComboBox>
+                            </StackPanel>
+                            <!-- DataGrid -->
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                                <sdk:DataGrid Margin="0" x:Name="dataGrid_EngineRoomLog" IsReadOnly="True" AutoGenerateColumns="False" >
+                                    <sdk:DataGrid.Columns>
+                                        <sdk:DataGridTextColumn Header="機房名稱" Width="auto" Binding="{Binding ERName}" />
+                                        <sdk:DataGridTextColumn Header="大門名稱" Width="auto" Binding="{Binding Door}" />
+                                        <sdk:DataGridTextColumn Header="磁卡編號" Width="auto" Binding="{Binding ABA}" />
+                                        <sdk:DataGridTextColumn Header="磁卡持有人" Width="auto" Binding="{Binding Name}" />
+                                        <sdk:DataGridTextColumn Header="時間" Width="auto" Binding="{Binding StartTime, StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" />
+                                        <!--<sdk:DataGridTextColumn Header="結束時間" Width="auto" Binding="{Binding Endtime, StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" />-->
+                                        <!--<sdk:DataGridTextColumn Header="種類" Binding="{Binding TypeID}"/>
+										<sdk:DataGridTextColumn Header="編碼" Binding="{Binding TypeCode}"/>-->
+                                        <!--<sdk:DataGridTextColumn Header="狀態" Width="auto" Binding="{Binding Result, Converter={StaticResource ConnectValueONOFF}}" />-->
+                                        <sdk:DataGridTextColumn Header="說明" Width="auto" Binding="{Binding CardType}" />
+                                        <!--<sdk:DataGridTextColumn Header="狀態" Width="auto" Binding="{Binding ResultName}" />-->
+                                    </sdk:DataGrid.Columns>
+                                </sdk:DataGrid>
+                                <sdk:DataPager x:Name="dp_DG_EngineRoomLog"   Height="26" Source="{Binding ItemsSource, ElementName=dataGrid_EngineRoomLog}" 
+		        						DisplayMode="FirstLastPreviousNext" NumericButtonCount="3"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel x:Name="sp_EngineRoomAlarm" Grid.Row="1" Margin="20,10,20,35" d:IsHidden="True">
+                            <!-- Privacy Policy -->
+                            <TextBlock Margin="76,10,0,12" TextWrapping="NoWrap" FontSize="24" Foreground="#FF507494" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" >
+							    <Run Text="機房警報 報表"/>
+                            </TextBlock>
+
+                            <!-- 機房名稱 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock  Width="200"  Text="機房名稱" />
+                                <ComboBox x:Name="cb_ERName_Alarm"  Width="200" />
+                                <Button x:Name="bu_Query_Alarm" Content="查詢" Width="100"  Height="30" VerticalAlignment="Bottom" Click="bu_Query_Alarm_Click"/>
+                                <Button x:Name="bu_Excel_Alarm" Content="匯出Excel" Width="100"  Height="30" VerticalAlignment="Bottom" Click="bu_Excel_Alarm_Click"/>
+                                <Button  x:Name="bu_ReportPrint_Alarm" Content="報表列印" Width="100"  Height="30" VerticalAlignment="Bottom"  Click="bu_ReportPrint_Alarm_Click"/>
+                            </StackPanel>
+
+                            <!-- ABA -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock  Width="200"  Text="磁卡(ABA)" />
+                                <TextBox x:Name="txt_ABA_Alarm" Width="120"   />
+                            </StackPanel>
+
+                            <!-- 時間 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" >
+                                <TextBlock  Width="200"  Text="起迄日期時間" />
+                                <sdk:DatePicker x:Name="dp_StartDate_Alarm" Width="150"  />
+                                <TextBlock  Width="20"  Text="～" />
+                                <sdk:DatePicker x:Name="dp_EndDate_Alarm" Width="150"  />
+                            </StackPanel>
+                            <!-- 顯示筆數 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" >
+                                <TextBlock Text="顯示筆數"  Width="200"  />
+                                <ComboBox x:Name="cb_PageSize_Alarm" Width="150"  SelectedValuePath="Tag"  HorizontalAlignment="Left" BorderThickness="1" Margin="0" SelectionChanged="cb_PageSize_Alarm_SelectionChanged">
+                                    <ComboBoxItem Content="10" Tag="10" />
+                                    <ComboBoxItem Content="20" Tag="20" />
+                                    <ComboBoxItem Content="30" Tag="30" />
+                                    <ComboBoxItem Content="40" Tag="40" />
+                                    <ComboBoxItem Content="50" Tag="50" />
+                                    <ComboBoxItem Content="60" Tag="60" />
+                                    <ComboBoxItem Content="70" Tag="70" />
+                                    <ComboBoxItem Content="80" Tag="80" />
+                                    <ComboBoxItem Content="90" Tag="90" />
+                                    <ComboBoxItem Content="100" Tag="100" />
+                                    <ComboBoxItem Content="150" Tag="150" />
+                                    <ComboBoxItem Content="200" Tag="200" />
+                                    <ComboBoxItem Content="250" Tag="250" />
+                                    <ComboBoxItem Content="300" Tag="300" />
+                                    <ComboBoxItem Content="350" Tag="350" />
+                                    <ComboBoxItem Content="400" Tag="400" />
+                                    <ComboBoxItem Content="450" Tag="450" />
+                                    <ComboBoxItem Content="500" Tag="500" />
+                                    <ComboBoxItem Content="1000" Tag="1000" />
+                                    <ComboBoxItem Content="1500" Tag="1500" />
+                                    <ComboBoxItem Content="2000" Tag="2000" />
+                                </ComboBox>
+                            </StackPanel>
+                            <!-- DataGrid -->
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                                <sdk:DataGrid Margin="0" x:Name="dataGrid_EngineRoomAlarm" IsReadOnly="True" AutoGenerateColumns="False" >
+                                    <sdk:DataGrid.Columns>
+                                        <sdk:DataGridTextColumn Header="機房名稱" Width="auto" Binding="{Binding ERName}" />
+                                        <sdk:DataGridTextColumn Header="大門名稱" Width="auto" Binding="{Binding Door}" />
+                                        <sdk:DataGridTextColumn Header="磁卡編號" Width="auto" Binding="{Binding ABA}" />
+                                        <sdk:DataGridTextColumn Header="磁卡持有人" Width="auto" Binding="{Binding Name}" />
+                                        <sdk:DataGridTextColumn Header="時間" Width="auto" Binding="{Binding StartTime, StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" />
+                                        <!--<sdk:DataGridTextColumn Header="結束時間" Width="auto" Binding="{Binding Endtime, StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" />-->
+                                        <!--<sdk:DataGridTextColumn Header="種類" Binding="{Binding TypeID}"/>
+										<sdk:DataGridTextColumn Header="編碼" Binding="{Binding TypeCode}"/>-->
+                                        <!--<sdk:DataGridTextColumn Header="狀態" Width="auto" Binding="{Binding Result, Converter={StaticResource ConnectValueONOFF}}" />-->
+                                        <sdk:DataGridTextColumn Header="說明" Width="auto" Binding="{Binding CardType}" />                                       
+                                        <!--<sdk:DataGridTextColumn Header="狀態" Width="auto" Binding="{Binding ResultName}" />-->
+                                    </sdk:DataGrid.Columns>
+                                </sdk:DataGrid>
+                                <sdk:DataPager x:Name="dp_DG_EngineRoomAlarm"   Height="26" Source="{Binding Path=ItemsSource, ElementName=dataGrid_EngineRoomAlarm}" 
+		        						DisplayMode="FirstLastPreviousNext" NumericButtonCount="3"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
+
+                        <StackPanel x:Name="sp_CardCommandLog" Grid.Row="1" Margin="20,10,20,35" d:IsHidden="True">
+                            <!-- Privacy Policy -->
+                            <TextBlock Margin="76,10,0,12" TextWrapping="NoWrap" FontSize="24" Foreground="#FF507494" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" >
+								<Run Text="讀卡機指令"/>
+								<Run Text="報表"/>
+                            </TextBlock>
+
+                            <!-- 機房名稱 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock  Width="200"  Text="機房名稱" />
+                                <ComboBox x:Name="cb_ERName_CardCommandLog"  Width="200" />
+                                <Button x:Name="bu_Query_CardCommandLog" Content="查詢" Width="100"  Height="30" VerticalAlignment="Bottom" Click="bu_Query_CardCommandLog_Click"/>
+                                <Button x:Name="bu_Excel_CardCommandLog" Content="匯出Excel" Width="100"  Height="30" VerticalAlignment="Bottom" Click="bu_Excel_CardCommandLog_Click"/>
+                                <Button  x:Name="bu_ReportPrint_CardCommandLog" Content="報表列印" Width="100"  Height="30" VerticalAlignment="Bottom" Click="bu_ReportPrint_CardCommandLog_Click" />
+                            </StackPanel>
+
+                            <!-- ABA -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock  Width="200"  Text="磁卡(ABA)" />
+                                <TextBox x:Name="txt_ABA_CardCommandLog" Width="120"   />
+                            </StackPanel>
+
+                            <!-- 時間 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" >
+                                <TextBlock  Width="200"  Text="起迄日期時間" />
+                                <sdk:DatePicker x:Name="dp_StartDate_CardCommandLog" Width="150"  />
+                                <TextBlock  Width="20"  Text="～" />
+                                <sdk:DatePicker x:Name="dp_EndDate_CardCommandLog" Width="150"  />
+                            </StackPanel>
+                            <!-- 顯示筆數 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" >
+                                <TextBlock Text="顯示筆數"  Width="200"  />
+                                <ComboBox x:Name="cb_PageSize_CardCommandLog" Width="150"  SelectedValuePath="Tag"  HorizontalAlignment="Left" BorderThickness="1" Margin="0" SelectionChanged="cb_PageSize_CardCommandLog_SelectionChanged">
+                                    <ComboBoxItem Content="10" Tag="10" />
+                                    <ComboBoxItem Content="20" Tag="20" />
+                                    <ComboBoxItem Content="30" Tag="30" />
+                                    <ComboBoxItem Content="40" Tag="40" />
+                                    <ComboBoxItem Content="50" Tag="50" />
+                                    <ComboBoxItem Content="60" Tag="60" />
+                                    <ComboBoxItem Content="70" Tag="70" />
+                                    <ComboBoxItem Content="80" Tag="80" />
+                                    <ComboBoxItem Content="90" Tag="90" />
+                                    <ComboBoxItem Content="100" Tag="100" />
+                                    <ComboBoxItem Content="150" Tag="150" />
+                                    <ComboBoxItem Content="200" Tag="200" />
+                                    <ComboBoxItem Content="250" Tag="250" />
+                                    <ComboBoxItem Content="300" Tag="300" />
+                                    <ComboBoxItem Content="350" Tag="350" />
+                                    <ComboBoxItem Content="400" Tag="400" />
+                                    <ComboBoxItem Content="450" Tag="450" />
+                                    <ComboBoxItem Content="500" Tag="500" />
+                                    <ComboBoxItem Content="1000" Tag="1000" />
+                                    <ComboBoxItem Content="1500" Tag="1500" />
+                                    <ComboBoxItem Content="2000" Tag="2000" />
+                                </ComboBox>
+                            </StackPanel>
+                            <!-- DataGrid -->
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                                <sdk:DataGrid Margin="0" x:Name="dataGrid_CardCommandLog" IsReadOnly="True" AutoGenerateColumns="False" >
+                                    <sdk:DataGrid.Columns>
+                                        <sdk:DataGridTextColumn Header="機房名稱" Width="auto" Binding="{Binding ERName}" />
+                                        <sdk:DataGridTextColumn Header="大門名稱" Width="auto" Binding="{Binding Memo}" />
+                                        <sdk:DataGridTextColumn Header="磁卡編號" Width="auto" Binding="{Binding ABA}" />
+                                        <sdk:DataGridTextColumn Header="磁卡持有人" Width="auto" Binding="{Binding Name}" />
+                                        <sdk:DataGridTextColumn Header="時間" Width="auto" Binding="{Binding Timestamp, StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" />
+                                        <!--(I:新增,D:刪除)-->
+                                        <!--<sdk:DataGridTextColumn Header="指令種類" Width="auto" Binding="{Binding CommandType, Converter={StaticResource ConnectValue}}" />-->
+                                        <sdk:DataGridTextColumn Header="指令種類" Width="auto" Binding="{Binding CommandTypeName}" />
+                                        <!--(C:一般卡,P:虛擬卡)-->
+                                        <!--<sdk:DataGridTextColumn Header="磁卡型態" Width="auto" Binding="{Binding CardType, Converter={StaticResource ConnectValue}}" />-->
+                                        <sdk:DataGridTextColumn Header="磁卡型態" Width="auto" Binding="{Binding CardTypeName}" />
+                                        <!--<sdk:DataGridTextColumn Header="狀態" Width="auto" Binding="{Binding IsSuccess, Converter={StaticResource ConnectValueONOFF}}" />-->
+                                        <sdk:DataGridTextColumn Header="狀態" Width="auto" Binding="{Binding IsSuccessName}" />
+                                        <!--<sdk:DataGridTextColumn Header="說明" Width="auto" Binding="{Binding Describe}" />-->
+                                    </sdk:DataGrid.Columns>
+                                </sdk:DataGrid>
+                                <sdk:DataPager x:Name="dp_DG_CardCommandLog"   Height="32" Source="{Binding Path=ItemsSource, ElementName=dataGrid_CardCommandLog}" 
+		        						DisplayMode="FirstLastPreviousNext" NumericButtonCount="3"/>
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        <TextBlock Margin="76,10,0,12" TextWrapping="NoWrap" FontSize="24" Foreground="#FF507494" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" >
+							<Run Text="報表"/>
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" Margin="300,10,10,10">
+                            <Button x:Name="bu_EngineRoomLog" Content="機房門禁報表" Width="150"  Click="bu_EngineRoomLog_Click"/>
+                            <Button x:Name="bu_EngineRoomAlarm" Content="機房警報報表" Width="150"  Click="bu_EngineRoomAlarm_Click"/>
+                            <Button x:Name="bu_CardCommandLog" Content="讀卡機指令報表" Width="150"  Click="bu_CardCommandLog_Click"/>
+                            <TextBlock  Width="50" Text=""  />
+                            <Button x:Name="bu_Back" Content="返回" Width="100"  Click="bu_Back_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</navigation:Page>
