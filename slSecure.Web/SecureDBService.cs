@@ -1718,10 +1718,124 @@ namespace slSecure.Web
 
         }
 
-      
 
+        public IQueryable<tblPDAlarmLog> GetTblPDAlarmLog()
+        {
+            return this.ObjectContext.tblPDAlarmLog;
+        }
+
+        public void InsertTblPDAlarmLog(tblPDAlarmLog tblPDAlarmLog)
+        {
+            if ((tblPDAlarmLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblPDAlarmLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblPDAlarmLog.AddObject(tblPDAlarmLog);
+            }
+        }
+
+        public void UpdateTblPDAlarmLog(tblPDAlarmLog currenttblPDAlarmLog)
+        {
+            this.ObjectContext.tblPDAlarmLog.AttachAsModified(currenttblPDAlarmLog, this.ChangeSet.GetOriginal(currenttblPDAlarmLog));
+        }
+
+        public void DeleteTblPDAlarmLog(tblPDAlarmLog tblPDAlarmLog)
+        {
+            if ((tblPDAlarmLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblPDAlarmLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblPDAlarmLog.Attach(tblPDAlarmLog);
+                this.ObjectContext.tblPDAlarmLog.DeleteObject(tblPDAlarmLog);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'tblPDConfig' 查詢。
+        public IQueryable<tblPDConfig> GetTblPDConfig()
+        {
+            return this.ObjectContext.tblPDConfig;
+        }
+
+        public void InsertTblPDConfig(tblPDConfig tblPDConfig)
+        {
+            if ((tblPDConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblPDConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblPDConfig.AddObject(tblPDConfig);
+            }
+        }
+
+        public void UpdateTblPDConfig(tblPDConfig currenttblPDConfig)
+        {
+            this.ObjectContext.tblPDConfig.AttachAsModified(currenttblPDConfig, this.ChangeSet.GetOriginal(currenttblPDConfig));
+        }
+
+        public void DeleteTblPDConfig(tblPDConfig tblPDConfig)
+        {
+            if ((tblPDConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblPDConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblPDConfig.Attach(tblPDConfig);
+                this.ObjectContext.tblPDConfig.DeleteObject(tblPDConfig);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'tblPDLoopDeviceConfig' 查詢。
+        public IQueryable<tblPDLoopDeviceConfig> GetTblPDLoopDeviceConfig()
+        {
+            return this.ObjectContext.tblPDLoopDeviceConfig;
+        }
+
+        public void InsertTblPDLoopDeviceConfig(tblPDLoopDeviceConfig tblPDLoopDeviceConfig)
+        {
+            if ((tblPDLoopDeviceConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblPDLoopDeviceConfig, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblPDLoopDeviceConfig.AddObject(tblPDLoopDeviceConfig);
+            }
+        }
+
+        public void UpdateTblPDLoopDeviceConfig(tblPDLoopDeviceConfig currenttblPDLoopDeviceConfig)
+        {
+            this.ObjectContext.tblPDLoopDeviceConfig.AttachAsModified(currenttblPDLoopDeviceConfig, this.ChangeSet.GetOriginal(currenttblPDLoopDeviceConfig));
+        }
+
+        public void DeleteTblPDLoopDeviceConfig(tblPDLoopDeviceConfig tblPDLoopDeviceConfig)
+        {
+            if ((tblPDLoopDeviceConfig.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblPDLoopDeviceConfig, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblPDLoopDeviceConfig.Attach(tblPDLoopDeviceConfig);
+                this.ObjectContext.tblPDLoopDeviceConfig.DeleteObject(tblPDLoopDeviceConfig);
+            }
+        }
 
     }
+
+
+
 }
 
 

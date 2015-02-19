@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="SecureDBModel.tblHostConfig" Width="1.5" PointX="6.6685951439051863" PointY="12.599271660949695" />
         <EntityTypeShape EntityType="SecureDBModel.tblItemGroup" Width="1.5" PointX="11.722534088288683" PointY="16.94801855876484" />
         <EntityTypeShape EntityType="SecureDBModel.tblMagneticCard" Width="1.5" PointX="8.9225432113383629" PointY="30.704920663826595" />
-        <EntityTypeShape EntityType="SecureDBModel.tblMagneticCardNormalGroup" Width="1.5" PointX="8.5939498807275427" PointY="0.79402335025091808" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMagneticCardNormalGroup" Width="1.5" PointX="7.125" PointY="0.75" />
         <EntityTypeShape EntityType="SecureDBModel.tblMenu" Width="1.5" PointX="0.959935801550716" PointY="7.4265870784533146" />
         <EntityTypeShape EntityType="SecureDBModel.tblMenuGroup" Width="1.5" PointX="6.5424014341749253" PointY="31.370204135482293" />
         <EntityTypeShape EntityType="SecureDBModel.tblNVRConfig" Width="1.5" PointX="8.7841472331360677" PointY="19.292032057089745" />
@@ -73,6 +73,11 @@
         <EntityTypeShape EntityType="SecureDBModel.vwMagneticCard" Width="2" PointX="4.25" PointY="29.125" />
         <EntityTypeShape EntityType="SecureDBModel.vwMagneticCardAllowController" Width="1.5" PointX="9.6592957925327578" PointY="7.6473098432865507" />
         <EntityTypeShape EntityType="SecureDBModel.vwMagneticCardDetail" Width="1.5" PointX="2.3832590404819971" PointY="29.557578711564457" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDAlarmLog" Width="1.5" PointX="3.6580389457093734" PointY="12.544737478971825" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDConfig" Width="1.5" PointX="4.49345391452939" PointY="20.357678288760447" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDLoopDeviceConfig" Width="1.5" PointX="4.6583296771432874" PointY="20.670985559314015" />
+        <AssociationConnector Association="SecureDBModel.FK_tblPDConfig_tblEngineRoomConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblPDAlarmLog_tblPDConfig" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

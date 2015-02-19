@@ -1941,4 +1941,183 @@ namespace slSecure.Web
             public string XAML { get; set; }
         }
     }
+
+    // MetadataTypeAttribute 會將 tblPDAlarmLogMetadata 識別為
+    // 帶有 tblPDAlarmLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblPDAlarmLog.tblPDAlarmLogMetadata))]
+    public partial class tblPDAlarmLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblPDAlarmLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblPDAlarmLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblPDAlarmLogMetadata()
+            {
+            }
+
+            public long FlowID { get; set; }
+
+            public string Memo { get; set; }
+
+            public string PDItem { get; set; }
+
+            public string PDName { get; set; }
+
+            public Nullable<int> Status { get; set; }
+
+            public tblPDConfig tblPDConfig { get; set; }
+
+            public DateTime Timestamp { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblPDConfigMetadata 識別為
+    // 帶有 tblPDConfig 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblPDConfig.tblPDConfigMetadata))]
+    public partial class tblPDConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblPDConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblPDConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblPDConfigMetadata()
+            {
+            }
+
+            public Nullable<int> Cabinet { get; set; }
+
+            public Nullable<int> Comm_state { get; set; }
+
+            public string Direction { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public Nullable<double> GPSX { get; set; }
+
+            public Nullable<double> GPSY { get; set; }
+
+            public string IP { get; set; }
+
+            public Nullable<int> ItemID { get; set; }
+
+            public Nullable<int> L0 { get; set; }
+
+            public Nullable<int> L1 { get; set; }
+
+            public Nullable<int> L2 { get; set; }
+
+            public Nullable<int> L3 { get; set; }
+
+            public Nullable<int> L4 { get; set; }
+
+            public string LineID { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<int> mile_m { get; set; }
+
+            public Nullable<int> NO_Loop { get; set; }
+
+            public string PDName { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public Nullable<int> Port { get; set; }
+
+            public Nullable<int> R0 { get; set; }
+
+            public Nullable<int> R1 { get; set; }
+
+            public Nullable<int> S0 { get; set; }
+
+            public Nullable<int> S1 { get; set; }
+
+            public Nullable<int> T0 { get; set; }
+
+            public Nullable<int> T1 { get; set; }
+
+            public tblEngineRoomConfig tblEngineRoomConfig { get; set; }
+
+            public EntityCollection<tblPDAlarmLog> tblPDAlarmLog { get; set; }
+
+            public Nullable<int> type { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblPDLoopDeviceConfigMetadata 識別為
+    // 帶有 tblPDLoopDeviceConfig 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblPDLoopDeviceConfig.tblPDLoopDeviceConfigMetadata))]
+    public partial class tblPDLoopDeviceConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblPDLoopDeviceConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblPDLoopDeviceConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblPDLoopDeviceConfigMetadata()
+            {
+            }
+
+            public string device_type { get; set; }
+
+            public string DeviceName { get; set; }
+
+            public string Direction { get; set; }
+
+            public string Enable { get; set; }
+
+            public Nullable<double> GPSX { get; set; }
+
+            public Nullable<double> GPSY { get; set; }
+
+            public string IP { get; set; }
+
+            public string ISBREAKDOWN { get; set; }
+
+            public string LineID { get; set; }
+
+            public string Location { get; set; }
+
+            public string Mapping_DeviceName { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<int> mile_m { get; set; }
+
+            public short PD_LoopNO { get; set; }
+
+            public string PDName { get; set; }
+
+            public Nullable<int> Port { get; set; }
+        }
+    }
 }

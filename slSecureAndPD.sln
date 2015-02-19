@@ -14,6 +14,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureServer", "SecureServer\SecureServer.csproj", "{A3B90D63-3B64-4929-A771-8225EE7A9C6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{26D34E33-1406-4F33-885C-05F775654662}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slWCFModule", "slWCFModule\slWCFModule.csproj", "{36C2EB23-CAAB-456B-912F-ED107DDCCD0D}"
 EndProject

@@ -53,6 +53,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.DomainServices.EntityFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <Private>True</Private>
     </Reference>
@@ -85,6 +86,13 @@
     <Content Include="ClientBin\slEditor.xap" />
     <Content Include="ClientBin\slSecure.xap" />
     <Content Include="ClientBin\slWCFModule.xap" />
+    <Content Include="MCNSService.asmx" />
+    <Content Include="Service References\SecureService\configuration91.svcinfo" />
+    <Content Include="Service References\SecureService\configuration.svcinfo" />
+    <Content Include="Service References\SecureService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <Content Include="Silverlight.js" />
     <Content Include="SilverlightApplication2TestPage.aspx" />
     <Content Include="SilverlightApplication2TestPage.html" />
@@ -106,6 +114,10 @@
     <Compile Include="CCTVLock.aspx.designer.cs">
       <DependentUpon>CCTVLock.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MCNSService.asmx.cs">
+      <DependentUpon>MCNSService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecureDB.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -115,6 +127,11 @@
     <Compile Include="SecureDBService.cs" />
     <Compile Include="SecureDBService.metadata.cs" />
     <Compile Include="SecureDBService.shared.cs" />
+    <Compile Include="Service References\SecureService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -127,6 +144,37 @@
       <DependentUpon>SecureDB.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\192.192.85.64 sl.pubxml" />
+    <None Include="Service References\SecureService\SecureServer.BindingData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureService\SecureServer.CardReader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureService\SecureServer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\SecureService\service.wsdl" />
+    <None Include="Service References\SecureService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\SecureService\slSecure.Web.SecureService.CCTVBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SecureService\slSecure.Web.SecureService.DoorBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SecureService\slSecure.Web.SecureService.ItemBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SecureService\slSecure.Web.SecureService.ItemGroupBindingData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SecureService\slSecure.Web.SecureService.PlaneDegreeInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -140,6 +188,12 @@
   <ItemGroup>
     <Folder Include="ClientBin\Diagrams\" />
     <Folder Include="ClientBin\VideoRecord\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SecureService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

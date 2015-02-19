@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using test.RemoteService;
+using test.ServiceReference1;
 
 namespace test
 {
@@ -18,10 +19,14 @@ namespace test
         {
             System.Collections.ArrayList list = new System.Collections.ArrayList();
             byte[] data = new byte[100]; ;
-            
-            
-
-//
+            ArrayOfString ary = new ArrayOfString();
+            ary.Add("aa");
+            ary.Add("bb");
+            ary.Add("cc");
+            ServiceReference1.MCNSServiceSoapClient client = new ServiceReference1.MCNSServiceSoapClient();
+          string   res=  client.AddCard(new AddCardInfo() { CardNo = "111222333445", ERNOs =ary, MCNSID = "999999" });
+          Console.WriteLine(res);
+//  
           //  RemoteService.SecureServiceClient client = new SecureServiceClient();
           
           //  Master modbus = new Master();

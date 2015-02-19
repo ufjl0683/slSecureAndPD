@@ -316,7 +316,7 @@ namespace slSecure.Forms
 
         void item_OnMenuEvent(object sender, MenuItem item)
         {
-            if (item.Header == "中心開門")
+            if (item.Header.ToString() == "中心開門")
             {
                 client.SecureService.ForceOpenDoorAsync((item.DataContext as DoorBindingData).ControlID);
                 client.SecureService.ForceOpenDoorCompleted += (s, a) =>

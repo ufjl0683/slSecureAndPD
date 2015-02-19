@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfDoorBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DoorBindingData" nillable="true" type="tns:DoorBindingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDoorBindingData" nillable="true" type="tns:ArrayOfDoorBindingData" />
+  <xs:complexType name="DoorBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ControlID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DoorColorString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsConnected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDoorOpen" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DoorBindingData" nillable="true" type="tns:DoorBindingData" />
+  <xs:complexType name="ArrayOfCCTVBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CCTVBindingData" nillable="true" type="tns:CCTVBindingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCCTVBindingData" nillable="true" type="tns:ArrayOfCCTVBindingData" />
+  <xs:complexType name="CCTVBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CCTVID" type="xs:int" />
+      <xs:element minOccurs="0" name="CCTVName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MjpegCgiString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+      <xs:element minOccurs="0" name="Port" type="xs:int" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CCTVBindingData" nillable="true" type="tns:CCTVBindingData" />
+  <xs:complexType name="ArrayOfItemBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemBindingData" nillable="true" type="tns:ItemBindingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItemBindingData" nillable="true" type="tns:ArrayOfItemBindingData" />
+  <xs:complexType name="ItemBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColorString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Degree" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ItemID" type="xs:int" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemBindingData" nillable="true" type="tns:ItemBindingData" />
+  <xs:complexType name="ArrayOfItemGroupBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemGroupBindingData" nillable="true" type="tns:ItemGroupBindingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItemGroupBindingData" nillable="true" type="tns:ArrayOfItemGroupBindingData" />
+  <xs:complexType name="ItemGroupBindingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColorString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemGroupBindingData" nillable="true" type="tns:ItemGroupBindingData" />
+  <xs:complexType name="ArrayOfPlaneDegreeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlaneDegreeInfo" nillable="true" type="tns:PlaneDegreeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlaneDegreeInfo" nillable="true" type="tns:ArrayOfPlaneDegreeInfo" />
+  <xs:complexType name="PlaneDegreeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlarmStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="ERID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlaneDegreeInfo" nillable="true" type="tns:PlaneDegreeInfo" />
+</xs:schema>
