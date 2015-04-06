@@ -36,12 +36,13 @@ namespace SecureServer
            card_mgr = new CardReaderManager(this);
 #endif
            rtu_mgr = new RTU.RTUManager();
+        
            item_mgr = new RTU.ItemManager();
            itemgrp_mgr = new RTU.ItemGroupManager();
            plane_mgr = new PlaneManager();
-          
+           pd_mgr = new PD.PDManager();
 #if !R23     
-             pd_mgr = new PD.PDManager();
+          
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
            card_mgr.OnAlarmEvent += card_mgr_OnAlarmEvent;
 #endif

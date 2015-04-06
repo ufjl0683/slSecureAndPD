@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace test.ServiceReference1 {
+namespace test.MCNSService {
     using System.Runtime.Serialization;
     using System;
     
@@ -22,8 +22,7 @@ namespace test.ServiceReference1 {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ERNOField;
+        private int ERIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ERNameField;
@@ -38,15 +37,15 @@ namespace test.ServiceReference1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string ERNO {
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int ERID {
             get {
-                return this.ERNOField;
+                return this.ERIDField;
             }
             set {
-                if ((object.ReferenceEquals(this.ERNOField, value) != true)) {
-                    this.ERNOField = value;
-                    this.RaisePropertyChanged("ERNO");
+                if ((this.ERIDField.Equals(value) != true)) {
+                    this.ERIDField = value;
+                    this.RaisePropertyChanged("ERID");
                 }
             }
         }
@@ -90,7 +89,14 @@ namespace test.ServiceReference1 {
         private string CardNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private test.ServiceReference1.ArrayOfString ERNOsField;
+        private test.MCNSService.ArrayOfInt ERIDsField;
+        
+        private System.DateTime StartDateField;
+        
+        private System.DateTime EndDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -129,14 +135,53 @@ namespace test.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public test.ServiceReference1.ArrayOfString ERNOs {
+        public test.MCNSService.ArrayOfInt ERIDs {
             get {
-                return this.ERNOsField;
+                return this.ERIDsField;
             }
             set {
-                if ((object.ReferenceEquals(this.ERNOsField, value) != true)) {
-                    this.ERNOsField = value;
-                    this.RaisePropertyChanged("ERNOs");
+                if ((object.ReferenceEquals(this.ERIDsField, value) != true)) {
+                    this.ERIDsField = value;
+                    this.RaisePropertyChanged("ERIDs");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public System.DateTime StartDate {
+            get {
+                return this.StartDateField;
+            }
+            set {
+                if ((this.StartDateField.Equals(value) != true)) {
+                    this.StartDateField = value;
+                    this.RaisePropertyChanged("StartDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public System.DateTime EndDate {
+            get {
+                return this.EndDateField;
+            }
+            set {
+                if ((this.EndDateField.Equals(value) != true)) {
+                    this.EndDateField = value;
+                    this.RaisePropertyChanged("EndDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -153,26 +198,26 @@ namespace test.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfString", Namespace="http://tempuri.org/", ItemName="string")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfInt", Namespace="http://tempuri.org/", ItemName="int")]
     [System.SerializableAttribute()]
-    public class ArrayOfString : System.Collections.Generic.List<string> {
+    public class ArrayOfInt : System.Collections.Generic.List<int> {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.MCNSServiceSoap")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MCNSService.MCNSServiceSoap")]
     public interface MCNSServiceSoap {
         
         // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  HelloWorldResult 未標示為 nillable，正在產生訊息合約
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
-        test.ServiceReference1.HelloWorldResponse HelloWorld(test.ServiceReference1.HelloWorldRequest request);
+        test.MCNSService.HelloWorldResponse HelloWorld(test.MCNSService.HelloWorldRequest request);
         
         // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  GetAllRoomResult 未標示為 nillable，正在產生訊息合約
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllRoom", ReplyAction="*")]
-        test.ServiceReference1.GetAllRoomResponse GetAllRoom(test.ServiceReference1.GetAllRoomRequest request);
+        test.MCNSService.GetAllRoomResponse GetAllRoom(test.MCNSService.GetAllRoomRequest request);
         
         // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  info 未標示為 nillable，正在產生訊息合約
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddCard", ReplyAction="*")]
-        test.ServiceReference1.AddCardResponse AddCard(test.ServiceReference1.AddCardRequest request);
+        test.MCNSService.AddCardResponse AddCard(test.MCNSService.AddCardRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -182,12 +227,12 @@ namespace test.ServiceReference1 {
     public partial class HelloWorldRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorld", Namespace="http://tempuri.org/", Order=0)]
-        public test.ServiceReference1.HelloWorldRequestBody Body;
+        public test.MCNSService.HelloWorldRequestBody Body;
         
         public HelloWorldRequest() {
         }
         
-        public HelloWorldRequest(test.ServiceReference1.HelloWorldRequestBody Body) {
+        public HelloWorldRequest(test.MCNSService.HelloWorldRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -209,12 +254,12 @@ namespace test.ServiceReference1 {
     public partial class HelloWorldResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorldResponse", Namespace="http://tempuri.org/", Order=0)]
-        public test.ServiceReference1.HelloWorldResponseBody Body;
+        public test.MCNSService.HelloWorldResponseBody Body;
         
         public HelloWorldResponse() {
         }
         
-        public HelloWorldResponse(test.ServiceReference1.HelloWorldResponseBody Body) {
+        public HelloWorldResponse(test.MCNSService.HelloWorldResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -243,12 +288,12 @@ namespace test.ServiceReference1 {
     public partial class GetAllRoomRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllRoom", Namespace="http://tempuri.org/", Order=0)]
-        public test.ServiceReference1.GetAllRoomRequestBody Body;
+        public test.MCNSService.GetAllRoomRequestBody Body;
         
         public GetAllRoomRequest() {
         }
         
-        public GetAllRoomRequest(test.ServiceReference1.GetAllRoomRequestBody Body) {
+        public GetAllRoomRequest(test.MCNSService.GetAllRoomRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -270,12 +315,12 @@ namespace test.ServiceReference1 {
     public partial class GetAllRoomResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllRoomResponse", Namespace="http://tempuri.org/", Order=0)]
-        public test.ServiceReference1.GetAllRoomResponseBody Body;
+        public test.MCNSService.GetAllRoomResponseBody Body;
         
         public GetAllRoomResponse() {
         }
         
-        public GetAllRoomResponse(test.ServiceReference1.GetAllRoomResponseBody Body) {
+        public GetAllRoomResponse(test.MCNSService.GetAllRoomResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -287,12 +332,12 @@ namespace test.ServiceReference1 {
     public partial class GetAllRoomResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public test.ServiceReference1.RoomInfo[] GetAllRoomResult;
+        public test.MCNSService.RoomInfo[] GetAllRoomResult;
         
         public GetAllRoomResponseBody() {
         }
         
-        public GetAllRoomResponseBody(test.ServiceReference1.RoomInfo[] GetAllRoomResult) {
+        public GetAllRoomResponseBody(test.MCNSService.RoomInfo[] GetAllRoomResult) {
             this.GetAllRoomResult = GetAllRoomResult;
         }
     }
@@ -304,12 +349,12 @@ namespace test.ServiceReference1 {
     public partial class AddCardRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="AddCard", Namespace="http://tempuri.org/", Order=0)]
-        public test.ServiceReference1.AddCardRequestBody Body;
+        public test.MCNSService.AddCardRequestBody Body;
         
         public AddCardRequest() {
         }
         
-        public AddCardRequest(test.ServiceReference1.AddCardRequestBody Body) {
+        public AddCardRequest(test.MCNSService.AddCardRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -321,12 +366,12 @@ namespace test.ServiceReference1 {
     public partial class AddCardRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public test.ServiceReference1.AddCardInfo info;
+        public test.MCNSService.AddCardInfo info;
         
         public AddCardRequestBody() {
         }
         
-        public AddCardRequestBody(test.ServiceReference1.AddCardInfo info) {
+        public AddCardRequestBody(test.MCNSService.AddCardInfo info) {
             this.info = info;
         }
     }
@@ -338,12 +383,12 @@ namespace test.ServiceReference1 {
     public partial class AddCardResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="AddCardResponse", Namespace="http://tempuri.org/", Order=0)]
-        public test.ServiceReference1.AddCardResponseBody Body;
+        public test.MCNSService.AddCardResponseBody Body;
         
         public AddCardResponse() {
         }
         
-        public AddCardResponse(test.ServiceReference1.AddCardResponseBody Body) {
+        public AddCardResponse(test.MCNSService.AddCardResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -366,12 +411,12 @@ namespace test.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface MCNSServiceSoapChannel : test.ServiceReference1.MCNSServiceSoap, System.ServiceModel.IClientChannel {
+    public interface MCNSServiceSoapChannel : test.MCNSService.MCNSServiceSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class MCNSServiceSoapClient : System.ServiceModel.ClientBase<test.ServiceReference1.MCNSServiceSoap>, test.ServiceReference1.MCNSServiceSoap {
+    public partial class MCNSServiceSoapClient : System.ServiceModel.ClientBase<test.MCNSService.MCNSServiceSoap>, test.MCNSService.MCNSServiceSoap {
         
         public MCNSServiceSoapClient() {
         }
@@ -393,39 +438,39 @@ namespace test.ServiceReference1 {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        test.ServiceReference1.HelloWorldResponse test.ServiceReference1.MCNSServiceSoap.HelloWorld(test.ServiceReference1.HelloWorldRequest request) {
+        test.MCNSService.HelloWorldResponse test.MCNSService.MCNSServiceSoap.HelloWorld(test.MCNSService.HelloWorldRequest request) {
             return base.Channel.HelloWorld(request);
         }
         
         public string HelloWorld() {
-            test.ServiceReference1.HelloWorldRequest inValue = new test.ServiceReference1.HelloWorldRequest();
-            inValue.Body = new test.ServiceReference1.HelloWorldRequestBody();
-            test.ServiceReference1.HelloWorldResponse retVal = ((test.ServiceReference1.MCNSServiceSoap)(this)).HelloWorld(inValue);
+            test.MCNSService.HelloWorldRequest inValue = new test.MCNSService.HelloWorldRequest();
+            inValue.Body = new test.MCNSService.HelloWorldRequestBody();
+            test.MCNSService.HelloWorldResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).HelloWorld(inValue);
             return retVal.Body.HelloWorldResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        test.ServiceReference1.GetAllRoomResponse test.ServiceReference1.MCNSServiceSoap.GetAllRoom(test.ServiceReference1.GetAllRoomRequest request) {
+        test.MCNSService.GetAllRoomResponse test.MCNSService.MCNSServiceSoap.GetAllRoom(test.MCNSService.GetAllRoomRequest request) {
             return base.Channel.GetAllRoom(request);
         }
         
-        public test.ServiceReference1.RoomInfo[] GetAllRoom() {
-            test.ServiceReference1.GetAllRoomRequest inValue = new test.ServiceReference1.GetAllRoomRequest();
-            inValue.Body = new test.ServiceReference1.GetAllRoomRequestBody();
-            test.ServiceReference1.GetAllRoomResponse retVal = ((test.ServiceReference1.MCNSServiceSoap)(this)).GetAllRoom(inValue);
+        public test.MCNSService.RoomInfo[] GetAllRoom() {
+            test.MCNSService.GetAllRoomRequest inValue = new test.MCNSService.GetAllRoomRequest();
+            inValue.Body = new test.MCNSService.GetAllRoomRequestBody();
+            test.MCNSService.GetAllRoomResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).GetAllRoom(inValue);
             return retVal.Body.GetAllRoomResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        test.ServiceReference1.AddCardResponse test.ServiceReference1.MCNSServiceSoap.AddCard(test.ServiceReference1.AddCardRequest request) {
+        test.MCNSService.AddCardResponse test.MCNSService.MCNSServiceSoap.AddCard(test.MCNSService.AddCardRequest request) {
             return base.Channel.AddCard(request);
         }
         
-        public string AddCard(test.ServiceReference1.AddCardInfo info) {
-            test.ServiceReference1.AddCardRequest inValue = new test.ServiceReference1.AddCardRequest();
-            inValue.Body = new test.ServiceReference1.AddCardRequestBody();
+        public string AddCard(test.MCNSService.AddCardInfo info) {
+            test.MCNSService.AddCardRequest inValue = new test.MCNSService.AddCardRequest();
+            inValue.Body = new test.MCNSService.AddCardRequestBody();
             inValue.Body.info = info;
-            test.ServiceReference1.AddCardResponse retVal = ((test.ServiceReference1.MCNSServiceSoap)(this)).AddCard(inValue);
+            test.MCNSService.AddCardResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).AddCard(inValue);
             return retVal.Body.AddCardResult;
         }
     }

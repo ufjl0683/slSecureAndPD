@@ -79,8 +79,8 @@ namespace SecureServer.CardReader
                }
            }
        }
-       ClassSockets.ClientSocket ClientSocket;
-       ClassSockets.ServerSocket ServerScoket;
+           ClassSockets.ClientSocket ClientSocket;//=new ClientSocket();
+       //ClassSockets.ServerSocket ServerScoket;
        System.Threading.Timer tmr;
        public CardReader(string controllerid, string ip, int ERID, int PlaneID, int TriggerCCTVID, int NVRID, int NVRChNo)
        {
@@ -94,11 +94,11 @@ namespace SecureServer.CardReader
 
            ClientSocket = new ClassSockets.ClientSocket();
 
-           ServerScoket = new ClassSockets.ServerSocket();
-           ServerScoket.OnRead += new ServerSocket.ConnectionDelegate(Server_OnRead);
+           //ServerScoket = new ClassSockets.ServerSocket();
+           //ServerScoket.OnRead += new ServerSocket.ConnectionDelegate(Server_OnRead);
 
-           if (ServerScoket.Active())
-                    Console.WriteLine("Card Reader Server Socket is Listening!");
+           //if (ServerScoket.Active())
+           //         Console.WriteLine("Card Reader Server Socket is Listening!");
 
            tmr= new System.Threading.Timer(OneSecTask);
            tmr.Change(0, 1000*60);
@@ -182,28 +182,29 @@ namespace SecureServer.CardReader
 
        
 
-       private void Server_OnRead(Socket soc)
-       {
-           byte[] SRbuf = ServerScoket.ReceivedBytes;
+       //private void Server_OnRead(Socket soc)
+       //{
+       //    byte[] SRbuf = ServerScoket.ReceivedBytes;
 
-           if (SRbuf != null)
-           {
-               if (SRbuf.Length != 25)
-                   return;
-               string SRhexstr = BitConverter.ToString(SRbuf);
-               CardReaderEventReport rpt = new CardReaderEventReport(SRbuf);
-               Console.WriteLine(rpt);
-               if (rpt.Status == (int)CardReaderStatusEnum.門開啟)
-                   this.IsDoorOpen = true;
+       //    if (SRbuf != null)
+       //    {
+       //        if (SRbuf.Length != 25)
+       //            return;
+       //        string SRhexstr = BitConverter.ToString(SRbuf);
+       //        CardReaderEventReport rpt = new CardReaderEventReport(SRbuf);
+       //        Console.WriteLine(rpt);
+       //        if (rpt.Status == (int)CardReaderStatusEnum.門開啟)
+       //            this.IsDoorOpen = true;
 
-               if (rpt.Status == (int)CardReaderStatusEnum.門關閉)
-                   this.IsDoorOpen = false;
+       //        if (rpt.Status == (int)CardReaderStatusEnum.門關閉)
+       //            this.IsDoorOpen = false;
 
-               if (this.OnStatusChanged != null)
-                   this.OnStatusChanged(this, rpt);
-           }
+       //        if (this.OnStatusChanged != null)
+       //            this.OnStatusChanged(this, rpt);
+                
+       //    }
 
-       }
+       //}
        public void ForceOpenDoor()
        {
           int res= ClientSocket.WriteOpenDoorCommand(1, IP, 2);
@@ -295,9 +296,9 @@ namespace SecureServer.CardReader
        }
        public void AddCard(string cardno)
        {
-           uint cardid = uint.Parse(cardno);
+           long cardid = long.Parse(cardno);
                
-             int res=  ClientSocket.WriteAddCard(1,  IP, (int)cardid / 65536, (int)cardid % 65536,
+             int res=  ClientSocket.WriteAddCard(1,  IP, (int)(cardid / 65536), (int)(cardid % 65536),
                  0, 0, 1,1); 
            if (res == -2)
            {
@@ -314,9 +315,9 @@ namespace SecureServer.CardReader
        }
        public void DeleteCard(string cardno)
        {
-           int cardid = int.Parse(cardno);
+           long cardid = long.Parse(cardno);
 
-           int res = ClientSocket.WriteAddCard(1, IP, cardid / 65536, cardid % 65536,
+           int res = ClientSocket.WriteAddCard(1, IP, (int)(cardid / 65536), (int)(cardid % 65536),
                0, 0, 1, 2);
            if (res == -2)
            {
@@ -339,13 +340,13 @@ namespace SecureServer.CardReader
            if (res == -2)
            {
                IsConnected = false;
-               throw new Exception("Connection error!");
+               throw new Exception("Connection error!,"+this.ControllerID);
            }
 
            if (res >= 1)
-               throw new Exception("cmd error!");
+               throw new Exception("cmd error!,");
            if (res == -1)
-               throw new Exception("ID error!");
+               throw new Exception("ID error!,"+this.ControllerID);
 
            IsConnected = true;
 
@@ -410,5 +411,12 @@ namespace SecureServer.CardReader
            IsConnected = true;
        }
 
+
+
+       public void InvokeStatusChange(CardReaderEventReport rpt)
+       {
+           if (this.OnStatusChanged != null)
+               this.OnStatusChanged(this, rpt);
+       }
     }
 }

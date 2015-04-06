@@ -64,7 +64,7 @@ namespace slSecureLib.Forms.R23
             {
                 objMagneticCard.Add(new MagneticCard
                 {
-                    RoleID = vwMagneticCardData.RoleID,
+                    RoleID = vwMagneticCardData.RoleID??0,
                     ABA = vwMagneticCardData.ABA,
                     Name = vwMagneticCardData.Name,
                     Company = vwMagneticCardData.Company,

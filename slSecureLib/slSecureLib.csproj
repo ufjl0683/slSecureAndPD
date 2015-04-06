@@ -219,7 +219,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\slSecure.Web.SecureDBContext.datasource" />
-    <Content Include="ServiceReferences.ClientConfig" />
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

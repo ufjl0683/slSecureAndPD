@@ -61,8 +61,8 @@ namespace slSecure.Forms
 
         private async void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
- 
 
+            
             //EntityQuery<tblUserGroup> q = db.GetTblUserGroupQuery();
             //var res = await db.LoadAsync<tblUserGroup>(q);
 

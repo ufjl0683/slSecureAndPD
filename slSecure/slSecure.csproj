@@ -63,7 +63,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>28A18198EF76BFB28291CA24FE9D6982E6817A1D</ManifestCertificateThumbprint>
@@ -92,7 +92,11 @@
     <Reference Include="mscorlib" />
     <Reference Include="slSecureLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Bin\Release\slSecureLib.dll</HintPath>
+      <HintPath>.\slSecureLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SLVisifire.Charts, Version=5.1.7.0, Culture=neutral, PublicKeyToken=e1555b029ff71bd3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\SLVisifire.Charts.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.IO, Version=1.5.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -174,6 +178,9 @@
     <Compile Include="Dialog\CCTVDialog.xaml.cs">
       <DependentUpon>CCTVDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\TRDialog.xaml.cs">
+      <DependentUpon>TRDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ControlRoom.xaml.cs">
       <DependentUpon>ControlRoom.xaml</DependentUpon>
     </Compile>
@@ -251,6 +258,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialog\TRDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Forms\ControlRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -296,9 +307,14 @@
     <Content Include="slSecureLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SLVisifire.Charts.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="icons\AI.png" />
     <Resource Include="icons\DI.png" />
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

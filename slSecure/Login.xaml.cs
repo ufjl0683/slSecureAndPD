@@ -32,6 +32,7 @@ namespace slSecure
                  App.Current.CheckAndDownloadUpdateCompleted+=Current_CheckAndDownloadUpdateCompleted;
                     App.Current.CheckAndDownloadUpdateAsync();
 
+                    Application.Current.MainWindow.WindowState = WindowState.Maximized;
                 }
             
         }

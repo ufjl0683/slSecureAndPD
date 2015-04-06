@@ -79,7 +79,7 @@ namespace ModbusTCP
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                    Console.WriteLine("RTU:"+this.ControlID+","+ex.Message + "," + ex.StackTrace);
                 }
              
             }

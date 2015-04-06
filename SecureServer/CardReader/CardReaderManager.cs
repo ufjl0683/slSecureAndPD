@@ -1,8 +1,10 @@
-﻿using SecureServer.BindingData;
+﻿using ClassSockets;
+using SecureServer.BindingData;
 using SecureServer.CCTV;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +19,7 @@ namespace SecureServer.CardReader
         int DoorOpenAlarmTime = 20;
         int OpenDoorAutoCloseTime = 10;
         System.Collections.Generic.Dictionary<string, ICardReader> dictCardReaders = new Dictionary<string, ICardReader>();
+        System.Collections.Generic.Dictionary<string, ICardReader> dictIp_CardReader = new Dictionary<string, ICardReader>();
         System.Threading.Timer tmr;
         SecureService serivce;
        // bool IntrusionAlarm = false;
@@ -25,37 +28,84 @@ namespace SecureServer.CardReader
         bool EventInvalidCardAlarm = false;
         bool EventExternalForceAlarm = false;
         bool EventDoorOpenAlarm = false;
-
+        ClassSockets.ServerSocket ServerScoket;
         public CardReaderManager(SecureService service)
         {
-            this.serivce = service;
-            SecureDBEntities1 db = new SecureDBEntities1();
-            var q = from n in db.tblControllerConfig where (n.ControlType == 2 || n.ControlType == 1) && n.IsEnable == true select n;
-            foreach (tblControllerConfig data in q)
+            try
             {
-                int nvrid = -1, nvrchano = -1;
-                if (data.TriggerCCTVID != null)
+              
+
+
+
+                this.serivce = service;
+                SecureDBEntities1 db = new SecureDBEntities1();
+                var q = from n in db.tblControllerConfig where (n.ControlType == 2 || n.ControlType == 1) && n.IsEnable == true select n;
+                foreach (tblControllerConfig data in q)
                 {
-                    nvrid = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRID;
-                    nvrchano = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRChNo;
+                    int nvrid = -1, nvrchano = -1;
+                    if (data.TriggerCCTVID != null )
+                    {
+                        nvrid = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRID;
+                        nvrchano = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRChNo;
+                    }
+                    CardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano);
+                    dictCardReaders.Add(data.ControlID, cardreader);
+                    dictIp_CardReader.Add(data.IP, cardreader);
+                    cardreader.OnDoorEvent += cardreader_OnDoorEvent;
+                    //   cardreader.OnAlarmEvent += cardreader_OnAlarmEvent;
+                    cardreader.OnStatusChanged += cardreader_OnStatusChanged;
+                    Console.WriteLine("加入卡機:" + data.ControlID);
                 }
-                CardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano);
-                dictCardReaders.Add(data.ControlID, cardreader);
-                cardreader.OnDoorEvent += cardreader_OnDoorEvent;
-                //   cardreader.OnAlarmEvent += cardreader_OnAlarmEvent;
-                cardreader.OnStatusChanged += cardreader_OnStatusChanged;
-                Console.WriteLine("加入卡機:" + data.ControlID);
+
+                // 
+                ServerScoket = new ClassSockets.ServerSocket();
+                ServerScoket.OnRead += new ServerSocket.ConnectionDelegate(Server_OnRead);
+
+                if (ServerScoket.Active())
+                    Console.WriteLine("Card Reader Server Socket is Listening!");
+
+                else
+
+                    Console.WriteLine("Card Reader Server Socket is  not Listening!");
+
+
+
+                tmr = new System.Threading.Timer(OneMinTask);
+                tmr.Change(0, 1000 * 60);
+
+                this.LoadSystemParameter();
+                this.SendAllReaderParameter();
+                DownloadSuperPassword();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + "," + ex.StackTrace);
             }
 
-            tmr = new System.Threading.Timer(OneMinTask);
-            tmr.Change(0, 1000 * 60);
+        }
+        private void Server_OnRead(Socket soc)
+        {
+            byte[] SRbuf = ServerScoket.ReceivedBytes;
 
-            this.LoadSystemParameter();
-            this.SendAllReaderParameter();
-            DownloadSuperPassword();
+            if (SRbuf != null)
+            {
+                if (SRbuf.Length != 25)
+                    return;
+                string SRhexstr = BitConverter.ToString(SRbuf);
+                CardReaderEventReport rpt = new CardReaderEventReport(SRbuf);
+                ICardReader ireader = dictIp_CardReader[rpt.IP];
+                Console.WriteLine(rpt);
+                if (rpt.Status == (int)CardReaderStatusEnum.門開啟)
+                    ireader.IsDoorOpen = true;
+
+                if (rpt.Status == (int)CardReaderStatusEnum.門關閉)
+                    ireader.IsDoorOpen = false;
+
+                ireader.InvokeStatusChange(rpt);
+
+            }
 
         }
-
         public void LoadSystemParameter()
         {
             SecureDBEntities1 db = new SecureDBEntities1();
@@ -174,168 +224,176 @@ namespace SecureServer.CardReader
         System.Collections.Generic.List<int> InOperationCCTV = new List<int>();
         void cardreader_OnStatusChanged(CardReader reader, CardReaderEventReport rpt)
         {
-                if(rpt.Status==(int)CardReaderStatusEnum.卡號連續錯誤  && this.EventInvalidCardAlarm ||rpt.Status==(int)CardReaderStatusEnum.外力破壞  && this.EventExternalForceAlarm ||
+
+            try
+            {
+                if (rpt.Status == (int)CardReaderStatusEnum.卡號連續錯誤 && this.EventInvalidCardAlarm || rpt.Status == (int)CardReaderStatusEnum.外力破壞 && this.EventExternalForceAlarm ||
                      rpt.Status == (int)CardReaderStatusEnum.異常入侵 && this.EventIntrusionAlarm || rpt.Status == (int)CardReaderStatusEnum.開門超時 && this.EventDoorOpenOverTimeAlarm ||
                      rpt.Status == (int)CardReaderStatusEnum.開鎖 && this.EventDoorOpenAlarm
                    )
-               {
-                  if(this.OnAlarmEvent!=null)
-                  {
-                      ICCTV cctv = (ICCTV)SecureService.cctv_mgr[reader.TriggerCCTVID];
-                      AlarmData data = new AlarmData()
-                      {
-                          TimeStamp = DateTime.Now,
-                          AlarmType = AlarmType.Secure,
-                          ColorString = "Red",
-                          Description = reader.ControllerID + "," + rpt.StatusString,
-                          PlaneID = reader.PlaneID,
-                          IsForkCCTVEvent = true,
-                          PlaneName = Global.GetPlaneNameByPlaneID(reader.PlaneID),
-                          CCTVBindingData =cctv.ToBindingData()
-                          
+                {
+                    if (this.OnAlarmEvent != null)
+                    {
+                        ICCTV cctv = (ICCTV)SecureService.cctv_mgr[reader.TriggerCCTVID];
+                        AlarmData data = new AlarmData()
+                        {
+                            TimeStamp = DateTime.Now,
+                            AlarmType = AlarmType.Secure,
+                            ColorString = "Red",
+                            Description = reader.ControllerID + "," + rpt.StatusString,
+                            PlaneID = reader.PlaneID,
+                            IsForkCCTVEvent = true,
+                            PlaneName = Global.GetPlaneNameByPlaneID(reader.PlaneID),
+                            CCTVBindingData = cctv!=null?cctv.ToBindingData():null
 
 
 
 
 
-                      };
+
+                        };
 
 
-                      this.OnAlarmEvent(reader,data );
+                        this.OnAlarmEvent(reader, data);
 
-                  }
-               }
+                    }
+                }
 
-            
 
-               if (rpt.Status == (int)CardReaderStatusEnum.開鎖 ||
+
+                if (rpt.Status == (int)CardReaderStatusEnum.開鎖 ||
+                    rpt.Status == (int)CardReaderStatusEnum.按鈕開門 ||
+                    rpt.Status == (int)CardReaderStatusEnum.密碼開門 || rpt.Status == (int)CardReaderStatusEnum.系統開門 ||
+                    rpt.Status == (int)CardReaderStatusEnum.異常入侵 || rpt.Status == (int)CardReaderStatusEnum.開門超時)
+                {
+                    SecureDBEntities1 db = new SecureDBEntities1();
+                    tblEngineRoomLog log = new tblEngineRoomLog()
+                          {
+                              ControlID = reader.ControllerID,
+                              ABA = rpt.CardNo.ToString(),
+                              StartTime = DateTime.Now,
+                              TypeID = 8,
+                              Memo = rpt.StatusString,
+                              TypeCode = (short)rpt.Status,
+                              ERNo = reader.PlaneID.ToString()
+                          };
+                    db.tblEngineRoomLog.Add(
+
+                        log
+                        );
+
+
+
+
+
+
+                    db.SaveChanges();
+                    //開門錄影
+                    if (rpt.Status == (int)CardReaderStatusEnum.開鎖 ||
                    rpt.Status == (int)CardReaderStatusEnum.按鈕開門 ||
-                   rpt.Status == (int)CardReaderStatusEnum.密碼開門 || rpt.Status == (int)CardReaderStatusEnum.系統開門 ||
-                   rpt.Status == (int)CardReaderStatusEnum.異常入侵 || rpt.Status == (int)CardReaderStatusEnum.開門超時)
-                    
-               {
-                   SecureDBEntities1 db = new SecureDBEntities1();
-                   tblEngineRoomLog log = new tblEngineRoomLog()
-                         {
-                             ControlID = reader.ControllerID,
-                             ABA = rpt.CardNo.ToString(),
-                             StartTime = DateTime.Now,
-                             TypeID = 8,
-                             Memo = rpt.StatusString,
-                             TypeCode = (short)rpt.Status,
-                             ERNo = reader.PlaneID.ToString()
-                         };
-                   db.tblEngineRoomLog.Add(
-
-                       log
-                       );
-                    
-                   
+                   rpt.Status == (int)CardReaderStatusEnum.密碼開門 || rpt.Status == (int)CardReaderStatusEnum.系統開門)
+                    {
 
 
+                        if (reader.NVRID == -1)
+                            return;
+                        #region 擷取錄影
+                        Task task = Task.Factory.StartNew(() =>
+                            {
 
+                                DateTime dt = DateTime.Now;
+                                System.Threading.Thread.Sleep(1000 * 20);
 
-                   db.SaveChanges();
-                   //開門錄影
-                   if (rpt.Status == (int)CardReaderStatusEnum.開鎖 ||
-                  rpt.Status == (int)CardReaderStatusEnum.按鈕開門 ||
-                  rpt.Status == (int)CardReaderStatusEnum.密碼開門 || rpt.Status == (int)CardReaderStatusEnum.系統開門)
-                   {
+                                long flowid = log.FlowID;
+                                Console.WriteLine("nvrid:" + reader.NVRID);
+                                try
+                                {
+                                    NVR.INVR nvr = SecureService.nvr_mgr[reader.NVRID];
+                                    if (nvr == null)
+                                    {
+                                        Console.WriteLine(reader.NVRID + " is null");
+                                        return;
+                                    }
+                                    bool success = nvr.SaveRecord(
+                                     reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"E:\web\Secure\ClientBin\VideoRecord\" + flowid + ".avi");
+                                    //bool success = nvr.SaveRecord(
+                                    //reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"D:\" + flowid + ".avi");
 
-                    
-                       if(reader.NVRID==-1)
-                           return;
-                       #region 擷取錄影
-                       Task task=Task.Factory.StartNew(()=>
-                           {
-                         
-                               DateTime dt = DateTime.Now;
-                               System.Threading.Thread.Sleep(1000 *20);
-                            
-                               long flowid = log.FlowID;
-                               Console.WriteLine("nvrid:" + reader.NVRID);
-                               try
-                               {
-                                   NVR.INVR nvr = SecureService.nvr_mgr[reader.NVRID];
-                                   if(nvr==null)
-                                   {
-                                       Console.WriteLine(reader.NVRID+" is null");
-                                       return;
-                                   }
-                                   bool success = nvr.SaveRecord(
-                                    reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"E:\web\Secure\ClientBin\VideoRecord\" + flowid + ".avi");
-                                   //bool success = nvr.SaveRecord(
-                                  //reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"D:\" + flowid + ".avi");
+                                    log.NVRFile = flowid + ".wmv";
+                                    db.SaveChanges();
+                                    Console.WriteLine(success);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                                }
+                            });
 
-                                   log.NVRFile = flowid + ".wmv";
-                                   db.SaveChanges();
-                                   Console.WriteLine(success);
-                               }
-                               catch (Exception ex)
-                               {
-                                   Console.WriteLine(ex.Message + "," + ex.StackTrace);
-                               }
-                           });
-
-                       #endregion
+                        #endregion
 
 
 
-                   }
+                    }
 
-                   if (this.serivce != null  && reader.TriggerCCTVID!=0 )
-                   {
-
-
-                       if (InOperationCCTV.Where(n => n == reader.TriggerCCTVID).Count() > 0)
-                       {
-                           Task.Factory.StartNew(() =>
-                               {
-                                   try
-                                   {
+                    if (this.serivce != null && reader.TriggerCCTVID != 0)
+                    {
 
 
-                                       Console.WriteLine("Trigger " + reader.TriggerCCTVID);
-                                       SecureService.cctv_mgr[reader.TriggerCCTVID].Preset(2);
-                                       System.Threading.Thread.Sleep(1000 * 10);
-                                       SecureService.cctv_mgr[reader.TriggerCCTVID].Preset(1);
-                                   }
-                                   catch (Exception ex)
-                                   {
-                                       Console.WriteLine("May be trigger cctv not found" + ex.Message + "," + ex.StackTrace);
-                                   }
-                                   InOperationCCTV.Remove(reader.TriggerCCTVID);
-                               });
-
-                       }
-                   }
-                  
-               }
+                        if (InOperationCCTV.Where(n => n == reader.TriggerCCTVID).Count() > 0)
+                        {
+                            Task.Factory.StartNew(() =>
+                                {
+                                    try
+                                    {
 
 
-               if (rpt.Status == (int)CardReaderStatusEnum.號碼錯誤 ||
-                 rpt.Status == (int)CardReaderStatusEnum.卡號連續錯誤 ||
-                 rpt.Status == (int)CardReaderStatusEnum.外力破壞  
-                 )
-               {
-                   SecureDBEntities1 db = new SecureDBEntities1();
+                                        Console.WriteLine("Trigger " + reader.TriggerCCTVID);
+                                        SecureService.cctv_mgr[reader.TriggerCCTVID].Preset(2);
+                                        System.Threading.Thread.Sleep(1000 * 10);
+                                        SecureService.cctv_mgr[reader.TriggerCCTVID].Preset(1);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("May be trigger cctv not found" + ex.Message + "," + ex.StackTrace);
+                                    }
+                                    InOperationCCTV.Remove(reader.TriggerCCTVID);
+                                });
 
-                   db.tblEngineRoomLog.Add(
+                        }
+                    }
 
-                         new tblEngineRoomLog()
-                         {
-                             ControlID = reader.ControllerID,
-                             ABA = rpt.CardNo.ToString(),
-                             StartTime = DateTime.Now,
-                             TypeID = 8,
-                             Memo = rpt.StatusString,
-                             TypeCode = (short)rpt.Status,
-                             ERNo = reader.PlaneID.ToString()
-                         }
-                       );
-                   db.SaveChanges();
+                }
 
-               }
+
+                if (rpt.Status == (int)CardReaderStatusEnum.號碼錯誤 ||
+                  rpt.Status == (int)CardReaderStatusEnum.卡號連續錯誤 ||
+                  rpt.Status == (int)CardReaderStatusEnum.外力破壞
+                  )
+                {
+                    SecureDBEntities1 db = new SecureDBEntities1();
+
+                    db.tblEngineRoomLog.Add(
+
+                          new tblEngineRoomLog()
+                          {
+                              ControlID = reader.ControllerID,
+                              ABA = rpt.CardNo.ToString(),
+                              StartTime = DateTime.Now,
+                              TypeID = 8,
+                              Memo = rpt.StatusString,
+                              TypeCode = (short)rpt.Status,
+                              ERNo = reader.PlaneID.ToString()
+                          }
+                        );
+                    db.SaveChanges();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("CardManager OnStatus Change:" + ex.Message + "," + ex.StackTrace);
+            }
                
            
            

@@ -24,5 +24,7 @@ namespace SecureServer.CardReader
         void SetSuperOpenDoorPassword(int password);
         SecureServer.BindingData.DoorBindingData ToBindingData();
         void WriteCardReaderID(int id);
+
+        void InvokeStatusChange(CardReaderEventReport rpt);
     }
 }

@@ -29,7 +29,11 @@ namespace SecureServer.PD
            //bits = new System.Collections.BitArray(data);
            this.tblPDConfig = tblpdconfig;
            initValue();
-           RTUDevice = new ModbusTCP.Master(IP, (ushort)Port);
+           //try
+           //{
+           //    RTUDevice = new ModbusTCP.Master(IP, (ushort)Port);
+           //}
+           //catch { ;}
            new Thread(ConnectTask).Start();
            tmr = new System.Threading.Timer(new System.Threading.TimerCallback(timerBack));
            tmr.Change(0, 5000);
@@ -631,7 +635,7 @@ namespace SecureServer.PD
                    }
                    finally
                    {
-                       System.Threading.Thread.Sleep(1000);
+                       System.Threading.Thread.Sleep(30000);
                    }
                    Console.WriteLine("connected!");
                }

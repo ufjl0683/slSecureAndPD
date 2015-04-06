@@ -17,7 +17,7 @@ namespace SecureServer.PD
           SecureDBEntities1 db = new SecureDBEntities1();
 
           var q = from n in db.tblPDConfig select n;
-
+          Console.WriteLine("PD Manager Starting....");
           foreach (tblPDConfig tbl in q)
           {
               if (!dictPDs.ContainsKey(tbl.PDName))
@@ -39,7 +39,10 @@ namespace SecureServer.PD
                           dictPDs.TryAdd(tbl.PDName, pd);
                           Console.WriteLine("Add PD:" + tbl.PDName);
                       }
-                      catch { ;}
+                      catch(Exception ex) 
+                      {
+                          Console.WriteLine("PD Manager:"+ex.Message+","+ex.StackTrace);
+                          ;}
 
                   }
 

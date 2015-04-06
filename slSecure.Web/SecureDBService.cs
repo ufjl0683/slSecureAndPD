@@ -1832,6 +1832,88 @@ namespace slSecure.Web
             }
         }
 
+
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwAlarmLog' 查詢。
+        public IQueryable<vwAlarmLog> GetVwAlarmLog()
+        {
+            return this.ObjectContext.vwAlarmLog;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwERNamePlaneList' 查詢。
+        public IQueryable<vwERNamePlaneList> GetVwERNamePlaneList()
+        {
+            return this.ObjectContext.vwERNamePlaneList;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwERNameRTUList' 查詢。
+        public IQueryable<vwERNameRTUList> GetVwERNameRTUList()
+        {
+            return this.ObjectContext.vwERNameRTUList;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwItemConfig' 查詢。
+        public IQueryable<vwItemConfig> GetVwItemConfig()
+        {
+            return this.ObjectContext.vwItemConfig;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwItemGroup' 查詢。
+        public IQueryable<vwItemGroup> GetVwItemGroup()
+        {
+            return this.ObjectContext.vwItemGroup;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwPDAlarmLog' 查詢。
+        public IQueryable<vwPDAlarmLog> GetVwPDAlarmLog()
+        {
+            return this.ObjectContext.vwPDAlarmLog;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwPDAlarmLoopDeviceLog' 查詢。
+        public IQueryable<vwPDAlarmLoopDeviceLog> GetVwPDAlarmLoopDeviceLog()
+        {
+            return this.ObjectContext.vwPDAlarmLoopDeviceLog;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwPDConfig' 查詢。
+        public IQueryable<vwPDConfig> GetVwPDConfig()
+        {
+            return this.ObjectContext.vwPDConfig;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwPDLoopDeviceConfig' 查詢。
+        public IQueryable<vwPDLoopDeviceConfig> GetVwPDLoopDeviceConfig()
+        {
+            return this.ObjectContext.vwPDLoopDeviceConfig;
+        }
     }
 
 

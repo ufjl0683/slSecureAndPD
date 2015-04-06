@@ -7,25 +7,39 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
+using test.MCNSService;
 using test.RemoteService;
-using test.ServiceReference1;
 
 namespace test
 {
     class Program
     {
-        static RTU rtu = new RTU("rtu-101", 1, "192.192.85.20", 502, 2001, 46);
+        static RTU rtu = new RTU("rtu-101", 1, "10.21.12.200", 502, 2001, 46);
         static void Main(string[] args)
         {
-            System.Collections.ArrayList list = new System.Collections.ArrayList();
-            byte[] data = new byte[100]; ;
-            ArrayOfString ary = new ArrayOfString();
-            ary.Add("aa");
-            ary.Add("bb");
-            ary.Add("cc");
-            ServiceReference1.MCNSServiceSoapClient client = new ServiceReference1.MCNSServiceSoapClient();
-          string   res=  client.AddCard(new AddCardInfo() { CardNo = "111222333445", ERNOs =ary, MCNSID = "999999" });
-          Console.WriteLine(res);
+
+            MCNSService.MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
+            AddCardInfo info = new AddCardInfo();
+            info.CardNo = "1232828117";
+            info.ERIDs = new ArrayOfInt { 1,3,5};
+            info.StartDate = DateTime.Now;
+            info.EndDate = info.StartDate.AddDays(3);
+            info.MCNSID = "333333";
+           string res= client.AddCard(info);
+           Console.WriteLine(res);
+           // info.MCNSID
+
+           // client.AddCard(new MCNSService.AddCardInfo() { CardNo = "0988163835", ERIDs = new int[] { 1 }, MCNSID });
+
+          //  System.Collections.ArrayList list = new System.Collections.ArrayList();
+          //  byte[] data = new byte[100]; ;
+          //  ArrayOfString ary = new ArrayOfString();
+          //  ary.Add("aa");
+          //  ary.Add("bb");
+          //  ary.Add("cc");
+          //  ServiceReference1.MCNSServiceSoapClient client = new ServiceReference1.MCNSServiceSoapClient();
+          //string   res=  client.AddCard(new AddCardInfo() { CardNo = "111222333445", ERNOs =ary, MCNSID = "999999" });
+          //Console.WriteLine(res);
 //  
           //  RemoteService.SecureServiceClient client = new SecureServiceClient();
           

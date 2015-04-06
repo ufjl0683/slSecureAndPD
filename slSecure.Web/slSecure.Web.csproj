@@ -75,6 +75,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -102,6 +103,7 @@
     <Content Include="slSecure.html" />
     <Content Include="slWCFModuleTestPage.aspx" />
     <Content Include="slWCFModuleTestPage.html" />
+    <Content Include="TRDialog_DownloadForm.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -132,6 +134,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TRDialog_DownloadForm.aspx.cs">
+      <DependentUpon>TRDialog_DownloadForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TRDialog_DownloadForm.aspx.designer.cs">
+      <DependentUpon>TRDialog_DownloadForm.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -144,6 +153,7 @@
       <DependentUpon>SecureDB.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\192.192.85.64 sl.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Service References\SecureService\SecureServer.BindingData.xsd">
       <SubType>Designer</SubType>
     </None>

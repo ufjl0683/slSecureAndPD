@@ -29,7 +29,7 @@
       </s:complexType>
       <s:complexType name="RoomInfo">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="ERNO" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ERID" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="ERName" type="s:string" />
         </s:sequence>
       </s:complexType>
@@ -44,12 +44,15 @@
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="MCNSID" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="CardNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ERNOs" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="ERIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="ArrayOfString">
+      <s:complexType name="ArrayOfInt">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="AddCardResponse">
@@ -155,10 +158,10 @@
   </wsdl:binding>
   <wsdl:service name="MCNSService">
     <wsdl:port name="MCNSServiceSoap" binding="tns:MCNSServiceSoap">
-      <soap:address location="http://localhost:65254/MCNSService.asmx" />
+      <soap:address location="http://192.192.85.64/secure/MCNSService.asmx" />
     </wsdl:port>
     <wsdl:port name="MCNSServiceSoap12" binding="tns:MCNSServiceSoap12">
-      <soap12:address location="http://localhost:65254/MCNSService.asmx" />
+      <soap12:address location="http://192.192.85.64/secure/MCNSService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -26,6 +26,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MjpegProcessor
 {
+  public delegate void OnJpegFrameHandler(byte[]data);
+
 #if WINRT
 	public sealed class MjpegDecoder
 #else
@@ -37,6 +39,7 @@ namespace MjpegProcessor
 		public Bitmap Bitmap { get; set; }
 #endif
 
+        public event OnJpegFrameHandler OnJpegEvent;
 		// magic 2 byte header for JPEG images
 		private readonly byte[] JpegHeader = new byte[] { 0xff, 0xd8 };
 
@@ -45,7 +48,7 @@ namespace MjpegProcessor
 
 		// used to cancel reading the stream
 		private bool _streamActive;
-
+        
 #if WINRT
 		// current encoded JPEG image
 		public IBuffer CurrentFrame { get; private set; }
@@ -92,6 +95,7 @@ namespace MjpegProcessor
 
 		public void ParseStream(Uri uri, string username, string password)
 		{
+          
 #if SILVERLIGHT
 			HttpWebRequest.RegisterPrefix("http://", WebRequestCreator.ClientHttp);
 #endif
@@ -166,7 +170,7 @@ namespace MjpegProcessor
 						int size = buff.Length - imageStart;
 						Array.Copy(buff, imageStart, imageBuffer, 0, size);
 
-						while(true)
+						while(true && _streamActive)
 						{
 							buff = br.ReadBytes(ChunkSize);
 
@@ -180,8 +184,10 @@ namespace MjpegProcessor
 
 								byte[] frame = new byte[size];
 								Array.Copy(imageBuffer, 0, frame, 0, size);
-
-								ProcessFrame(frame);
+                                if (this.OnJpegEvent != null)
+                                    this.OnJpegEvent(frame);
+                                else
+								    ProcessFrame(frame);
 
 								// copy the leftover data to the start
 								Array.Copy(buff, imageEnd, buff, 0, buff.Length - imageEnd);
@@ -208,10 +214,10 @@ namespace MjpegProcessor
                 br.BaseStream.Close();
                 br.BaseStream.Dispose();
                 br.Close();
-                br.Dispose();
+                br.BaseStream.Dispose();
                 
 				resp.Close();
-                resp.Dispose();
+                resp.GetResponseStream().Dispose();
                 s = null; br = null; resp = null;
                 GC.Collect();
 
@@ -223,7 +229,7 @@ namespace MjpegProcessor
 				if(Error != null)
 					_dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Error(this, new ErrorEventArgs() { Message = ex.Message, ErrorCode = ex.HResult }));
 #else
-				if(Error != null)
+				if(Error != null   &&  _context!=null)
 					_context.Post(delegate { Error(this, new ErrorEventArgs() { Message = ex.Message }); }, null);
 #endif
 

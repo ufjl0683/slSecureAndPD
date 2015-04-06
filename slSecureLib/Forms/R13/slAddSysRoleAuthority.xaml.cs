@@ -35,19 +35,19 @@ namespace slSecureLib.Forms.R13
 
         public slAddSysRoleAuthority()
         {
-           // MessageBox.Show("1");
+            MessageBox.Show("1");
             InitializeComponent();
             //dp_DG.PageSize = 20;
-         //   MessageBox.Show("2");
+            MessageBox.Show("2");
             QueryMagneticCard();
-         //   MessageBox.Show("3");
+           MessageBox.Show("3");
             QueryEngineRoomList();
         }
 
         // 使用者巡覽至這個頁面時執行。
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-        //    MessageBox.Show("4");
+            MessageBox.Show("4");
             try
             {
                 client = new MyClient("CustomBinding_ISecureService");
@@ -73,17 +73,17 @@ namespace slSecureLib.Forms.R13
         //查詢磁卡資料  
         async void QueryMagneticCard()
         {
-         //   MessageBox.Show("5");
+          MessageBox.Show("5");
             //busyIndicator.IsBusy = true;
             ObservableCollection<MagneticCard> objMagneticCard = new ObservableCollection<MagneticCard>();
-        //    MessageBox.Show("6");
+          MessageBox.Show("6");
             var q = await db.LoadAsync<vwMagneticCard>(db.GetVwMagneticCardQuery());
         //    MessageBox.Show("7");
             foreach (var vwMagneticCardData in q)
             {
                 objMagneticCard.Add(new MagneticCard
                 {
-                    RoleID = vwMagneticCardData.RoleID,
+                    RoleID = (int)vwMagneticCardData.RoleID,
                     ABA = vwMagneticCardData.ABA,
                     Name = vwMagneticCardData.Name,
                     Company = vwMagneticCardData.Company,

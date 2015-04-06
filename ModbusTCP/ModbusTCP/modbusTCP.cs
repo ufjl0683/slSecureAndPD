@@ -72,7 +72,7 @@ namespace ModbusTCP
         // Private declarations
         private static ushort _timeout = 1000;
         private static ushort _refresh = 10;
-        private static bool _connected = false;
+        private   bool _connected = false;
 
         private Socket tcpAsyCl;
         private byte[] tcpAsyClBuffer = new byte[2048];

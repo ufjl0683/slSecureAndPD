@@ -446,6 +446,18 @@ namespace slSecure.Forms
             client.Dispose();
         }
 
+        private void IOMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ItemBindingData data = ((sender as IOMenu).DataContext as ItemBindingData);
+            if (data.Type != "AI")
+                return;
+
+           Dialog.TRDialog dialog=   new Dialog.TRDialog(data.ItemID);
+           dialog.Width = 800;
+           dialog.Height = 600;
+           dialog.Show();
+        }
+
       
 
     }

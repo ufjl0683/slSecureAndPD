@@ -51,6 +51,9 @@ namespace slSecure
                 // 報告錯誤並停用應用程式的程序。
                 e.Handled = true;
                 Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); });
+
+
+                MessageBox.Show(e.ExceptionObject.Message + "," + e.ExceptionObject.StackTrace);
             }
         }
 

@@ -2120,4 +2120,682 @@ namespace slSecure.Web
             public Nullable<int> Port { get; set; }
         }
     }
+
+
+    // MetadataTypeAttribute 會將 vwAlarmLogMetadata 識別為
+    // 帶有 vwAlarmLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwAlarmLog.vwAlarmLogMetadata))]
+    public partial class vwAlarmLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwAlarmLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwAlarmLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwAlarmLogMetadata()
+            {
+            }
+
+            public string AbnormalRecoveryContent { get; set; }
+
+            public string AbnormalRecoveryMode { get; set; }
+
+            public Nullable<int> Address { get; set; }
+
+            public string AlarmContent { get; set; }
+
+            public Nullable<double> AlarmLower { get; set; }
+
+            public string AlarmMode { get; set; }
+
+            public Nullable<double> AlarmUpper { get; set; }
+
+            public Nullable<int> BitNo { get; set; }
+
+            public Nullable<double> Coefficient { get; set; }
+
+            public string ControlID { get; set; }
+
+            public Nullable<int> Degree { get; set; }
+
+            public string Depiction { get; set; }
+
+            public Nullable<int> DIInvokeWarningValue { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public long EventID { get; set; }
+
+            public string Explain { get; set; }
+
+            public string GroupName { get; set; }
+
+            public Nullable<short> GroupType { get; set; }
+
+            public Nullable<bool> IsShow { get; set; }
+
+            public Nullable<double> ItemConfig_Value { get; set; }
+
+            public Nullable<int> ItemID { get; set; }
+
+            public string ItemName { get; set; }
+
+            public string Lable { get; set; }
+
+            public Nullable<int> Length { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<double> Offset { get; set; }
+
+            public DateTime Timestamp { get; set; }
+
+            public string Type { get; set; }
+
+            public short TypeCode { get; set; }
+
+            public string TypeDetail_Memo { get; set; }
+
+            public short TypeID { get; set; }
+
+            public string Unit { get; set; }
+
+            public Nullable<double> Value { get; set; }
+
+            public Nullable<double> ValueScale { get; set; }
+
+            public Nullable<double> WarningLower { get; set; }
+
+            public Nullable<double> WarningUpper { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwERNamePlaneListMetadata 識別為
+    // 帶有 vwERNamePlaneList 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwERNamePlaneList.vwERNamePlaneListMetadata))]
+    public partial class vwERNamePlaneList
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwERNamePlaneList 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwERNamePlaneListMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwERNamePlaneListMetadata()
+            {
+            }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public string PictureDesc { get; set; }
+
+            public int PlaneID { get; set; }
+
+            public string PlaneName { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwERNameRTUListMetadata 識別為
+    // 帶有 vwERNameRTUList 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwERNameRTUList.vwERNameRTUListMetadata))]
+    public partial class vwERNameRTUList
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwERNameRTUList 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwERNameRTUListMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwERNameRTUListMetadata()
+            {
+            }
+
+            public string ControlID { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwItemConfigMetadata 識別為
+    // 帶有 vwItemConfig 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwItemConfig.vwItemConfigMetadata))]
+    public partial class vwItemConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwItemConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwItemConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwItemConfigMetadata()
+            {
+            }
+
+            public string AbnormalRecoveryContent { get; set; }
+
+            public string AbnormalRecoveryMode { get; set; }
+
+            public int Address { get; set; }
+
+            public string AlarmContent { get; set; }
+
+            public Nullable<double> AlarmLower { get; set; }
+
+            public string AlarmMode { get; set; }
+
+            public Nullable<double> AlarmUpper { get; set; }
+
+            public int BitNo { get; set; }
+
+            public double Coefficient { get; set; }
+
+            public string ControlID { get; set; }
+
+            public Nullable<short> ControlType { get; set; }
+
+            public Nullable<int> Degree { get; set; }
+
+            public string Depiction { get; set; }
+
+            public Nullable<int> DIInvokeWarningValue { get; set; }
+
+            public string EntranceCode { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public Nullable<int> GroupID { get; set; }
+
+            public Nullable<bool> GroupIsShow { get; set; }
+
+            public string GroupName { get; set; }
+
+            public Nullable<short> GroupType { get; set; }
+
+            public Nullable<bool> IsEnable { get; set; }
+
+            public bool IsShow { get; set; }
+
+            public int ItemID { get; set; }
+
+            public string ItemName { get; set; }
+
+            public string Lable { get; set; }
+
+            public int Length { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public string Loop { get; set; }
+
+            public double Offset { get; set; }
+
+            public string PictureDesc { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public string PlaneName { get; set; }
+
+            public Nullable<double> Rotation { get; set; }
+
+            public Nullable<int> RTUBaseAddress { get; set; }
+
+            public Nullable<int> RTURegisterLength { get; set; }
+
+            public Nullable<double> ScaleX { get; set; }
+
+            public Nullable<double> ScaleY { get; set; }
+
+            public Nullable<int> TriggerCCTVID { get; set; }
+
+            public string Type { get; set; }
+
+            public string UIType { get; set; }
+
+            public string Unit { get; set; }
+
+            public Nullable<double> Value { get; set; }
+
+            public double ValueScale { get; set; }
+
+            public Nullable<double> WarningLower { get; set; }
+
+            public Nullable<double> WarningUpper { get; set; }
+
+            public Nullable<double> X { get; set; }
+
+            public Nullable<double> Y { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwItemGroupMetadata 識別為
+    // 帶有 vwItemGroup 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwItemGroup.vwItemGroupMetadata))]
+    public partial class vwItemGroup
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwItemGroup 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwItemGroupMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwItemGroupMetadata()
+            {
+            }
+
+            public string ControlID { get; set; }
+
+            public Nullable<short> ControlType { get; set; }
+
+            public string EntranceCode { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public int GroupID { get; set; }
+
+            public string GroupName { get; set; }
+
+            public Nullable<short> GroupType { get; set; }
+
+            public string IP { get; set; }
+
+            public Nullable<bool> IsEnable { get; set; }
+
+            public bool IsShow { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public string Loop { get; set; }
+
+            public string PictureDesc { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public string PlaneName { get; set; }
+
+            public Nullable<int> Port { get; set; }
+
+            public double Rotation { get; set; }
+
+            public Nullable<int> RTUBaseAddress { get; set; }
+
+            public Nullable<int> RTURegisterLength { get; set; }
+
+            public double ScaleX { get; set; }
+
+            public double ScaleY { get; set; }
+
+            public Nullable<int> TriggerCCTVID { get; set; }
+
+            public double X { get; set; }
+
+            public double Y { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwPDAlarmLogMetadata 識別為
+    // 帶有 vwPDAlarmLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwPDAlarmLog.vwPDAlarmLogMetadata))]
+    public partial class vwPDAlarmLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPDAlarmLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwPDAlarmLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwPDAlarmLogMetadata()
+            {
+            }
+
+            public string Direction { get; set; }
+
+            public string DirectionName { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public long FlowID { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public int Loop { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<int> mile_m { get; set; }
+
+            public string PDItem { get; set; }
+
+            public string PDItemDetail { get; set; }
+
+            public string PDName { get; set; }
+
+            public Nullable<int> Status { get; set; }
+
+            public string StatusDetail { get; set; }
+
+            public DateTime Timestamp { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwPDAlarmLoopDeviceLogMetadata 識別為
+    // 帶有 vwPDAlarmLoopDeviceLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwPDAlarmLoopDeviceLog.vwPDAlarmLoopDeviceLogMetadata))]
+    public partial class vwPDAlarmLoopDeviceLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPDAlarmLoopDeviceLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwPDAlarmLoopDeviceLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwPDAlarmLoopDeviceLogMetadata()
+            {
+            }
+
+            public string Device_Direction { get; set; }
+
+            public string Device_DirectionName { get; set; }
+
+            public string Device_LineID { get; set; }
+
+            public string Device_LineName { get; set; }
+
+            public Nullable<int> Device_mile_m { get; set; }
+
+            public string device_type { get; set; }
+
+            public string DeviceName { get; set; }
+
+            public string Direction { get; set; }
+
+            public string DirectionName { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public long FlowID { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public int Loop { get; set; }
+
+            public string Mapping_DeviceName { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<int> mile_m { get; set; }
+
+            public Nullable<short> PD_LoopNO { get; set; }
+
+            public string PDItem { get; set; }
+
+            public string PDItemDetail { get; set; }
+
+            public string PDName { get; set; }
+
+            public Nullable<int> Status { get; set; }
+
+            public string StatusDetail { get; set; }
+
+            public DateTime Timestamp { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwPDConfigMetadata 識別為
+    // 帶有 vwPDConfig 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwPDConfig.vwPDConfigMetadata))]
+    public partial class vwPDConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPDConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwPDConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwPDConfigMetadata()
+            {
+            }
+
+            public Nullable<int> Cabinet { get; set; }
+
+            public string CabinetDetail { get; set; }
+
+            public Nullable<int> Comm_state { get; set; }
+
+            public string Comm_stateDetail { get; set; }
+
+            public string Direction { get; set; }
+
+            public string DirectionName { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public Nullable<double> GPSX { get; set; }
+
+            public Nullable<double> GPSY { get; set; }
+
+            public string IP { get; set; }
+
+            public Nullable<int> ItemID { get; set; }
+
+            public Nullable<int> L0 { get; set; }
+
+            public string L0Detail { get; set; }
+
+            public Nullable<int> L1 { get; set; }
+
+            public string L1Detail { get; set; }
+
+            public Nullable<int> L2 { get; set; }
+
+            public string L2Detail { get; set; }
+
+            public Nullable<int> L3 { get; set; }
+
+            public string L3Detail { get; set; }
+
+            public Nullable<int> L4 { get; set; }
+
+            public string L4Detail { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<int> mile_m { get; set; }
+
+            public Nullable<int> NO_Loop { get; set; }
+
+            public string PDName { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public Nullable<int> Port { get; set; }
+
+            public Nullable<int> R0 { get; set; }
+
+            public string R0Detail { get; set; }
+
+            public Nullable<int> R1 { get; set; }
+
+            public string R1Detail { get; set; }
+
+            public Nullable<int> S0 { get; set; }
+
+            public string S0Detail { get; set; }
+
+            public Nullable<int> S1 { get; set; }
+
+            public string S1Detail { get; set; }
+
+            public Nullable<int> T0 { get; set; }
+
+            public string T0Detail { get; set; }
+
+            public Nullable<int> T1 { get; set; }
+
+            public string T1Detail { get; set; }
+
+            public Nullable<int> type { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwPDLoopDeviceConfigMetadata 識別為
+    // 帶有 vwPDLoopDeviceConfig 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwPDLoopDeviceConfig.vwPDLoopDeviceConfigMetadata))]
+    public partial class vwPDLoopDeviceConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPDLoopDeviceConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwPDLoopDeviceConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwPDLoopDeviceConfigMetadata()
+            {
+            }
+
+            public string device_type { get; set; }
+
+            public string DeviceName { get; set; }
+
+            public string Direction { get; set; }
+
+            public string DirectionName { get; set; }
+
+            public string Enable { get; set; }
+
+            public Nullable<double> GPSX { get; set; }
+
+            public Nullable<double> GPSY { get; set; }
+
+            public string IP { get; set; }
+
+            public string ISBREAKDOWN { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public string Location { get; set; }
+
+            public string Mapping_DeviceName { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<int> mile_m { get; set; }
+
+            public short PD_LoopNO { get; set; }
+
+            public string PDName { get; set; }
+
+            public Nullable<int> Port { get; set; }
+        }
+    }
 }
