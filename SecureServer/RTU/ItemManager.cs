@@ -78,7 +78,7 @@ namespace SecureServer.RTU
                            break;
 
                    }
-                tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID=sender.ItemConfig.ControlID, ItemID=sender.ItemID, Timestamp=DateTime.Now, TypeID=5, TypeCode=(short) typecode };
+                tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID=sender.ItemConfig.ControlID, ItemID=sender.ItemID, Timestamp=DateTime.Now, TypeID=5, TypeCode=(short) typecode , Value=sender.Value};
                 db.tblAlarmLog.Add(tblalarmlog);
             }
         
@@ -96,7 +96,7 @@ namespace SecureServer.RTU
                            break;
 
                    }
-                   tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID = sender.ItemConfig.ControlID, ItemID = sender.ItemID, Timestamp = DateTime.Now, TypeID = 5, TypeCode = (short)typecode };
+                   tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID = sender.ItemConfig.ControlID, ItemID = sender.ItemID, Timestamp = DateTime.Now, TypeID = 5, TypeCode = (short)typecode , Value=sender.Value};
                 db.tblAlarmLog.Add(tblalarmlog);
             }
          

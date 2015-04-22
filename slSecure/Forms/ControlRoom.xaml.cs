@@ -18,6 +18,7 @@ using slSecure.Controls;
 using slWCFModule;
 using slWCFModule.RemoteService;
 using System.Threading.Tasks;
+using System.Windows.Interactivity;
 
 namespace slSecure.Forms
 {
@@ -261,20 +262,37 @@ namespace slSecure.Forms
                 item.SetValue(Grid.MarginProperty, new Thickness(tbl.X, tbl.Y, 0, 0));
                 CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation, ScaleX = tbl.ScaleX, ScaleY = tbl.ScaleY };
                 item.RenderTransform = transform;
-               
+                 
                 CCTVBindingData bindingdata=CCTVBindingDatas.FirstOrDefault(n => n.CCTVID==tbl.CCTVID );
                 item.UserName = bindingdata.UserName;
                 item.Password = bindingdata.Password;
                 item.Url = bindingdata.MjpegCgiString;
            
                 item.DataContext =   bindingdata;
-              
+                item.MouseLeftButtonDown += CCTVLock_MouseLeftButtonDown;
                 this.Canvas.Children.Add(item);
                 
                 //item.MouseMove += selectedDevice_MouseMove;
 
 
             }
+        }
+
+        void CCTVLock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (this.Canvas.FindName("cctvctl")!=null)
+                return;
+             Control ctl = sender as Control;
+            CCTVBindingData data=ctl.DataContext as CCTVBindingData;
+            CCTVControl cctv = new CCTVControl(data.MjpegCgiString, data.UserName, data.Password);
+            cctv.Name = "cctvctl";
+            cctv.Width=400;
+            cctv.Height=300;
+           Interaction.GetBehaviors(cctv).Add(new Microsoft.Expression.Interactivity.Layout.MouseDragElementBehavior());
+           cctv.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+          cctv.VerticalAlignment= System.Windows.VerticalAlignment.Top;
+          this.Canvas.Children.Add(cctv);
+            //throw new NotImplementedException();
         }
 
     

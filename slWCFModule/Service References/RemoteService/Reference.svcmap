@@ -20,15 +20,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://127.0.0.1:8080/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.192.85.64:8080/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="989ca062-4f2b-4047-a66b-0acdcc9ce500" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a53667e5-23a1-4f02-a486-23bacd457d61" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="eec15d6f-1677-400a-a583-b41fc0643e4c" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="SecureServer.xsd" MetadataType="Schema" ID="59a7fb64-e108-4ac2-9615-43eeb50a6f32" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="SecureServer.BindingData.xsd" MetadataType="Schema" ID="66ec8d2a-dd22-4dcd-af92-53009c46500d" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
-    <MetadataFile FileName="SecureServer.CardReader.xsd" MetadataType="Schema" ID="25883040-a147-4b8a-bc0f-3de7d2d5867a" SourceId="1" SourceUrl="http://127.0.0.1:8080/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="d2cefc29-2187-4d57-b9b6-2722110b5723" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="e13f3db2-fa7c-407c-b844-2bb4679fe21e" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="0fd23806-e0c4-4873-92b8-589eee475110" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer1.xsd" MetadataType="Schema" ID="27dcee03-ee88-4fed-a012-1bce20263521" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer.BindingData1.xsd" MetadataType="Schema" ID="7d38ce0a-e271-466c-bfd9-98190f364a2f" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer.CardReader1.xsd" MetadataType="Schema" ID="b907820b-f9ff-4c54-82fa-ec2c557ee9d4" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

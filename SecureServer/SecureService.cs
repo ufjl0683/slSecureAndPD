@@ -67,6 +67,49 @@ namespace SecureServer
             //throw new NotImplementedException();
         }
 
+        void CheckCardDueTask(string cardNo)
+        {
+            SecureDBEntities1 db = new SecureDBEntities1();
+            var q = from n in db.vwMagneticCardAllowController   where n.ABA==cardNo select n;
+            foreach (vwMagneticCardAllowController vw in q)
+            {
+                if (card_mgr[vw.ControlID] == null)
+                    continue;
+                if ((System.DateTime.Now > vw.EndDate || System.DateTime.Now < vw.StartDate) && card_mgr[vw.ControlID].IsConnected)
+                {
+                    try
+                    {
+                        card_mgr[vw.ControlID].DeleteCard(vw.ABA);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                    }
+                }
+
+                if ((System.DateTime.Now <= vw.EndDate && System.DateTime.Now >= vw.StartDate) && card_mgr[vw.ControlID].IsConnected)
+                {
+                    try
+                    {
+                        if (vw.Type == 4)
+                            card_mgr[vw.ControlID].AddVirturalCard(vw.ABA);
+                        else
+                            card_mgr[vw.ControlID].AddCard(vw.ABA);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        ;
+                        // Console.WriteLine(ex.Message+","+ex.StackTrace);
+                    }
+
+
+
+                }
+            }
+
+            // NotifyDBChange(DBChangedConstant.AuthorityChanged);
+        }
         void CheckCardDueTask() 
         {
             SecureDBEntities1 db = new SecureDBEntities1();
@@ -239,8 +282,9 @@ namespace SecureServer
                             }
                             else if(cmdlog.CommandType=="*")
                             {
+                               
                                 Console.WriteLine("Process CheckCardDue");
-                                CheckCardDueTask();
+                                CheckCardDueTask(cmdlog.ABA);
                             }
 
                             cmdlog.Timestamp=DateTime.Now;
@@ -269,6 +313,12 @@ namespace SecureServer
                 case DBChangedConstant.EventIntrusion:
                 case DBChangedConstant.EventInvalidCard:
                     card_mgr.LoadSystemParameter();
+                    break;
+                case DBChangedConstant.ItemAttributehanged:
+                    if (value == null || value.Trim()=="" || item_mgr==null )
+                        return;
+                    item_mgr[int.Parse(value)].LoadItemConfig();
+
                     break;
                 default:
                     Console.WriteLine(constant + "," + value);

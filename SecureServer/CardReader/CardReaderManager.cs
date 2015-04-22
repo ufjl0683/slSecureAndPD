@@ -93,6 +93,11 @@ namespace SecureServer.CardReader
                     return;
                 string SRhexstr = BitConverter.ToString(SRbuf);
                 CardReaderEventReport rpt = new CardReaderEventReport(SRbuf);
+                if (!dictIp_CardReader.ContainsKey(rpt.IP))
+                {
+                    Console.WriteLine(rpt.IP + "  Not in dictionary!");
+                    return;
+                }
                 ICardReader ireader = dictIp_CardReader[rpt.IP];
                 Console.WriteLine(rpt);
                 if (rpt.Status == (int)CardReaderStatusEnum.門開啟)
@@ -314,6 +319,8 @@ namespace SecureServer.CardReader
                                         Console.WriteLine(reader.NVRID + " is null");
                                         return;
                                     }
+
+                                 
                                     bool success = nvr.SaveRecord(
                                      reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"E:\web\Secure\ClientBin\VideoRecord\" + flowid + ".avi");
                                     //bool success = nvr.SaveRecord(
@@ -418,12 +425,25 @@ namespace SecureServer.CardReader
 
             if (enumEventType == DoorEventType.Connected)
             {
+
+                SecureDBEntities1 db = new SecureDBEntities1();
+                tblControllerConfig config = db.tblControllerConfig.Where(n => n.ControlID == reader.ControllerID).FirstOrDefault();
+                if (config != null)
+                    config.Comm_state = 1;
+                tblEngineRoomLog log = new tblEngineRoomLog() { ControlID = reader.ControllerID, ABA = "0", StartTime = DateTime.Now, TypeID = 8, TypeCode = 31, Result = 1 };
+                db.tblEngineRoomLog.Add(log);
+                db.SaveChanges();
+                db.Dispose();
                 this.DownloadSuperPassword(reader.ControllerID);
             }
             if (enumEventType == DoorEventType.DisConnected)
             {
                
                 SecureDBEntities1 db = new SecureDBEntities1();
+
+                tblControllerConfig config = db.tblControllerConfig.Where(n => n.ControlID == reader.ControllerID).FirstOrDefault();
+                if (config != null)
+                    config.Comm_state = 0;
                  tblEngineRoomLog log=new tblEngineRoomLog(){ ControlID=reader.ControllerID, ABA="0", StartTime=DateTime.Now,  TypeID=8, TypeCode=30,  Result=0};
                  db.tblEngineRoomLog.Add(log);
                  db.SaveChanges();
@@ -458,6 +478,19 @@ namespace SecureServer.CardReader
             if (tbl == null)
                 return;
             dictCardReaders[readerID].SetSuperOpenDoorPassword(int.Parse(tbl.DoorPassword));
+            db.tblEngineRoomLog.Add(
+                                 new tblEngineRoomLog()
+                                 {
+                                     ControlID = readerID,//reader.ControllerID,
+                                     Result = 0,
+                                     StartTime = DateTime.Now,
+                                     ABA = "0",
+                                     TypeID = 8,
+                                     TypeCode = 40,
+                                     Memo = tbl.DoorPassword
+                                 }
+                                 );
+            db.SaveChanges();
         }
 
         void DownloadSuperPassword()
@@ -480,6 +513,22 @@ namespace SecureServer.CardReader
                     {
                         reader.SetSuperOpenDoorPassword(int.Parse(tbl.DoorPassword));
                         Console.WriteLine(reader.ControllerID + "設定每日開門密碼成功");
+
+
+                        db.tblEngineRoomLog.Add(
+                                      new tblEngineRoomLog()
+                                      {
+                                          ControlID = reader.ControllerID,
+                                          Result = 0,
+                                          StartTime = DateTime.Now,
+                                          ABA = "0",
+                                          TypeID = 8,
+                                          TypeCode = 40,
+                                          Memo = tbl.DoorPassword
+                                      }
+                                      );
+                   
+                     
                     }
                 }
                 catch (Exception ex)
@@ -487,6 +536,10 @@ namespace SecureServer.CardReader
                     Console.WriteLine(ex.Message + "," + ex.StackTrace);
                 }
             }
+
+            db.SaveChanges();
+
+         
         }
 
         void CheckAndGenerateDailySuperPassword()

@@ -92,10 +92,10 @@ namespace slSecure.Controls
         {
 
 
-            if (Url != "" && UserName != "" && Password != "")
-                new CCTVDialog(Url, UserName, Password).Show();
-            else if (Url != "")
-                new CCTVDialog(Url).Show();
+            //if (Url != "" && UserName != "" && Password != "")
+            //    new CCTVDialog(Url, UserName, Password).Show();
+            //else if (Url != "")
+            //    new CCTVDialog(Url).Show();
         }
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

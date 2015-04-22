@@ -11,6 +11,7 @@
           <EntitySet Name="tblCardCommandLog" EntityType="SecureDBModel.Store.tblCardCommandLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblCCTVConfig" EntityType="SecureDBModel.Store.tblCCTVConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblControllerConfig" EntityType="SecureDBModel.Store.tblControllerConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblDeviceStateLog" EntityType="SecureDBModel.Store.tblDeviceStateLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblEngineRoomLog" EntityType="SecureDBModel.Store.tblEngineRoomLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblERDoorPassword" EntityType="SecureDBModel.Store.tblERDoorPassword" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblERPlane" EntityType="SecureDBModel.Store.tblERPlane" store:Type="Tables" Schema="dbo" />
@@ -172,6 +173,10 @@
             <End Role="tblItemConfig" EntitySet="tblItemConfig" />
             <End Role="tblAIItem1HourLog" EntitySet="tblAIItem1HourLog" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblDeviceStateLog_tblControllerConfig" Association="SecureDBModel.Store.FK_tblDeviceStateLog_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblDeviceStateLog" EntitySet="tblDeviceStateLog" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblItemConfig_tblControllerConfig" Association="SecureDBModel.Store.FK_tblItemConfig_tblControllerConfig">
             <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
             <End Role="tblItemConfig" EntitySet="tblItemConfig" />
@@ -263,6 +268,20 @@
           <Property Name="TriggerCCTVID" Type="int" />
           <Property Name="RTUBaseAddress" Type="int" />
           <Property Name="RTURegisterLength" Type="int" />
+          <Property Name="Comm_state" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDeviceStateLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="TypeCode" Type="smallint" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="ReaderID" Type="int" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SingalName" Type="nvarchar" MaxLength="20" />
+          <Property Name="ABA" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="tblEngineRoomLog">
           <Key>
@@ -332,6 +351,9 @@
           <Property Name="Rotation" Type="float" />
           <Property Name="X" Type="float" />
           <Property Name="Y" Type="float" />
+          <Property Name="Lv0Color" Type="nvarchar" MaxLength="10" />
+          <Property Name="Lv1Color" Type="nvarchar" MaxLength="10" />
+          <Property Name="Lv2Color" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -655,6 +677,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblDeviceStateLog_tblControllerConfig">
+          <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="1" />
+          <End Role="tblDeviceStateLog" Type="SecureDBModel.Store.tblDeviceStateLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblDeviceStateLog">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblItemConfig_tblControllerConfig">
           <End Role="tblControllerConfig" Type="SecureDBModel.Store.tblControllerConfig" Multiplicity="1" />
           <End Role="tblItemConfig" Type="SecureDBModel.Store.tblItemConfig" Multiplicity="*" />
@@ -735,6 +769,11 @@
           <EntitySet Name="vwEntranceGuardDetail" EntityType="SecureDBModel.vwEntranceGuardDetail" />
           <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureDBModel.vwUserGroupMenuAllow" />
           <EntitySet Name="vwUserMenuAllow" EntityType="SecureDBModel.vwUserMenuAllow" />
+          <EntitySet Name="tblDeviceStateLog" EntityType="SecureDBModel.tblDeviceStateLog" />
+          <AssociationSet Name="FK_tblDeviceStateLog_tblControllerConfig" Association="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig">
+            <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
+            <End Role="tblDeviceStateLog" EntitySet="tblDeviceStateLog" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblERDoorPassword">
           <Key>
@@ -922,6 +961,8 @@
           <Property Type="Int32" Name="RTUBaseAddress" />
           <Property Type="Int32" Name="RTURegisterLength" />
           <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblItemConfig" />
+          <Property Type="Int32" Name="Comm_state" />
+          <NavigationProperty Name="tblDeviceStateLog" Relationship="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblDeviceStateLog" />
         </EntityType>
         <EntityType Name="tblItemConfig">
           <Key>
@@ -962,6 +1003,9 @@
           <Property Type="Double" Name="X" />
           <Property Type="Double" Name="Y" />
           <NavigationProperty Name="tblAIItem1HourLog" Relationship="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" FromRole="tblItemConfig" ToRole="tblAIItem1HourLog" />
+          <Property Type="String" Name="Lv0Color" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lv1Color" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lv2Color" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -1226,6 +1270,32 @@
           <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="MenuOrder" />
         </EntityType>
+        <EntityType Name="tblDeviceStateLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ReaderID" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingalName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig" FromRole="tblDeviceStateLog" ToRole="tblControllerConfig" />
+        </EntityType>
+        <Association Name="FK_tblDeviceStateLog_tblControllerConfig">
+          <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblDeviceStateLog" Role="tblDeviceStateLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblControllerConfig">
+              <PropertyRef Name="ControlID" />
+            </Principal>
+            <Dependent Role="tblDeviceStateLog">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1404,6 +1474,7 @@
           <EntitySetMapping Name="tblControllerConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblControllerConfig">
               <MappingFragment StoreEntitySet="tblControllerConfig">
+                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
                 <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
                 <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
                 <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
@@ -1427,6 +1498,9 @@
           <EntitySetMapping Name="tblItemConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblItemConfig">
               <MappingFragment StoreEntitySet="tblItemConfig">
+                <ScalarProperty Name="Lv2Color" ColumnName="Lv2Color" />
+                <ScalarProperty Name="Lv1Color" ColumnName="Lv1Color" />
+                <ScalarProperty Name="Lv0Color" ColumnName="Lv0Color" />
                 <ScalarProperty Name="Y" ColumnName="Y" />
                 <ScalarProperty Name="X" ColumnName="X" />
                 <ScalarProperty Name="Rotation" ColumnName="Rotation" />
@@ -1661,6 +1735,20 @@
                 <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
                 <ScalarProperty Name="MenuID" ColumnName="MenuID" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDeviceStateLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblDeviceStateLog">
+              <MappingFragment StoreEntitySet="tblDeviceStateLog">
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="SingalName" ColumnName="SingalName" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ReaderID" ColumnName="ReaderID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

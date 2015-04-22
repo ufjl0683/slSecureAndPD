@@ -362,6 +362,8 @@ namespace slSecure.Web
             public Nullable<double> X { get; set; }
 
             public Nullable<double> Y { get; set; }
+
+            public Nullable<int> Comm_state { get; set; }
         }
     }
 
@@ -773,6 +775,10 @@ namespace slSecure.Web
             public Nullable<double> ScaleX { get; set; }
             public Nullable<double> ScaleY { get; set; }
             public Nullable<double> Rotation { get; set; }
+
+            public string Lv0Color { get; set; } 
+            public string Lv1Color { get; set; }
+             public string Lv2Color { get; set; }
 
         }
     }
@@ -2118,6 +2124,7 @@ namespace slSecure.Web
             public string PDName { get; set; }
 
             public Nullable<int> Port { get; set; }
+            public Nullable<int> Diameter { get; set; }
         }
     }
 
@@ -2798,4 +2805,192 @@ namespace slSecure.Web
             public Nullable<int> Port { get; set; }
         }
     }
-}
+    [MetadataTypeAttribute(typeof(vwAllAlarmLog.vwAllAlarmLogMetadata))]
+    public partial class vwAllAlarmLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwAllAlarmLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwAllAlarmLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwAllAlarmLogMetadata()
+            {
+            }
+
+            public string ABAAndItemName { get; set; }
+
+            public string DoorAndGroupName { get; set; }
+
+            public string ERName { get; set; }
+
+            public string Item { get; set; }
+
+            public string NameAndType { get; set; }
+
+            public string Status { get; set; }
+
+            public DateTime Timestamp { get; set; }
+        }
+    }
+
+
+    [MetadataTypeAttribute(typeof(vwControllerConfig.vwControllerConfigMetadata))]
+    public partial class vwControllerConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwControllerConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwControllerConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwControllerConfigMetadata()
+            {
+            }
+
+            public Nullable<int> Comm_state { get; set; }
+
+            public string Comm_stateName { get; set; }
+
+            public string ControlID { get; set; }
+
+            public short ControlType { get; set; }
+
+            public string ControlTypeName { get; set; }
+
+            public string EntranceCode { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public Nullable<bool> IsEnable { get; set; }
+
+            public string Memo { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwDeviceStateLogMetadata 識別為
+    // 帶有 vwDeviceStateLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwDeviceStateLog.vwDeviceStateLogMetadata))]
+    public partial class vwDeviceStateLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwDeviceStateLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwDeviceStateLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwDeviceStateLogMetadata()
+            {
+            }
+
+            public string ControlID { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string Explain { get; set; }
+
+            public long FlowID { get; set; }
+
+            public string Memo { get; set; }
+
+            public DateTime TimeStamp { get; set; }
+
+            public short TypeCode { get; set; }
+
+            public short TypeID { get; set; }
+        }
+    }
+
+    [MetadataTypeAttribute(typeof(vwReaderPassList.vwReaderPassListMetadata))]
+    public partial class vwReaderPassList
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwReaderPassList 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwReaderPassListMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwReaderPassListMetadata()
+            {
+            }
+
+            public string CardType { get; set; }
+
+            public string Door { get; set; }
+
+            public string ERName { get; set; }
+
+            public long FlowID { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<DateTime> StartTime { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwReaderPassLogMetadata 識別為
+    // 帶有 vwReaderPassLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwReaderPassLog.vwReaderPassLogMetadata))]
+    public partial class vwReaderPassLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwReaderPassLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwReaderPassLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwReaderPassLogMetadata()
+            {
+            }
+
+            public string ControlID { get; set; }
+
+            public Nullable<DateTime> starttime { get; set; }
+        }
+    }
+    }
+

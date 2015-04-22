@@ -45,6 +45,9 @@ namespace slWCFModule.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         EventDoorOpen = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ItemAttributehanged = 9,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -504,6 +507,8 @@ namespace slWCFModule.RemoteService {
         
         private int AlarmStatusField;
         
+        private int ColorStringField;
+        
         private int ERIDField;
         
         private string NameField;
@@ -519,6 +524,19 @@ namespace slWCFModule.RemoteService {
                 if ((this.AlarmStatusField.Equals(value) != true)) {
                     this.AlarmStatusField = value;
                     this.RaisePropertyChanged("AlarmStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ColorString {
+            get {
+                return this.ColorStringField;
+            }
+            set {
+                if ((this.ColorStringField.Equals(value) != true)) {
+                    this.ColorStringField = value;
+                    this.RaisePropertyChanged("ColorString");
                 }
             }
         }

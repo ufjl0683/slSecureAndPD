@@ -79,6 +79,7 @@
   <xs:complexType name="PlaneDegreeInfo">
     <xs:sequence>
       <xs:element minOccurs="0" name="AlarmStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorString" type="xs:int" />
       <xs:element minOccurs="0" name="ERID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PlaneID" type="xs:int" />

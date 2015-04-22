@@ -52,7 +52,7 @@ namespace slSecure.Web
                 }
 
                 SecureService.SecureServiceClient client = new SecureService.SecureServiceClient(new System.ServiceModel.InstanceContext(this));
-                client.NotifyDBChange(SecureService.DBChangedConstant.AuthorityChanged, "");
+                client.NotifyDBChange(SecureService.DBChangedConstant.AuthorityChanged,"");
 
                 return "0:success!"+rooms;
             }
@@ -64,15 +64,111 @@ namespace slSecure.Web
           
         }
 
+         //public void Exchange(string Memo, int ERID, string ABA, string Name, DateTime StartDate, DateTime EndDate)
+         //{
+         //    int RoleID=0;
+
+         //    clsDBComm commDB = new clsDBComm();
+
+         //    DataTable dt = new DataTable();
+         //    DataTable dtSelect = new DataTable();
+         //    string cmd = "";
+         //    bool IsSuccess = false;
+
+
+         //    string tempABA = "";
+         //    tempABA = (Convert.ToUInt32(ABA)).ToString("0000000000");
+
+         //    DateTime tmp_StartDate = StartDate;
+         //    DateTime tmp_EndDate = EndDate;
+
+         //    string s_StartDate = tmp_StartDate.ToShortDateString() + " 00:00:00";
+         //    string s_EndDate = tmp_EndDate.ToShortDateString() + " 23:59:59";
+
+         //    //先判斷磁卡是否已存在
+         //    cmd = string.Format("select * from tblMagneticCard where ABA='{0}';", tempABA);
+         //    dt = commDB.SelectDBData(cmd);
+         //    if (dt.Rows.Count > 0)
+         //    {
+         //        RoleID = int.Parse(dt.Rows[0]["RoleID"].ToString());
+
+         //        ////0330刪除已存在，再加的
+         //        //cmd = string.Format("select * from tblSysRoleAuthority where RoleID={0};", RoleID);
+         //        //dtSelect = commDB.SelectDBData(cmd);
+         //        //if (dtSelect.Rows.Count > 0)
+         //        //{
+         //        //    cmd = string.Format("delete from tblSysRoleAuthority where RoleID={0};", RoleID);
+         //        //    IsSuccess = commDB.ModifyDBData(cmd);
+         //        //}
+
+         //        //查詢已加的權限不重複加入
+         //        cmd = string.Format("select * from vwEntranceGuardDetail where ERID={0};", ERID);
+         //        dt = commDB.SelectDBData(cmd);
+         //        foreach (DataRow row in dt.Rows)
+         //        {
+         //            cmd = string.Format("select * from tblSysRoleAuthority where RoleID={0} and ControlID='{1}';", RoleID, row["ControlID"].ToString());
+         //            dtSelect = commDB.SelectDBData(cmd);
+         //            if (dtSelect.Rows.Count == 0)
+         //            {
+         //                cmd = string.Format("INSERT INTO tblSysRoleAuthority(RoleID,ControlID) VALUES ({0},'{1}');", RoleID, row["ControlID"].ToString());
+         //                IsSuccess = commDB.ModifyDBData(cmd);
+
+         //            }
+         //        }
+         //    }
+         //    else
+         //    {
+         //        //1.取得磁卡ABA後，加入tblSysRole磁卡權限群組表
+         //        cmd = string.Format("INSERT INTO tblSysRole(RoleName,UpdateDate) VALUES ('{0}','{1}');", tempABA, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+         //        IsSuccess = commDB.ModifyDBData(cmd);
+
+         //        if (IsSuccess)
+         //        {
+         //            cmd = string.Format("select * from tblSysRole where RoleName='{0}';", tempABA);
+
+         //            dt = commDB.SelectDBData(cmd);
+         //            if (dt.Rows.Count > 0)
+         //            {
+         //                RoleID = int.Parse(dt.Rows[0]["RoleID"].ToString());
+         //            }
+
+         //            //2.取得磁卡對應的RoleID, 加入tblMagneticCard磁卡資料表
+         //            cmd = string.Format("INSERT INTO tblMagneticCard(ABA,Name,StartDate,EndDate,Type,RoleID,Timestamp,Memo,NormalID) VALUES " +
+         //                                "('{0}','{1}','{2}','{3}',{4},{5},'{6}','{7}',{8});",
+         //                                 tempABA, Name, s_StartDate, s_EndDate, 2, RoleID, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "施工單號:" + Memo, 0);
+         //            IsSuccess = commDB.ModifyDBData(cmd);
+         //            if (IsSuccess)
+         //            {
+         //                //3.取得此機房的各讀卡機的ControlID及磁卡對應的RoleID，加入tblSysRoleAuthority磁卡權限表，查詢已加的權限不重複加入       
+         //                cmd = string.Format("select * from vwEntranceGuardDetail where ERID={0};", ERID);
+         //                dt = commDB.SelectDBData(cmd);
+
+         //                foreach (DataRow row in dt.Rows)
+         //                {
+         //                    cmd = string.Format("select * from tblSysRoleAuthority where RoleID={0} and ControlID='{1}';", RoleID, row["ControlID"].ToString());
+         //                    dtSelect = commDB.SelectDBData(cmd);
+         //                    if (dtSelect.Rows.Count == 0)
+         //                    {
+         //                        cmd = string.Format("INSERT INTO tblSysRoleAuthority(RoleID,ControlID) VALUES ({0},'{1}');", RoleID, row["ControlID"].ToString());
+         //                        IsSuccess = commDB.ModifyDBData(cmd);
+         //                    }
+         //                }
+         //            }
+         //        }
+         //    }
+         //}
+
          public void Exchange(string Memo, int ERID, string ABA, string Name, DateTime StartDate, DateTime EndDate)
          {
+             int RoleID=0;
              clsDBComm commDB = new clsDBComm();
 
              DataTable dt = new DataTable();
              DataTable dtSelect = new DataTable();
              string cmd = "";
              bool IsSuccess = false;
-             int RoleID = 0;
+
+
              string tempABA = "";
              tempABA = (Convert.ToUInt32(ABA)).ToString("0000000000");
 
@@ -82,37 +178,39 @@ namespace slSecure.Web
              string s_StartDate = tmp_StartDate.ToShortDateString() + " 00:00:00";
              string s_EndDate = tmp_EndDate.ToShortDateString() + " 23:59:59";
 
-           //  System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  ---Start---" + "\r\n");
-
              //先判斷磁卡是否已存在
              cmd = string.Format("select * from tblMagneticCard where ABA='{0}';", tempABA);
              dt = commDB.SelectDBData(cmd);
              if (dt.Rows.Count > 0)
              {
+                 //已存在，先更新-可進入機房時間起迄
+                 cmd = string.Format("UPDATE tblMagneticCard set StartDate ='{0}',EndDate='{1}',Name='{2}',Type=2,Memo='{3}',NormalID=0,Timestamp='{4}' where ABA='{5}';", s_StartDate, s_EndDate, Name, "施工單號:" + Memo, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), tempABA);
+                 IsSuccess = commDB.ModifyDBData(cmd);
+
                  RoleID = int.Parse(dt.Rows[0]["RoleID"].ToString());
 
-               //  System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  查詢tblMagneticCard磁卡已存在！" + "ABA=" + tempABA + "\r\n");
+                 //0330刪除已存在，再加的
+                 //cmd = string.Format("select * from tblSysRoleAuthority where RoleID={0};", RoleID);
+                 //dtSelect = commDB.SelectDBData(cmd);
+                 //if (dtSelect.Rows.Count > 0)
+                 //{
+                 //    cmd = string.Format("delete from tblSysRoleAuthority where RoleID={0};", RoleID);
+                 //    IsSuccess = commDB.ModifyDBData(cmd);
+                 //}
+
                  //查詢已加的權限不重複加入
                  cmd = string.Format("select * from vwEntranceGuardDetail where ERID={0};", ERID);
                  dt = commDB.SelectDBData(cmd);
                  foreach (DataRow row in dt.Rows)
                  {
-
                      cmd = string.Format("select * from tblSysRoleAuthority where RoleID={0} and ControlID='{1}';", RoleID, row["ControlID"].ToString());
                      dtSelect = commDB.SelectDBData(cmd);
                      if (dtSelect.Rows.Count == 0)
                      {
                          cmd = string.Format("INSERT INTO tblSysRoleAuthority(RoleID,ControlID) VALUES ({0},'{1}');", RoleID, row["ControlID"].ToString());
                          IsSuccess = commDB.ModifyDBData(cmd);
-                         //if (IsSuccess)
-                         //{
-                         //    System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  tblSysRoleAuthority寫入成功！" + "RoleID=" + RoleID.ToString() + ",ConrtolID=" + row["ControlID"].ToString() + "\r\n");
-                         //}
+
                      }
-                     //else
-                     //{
-                     //    System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  查詢tblSysRoleAuthority已存在！" + "RoleID=" + RoleID.ToString() + ",ConrtolID=" + row["ControlID"].ToString() + "\r\n");
-                     //}
                  }
              }
              else
@@ -123,26 +221,21 @@ namespace slSecure.Web
 
                  if (IsSuccess)
                  {
-                  //   System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  tblSysRole寫入成功！" + "ABA=" + tempABA + "\r\n");
-
                      cmd = string.Format("select * from tblSysRole where RoleName='{0}';", tempABA);
 
                      dt = commDB.SelectDBData(cmd);
                      if (dt.Rows.Count > 0)
                      {
                          RoleID = int.Parse(dt.Rows[0]["RoleID"].ToString());
-                     //    System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  tblSysRole查詢成功！" + "RoleID=" + dt.Rows[0][0].ToString() + "\r\n");
                      }
 
                      //2.取得磁卡對應的RoleID, 加入tblMagneticCard磁卡資料表
                      cmd = string.Format("INSERT INTO tblMagneticCard(ABA,Name,StartDate,EndDate,Type,RoleID,Timestamp,Memo,NormalID) VALUES " +
                                          "('{0}','{1}','{2}','{3}',{4},{5},'{6}','{7}',{8});",
-                                          tempABA, Name, s_StartDate, s_EndDate, 2, RoleID, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Memo, 0);
+                                          tempABA, Name, s_StartDate, s_EndDate, 2, RoleID, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "施工單號:" + Memo, 0);
                      IsSuccess = commDB.ModifyDBData(cmd);
                      if (IsSuccess)
                      {
-                      //   System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  tblMagneticCard寫入成功！" + "\r\n");
-
                          //3.取得此機房的各讀卡機的ControlID及磁卡對應的RoleID，加入tblSysRoleAuthority磁卡權限表，查詢已加的權限不重複加入       
                          cmd = string.Format("select * from vwEntranceGuardDetail where ERID={0};", ERID);
                          dt = commDB.SelectDBData(cmd);
@@ -155,39 +248,15 @@ namespace slSecure.Web
                              {
                                  cmd = string.Format("INSERT INTO tblSysRoleAuthority(RoleID,ControlID) VALUES ({0},'{1}');", RoleID, row["ControlID"].ToString());
                                  IsSuccess = commDB.ModifyDBData(cmd);
-                                 if (IsSuccess)
-                                 {
-                                //     System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  tblSysRoleAuthority寫入成功！" + "RoleID=" + RoleID.ToString() + ",ConrtolID=" + row["ControlID"].ToString() + "\r\n");
-                                 }
-                             }
-                             else
-                             {
-                             //    System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  查詢tblSysRoleAuthority已存在！" + "RoleID=" + RoleID.ToString() + ",ConrtolID=" + row["ControlID"].ToString() + "\r\n");
                              }
                          }
                      }
                  }
              }
-        //     System.IO.File.AppendAllText(@".\MCNSExchange.log", DateTime.Now.ToString() + "  ---End---" + "\r\n");
-
-             //try
-             //{
-             //    if (System.IO.File.Exists(@".\MCNSExchange.log"))
-             //    {
-             //        System.IO.FileInfo info = new FileInfo(@".\MCNSExchange.log");
-             //        if (info.Length > 1000000)
-             //        {
-             //            string text = System.IO.File.ReadAllText(@".\MCNSExchange.log");
-             //            text = text.Substring(100000);
-             //            System.IO.File.WriteAllText(@".\MCNSExchange.log", text);
-             //        }
-             //    }
-             //}
-             //catch
-             //{ }
+             //寫入CardCommandLog，ABA,*,C
+             cmd = string.Format("INSERT INTO [SecureDB].[dbo].[tblCardCommandLog]([ABA],[ControlID],[CommandType],[CardType])VALUES('{0}','*','*','C')", tempABA);
+             IsSuccess = commDB.ModifyDBData(cmd);
          }
-
-
          public void SayHello(string hello)
          {
             // throw new NotImplementedException();

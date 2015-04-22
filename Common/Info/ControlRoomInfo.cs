@@ -37,6 +37,21 @@ namespace slSecure.Info
             }
         }
 
+        string _ColorString;
+        public string ColorString {
+            get { return _ColorString; }
+            set
+            {
+                if (value != _ColorString)
+                {
+                    _ColorString = value;
+                    if (PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ColorString"));
+                }
+            }
+        
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

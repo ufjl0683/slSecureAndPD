@@ -93,6 +93,17 @@
       [vwAlarmLog].[TypeDetail_Memo] AS [TypeDetail_Memo]
       FROM [dbo].[vwAlarmLog] AS [vwAlarmLog]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.Store.vwAllAlarmLog" store:Type="Views" store:Schema="dbo" store:Name="vwAllAlarmLog">
+            <DefiningQuery>SELECT 
+      [vwAllAlarmLog].[ERName] AS [ERName], 
+      [vwAllAlarmLog].[Item] AS [Item], 
+      [vwAllAlarmLog].[DoorAndGroupName] AS [DoorAndGroupName], 
+      [vwAllAlarmLog].[ABAAndItemName] AS [ABAAndItemName], 
+      [vwAllAlarmLog].[NameAndType] AS [NameAndType], 
+      [vwAllAlarmLog].[Timestamp] AS [Timestamp], 
+      [vwAllAlarmLog].[Status] AS [Status]
+      FROM [dbo].[vwAllAlarmLog] AS [vwAllAlarmLog]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vwCardCommandLog" EntityType="SecureDBModel.Store.vwCardCommandLog" store:Type="Views" store:Schema="dbo" store:Name="vwCardCommandLog">
             <DefiningQuery>SELECT 
       [vwCardCommandLog].[FlowID] AS [FlowID], 
@@ -111,6 +122,33 @@
       [vwCardCommandLog].[CommandTypeName] AS [CommandTypeName], 
       [vwCardCommandLog].[CardTypeName] AS [CardTypeName]
       FROM [dbo].[vwCardCommandLog] AS [vwCardCommandLog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwControllerConfig" EntityType="SecureDBModel.Store.vwControllerConfig" store:Type="Views" store:Schema="dbo" store:Name="vwControllerConfig">
+            <DefiningQuery>SELECT 
+      [vwControllerConfig].[ERID] AS [ERID], 
+      [vwControllerConfig].[ERName] AS [ERName], 
+      [vwControllerConfig].[Memo] AS [Memo], 
+      [vwControllerConfig].[ControlID] AS [ControlID], 
+      [vwControllerConfig].[ControlType] AS [ControlType], 
+      [vwControllerConfig].[ControlTypeName] AS [ControlTypeName], 
+      [vwControllerConfig].[EntranceCode] AS [EntranceCode], 
+      [vwControllerConfig].[Comm_state] AS [Comm_state], 
+      [vwControllerConfig].[Comm_stateName] AS [Comm_stateName], 
+      [vwControllerConfig].[IsEnable] AS [IsEnable]
+      FROM [dbo].[vwControllerConfig] AS [vwControllerConfig]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwDeviceStateLog" EntityType="SecureDBModel.Store.vwDeviceStateLog" store:Type="Views" store:Schema="dbo" store:Name="vwDeviceStateLog">
+            <DefiningQuery>SELECT 
+      [vwDeviceStateLog].[FlowID] AS [FlowID], 
+      [vwDeviceStateLog].[ERID] AS [ERID], 
+      [vwDeviceStateLog].[ERName] AS [ERName], 
+      [vwDeviceStateLog].[ControlID] AS [ControlID], 
+      [vwDeviceStateLog].[TimeStamp] AS [TimeStamp], 
+      [vwDeviceStateLog].[TypeID] AS [TypeID], 
+      [vwDeviceStateLog].[TypeCode] AS [TypeCode], 
+      [vwDeviceStateLog].[Explain] AS [Explain], 
+      [vwDeviceStateLog].[Memo] AS [Memo]
+      FROM [dbo].[vwDeviceStateLog] AS [vwDeviceStateLog]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwEngineRoomLog" EntityType="SecureDBModel.Store.vwEngineRoomLog" store:Type="Views" store:Schema="dbo" store:Name="vwEngineRoomLog">
             <DefiningQuery>SELECT 
@@ -217,7 +255,13 @@
       [vwItemConfig].[RTUBaseAddress] AS [RTUBaseAddress], 
       [vwItemConfig].[RTURegisterLength] AS [RTURegisterLength], 
       [vwItemConfig].[LineID] AS [LineID], 
-      [vwItemConfig].[LineName] AS [LineName]
+      [vwItemConfig].[LineName] AS [LineName], 
+      [vwItemConfig].[Lv0ColorName] AS [Lv0ColorName], 
+      [vwItemConfig].[Lv1ColorName] AS [Lv1ColorName], 
+      [vwItemConfig].[Lv2ColorName] AS [Lv2ColorName], 
+      [vwItemConfig].[Lv0Color] AS [Lv0Color], 
+      [vwItemConfig].[Lv1Color] AS [Lv1Color], 
+      [vwItemConfig].[Lv2Color] AS [Lv2Color]
       FROM [dbo].[vwItemConfig] AS [vwItemConfig]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwItemGroup" EntityType="SecureDBModel.Store.vwItemGroup" store:Type="Views" store:Schema="dbo" store:Name="vwItemGroup">
@@ -365,7 +409,8 @@
       [vwPDAlarmLoopDeviceLog].[Device_mile_m] AS [Device_mile_m], 
       [vwPDAlarmLoopDeviceLog].[device_type] AS [device_type], 
       [vwPDAlarmLoopDeviceLog].[Device_LineName] AS [Device_LineName], 
-      [vwPDAlarmLoopDeviceLog].[Device_DirectionName] AS [Device_DirectionName]
+      [vwPDAlarmLoopDeviceLog].[Device_DirectionName] AS [Device_DirectionName], 
+      [vwPDAlarmLoopDeviceLog].[Diameter] AS [Diameter]
       FROM [dbo].[vwPDAlarmLoopDeviceLog] AS [vwPDAlarmLoopDeviceLog]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwPDConfig" EntityType="SecureDBModel.Store.vwPDConfig" store:Type="Views" store:Schema="dbo" store:Name="vwPDConfig">
@@ -434,8 +479,36 @@
       [vwPDLoopDeviceConfig].[Enable] AS [Enable], 
       [vwPDLoopDeviceConfig].[Memo] AS [Memo], 
       [vwPDLoopDeviceConfig].[LineName] AS [LineName], 
-      [vwPDLoopDeviceConfig].[DirectionName] AS [DirectionName]
+      [vwPDLoopDeviceConfig].[DirectionName] AS [DirectionName], 
+      [vwPDLoopDeviceConfig].[Diameter] AS [Diameter]
       FROM [dbo].[vwPDLoopDeviceConfig] AS [vwPDLoopDeviceConfig]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwReaderAbnormalPassLog" EntityType="SecureDBModel.Store.vwReaderAbnormalPassLog" store:Type="Views" store:Schema="dbo" store:Name="vwReaderAbnormalPassLog">
+            <DefiningQuery>SELECT 
+      [vwReaderAbnormalPassLog].[FlowID] AS [FlowID], 
+      [vwReaderAbnormalPassLog].[ERName] AS [ERName], 
+      [vwReaderAbnormalPassLog].[Door] AS [Door], 
+      [vwReaderAbnormalPassLog].[StartTime] AS [StartTime], 
+      [vwReaderAbnormalPassLog].[CardType] AS [CardType], 
+      [vwReaderAbnormalPassLog].[Timestamp] AS [Timestamp], 
+      [vwReaderAbnormalPassLog].[DoorPassword] AS [DoorPassword]
+      FROM [dbo].[vwReaderAbnormalPassLog] AS [vwReaderAbnormalPassLog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwReaderPassList" EntityType="SecureDBModel.Store.vwReaderPassList" store:Type="Views" store:Schema="dbo" store:Name="vwReaderPassList">
+            <DefiningQuery>SELECT 
+      [vwReaderPassList].[FlowID] AS [FlowID], 
+      [vwReaderPassList].[ERName] AS [ERName], 
+      [vwReaderPassList].[Door] AS [Door], 
+      [vwReaderPassList].[StartTime] AS [StartTime], 
+      [vwReaderPassList].[CardType] AS [CardType], 
+      [vwReaderPassList].[Memo] AS [Memo]
+      FROM [dbo].[vwReaderPassList] AS [vwReaderPassList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwReaderPassLog" EntityType="SecureDBModel.Store.vwReaderPassLog" store:Type="Views" store:Schema="dbo" store:Name="vwReaderPassLog">
+            <DefiningQuery>SELECT 
+      [vwReaderPassLog].[ControlID] AS [ControlID], 
+      [vwReaderPassLog].[starttime] AS [starttime]
+      FROM [dbo].[vwReaderPassLog] AS [vwReaderPassLog]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureDBModel.Store.vwUserGroupMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserGroupMenuAllow">
             <DefiningQuery>SELECT 
@@ -676,6 +749,7 @@
           <Property Name="TriggerCCTVID" Type="int" />
           <Property Name="RTUBaseAddress" Type="int" />
           <Property Name="RTURegisterLength" Type="int" />
+          <Property Name="Comm_state" Type="int" />
         </EntityType>
         <EntityType Name="tblControlSetting">
           <Key>
@@ -803,6 +877,9 @@
           <Property Name="Rotation" Type="float" />
           <Property Name="X" Type="float" />
           <Property Name="Y" Type="float" />
+          <Property Name="Lv0Color" Type="nvarchar" MaxLength="10" />
+          <Property Name="Lv1Color" Type="nvarchar" MaxLength="10" />
+          <Property Name="Lv2Color" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -949,6 +1026,7 @@
           <Property Name="ISBREAKDOWN" Type="char" MaxLength="1" />
           <Property Name="Enable" Type="char" MaxLength="1" />
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Diameter" Type="int" />
         </EntityType>
         <EntityType Name="tblSchConfig">
           <Key>
@@ -1110,7 +1188,7 @@
           <Property Name="WarningLower" Type="float" />
           <Property Name="AlarmUpper" Type="float" />
           <Property Name="AlarmLower" Type="float" />
-          <Property Name="ItemConfig_Value" Type="float" />
+          <Property Name="ItemConfig_Value" Type="varchar" MaxLength="10" />
           <Property Name="Address" Type="int" />
           <Property Name="BitNo" Type="int" />
           <Property Name="Length" Type="int" />
@@ -1130,6 +1208,22 @@
           <Property Name="LineName" Type="nvarchar" MaxLength="20" />
           <Property Name="Explain" Type="nvarchar" MaxLength="50" />
           <Property Name="TypeDetail_Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwAllAlarmLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwAllAlarmLog">
+          <Key>
+            <PropertyRef Name="Item" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="ERName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="DoorAndGroupName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ABAAndItemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameAndType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwCardCommandLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -1161,6 +1255,51 @@
           <Property Name="IsSuccessName" Type="varchar" Nullable="false" MaxLength="4" />
           <Property Name="CommandTypeName" Type="varchar" Nullable="false" MaxLength="4" />
           <Property Name="CardTypeName" Type="varchar" Nullable="false" MaxLength="6" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwControllerConfig' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwControllerConfig">
+          <Key>
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="ControlType" />
+            <PropertyRef Name="ControlTypeName" />
+            <PropertyRef Name="Comm_stateName" />
+          </Key>
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="ERName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ControlType" Type="smallint" Nullable="false" />
+          <Property Name="ControlTypeName" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comm_state" Type="int" />
+          <Property Name="Comm_stateName" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="IsEnable" Type="bit" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwDeviceStateLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwDeviceStateLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" />
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="ERName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="TypeCode" Type="smallint" Nullable="false" />
+          <Property Name="Explain" Type="nvarchar" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwEngineRoomLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -1264,6 +1403,9 @@
             <PropertyRef Name="Offset" />
             <PropertyRef Name="Coefficient" />
             <PropertyRef Name="IsShow" />
+            <PropertyRef Name="Lv0ColorName" />
+            <PropertyRef Name="Lv1ColorName" />
+            <PropertyRef Name="Lv2ColorName" />
           </Key>
           <Property Name="ItemID" Type="int" Nullable="false" />
           <Property Name="ItemName" Type="nvarchar" Nullable="false" MaxLength="100" />
@@ -1277,7 +1419,7 @@
           <Property Name="WarningLower" Type="float" />
           <Property Name="AlarmUpper" Type="float" />
           <Property Name="AlarmLower" Type="float" />
-          <Property Name="Value" Type="float" />
+          <Property Name="Value" Type="varchar" MaxLength="10" />
           <Property Name="Address" Type="int" Nullable="false" />
           <Property Name="BitNo" Type="int" Nullable="false" />
           <Property Name="Length" Type="int" Nullable="false" />
@@ -1314,6 +1456,12 @@
           <Property Name="RTURegisterLength" Type="int" />
           <Property Name="LineID" Type="nvarchar" MaxLength="20" />
           <Property Name="LineName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Lv0ColorName" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Lv1ColorName" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Lv2ColorName" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Lv0Color" Type="nvarchar" MaxLength="10" />
+          <Property Name="Lv1Color" Type="nvarchar" MaxLength="10" />
+          <Property Name="Lv2Color" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwItemGroup' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -1509,6 +1657,7 @@
           <Property Name="device_type" Type="nvarchar" MaxLength="20" />
           <Property Name="Device_LineName" Type="nvarchar" MaxLength="20" />
           <Property Name="Device_DirectionName" Type="varchar" MaxLength="4" />
+          <Property Name="Diameter" Type="int" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwPDConfig' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -1601,6 +1750,48 @@
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
           <Property Name="LineName" Type="nvarchar" MaxLength="20" />
           <Property Name="DirectionName" Type="varchar" MaxLength="4" />
+          <Property Name="Diameter" Type="int" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwReaderAbnormalPassLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwReaderAbnormalPassLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="StartTime" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" />
+          <Property Name="ERName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Door" Type="nvarchar" MaxLength="100" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" />
+          <Property Name="DoorPassword" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwReaderPassList' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwReaderPassList">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" />
+          <Property Name="ERName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Door" Type="nvarchar" MaxLength="100" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwReaderPassLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwReaderPassLog">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="starttime" Type="datetime" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwUserGroupMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -2054,8 +2245,8 @@
             <End Role="tblNVRConfig" EntitySet="tblNVRConfig" />
           </AssociationSet>
           <AssociationSet Name="FK_tblMagneticCard_tblSysRole" Association="SecureDBModel.FK_tblMagneticCard_tblSysRole">
-            <End Role="tblSysRole" EntitySet="tblSysRole" />
-            <End Role="tblMagneticCard" EntitySet="tblMagneticCard" />
+            <End EntitySet="tblSysRole" Role="tblSysRole" />
+            <End EntitySet="tblMagneticCard" Role="tblMagneticCard" />
           </AssociationSet>
           <AssociationSet Name="FK_tblMenu_tblMenuGroup" Association="SecureDBModel.FK_tblMenu_tblMenuGroup">
             <End Role="tblMenuGroup" EntitySet="tblMenuGroup" />
@@ -2125,15 +2316,21 @@
             <End Role="tblPDConfig" EntitySet="tblPDConfig" />
             <End Role="tblPDAlarmLog" EntitySet="tblPDAlarmLog" />
           </AssociationSet>
-          <EntitySet Name="vwAlarmLog" EntityType="SecureDBModel.vwAlarmLog" />
           <EntitySet Name="vwERNamePlaneList" EntityType="SecureDBModel.vwERNamePlaneList" />
           <EntitySet Name="vwERNameRTUList" EntityType="SecureDBModel.vwERNameRTUList" />
-          <EntitySet Name="vwItemConfig" EntityType="SecureDBModel.vwItemConfig" />
           <EntitySet Name="vwItemGroup" EntityType="SecureDBModel.vwItemGroup" />
-          <EntitySet Name="vwPDAlarmLog" EntityType="SecureDBModel.vwPDAlarmLog" />
           <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" />
           <EntitySet Name="vwPDConfig" EntityType="SecureDBModel.vwPDConfig" />
+          <EntitySet Name="vwAlarmLog" EntityType="SecureDBModel.vwAlarmLog" />
+          <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.vwAllAlarmLog" />
+          <EntitySet Name="vwControllerConfig" EntityType="SecureDBModel.vwControllerConfig" />
+          <EntitySet Name="vwDeviceStateLog" EntityType="SecureDBModel.vwDeviceStateLog" />
+          <EntitySet Name="vwItemConfig" EntityType="SecureDBModel.vwItemConfig" />
+          <EntitySet Name="vwPDAlarmLog" EntityType="SecureDBModel.vwPDAlarmLog" />
           <EntitySet Name="vwPDLoopDeviceConfig" EntityType="SecureDBModel.vwPDLoopDeviceConfig" />
+          <EntitySet Name="vwReaderAbnormalPassLog" EntityType="SecureDBModel.vwReaderAbnormalPassLog" />
+          <EntitySet Name="vwReaderPassList" EntityType="SecureDBModel.vwReaderPassList" />
+          <EntitySet Name="vwReaderPassLog" EntityType="SecureDBModel.vwReaderPassLog" />
           </EntityContainer>
         <EntityType Name="tblAIItem1HourLog">
           <Key>
@@ -2251,6 +2448,7 @@
           <NavigationProperty Name="tblSingalIO" Relationship="SecureDBModel.FK_tblSingalIO_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblSingalIO" />
           <NavigationProperty Name="tblSysRoleAuthority" Relationship="SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblSysRoleAuthority" />
           <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblItemConfig" />
+          <Property Type="Int32" Name="Comm_state" />
         </EntityType>
         <EntityType Name="tblControlSetting">
           <Key>
@@ -2738,8 +2936,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMagneticCard_tblSysRole">
-          <End Type="SecureDBModel.tblSysRole" Role="tblSysRole" Multiplicity="1" />
-          <End Type="SecureDBModel.tblMagneticCard" Role="tblMagneticCard" Multiplicity="*" />
+          <End Type="SecureDBModel.tblSysRole" Multiplicity="1" Role="tblSysRole" />
+          <End Type="SecureDBModel.tblMagneticCard" Multiplicity="*" Role="tblMagneticCard" />
           <ReferentialConstraint>
             <Principal Role="tblSysRole">
               <PropertyRef Name="RoleID" />
@@ -2926,6 +3124,9 @@
           <NavigationProperty Name="tblAIItem1HourLog" Relationship="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" FromRole="tblItemConfig" ToRole="tblAIItem1HourLog" />
           <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblControllerConfig" FromRole="tblItemConfig" ToRole="tblControllerConfig" />
           <NavigationProperty Name="tblItemGroup" Relationship="SecureDBModel.FK_tblItemConfig_tblItemGroup" FromRole="tblItemConfig" ToRole="tblItemGroup" />
+          <Property Type="String" Name="Lv0Color" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lv1Color" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lv2Color" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_tblAIItem1HourLog_tblItemConfig">
           <End Type="SecureDBModel.tblItemConfig" Role="tblItemConfig" Multiplicity="1" />
@@ -3182,6 +3383,7 @@
           <Property Type="String" Name="ISBREAKDOWN" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Diameter" />
         </EntityType>
         <Association Name="FK_tblPDConfig_tblEngineRoomConfig">
           <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="0..1" />
@@ -3207,54 +3409,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vwAlarmLog">
-          <Key>
-            <PropertyRef Name="EventID" />
-            <PropertyRef Name="TypeID" />
-            <PropertyRef Name="TypeCode" />
-            <PropertyRef Name="Timestamp" />
-            <PropertyRef Name="ControlID" />
-          </Key>
-          <Property Type="Int64" Name="EventID" Nullable="false" />
-          <Property Type="Int16" Name="TypeID" Nullable="false" />
-          <Property Type="Int16" Name="TypeCode" Nullable="false" />
-          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
-          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ItemID" />
-          <Property Type="Double" Name="Value" />
-          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ERID" />
-          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ItemName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Lable" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Unit" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Degree" />
-          <Property Type="Double" Name="WarningUpper" />
-          <Property Type="Double" Name="WarningLower" />
-          <Property Type="Double" Name="AlarmUpper" />
-          <Property Type="Double" Name="AlarmLower" />
-          <Property Type="Double" Name="ItemConfig_Value" />
-          <Property Type="Int32" Name="Address" />
-          <Property Type="Int32" Name="BitNo" />
-          <Property Type="Int32" Name="Length" />
-          <Property Type="String" Name="Depiction" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AlarmMode" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AlarmContent" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AbnormalRecoveryContent" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AbnormalRecoveryMode" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="DIInvokeWarningValue" />
-          <Property Type="Double" Name="ValueScale" />
-          <Property Type="Double" Name="Offset" />
-          <Property Type="Double" Name="Coefficient" />
-          <Property Type="Boolean" Name="IsShow" />
-          <Property Type="String" Name="GroupName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="GroupType" />
-          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="TypeDetail_Memo" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="vwERNamePlaneList">
           <Key>
             <PropertyRef Name="ERID" />
@@ -3281,70 +3435,6 @@
           <Property Type="Int32" Name="ERID" Nullable="false" />
           <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="vwItemConfig">
-          <Key>
-            <PropertyRef Name="ItemID" />
-            <PropertyRef Name="ItemName" />
-            <PropertyRef Name="ControlID" />
-            <PropertyRef Name="Type" />
-            <PropertyRef Name="Address" />
-            <PropertyRef Name="BitNo" />
-            <PropertyRef Name="Length" />
-            <PropertyRef Name="ValueScale" />
-            <PropertyRef Name="Offset" />
-            <PropertyRef Name="Coefficient" />
-            <PropertyRef Name="IsShow" />
-          </Key>
-          <Property Type="Int32" Name="ItemID" Nullable="false" />
-          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="GroupID" />
-          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Lable" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Unit" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Degree" />
-          <Property Type="Double" Name="WarningUpper" />
-          <Property Type="Double" Name="WarningLower" />
-          <Property Type="Double" Name="AlarmUpper" />
-          <Property Type="Double" Name="AlarmLower" />
-          <Property Type="Double" Name="Value" />
-          <Property Type="Int32" Name="Address" Nullable="false" />
-          <Property Type="Int32" Name="BitNo" Nullable="false" />
-          <Property Type="Int32" Name="Length" Nullable="false" />
-          <Property Type="String" Name="Depiction" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AlarmMode" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AlarmContent" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AbnormalRecoveryContent" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AbnormalRecoveryMode" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="DIInvokeWarningValue" />
-          <Property Type="String" Name="UIType" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Type="Double" Name="ValueScale" Nullable="false" />
-          <Property Type="Double" Name="Offset" Nullable="false" />
-          <Property Type="Double" Name="Coefficient" Nullable="false" />
-          <Property Type="Boolean" Name="IsShow" Nullable="false" />
-          <Property Type="Double" Name="ScaleX" />
-          <Property Type="Double" Name="ScaleY" />
-          <Property Type="Double" Name="Rotation" />
-          <Property Type="Double" Name="X" />
-          <Property Type="Double" Name="Y" />
-          <Property Type="Int16" Name="GroupType" />
-          <Property Type="String" Name="GroupName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="PlaneID" />
-          <Property Type="Boolean" Name="GroupIsShow" />
-          <Property Type="Int32" Name="ERID" />
-          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PlaneName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PictureDesc" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="ControlType" />
-          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Loop" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Boolean" Name="IsEnable" />
-          <Property Type="Int32" Name="TriggerCCTVID" />
-          <Property Type="Int32" Name="RTUBaseAddress" />
-          <Property Type="Int32" Name="RTURegisterLength" />
-          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vwItemGroup">
           <Key>
@@ -3384,33 +3474,6 @@
           <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="vwPDAlarmLog">
-          <Key>
-            <PropertyRef Name="FlowID" />
-            <PropertyRef Name="Timestamp" />
-            <PropertyRef Name="PDName" />
-            <PropertyRef Name="PDItem" />
-            <PropertyRef Name="PDItemDetail" />
-            <PropertyRef Name="Loop" />
-            <PropertyRef Name="StatusDetail" />
-          </Key>
-          <Property Type="Int64" Name="FlowID" Nullable="false" />
-          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
-          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PDItem" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PDItemDetail" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Loop" Nullable="false" />
-          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Status" />
-          <Property Type="String" Name="StatusDetail" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="ERID" />
-          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Int32" Name="mile_m" />
-          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="vwPDAlarmLoopDeviceLog">
           <Key>
             <PropertyRef Name="FlowID" />
@@ -3446,6 +3509,7 @@
           <Property Type="String" Name="device_type" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Device_LineName" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Device_DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Diameter" />
         </EntityType>
         <EntityType Name="vwPDConfig">
           <Key>
@@ -3508,6 +3572,206 @@
           <Property Type="String" Name="CabinetDetail" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Comm_stateDetail" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="vwAlarmLog">
+          <Key>
+            <PropertyRef Name="EventID" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Type="Int64" Name="EventID" Nullable="false" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ItemID" />
+          <Property Type="Double" Name="Value" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ItemName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lable" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Unit" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Degree" />
+          <Property Type="Double" Name="WarningUpper" />
+          <Property Type="Double" Name="WarningLower" />
+          <Property Type="Double" Name="AlarmUpper" />
+          <Property Type="Double" Name="AlarmLower" />
+          <Property Type="String" Name="ItemConfig_Value" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Address" />
+          <Property Type="Int32" Name="BitNo" />
+          <Property Type="Int32" Name="Length" />
+          <Property Type="String" Name="Depiction" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AlarmMode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AlarmContent" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AbnormalRecoveryContent" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AbnormalRecoveryMode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DIInvokeWarningValue" />
+          <Property Type="Double" Name="ValueScale" />
+          <Property Type="Double" Name="Offset" />
+          <Property Type="Double" Name="Coefficient" />
+          <Property Type="Boolean" Name="IsShow" />
+          <Property Type="String" Name="GroupName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="GroupType" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TypeDetail_Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwAllAlarmLog">
+          <Key>
+            <PropertyRef Name="Item" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Item" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DoorAndGroupName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABAAndItemName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameAndType" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwControllerConfig">
+          <Key>
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="ControlType" />
+            <PropertyRef Name="ControlTypeName" />
+            <PropertyRef Name="Comm_stateName" />
+          </Key>
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ControlType" Nullable="false" />
+          <Property Type="String" Name="ControlTypeName" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Comm_state" />
+          <Property Type="String" Name="Comm_stateName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsEnable" />
+        </EntityType>
+        <EntityType Name="vwDeviceStateLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwItemConfig">
+          <Key>
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="ItemName" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="BitNo" />
+            <PropertyRef Name="Length" />
+            <PropertyRef Name="ValueScale" />
+            <PropertyRef Name="Offset" />
+            <PropertyRef Name="Coefficient" />
+            <PropertyRef Name="IsShow" />
+            <PropertyRef Name="Lv0ColorName" />
+            <PropertyRef Name="Lv1ColorName" />
+            <PropertyRef Name="Lv2ColorName" />
+          </Key>
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GroupID" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lable" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Unit" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Degree" />
+          <Property Type="Double" Name="WarningUpper" />
+          <Property Type="Double" Name="WarningLower" />
+          <Property Type="Double" Name="AlarmUpper" />
+          <Property Type="Double" Name="AlarmLower" />
+          <Property Type="String" Name="Value" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Address" Nullable="false" />
+          <Property Type="Int32" Name="BitNo" Nullable="false" />
+          <Property Type="Int32" Name="Length" Nullable="false" />
+          <Property Type="String" Name="Depiction" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AlarmMode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AlarmContent" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AbnormalRecoveryContent" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AbnormalRecoveryMode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DIInvokeWarningValue" />
+          <Property Type="String" Name="UIType" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="ValueScale" Nullable="false" />
+          <Property Type="Double" Name="Offset" Nullable="false" />
+          <Property Type="Double" Name="Coefficient" Nullable="false" />
+          <Property Type="Boolean" Name="IsShow" Nullable="false" />
+          <Property Type="Double" Name="ScaleX" />
+          <Property Type="Double" Name="ScaleY" />
+          <Property Type="Double" Name="Rotation" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="Int16" Name="GroupType" />
+          <Property Type="String" Name="GroupName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PlaneID" />
+          <Property Type="Boolean" Name="GroupIsShow" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PlaneName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PictureDesc" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ControlType" />
+          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Loop" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="IsEnable" />
+          <Property Type="Int32" Name="TriggerCCTVID" />
+          <Property Type="Int32" Name="RTUBaseAddress" />
+          <Property Type="Int32" Name="RTURegisterLength" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lv0ColorName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Lv1ColorName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Lv2ColorName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Lv0Color" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lv1Color" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lv2Color" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwPDAlarmLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="PDName" />
+            <PropertyRef Name="PDItem" />
+            <PropertyRef Name="PDItemDetail" />
+            <PropertyRef Name="Loop" />
+            <PropertyRef Name="StatusDetail" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PDItem" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PDItemDetail" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Loop" Nullable="false" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Status" />
+          <Property Type="String" Name="StatusDetail" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="mile_m" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="vwPDLoopDeviceConfig">
           <Key>
             <PropertyRef Name="PDName" />
@@ -3532,6 +3796,39 @@
           <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Diameter" />
+        </EntityType>
+        <EntityType Name="vwReaderAbnormalPassLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="StartTime" />
+          </Key>
+          <Property Name="FlowID" Nullable="false" Type="Int64" />
+          <Property Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Door" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="StartTime" Nullable="false" Precision="3" Type="DateTime" />
+          <Property Name="CardType" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Timestamp" Precision="3" Type="DateTime" />
+          <Property Name="DoorPassword" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+        </EntityType>
+        <EntityType Name="vwReaderPassList">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Door" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartTime" Precision="3" />
+          <Property Type="String" Name="CardType" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwReaderPassLog">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="starttime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3632,6 +3929,7 @@
           <EntitySetMapping Name="tblControllerConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblControllerConfig">
               <MappingFragment StoreEntitySet="tblControllerConfig">
+                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
                 <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
                 <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
                 <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
@@ -4003,6 +4301,9 @@
           <EntitySetMapping Name="tblItemConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblItemConfig">
               <MappingFragment StoreEntitySet="tblItemConfig">
+                <ScalarProperty Name="Lv2Color" ColumnName="Lv2Color" />
+                <ScalarProperty Name="Lv1Color" ColumnName="Lv1Color" />
+                <ScalarProperty Name="Lv0Color" ColumnName="Lv0Color" />
                 <ScalarProperty Name="Y" ColumnName="Y" />
                 <ScalarProperty Name="X" ColumnName="X" />
                 <ScalarProperty Name="Rotation" ColumnName="Rotation" />
@@ -4223,6 +4524,7 @@
           <EntitySetMapping Name="tblPDLoopDeviceConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblPDLoopDeviceConfig">
               <MappingFragment StoreEntitySet="tblPDLoopDeviceConfig">
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
                 <ScalarProperty Name="Enable" ColumnName="Enable" />
                 <ScalarProperty Name="ISBREAKDOWN" ColumnName="ISBREAKDOWN" />
@@ -4239,51 +4541,6 @@
                 <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
                 <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
                 <ScalarProperty Name="PDName" ColumnName="PDName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwAlarmLog">
-            <EntityTypeMapping TypeName="SecureDBModel.vwAlarmLog">
-              <MappingFragment StoreEntitySet="vwAlarmLog">
-                <ScalarProperty Name="TypeDetail_Memo" ColumnName="TypeDetail_Memo" />
-                <ScalarProperty Name="Explain" ColumnName="Explain" />
-                <ScalarProperty Name="LineName" ColumnName="LineName" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
-                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
-                <ScalarProperty Name="Offset" ColumnName="Offset" />
-                <ScalarProperty Name="ValueScale" ColumnName="ValueScale" />
-                <ScalarProperty Name="DIInvokeWarningValue" ColumnName="DIInvokeWarningValue" />
-                <ScalarProperty Name="AbnormalRecoveryMode" ColumnName="AbnormalRecoveryMode" />
-                <ScalarProperty Name="AbnormalRecoveryContent" ColumnName="AbnormalRecoveryContent" />
-                <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
-                <ScalarProperty Name="AlarmMode" ColumnName="AlarmMode" />
-                <ScalarProperty Name="Depiction" ColumnName="Depiction" />
-                <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="BitNo" ColumnName="BitNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ItemConfig_Value" ColumnName="ItemConfig_Value" />
-                <ScalarProperty Name="AlarmLower" ColumnName="AlarmLower" />
-                <ScalarProperty Name="AlarmUpper" ColumnName="AlarmUpper" />
-                <ScalarProperty Name="WarningLower" ColumnName="WarningLower" />
-                <ScalarProperty Name="WarningUpper" ColumnName="WarningUpper" />
-                <ScalarProperty Name="Degree" ColumnName="Degree" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="Lable" ColumnName="Lable" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4306,61 +4563,6 @@
                 <ScalarProperty Name="ControlID" ColumnName="ControlID" />
                 <ScalarProperty Name="ERName" ColumnName="ERName" />
                 <ScalarProperty Name="ERID" ColumnName="ERID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwItemConfig">
-            <EntityTypeMapping TypeName="SecureDBModel.vwItemConfig">
-              <MappingFragment StoreEntitySet="vwItemConfig">
-                <ScalarProperty Name="LineName" ColumnName="LineName" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
-                <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
-                <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
-                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
-                <ScalarProperty Name="Loop" ColumnName="Loop" />
-                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
-                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
-                <ScalarProperty Name="PictureDesc" ColumnName="PictureDesc" />
-                <ScalarProperty Name="PlaneName" ColumnName="PlaneName" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="GroupIsShow" ColumnName="GroupIsShow" />
-                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
-                <ScalarProperty Name="Y" ColumnName="Y" />
-                <ScalarProperty Name="X" ColumnName="X" />
-                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
-                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
-                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
-                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
-                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
-                <ScalarProperty Name="Offset" ColumnName="Offset" />
-                <ScalarProperty Name="ValueScale" ColumnName="ValueScale" />
-                <ScalarProperty Name="UIType" ColumnName="UIType" />
-                <ScalarProperty Name="DIInvokeWarningValue" ColumnName="DIInvokeWarningValue" />
-                <ScalarProperty Name="AbnormalRecoveryMode" ColumnName="AbnormalRecoveryMode" />
-                <ScalarProperty Name="AbnormalRecoveryContent" ColumnName="AbnormalRecoveryContent" />
-                <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
-                <ScalarProperty Name="AlarmMode" ColumnName="AlarmMode" />
-                <ScalarProperty Name="Depiction" ColumnName="Depiction" />
-                <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="BitNo" ColumnName="BitNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="AlarmLower" ColumnName="AlarmLower" />
-                <ScalarProperty Name="AlarmUpper" ColumnName="AlarmUpper" />
-                <ScalarProperty Name="WarningLower" ColumnName="WarningLower" />
-                <ScalarProperty Name="WarningUpper" ColumnName="WarningUpper" />
-                <ScalarProperty Name="Degree" ColumnName="Degree" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="Lable" ColumnName="Lable" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4396,31 +4598,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwPDAlarmLog">
-            <EntityTypeMapping TypeName="SecureDBModel.vwPDAlarmLog">
-              <MappingFragment StoreEntitySet="vwPDAlarmLog">
-                <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
-                <ScalarProperty Name="LineName" ColumnName="LineName" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
-                <ScalarProperty Name="Direction" ColumnName="Direction" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Loop" ColumnName="Loop" />
-                <ScalarProperty Name="PDItemDetail" ColumnName="PDItemDetail" />
-                <ScalarProperty Name="PDItem" ColumnName="PDItem" />
-                <ScalarProperty Name="PDName" ColumnName="PDName" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwPDAlarmLoopDeviceLog">
             <EntityTypeMapping TypeName="SecureDBModel.vwPDAlarmLoopDeviceLog">
               <MappingFragment StoreEntitySet="vwPDAlarmLoopDeviceLog">
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
                 <ScalarProperty Name="Device_DirectionName" ColumnName="Device_DirectionName" />
                 <ScalarProperty Name="Device_LineName" ColumnName="Device_LineName" />
                 <ScalarProperty Name="device_type" ColumnName="device_type" />
@@ -4498,9 +4679,182 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="vwAlarmLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwAlarmLog">
+              <MappingFragment StoreEntitySet="vwAlarmLog">
+                <ScalarProperty Name="TypeDetail_Memo" ColumnName="TypeDetail_Memo" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
+                <ScalarProperty Name="Offset" ColumnName="Offset" />
+                <ScalarProperty Name="ValueScale" ColumnName="ValueScale" />
+                <ScalarProperty Name="DIInvokeWarningValue" ColumnName="DIInvokeWarningValue" />
+                <ScalarProperty Name="AbnormalRecoveryMode" ColumnName="AbnormalRecoveryMode" />
+                <ScalarProperty Name="AbnormalRecoveryContent" ColumnName="AbnormalRecoveryContent" />
+                <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
+                <ScalarProperty Name="AlarmMode" ColumnName="AlarmMode" />
+                <ScalarProperty Name="Depiction" ColumnName="Depiction" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="BitNo" ColumnName="BitNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ItemConfig_Value" ColumnName="ItemConfig_Value" />
+                <ScalarProperty Name="AlarmLower" ColumnName="AlarmLower" />
+                <ScalarProperty Name="AlarmUpper" ColumnName="AlarmUpper" />
+                <ScalarProperty Name="WarningLower" ColumnName="WarningLower" />
+                <ScalarProperty Name="WarningUpper" ColumnName="WarningUpper" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Lable" ColumnName="Lable" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwAllAlarmLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwAllAlarmLog">
+              <MappingFragment StoreEntitySet="vwAllAlarmLog">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="NameAndType" ColumnName="NameAndType" />
+                <ScalarProperty Name="ABAAndItemName" ColumnName="ABAAndItemName" />
+                <ScalarProperty Name="DoorAndGroupName" ColumnName="DoorAndGroupName" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwControllerConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.vwControllerConfig">
+              <MappingFragment StoreEntitySet="vwControllerConfig">
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="Comm_stateName" ColumnName="Comm_stateName" />
+                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+                <ScalarProperty Name="ControlTypeName" ColumnName="ControlTypeName" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwDeviceStateLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwDeviceStateLog">
+              <MappingFragment StoreEntitySet="vwDeviceStateLog">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwItemConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.vwItemConfig">
+              <MappingFragment StoreEntitySet="vwItemConfig">
+                <ScalarProperty Name="Lv2Color" ColumnName="Lv2Color" />
+                <ScalarProperty Name="Lv1Color" ColumnName="Lv1Color" />
+                <ScalarProperty Name="Lv0Color" ColumnName="Lv0Color" />
+                <ScalarProperty Name="Lv2ColorName" ColumnName="Lv2ColorName" />
+                <ScalarProperty Name="Lv1ColorName" ColumnName="Lv1ColorName" />
+                <ScalarProperty Name="Lv0ColorName" ColumnName="Lv0ColorName" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
+                <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
+                <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="Loop" ColumnName="Loop" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="PictureDesc" ColumnName="PictureDesc" />
+                <ScalarProperty Name="PlaneName" ColumnName="PlaneName" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="GroupIsShow" ColumnName="GroupIsShow" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
+                <ScalarProperty Name="Offset" ColumnName="Offset" />
+                <ScalarProperty Name="ValueScale" ColumnName="ValueScale" />
+                <ScalarProperty Name="UIType" ColumnName="UIType" />
+                <ScalarProperty Name="DIInvokeWarningValue" ColumnName="DIInvokeWarningValue" />
+                <ScalarProperty Name="AbnormalRecoveryMode" ColumnName="AbnormalRecoveryMode" />
+                <ScalarProperty Name="AbnormalRecoveryContent" ColumnName="AbnormalRecoveryContent" />
+                <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
+                <ScalarProperty Name="AlarmMode" ColumnName="AlarmMode" />
+                <ScalarProperty Name="Depiction" ColumnName="Depiction" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="BitNo" ColumnName="BitNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="AlarmLower" ColumnName="AlarmLower" />
+                <ScalarProperty Name="AlarmUpper" ColumnName="AlarmUpper" />
+                <ScalarProperty Name="WarningLower" ColumnName="WarningLower" />
+                <ScalarProperty Name="WarningUpper" ColumnName="WarningUpper" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Lable" ColumnName="Lable" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPDAlarmLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwPDAlarmLog">
+              <MappingFragment StoreEntitySet="vwPDAlarmLog">
+                <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Loop" ColumnName="Loop" />
+                <ScalarProperty Name="PDItemDetail" ColumnName="PDItemDetail" />
+                <ScalarProperty Name="PDItem" ColumnName="PDItem" />
+                <ScalarProperty Name="PDName" ColumnName="PDName" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="vwPDLoopDeviceConfig">
             <EntityTypeMapping TypeName="SecureDBModel.vwPDLoopDeviceConfig">
               <MappingFragment StoreEntitySet="vwPDLoopDeviceConfig">
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
                 <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
                 <ScalarProperty Name="LineName" ColumnName="LineName" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
@@ -4519,6 +4873,39 @@
                 <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
                 <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
                 <ScalarProperty Name="PDName" ColumnName="PDName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwReaderAbnormalPassLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwReaderAbnormalPassLog">
+              <MappingFragment StoreEntitySet="vwReaderAbnormalPassLog">
+                <ScalarProperty Name="DoorPassword" ColumnName="DoorPassword" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Door" ColumnName="Door" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwReaderPassList">
+            <EntityTypeMapping TypeName="SecureDBModel.vwReaderPassList">
+              <MappingFragment StoreEntitySet="vwReaderPassList">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Door" ColumnName="Door" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwReaderPassLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwReaderPassLog">
+              <MappingFragment StoreEntitySet="vwReaderPassLog">
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

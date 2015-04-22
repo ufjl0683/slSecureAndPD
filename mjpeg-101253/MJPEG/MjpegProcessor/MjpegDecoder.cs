@@ -229,7 +229,7 @@ namespace MjpegProcessor
 				if(Error != null)
 					_dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Error(this, new ErrorEventArgs() { Message = ex.Message, ErrorCode = ex.HResult }));
 #else
-				if(Error != null   &&  _context!=null)
+				if(Error != null   &&  _context!=null  && _streamActive)
 					_context.Post(delegate { Error(this, new ErrorEventArgs() { Message = ex.Message }); }, null);
 #endif
 

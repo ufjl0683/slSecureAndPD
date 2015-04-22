@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace SecureServer
 {
@@ -85,6 +86,39 @@ namespace SecureServer
            this._Degree = ItemConfig.Degree;
            Task task = Task.Run(new Action(ReadindAction));
        }
+
+       public void LoadItemConfig()
+       {
+           SecureDBEntities1 client = new SecureDBEntities1();
+          tblItemConfig config= client.tblItemConfig.Where(n => n.ItemID == this.ItemID).FirstOrDefault();
+           if(config!=null)
+                 this.ItemConfig = config;
+           if (this.ItemValueChanged != null)
+               this.ItemValueChanged(this, this.Value);
+          
+       }
+       string ColorString(string code)
+       {
+
+           string ret = "Black";
+           switch (code)
+           {
+               case "R":
+                   ret = "Red";
+                   break;
+               case "G":
+                   ret = "Green";
+                   break;
+               case "Y":
+                   ret = "Yellow";
+                   break;
+           }
+
+           return ret;
+       }
+       public string Lv0Color { get {return ColorString(this.ItemConfig.Lv0Color) ;} }
+       public string Lv1Color { get { return ColorString(this.ItemConfig.Lv1Color); } }
+       public string Lv2Color { get { return ColorString(this.ItemConfig.Lv2Color); } }
 
        public  void  SetDOValue(bool onoff)
        {
@@ -196,19 +230,22 @@ namespace SecureServer
            }
        }
 
+       
+       
        public BindingData.ItemBindingData ToBindingData()
        {
            BindingData.ItemBindingData data = new BindingData.ItemBindingData() { ItemID = this.ItemID, Type = this.ItemType, GroupID=this.ItemConfig.GroupID, Degree=this.Degree??0 };
            switch (this.Degree)
            {
                case 0:
-                   data.ColorString = "Green";
+
+                   data.ColorString =Lv0Color;
                    break;
                case 1:
-                    data.ColorString = "Yellow";
+                    data.ColorString = Lv1Color;
                    break;
                case 2:
-                      data.ColorString = "Red";
+                      data.ColorString = Lv2Color;
                    break;
                default:
                    data.ColorString = "Gray";
@@ -217,29 +254,37 @@ namespace SecureServer
            }
 
            if (this.Degree > 0 && ItemConfig.AlarmMode == "Y")
+           {
                data.IsAlarm = true;
+           }
            else
                data.IsAlarm = false; 
 
            if (!this.rtu.IsConnected)
            {
                data.ColorString = "Gray";
-               data.Content = "斷線";
+               data.IsAlarm = false; 
+               //data.Content = "斷線";
            }
-           else
-           {
+           //else
+           //{
                try
                {
                    if (this.ItemType == "AI")
                        data.Content = this.ItemConfig.Lable + string.Format("{0:0.0}", this.Value) + ItemConfig.Unit;
                    else
-                       data.Content = this.ItemConfig.Lable;
+                   {
+                       if (this.Degree > 0 && ItemConfig.AlarmMode == "Y")
+                           data.Content = this.ItemConfig.AlarmContent;
+                       else
+                           data.Content = this.ItemConfig.Lable;
+                   }
                }
                catch (Exception ex)
                {
                    data.Content = this.ItemID + ",Generate content error!";
                }
-           }
+           //}
 
            data.PlaneID = this.ItemConfig.tblItemGroup.PlaneID??0;
            data.Value = this.Value;

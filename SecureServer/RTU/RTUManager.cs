@@ -30,18 +30,47 @@ namespace SecureServer.RTU
             foreach (tblControllerConfig tbl in q)
             {
                 ModbusTCP.IRTU rtu = null; ;
-                if(tbl.ControlType==3) //normal rtu
-                        rtu= new ModbusTCP.RTU(tbl.ControlID, 1, tbl.IP, tbl.Port,(int) tbl.RTUBaseAddress, (int)tbl.RTURegisterLength);
-               
+                if (tbl.ControlType == 3) //normal rtu
+                {
+                    rtu = new ModbusTCP.RTU(tbl.ControlID, 1, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0);
+                    rtu.OnCommStateChanged += rtu_OnCommStateChanged;
+                }
                 if (!dictRTUs.ContainsKey(tbl.ControlID))
                 {
 
-
+                   
                     dictRTUs.Add(tbl.ControlID, rtu);
                     Console.WriteLine("Add RTU" + rtu.ControlID + ",base:" + tbl.RTUBaseAddress + ",Length:" + tbl.RTURegisterLength);
+               
                 }
             }
 
+            db.Dispose();
+
+        }
+
+        void rtu_OnCommStateChanged(ModbusTCP.RTU sender, int comm_state)
+        {
+            SecureDBEntities1 db = new SecureDBEntities1();
+           tblControllerConfig ctl= db.tblControllerConfig.Where(n => n.ControlID == sender.ControlID).FirstOrDefault();
+
+           if (ctl != null)
+           {
+               ctl.Comm_state = comm_state;
+               db.tblDeviceStateLog.Add(
+
+                  new tblDeviceStateLog()
+                  {
+                       TypeID=10, TypeCode=(short)comm_state, TimeStamp=DateTime.Now, ControlID=sender.ControlID
+                  }
+                   );
+
+
+
+               db.SaveChanges();
+           }
+           db.Dispose();
+            //throw new NotImplementedException();
         }
     }
 }

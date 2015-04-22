@@ -17,6 +17,7 @@ namespace SecureServer
         public tblControllerConfig()
         {
             this.tblItemConfig = new HashSet<tblItemConfig>();
+            this.tblDeviceStateLog = new HashSet<tblDeviceStateLog>();
         }
     
         public string ControlID { get; set; }
@@ -36,7 +37,9 @@ namespace SecureServer
         public Nullable<int> TriggerCCTVID { get; set; }
         public Nullable<int> RTUBaseAddress { get; set; }
         public Nullable<int> RTURegisterLength { get; set; }
+        public Nullable<int> Comm_state { get; set; }
     
         public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
+        public virtual ICollection<tblDeviceStateLog> tblDeviceStateLog { get; set; }
     }
 }

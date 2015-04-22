@@ -14,7 +14,7 @@ namespace test
 {
     class Program
     {
-        static RTU rtu = new RTU("rtu-101", 1, "10.21.12.200", 502, 2001, 46);
+        static RTU rtu = new RTU("rtu-101", 1, "10.21.12.200", 502, 2001, 46,0);
         static void Main(string[] args)
         {
 

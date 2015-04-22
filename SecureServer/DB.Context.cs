@@ -48,5 +48,6 @@ namespace SecureServer
         public DbSet<vwEntranceGuardDetail> vwEntranceGuardDetail { get; set; }
         public DbSet<vwUserGroupMenuAllow> vwUserGroupMenuAllow { get; set; }
         public DbSet<vwUserMenuAllow> vwUserMenuAllow { get; set; }
+        public DbSet<tblDeviceStateLog> tblDeviceStateLog { get; set; }
     }
 }

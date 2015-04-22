@@ -51,6 +51,9 @@ namespace SecureServer
         public Nullable<double> Rotation { get; set; }
         public Nullable<double> X { get; set; }
         public Nullable<double> Y { get; set; }
+        public string Lv0Color { get; set; }
+        public string Lv1Color { get; set; }
+        public string Lv2Color { get; set; }
     
         public virtual tblControllerConfig tblControllerConfig { get; set; }
         public virtual tblItemGroup tblItemGroup { get; set; }

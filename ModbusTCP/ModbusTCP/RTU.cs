@@ -10,10 +10,11 @@ namespace ModbusTCP
 {
 
 //public delegate  void RegisterValueChangedHandler(int address, int newValue);
-
+    public delegate void OnCommStateChangedHandler(RTU sender,int comm_state);
     public  class RTU : ModbusTCP.IRTU 
     {
       //  public event RegisterValueChangedHandler OnRegisterValueChangeEvent;
+        public event OnCommStateChangedHandler OnCommStateChanged;
         public string IP { get; set; }
         public int  Port {get;set;}
         public ushort RegisterLength { get; set; }
@@ -25,7 +26,7 @@ namespace ModbusTCP
         byte?[] data;
 
         object lockobj = new object();
-        public RTU(string ControlID,int DevID,string IP, int Port,int StartAddress, int RegisterLength)
+        public RTU(string ControlID,int DevID,string IP, int Port,int StartAddress, int RegisterLength,int comm_state)
         {
             this.StartAddress = (ushort)StartAddress;
             data = new byte?[RegisterLength * 2];
@@ -35,10 +36,12 @@ namespace ModbusTCP
             this.Port = Port;
             this.RegisterLength = (ushort)RegisterLength;
             this.DevID = DevID;
+            _Comm_state = comm_state;
             new Thread(ConnectTask).Start();
               tmr = new System.Threading.Timer(new System.Threading.TimerCallback(timerBack));
             tmr.Change(0, 500);
             new Thread(ReadingTask).Start();
+           
         }
 
 
@@ -53,6 +56,25 @@ namespace ModbusTCP
             }
         }
 
+        int _Comm_state;
+
+        int Comm_state
+        {
+            get{
+                return _Comm_state;
+            }
+            set
+            {
+                if(value!=_Comm_state)
+                {
+                    _Comm_state=value;
+                    if(OnCommStateChanged!=null)
+                        OnCommStateChanged(this,value);
+                }
+
+            }
+        }
+
         void ReadingTask()
         {
             byte[] tempdata = new byte[data.Length];
@@ -61,7 +83,11 @@ namespace ModbusTCP
 
                 try
                 {
-                  
+
+                    // 偵測 RTU開 斷線並產生事件
+                    if (RTUDevice != null)
+                        Comm_state = RTUDevice.connected ? 1 : 0;
+
                     if (RTUDevice != null && RTUDevice.connected)
                     {
                         lock (lockobj)

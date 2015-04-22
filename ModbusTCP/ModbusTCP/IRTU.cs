@@ -12,5 +12,6 @@ namespace ModbusTCP
         ushort RegisterLength { get; set; }
         string ToString();
         void WriteRegister(ushort address, ushort data);
+           event OnCommStateChangedHandler OnCommStateChanged;
     }
 }

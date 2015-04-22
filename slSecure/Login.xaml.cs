@@ -27,36 +27,10 @@ namespace slSecure
         {
 
               
-             if (Application.Current.IsRunningOutOfBrowser)
-                {
-                 App.Current.CheckAndDownloadUpdateCompleted+=Current_CheckAndDownloadUpdateCompleted;
-                    App.Current.CheckAndDownloadUpdateAsync();
-
-                    Application.Current.MainWindow.WindowState = WindowState.Maximized;
-                }
-            
+           
         }
 
-        void Current_CheckAndDownloadUpdateCompleted(object sender, CheckAndDownloadUpdateCompletedEventArgs e)
-        {
-            if (e.UpdateAvailable)
-            {
-                MessageBox.Show("新版成程式可下載. " +
-                    "請重新啟動本程式進行安裝.");
-            }
-            else if (e.Error != null &&
-                e.Error is PlatformNotSupportedException)
-            {
-                MessageBox.Show("An application update is available, " +
-                    "but it requires a new version of Silverlight. " +
-                    "Visit the application home page to upgrade.");
-            }
-            else
-            {
-                //no new version available
-            }
-
-        }
+       
 
 
         private async void Button_Click(object sender, RoutedEventArgs e)

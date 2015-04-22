@@ -137,5 +137,11 @@ namespace slSecure.Controls
                 }
             }
         }
+
+        private void mnuAttributeSettinh_Click(object sender, RoutedEventArgs e)
+        {
+            ItemBindingData data = this.DataContext as ItemBindingData;
+            new slSecureLib.Forms.SingleSetItemConfig(data.ItemID).Show();
+        }
     }
 }

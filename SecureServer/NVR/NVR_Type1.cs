@@ -63,7 +63,7 @@ namespace SecureServer.NVR
          //  throw new NotImplementedException();
            lock (this)
            {
-               Console.WriteLine("call SaveRecordAction");
+               Console.WriteLine("NVR:{3} call SaveRecordAction,{0}:{1},{2}",BeginDateTime,EndDateTime,SavePathFilename,this.NVRID);
                bool success = SaveRecordAction(Chno, BeginDateTime, EndDateTime, SavePathFilename);
                Console.WriteLine(success);
                return success;
@@ -108,6 +108,7 @@ namespace SecureServer.NVR
                    string DownloadUrl = "";
                    do
                    {
+                       Console.WriteLine("Nvr GetBack url:" + url);
                        downloadlist = NvrGetBackup(url);
                        if (downloadlist.Where(n => n.Contains(downloadfilename)).Count() > 0)
                        {

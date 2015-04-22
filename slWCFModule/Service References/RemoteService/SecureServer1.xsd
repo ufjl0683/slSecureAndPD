@@ -12,6 +12,7 @@
       <xs:enumeration value="EventInvalidCard" />
       <xs:enumeration value="EventExternalForce" />
       <xs:enumeration value="EventDoorOpen" />
+      <xs:enumeration value="ItemAttributehanged" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="DBChangedConstant" nillable="true" type="tns:DBChangedConstant" />

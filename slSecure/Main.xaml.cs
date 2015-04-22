@@ -272,6 +272,12 @@ namespace slSecure
 
         }
 
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
+            txtTitle.DataContext = new tblMenu() { MenuName = "門禁監控" };
+        }
+
       
 
     }

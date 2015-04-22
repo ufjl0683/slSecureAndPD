@@ -32,6 +32,8 @@
         <EntityTypeShape EntityType="SecureDBModel.vwEntranceGuardDetail" Width="1.5" PointX="6.4143552064962481" PointY="2.7494328779864277" />
         <EntityTypeShape EntityType="SecureDBModel.vwUserGroupMenuAllow" Width="1.5" PointX="9.2483084822298522" PointY="25.977032405313587" />
         <EntityTypeShape EntityType="SecureDBModel.vwUserMenuAllow" Width="1.5" PointX="6.5317734659331723" PointY="18.477727257869081" />
+        <EntityTypeShape EntityType="SecureDBModel.tblDeviceStateLog" Width="1.5" PointX="10.252320583095923" PointY="26.76728807146069" />
+        <AssociationConnector Association="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

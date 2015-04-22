@@ -152,6 +152,9 @@
     <Compile Include="Controls\CCTV.xaml.cs">
       <DependentUpon>CCTV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CCTVControl.xaml.cs">
+      <DependentUpon>CCTVControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CCTVLock.xaml.cs">
       <DependentUpon>CCTVLock.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CCTV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CCTVControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,6 +311,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="icons\Home.png" />
     <Content Include="slSecureLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

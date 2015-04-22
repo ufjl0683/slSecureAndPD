@@ -9,6 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace slSecure.Controls
@@ -155,6 +156,13 @@ namespace slSecure.Controls
                     //SetBlind(value);
                 }
             }
+        }
+
+        private void mnuAttributeSettinh_Click(object sender, RoutedEventArgs e)
+        {
+            ItemBindingData data = this.DataContext as ItemBindingData;
+            new slSecureLib.Forms.SingleSetItemConfig(data.ItemID).Show();
+         //   NavigationService.Navigate(new Uri("/slSecureLib;component/Forms/slSingleSetItemConfig.xaml?ItemID="+data.ItemID, UriKind.Relative));
         }
     }
 }

@@ -19,7 +19,7 @@
 
             </Grid>
         </Border>
-        <TextBlock HorizontalAlignment="Center"   Margin="0,40,0,0" TextWrapping="Wrap" Text="華電聯網機房門禁系統展示" VerticalAlignment="Top" FontSize="20" Width="Auto"/>
+        <TextBlock HorizontalAlignment="Center"   Margin="0,40,0,0" TextWrapping="Wrap" Text="華電聯網機房門禁系統" VerticalAlignment="Top" FontSize="20" Width="Auto"/>
 
     </Grid>
 </navigation:Page>

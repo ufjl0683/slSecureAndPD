@@ -137,6 +137,9 @@
     <Compile Include="tblControllerConfig.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblDeviceStateLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblEngineRoomLog.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>

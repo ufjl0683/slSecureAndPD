@@ -97,6 +97,7 @@ namespace slSecure.Forms
                           try
                           {
                               info.AlarmStatus = PlaneDegreeInfos.Where(n => n.ERID == info.ERID).Max(n => n.AlarmStatus);
+
                           }
                           catch { ;}
                       }

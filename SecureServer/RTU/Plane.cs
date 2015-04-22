@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecureServer.BindingData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,44 @@ namespace SecureServer.RTU
        }
 
 
+       public string DegreeColor
+       {
+           get
+           {
+
+              
+               string ret="Grey";
+               try
+               {
+                   Item[] items = Items.Where(n => n.AlarmMode == "Y" && n.Degree == Degree).ToArray() ;
+                   if (items == null || items.Length == 0)
+                       return "Green";
+                   else
+                   {
+
+                       foreach (Item item in items)
+                       {
+                         ItemBindingData data=item.ToBindingData();
+                         if (data.ColorString == "Red")
+                             ret = "Red";
+                         else if (data.ColorString == "Yellow" && ret != "Red")
+                             ret = "Yellow";
+                         else if (data.ColorString == "Green" &&ret != "Red" && ret != "Yellow")
+                             ret = "Green";
+                         
+
+
+
+                       }
+                   }
+               }
+               catch
+               {
+                   return "Green";
+               }
+               return ret;
+           }
+       }
 
        public int Degree
        {

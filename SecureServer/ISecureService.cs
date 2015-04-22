@@ -84,7 +84,8 @@ namespace SecureServer
         EventDoorOpenOverTime,
         EventInvalidCard,
         EventExternalForce,
-        EventDoorOpen
+        EventDoorOpen,
+        ItemAttributehanged
 
 
 
