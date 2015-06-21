@@ -2192,7 +2192,7 @@ namespace slSecure.Web
 
             public Nullable<bool> IsShow { get; set; }
 
-            public Nullable<double> ItemConfig_Value { get; set; }
+            public string ItemConfig_Value { get; set; }
 
             public Nullable<int> ItemID { get; set; }
 
@@ -2222,7 +2222,7 @@ namespace slSecure.Web
 
             public string Unit { get; set; }
 
-            public Nullable<double> Value { get; set; }
+            public string Value { get; set; }
 
             public Nullable<double> ValueScale { get; set; }
 
@@ -2411,7 +2411,7 @@ namespace slSecure.Web
 
             public string Unit { get; set; }
 
-            public Nullable<double> Value { get; set; }
+            public string Value { get; set; }
 
             public double ValueScale { get; set; }
 

@@ -143,5 +143,11 @@ namespace slSecure.Controls
             ItemBindingData data = this.DataContext as ItemBindingData;
             new slSecureLib.Forms.SingleSetItemConfig(data.ItemID).Show();
         }
+
+        private void mnumnuAlarmHistory_Click(object sender, RoutedEventArgs e)
+        {
+            ItemBindingData data = this.DataContext as ItemBindingData;
+            new slSecureLib.Forms.SingleReport(data.ItemID, data.Type).Show();
+        }
     }
 }

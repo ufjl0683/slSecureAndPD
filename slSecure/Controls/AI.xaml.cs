@@ -164,5 +164,11 @@ namespace slSecure.Controls
             new slSecureLib.Forms.SingleSetItemConfig(data.ItemID).Show();
          //   NavigationService.Navigate(new Uri("/slSecureLib;component/Forms/slSingleSetItemConfig.xaml?ItemID="+data.ItemID, UriKind.Relative));
         }
+
+        private void mnumnuAlarmHistory_Click(object sender, RoutedEventArgs e)
+        {
+            ItemBindingData data = this.DataContext as ItemBindingData;
+            new slSecureLib.Forms.SingleReport(data.ItemID,data.Type).Show();
+        }
     }
 }

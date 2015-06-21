@@ -18,16 +18,30 @@ namespace test
         static void Main(string[] args)
         {
 
+        //    Console.WriteLine(RemoteService.AlarmType.RTU);
+
+            System.Collections.BitArray bary = new System.Collections.BitArray(new byte[2]);
+
+            bary.Set(8, true);
+            byte[]kk=new byte[2];
+            bary.CopyTo(kk,0);
+            Console.WriteLine("{0:X4}",BitConverter.ToUInt16(kk,0));
+         //   Console.WriteLine(null == 1);
+
             MCNSService.MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
             AddCardInfo info = new AddCardInfo();
             info.CardNo = "1232828117";
-            info.ERIDs = new ArrayOfInt { 1,3,5};
+            info.ERIDs = new ArrayOfInt { 1, 3, 5 };
             info.StartDate = DateTime.Now;
             info.EndDate = info.StartDate.AddDays(3);
             info.MCNSID = "333333";
-           string res= client.AddCard(info);
-           Console.WriteLine(res);
+            string res = client.AddCard(info);
+            Console.WriteLine(res);
            // info.MCNSID
+
+      
+          //  Wrapper w = new Wrapper();
+
 
            // client.AddCard(new MCNSService.AddCardInfo() { CardNo = "0988163835", ERIDs = new int[] { 1 }, MCNSID });
 

@@ -45,7 +45,7 @@ namespace SecureServer.RTU
            {
 
               
-               string ret="Grey";
+               string ret="Gray";
                try
                {
                    Item[] items = Items.Where(n => n.AlarmMode == "Y" && n.Degree == Degree).ToArray() ;

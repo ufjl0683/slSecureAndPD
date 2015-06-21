@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9850894955f6426aa4284a82d27c0baf" Name="圖表1" ZoomLevel="82">
+      <Diagram DiagramId="9850894955f6426aa4284a82d27c0baf" Name="圖表1" ZoomLevel="80">
         <EntityTypeShape EntityType="SecureDBModel.tblERDoorPassword" Width="1.5" PointX="2.375" PointY="0.625" />
         <EntityTypeShape EntityType="SecureDBModel.tblEngineRoomLog" Width="1.5" PointX="3.375" PointY="2.125" />
         <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="6.625" PointY="1" />
@@ -22,7 +22,7 @@
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroup" />
         <EntityTypeShape EntityType="SecureDBModel.tblAIItem1HourLog" Width="1.5" PointX="8.1715686973983281" PointY="9.3359939648471748" />
         <AssociationConnector Association="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" />
-        <EntityTypeShape EntityType="SecureDBModel.tblPDConfig" Width="1.5" PointX="2.0318014538063673" PointY="27.529942525331837" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDConfig" Width="1.5" PointX="6" PointY="30" />
         <EntityTypeShape EntityType="SecureDBModel.tblPDAlarmLog" Width="1.5" PointX="10.999373344238556" PointY="27.670261306534641" />
         <AssociationConnector Association="SecureDBModel.FK_tblPDAlarmLog_tblPDConfig" />
         <EntityTypeShape EntityType="SecureDBModel.tblAlarmLog" Width="1.5" PointX="2.5264434490941667" PointY="31.454172536476595" />

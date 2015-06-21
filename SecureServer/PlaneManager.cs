@@ -48,7 +48,7 @@ namespace SecureServer
 
        public PlaneDegreeInfo[] GetAllPlaneDegree()
        {
-           return dictERPlanes.Values.Select(n => new PlaneDegreeInfo() { PlaneID=n.PlaneID, AlarmStatus=n.Degree, ERID=n.ERID, Name=n.PlaneName }).ToArray();
+           return dictERPlanes.Values.Select(n => new PlaneDegreeInfo() { PlaneID=n.PlaneID, AlarmStatus=n.Degree, ERID=n.ERID, Name=n.PlaneName,ColorString=n.DegreeColor }).ToArray();
        }
 
 

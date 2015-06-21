@@ -18,7 +18,7 @@ namespace MapControl.Converters
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Visibility res=Visibility.Visible;
-            return res;
+          //  return res;
             switch (System.Convert.ToInt32(value))
             {
                 case 0:

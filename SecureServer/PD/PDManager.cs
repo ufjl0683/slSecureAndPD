@@ -22,7 +22,7 @@ namespace SecureServer.PD
           {
               if (!dictPDs.ContainsKey(tbl.PDName))
               {
-                  if (tbl.type == 1)
+                  if (tbl.type == 1 || tbl.type==2 || tbl.type==3 )
                   {
                       try
                       {

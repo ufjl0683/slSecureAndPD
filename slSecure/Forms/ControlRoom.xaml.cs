@@ -270,8 +270,12 @@ namespace slSecure.Forms
            
                 item.DataContext =   bindingdata;
                 item.MouseLeftButtonDown += CCTVLock_MouseLeftButtonDown;
+
+
                 this.Canvas.Children.Add(item);
-                
+
+                CCTVLock_MouseLeftButtonDown(item, null);
+               
                 //item.MouseMove += selectedDevice_MouseMove;
 
 

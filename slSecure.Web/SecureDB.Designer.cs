@@ -916,22 +916,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwAlarmLog> vwAlarmLog
-        {
-            get
-            {
-                if ((_vwAlarmLog == null))
-                {
-                    _vwAlarmLog = base.CreateObjectSet<vwAlarmLog>("vwAlarmLog");
-                }
-                return _vwAlarmLog;
-            }
-        }
-        private ObjectSet<vwAlarmLog> _vwAlarmLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwAllAlarmLog> vwAllAlarmLog
         {
             get
@@ -976,22 +960,6 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwDeviceStateLog> _vwDeviceStateLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<vwItemConfig> vwItemConfig
-        {
-            get
-            {
-                if ((_vwItemConfig == null))
-                {
-                    _vwItemConfig = base.CreateObjectSet<vwItemConfig>("vwItemConfig");
-                }
-                return _vwItemConfig;
-            }
-        }
-        private ObjectSet<vwItemConfig> _vwItemConfig;
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -1072,6 +1040,38 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwReaderPassLog> _vwReaderPassLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwAlarmLog> vwAlarmLog
+        {
+            get
+            {
+                if ((_vwAlarmLog == null))
+                {
+                    _vwAlarmLog = base.CreateObjectSet<vwAlarmLog>("vwAlarmLog");
+                }
+                return _vwAlarmLog;
+            }
+        }
+        private ObjectSet<vwAlarmLog> _vwAlarmLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwItemConfig> vwItemConfig
+        {
+            get
+            {
+                if ((_vwItemConfig == null))
+                {
+                    _vwItemConfig = base.CreateObjectSet<vwItemConfig>("vwItemConfig");
+                }
+                return _vwItemConfig;
+            }
+        }
+        private ObjectSet<vwItemConfig> _vwItemConfig;
 
         #endregion
 
@@ -1486,14 +1486,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwAlarmLog(vwAlarmLog vwAlarmLog)
-        {
-            base.AddObject("vwAlarmLog", vwAlarmLog);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwAllAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwAllAlarmLog(vwAllAlarmLog vwAllAlarmLog)
@@ -1515,14 +1507,6 @@ namespace slSecure.Web
         public void AddTovwDeviceStateLog(vwDeviceStateLog vwDeviceStateLog)
         {
             base.AddObject("vwDeviceStateLog", vwDeviceStateLog);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 vwItemConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwItemConfig(vwItemConfig vwItemConfig)
-        {
-            base.AddObject("vwItemConfig", vwItemConfig);
         }
     
         /// <summary>
@@ -1563,6 +1547,22 @@ namespace slSecure.Web
         public void AddTovwReaderPassLog(vwReaderPassLog vwReaderPassLog)
         {
             base.AddObject("vwReaderPassLog", vwReaderPassLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwAlarmLog(vwAlarmLog vwAlarmLog)
+        {
+            base.AddObject("vwAlarmLog", vwAlarmLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwItemConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwItemConfig(vwItemConfig vwItemConfig)
+        {
+            base.AddObject("vwItemConfig", vwItemConfig);
         }
 
         #endregion
@@ -3629,6 +3629,78 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _Comm_state;
         partial void OnComm_stateChanging(Nullable<global::System.Int32> value);
         partial void OnComm_stateChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String R23_ADAM
+        {
+            get
+            {
+                return _R23_ADAM;
+            }
+            set
+            {
+                OnR23_ADAMChanging(value);
+                ReportPropertyChanging("R23_ADAM");
+                _R23_ADAM = StructuralObject.SetValidValue(value, true, "R23_ADAM");
+                ReportPropertyChanged("R23_ADAM");
+                OnR23_ADAMChanged();
+            }
+        }
+        private global::System.String _R23_ADAM;
+        partial void OnR23_ADAMChanging(global::System.String value);
+        partial void OnR23_ADAMChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> R23DoorOpen_DI
+        {
+            get
+            {
+                return _R23DoorOpen_DI;
+            }
+            set
+            {
+                OnR23DoorOpen_DIChanging(value);
+                ReportPropertyChanging("R23DoorOpen_DI");
+                _R23DoorOpen_DI = StructuralObject.SetValidValue(value, "R23DoorOpen_DI");
+                ReportPropertyChanged("R23DoorOpen_DI");
+                OnR23DoorOpen_DIChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _R23DoorOpen_DI;
+        partial void OnR23DoorOpen_DIChanging(Nullable<global::System.Int16> value);
+        partial void OnR23DoorOpen_DIChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> R23DoorOpen_DO
+        {
+            get
+            {
+                return _R23DoorOpen_DO;
+            }
+            set
+            {
+                OnR23DoorOpen_DOChanging(value);
+                ReportPropertyChanging("R23DoorOpen_DO");
+                _R23DoorOpen_DO = StructuralObject.SetValidValue(value, "R23DoorOpen_DO");
+                ReportPropertyChanged("R23DoorOpen_DO");
+                OnR23DoorOpen_DOChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _R23DoorOpen_DO;
+        partial void OnR23DoorOpen_DOChanging(Nullable<global::System.Int16> value);
+        partial void OnR23DoorOpen_DOChanged();
 
         #endregion
 
@@ -12579,7 +12651,7 @@ namespace slSecure.Web
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> Value
+        public global::System.String Value
         {
             get
             {
@@ -12589,13 +12661,13 @@ namespace slSecure.Web
             {
                 OnValueChanging(value);
                 ReportPropertyChanging("Value");
-                _Value = StructuralObject.SetValidValue(value, "Value");
+                _Value = StructuralObject.SetValidValue(value, true, "Value");
                 ReportPropertyChanged("Value");
                 OnValueChanged();
             }
         }
-        private Nullable<global::System.Double> _Value;
-        partial void OnValueChanging(Nullable<global::System.Double> value);
+        private global::System.String _Value;
+        partial void OnValueChanging(global::System.String value);
         partial void OnValueChanged();
     
         /// <summary>

@@ -47,16 +47,17 @@
     <Grid x:Name="LayoutRoot"  >
         
      
-        <i:Interaction.Triggers>
-            <i:EventTrigger>
-                <ei:ControlStoryboardAction Storyboard="{StaticResource Storyboard1}"/>
+        <i:Interaction.Triggers >
+            <i:EventTrigger EventName="Loaded">
+                <ei:ControlStoryboardAction Storyboard="{StaticResource Storyboard1}"  />
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <Grid   >
            
-                    <Image Source="/MapControl;component/Icons/house.png"  Stretch="Fill"   HorizontalAlignment="Center" VerticalAlignment="Center"  />
-
-            <Ellipse x:Name="ellipse" Fill="{Binding AlarmStatus,Converter={StaticResource AlarmStausGradientColorConverter },ConverterParameter={StaticResource GradientColor}}"    RenderTransformOrigin="0.5,0.5"  Visibility="{Binding AlarmStatus,Converter={StaticResource AlarmStatusVisibilityConverter }}"   >
+                    <!--<Image Source="/MapControl;component/Icons/house.png"  Stretch="Fill"   HorizontalAlignment="Center" VerticalAlignment="Center"  />-->
+            <Image Source="{Binding AlarmStatus,StringFormat=/MapControl;component/Icons/house\{0\}.png}"  Stretch="Fill"   HorizontalAlignment="Center" VerticalAlignment="Center"  />
+            <!--<Ellipse x:Name="ellipse" Fill="{Binding AlarmStatus,Converter={StaticResource AlarmStausGradientColorConverter },ConverterParameter={StaticResource GradientColor}}"    RenderTransformOrigin="0.5,0.5"  Visibility="{Binding AlarmStatus,Converter={StaticResource AlarmStatusVisibilityConverter }}"   >-->
+            <Ellipse x:Name="ellipse" Fill="{Binding AlarmStatus,Converter={StaticResource AlarmStausGradientColorConverter },ConverterParameter={StaticResource GradientColor}}"    RenderTransformOrigin="0.5,0.5"  Visibility="Visible"   >
                 <Ellipse.RenderTransform>
                     <CompositeTransform ScaleX="2"  ScaleY="2" />
                 </Ellipse.RenderTransform>

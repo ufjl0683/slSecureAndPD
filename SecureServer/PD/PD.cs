@@ -99,7 +99,12 @@ namespace SecureServer.PD
        {
            get
            {
+              // if((tblPDConfig.type??1)==1)
                return (System.BitConverter.ToUInt16(data, 0)) & 0x01;
+               //else if((tblPDConfig.type??1)==2)   //R 11
+               //    return (System.BitConverter.ToUInt16(data, 0) >> 4) & 0x01;  
+               //else
+               //  return (System.BitConverter.ToUInt16(data, 0)) & 0x01;
            }
 
            set
@@ -357,7 +362,55 @@ namespace SecureServer.PD
                    {
                        lock (lockobj)
                        {
-                           RTUDevice.ReadDiscreteInputs(1, 0, 0, 12, ref tempdata);
+                         
+                                RTUDevice.ReadDiscreteInputs(1, 0, 0, 12, ref tempdata);
+
+
+                                if ((tblPDConfig.type ?? 1) == 2)  //R11
+                                {
+                                    for (int i = 0; i < tempdata.Length; i++)
+                                        tempdata[i] = (byte)(~tempdata[i]);
+
+                                    System.Collections.BitArray baryD = new System.Collections.BitArray(new byte[2]);
+                                    System.Collections.BitArray baryS = new System.Collections.BitArray(tempdata);
+                                    baryD.Set(0, baryS.Get(4));  //r0
+                                    baryD.Set(1, baryS.Get(5));  //s0
+                                    baryD.Set(2, baryS.Get(6));  // t0
+                                    baryD.Set(3, baryS.Get(0));  //r1
+                                    baryD.Set(4, baryS.Get(1)); //s1
+                                    baryD.Set(5, baryS.Get(2));  //t1
+                                    baryD.Set(6, baryS.Get(7));  // L0
+                                    baryD.Set(7, baryS.Get(8));  // L1
+                                    baryD.Set(8, baryS.Get(9));  // L2
+                                    baryD.Set(9, baryS.Get(10));  // L3
+                                    baryD.Set(10, baryS.Get(11));  // L4
+                                    baryD.Set(11, baryS.Get(3));  // cab
+                                    baryD.CopyTo(tempdata, 0);
+                                }
+                                else if ((tblPDConfig.type ?? 1) == 3)
+                                {
+
+                                    for (int i = 0; i < tempdata.Length; i++)
+                                        tempdata[i] = (byte)(~tempdata[i]);
+
+                                    System.Collections.BitArray baryD = new System.Collections.BitArray(new byte[2]);
+                                    System.Collections.BitArray baryS = new System.Collections.BitArray(tempdata);
+                                    baryD.Set(0, baryS.Get(6));  //r0
+                                    baryD.Set(1, baryS.Get(7));  //s0
+                                    baryD.Set(2, baryS.Get(8));  // t0
+                                    baryD.Set(3, baryS.Get(0));  //r1
+                                    baryD.Set(4, baryS.Get(1)); //s1
+                                    baryD.Set(5, baryS.Get(2));  //t1
+                                    baryD.Set(6, baryS.Get(9));  // L0
+                                    baryD.Set(7, baryS.Get(10));  // L1
+                                    baryD.Set(8, baryS.Get(11));  // L2
+                                    //baryD.Set(9, 0baryS.Get(10));  // L3
+                                    //baryD.Set(10,0 baryS.Get(11));  // L4
+                                    baryD.Set(11, baryS.Get(3) && baryS.Get(4) && baryS.Get(5));  // cab
+                                    baryD.CopyTo(tempdata, 0);
+                                }
+
+                                
                            //  RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)255, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
                            if (tempdata != null && tempdata.Length != 0)
                            {
@@ -391,6 +444,8 @@ namespace SecureServer.PD
 
        void CheckDataChange(byte[] temp)
        {
+           string description="";
+           
            if (data[0] == temp[0] && data[1] == temp[1])
                return;
 
@@ -404,15 +459,16 @@ namespace SecureServer.PD
            if (d.R0 != t.R0   )
            {
                tblpd.R0 = t.R0;
-               if (t.R0 == 0)
+               if (t.R0 == 0)  //normal
                {
                    tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "R0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 1 };
                    db.tblPDAlarmLog.Add(log);
                }
-               else
+               else  //abnormal
                {
                    tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "R0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                    db.tblPDAlarmLog.Add(log);
+                   description += "R0 ";
                }
            }
        
@@ -430,6 +486,8 @@ namespace SecureServer.PD
 
                    tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "S0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                    db.tblPDAlarmLog.Add(log);
+
+                   description += "S0 ";
                }
            }
            if (d.T0 != t.T0  )
@@ -444,6 +502,7 @@ namespace SecureServer.PD
                {
                    tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "T0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                    db.tblPDAlarmLog.Add(log);
+                   description += "T0 ";
                }
            }
 
@@ -459,6 +518,7 @@ namespace SecureServer.PD
                {
                    tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "R1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                    db.tblPDAlarmLog.Add(log);
+                   description += "R1 ";
                }
            }
 
@@ -468,8 +528,14 @@ namespace SecureServer.PD
 
                if (t.S1 == 0)
                {
-                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "S1", Timestamp = DateTime.Now, PDName = this.PDName };
+                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "S1", Timestamp = DateTime.Now, PDName = this.PDName , Status=1};
                    db.tblPDAlarmLog.Add(log);
+               }
+               else
+               {
+                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "S1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
+                   db.tblPDAlarmLog.Add(log);
+                   description += "S1 ";
                }
 
            }
@@ -486,6 +552,8 @@ namespace SecureServer.PD
                {
                    tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "T1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                    db.tblPDAlarmLog.Add(log);
+                   description += "T1 ";
+
                }
 
            }
@@ -504,6 +572,8 @@ namespace SecureServer.PD
                    {
                        tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                        db.tblPDAlarmLog.Add(log);
+                       description += "L0 ";
+
                    }
                }
 
@@ -521,6 +591,8 @@ namespace SecureServer.PD
                   {
                       tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                       db.tblPDAlarmLog.Add(log);
+                      description += "L1 ";
+
                   }
               }
 
@@ -539,6 +611,7 @@ namespace SecureServer.PD
                   {
                       tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L2", Timestamp = DateTime.Now, PDName = this.PDName, Status = 1 };
                       db.tblPDAlarmLog.Add(log);
+                      description += "L2 ";
                   }
               }
 
@@ -556,6 +629,7 @@ namespace SecureServer.PD
                   {
                       tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L3", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                       db.tblPDAlarmLog.Add(log);
+                      description += "L3 ";
                   }
               }
 
@@ -573,6 +647,7 @@ namespace SecureServer.PD
                   {
                       tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L4", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                       db.tblPDAlarmLog.Add(log);
+                      description += "L4 ";
                   }
               }
 
@@ -580,17 +655,42 @@ namespace SecureServer.PD
           if (d.Cabinet != t.Cabinet)
           {
               tblpd.Cabinet = t.Cabinet;
-              if (t.Cabinet == 1)
+              if (t.Cabinet == 1)  //close
               {
-                  tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "Cabinet", Timestamp = DateTime.Now, PDName = this.PDName, Memo = "箱門開啟", Status = 1 };
+                  tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "Cabinet", Timestamp = DateTime.Now, PDName = this.PDName, Memo = "箱門關閉", Status = 1 };
                   db.tblPDAlarmLog.Add(log);
               }
-              else
+              else   //open
               {
                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "Cabinet", Timestamp = DateTime.Now, PDName = this.PDName, Memo = "箱門開啟", Status = 0 };
                   db.tblPDAlarmLog.Add(log);
+                  if(description !="")
+                      description += "異常 " + "箱門開啟 ";
+
+                      else
+                      description += "箱門開啟 ";
               }
           }
+          if (!description.Contains("箱門") && description != "")
+              description += "異常";
+
+          if (description != "")
+          {
+              AlarmData alarmdata = new AlarmData()
+              {
+                  TimeStamp = DateTime.Now,
+                  AlarmType = AlarmType.PD,
+                  ColorString = "Red",
+                  Description = description,
+                //  PlaneID = sender.PlaneID,
+                  IsForkCCTVEvent = false,
+                  PlaneName = this.tblPDConfig.PDName//Global.GetPlaneNameByPlaneID(this.PDName)
+                 
+
+              };
+              Program.MyServiceObject.DispatchAlarmEvent(alarmdata);
+          }
+
           db.SaveChanges();
           db.Dispose();
 

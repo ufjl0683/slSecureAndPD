@@ -43,6 +43,9 @@ namespace test.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         EventDoorOpen = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ItemAttributehanged = 9,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -590,6 +593,9 @@ namespace test.RemoteService {
         private int AlarmStatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ColorStringField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ERIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -617,6 +623,19 @@ namespace test.RemoteService {
                 if ((this.AlarmStatusField.Equals(value) != true)) {
                     this.AlarmStatusField = value;
                     this.RaisePropertyChanged("AlarmStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ColorString {
+            get {
+                return this.ColorStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColorStringField, value) != true)) {
+                    this.ColorStringField = value;
+                    this.RaisePropertyChanged("ColorString");
                 }
             }
         }
@@ -866,6 +885,9 @@ namespace test.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Secure = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RTU = 1,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

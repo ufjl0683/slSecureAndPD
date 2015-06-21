@@ -20,6 +20,6 @@ namespace SecureServer.BindingData
         public int AlarmStatus { get; set; }
 
         [DataMember]
-        public int ColorString { get; set; }
+        public string ColorString { get; set; }
     }
 }

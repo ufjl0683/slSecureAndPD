@@ -165,7 +165,9 @@ namespace SecureServer
                        switch (this.ItemType)
                        {
                            case "AI":
+                              
                                value = (int)reading * ItemConfig.ValueScale * ItemConfig.Coefficient + ItemConfig.Offset;
+                               Value = value;
                                if (value <= ItemConfig.WarningUpper && value >= ItemConfig.WarningLower)
                                    Degree = 0;
                                else if (value <= ItemConfig.AlarmUpper && value >= ItemConfig.AlarmLower)
@@ -178,6 +180,7 @@ namespace SecureServer
                                break;
                           
                            case "DI":
+                             
                                value =(double) reading;
                                //if (ItemConfig.Address == 2001)
                                //    Console.WriteLine("test");
@@ -187,6 +190,7 @@ namespace SecureServer
                                else
                                    value = 0;
 
+                               Value = value;
                                if (ItemConfig.DIInvokeWarningValue == System.Convert.ToInt32(value) )
                                    this.Degree = 2;
                                else
@@ -195,8 +199,9 @@ namespace SecureServer
                            case "DO":
                                if (System.Convert.ToInt32(reading)>0 /*& (1 << ItemConfig.BitNo)) > 0*/)
                                {
-                                   Degree = 2;
                                    value = 1;
+                                   Degree = 2;
+                                  
                                
                                }
                                else

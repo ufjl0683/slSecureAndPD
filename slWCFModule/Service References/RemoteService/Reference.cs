@@ -507,7 +507,7 @@ namespace slWCFModule.RemoteService {
         
         private int AlarmStatusField;
         
-        private int ColorStringField;
+        private string ColorStringField;
         
         private int ERIDField;
         
@@ -529,12 +529,12 @@ namespace slWCFModule.RemoteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ColorString {
+        public string ColorString {
             get {
                 return this.ColorStringField;
             }
             set {
-                if ((this.ColorStringField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.ColorStringField, value) != true)) {
                     this.ColorStringField = value;
                     this.RaisePropertyChanged("ColorString");
                 }
@@ -766,6 +766,9 @@ namespace slWCFModule.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         RTU = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PD = 2,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

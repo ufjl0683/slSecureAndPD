@@ -78,9 +78,28 @@ namespace SecureServer.RTU
                            break;
 
                    }
-                tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID=sender.ItemConfig.ControlID, ItemID=sender.ItemID, Timestamp=DateTime.Now, TypeID=5, TypeCode=(short) typecode , Value=sender.Value};
+                   tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID = sender.ItemConfig.ControlID, ItemID = sender.ItemID, Timestamp = DateTime.Now, TypeID = 5, TypeCode = (short)typecode, Value = sender.Value };
                 db.tblAlarmLog.Add(tblalarmlog);
             }
+            else if (NewValue == 1 && sender.ItemType == "AI" && sender.AlarmMode == "Y")
+            {
+
+                int typecode = 0;
+                switch (sender.ItemType)
+                {
+                    case "AI":
+                        typecode = 2;
+                        break;
+                    //case "DI":
+                    //    typecode = 1;
+                    //    break;
+
+                }
+                tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID = sender.ItemConfig.ControlID, ItemID = sender.ItemID, Timestamp = DateTime.Now, TypeID = 5, TypeCode = (short)typecode, Value = sender.Value };
+                db.tblAlarmLog.Add(tblalarmlog);
+
+            }
+
         
             if( NewValue==0 && sender.AlarmMode=="Y")
             {
@@ -96,7 +115,7 @@ namespace SecureServer.RTU
                            break;
 
                    }
-                   tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID = sender.ItemConfig.ControlID, ItemID = sender.ItemID, Timestamp = DateTime.Now, TypeID = 5, TypeCode = (short)typecode , Value=sender.Value};
+                   tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID = sender.ItemConfig.ControlID, ItemID = sender.ItemID, Timestamp = DateTime.Now, TypeID = 5, TypeCode = (short)typecode, Value = sender.Value };
                 db.tblAlarmLog.Add(tblalarmlog);
             }
          

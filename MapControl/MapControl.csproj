@@ -117,7 +117,11 @@
   <ItemGroup>
     <Resource Include="Icons\house.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Icons\house0.png" />
+    <Resource Include="Icons\house1.png" />
+    <Resource Include="Icons\house2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

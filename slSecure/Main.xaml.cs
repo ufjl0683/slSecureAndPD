@@ -114,6 +114,12 @@ namespace slSecure
 
             lstAlarm.Add(alarmdata);
             lstAlarm.OrderByDescending(n => n.TimeStamp);
+            if (alarmdata.AlarmType == AlarmType.RTU || alarmdata.AlarmType== AlarmType.PD)
+            {
+              
+                this.alarmPlayer.Stop();
+                this.alarmPlayer.Play();
+            }
             this.lstMessage.ItemsSource = lstAlarm.OrderByDescending(n => n.TimeStamp);
             if (alarmdata.IsForkCCTVEvent)
             {
@@ -248,8 +254,19 @@ namespace slSecure
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            this.lstCCTVLock.Children.Clear();
-            client.Dispose();
+            try
+            {
+                this.lstCCTVLock.Children.Clear();
+            }
+            catch
+            {
+                ;
+            }
+            try
+            {
+                client.Dispose();
+            }
+            catch { ;}
         }
 
         private void lstMessage_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -261,7 +278,7 @@ namespace slSecure
         {
 
             AlarmData alarmdata = (sender as StackPanel).DataContext as AlarmData;
-            client.Dispose();
+         //   client.Dispose();
             this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID=" + alarmdata.PlaneID, UriKind.Relative));
             //this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml", UriKind.Relative));
         }

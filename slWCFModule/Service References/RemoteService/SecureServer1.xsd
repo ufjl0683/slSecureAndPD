@@ -34,6 +34,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="Secure" />
       <xs:enumeration value="RTU" />
+      <xs:enumeration value="PD" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="AlarmType" nillable="true" type="tns:AlarmType" />

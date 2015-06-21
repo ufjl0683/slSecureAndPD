@@ -123,5 +123,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Image Grid.Column="2" Height="50" Margin="0,23,105,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="50" Source="icons/Home.png" Stretch="Fill" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+        <MediaElement x:Name="alarmPlayer" Grid.Column="2" HorizontalAlignment="Left" Visibility="Collapsed"  Height="100" Margin="359,233,-175,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Source="/sound/alarm.mp3" AutoPlay="False"/>
     </Grid>
 </sdk:Page>

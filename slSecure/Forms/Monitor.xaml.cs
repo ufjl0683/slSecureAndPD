@@ -116,6 +116,7 @@ namespace slSecure.Forms
        
         void tmr_Tick(object sender, EventArgs e)
         {
+          
             client.SecureService.GetAllPlaneInfoCompleted += (ss, aa) =>
             {
                 if (aa.Error != null)
@@ -128,13 +129,41 @@ namespace slSecure.Forms
                     data.AlarmStatus = info.AlarmStatus;
                    
                 }
-
+                this.cboFilter_SelectionChanged(this.cboFilter, null);
               if(roomInfos!=null)
                 foreach (ControlRoomInfo info in roomInfos)
                 {
                     try
                     {
-                        info.AlarmStatus = PlaneDegreeInfos.Where(n => n.ERID == info.ERID).Max(n => n.AlarmStatus);
+                       // info.AlarmStatus = PlaneDegreeInfos.Where(n => n.ERID == info.ERID).Max(n => n.AlarmStatus);
+                        string colorString="Gray";
+                        int alarmstatus = -1;
+                        foreach (PlaneDegreeInfo pdi in PlaneDegreeInfos.Where(n=>n.ERID==info.ERID))
+                        {
+                            if (colorString == "")
+                            {
+                                colorString = pdi.ColorString;
+                                alarmstatus = pdi.AlarmStatus;
+                            }
+                            if (pdi.ColorString == "Red")
+                            {
+                                colorString = "Red";
+                                info.AlarmStatus = 2;
+                            }
+                            else if (pdi.ColorString == "Yellow" && colorString != "Red")
+                            {
+                                colorString = "Yellow";
+                                info.AlarmStatus = 1;
+                            }
+                            else if (pdi.ColorString == "Green" && colorString != "Red" && colorString != "Yellow")
+                            {
+                                colorString = "Green";
+                                info.AlarmStatus = 0;
+                            }
+                         
+                        }
+
+                        info.ColorString = colorString;
                     }
                     catch { ;}
                 }
