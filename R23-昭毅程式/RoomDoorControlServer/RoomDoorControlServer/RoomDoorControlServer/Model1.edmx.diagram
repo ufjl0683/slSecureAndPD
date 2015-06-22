@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="91baf088bb0849c79260e6a189b90d1a" Name="Diagram1">
+        <EntityTypeShape EntityType="SecureDBModel.tblAIItem1HourLog" Width="1.5" PointX="13.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblAlarmLog" Width="1.5" PointX="8.25" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCardReaderConfig" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCCTVConfig" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCCTVType" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblControllerCard" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblControllerConfig" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblControlSetting" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblDeviceStateLog" Width="1.5" PointX="8.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblEngineRoomConfig" Width="1.5" PointX="0.75" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblEngineRoomLog" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblEntranceGuardConfig" Width="1.5" PointX="3" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblERDoorPassword" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblERPlane" Width="1.5" PointX="3" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblHostConfig" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblItemConfig" Width="1.5" PointX="11.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblItemGroup" Width="1.5" PointX="9" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMagneticCard" Width="1.5" PointX="5.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMagneticCardNormalGroup" Width="1.5" PointX="7.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMenu" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMenuGroup" Width="1.5" PointX="3.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblNVRConfig" Width="1.5" PointX="3" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDAlarmLog" Width="1.5" PointX="5.25" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDConfig" Width="1.5" PointX="3" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDLoopDeviceConfig" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSchConfig" Width="1.5" PointX="10.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSchLog" Width="1.5" PointX="12.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSingalIO" Width="1.5" PointX="5.25" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSingalIOLog" Width="1.5" PointX="7.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSysOperation" Width="1.5" PointX="10.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSysParameter" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSysRole" Width="1.5" PointX="3" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSysRoleAuthority" Width="1.5" PointX="5.25" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblTypeDetail" Width="1.5" PointX="6" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblUser" Width="1.5" PointX="8" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblUserGroup" Width="1.5" PointX="5.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecureDBModel.tblUserGroupMenu" Width="1.5" PointX="8" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblAlarmLog_tblTypeDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblCardReaderConfig_tblControllerConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblControllerConfig_tblEngineRoomConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblControlSetting_tblControllerConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblControllerConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSingalIO_tblControllerConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblDeviceStateLog_tblTypeDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblEntranceGuardConfig_tblEngineRoomConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblERPlane_tblEngineRoomConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblNVRConfig_tblEngineRoomConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblPDConfig_tblEngineRoomConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblMagneticCard_tblSysRole" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblMenu_tblMenuGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblUserGroupMenu_tblMenu" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblPDAlarmLog_tblPDConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSchConfig_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSchLog_tblSchConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSingalIOLog_tblSingalIO" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSysOperation_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSysRoleAuthority_tblSysRole" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblUser_tblUserGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SecureDBModel.FK_tblUserGroupMenu_tblUserGroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

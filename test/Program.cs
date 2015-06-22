@@ -18,25 +18,28 @@ namespace test
         static void Main(string[] args)
         {
 
-        //    Console.WriteLine(RemoteService.AlarmType.RTU);
 
-            System.Collections.BitArray bary = new System.Collections.BitArray(new byte[2]);
+            bool status = RoomClient.RoomClient.GetControlConnectionStatus("AN-2400N-1");
 
-            bary.Set(8, true);
-            byte[]kk=new byte[2];
-            bary.CopyTo(kk,0);
-            Console.WriteLine("{0:X4}",BitConverter.ToUInt16(kk,0));
-         //   Console.WriteLine(null == 1);
+         Console.WriteLine(status);
 
-            MCNSService.MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
-            AddCardInfo info = new AddCardInfo();
-            info.CardNo = "1232828117";
-            info.ERIDs = new ArrayOfInt { 1, 3, 5 };
-            info.StartDate = DateTime.Now;
-            info.EndDate = info.StartDate.AddDays(3);
-            info.MCNSID = "333333";
-            string res = client.AddCard(info);
-            Console.WriteLine(res);
+         //   System.Collections.BitArray bary = new System.Collections.BitArray(new byte[2]);
+
+         //   bary.Set(8, true);
+         //   byte[]kk=new byte[2];
+         //   bary.CopyTo(kk,0);
+         //   Console.WriteLine("{0:X4}",BitConverter.ToUInt16(kk,0));
+         ////   Console.WriteLine(null == 1);
+
+         //   MCNSService.MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
+         //   AddCardInfo info = new AddCardInfo();
+         //   info.CardNo = "1232828117";
+         //   info.ERIDs = new ArrayOfInt { 1, 3, 5 };
+         //   info.StartDate = DateTime.Now;
+         //   info.EndDate = info.StartDate.AddDays(3);
+         //   info.MCNSID = "333333";
+         //   string res = client.AddCard(info);
+         //   Console.WriteLine(res);
            // info.MCNSID
 
       

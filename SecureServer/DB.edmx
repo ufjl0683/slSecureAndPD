@@ -101,7 +101,8 @@
       [vwMagneticCard].[Timestamp] AS [Timestamp], 
       [vwMagneticCard].[ReturnDate] AS [ReturnDate], 
       [vwMagneticCard].[NormalName] AS [NormalName], 
-      [vwMagneticCard].[TypeName] AS [TypeName]
+      [vwMagneticCard].[TypeName] AS [TypeName], 
+      [vwMagneticCard].[EnableName] AS [EnableName]
       FROM [dbo].[vwMagneticCard] AS [vwMagneticCard]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwMagneticCardAllowController" EntityType="SecureDBModel.Store.vwMagneticCardAllowController" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCardAllowController">
@@ -144,7 +145,8 @@
       [vwMagneticCardDetail].[Door] AS [Door], 
       [vwMagneticCardDetail].[ControlID] AS [ControlID], 
       [vwMagneticCardDetail].[TypeName] AS [TypeName], 
-      [vwMagneticCardDetail].[IsEnable] AS [IsEnable]
+      [vwMagneticCardDetail].[IsEnable] AS [IsEnable], 
+      [vwMagneticCardDetail].[EnableName] AS [EnableName]
       FROM [dbo].[vwMagneticCardDetail] AS [vwMagneticCardDetail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureDBModel.Store.vwUserGroupMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserGroupMenuAllow">
@@ -269,6 +271,9 @@
           <Property Name="RTUBaseAddress" Type="int" />
           <Property Name="RTURegisterLength" Type="int" />
           <Property Name="Comm_state" Type="int" />
+          <Property Name="R23_ADAM" Type="nvarchar" MaxLength="50" />
+          <Property Name="R23DoorOpen_DI" Type="smallint" />
+          <Property Name="R23DoorOpen_DO" Type="smallint" />
         </EntityType>
         <EntityType Name="tblDeviceStateLog">
           <Key>
@@ -354,6 +359,8 @@
           <Property Name="Lv0Color" Type="nvarchar" MaxLength="10" />
           <Property Name="Lv1Color" Type="nvarchar" MaxLength="10" />
           <Property Name="Lv2Color" Type="nvarchar" MaxLength="10" />
+          <Property Name="GroupTypeID" Type="int" />
+          <Property Name="KindID" Type="int" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -574,6 +581,7 @@
           <Property Name="ReturnDate" Type="datetime" />
           <Property Name="NormalName" Type="nvarchar" MaxLength="50" />
           <Property Name="TypeName" Type="varchar" MaxLength="6" />
+          <Property Name="EnableName" Type="varchar" MaxLength="6" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwMagneticCardAllowController' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -630,6 +638,7 @@
           <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="TypeName" Type="varchar" MaxLength="6" />
           <Property Name="IsEnable" Type="bit" />
+          <Property Name="EnableName" Type="varchar" MaxLength="6" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwUserGroupMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -938,6 +947,7 @@
           <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Door" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsEnable" />
+          <Property Type="String" Name="EnableName" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblControllerConfig">
           <Key>
@@ -963,6 +973,9 @@
           <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblItemConfig" />
           <Property Type="Int32" Name="Comm_state" />
           <NavigationProperty Name="tblDeviceStateLog" Relationship="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblDeviceStateLog" />
+          <Property Type="String" Name="R23_ADAM" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="R23DoorOpen_DI" />
+          <Property Type="Int16" Name="R23DoorOpen_DO" />
         </EntityType>
         <EntityType Name="tblItemConfig">
           <Key>
@@ -1006,6 +1019,8 @@
           <Property Type="String" Name="Lv0Color" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Lv1Color" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Lv2Color" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GroupTypeID" />
+          <Property Type="Int32" Name="KindID" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -1166,6 +1181,7 @@
           <Property Type="DateTime" Name="ReturnDate" Precision="3" />
           <Property Type="String" Name="NormalName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="TypeName" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EnableName" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="vwCardCommandLog">
           <Key>
@@ -1440,6 +1456,7 @@
           <EntitySetMapping Name="vwMagneticCardDetail">
             <EntityTypeMapping TypeName="SecureDBModel.vwMagneticCardDetail">
               <MappingFragment StoreEntitySet="vwMagneticCardDetail">
+                <ScalarProperty Name="EnableName" ColumnName="EnableName" />
                 <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
                 <ScalarProperty Name="Door" ColumnName="Door" />
                 <ScalarProperty Name="ERName" ColumnName="ERName" />
@@ -1474,6 +1491,9 @@
           <EntitySetMapping Name="tblControllerConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblControllerConfig">
               <MappingFragment StoreEntitySet="tblControllerConfig">
+                <ScalarProperty Name="R23DoorOpen_DO" ColumnName="R23DoorOpen_DO" />
+                <ScalarProperty Name="R23DoorOpen_DI" ColumnName="R23DoorOpen_DI" />
+                <ScalarProperty Name="R23_ADAM" ColumnName="R23_ADAM" />
                 <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
                 <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
                 <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
@@ -1498,6 +1518,8 @@
           <EntitySetMapping Name="tblItemConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblItemConfig">
               <MappingFragment StoreEntitySet="tblItemConfig">
+                <ScalarProperty Name="KindID" ColumnName="KindID" />
+                <ScalarProperty Name="GroupTypeID" ColumnName="GroupTypeID" />
                 <ScalarProperty Name="Lv2Color" ColumnName="Lv2Color" />
                 <ScalarProperty Name="Lv1Color" ColumnName="Lv1Color" />
                 <ScalarProperty Name="Lv0Color" ColumnName="Lv0Color" />
@@ -1625,6 +1647,7 @@
           <EntitySetMapping Name="vwMagneticCard">
             <EntityTypeMapping TypeName="SecureDBModel.vwMagneticCard">
               <MappingFragment StoreEntitySet="vwMagneticCard">
+                <ScalarProperty Name="EnableName" ColumnName="EnableName" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
                 <ScalarProperty Name="NormalName" ColumnName="NormalName" />
                 <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />

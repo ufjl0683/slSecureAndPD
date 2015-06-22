@@ -45,10 +45,17 @@ namespace SecureServer.CardReader
                     int nvrid = -1, nvrchano = -1;
                     if (data.TriggerCCTVID != null )
                     {
+#if R13
                         nvrid = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRID;
                         nvrchano = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRChNo;
+#endif
                     }
-                    CardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano);
+
+#if R23
+                    ICardReader cardreader = new CardReader23(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano,data);
+#else
+                    ICardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano);
+#endif
                     dictCardReaders.Add(data.ControlID, cardreader);
                     dictIp_CardReader.Add(data.IP, cardreader);
                     cardreader.OnDoorEvent += cardreader_OnDoorEvent;
@@ -412,7 +419,7 @@ namespace SecureServer.CardReader
         //        this.OnAlarmEvent(reder, alarmdata);
         //}
 
-        void cardreader_OnDoorEvent(CardReader reader, DoorEventType enumEventType)
+        void cardreader_OnDoorEvent(ICardReader reader, DoorEventType enumEventType)
         {
             if (this.OnDoorEvent != null)
             {

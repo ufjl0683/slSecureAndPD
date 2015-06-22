@@ -16,8 +16,8 @@ namespace SecureServer.CardReader
 
     }
 
-    public delegate void DoorEventHandler(CardReader reader,DoorEventType enumEventType);
-    public delegate void AlarmEventHandler(CardReader reader,AlarmData alarmdata);
+    public delegate void DoorEventHandler(ICardReader reader,DoorEventType enumEventType);
+    public delegate void AlarmEventHandler(ICardReader reader,AlarmData alarmdata);
 
     public delegate void  StatusChangeHandler(CardReader reader,CardReaderEventReport report);
    
@@ -28,7 +28,7 @@ namespace SecureServer.CardReader
        public event StatusChangeHandler OnStatusChanged;
        public string IP { get; set; }
        
-       public bool _IsConnected = false;
+         bool _IsConnected = false;
        public bool IsConnected
        {
            get
@@ -57,7 +57,7 @@ namespace SecureServer.CardReader
        public int TriggerCCTVID { get; set; }
        public int NVRID { get; set; }
        public int NVRChNo { get; set; }
-       public bool _IsDoorOpen;
+         bool _IsDoorOpen;
        public bool IsDoorOpen
        {
            get

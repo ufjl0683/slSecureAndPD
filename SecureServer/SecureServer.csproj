@@ -46,7 +46,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;R13</DefineConstants>
+    <DefineConstants>TRACE;R23</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -80,6 +80,7 @@
     <Compile Include="BindingData\ItemGroupBindingData.cs" />
     <Compile Include="BindingData\PlaneDegreeInfo.cs" />
     <Compile Include="CardReader\CardReader.cs" />
+    <Compile Include="CardReader\CardReader23.cs" />
     <Compile Include="CardReader\CardReaderEventReport.cs" />
     <Compile Include="CardReader\CardReaderManager.cs" />
     <Compile Include="CCTV\CCTVManager.cs" />
@@ -257,6 +258,10 @@
     <ProjectReference Include="..\ModbusTCP\ModbusTCP\ModbusTCP.csproj">
       <Project>{78a23b5b-cb72-4edb-b594-5370d086197d}</Project>
       <Name>ModbusTCP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\R23-昭毅程式\RoomClient\RoomClient.csproj">
+      <Project>{2c539972-8b2e-414e-8cb1-89ce468aae03}</Project>
+      <Name>RoomClient</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

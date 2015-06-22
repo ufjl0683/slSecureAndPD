@@ -32,9 +32,9 @@ namespace SecureServer
             nvr_mgr = new NVR.NVRManager();
 #endif
             cctv_mgr = new CCTV.CCTVManager(this);
-#if !R23      
+      
            card_mgr = new CardReaderManager(this);
-#endif
+ 
            rtu_mgr = new RTU.RTUManager();
         
            item_mgr = new RTU.ItemManager();
@@ -154,7 +154,7 @@ namespace SecureServer
            // NotifyDBChange(DBChangedConstant.AuthorityChanged);
         }
 
-        void card_mgr_OnAlarmEvent(CardReader.CardReader reader, AlarmData alarmdata)
+        void card_mgr_OnAlarmEvent(CardReader.ICardReader reader, AlarmData alarmdata)
         {
             try{
                 Console.WriteLine("DispatchAlarm!");
@@ -166,7 +166,7 @@ namespace SecureServer
             //throw new NotImplementedException();
         }
 
-        void card_mgr_OnDoorEvent(CardReader.CardReader reader, DoorEventType enumEventType)
+        void card_mgr_OnDoorEvent(CardReader.ICardReader reader, DoorEventType enumEventType)
         {
             Console.WriteLine(reader.ControllerID + "," + enumEventType.ToString());
 

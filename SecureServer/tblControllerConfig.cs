@@ -38,6 +38,9 @@ namespace SecureServer
         public Nullable<int> RTUBaseAddress { get; set; }
         public Nullable<int> RTURegisterLength { get; set; }
         public Nullable<int> Comm_state { get; set; }
+        public string R23_ADAM { get; set; }
+        public Nullable<short> R23DoorOpen_DI { get; set; }
+        public Nullable<short> R23DoorOpen_DO { get; set; }
     
         public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
         public virtual ICollection<tblDeviceStateLog> tblDeviceStateLog { get; set; }

@@ -104,6 +104,10 @@
       <Project>{78a23b5b-cb72-4edb-b594-5370d086197d}</Project>
       <Name>ModbusTCP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\R23-昭毅程式\RoomClient\RoomClient.csproj">
+      <Project>{2c539972-8b2e-414e-8cb1-89ce468aae03}</Project>
+      <Name>RoomClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\MCNSService\" />

@@ -36,5 +36,6 @@ namespace SecureServer
         public Nullable<System.DateTime> ReturnDate { get; set; }
         public string NormalName { get; set; }
         public string TypeName { get; set; }
+        public string EnableName { get; set; }
     }
 }

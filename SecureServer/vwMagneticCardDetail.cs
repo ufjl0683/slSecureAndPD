@@ -42,5 +42,6 @@ namespace SecureServer
         public string ERName { get; set; }
         public string Door { get; set; }
         public Nullable<bool> IsEnable { get; set; }
+        public string EnableName { get; set; }
     }
 }
