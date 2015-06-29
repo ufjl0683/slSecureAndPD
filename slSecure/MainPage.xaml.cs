@@ -22,6 +22,10 @@ namespace slSecure
             if (!App.Current.HasElevatedPermissions)
                 MessageBox.Show(" No Elevated trust!");
 
+
+     //       MessageBox.Show("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port);
+
+
             if (Application.Current.IsRunningOutOfBrowser)
             {
                 App.Current.CheckAndDownloadUpdateCompleted += Current_CheckAndDownloadUpdateCompleted;

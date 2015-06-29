@@ -25,6 +25,10 @@ namespace SecureServer.CardReader
         void SetOpenDoorAutoCloseTime(int sec);
         void SetOpenDoorDetectionAlarmTime(int sec);
         void SetOpenDoorTimeoutDetectionTime(int sec);
+
+ 
+        void SetR23Parameter( int RemoOpenTimeR23, int DelayTimeR23,int LoopErrorAlarmTimeR23,int AlarmTimeR23);
+       
         void SetSuperOpenDoorPassword(int password);
         SecureServer.BindingData.DoorBindingData ToBindingData();
         int TriggerCCTVID { get; set; }

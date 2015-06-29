@@ -418,5 +418,11 @@ namespace SecureServer.CardReader
            if (this.OnStatusChanged != null)
                this.OnStatusChanged(this, rpt);
        }
+
+
+       public void SetR23Parameter(int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23)
+       {
+           throw new NotImplementedException();
+       }
     }
 }

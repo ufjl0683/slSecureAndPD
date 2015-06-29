@@ -779,6 +779,9 @@ namespace slSecure.Web
             public string Lv0Color { get; set; } 
             public string Lv1Color { get; set; }
              public string Lv2Color { get; set; }
+             public  Nullable<int>  GroupTypeID {get;set;}
+            public Nullable <int> KindID  {get;set;}
+ 
 
         }
     }
@@ -2990,6 +2993,185 @@ namespace slSecure.Web
             public string ControlID { get; set; }
 
             public Nullable<DateTime> starttime { get; set; }
+        }
+    }
+
+
+    // MetadataTypeAttribute 會將 tblItemGroupTypeInfoMetadata 識別為
+    // 帶有 tblItemGroupTypeInfo 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblItemGroupTypeInfo.tblItemGroupTypeInfoMetadata))]
+    public partial class tblItemGroupTypeInfo
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblItemGroupTypeInfo 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblItemGroupTypeInfoMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblItemGroupTypeInfoMetadata()
+            {
+            }
+
+            public int GroupTypeID { get; set; }
+
+            public string GroupTypeName { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblItemKindInfoMetadata 識別為
+    // 帶有 tblItemKindInfo 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblItemKindInfo.tblItemKindInfoMetadata))]
+    public partial class tblItemKindInfo
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblItemKindInfo 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblItemKindInfoMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblItemKindInfoMetadata()
+            {
+            }
+
+            public int KindID { get; set; }
+
+            public string KindName { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwAIImmediatelyCheckMetadata 識別為
+    // 帶有 vwAIImmediatelyCheck 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwAIImmediatelyCheck.vwAIImmediatelyCheckMetadata))]
+    public partial class vwAIImmediatelyCheck
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwAIImmediatelyCheck 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwAIImmediatelyCheckMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwAIImmediatelyCheckMetadata()
+            {
+            }
+
+            public string ControlID { get; set; }
+
+            public Nullable<decimal> DCValue { get; set; }
+
+            public string ERName { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public Nullable<decimal> OilValue { get; set; }
+
+            public Nullable<decimal> RHValue { get; set; }
+
+            public Nullable<decimal> TempValue { get; set; }
+
+            public Nullable<decimal> Transmitter10Value { get; set; }
+
+            public Nullable<decimal> Transmitter1Value { get; set; }
+
+            public Nullable<decimal> Transmitter2Value { get; set; }
+
+            public Nullable<decimal> Transmitter3Value { get; set; }
+
+            public Nullable<decimal> Transmitter4Value { get; set; }
+
+            public Nullable<decimal> Transmitter5Value { get; set; }
+
+            public Nullable<decimal> Transmitter6Value { get; set; }
+
+            public Nullable<decimal> Transmitter7Value { get; set; }
+
+            public Nullable<decimal> Transmitter8Value { get; set; }
+
+            public Nullable<decimal> Transmitter9Value { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwNVRConfigMetadata 識別為
+    // 帶有 vwNVRConfig 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwNVRConfig.vwNVRConfigMetadata))]
+    public partial class vwNVRConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwNVRConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwNVRConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwNVRConfigMetadata()
+            {
+            }
+
+            public string CCTVIP { get; set; }
+
+            public string CCTVName { get; set; }
+
+            public Nullable<int> CCTVPort { get; set; }
+
+            public string Direction { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string IP { get; set; }
+
+            public string LineID { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<int> NVRChNO { get; set; }
+
+            public int NVRID { get; set; }
+
+            public string NVRName { get; set; }
+
+            public string Password { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public int Port { get; set; }
+
+            public Nullable<int> Type { get; set; }
+
+            public string UserName { get; set; }
         }
     }
     }

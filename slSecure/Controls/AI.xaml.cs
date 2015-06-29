@@ -170,5 +170,17 @@ namespace slSecure.Controls
             ItemBindingData data = this.DataContext as ItemBindingData;
             new slSecureLib.Forms.SingleReport(data.ItemID,data.Type).Show();
         }
+
+        private void mnuChart_Click(object sender, RoutedEventArgs e)
+        {
+            ItemBindingData data = ((sender as MenuItem).DataContext as ItemBindingData);
+            //if (data.Type != "AI")
+            //    return;
+
+            Dialog.TRDialog dialog = new Dialog.TRDialog(data.ItemID);
+            dialog.Width = 800;
+            dialog.Height = 600;
+            dialog.Show();
+        }
     }
 }

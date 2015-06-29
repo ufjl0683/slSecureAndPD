@@ -105,15 +105,26 @@ namespace SecureServer.CardReader
             }
         }
 
+        bool _IsDoorOpen;
         public bool IsDoorOpen
         {
             get
             {
-                throw new NotImplementedException();
+                return _IsDoorOpen;
             }
             set
             {
-                throw new NotImplementedException();
+                if (value != _IsDoorOpen)
+                {
+                    _IsDoorOpen = value;
+                    if (this.OnDoorEvent != null)
+                    {
+                        if (value)
+                            this.OnDoorEvent(this, DoorEventType.DoorOpen);
+                        else
+                            this.OnDoorEvent(this, DoorEventType.DoorClose);
+                    }
+                }
             }
         }
 
@@ -262,6 +273,13 @@ namespace SecureServer.CardReader
 
         public void WriteCardReaderID(int id)
         {
+          //  throw new NotImplementedException();
+        }
+
+
+        public void SetR23Parameter(int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23)
+        {
+            RoomClient.RoomClient.SetADAMAlarmTime(this.ControllerID,RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23);
           //  throw new NotImplementedException();
         }
     }

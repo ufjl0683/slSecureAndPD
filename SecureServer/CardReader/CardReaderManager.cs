@@ -29,7 +29,103 @@ namespace SecureServer.CardReader
         bool EventExternalForceAlarm = false;
         bool EventDoorOpenAlarm = false;
         ClassSockets.ServerSocket ServerScoket;
+#if R23
+        int RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23;
+#endif
+        //RemoOpenTime:遠端開門攜回延遲時間 DelayTime:刷退進入保全延遲時間  , LoopErrorAlarmTime:刷退回路異常(沒有關門)告警時間, AlarmTime:外力入侵告警時間  
+
+       
+        private void Server_OnRead(Socket soc)
+        {
+            byte[] SRbuf = ServerScoket.ReceivedBytes;
+
+            if (SRbuf != null)
+            {
+                if (SRbuf.Length != 25)
+                    return;
+                string SRhexstr = BitConverter.ToString(SRbuf);
+                CardReaderEventReport rpt = new CardReaderEventReport(SRbuf);
+                if (!dictIp_CardReader.ContainsKey(rpt.IP))
+                {
+                    Console.WriteLine(rpt.IP + "  Not in dictionary!");
+                    return;
+                }
+                ICardReader ireader = dictIp_CardReader[rpt.IP];
+                Console.WriteLine(rpt);
+                if (rpt.Status == (int)CardReaderStatusEnum.門開啟)
+                    ireader.IsDoorOpen = true;
+
+                if (rpt.Status == (int)CardReaderStatusEnum.門關閉)
+                    ireader.IsDoorOpen = false;
+
+                ireader.InvokeStatusChange(rpt);
+
+            }
+
+        }
+
+#if R23
         public CardReaderManager(SecureService service)
+        {
+            try
+            {
+
+
+
+
+                this.serivce = service;
+                SecureDBEntities1 db = new SecureDBEntities1();
+                var q = from n in db.tblControllerConfig where (n.ControlType == 2 || n.ControlType == 1) && n.IsEnable == true select n;
+                foreach (tblControllerConfig data in q)
+                {
+                    int nvrid = -1, nvrchano = -1;
+//                    if (data.TriggerCCTVID != null)
+//                    {
+//#if R13
+//                        nvrid = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRID;
+//                        nvrchano = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRChNo;
+//#endif
+//                    }
+
+
+                    ICardReader cardreader = new CardReader23(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano, data);
+
+                    dictCardReaders.Add(data.ControlID, cardreader);
+                    dictIp_CardReader.Add(data.IP, cardreader);
+                    cardreader.OnDoorEvent += cardreader_OnDoorEvent;
+                    //   cardreader.OnAlarmEvent += cardreader_OnAlarmEvent;
+                    cardreader.OnStatusChanged += cardreader_OnStatusChanged;
+                    Console.WriteLine("加入卡機:" + data.ControlID);
+                }
+
+                // 
+                ServerScoket = new ClassSockets.ServerSocket();
+                ServerScoket.OnRead += new ServerSocket.ConnectionDelegate(Server_OnRead);
+
+                if (ServerScoket.Active())
+                    Console.WriteLine("Card Reader Server Socket is Listening!");
+
+                else
+
+                    Console.WriteLine("Card Reader Server Socket is  not Listening!");
+
+
+
+                tmr = new System.Threading.Timer(OneMinTask);
+                tmr.Change(0, 1000 * 60);
+
+                this.LoadSystemParameter();
+                this.SendAllReaderParameter();
+                DownloadSuperPassword();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + "," + ex.StackTrace);
+            }
+        }
+
+#else
+           public CardReaderManager(SecureService service)
         {
             try
             {
@@ -45,17 +141,14 @@ namespace SecureServer.CardReader
                     int nvrid = -1, nvrchano = -1;
                     if (data.TriggerCCTVID != null )
                     {
-#if R13
+ 
                         nvrid = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRID;
                         nvrchano = SecureService.cctv_mgr[(int)data.TriggerCCTVID].NVRChNo;
-#endif
+ 
                     }
 
-#if R23
-                    ICardReader cardreader = new CardReader23(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano,data);
-#else
-                    ICardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano);
-#endif
+                     ICardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano);
+ 
                     dictCardReaders.Add(data.ControlID, cardreader);
                     dictIp_CardReader.Add(data.IP, cardreader);
                     cardreader.OnDoorEvent += cardreader_OnDoorEvent;
@@ -90,34 +183,47 @@ namespace SecureServer.CardReader
             }
 
         }
-        private void Server_OnRead(Socket soc)
+#endif
+#if R23
+
+        public void LoadSystemParameter()
         {
-            byte[] SRbuf = ServerScoket.ReceivedBytes;
 
-            if (SRbuf != null)
+            SecureDBEntities1 db = new SecureDBEntities1();
+            //tblSysParameter tbl=  db.tblSysParameter.FirstOrDefault();
+            //if (tbl == null)
+            //    return;
+
+            //開門延時偵測警報時間
+            tblSysParameter tbl = db.tblSysParameter.Where(n => n.SysID == 1).FirstOrDefault();
+            if (tbl != null)
             {
-                if (SRbuf.Length != 25)
-                    return;
-                string SRhexstr = BitConverter.ToString(SRbuf);
-                CardReaderEventReport rpt = new CardReaderEventReport(SRbuf);
-                if (!dictIp_CardReader.ContainsKey(rpt.IP))
-                {
-                    Console.WriteLine(rpt.IP + "  Not in dictionary!");
-                    return;
-                }
-                ICardReader ireader = dictIp_CardReader[rpt.IP];
-                Console.WriteLine(rpt);
-                if (rpt.Status == (int)CardReaderStatusEnum.門開啟)
-                    ireader.IsDoorOpen = true;
-
-                if (rpt.Status == (int)CardReaderStatusEnum.門關閉)
-                    ireader.IsDoorOpen = false;
-
-                ireader.InvokeStatusChange(rpt);
-
+                this.RemoOpenTimeR23 = System.Convert.ToInt32(tbl.VariableValue);
             }
 
+            tbl = db.tblSysParameter.Where(n => n.SysID == 2).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.DelayTimeR23 = System.Convert.ToInt32(tbl.VariableValue);
+            }
+
+            tbl = db.tblSysParameter.Where(n => n.SysID == 3).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.LoopErrorAlarmTimeR23 = System.Convert.ToInt32(tbl.VariableValue);
+            }
+
+            tbl = db.tblSysParameter.Where(n => n.SysID == 4).FirstOrDefault();
+            if (tbl != null)
+            {
+                this.AlarmTimeR23 = System.Convert.ToInt32(tbl.VariableValue);
+            }
+
+            SendAllReaderParameter();
+
         }
+#else
+
         public void LoadSystemParameter()
         {
             SecureDBEntities1 db = new SecureDBEntities1();
@@ -173,6 +279,28 @@ namespace SecureServer.CardReader
 
             SendAllReaderParameter();
         }
+#endif
+
+#if R23 
+
+        public void SendAllReaderParameter()
+        {
+            foreach (ICardReader reader in dictCardReaders.Values)
+            {
+                try
+                {
+                    //reader.SetOpenDoorAutoCloseTime(OpenDoorAutoCloseTime);
+                    //reader.SetOpenDoorTimeoutDetectionTime(DoorOpenAlarmTime);
+                    //reader.SetOpenDoorDetectionAlarmTime(0);
+                    reader.SetR23Parameter(RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23);
+                }
+                catch { ;}
+            }
+
+
+        }
+
+#else
 
         public void SendAllReaderParameter()
         {
@@ -196,6 +324,7 @@ namespace SecureServer.CardReader
                     reader.SetOpenDoorTimeoutDetectionTime(DoorOpenAlarmTime);
                     reader.SetOpenDoorDetectionAlarmTime(0);
         }
+#endif
         public ICardReader this[string ControllID]
         {
 

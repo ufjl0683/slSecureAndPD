@@ -769,6 +769,7 @@ namespace RoomDoorControlServer
 
 
         public bool SetADAMAlarmTime(string ControlID ,int RemoOpenTime,int DelayTime,int LoopErrorAlarmTime,int AlarmTime)
+        //RemoOpenTime:遠端開門攜回延遲時間 DelayTime:刷退進入保全延遲時間  , LoopErrorAlarmTime:刷退回路異常(沒有關門)告警時間, AlarmTime:外力入侵告警時間
         {
             if (ServerData.ADAMController.ContainsKey(ControlID))
             {

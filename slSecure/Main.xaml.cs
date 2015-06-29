@@ -279,7 +279,22 @@ namespace slSecure
 
             AlarmData alarmdata = (sender as StackPanel).DataContext as AlarmData;
          //   client.Dispose();
-            this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID=" + alarmdata.PlaneID, UriKind.Relative));
+            if (alarmdata.AlarmType == AlarmType.PD)
+            {
+                MyHyperlinkButton button = new MyHyperlinkButton();
+
+                //PaneID is PDID for AlarmType=PD
+#if  R13
+                button.NavigateUri = new Uri("http://"+App.Current.Host.Source.Host+":"+App.Current.Host.Source.Port+"/R13/secure/focus?PDName="+alarmdata.PlaneID);
+#else
+                button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + alarmdata.PlaneID);
+#endif
+                button.TargetName = "_blank";
+
+                button.ClickMe();
+            }
+            else
+                this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID=" + alarmdata.PlaneID, UriKind.Relative));
             //this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml", UriKind.Relative));
         }
 

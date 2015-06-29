@@ -1948,7 +1948,97 @@ namespace slSecure.Web
             return this.ObjectContext.vwReaderPassLog;
         }
 
+        public IQueryable<tblItemGroupTypeInfo> GetTblItemGroupTypeInfo()
+        {
+            return this.ObjectContext.tblItemGroupTypeInfo;
+        }
 
+        public void InsertTblItemGroupTypeInfo(tblItemGroupTypeInfo tblItemGroupTypeInfo)
+        {
+            if ((tblItemGroupTypeInfo.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblItemGroupTypeInfo, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblItemGroupTypeInfo.AddObject(tblItemGroupTypeInfo);
+            }
+        }
+
+        public void UpdateTblItemGroupTypeInfo(tblItemGroupTypeInfo currenttblItemGroupTypeInfo)
+        {
+            this.ObjectContext.tblItemGroupTypeInfo.AttachAsModified(currenttblItemGroupTypeInfo, this.ChangeSet.GetOriginal(currenttblItemGroupTypeInfo));
+        }
+
+        public void DeleteTblItemGroupTypeInfo(tblItemGroupTypeInfo tblItemGroupTypeInfo)
+        {
+            if ((tblItemGroupTypeInfo.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblItemGroupTypeInfo, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblItemGroupTypeInfo.Attach(tblItemGroupTypeInfo);
+                this.ObjectContext.tblItemGroupTypeInfo.DeleteObject(tblItemGroupTypeInfo);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'tblItemKindInfo' 查詢。
+        public IQueryable<tblItemKindInfo> GetTblItemKindInfo()
+        {
+            return this.ObjectContext.tblItemKindInfo;
+        }
+
+        public void InsertTblItemKindInfo(tblItemKindInfo tblItemKindInfo)
+        {
+            if ((tblItemKindInfo.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblItemKindInfo, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblItemKindInfo.AddObject(tblItemKindInfo);
+            }
+        }
+
+        public void UpdateTblItemKindInfo(tblItemKindInfo currenttblItemKindInfo)
+        {
+            this.ObjectContext.tblItemKindInfo.AttachAsModified(currenttblItemKindInfo, this.ChangeSet.GetOriginal(currenttblItemKindInfo));
+        }
+
+        public void DeleteTblItemKindInfo(tblItemKindInfo tblItemKindInfo)
+        {
+            if ((tblItemKindInfo.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblItemKindInfo, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblItemKindInfo.Attach(tblItemKindInfo);
+                this.ObjectContext.tblItemKindInfo.DeleteObject(tblItemKindInfo);
+            }
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwAIImmediatelyCheck' 查詢。
+        public IQueryable<vwAIImmediatelyCheck> GetVwAIImmediatelyCheck()
+        {
+            return this.ObjectContext.vwAIImmediatelyCheck;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwNVRConfig' 查詢。
+        public IQueryable<vwNVRConfig> GetVwNVRConfig()
+        {
+            return this.ObjectContext.vwNVRConfig;
+        }
     }
 
 
