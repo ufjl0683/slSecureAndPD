@@ -59,6 +59,10 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="RoomInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\RoomInterface.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -118,6 +122,7 @@
     <Compile Include="RTU\ItemGroupManager.cs" />
     <Compile Include="RTU\ItemManager.cs" />
     <Compile Include="RTU\Plane.cs" />
+    <Compile Include="RTU\R23AdamRTU.cs" />
     <Compile Include="RTU\RTUManager.cs" />
     <Compile Include="SecureService.cs" />
     <Compile Include="ISecureService.cs" />
@@ -160,6 +165,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblNVRConfig.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPasswordEveryDayDifference.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPDAlarmLog.cs">
@@ -230,6 +238,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RoomInterface.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

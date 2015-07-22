@@ -19,6 +19,7 @@
           <EntitySet Name="tblItemGroup" EntityType="SecureDBModel.Store.tblItemGroup" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblMagneticCard" EntityType="SecureDBModel.Store.tblMagneticCard" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblNVRConfig" EntityType="SecureDBModel.Store.tblNVRConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPasswordEveryDayDifference" EntityType="SecureDBModel.Store.tblPasswordEveryDayDifference" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDAlarmLog" EntityType="SecureDBModel.Store.tblPDAlarmLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDConfig" EntityType="SecureDBModel.Store.tblPDConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSysParameter" EntityType="SecureDBModel.Store.tblSysParameter" store:Type="Tables" Schema="dbo" />
@@ -416,6 +417,15 @@
           <Property Name="PlaneID" Type="int" />
           <Property Name="Type" Type="int" />
         </EntityType>
+        <EntityType Name="tblPasswordEveryDayDifference">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="DoorPassword" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tblPDAlarmLog">
           <Key>
             <PropertyRef Name="FlowID" />
@@ -783,6 +793,7 @@
             <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
             <End Role="tblDeviceStateLog" EntitySet="tblDeviceStateLog" />
           </AssociationSet>
+          <EntitySet Name="tblPasswordEveryDayDifference" EntityType="SecureDBModel.tblPasswordEveryDayDifference" />
         </EntityContainer>
         <EntityType Name="tblERDoorPassword">
           <Key>
@@ -1312,6 +1323,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblPasswordEveryDayDifference">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="DoorPassword" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1772,6 +1792,15 @@
                 <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
                 <ScalarProperty Name="TypeID" ColumnName="TypeID" />
                 <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPasswordEveryDayDifference">
+            <EntityTypeMapping TypeName="SecureDBModel.tblPasswordEveryDayDifference">
+              <MappingFragment StoreEntitySet="tblPasswordEveryDayDifference">
+                <ScalarProperty Name="DoorPassword" ColumnName="DoorPassword" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

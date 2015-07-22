@@ -29,7 +29,7 @@ namespace RoomClient
             //sqlConnection.Password ="654321";
 
             //string connectString = "Server=10.21.99.82;Database=SecureDB;User ID=secure;Password=secure;";
-            string connectString = "data source=10.21.99.82;initial catalog=SecureDB;persist security info=True;user id=secure;password=secure;MultipleActiveResultSets=True;App=EntityFramework;";
+            string connectString = "data source=10.21.99.80;initial catalog=SecureDB;persist security info=True;user id=secure;password=secure;MultipleActiveResultSets=True;App=EntityFramework;";
             string dir = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
             dir = dir.Remove(dir.LastIndexOf('\\'));
             if (System.IO.File.Exists(dir +@"\Server.txt"))
@@ -57,7 +57,7 @@ namespace RoomClient
                 adapter.Fill(DT);
                 adapter.Dispose();
                 objUrl = "tcp://" + DT.Rows[0]["IP"] + ":" + DT.Rows[0]["Port"] + "/RoomObj";
-                
+           //     objUrl = "tcp://" + "127.0.0.1" + ":" + DT.Rows[0]["Port"] + "/RoomObj";
                 System.Runtime.Remoting.Channels.Tcp.TcpChannel tcp = new System.Runtime.Remoting.Channels.Tcp.TcpChannel(0);
                 System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel(tcp, false);
                 //var HostData = (from o in dbroom.tblHostConfigs select o).First();
@@ -139,6 +139,7 @@ namespace RoomClient
                         {
                             roomObj = (IRoom)Activator.GetObject(typeof(IRoom)
                                 , objUrl);
+                           // roomObj.ResteADAMControl("1");
                             roomObj.RoomEvent += new RoomEventHandler(roomEvent.Cobj_RoomCEvent);
                             LastTime = DateTime.Now;
                             if (RoomEvent != null)

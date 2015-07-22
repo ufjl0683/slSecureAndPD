@@ -19,7 +19,7 @@ namespace SecureServer.CardReader
     public delegate void DoorEventHandler(ICardReader reader,DoorEventType enumEventType);
     public delegate void AlarmEventHandler(ICardReader reader,AlarmData alarmdata);
 
-    public delegate void  StatusChangeHandler(CardReader reader,CardReaderEventReport report);
+    public delegate void  StatusChangeHandler(ICardReader reader,CardReaderEventReport report);
    
    public  class CardReader : SecureServer.CardReader.ICardReader
     {
@@ -58,6 +58,7 @@ namespace SecureServer.CardReader
        public int NVRID { get; set; }
        public int NVRChNo { get; set; }
          bool _IsDoorOpen;
+     //    private tblControllerConfig config;
        public bool IsDoorOpen
        {
            get
@@ -82,7 +83,7 @@ namespace SecureServer.CardReader
            ClassSockets.ClientSocket ClientSocket;//=new ClientSocket();
        //ClassSockets.ServerSocket ServerScoket;
        System.Threading.Timer tmr;
-       public CardReader(string controllerid, string ip, int ERID, int PlaneID, int TriggerCCTVID, int NVRID, int NVRChNo)
+       public CardReader(string controllerid, string ip, int ERID, int PlaneID, int TriggerCCTVID, int NVRID, int NVRChNo,bool IsConnected )
        {
            this.TriggerCCTVID = TriggerCCTVID;
            this.IP = ip;
@@ -91,7 +92,8 @@ namespace SecureServer.CardReader
            this.PlaneID = PlaneID;
           this.NVRID = NVRID;
           this.NVRChNo = NVRChNo;
-
+         // this.config = config;
+          this._IsConnected = IsConnected;
            ClientSocket = new ClassSockets.ClientSocket();
 
            //ServerScoket = new ClassSockets.ServerSocket();
@@ -421,6 +423,28 @@ namespace SecureServer.CardReader
 
 
        public void SetR23Parameter(int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23)
+       {
+           throw new NotImplementedException();
+       }
+
+
+       bool ICardReader.SetR23Parameter(int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23)
+       {
+           throw new NotImplementedException();
+       }
+
+       public bool SetR23EngineRoomRecovery(string ErNo)
+       {
+           throw new NotImplementedException();
+       }
+
+
+       public List<RoomInterface.PersonData> GetRoomPerson(string ErNo)
+       {
+           throw new NotImplementedException();
+       }
+
+       public byte[] GetR23ReaderStatus()
        {
            throw new NotImplementedException();
        }

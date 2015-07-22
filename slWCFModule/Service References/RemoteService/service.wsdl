@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SecureService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SecureService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsp:Policy wsu:Id="CustomBinding_ISecureService_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -14,6 +14,8 @@
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/SecureServer" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/RoomInterface" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" />
     </xsd:schema>
   </wsdl:types>
@@ -101,6 +103,48 @@
   <wsdl:message name="ISecureService_GetAllPlaneInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllPlaneInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23ReaderStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23ReaderStatus" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23ReaderStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23ReaderStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SetR23Parameter_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetR23Parameter" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SetR23Parameter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetR23ParameterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SetR23EngineRoomRecovery_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetR23EngineRoomRecovery" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SetR23EngineRoomRecovery_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetR23EngineRoomRecoveryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23RoomPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23RoomPerson" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23RoomPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23RoomPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23Progress_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23Progress" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23Progress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23ProgressResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23GroupErrorMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23GroupErrorMessage" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23GroupErrorMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23GroupErrorMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23ControlConnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23ControlConnect" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetR23ControlConnect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetR23ControlConnectResponse" />
+  </wsdl:message>
   <wsdl:message name="ISecureService_SayHello_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SayHello" />
   </wsdl:message>
@@ -169,6 +213,34 @@
     <wsdl:operation name="GetAllPlaneInfo">
       <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetAllPlaneInfo" message="tns:ISecureService_GetAllPlaneInfo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetAllPlaneInfoResponse" message="tns:ISecureService_GetAllPlaneInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetR23ReaderStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetR23ReaderStatus" message="tns:ISecureService_GetR23ReaderStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetR23ReaderStatusResponse" message="tns:ISecureService_GetR23ReaderStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetR23Parameter">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/SetR23Parameter" message="tns:ISecureService_SetR23Parameter_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SetR23ParameterResponse" message="tns:ISecureService_SetR23Parameter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetR23EngineRoomRecovery">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/SetR23EngineRoomRecovery" message="tns:ISecureService_SetR23EngineRoomRecovery_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SetR23EngineRoomRecoveryResponse" message="tns:ISecureService_SetR23EngineRoomRecovery_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetR23RoomPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetR23RoomPerson" message="tns:ISecureService_GetR23RoomPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetR23RoomPersonResponse" message="tns:ISecureService_GetR23RoomPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetR23Progress">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetR23Progress" message="tns:ISecureService_GetR23Progress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetR23ProgressResponse" message="tns:ISecureService_GetR23Progress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetR23GroupErrorMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetR23GroupErrorMessage" message="tns:ISecureService_GetR23GroupErrorMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetR23GroupErrorMessageResponse" message="tns:ISecureService_GetR23GroupErrorMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetR23ControlConnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetR23ControlConnect" message="tns:ISecureService_GetR23ControlConnect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetR23ControlConnectResponse" message="tns:ISecureService_GetR23ControlConnect_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SayHello">
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SayHello" message="tns:ISecureService_SayHello_OutputCallbackMessage" />
@@ -305,6 +377,69 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllPlaneInfo">
       <soap12:operation soapAction="http://tempuri.org/ISecureService/GetAllPlaneInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetR23ReaderStatus">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetR23ReaderStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetR23Parameter">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/SetR23Parameter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetR23EngineRoomRecovery">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/SetR23EngineRoomRecovery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetR23RoomPerson">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetR23RoomPerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetR23Progress">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetR23Progress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetR23GroupErrorMessage">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetR23GroupErrorMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetR23ControlConnect">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetR23ControlConnect" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

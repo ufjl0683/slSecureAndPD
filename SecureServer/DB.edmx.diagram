@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9850894955f6426aa4284a82d27c0baf" Name="圖表1" ZoomLevel="80">
+      <Diagram DiagramId="9850894955f6426aa4284a82d27c0baf" Name="圖表1" ZoomLevel="112">
         <EntityTypeShape EntityType="SecureDBModel.tblERDoorPassword" Width="1.5" PointX="2.375" PointY="0.625" />
         <EntityTypeShape EntityType="SecureDBModel.tblEngineRoomLog" Width="1.5" PointX="3.375" PointY="2.125" />
         <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="6.625" PointY="1" />
@@ -34,6 +34,7 @@
         <EntityTypeShape EntityType="SecureDBModel.vwUserMenuAllow" Width="1.5" PointX="6.5317734659331723" PointY="18.477727257869081" />
         <EntityTypeShape EntityType="SecureDBModel.tblDeviceStateLog" Width="1.5" PointX="10.252320583095923" PointY="26.76728807146069" />
         <AssociationConnector Association="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPasswordEveryDayDifference" Width="1.5" PointX="4.0893600937395167" PointY="31.269865050571909" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

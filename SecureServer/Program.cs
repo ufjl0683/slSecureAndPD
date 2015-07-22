@@ -80,7 +80,7 @@ namespace SecureServer
         static void CardReaderTest()
         {
 
-            CardReader.CardReader cr = new CardReader.CardReader("test","192.168.1.168",1,1,1,1,1);
+            CardReader.CardReader cr = new CardReader.CardReader("test","192.168.1.168",1,1,1,1,1,false);
 
             Console.WriteLine("設定開門延時警報 10  sec");
             cr.SetOpenDoorDetectionAlarmTime(10);

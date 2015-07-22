@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
+    d:DesignHeight="887" d:DesignWidth="873" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
 
     <Grid x:Name="LayoutRoot" Background="White" MouseLeftButtonDown="LayoutRoot_MouseLeftButtonDown" >
         <StackPanel Orientation="Vertical">
@@ -14,7 +14,7 @@
     				<Run Text="{Binding Description}" />
                 </TextBlock>
             </Button>
-            <Image x:Name="cctv" Unloaded="cctv_Unloaded" Height="258"  VerticalAlignment="Top" Stretch="UniformToFill" />
+            <Image x:Name="cctv" Unloaded="cctv_Unloaded"    VerticalAlignment="Stretch" Stretch="Fill" Source="/slSecure;component/icons/PD.png" />
         </StackPanel>
         <!--<WebBrowser x:Name="browser"  Source="{Binding Url}" MouseLeftButtonDown="browser_MouseLeftButtonDown" Margin="0,28,0,0" />-->
     </Grid>

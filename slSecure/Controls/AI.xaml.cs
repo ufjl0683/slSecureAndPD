@@ -178,8 +178,8 @@ namespace slSecure.Controls
             //    return;
 
             Dialog.TRDialog dialog = new Dialog.TRDialog(data.ItemID);
-            dialog.Width = 800;
-            dialog.Height = 600;
+            //dialog.Width = 800;
+            //dialog.Height = 600;
             dialog.Show();
         }
     }

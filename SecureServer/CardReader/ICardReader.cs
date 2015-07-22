@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RoomInterface;
+using System;
+using System.Collections.Generic;
 namespace SecureServer.CardReader
 {
    public interface ICardReader
@@ -10,7 +12,7 @@ namespace SecureServer.CardReader
         void DeleteAllCard();
         void DeleteCard(string cardno);
         int ERID { get; set; }
-        void ForceOpenDoor();
+      
         void InvokeStatusChange(CardReaderEventReport rpt);
         string IP { get; set; }
         bool IsConnected { get; set; }
@@ -26,12 +28,20 @@ namespace SecureServer.CardReader
         void SetOpenDoorDetectionAlarmTime(int sec);
         void SetOpenDoorTimeoutDetectionTime(int sec);
 
- 
-        void SetR23Parameter( int RemoOpenTimeR23, int DelayTimeR23,int LoopErrorAlarmTimeR23,int AlarmTimeR23);
+
+      
        
         void SetSuperOpenDoorPassword(int password);
         SecureServer.BindingData.DoorBindingData ToBindingData();
         int TriggerCCTVID { get; set; }
         void WriteCardReaderID(int id);
+        void ForceOpenDoor();
+        byte[] GetR23ReaderStatus( );
+        bool SetR23Parameter(int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23);
+
+     //    bool SetR23EngineRoomRecovery(string ErNo);
+       //    List<PersonData> GetRoomPerson(string ErNo);
+        
+
     }
 }

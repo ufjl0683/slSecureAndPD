@@ -3174,5 +3174,566 @@ namespace slSecure.Web
             public string UserName { get; set; }
         }
     }
+
+    // MetadataTypeAttribute 會將 vwPasswordEveryDayDifferenceMetadata 識別為
+    // 帶有 vwPasswordEveryDayDifference 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwPasswordEveryDayDifference.vwPasswordEveryDayDifferenceMetadata))]
+    public partial class vwPasswordEveryDayDifference
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPasswordEveryDayDifference 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwPasswordEveryDayDifferenceMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwPasswordEveryDayDifferenceMetadata()
+            {
+            }
+
+            public string ControlID { get; set; }
+
+            public string DoorPassword { get; set; }
+
+            public string ERName { get; set; }
+
+            public string Memo { get; set; }
+
+            public DateTime Timestamp { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwR23DeviceStateLogMetadata 識別為
+    // 帶有 vwR23DeviceStateLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwR23DeviceStateLog.vwR23DeviceStateLogMetadata))]
+    public partial class vwR23DeviceStateLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwR23DeviceStateLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwR23DeviceStateLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwR23DeviceStateLogMetadata()
+            {
+            }
+
+            public string ABA { get; set; }
+
+            public string CallOpenDoor { get; set; }
+
+            public Nullable<int> Comm_state { get; set; }
+
+            public string ControlID { get; set; }
+
+            public Nullable<short> ControlType { get; set; }
+
+            public string Direction { get; set; }
+
+            public string EntranceCode { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string ERNo { get; set; }
+
+            public string Explain { get; set; }
+
+            public long FlowID { get; set; }
+
+            public Nullable<double> GPSX { get; set; }
+
+            public Nullable<double> GPSY { get; set; }
+
+            public string IP { get; set; }
+
+            public Nullable<bool> IsEnable { get; set; }
+
+            public string LineID { get; set; }
+
+            public string Loop { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public Nullable<int> Port { get; set; }
+
+            public string R23_ADAM { get; set; }
+
+            public Nullable<short> R23DoorOpen_DI { get; set; }
+
+            public Nullable<short> R23DoorOpen_DO { get; set; }
+
+            public Nullable<int> ReaderID { get; set; }
+
+            public Nullable<double> Rotation { get; set; }
+
+            public Nullable<int> RTUBaseAddress { get; set; }
+
+            public Nullable<int> RTURegisterLength { get; set; }
+
+            public Nullable<double> ScaleX { get; set; }
+
+            public Nullable<double> ScaleY { get; set; }
+
+            public string SingalName { get; set; }
+
+            public DateTime TimeStamp { get; set; }
+
+            public Nullable<int> TriggerCCTVID { get; set; }
+
+            public short TypeCode { get; set; }
+
+            public short TypeID { get; set; }
+
+            public Nullable<double> X { get; set; }
+
+            public Nullable<double> Y { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwR23EngineRoomLogMetadata 識別為
+    // 帶有 vwR23EngineRoomLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwR23EngineRoomLog.vwR23EngineRoomLogMetadata))]
+    public partial class vwR23EngineRoomLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwR23EngineRoomLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwR23EngineRoomLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwR23EngineRoomLogMetadata()
+            {
+            }
+
+            public string ABA { get; set; }
+
+            public string CallOpenDoor { get; set; }
+
+            public string Company { get; set; }
+
+            public string ControlID { get; set; }
+
+            public string Direction { get; set; }
+
+            public string EmployeeNo { get; set; }
+
+            public string Enable { get; set; }
+
+            public Nullable<DateTime> EndDate { get; set; }
+
+            public Nullable<DateTime> Endtime { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string ERNo { get; set; }
+
+            public long FlowID { get; set; }
+
+            public Nullable<double> GPSX { get; set; }
+
+            public Nullable<double> GPSY { get; set; }
+
+            public string IDNumber { get; set; }
+
+            public string JobTitle { get; set; }
+
+            public string LineID { get; set; }
+
+            public Nullable<int> MagneticID { get; set; }
+
+            public string Memo { get; set; }
+
+            public string Mobile { get; set; }
+
+            public string Name { get; set; }
+
+            public Nullable<int> NormalID { get; set; }
+
+            public string NVRFile { get; set; }
+
+            public short Result { get; set; }
+
+            public string ResultName { get; set; }
+
+            public Nullable<DateTime> ReturnDate { get; set; }
+
+            public Nullable<int> RoleID { get; set; }
+
+            public Nullable<DateTime> StartDate { get; set; }
+
+            public DateTime StartTime { get; set; }
+
+            public string tblMagneticCard_Memo { get; set; }
+
+            public string Tel { get; set; }
+
+            public Nullable<DateTime> Timestamp { get; set; }
+
+            public Nullable<short> Type { get; set; }
+
+            public Nullable<short> TypeCode { get; set; }
+
+            public Nullable<short> TypeID { get; set; }
+
+            public string WEG1 { get; set; }
+
+            public string WEG2 { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwR23HardwareStateMetadata 識別為
+    // 帶有 vwR23HardwareState 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwR23HardwareState.vwR23HardwareStateMetadata))]
+    public partial class vwR23HardwareState
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwR23HardwareState 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwR23HardwareStateMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwR23HardwareStateMetadata()
+            {
+            }
+
+            public string ABA { get; set; }
+
+            public string CallOpenDoor { get; set; }
+
+            public Nullable<int> Comm_state { get; set; }
+
+            public string Company { get; set; }
+
+            public string ControlID { get; set; }
+
+            public Nullable<short> ControlType { get; set; }
+
+            public string Direction { get; set; }
+
+            public string EmployeeNo { get; set; }
+
+            public string Enable { get; set; }
+
+            public Nullable<DateTime> EndDate { get; set; }
+
+            public string EntranceCode { get; set; }
+
+            public string EntranceType { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string ERNo { get; set; }
+
+            public string Explain { get; set; }
+
+            public Nullable<short> Floor { get; set; }
+
+            public long FlowID { get; set; }
+
+            public Nullable<double> GPSX { get; set; }
+
+            public Nullable<double> GPSY { get; set; }
+
+            public string IDNumber { get; set; }
+
+            public string IP { get; set; }
+
+            public Nullable<bool> IsEnable { get; set; }
+
+            public string JobTitle { get; set; }
+
+            public string LineID { get; set; }
+
+            public string Loop { get; set; }
+
+            public Nullable<int> MagneticID { get; set; }
+
+            public string Memo { get; set; }
+
+            public string Mobile { get; set; }
+
+            public string Name { get; set; }
+
+            public Nullable<int> NormalID { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public Nullable<int> Port { get; set; }
+
+            public string R23_ADAM { get; set; }
+
+            public Nullable<short> R23DoorOpen_DI { get; set; }
+
+            public Nullable<short> R23DoorOpen_DO { get; set; }
+
+            public Nullable<int> ReaderID { get; set; }
+
+            public Nullable<short> ReaderNO { get; set; }
+
+            public Nullable<short> ReaderType { get; set; }
+
+            public Nullable<DateTime> ReturnDate { get; set; }
+
+            public Nullable<int> RoleID { get; set; }
+
+            public string RoomIO { get; set; }
+
+            public Nullable<double> Rotation { get; set; }
+
+            public Nullable<int> RTUBaseAddress { get; set; }
+
+            public Nullable<int> RTURegisterLength { get; set; }
+
+            public Nullable<double> ScaleX { get; set; }
+
+            public Nullable<double> ScaleY { get; set; }
+
+            public string SingalName { get; set; }
+
+            public Nullable<DateTime> StartDate { get; set; }
+
+            public string tblCardReaderConfig_ControlID { get; set; }
+
+            public string tblCardReaderConfig_EntranceCode { get; set; }
+
+            public Nullable<int> tblCardReaderConfig_ReaderID { get; set; }
+
+            public string tblEntranceGuardConfig_EntranceCode { get; set; }
+
+            public Nullable<int> tblEntranceGuardConfig_ERID { get; set; }
+
+            public string tblEntranceGuardConfig_Memo { get; set; }
+
+            public string tblEntranceGuardConfig_MemoName { get; set; }
+
+            public string tblMagneticCard_ABA { get; set; }
+
+            public string tblMagneticCard_Memo { get; set; }
+
+            public Nullable<DateTime> tblMagneticCard_Timestamp { get; set; }
+
+            public string Tel { get; set; }
+
+            public DateTime TimeStamp { get; set; }
+
+            public Nullable<int> TriggerCCTVID { get; set; }
+
+            public Nullable<short> Type { get; set; }
+
+            public short TypeCode { get; set; }
+
+            public short TypeID { get; set; }
+
+            public string WEG1 { get; set; }
+
+            public string WEG2 { get; set; }
+
+            public Nullable<double> X { get; set; }
+
+            public Nullable<double> Y { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwR23ReaderLogMetadata 識別為
+    // 帶有 vwR23ReaderLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwR23ReaderLog.vwR23ReaderLogMetadata))]
+    public partial class vwR23ReaderLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwR23ReaderLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwR23ReaderLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwR23ReaderLogMetadata()
+            {
+            }
+
+            public string ABA { get; set; }
+
+            public string CallOpenDoor { get; set; }
+
+            public Nullable<int> Comm_state { get; set; }
+
+            public string Company { get; set; }
+
+            public string ControlID { get; set; }
+
+            public Nullable<short> ControlType { get; set; }
+
+            public string Direction { get; set; }
+
+            public string EmployeeNo { get; set; }
+
+            public string Enable { get; set; }
+
+            public Nullable<DateTime> EndDate { get; set; }
+
+            public string EntranceCode { get; set; }
+
+            public string EntranceType { get; set; }
+
+            public Nullable<int> ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string ERNo { get; set; }
+
+            public string Explain { get; set; }
+
+            public Nullable<short> Floor { get; set; }
+
+            public long FlowID { get; set; }
+
+            public Nullable<double> GPSX { get; set; }
+
+            public Nullable<double> GPSY { get; set; }
+
+            public string IDNumber { get; set; }
+
+            public string IP { get; set; }
+
+            public Nullable<bool> IsEnable { get; set; }
+
+            public string JobTitle { get; set; }
+
+            public string LineID { get; set; }
+
+            public string Loop { get; set; }
+
+            public Nullable<int> MagneticID { get; set; }
+
+            public string Memo { get; set; }
+
+            public string Mobile { get; set; }
+
+            public string Name { get; set; }
+
+            public Nullable<int> NormalID { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public Nullable<int> Port { get; set; }
+
+            public string R23_ADAM { get; set; }
+
+            public Nullable<short> R23DoorOpen_DI { get; set; }
+
+            public Nullable<short> R23DoorOpen_DO { get; set; }
+
+            public Nullable<int> ReaderID { get; set; }
+
+            public Nullable<short> ReaderNO { get; set; }
+
+            public Nullable<short> ReaderType { get; set; }
+
+            public Nullable<DateTime> ReturnDate { get; set; }
+
+            public Nullable<int> RoleID { get; set; }
+
+            public string RoomIO { get; set; }
+
+            public string RoomIOName { get; set; }
+
+            public Nullable<double> Rotation { get; set; }
+
+            public Nullable<int> RTUBaseAddress { get; set; }
+
+            public Nullable<int> RTURegisterLength { get; set; }
+
+            public Nullable<double> ScaleX { get; set; }
+
+            public Nullable<double> ScaleY { get; set; }
+
+            public string SingalName { get; set; }
+
+            public Nullable<DateTime> StartDate { get; set; }
+
+            public string tblCardReaderConfig_ControlID { get; set; }
+
+            public string tblCardReaderConfig_EntranceCode { get; set; }
+
+            public Nullable<int> tblCardReaderConfig_ReaderID { get; set; }
+
+            public string tblEntranceGuardConfig_EntranceCode { get; set; }
+
+            public Nullable<int> tblEntranceGuardConfig_ERID { get; set; }
+
+            public string tblEntranceGuardConfig_Memo { get; set; }
+
+            public string tblMagneticCard_ABA { get; set; }
+
+            public string tblMagneticCard_Memo { get; set; }
+
+            public Nullable<DateTime> tblMagneticCard_Timestamp { get; set; }
+
+            public string Tel { get; set; }
+
+            public DateTime TimeStamp { get; set; }
+
+            public Nullable<int> TriggerCCTVID { get; set; }
+
+            public Nullable<short> Type { get; set; }
+
+            public short TypeCode { get; set; }
+
+            public short TypeID { get; set; }
+
+            public string WEG1 { get; set; }
+
+            public string WEG2 { get; set; }
+
+            public Nullable<double> X { get; set; }
+
+            public Nullable<double> Y { get; set; }
+        }
+    }
     }
 

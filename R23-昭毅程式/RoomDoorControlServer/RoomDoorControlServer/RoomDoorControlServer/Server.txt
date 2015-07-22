@@ -1,1 +1,1 @@
-﻿data source=10.21.99.82;initial catalog=SecureDB;persist security info=True;user id=secure;password=secure;MultipleActiveResultSets=True;App=EntityFramewor
+﻿data source=10.21.99.80;initial catalog=SecureDB;persist security info=True;user id=secure;password=secure;MultipleActiveResultSets=True;App=EntityFramewor

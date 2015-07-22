@@ -21,6 +21,7 @@ namespace slSecure.Web
 
         public DateTime End_Date { get; set; }
         public string format_End_Date { get; set; }
+
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -43,11 +44,20 @@ namespace slSecure.Web
 
         private void Export_CVS()
         {
-            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString);
-//                    new SqlConnection(@"server=192.192.85.64,1357;
-//                                    database=SecureDB;
-//                                    uid=secure;
-//                                    pwd=secure");
+            #region Cancel Code
+            /*
+            SqlConnection conn =
+                    new SqlConnection(@"server=192.192.85.64,1357;
+                                      database=SecureDB;
+                                      uid=secure;
+                                      pwd=secure");
+             * */
+            #endregion
+
+            // 取得資料庫連結字串 ConnectionString
+            SqlConnection conn = 
+                new SqlConnection
+                    (System.Configuration.ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString);
 
             SqlCommand s_com = new SqlCommand();
 
@@ -78,7 +88,6 @@ namespace slSecure.Web
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-               // alert(ex.StackTrace);
                 return;
             }
 
@@ -108,8 +117,11 @@ namespace slSecure.Web
 
         private void DateTime_Format()
         {
-            this.format_Start_Date = string.Format("{0:yyyy-MM-dd HH:mm:ss:00}", this.Start_Date);
-            this.format_End_Date = string.Format("{0:yyyy-MM-dd HH:mm:ss:00}", this.End_Date.AddDays(1));
+            //this.format_Start_Date = string.Format("{0:yyyy-MM-dd HH:mm:ss:00}", this.Start_Date);
+            //this.format_End_Date = string.Format("{0:yyyy-MM-dd HH:mm:ss:00}", this.End_Date.AddDays(1));
+
+            this.format_Start_Date = string.Format("{0:yyyy-MM-dd HH:00:00}", this.Start_Date);
+            this.format_End_Date = string.Format("{0:yyyy-MM-dd HH:00:00}", this.End_Date.AddDays(1));
         }
     }
 }

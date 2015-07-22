@@ -29,7 +29,7 @@ namespace RoomClient
             //sqlConnection.Password ="654321";
 
             //string connectString = "Server=10.21.99.82;Database=SecureDB;User ID=secure;Password=secure;";
-            string connectString = "data source=10.21.99.82;initial catalog=SecureDB;persist security info=True;user id=secure;password=secure;MultipleActiveResultSets=True;App=EntityFramework;";
+            string connectString = "data source=10.21.99.80;initial catalog=SecureDB;persist security info=True;user id=secure;password=secure;MultipleActiveResultSets=True;App=EntityFramework;";
             string dir = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
             dir = dir.Remove(dir.LastIndexOf('\\'));
             if (System.IO.File.Exists(dir +@"\Server.txt"))

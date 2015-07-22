@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using Visifire.Charts;
 using System.Windows.Browser;
+using System.Windows.Media.Imaging;
+using System.IO;
+using System.Windows.Printing;
 
 namespace slSecure.Dialog
 {
@@ -44,6 +47,12 @@ namespace slSecure.Dialog
 
         #endregion
 
+        #region Definition of Print Obj
+
+        PrintDocument printDocument = new PrintDocument();
+
+        #endregion
+
         // Constructor
         public TRDialog_Pro()
         {
@@ -56,6 +65,12 @@ namespace slSecure.Dialog
             this.End_Date = DateTime.Now;
             this.calendar2.SelectedDate = this.End_Date;
 
+            // Print
+            // wire up all the events needed for printing
+            printDocument.BeginPrint += new EventHandler<BeginPrintEventArgs>(printDocument_BeginPrint);
+            printDocument.PrintPage += new EventHandler<PrintPageEventArgs>(printDocument_PrintPage);
+            printDocument.EndPrint += new EventHandler<EndPrintEventArgs>(printDocument_EndPrint);
+            
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -351,6 +366,10 @@ namespace slSecure.Dialog
 
                     lb.Items.RemoveAt(_index);
                 }
+                else
+                {
+                    this.Waiting_lobby.SelectedIndex = -1;
+                }
                 // if result
             }
         }
@@ -399,7 +418,11 @@ namespace slSecure.Dialog
         {
             // Null Exception
             if (this.RowData_Container.Count == 0)
+            {
+                MessageBox.Show("查詢不到點資料! 製圖中斷...");
+                MessageBox.Show("會不會是設備在時間範圍內並沒有上線?");
                 return;
+            }
 
             // Default Initialize Value
             // Definition
@@ -414,7 +437,7 @@ namespace slSecure.Dialog
             // Title
             Title title = new Visifire.Charts.Title() 
             { 
-                FontSize = 38,
+                FontSize = 22,
                 VerticalAlignment = System.Windows.VerticalAlignment.Bottom 
             };
             
@@ -428,7 +451,7 @@ namespace slSecure.Dialog
                 
                 string item_name = _getSplit[0].Split('(').ToList()[0].Trim();
                 string item_unit = _getSplit[0].Split('(').ToList()[1].Trim().Split(')').ToList()[0];
-                string plan_name = _getSplit[1].Trim();
+                string plan_name = _getSplit[1].Trim(); 
                 string group_name = _getSplit[2].Trim();
 
                 // Sum
@@ -446,6 +469,12 @@ namespace slSecure.Dialog
                 if (Range[1] < max)
                     Range[1] = max;
 
+                if (Range[0] == Range[1])
+                {
+                    Range[0]--;
+                    Range[1]++;
+                }
+
                 // DataSeries
                 DataSeries dataSeries = new DataSeries();
 
@@ -454,34 +483,42 @@ namespace slSecure.Dialog
                 else
                     dataSeries.RenderAs = RenderAs.Line;
 
+               
+                
                 chart.Legends.Add(new Legend()
                 {
                     Title = "圖例",
+                    IsEnabled = false,
                     TitleBackground = null,
-                    TitleFontSize = 28,
-                    TitleFontColor = new SolidColorBrush(Colors.Yellow),
+                    TitleFontSize = 22,
+                    TitleFontColor = new SolidColorBrush(Colors.Black),
                     //Background = new SolidColorBrush(Colors.Black),
-                    FontSize = 14,
-                    MarkerSize = 14,
-                    VerticalAlignment = VerticalAlignment.Center,
+                    FontSize = 13,
+                    MarkerSize = 20,
+                    VerticalAlignment = VerticalAlignment.Top,
                     VerticalContentAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Right,
-                    HorizontalContentAlignment = HorizontalAlignment.Right
+                    HorizontalContentAlignment = HorizontalAlignment.Right,
+                    Background = new SolidColorBrush(Colors.White)
                 });
-
+                 
+                
+                
                 //dataSeries.Color = new SolidColorBrush(Colors.White);
                 //dataSeries.MarkerType = Visifire.Commons.MarkerTypes.Line;
-                dataSeries.LegendMarkerType = Visifire.Commons.MarkerTypes.Square;
+                //dataSeries.LegendMarkerType = Visifire.Commons.MarkerTypes.Square;
                 dataSeries.LineThickness = 2;
                 dataSeries.LightingEnabled = true;
                 dataSeries.LineStyle = LineStyles.Solid;
-                dataSeries.SelectionEnabled = false;
+                dataSeries.SelectionEnabled = true;
                 dataSeries.MovingMarkerEnabled = true;
-                dataSeries.ShowInLegend = true;
+                dataSeries.ShowInLegend = true; // Show Legend 
                 dataSeries.IncludeDataPointsInLegend = false;
-                dataSeries.LegendText = item_name + '\n' + 
-                                        plan_name + '\n' + 
-                                        group_name;
+                //dataSeries.LegendText = item_name + '\n' + 
+                //                        plan_name + '\n' + 
+                //                        group_name;
+                dataSeries.LegendText = item_name + '\n' +
+                                        plan_name;
 
                 // Due to data equal zero exception
                 if (Data_Sum != 0)
@@ -523,7 +560,7 @@ namespace slSecure.Dialog
                         dataPoint.YValue = data.Value;
 
                         // Label
-                        dataPoint.AxisXLabel = string.Format("{0:yyyy年MM月dd日 HH:mm}", data.Timestamp);
+                        dataPoint.AxisXLabel = string.Format("{0:MM/dd HH:mm}", data.Timestamp);
 
                         // Adding to dataseries
                         dataSeries.DataPoints.Add(dataPoint);
@@ -553,12 +590,16 @@ namespace slSecure.Dialog
             #region Final Chart Set
 
             // Chart Title
-            title.Text = "感知器關聯分析圖";
+            //title.Text = "感知器關聯分析圖";
+            title.Text = String.Format("{0:yyyy/MM/dd}", this.Start_Date) + "～" + String.Format("{0:yyyy/MM/dd}", this.End_Date)
+                              + " 感知器關聯分析圖";
 
             //!++ X軸
             Axis axisX = new Axis();
             axisX.AxisLabels = new AxisLabels();
-            axisX.AxisLabels.Enabled = false;
+            //axisX.AxisLabels.Enabled = false;
+            axisX.AxisLabels.Enabled = true;
+            axisX.AxisLabels.Angle = -90;
             axisX.Title = "時間";
 
             //!++ Y軸
@@ -569,13 +610,23 @@ namespace slSecure.Dialog
             yaxis.AxisMaximum = Range[1];
             yaxis.AxisMinimum = Range[0];
 
+            double _min = Convert.ToDouble(yaxis.AxisMinimum);
+            double _max = Convert.ToDouble(yaxis.AxisMaximum);
+            if (_max <= _min)
+            {
+                //MessageBox.Show("產生 最大值 < 最小值 的問題");
+                yaxis.AxisMaximum = _max = 1;
+                yaxis.AxisMinimum = _min = 0;
+            }
+
             // 加入
             chart.AxesX.Add(axisX);
             chart.AxesY.Add(yaxis);
             chart.Titles.Add(title);
 
             //?+ Chart 設定
-            chart.ScrollingEnabled = false;
+            chart.ToolBarEnabled = false;
+            chart.ScrollingEnabled = true;
             chart.LightingEnabled = true;
             chart.IndicatorEnabled = true;
             chart.AnimationEnabled = true;
@@ -591,6 +642,8 @@ namespace slSecure.Dialog
 
             this.Chart_Grid.Children.Clear();
             this.Chart_Grid.Children.Add(chart);
+
+            Button exportBtn = new Button() { Content = "圖片" };
         }
 
         private void Download_btn_Click(object sender, RoutedEventArgs e)
@@ -607,6 +660,21 @@ namespace slSecure.Dialog
                     Download_Http(itemID);
                 }
             }
+
+            /*
+            if (this.Waiting_lobby.Items.Count != 0)
+            {
+                int[] itemID = new int[this.Waiting_lobby.Items.Count];
+                foreach (ListBoxItem item in this.Waiting_lobby.Items)
+                {
+                    if (item != null)
+                    {
+
+                    }
+
+                }
+            }
+             * */
         }
 
         private void DateTime_Format()
@@ -621,13 +689,13 @@ namespace slSecure.Dialog
             //string URL = @"http://" + SaveWebConfig() + @"/secure/";
 
             // For Online Testing URL
-            string URL = @"http://" + SaveWebConfig() + @"/secure/";
+            //string URL = @"http://" + SaveWebConfig() + @"/secure/";
 
             if (Application.Current.IsRunningOutOfBrowser)
             {
                 MyHyperlinkButton button = new MyHyperlinkButton();
 
-                button.NavigateUri = new Uri(URL +
+                button.NavigateUri = new Uri(SaveWebConfig() +
                                              @"TRDialog_DownloadForm.aspx?" +
                                              @"id=" + itemID + "&" +
                                              @"start-date=" + this.format_Start_Date + "&" +
@@ -638,22 +706,37 @@ namespace slSecure.Dialog
             }
             else
             {
+                /*
                 HtmlWindow html = HtmlPage.Window;
                 html.Navigate(new Uri(@"TRDialog_DownloadForm.aspx?" +
                                       @"id=" + itemID + "&" +
                                       @"start-date=" + this.format_Start_Date + "&" +
                                       @"end-date=" + this.format_End_Date,
                                       UriKind.Relative));
+                 * */
+
+                MyHyperlinkButton button = new MyHyperlinkButton();
+
+                button.NavigateUri = new Uri(SaveWebConfig() +
+                                             @"TRDialog_DownloadForm.aspx?" +
+                                             @"id=" + itemID + "&" +
+                                             @"start-date=" + this.format_Start_Date + "&" +
+                                             @"end-date=" + this.format_End_Date, UriKind.Absolute);
+
+                button.TargetName = "_blank";
+                button.ClickMe();
             }
         }
 
         // Get Current HTTP URL
         private string SaveWebConfig()
         {
-            string[] tempSplit =
-                Application.Current.Host.Source.AbsoluteUri.Split('/');
+            return new Uri(App.Current.Host.Source + "/../..", UriKind.Absolute).ToString();
 
-            return tempSplit[2];
+            //string[] tempSplit =
+            //    Application.Current.Host.Source.AbsoluteUri.Split('/');
+
+            //return tempSplit[2];
         }
 
         // For OutOfBrowser purpose 
@@ -666,5 +749,288 @@ namespace slSecure.Dialog
             }
         }
 
+        /// <summary>
+        /// Saving Chart as Image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExportToImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            Chart chart = this.Chart_Grid.Children.OfType<Chart>().FirstOrDefault();
+
+            if (chart == null)
+                return;
+
+            // Select a location for saving the file
+            SaveFileDialog saveDialog = new SaveFileDialog();
+
+            // Set the current file name filter string that appear in the "Save as file  
+            // type".
+            saveDialog.Filter = "BMP (*.bmp)|*.bmp";
+
+            // Set the default file name extension.
+            saveDialog.DefaultExt = ".bmp";
+
+            if (saveDialog.ShowDialog() == true)
+            {
+                Chart _chart = this.Chart_Grid.Children.OfType<Chart>().FirstOrDefault();
+
+                if (_chart != null)
+                {
+                    WriteableBitmap wb = new WriteableBitmap(_chart, null);
+                    using (Stream stream = saveDialog.OpenFile())
+                    {
+                        byte[] buffer = GetBuffer(wb);
+                        stream.Write(buffer, 0, buffer.Length);
+                    }
+                }
+            }
+        }
+
+        private static byte[] GetBuffer(WriteableBitmap bitmap)
+        {
+            int width = bitmap.PixelWidth;
+            int height = bitmap.PixelHeight;
+
+            MemoryStream ms = new MemoryStream();
+
+            #region BMP File Header(14 bytes)
+
+            //the magic number(2 bytes):BM
+
+            ms.WriteByte(0x42);
+            ms.WriteByte(0x4D);
+
+            //the size of the BMP file in bytes(4 bytes)
+
+            long len = bitmap.Pixels.Length * 4 + 0x36;
+
+            ms.WriteByte((byte)len);
+            ms.WriteByte((byte)(len >> 8));
+            ms.WriteByte((byte)(len >> 16));
+            ms.WriteByte((byte)(len >> 24));
+
+            //reserved(2 bytes)
+
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            //reserved(2 bytes)
+
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            //the offset(4 bytes)
+
+            ms.WriteByte(0x36);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            #endregion
+
+            #region Bitmap Information(40 bytes:Windows V3)
+
+            //the size of this header(4 bytes)
+
+            ms.WriteByte(0x28);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            //the bitmap width in pixels(4 bytes)
+
+            ms.WriteByte((byte)width);
+            ms.WriteByte((byte)(width >> 8));
+            ms.WriteByte((byte)(width >> 16));
+            ms.WriteByte((byte)(width >> 24));
+
+            //the bitmap height in pixels(4 bytes)
+
+            ms.WriteByte((byte)height);
+            ms.WriteByte((byte)(height >> 8));
+            ms.WriteByte((byte)(height >> 16));
+            ms.WriteByte((byte)(height >> 24));
+
+            //the number of color planes(2 bytes)
+
+            ms.WriteByte(0x01);
+            ms.WriteByte(0x00);
+
+            //the number of bits per pixel(2 bytes)
+
+            ms.WriteByte(0x20);
+            ms.WriteByte(0x00);
+
+            //the compression method(4 bytes)
+
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            //the image size(4 bytes)
+
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            //the horizontal resolution of the image(4 bytes)
+
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            //the vertical resolution of the image(4 bytes)
+
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            //the number of colors in the color palette(4 bytes)
+
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            //the number of important colors(4 bytes)
+
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+            ms.WriteByte(0x00);
+
+            #endregion
+
+            #region Bitmap data
+
+            for (int y = height - 1; y >= 0; y--)
+            {
+
+                for (int x = 0; x < width; x++)
+                {
+
+                    int pixel = bitmap.Pixels[width * y + x];
+
+                    ms.WriteByte((byte)(pixel & 0xff)); //B
+                    ms.WriteByte((byte)((pixel >> 8) & 0xff)); //G
+                    ms.WriteByte((byte)((pixel >> 0x10) & 0xff)); //R
+                    ms.WriteByte(0x00); //reserved
+                }
+
+            }
+
+            #endregion
+
+            return ms.GetBuffer();
+        }
+
+        private void PrintImage_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Chart _chart = this.Chart_Grid.Children.OfType<Chart>().FirstOrDefault();
+            //double _GridOriginalWidth = this.Chart_Grid.Width;
+            
+            if (_chart == null)
+                return;
+            else
+            {
+                #region Cancel Method 1
+
+                //pd = new System.Windows.Printing.PrintDocument();
+                //pd.PrintPage += (s, args) =>
+                //{
+                //    args.PageVisual = _chart;
+                //};
+
+                //pd.Print("TRDialog Chart");
+
+                #endregion
+
+                #region Current Method
+
+                this.printDocument.Print("TRDialog Chart");
+
+                _chart.IsEnabled = false;
+
+                #endregion
+
+                #region Cancel Method 2
+
+                // Clear all the mouse move-in event
+                /*
+                _chart.Theme = "Theme2";
+                _chart.IsEnabled = false;
+                this.Chart_Grid.Width = 770;
+                
+                _chart.Print();
+
+                _chart.Theme = "Theme3";
+                this.Chart_Grid.Width = _GridOriginalWidth;
+                _chart.IsEnabled = true;
+                */
+
+                #endregion
+            }
+        }
+
+        #region Print Function
+
+        //double _chartOriginalWidth;
+        //double _chartOriginalHeight;
+        double _gridOriginalWidth;
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Chart _chart = this.Chart_Grid.Children.OfType<Chart>().FirstOrDefault();
+
+            if (_chart != null)
+            {
+                
+                // A4 Size
+                //_chart.Width = 770;
+                //_chart.Height = e.PrintableArea.Height;
+
+                e.PageVisual = this.Chart_Grid;
+                e.HasMorePages = false;
+            }
+            else
+                MessageBox.Show("請先查詢製圖再列印!");
+        }
+
+        private void printDocument_BeginPrint(object sender, BeginPrintEventArgs e)
+        {
+            // Change the current grid size to 770 fit the A4 papper size.
+            _gridOriginalWidth = this.Chart_Grid.Width;
+            this.Chart_Grid.Width = 770;
+
+        }
+
+        private void printDocument_EndPrint(object sender, EndPrintEventArgs e)
+        {
+            // if an error occurred, alert the user to the error
+            if (e.Error != null)
+                MessageBox.Show(e.Error.Message);
+            else
+            {
+                Chart _chart = this.Chart_Grid.Children.OfType<Chart>().FirstOrDefault();
+                if (_chart != null)
+                {
+                    //_chart.Width = _chartOriginalWidth;
+                    //_chart.Height = _chartOriginalHeight;
+                    //_chart.Margin = new Thickness(0);
+
+                    // Change back the grid's original state
+                    this.Chart_Grid.Width = _gridOriginalWidth;
+                    _chart.IsEnabled = true;
+                }
+
+            }
+        }
+        
+
+        #endregion
     }
 }

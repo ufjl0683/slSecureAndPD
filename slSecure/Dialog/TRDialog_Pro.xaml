@@ -7,12 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-    d:DesignWidth="640" 
-    d:DesignHeight="480"
+    d:DesignWidth="1000" 
+    d:DesignHeight="520"
     Title="TRDialog_Pro Page" 
     Loaded="Page_Loaded">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot"
+          Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="75"/>
@@ -71,12 +72,6 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="Current_Mode"
-                       Text="地區"
-                       VerticalAlignment="Center"
-                       FontSize="20" 
-                       Margin="0,15" />
-
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
@@ -96,7 +91,7 @@
                           Grid.Column="1"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
-                          Margin="1"
+                          Margin="3"
                           HorizontalContentAlignment="Center"
                           VerticalContentAlignment="Center" 
                           SelectionChanged="ERPlan_cb_SelectionChanged" >
@@ -113,18 +108,13 @@
                           Grid.Row="1"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
-                          Margin="1"
+                          Margin="3"
                           HorizontalContentAlignment="Center"
                           VerticalContentAlignment="Center" 
                           SelectionChanged="Group_cb_SelectionChanged" >
                 </ComboBox>
             </Grid>
 
-            <TextBlock Text="機器"
-                       VerticalAlignment="Center"
-                       FontSize="20" 
-                       Grid.Column="2"
-                       Margin="0,15" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           Grid.Column="3"
                           VerticalAlignment="Stretch"
@@ -148,15 +138,15 @@
               Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="220"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid x:Name="Chart_Grid"
                   Grid.Row="0"
                   Grid.Column="0"
                   VerticalAlignment="Stretch"
-                  HorizontalAlignment="Stretch" />
-
+                  HorizontalAlignment="Stretch" >
+            </Grid>
             <sdk:GridSplitter Grid.Column="0"
                               Width="8"
                               HorizontalAlignment="Right" 
@@ -166,25 +156,29 @@
                               Margin="0,25,0,0" 
                               Canvas.ZIndex="1" />
 
-            <Grid x:Name="Detial_Grid" 
-                  Grid.Column="1"
-                  Grid.Row="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                          HorizontalScrollBarVisibility="Auto"
+                          Grid.Column="1"
+                          Grid.Row="0"
+                          Margin="3">
+                <Grid x:Name="Detial_Grid" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="250"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
 
-                <ListBox x:Name="Waiting_lobby"
+                    <ListBox x:Name="Waiting_lobby"
                          VerticalAlignment="Stretch"
                          HorizontalAlignment="Stretch"
                          VerticalContentAlignment="Center"
                          HorizontalContentAlignment="Center"
-                         Margin="2,25,2,2" 
+                         Margin="2,2,2,2" 
                          SelectionChanged="Waiting_lobby_SelectionChanged" />
 
-                <Button x:Name="Draw_btn"
+                    <Button x:Name="Draw_btn"
                         Content="製作關聯圖"
                         FontSize="17"
                         Grid.Row="1"
@@ -194,7 +188,7 @@
                         HorizontalContentAlignment="Center"
                         Margin="2" Click="Draw_btn_Click" />
 
-                <Button x:Name="Download_btn"
+                    <Button x:Name="Download_btn"
                         Content="下載數據"
                         FontSize="17"
                         Grid.Row="2"
@@ -205,25 +199,58 @@
                         Margin="2" 
                         Click="Download_btn_Click" />
 
-                <StackPanel Orientation="Vertical"
-                            VerticalAlignment="Center"
-                            Grid.Row="3"
-                            Margin="3">
 
-                    <TextBlock x:Name="sum_tb"
-                               Text="資料量: "
-                               FontSize="17" />
+                    <Grid Grid.Row="3"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Margin="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Button Content="圖片輸出" 
+                                FontSize="16"
+                                Grid.Column="0"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Margin="2" 
+		                        Click="ExportToImageButton_Click" />
 
-                    <TextBlock x:Name="min_tb"
-                               Text="最小值: "
-                               FontSize="17" />
+                        <Button x:Name="PrintImage_btn"
+                                Content="圖表列印"
+                                FontSize="16"
+                                Margin="2"
+                                Grid.Column="1"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Click="PrintImage_btn_Click" />
+                    </Grid>
 
-                    <TextBlock x:Name="max_tb"
-                               Text="最大值: "
-                               FontSize="17" />
-                </StackPanel>
+                    <StackPanel x:Name="information_sp"
+                                Orientation="Vertical"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Left"
+                                Grid.Row="4"
+                                Margin="10,20,0,0">
 
-            </Grid>
+                        <TextBlock x:Name="sum_tb"
+                           Text="資料量: "
+                           FontSize="18" 
+                           Margin="0,0,30,0"/>
+
+                        <TextBlock x:Name="min_tb"
+                           Text="最小值: "
+                           FontSize="18"
+                           Margin="0,0,30,0"/>
+
+                        <TextBlock x:Name="max_tb"
+                           Text="最大值: "
+                           FontSize="18" />
+                    </StackPanel>
+
+                </Grid>
+            </ScrollViewer>
         </Grid>
 
     </Grid>

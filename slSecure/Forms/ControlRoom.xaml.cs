@@ -173,14 +173,16 @@ namespace slSecure.Forms
 
             this.image.Source = new BitmapImage(new Uri("/Diagrams/" + PlaneID + ".png", UriKind.Relative));
 #if !R23
-            await GetALLDoorBindingData(PlaneID);
+          
 #endif
+            await GetALLDoorBindingData(PlaneID);
             await GetALLCCTVBindingData(PlaneID);
             await GetAllItemBindingData(PlaneID);
             await GetAllItemGroupBindingData(PlaneID);
 #if !R23
-            PlaceDoor();
+           
 #endif
+            PlaceDoor();
             PlaceCCTV();
             PlaceItem();
             PlaceItemGroup();
@@ -274,12 +276,30 @@ namespace slSecure.Forms
 
                 this.Canvas.Children.Add(item);
 
-                CCTVLock_MouseLeftButtonDown(item, null);
+             //   CCTVLock_MouseLeftButtonDown(item, null);
                
-                //item.MouseMove += selectedDevice_MouseMove;
+                
 
 
             }
+
+            CCTVBindingData cctvdata = CCTVBindingDatas.FirstOrDefault();
+            if (cctvdata == null)
+                return;
+
+            CCTVControl cctv = new CCTVControl(cctvdata.MjpegCgiString, cctvdata.UserName, cctvdata.Password);
+            cctv.Name = "cctvctl"+cctvdata.CCTVName;
+         //   cctv.Width = 400;
+            cctv.Height = 200;
+          //  Interaction.GetBehaviors(cctv).Add(new Microsoft.Expression.Interactivity.Layout.MouseDragElementBehavior());
+            cctv.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            cctv.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+          //  this.Canvas.Children.Add(cctv);
+            cctv.Margin = new Thickness(5,35,0,0);
+            cctv.IsEnableCloseButton = false;
+            Grid.SetRow(cctv, 0);
+            Grid.SetColumn(cctv, 1);
+            LayoutRoot.Children.Add(cctv);
         }
 
         void CCTVLock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -289,7 +309,7 @@ namespace slSecure.Forms
              Control ctl = sender as Control;
             CCTVBindingData data=ctl.DataContext as CCTVBindingData;
             CCTVControl cctv = new CCTVControl(data.MjpegCgiString, data.UserName, data.Password);
-            cctv.Name = "cctvctl";
+            cctv.Name = data.CCTVName;
             cctv.Width=400;
             cctv.Height=300;
            Interaction.GetBehaviors(cctv).Add(new Microsoft.Expression.Interactivity.Layout.MouseDragElementBehavior());
@@ -302,7 +322,7 @@ namespace slSecure.Forms
     
         async void PlaceDoor()
         {
-            var q = from n in db.GetTblControllerConfigQuery() where (n.ControlType == 1 || n.ControlType == 3) && n.PlaneID == this.PlaneID select n;
+            var q = from n in db.GetTblControllerConfigQuery() where (n.ControlType == 1 || n.ControlType == 2) && n.PlaneID == this.PlaneID select n;
             var res = await db.LoadAsync<tblControllerConfig>(q);
 
             foreach (tblControllerConfig tbl in res)
@@ -475,8 +495,8 @@ namespace slSecure.Forms
                 return;
 
            Dialog.TRDialog dialog=   new Dialog.TRDialog(data.ItemID);
-           dialog.Width = 800;
-           dialog.Height = 600;
+           //dialog.Width = 800;
+           //dialog.Height = 600;
            dialog.Show();
         }
 

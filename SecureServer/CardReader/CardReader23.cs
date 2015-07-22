@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomInterface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,13 +59,14 @@ namespace SecureServer.CardReader
                 Console.WriteLine("R23DoorOpen_DO is null!");
                 throw new Exception("R23DoorOpen_DO is null!");
             }
-            RoomClient.RoomClient.OpenDoor(this.ControllerID, (short)config.R23DoorOpen_DO, "opendoor");
+            RoomClient.RoomClient.OpenDoor(this.config.R23_ADAM/*this.ControllerID*/, (short)config.R23DoorOpen_DO, "opendoor");
             //throw new NotImplementedException();
         }
 
         public void InvokeStatusChange(CardReaderEventReport rpt)
         {
-            throw new NotImplementedException();
+           if (this.OnStatusChanged != null)
+               this.OnStatusChanged(this, rpt);
         }
 
         public string IP
@@ -159,6 +161,8 @@ namespace SecureServer.CardReader
           this.NVRID = NVRID;
           this.NVRChNo = NVRChNo;
           this.config = config;
+          this._IsConnected = config.Comm_state == 1 ? true : false;
+             
         //   ClientSocket = new ClassSockets.ClientSocket();
 
            //ServerScoket = new ClassSockets.ServerSocket();
@@ -167,60 +171,79 @@ namespace SecureServer.CardReader
            //if (ServerScoket.Active())
            //         Console.WriteLine("Card Reader Server Socket is Listening!");
 
-           tmr= new System.Threading.Timer(OneSecTask);
-           tmr.Change(0, 1000*60);
+           //tmr= new System.Threading.Timer(OneSecTask);
+           //tmr.Change(0, 1000*5);
+          Task.Run(new Action(OneSecTask));
        }
 
-
-         void OneSecTask(object a)
+         bool IsInTmr = false;
+         void OneSecTask( )
          {
-             try
-             {
+             
+
+                 if (IsInTmr)
+                     return;
+                 IsInTmr = true;
 #if DEBUG
           //              return;
 #endif
-            //     int status = ClientSocket.ReadAllState(1, IP);
-              if(  ! RoomClient.RoomClient.GetControlConnectionStatus(this.ControllerID))
-                
+                 //     int status = ClientSocket.ReadAllState(1, IP);
+                 while (true)
                  {
+                     try
+                     {
+                         if (!RoomClient.RoomClient.GetControlConnectionStatus(this.ControllerID))
+                         {
 
-                     this.IsConnected = false;
-                     Console.WriteLine(IP + "測試斷線!");
+                             this.IsConnected = false;
+                             Console.WriteLine(IP + "測試斷線!");
+                         }
+                         else
+                         {
+                             this.IsConnected = true;
+                             //  Console.WriteLine(IP + "測試連線!");
+                         }
+
+                         if (this.IsConnected)
+                         {
+                             this.IsDoorOpen = (RoomClient.RoomClient.GetStatus(config.R23_ADAM)[config.R23DoorOpen_DI ?? 0] == 0) ? true : false;
+                         }
+
+                         System.Threading.Thread.Sleep(3000);
+
+                         // System.Collections.BitArray ba=new System.Collections.BitArray(new int[]{status});
+                         // if (ba.Get(0))
+                         //     Console.WriteLine("開門");
+                         // else
+                         //     Console.WriteLine("關門");
+
+                         // if (ba.Get(1))
+                         //     Console.WriteLine("外部按鍵按下");
+                         // else
+                         //     Console.WriteLine("外部按鍵放開");
+
+                         //if (ba.Get(2))
+                         //     Console.WriteLine("開門超時");
+                         // else
+                         //     Console.WriteLine("無開門超時");
+
+                         //if (ba.Get(3))
+                         //    Console.WriteLine("外力破壞");
+                         //else
+                         //    Console.WriteLine("無外力破壞");
+
+
+                     }
+                     catch (Exception ex)
+                     {
+                         Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                     }
+                     finally
+                     {
+                         IsInTmr = false;
+                     }
                  }
-                 else
-                 {
-                     this.IsConnected = true;
-                     //  Console.WriteLine(IP + "測試連線!");
-                 }
 
-
-
-                 // System.Collections.BitArray ba=new System.Collections.BitArray(new int[]{status});
-                 // if (ba.Get(0))
-                 //     Console.WriteLine("開門");
-                 // else
-                 //     Console.WriteLine("關門");
-
-                 // if (ba.Get(1))
-                 //     Console.WriteLine("外部按鍵按下");
-                 // else
-                 //     Console.WriteLine("外部按鍵放開");
-
-                 //if (ba.Get(2))
-                 //     Console.WriteLine("開門超時");
-                 // else
-                 //     Console.WriteLine("無開門超時");
-
-                 //if (ba.Get(3))
-                 //    Console.WriteLine("外力破壞");
-                 //else
-                 //    Console.WriteLine("無外力破壞");
-
-             }
-             catch (Exception ex)
-             {
-                 Console.WriteLine(ex.Message + "," + ex.StackTrace);
-             }
 
          }
 
@@ -233,6 +256,8 @@ namespace SecureServer.CardReader
 
         public void SetOpenDoorAutoCloseTime(int sec)
         {
+
+            
             throw new NotImplementedException();
         }
 
@@ -253,7 +278,24 @@ namespace SecureServer.CardReader
 
         public BindingData.DoorBindingData ToBindingData()
         {
-            throw new NotImplementedException();
+            BindingData.DoorBindingData data = new BindingData.DoorBindingData()
+            {
+                ControlID = this.ControllerID,
+                IsConnected = this.IsConnected,
+                IsDoorOpen = this.IsDoorOpen
+
+            };
+            if (IsConnected)
+            {
+                if (IsDoorOpen)
+                    data.DoorColorString = "Red";
+                else
+                    data.DoorColorString = "Green";
+
+            }
+            else
+                data.DoorColorString = "Gray";
+            return data;
         }
 
         public int TriggerCCTVID
@@ -277,10 +319,57 @@ namespace SecureServer.CardReader
         }
 
 
-        public void SetR23Parameter(int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23)
+        public bool SetR23Parameter(int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23)
         {
-            RoomClient.RoomClient.SetADAMAlarmTime(this.ControllerID,RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23);
+            return   RoomClient.RoomClient.SetADAMAlarmTime(this.config.R23_ADAM,RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23);
           //  throw new NotImplementedException();
+        }
+
+
+       
+
+
+        //public static List<RoomInterface.PersonData> GetR23RoomPerson(string ErNo)
+        //{
+        // //   throw new NotImplementedException();
+
+        //    return RoomClient.RoomClient.GetRoomPerson(ErNo);
+        //}
+
+        //public static bool SetR23EngineRoomRecovery(string ErNo)
+        //{
+
+        //    return RoomClient.RoomClient.RestaADAMControl(ErNo);
+        //    //  throw new NotImplementedException();
+        //}
+
+
+        //public static object[] GetR23Progress()
+        //{
+
+          
+        // //   RoomClient.RoomClient.GetControlConnect;,
+            
+
+        //    return RoomClient.RoomClient.GetGroupProgress();
+        //}
+
+
+        //public static string GetR23GroupErrorMessage()
+        //{
+        //    return RoomClient.RoomClient.GetGroupErrorMessage();
+        //}
+
+        //public static ControlStatus GetR23ControlConnect(string ControllID)
+        //{
+        //    return RoomClient.RoomClient.GetControlConnect(ControllID);
+        //}
+
+
+        public byte[] GetR23ReaderStatus()
+        {
+            return RoomClient.RoomClient.GetStatus(this.config.R23_ADAM);
+            //throw new NotImplementedException();
         }
     }
 }

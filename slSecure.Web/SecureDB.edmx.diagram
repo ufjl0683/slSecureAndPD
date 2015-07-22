@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8ba30e97fbe5487d8755fdc5c604fb07" Name="圖表1" ZoomLevel="62">
+      <Diagram DiagramId="8ba30e97fbe5487d8755fdc5c604fb07" Name="圖表1" ZoomLevel="108">
         <EntityTypeShape EntityType="SecureDBModel.tblAIItem1HourLog" Width="1.5" PointX="2.9366516447331068" PointY="8.6787531863333438" />
         <EntityTypeShape EntityType="SecureDBModel.tblAlarmLog" Width="1.5" PointX="11.482555148882119" PointY="20.8530443854877" />
         <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="9.879361352827102" PointY="0.32596063629070327" />
@@ -31,7 +31,7 @@
         <EntityTypeShape EntityType="SecureDBModel.tblSchLog" Width="1.5" PointX="0.37666983174936369" PointY="15.568858183719618" />
         <EntityTypeShape EntityType="SecureDBModel.tblSingalIO" Width="1.5" PointX="2.4557748690507255" PointY="9.4440387680400342" />
         <EntityTypeShape EntityType="SecureDBModel.tblSingalIOLog" Width="1.5" PointX="0.026247695100609071" PointY="0.80494621433547986" />
-        <EntityTypeShape EntityType="SecureDBModel.tblSysOperation" Width="1.5" PointX="9.924161764757784" PointY="29.068428157394951" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSysOperation" Width="1.5" PointX="11.875" PointY="28.875" />
         <EntityTypeShape EntityType="SecureDBModel.tblSysParameter" Width="1.5" PointX="7.875" PointY="32.25" />
         <EntityTypeShape EntityType="SecureDBModel.tblSysRole" Width="1.5" PointX="2.3628917701369581" PointY="6.8715085121204647" />
         <EntityTypeShape EntityType="SecureDBModel.tblSysRoleAuthority" Width="1.5" PointX="7.7113556767401077" PointY="9.743483503229676" />
@@ -68,7 +68,6 @@
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblControllerConfig" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroup" />
         <EntityTypeShape EntityType="SecureDBModel.vwCardCommandLog" Width="1.5" PointX="6.375" PointY="26.875" />
-        <EntityTypeShape EntityType="SecureDBModel.vwEntranceGuardDetail" Width="1.5" PointX="0.28930695368410414" PointY="7.0009736600336492" />
         <EntityTypeShape EntityType="SecureDBModel.vwMagneticCardAllowController" Width="1.5" PointX="9.6592957925327578" PointY="7.6473098432865507" />
         <EntityTypeShape EntityType="SecureDBModel.tblPDAlarmLog" Width="1.5" PointX="3.6580389457093734" PointY="12.544737478971825" />
         <EntityTypeShape EntityType="SecureDBModel.tblPDConfig" Width="1.5" PointX="4.49345391452939" PointY="20.357678288760447" />
@@ -81,10 +80,8 @@
         <EntityTypeShape EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" Width="1.5" PointX="5.4485258932451375" PointY="0.79189449585596772" />
         <EntityTypeShape EntityType="SecureDBModel.vwPDConfig" Width="1.5" PointX="9" PointY="2.25" />
         <EntityTypeShape EntityType="SecureDBModel.vwAllAlarmLog" Width="1.5" PointX="0.75" PointY="3.375" />
-        <EntityTypeShape EntityType="SecureDBModel.vwControllerConfig" Width="1.5" PointX="5.6167987518090747" PointY="31.605178907329766" />
-        <EntityTypeShape EntityType="SecureDBModel.vwDeviceStateLog" Width="1.5" PointX="6.7450881184754365" PointY="19.070476421653513" />
         <EntityTypeShape EntityType="SecureDBModel.vwPDLoopDeviceConfig" Width="1.5" PointX="7.6976055725000823" PointY="14.467942825736451" />
-        <EntityTypeShape EntityType="SecureDBModel.vwReaderAbnormalPassLog" PointX="10.165837195779123" PointY="29.164013444056742" Width="1.5" />
+        <EntityTypeShape EntityType="SecureDBModel.vwReaderAbnormalPassLog" PointX="14" PointY="28.75" Width="1.5" />
         <EntityTypeShape EntityType="SecureDBModel.vwReaderPassList" Width="1.5" PointX="0.90486913402791558" PointY="11.398192485514187" />
         <EntityTypeShape EntityType="SecureDBModel.vwReaderPassLog" Width="1.5" PointX="4.2842203380000869" PointY="1.2541096514342864" />
         <EntityTypeShape EntityType="SecureDBModel.vwAlarmLog" Width="1.5" PointX="5.0105884508279095" PointY="8.1668141224267021" />
@@ -93,10 +90,18 @@
         <EntityTypeShape EntityType="SecureDBModel.vwEngineRoomLog" Width="1.5" PointX="11.536911047779448" PointY="7.8135347253706" />
         <EntityTypeShape EntityType="SecureDBModel.vwItemConfig" Width="1.5" PointX="7.5978795995925914" PointY="14.484156257698386" />
         <EntityTypeShape EntityType="SecureDBModel.vwMagneticCard" Width="1.5" PointX="5.9641275750306093" PointY="23.121124039926158" />
-        <EntityTypeShape EntityType="SecureDBModel.vwMagneticCardDetail" Width="1.5" PointX="2.19386391443846" PointY="30.717053025363505" />
+        <EntityTypeShape EntityType="SecureDBModel.vwMagneticCardDetail" Width="1.5" PointX="13.625" PointY="30.375" />
         <EntityTypeShape EntityType="SecureDBModel.vwPDAlarmLog" Width="1.5" PointX="5.4809241171371772" PointY="13.473844966606166" />
         <EntityTypeShape EntityType="SecureDBModel.tblItemGroupTypeInfo" Width="1.5" PointX="8.5429087339634577" PointY="13.886552235990088" />
         <EntityTypeShape EntityType="SecureDBModel.tblItemKindInfo" Width="1.5" PointX="6.6787956853764108" PointY="23.136032264277354" />
+        <EntityTypeShape EntityType="SecureDBModel.vwPasswordEveryDayDifference" Width="1.5" PointX="2.9531775894356791" PointY="10.992926185481682" />
+        <EntityTypeShape EntityType="SecureDBModel.vwR23DeviceStateLog" Width="1.5" PointX="6.9174949149216971" PointY="28.978341488623219" />
+        <EntityTypeShape EntityType="SecureDBModel.vwR23EngineRoomLog" Width="1.5" PointX="3.02556258767171" PointY="20.780655989786915" />
+        <EntityTypeShape EntityType="SecureDBModel.vwR23HardwareState" Width="1.5" PointX="5.52107173461517" PointY="27.782565219226555" />
+        <EntityTypeShape EntityType="SecureDBModel.vwR23ReaderLog" Width="1.5" PointX="2.4329388935272296" PointY="3.0001122965477931" />
+        <EntityTypeShape EntityType="SecureDBModel.vwControllerConfig" Width="1.5" PointX="5.0653792531534005" PointY="12.866995608837808" />
+        <EntityTypeShape EntityType="SecureDBModel.vwDeviceStateLog" Width="1.5" PointX="6.6162196987384085" PointY="7.4526335780753907" />
+        <EntityTypeShape EntityType="SecureDBModel.vwEntranceGuardDetail" Width="1.5" PointX="7.0800322550721617" PointY="9.3420896275630643" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

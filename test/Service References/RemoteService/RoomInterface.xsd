@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RoomInterface" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RoomInterface" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfPersonData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonData" type="tns:PersonData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPersonData" nillable="true" type="tns:ArrayOfPersonData" />
+  <xs:complexType name="PersonData">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CARDNO" nillable="true" type="xs:string" />
+      <xs:element name="COMP" nillable="true" type="xs:string" />
+      <xs:element name="ISMANUAL" type="xs:boolean" />
+      <xs:element name="NAME" nillable="true" type="xs:string" />
+      <xs:element name="TIME" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonData" nillable="true" type="tns:PersonData" />
+  <xs:complexType name="ControlStatus">
+    <xs:sequence>
+      <xs:element name="connect" type="xs:boolean" />
+      <xs:element name="controlID" nillable="true" type="xs:string" />
+      <xs:element name="disconnectTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ControlStatus" nillable="true" type="tns:ControlStatus" />
+</xs:schema>

@@ -59,7 +59,7 @@ namespace slSecure
 
             SecureDBContext db = new SecureDBContext();// DB.GetDB();
 
-        EntityQuery<vwUserMenuAllow> q=   db.GetVwUserMenuAllowQuery().Where(n => n.UserID == Util.GetICommon().GetUserID());
+        EntityQuery<vwUserMenuAllow> q=   db.GetVwUserMenuAllowQuery().Where(n => n.UserID == Util.GetICommon().GetUserID()  && n.IsAllow==true);
             var UserMenus =  await  db.LoadAsync(q);
 
             var res = from n in UserMenus  group n by n.GroupName into g   select  new UserGroupMenu() { GroupMenu = g.Key, Menus = g.OrderBy(k=>k.MenuOrder).ToList()  }  ;
@@ -284,10 +284,11 @@ namespace slSecure
                 MyHyperlinkButton button = new MyHyperlinkButton();
 
                 //PaneID is PDID for AlarmType=PD
-#if  R13
-                button.NavigateUri = new Uri("http://"+App.Current.Host.Source.Host+":"+App.Current.Host.Source.Port+"/R13/secure/focus?PDName="+alarmdata.PlaneID);
+#if  R23
+                  button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + alarmdata.PlaneName);
+               
 #else
-                button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + alarmdata.PlaneID);
+                button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R13/secure/focus?PDName=" + alarmdata.PlaneName);
 #endif
                 button.TargetName = "_blank";
 

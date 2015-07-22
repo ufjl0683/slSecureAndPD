@@ -25,7 +25,7 @@ namespace SecureServer.RTU
         public RTUManager()
         {
             SecureDBEntities1 db = new SecureDBEntities1();
-            var q = from n in db.tblControllerConfig where n.IsEnable == true && n.ControlType == 3 select n;    //RTU control type=3
+            var q = from n in db.tblControllerConfig where n.IsEnable == true &&( n.ControlType == 3   || n.ControlType==5)   select n;    //RTU control type=3
             //var q = from n in db.tblControllerConfig where n.ControlID == "AC-RTU-1" && n.ControlType == 3 && n.IsEnable==true select n;
             foreach (tblControllerConfig tbl in q)
             {
@@ -33,6 +33,11 @@ namespace SecureServer.RTU
                 if (tbl.ControlType == 3) //normal rtu
                 {
                     rtu = new ModbusTCP.RTU(tbl.ControlID, 1, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0);
+                    rtu.OnCommStateChanged += rtu_OnCommStateChanged;
+                }
+                else if(tbl.ControlType==5)
+                {         
+                    rtu = new SecureServer.RTU.R23AdamRTU(tbl.ControlID, 1, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0,tbl.R23_ADAM );
                     rtu.OnCommStateChanged += rtu_OnCommStateChanged;
                 }
                 if (!dictRTUs.ContainsKey(tbl.ControlID))
@@ -49,7 +54,7 @@ namespace SecureServer.RTU
 
         }
 
-        void rtu_OnCommStateChanged(ModbusTCP.RTU sender, int comm_state)
+        void rtu_OnCommStateChanged(ModbusTCP.IRTU sender, int comm_state)
         {
             SecureDBEntities1 db = new SecureDBEntities1();
            tblControllerConfig ctl= db.tblControllerConfig.Where(n => n.ControlID == sender.ControlID).FirstOrDefault();

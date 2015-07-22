@@ -215,6 +215,10 @@ namespace test.MCNSService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllRoom", ReplyAction="*")]
         test.MCNSService.GetAllRoomResponse GetAllRoom(test.MCNSService.GetAllRoomRequest request);
         
+        // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  MCNSID 未標示為 nillable，正在產生訊息合約
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCardInfoByMCNSID", ReplyAction="*")]
+        test.MCNSService.GetCardInfoByMCNSIDResponse GetCardInfoByMCNSID(test.MCNSService.GetCardInfoByMCNSIDRequest request);
+        
         // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  info 未標示為 nillable，正在產生訊息合約
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddCard", ReplyAction="*")]
         test.MCNSService.AddCardResponse AddCard(test.MCNSService.AddCardRequest request);
@@ -346,6 +350,74 @@ namespace test.MCNSService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetCardInfoByMCNSIDRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCardInfoByMCNSID", Namespace="http://tempuri.org/", Order=0)]
+        public test.MCNSService.GetCardInfoByMCNSIDRequestBody Body;
+        
+        public GetCardInfoByMCNSIDRequest() {
+        }
+        
+        public GetCardInfoByMCNSIDRequest(test.MCNSService.GetCardInfoByMCNSIDRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetCardInfoByMCNSIDRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string MCNSID;
+        
+        public GetCardInfoByMCNSIDRequestBody() {
+        }
+        
+        public GetCardInfoByMCNSIDRequestBody(string MCNSID) {
+            this.MCNSID = MCNSID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetCardInfoByMCNSIDResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCardInfoByMCNSIDResponse", Namespace="http://tempuri.org/", Order=0)]
+        public test.MCNSService.GetCardInfoByMCNSIDResponseBody Body;
+        
+        public GetCardInfoByMCNSIDResponse() {
+        }
+        
+        public GetCardInfoByMCNSIDResponse(test.MCNSService.GetCardInfoByMCNSIDResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetCardInfoByMCNSIDResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public test.MCNSService.AddCardInfo[] GetCardInfoByMCNSIDResult;
+        
+        public GetCardInfoByMCNSIDResponseBody() {
+        }
+        
+        public GetCardInfoByMCNSIDResponseBody(test.MCNSService.AddCardInfo[] GetCardInfoByMCNSIDResult) {
+            this.GetCardInfoByMCNSIDResult = GetCardInfoByMCNSIDResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class AddCardRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="AddCard", Namespace="http://tempuri.org/", Order=0)]
@@ -459,6 +531,19 @@ namespace test.MCNSService {
             inValue.Body = new test.MCNSService.GetAllRoomRequestBody();
             test.MCNSService.GetAllRoomResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).GetAllRoom(inValue);
             return retVal.Body.GetAllRoomResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        test.MCNSService.GetCardInfoByMCNSIDResponse test.MCNSService.MCNSServiceSoap.GetCardInfoByMCNSID(test.MCNSService.GetCardInfoByMCNSIDRequest request) {
+            return base.Channel.GetCardInfoByMCNSID(request);
+        }
+        
+        public test.MCNSService.AddCardInfo[] GetCardInfoByMCNSID(string MCNSID) {
+            test.MCNSService.GetCardInfoByMCNSIDRequest inValue = new test.MCNSService.GetCardInfoByMCNSIDRequest();
+            inValue.Body = new test.MCNSService.GetCardInfoByMCNSIDRequestBody();
+            inValue.Body.MCNSID = MCNSID;
+            test.MCNSService.GetCardInfoByMCNSIDResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).GetCardInfoByMCNSID(inValue);
+            return retVal.Body.GetCardInfoByMCNSIDResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Runtime.Serialization;
 using SecureServer.BindingData;
 using SecureServer.CardReader;
+using RoomInterface;
 
 namespace SecureServer
 {
@@ -48,6 +49,23 @@ namespace SecureServer
 
         [OperationContract]
         PlaneDegreeInfo[] GetAllPlaneInfo();
+                
+                [OperationContract]
+        byte[] GetR23ReaderStatus(string ReaderId);
+                [OperationContract]
+        bool SetR23Parameter(string readerid,int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23);
+                [OperationContract]
+
+        bool SetR23EngineRoomRecovery(string ErNo);
+                [OperationContract]
+        List<PersonData> GetR23RoomPerson(string ErNo);
+          [OperationContract]
+                  object[] GetR23Progress();
+
+        [OperationContract]
+       string GetR23GroupErrorMessage();
+        [OperationContract]
+        ControlStatus GetR23ControlConnect(string ControllID);
 
     }
 

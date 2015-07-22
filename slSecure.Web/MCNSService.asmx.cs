@@ -36,6 +36,170 @@ namespace slSecure.Web
             }
         }
 
+        [WebMethod]
+        public AddCardInfo[] GetCardInfoByMCNSID(string MCNSID)
+        {
+            using (SecureDBEntities db = new SecureDBEntities())
+            {
+                var q = from n in db.vwMagneticCardDetail
+                        where n.Memo.Contains(MCNSID)
+                        group (int)n.ERID by new { n.ABA, n.Memo, n.StartDate, n.EndDate, n.Name } into g
+                        select new  { g.Key.ABA, g,   g.Key.Memo,    g.Key.EndDate,  g.Key.StartDate, Name = g.Key.Name };
+
+                System.Collections.Generic.List<AddCardInfo> list = new List<AddCardInfo>();
+                foreach (var i in q)
+                {
+                    list.Add(new AddCardInfo() { CardNo = i.ABA, EndDate = (DateTime)i.EndDate, StartDate = (DateTime)i.StartDate, MCNSID = i.Memo, Name = i.Name, ERIDs = i.g.Distinct().ToArray<int>() });
+                }
+                return list.ToArray();
+            }
+        }
+#if R23
+        [WebMethod]
+        public string AddCard(AddCardInfo[] infos)
+        {
+            //string rooms = ""; string.Join(",", info.ERIDs);
+            //  return "0: add " + info.CardNo + " to  " + rooms + "  success!";
+
+            List<string> list = new List<string>();
+            try
+            {
+                foreach (AddCardInfo info in infos)
+                {
+
+                    for (int i = 0; i < info.ERIDs.ToArray().Length; i++)
+                    {
+                        string roleid = R23Exchange(info.MCNSID, info.ERIDs[i], info.CardNo, info.Name, info.StartDate, info.EndDate);
+                        list.Add(roleid);
+                    }
+                }
+
+                SecureService.SecureServiceClient client = new SecureService.SecureServiceClient(new System.ServiceModel.InstanceContext(this));
+                if(list.Count>0)
+                client.NotifyDBChange(SecureService.DBChangedConstant.AuthorityChanged,string.Join("," ,list.ToArray()));
+
+                return "0:success!";
+            }
+            catch (Exception ex)
+            {
+                return "-1:" + ex.Message + "," + ex.StackTrace;
+            }
+        }
+
+        public static string GetWEG(string ABA)
+        {
+            uint aba = Convert.ToUInt32(ABA);
+            uint weg1 = aba / 65536;
+            uint weg2 = aba % 65536;
+            return weg1.ToString("00000") + weg2.ToString("00000");
+        }
+        public string R23Exchange(string Memo, int ERID, string ABA, string Name, DateTime StartDate, DateTime EndDate)
+        {
+            int RoleID = 0;
+            clsDBComm commDB = new clsDBComm();
+
+            DataTable dt = new DataTable();
+            DataTable dtSelect = new DataTable();
+            string cmd = "";
+            bool IsSuccess = false;
+
+
+            string tempABA = "";
+            tempABA = (Convert.ToUInt32(ABA)).ToString("0000000000");
+            string sWEG12 = GetWEG(tempABA);
+
+            string sWEG1 = sWEG12.Substring(0, 5);
+            string sWEG2 = sWEG12.Substring(5, 5);
+
+
+
+            DateTime tmp_StartDate = StartDate;
+            DateTime tmp_EndDate = EndDate;
+
+            string s_StartDate = tmp_StartDate.ToShortDateString() + " 00:00:00";
+            string s_EndDate = tmp_EndDate.ToShortDateString() + " 23:59:59";
+
+            //先判斷磁卡是否已存在
+            cmd = string.Format("select * from tblMagneticCard where ABA='{0}';", tempABA);
+            dt = commDB.SelectDBData(cmd);
+            if (dt.Rows.Count > 0)
+            {
+                //已存在，先更新-可進入機房時間起迄
+                cmd = string.Format("UPDATE tblMagneticCard set StartDate ='{0}',EndDate='{1}',Name='{2}',Type=2,Memo='{3}',NormalID=0,Timestamp='{4}' where ABA='{5}';", s_StartDate, s_EndDate, Name, "施工單號:" + Memo, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), tempABA);
+                IsSuccess = commDB.ModifyDBData(cmd);
+
+                RoleID = int.Parse(dt.Rows[0]["RoleID"].ToString());
+
+                //0330刪除已存在，再加的
+                //cmd = string.Format("select * from tblSysRoleAuthority where RoleID={0};", RoleID);
+                //dtSelect = commDB.SelectDBData(cmd);
+                //if (dtSelect.Rows.Count > 0)
+                //{
+                //    cmd = string.Format("delete from tblSysRoleAuthority where RoleID={0};", RoleID);
+                //    IsSuccess = commDB.ModifyDBData(cmd);
+                //}
+
+                //查詢已加的權限不重複加入
+                cmd = string.Format("select * from vwEntranceGuardDetail where ERID={0};", ERID);
+                dt = commDB.SelectDBData(cmd);
+                foreach (DataRow row in dt.Rows)
+                {
+                    cmd = string.Format("select * from tblSysRoleAuthority where RoleID={0} and ControlID='{1}';", RoleID, row["ControlID"].ToString());
+                    dtSelect = commDB.SelectDBData(cmd);
+                    if (dtSelect.Rows.Count == 0)
+                    {
+                        cmd = string.Format("INSERT INTO tblSysRoleAuthority(RoleID,ControlID) VALUES ({0},'{1}');", RoleID, row["ControlID"].ToString());
+                        IsSuccess = commDB.ModifyDBData(cmd);
+
+                    }
+                }
+            }
+            else
+            {
+                //1.取得磁卡ABA後，加入tblSysRole磁卡權限群組表
+                cmd = string.Format("INSERT INTO tblSysRole(RoleName,UpdateDate) VALUES ('{0}','{1}');", tempABA, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                IsSuccess = commDB.ModifyDBData(cmd);
+
+                if (IsSuccess)
+                {
+                    cmd = string.Format("select * from tblSysRole where RoleName='{0}';", tempABA);
+
+                    dt = commDB.SelectDBData(cmd);
+                    if (dt.Rows.Count > 0)
+                    {
+                        RoleID = int.Parse(dt.Rows[0]["RoleID"].ToString());
+                    }
+
+                    //2.取得磁卡對應的RoleID, 加入tblMagneticCard磁卡資料表
+                    cmd = string.Format("INSERT INTO tblMagneticCard(ABA,Name,StartDate,EndDate,Type,RoleID,Timestamp,Memo,NormalID,WEG1,WEG2) VALUES " +
+                                        "('{0}','{1}','{2}','{3}',{4},{5},'{6}','{7}',{8},'{9}','{10}');",
+                                         tempABA, Name, s_StartDate, s_EndDate, 2, RoleID, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "施工單號:" + Memo, 0, sWEG1, sWEG2);
+                    IsSuccess = commDB.ModifyDBData(cmd);
+                    if (IsSuccess)
+                    {
+                        //3.取得此機房的各讀卡機的ControlID及磁卡對應的RoleID，加入tblSysRoleAuthority磁卡權限表，查詢已加的權限不重複加入       
+                        cmd = string.Format("select * from vwEntranceGuardDetail where ERID={0};", ERID);
+                        dt = commDB.SelectDBData(cmd);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            cmd = string.Format("select * from tblSysRoleAuthority where RoleID={0} and ControlID='{1}';", RoleID, row["ControlID"].ToString());
+                            dtSelect = commDB.SelectDBData(cmd);
+                            if (dtSelect.Rows.Count == 0)
+                            {
+                                cmd = string.Format("INSERT INTO tblSysRoleAuthority(RoleID,ControlID) VALUES ({0},'{1}');", RoleID, row["ControlID"].ToString());
+                                IsSuccess = commDB.ModifyDBData(cmd);
+                            }
+                        }
+                    }
+                }
+            }
+            //取得RoleID
+            string sRoleID = "";
+            sRoleID = Convert.ToString(RoleID);
+            return sRoleID;
+        }
+#else     
          [WebMethod]
         public string AddCard(AddCardInfo info)
         {
@@ -45,7 +209,7 @@ namespace slSecure.Web
             {
               
                 
-                for (int i = 0; i < info.ERIDs.Length; i++)
+                for (int i = 0; i < info.ERIDs.ToArray().Length; i++)
                 {
                     Exchange(info.MCNSID, info.ERIDs[i], info.CardNo, info.Name, info.StartDate, info.EndDate);
                   
@@ -63,7 +227,7 @@ namespace slSecure.Web
 
           
         }
-
+#endif
          //public void Exchange(string Memo, int ERID, string ABA, string Name, DateTime StartDate, DateTime EndDate)
          //{
          //    int RoleID=0;
@@ -293,7 +457,7 @@ namespace slSecure.Web
     {
         public  string  MCNSID {get;set;}
         public string CardNo {get;set;}
-        public int [] ERIDs {get;set;}
+        public  int[] ERIDs {get;set;}
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Name { get; set; }

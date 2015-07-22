@@ -2,6 +2,8 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/SecureServer" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/RoomInterface" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" />
   <xs:element name="Register">
     <xs:complexType>
@@ -183,6 +185,104 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetR23ReaderStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReaderId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetR23ReaderStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetR23ReaderStatusResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetR23Parameter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="readerid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RemoOpenTimeR23" type="xs:int" />
+        <xs:element minOccurs="0" name="DelayTimeR23" type="xs:int" />
+        <xs:element minOccurs="0" name="LoopErrorAlarmTimeR23" type="xs:int" />
+        <xs:element minOccurs="0" name="AlarmTimeR23" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetR23ParameterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetR23ParameterResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetR23EngineRoomRecovery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ErNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetR23EngineRoomRecoveryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetR23EngineRoomRecoveryResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetR23RoomPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ErNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetR23RoomPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/RoomInterface" minOccurs="0" name="GetR23RoomPersonResult" nillable="true" type="q7:ArrayOfPersonData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetR23Progress">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetR23ProgressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetR23ProgressResult" nillable="true" type="q8:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetR23GroupErrorMessage">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetR23GroupErrorMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetR23GroupErrorMessageResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetR23ControlConnect">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ControllID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetR23ControlConnectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/RoomInterface" minOccurs="0" name="GetR23ControlConnectResult" nillable="true" type="q9:ControlStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SayHello">
     <xs:complexType>
       <xs:sequence>
@@ -193,22 +293,22 @@
   <xs:element name="SecureDoorEvent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="evttype" type="q7:DoorEventType" />
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="doorBindingData" nillable="true" type="q8:DoorBindingData" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" minOccurs="0" name="evttype" type="q10:DoorEventType" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="doorBindingData" nillable="true" type="q11:DoorBindingData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SecureAlarm">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SecureServer" minOccurs="0" name="alarmdata" nillable="true" type="q9:AlarmData" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SecureServer" minOccurs="0" name="alarmdata" nillable="true" type="q12:AlarmData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ItemValueChangedEvenr">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="ItemBindingData" nillable="true" type="q10:ItemBindingData" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" minOccurs="0" name="ItemBindingData" nillable="true" type="q13:ItemBindingData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

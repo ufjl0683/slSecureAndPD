@@ -208,7 +208,8 @@
       [vwEntranceGuardDetail].[IsEnable] AS [IsEnable], 
       [vwEntranceGuardDetail].[TriggerCCTVID] AS [TriggerCCTVID], 
       [vwEntranceGuardDetail].[PlaneID] AS [PlaneID], 
-      [vwEntranceGuardDetail].[ControlType] AS [ControlType]
+      [vwEntranceGuardDetail].[ControlType] AS [ControlType], 
+      [vwEntranceGuardDetail].[ERNo] AS [ERNo]
       FROM [dbo].[vwEntranceGuardDetail] AS [vwEntranceGuardDetail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwERNamePlaneList" EntityType="SecureDBModel.Store.vwERNamePlaneList" store:Type="Views" store:Schema="dbo" store:Name="vwERNamePlaneList">
@@ -408,11 +409,21 @@
       [vwNVRConfig].[PlaneID] AS [PlaneID], 
       [vwNVRConfig].[Type] AS [Type], 
       [vwNVRConfig].[NVRChNO] AS [NVRChNO], 
+      [vwNVRConfig].[CCTVID] AS [CCTVID], 
       [vwNVRConfig].[CCTVName] AS [CCTVName], 
       [vwNVRConfig].[CCTVIP] AS [CCTVIP], 
       [vwNVRConfig].[CCTVPort] AS [CCTVPort], 
       [vwNVRConfig].[Memo] AS [Memo]
       FROM [dbo].[vwNVRConfig] AS [vwNVRConfig]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwPasswordEveryDayDifference" EntityType="SecureDBModel.Store.vwPasswordEveryDayDifference" store:Type="Views" store:Schema="dbo" store:Name="vwPasswordEveryDayDifference">
+            <DefiningQuery>SELECT 
+      [vwPasswordEveryDayDifference].[ERName] AS [ERName], 
+      [vwPasswordEveryDayDifference].[Memo] AS [Memo], 
+      [vwPasswordEveryDayDifference].[ControlID] AS [ControlID], 
+      [vwPasswordEveryDayDifference].[Timestamp] AS [Timestamp], 
+      [vwPasswordEveryDayDifference].[DoorPassword] AS [DoorPassword]
+      FROM [dbo].[vwPasswordEveryDayDifference] AS [vwPasswordEveryDayDifference]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwPDAlarmLog" EntityType="SecureDBModel.Store.vwPDAlarmLog" store:Type="Views" store:Schema="dbo" store:Name="vwPDAlarmLog">
             <DefiningQuery>SELECT 
@@ -533,6 +544,235 @@
       [vwPDLoopDeviceConfig].[DirectionName] AS [DirectionName], 
       [vwPDLoopDeviceConfig].[Diameter] AS [Diameter]
       FROM [dbo].[vwPDLoopDeviceConfig] AS [vwPDLoopDeviceConfig]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwR23DeviceStateLog" EntityType="SecureDBModel.Store.vwR23DeviceStateLog" store:Type="Views" store:Schema="dbo" store:Name="vwR23DeviceStateLog">
+            <DefiningQuery>SELECT 
+      [vwR23DeviceStateLog].[FlowID] AS [FlowID], 
+      [vwR23DeviceStateLog].[TypeID] AS [TypeID], 
+      [vwR23DeviceStateLog].[TypeCode] AS [TypeCode], 
+      [vwR23DeviceStateLog].[TimeStamp] AS [TimeStamp], 
+      [vwR23DeviceStateLog].[ReaderID] AS [ReaderID], 
+      [vwR23DeviceStateLog].[ControlID] AS [ControlID], 
+      [vwR23DeviceStateLog].[SingalName] AS [SingalName], 
+      [vwR23DeviceStateLog].[ABA] AS [ABA], 
+      [vwR23DeviceStateLog].[Explain] AS [Explain], 
+      [vwR23DeviceStateLog].[Memo] AS [Memo], 
+      [vwR23DeviceStateLog].[ControlType] AS [ControlType], 
+      [vwR23DeviceStateLog].[ERID] AS [ERID], 
+      [vwR23DeviceStateLog].[IP] AS [IP], 
+      [vwR23DeviceStateLog].[Port] AS [Port], 
+      [vwR23DeviceStateLog].[EntranceCode] AS [EntranceCode], 
+      [vwR23DeviceStateLog].[Loop] AS [Loop], 
+      [vwR23DeviceStateLog].[IsEnable] AS [IsEnable], 
+      [vwR23DeviceStateLog].[X] AS [X], 
+      [vwR23DeviceStateLog].[Y] AS [Y], 
+      [vwR23DeviceStateLog].[ScaleX] AS [ScaleX], 
+      [vwR23DeviceStateLog].[ScaleY] AS [ScaleY], 
+      [vwR23DeviceStateLog].[Rotation] AS [Rotation], 
+      [vwR23DeviceStateLog].[PlaneID] AS [PlaneID], 
+      [vwR23DeviceStateLog].[TriggerCCTVID] AS [TriggerCCTVID], 
+      [vwR23DeviceStateLog].[RTUBaseAddress] AS [RTUBaseAddress], 
+      [vwR23DeviceStateLog].[RTURegisterLength] AS [RTURegisterLength], 
+      [vwR23DeviceStateLog].[Comm_state] AS [Comm_state], 
+      [vwR23DeviceStateLog].[R23_ADAM] AS [R23_ADAM], 
+      [vwR23DeviceStateLog].[R23DoorOpen_DI] AS [R23DoorOpen_DI], 
+      [vwR23DeviceStateLog].[R23DoorOpen_DO] AS [R23DoorOpen_DO], 
+      [vwR23DeviceStateLog].[ERName] AS [ERName], 
+      [vwR23DeviceStateLog].[LineID] AS [LineID], 
+      [vwR23DeviceStateLog].[Direction] AS [Direction], 
+      [vwR23DeviceStateLog].[GPSX] AS [GPSX], 
+      [vwR23DeviceStateLog].[GPSY] AS [GPSY], 
+      [vwR23DeviceStateLog].[ERNo] AS [ERNo], 
+      [vwR23DeviceStateLog].[CallOpenDoor] AS [CallOpenDoor]
+      FROM [dbo].[vwR23DeviceStateLog] AS [vwR23DeviceStateLog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwR23EngineRoomLog" EntityType="SecureDBModel.Store.vwR23EngineRoomLog" store:Type="Views" store:Schema="dbo" store:Name="vwR23EngineRoomLog">
+            <DefiningQuery>SELECT 
+      [vwR23EngineRoomLog].[FlowID] AS [FlowID], 
+      [vwR23EngineRoomLog].[ERNo] AS [ERNo], 
+      [vwR23EngineRoomLog].[ControlID] AS [ControlID], 
+      [vwR23EngineRoomLog].[Result] AS [Result], 
+      [vwR23EngineRoomLog].[StartTime] AS [StartTime], 
+      [vwR23EngineRoomLog].[Endtime] AS [Endtime], 
+      [vwR23EngineRoomLog].[Memo] AS [Memo], 
+      [vwR23EngineRoomLog].[ABA] AS [ABA], 
+      [vwR23EngineRoomLog].[TypeID] AS [TypeID], 
+      [vwR23EngineRoomLog].[TypeCode] AS [TypeCode], 
+      [vwR23EngineRoomLog].[NVRFile] AS [NVRFile], 
+      [vwR23EngineRoomLog].[MagneticID] AS [MagneticID], 
+      [vwR23EngineRoomLog].[WEG1] AS [WEG1], 
+      [vwR23EngineRoomLog].[WEG2] AS [WEG2], 
+      [vwR23EngineRoomLog].[StartDate] AS [StartDate], 
+      [vwR23EngineRoomLog].[EndDate] AS [EndDate], 
+      [vwR23EngineRoomLog].[Enable] AS [Enable], 
+      [vwR23EngineRoomLog].[tblMagneticCard_Memo] AS [tblMagneticCard_Memo], 
+      [vwR23EngineRoomLog].[Company] AS [Company], 
+      [vwR23EngineRoomLog].[Name] AS [Name], 
+      [vwR23EngineRoomLog].[IDNumber] AS [IDNumber], 
+      [vwR23EngineRoomLog].[EmployeeNo] AS [EmployeeNo], 
+      [vwR23EngineRoomLog].[JobTitle] AS [JobTitle], 
+      [vwR23EngineRoomLog].[Tel] AS [Tel], 
+      [vwR23EngineRoomLog].[Mobile] AS [Mobile], 
+      [vwR23EngineRoomLog].[Type] AS [Type], 
+      [vwR23EngineRoomLog].[NormalID] AS [NormalID], 
+      [vwR23EngineRoomLog].[RoleID] AS [RoleID], 
+      [vwR23EngineRoomLog].[Timestamp] AS [Timestamp], 
+      [vwR23EngineRoomLog].[ReturnDate] AS [ReturnDate], 
+      [vwR23EngineRoomLog].[ERID] AS [ERID], 
+      [vwR23EngineRoomLog].[ERName] AS [ERName], 
+      [vwR23EngineRoomLog].[LineID] AS [LineID], 
+      [vwR23EngineRoomLog].[Direction] AS [Direction], 
+      [vwR23EngineRoomLog].[GPSX] AS [GPSX], 
+      [vwR23EngineRoomLog].[GPSY] AS [GPSY], 
+      [vwR23EngineRoomLog].[CallOpenDoor] AS [CallOpenDoor], 
+      [vwR23EngineRoomLog].[ResultName] AS [ResultName]
+      FROM [dbo].[vwR23EngineRoomLog] AS [vwR23EngineRoomLog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwR23HardwareState" EntityType="SecureDBModel.Store.vwR23HardwareState" store:Type="Views" store:Schema="dbo" store:Name="vwR23HardwareState">
+            <DefiningQuery>SELECT 
+      [vwR23HardwareState].[FlowID] AS [FlowID], 
+      [vwR23HardwareState].[TypeID] AS [TypeID], 
+      [vwR23HardwareState].[TypeCode] AS [TypeCode], 
+      [vwR23HardwareState].[TimeStamp] AS [TimeStamp], 
+      [vwR23HardwareState].[ReaderID] AS [ReaderID], 
+      [vwR23HardwareState].[ControlID] AS [ControlID], 
+      [vwR23HardwareState].[SingalName] AS [SingalName], 
+      [vwR23HardwareState].[ABA] AS [ABA], 
+      [vwR23HardwareState].[Explain] AS [Explain], 
+      [vwR23HardwareState].[Memo] AS [Memo], 
+      [vwR23HardwareState].[ControlType] AS [ControlType], 
+      [vwR23HardwareState].[ERID] AS [ERID], 
+      [vwR23HardwareState].[IP] AS [IP], 
+      [vwR23HardwareState].[Port] AS [Port], 
+      [vwR23HardwareState].[EntranceCode] AS [EntranceCode], 
+      [vwR23HardwareState].[Loop] AS [Loop], 
+      [vwR23HardwareState].[IsEnable] AS [IsEnable], 
+      [vwR23HardwareState].[X] AS [X], 
+      [vwR23HardwareState].[Y] AS [Y], 
+      [vwR23HardwareState].[ScaleX] AS [ScaleX], 
+      [vwR23HardwareState].[ScaleY] AS [ScaleY], 
+      [vwR23HardwareState].[Rotation] AS [Rotation], 
+      [vwR23HardwareState].[PlaneID] AS [PlaneID], 
+      [vwR23HardwareState].[TriggerCCTVID] AS [TriggerCCTVID], 
+      [vwR23HardwareState].[RTUBaseAddress] AS [RTUBaseAddress], 
+      [vwR23HardwareState].[RTURegisterLength] AS [RTURegisterLength], 
+      [vwR23HardwareState].[Comm_state] AS [Comm_state], 
+      [vwR23HardwareState].[R23_ADAM] AS [R23_ADAM], 
+      [vwR23HardwareState].[R23DoorOpen_DI] AS [R23DoorOpen_DI], 
+      [vwR23HardwareState].[R23DoorOpen_DO] AS [R23DoorOpen_DO], 
+      [vwR23HardwareState].[ERName] AS [ERName], 
+      [vwR23HardwareState].[LineID] AS [LineID], 
+      [vwR23HardwareState].[Direction] AS [Direction], 
+      [vwR23HardwareState].[GPSX] AS [GPSX], 
+      [vwR23HardwareState].[GPSY] AS [GPSY], 
+      [vwR23HardwareState].[ERNo] AS [ERNo], 
+      [vwR23HardwareState].[CallOpenDoor] AS [CallOpenDoor], 
+      [vwR23HardwareState].[MagneticID] AS [MagneticID], 
+      [vwR23HardwareState].[tblMagneticCard_ABA] AS [tblMagneticCard_ABA], 
+      [vwR23HardwareState].[WEG1] AS [WEG1], 
+      [vwR23HardwareState].[WEG2] AS [WEG2], 
+      [vwR23HardwareState].[StartDate] AS [StartDate], 
+      [vwR23HardwareState].[EndDate] AS [EndDate], 
+      [vwR23HardwareState].[Enable] AS [Enable], 
+      [vwR23HardwareState].[tblMagneticCard_Memo] AS [tblMagneticCard_Memo], 
+      [vwR23HardwareState].[Company] AS [Company], 
+      [vwR23HardwareState].[Name] AS [Name], 
+      [vwR23HardwareState].[IDNumber] AS [IDNumber], 
+      [vwR23HardwareState].[EmployeeNo] AS [EmployeeNo], 
+      [vwR23HardwareState].[JobTitle] AS [JobTitle], 
+      [vwR23HardwareState].[Tel] AS [Tel], 
+      [vwR23HardwareState].[Mobile] AS [Mobile], 
+      [vwR23HardwareState].[Type] AS [Type], 
+      [vwR23HardwareState].[NormalID] AS [NormalID], 
+      [vwR23HardwareState].[RoleID] AS [RoleID], 
+      [vwR23HardwareState].[tblMagneticCard_Timestamp] AS [tblMagneticCard_Timestamp], 
+      [vwR23HardwareState].[ReturnDate] AS [ReturnDate], 
+      [vwR23HardwareState].[tblCardReaderConfig_ReaderID] AS [tblCardReaderConfig_ReaderID], 
+      [vwR23HardwareState].[tblCardReaderConfig_EntranceCode] AS [tblCardReaderConfig_EntranceCode], 
+      [vwR23HardwareState].[tblCardReaderConfig_ControlID] AS [tblCardReaderConfig_ControlID], 
+      [vwR23HardwareState].[ReaderType] AS [ReaderType], 
+      [vwR23HardwareState].[ReaderNO] AS [ReaderNO], 
+      [vwR23HardwareState].[RoomIO] AS [RoomIO], 
+      [vwR23HardwareState].[tblEntranceGuardConfig_EntranceCode] AS [tblEntranceGuardConfig_EntranceCode], 
+      [vwR23HardwareState].[tblEntranceGuardConfig_ERID] AS [tblEntranceGuardConfig_ERID], 
+      [vwR23HardwareState].[Floor] AS [Floor], 
+      [vwR23HardwareState].[EntranceType] AS [EntranceType], 
+      [vwR23HardwareState].[tblEntranceGuardConfig_Memo] AS [tblEntranceGuardConfig_Memo], 
+      [vwR23HardwareState].[tblEntranceGuardConfig_MemoName] AS [tblEntranceGuardConfig_MemoName]
+      FROM [dbo].[vwR23HardwareState] AS [vwR23HardwareState]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwR23ReaderLog" EntityType="SecureDBModel.Store.vwR23ReaderLog" store:Type="Views" store:Schema="dbo" store:Name="vwR23ReaderLog">
+            <DefiningQuery>SELECT 
+      [vwR23ReaderLog].[FlowID] AS [FlowID], 
+      [vwR23ReaderLog].[TypeID] AS [TypeID], 
+      [vwR23ReaderLog].[TypeCode] AS [TypeCode], 
+      [vwR23ReaderLog].[TimeStamp] AS [TimeStamp], 
+      [vwR23ReaderLog].[ReaderID] AS [ReaderID], 
+      [vwR23ReaderLog].[ControlID] AS [ControlID], 
+      [vwR23ReaderLog].[SingalName] AS [SingalName], 
+      [vwR23ReaderLog].[ABA] AS [ABA], 
+      [vwR23ReaderLog].[Explain] AS [Explain], 
+      [vwR23ReaderLog].[Memo] AS [Memo], 
+      [vwR23ReaderLog].[ControlType] AS [ControlType], 
+      [vwR23ReaderLog].[ERID] AS [ERID], 
+      [vwR23ReaderLog].[IP] AS [IP], 
+      [vwR23ReaderLog].[Port] AS [Port], 
+      [vwR23ReaderLog].[EntranceCode] AS [EntranceCode], 
+      [vwR23ReaderLog].[Loop] AS [Loop], 
+      [vwR23ReaderLog].[IsEnable] AS [IsEnable], 
+      [vwR23ReaderLog].[X] AS [X], 
+      [vwR23ReaderLog].[Y] AS [Y], 
+      [vwR23ReaderLog].[ScaleX] AS [ScaleX], 
+      [vwR23ReaderLog].[ScaleY] AS [ScaleY], 
+      [vwR23ReaderLog].[Rotation] AS [Rotation], 
+      [vwR23ReaderLog].[PlaneID] AS [PlaneID], 
+      [vwR23ReaderLog].[TriggerCCTVID] AS [TriggerCCTVID], 
+      [vwR23ReaderLog].[RTUBaseAddress] AS [RTUBaseAddress], 
+      [vwR23ReaderLog].[RTURegisterLength] AS [RTURegisterLength], 
+      [vwR23ReaderLog].[Comm_state] AS [Comm_state], 
+      [vwR23ReaderLog].[R23_ADAM] AS [R23_ADAM], 
+      [vwR23ReaderLog].[R23DoorOpen_DI] AS [R23DoorOpen_DI], 
+      [vwR23ReaderLog].[R23DoorOpen_DO] AS [R23DoorOpen_DO], 
+      [vwR23ReaderLog].[ERName] AS [ERName], 
+      [vwR23ReaderLog].[LineID] AS [LineID], 
+      [vwR23ReaderLog].[Direction] AS [Direction], 
+      [vwR23ReaderLog].[GPSX] AS [GPSX], 
+      [vwR23ReaderLog].[GPSY] AS [GPSY], 
+      [vwR23ReaderLog].[ERNo] AS [ERNo], 
+      [vwR23ReaderLog].[CallOpenDoor] AS [CallOpenDoor], 
+      [vwR23ReaderLog].[MagneticID] AS [MagneticID], 
+      [vwR23ReaderLog].[tblMagneticCard_ABA] AS [tblMagneticCard_ABA], 
+      [vwR23ReaderLog].[WEG1] AS [WEG1], 
+      [vwR23ReaderLog].[WEG2] AS [WEG2], 
+      [vwR23ReaderLog].[StartDate] AS [StartDate], 
+      [vwR23ReaderLog].[EndDate] AS [EndDate], 
+      [vwR23ReaderLog].[Enable] AS [Enable], 
+      [vwR23ReaderLog].[tblMagneticCard_Memo] AS [tblMagneticCard_Memo], 
+      [vwR23ReaderLog].[Company] AS [Company], 
+      [vwR23ReaderLog].[Name] AS [Name], 
+      [vwR23ReaderLog].[IDNumber] AS [IDNumber], 
+      [vwR23ReaderLog].[EmployeeNo] AS [EmployeeNo], 
+      [vwR23ReaderLog].[JobTitle] AS [JobTitle], 
+      [vwR23ReaderLog].[Tel] AS [Tel], 
+      [vwR23ReaderLog].[Mobile] AS [Mobile], 
+      [vwR23ReaderLog].[Type] AS [Type], 
+      [vwR23ReaderLog].[NormalID] AS [NormalID], 
+      [vwR23ReaderLog].[RoleID] AS [RoleID], 
+      [vwR23ReaderLog].[tblMagneticCard_Timestamp] AS [tblMagneticCard_Timestamp], 
+      [vwR23ReaderLog].[ReturnDate] AS [ReturnDate], 
+      [vwR23ReaderLog].[tblCardReaderConfig_ReaderID] AS [tblCardReaderConfig_ReaderID], 
+      [vwR23ReaderLog].[tblCardReaderConfig_EntranceCode] AS [tblCardReaderConfig_EntranceCode], 
+      [vwR23ReaderLog].[tblCardReaderConfig_ControlID] AS [tblCardReaderConfig_ControlID], 
+      [vwR23ReaderLog].[ReaderType] AS [ReaderType], 
+      [vwR23ReaderLog].[ReaderNO] AS [ReaderNO], 
+      [vwR23ReaderLog].[RoomIO] AS [RoomIO], 
+      [vwR23ReaderLog].[tblEntranceGuardConfig_EntranceCode] AS [tblEntranceGuardConfig_EntranceCode], 
+      [vwR23ReaderLog].[tblEntranceGuardConfig_ERID] AS [tblEntranceGuardConfig_ERID], 
+      [vwR23ReaderLog].[Floor] AS [Floor], 
+      [vwR23ReaderLog].[EntranceType] AS [EntranceType], 
+      [vwR23ReaderLog].[tblEntranceGuardConfig_Memo] AS [tblEntranceGuardConfig_Memo], 
+      [vwR23ReaderLog].[RoomIOName] AS [RoomIOName]
+      FROM [dbo].[vwR23ReaderLog] AS [vwR23ReaderLog]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwReaderAbnormalPassLog" EntityType="SecureDBModel.Store.vwReaderAbnormalPassLog" store:Type="Views" store:Schema="dbo" store:Name="vwReaderAbnormalPassLog">
             <DefiningQuery>SELECT 
@@ -1449,6 +1689,7 @@
           <Property Name="TriggerCCTVID" Type="int" />
           <Property Name="PlaneID" Type="int" />
           <Property Name="ControlType" Type="smallint" Nullable="false" />
+          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwERNamePlaneList' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -1699,6 +1940,7 @@
         <EntityType Name="vwNVRConfig">
           <Key>
             <PropertyRef Name="NVRID" />
+            <PropertyRef Name="CCTVID" />
             <PropertyRef Name="ERID" />
             <PropertyRef Name="NVRName" />
             <PropertyRef Name="IP" />
@@ -1709,18 +1951,34 @@
           <Property Name="Direction" Type="char" MaxLength="1" />
           <Property Name="NVRID" Type="int" Nullable="false" />
           <Property Name="ERID" Type="int" Nullable="false" />
-          <Property Name="NVRName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="NVRName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Port" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="PlaneID" Type="int" />
           <Property Name="Type" Type="int" />
           <Property Name="NVRChNO" Type="int" />
+          <Property Name="CCTVID" Type="int" Nullable="false" />
           <Property Name="CCTVName" Type="nvarchar" MaxLength="50" />
           <Property Name="CCTVIP" Type="nvarchar" MaxLength="20" />
           <Property Name="CCTVPort" Type="int" />
           <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwPasswordEveryDayDifference' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwPasswordEveryDayDifference">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="DoorPassword" />
+          </Key>
+          <Property Name="ERName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="DoorPassword" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwPDAlarmLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -1884,6 +2142,268 @@
           <Property Name="LineName" Type="nvarchar" MaxLength="20" />
           <Property Name="DirectionName" Type="varchar" MaxLength="4" />
           <Property Name="Diameter" Type="int" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwR23DeviceStateLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwR23DeviceStateLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" />
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="TypeCode" Type="smallint" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="ReaderID" Type="int" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SingalName" Type="nvarchar" MaxLength="20" />
+          <Property Name="ABA" Type="nvarchar" MaxLength="30" />
+          <Property Name="Explain" Type="nvarchar" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ControlType" Type="smallint" />
+          <Property Name="ERID" Type="int" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" />
+          <Property Name="Port" Type="int" />
+          <Property Name="EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Loop" Type="char" MaxLength="1" />
+          <Property Name="IsEnable" Type="bit" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ScaleX" Type="float" />
+          <Property Name="ScaleY" Type="float" />
+          <Property Name="Rotation" Type="float" />
+          <Property Name="PlaneID" Type="int" />
+          <Property Name="TriggerCCTVID" Type="int" />
+          <Property Name="RTUBaseAddress" Type="int" />
+          <Property Name="RTURegisterLength" Type="int" />
+          <Property Name="Comm_state" Type="int" />
+          <Property Name="R23_ADAM" Type="nvarchar" MaxLength="50" />
+          <Property Name="R23DoorOpen_DI" Type="smallint" />
+          <Property Name="R23DoorOpen_DO" Type="smallint" />
+          <Property Name="ERName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LineID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Direction" Type="char" MaxLength="1" />
+          <Property Name="GPSX" Type="float" />
+          <Property Name="GPSY" Type="float" />
+          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="CallOpenDoor" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwR23EngineRoomLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwR23EngineRoomLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="Result" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="ABA" />
+            <PropertyRef Name="ResultName" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" />
+          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="ControlID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Result" Type="smallint" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="Endtime" Type="datetime" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ABA" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="TypeID" Type="smallint" />
+          <Property Name="TypeCode" Type="smallint" />
+          <Property Name="NVRFile" Type="nchar" MaxLength="30" />
+          <Property Name="MagneticID" Type="int" />
+          <Property Name="WEG1" Type="nvarchar" MaxLength="30" />
+          <Property Name="WEG2" Type="nvarchar" MaxLength="30" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Enable" Type="char" MaxLength="1" />
+          <Property Name="tblMagneticCard_Memo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmployeeNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="20" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="Type" Type="smallint" />
+          <Property Name="NormalID" Type="int" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="Timestamp" Type="datetime" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="ERID" Type="int" />
+          <Property Name="ERName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LineID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Direction" Type="char" MaxLength="1" />
+          <Property Name="GPSX" Type="float" />
+          <Property Name="GPSY" Type="float" />
+          <Property Name="CallOpenDoor" Type="nvarchar" MaxLength="20" />
+          <Property Name="ResultName" Type="varchar" Nullable="false" MaxLength="21" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwR23HardwareState' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwR23HardwareState">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="tblEntranceGuardConfig_MemoName" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" />
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="TypeCode" Type="smallint" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="ReaderID" Type="int" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SingalName" Type="nvarchar" MaxLength="20" />
+          <Property Name="ABA" Type="nvarchar" MaxLength="30" />
+          <Property Name="Explain" Type="nvarchar" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ControlType" Type="smallint" />
+          <Property Name="ERID" Type="int" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" />
+          <Property Name="Port" Type="int" />
+          <Property Name="EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Loop" Type="char" MaxLength="1" />
+          <Property Name="IsEnable" Type="bit" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ScaleX" Type="float" />
+          <Property Name="ScaleY" Type="float" />
+          <Property Name="Rotation" Type="float" />
+          <Property Name="PlaneID" Type="int" />
+          <Property Name="TriggerCCTVID" Type="int" />
+          <Property Name="RTUBaseAddress" Type="int" />
+          <Property Name="RTURegisterLength" Type="int" />
+          <Property Name="Comm_state" Type="int" />
+          <Property Name="R23_ADAM" Type="nvarchar" MaxLength="50" />
+          <Property Name="R23DoorOpen_DI" Type="smallint" />
+          <Property Name="R23DoorOpen_DO" Type="smallint" />
+          <Property Name="ERName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LineID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Direction" Type="char" MaxLength="1" />
+          <Property Name="GPSX" Type="float" />
+          <Property Name="GPSY" Type="float" />
+          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="CallOpenDoor" Type="nvarchar" MaxLength="20" />
+          <Property Name="MagneticID" Type="int" />
+          <Property Name="tblMagneticCard_ABA" Type="nvarchar" MaxLength="30" />
+          <Property Name="WEG1" Type="nvarchar" MaxLength="30" />
+          <Property Name="WEG2" Type="nvarchar" MaxLength="30" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Enable" Type="char" MaxLength="1" />
+          <Property Name="tblMagneticCard_Memo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmployeeNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="20" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="Type" Type="smallint" />
+          <Property Name="NormalID" Type="int" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="tblMagneticCard_Timestamp" Type="datetime" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="tblCardReaderConfig_ReaderID" Type="int" />
+          <Property Name="tblCardReaderConfig_EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="tblCardReaderConfig_ControlID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReaderType" Type="smallint" />
+          <Property Name="ReaderNO" Type="smallint" />
+          <Property Name="RoomIO" Type="char" MaxLength="1" />
+          <Property Name="tblEntranceGuardConfig_EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="tblEntranceGuardConfig_ERID" Type="int" />
+          <Property Name="Floor" Type="smallint" />
+          <Property Name="EntranceType" Type="nvarchar" MaxLength="20" />
+          <Property Name="tblEntranceGuardConfig_Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="tblEntranceGuardConfig_MemoName" Type="varchar" Nullable="false" MaxLength="6" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwR23ReaderLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwR23ReaderLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" />
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="TypeCode" Type="smallint" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="ReaderID" Type="int" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SingalName" Type="nvarchar" MaxLength="20" />
+          <Property Name="ABA" Type="nvarchar" MaxLength="30" />
+          <Property Name="Explain" Type="nvarchar" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ControlType" Type="smallint" />
+          <Property Name="ERID" Type="int" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" />
+          <Property Name="Port" Type="int" />
+          <Property Name="EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Loop" Type="char" MaxLength="1" />
+          <Property Name="IsEnable" Type="bit" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ScaleX" Type="float" />
+          <Property Name="ScaleY" Type="float" />
+          <Property Name="Rotation" Type="float" />
+          <Property Name="PlaneID" Type="int" />
+          <Property Name="TriggerCCTVID" Type="int" />
+          <Property Name="RTUBaseAddress" Type="int" />
+          <Property Name="RTURegisterLength" Type="int" />
+          <Property Name="Comm_state" Type="int" />
+          <Property Name="R23_ADAM" Type="nvarchar" MaxLength="50" />
+          <Property Name="R23DoorOpen_DI" Type="smallint" />
+          <Property Name="R23DoorOpen_DO" Type="smallint" />
+          <Property Name="ERName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LineID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Direction" Type="char" MaxLength="1" />
+          <Property Name="GPSX" Type="float" />
+          <Property Name="GPSY" Type="float" />
+          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="CallOpenDoor" Type="nvarchar" MaxLength="20" />
+          <Property Name="MagneticID" Type="int" />
+          <Property Name="tblMagneticCard_ABA" Type="nvarchar" MaxLength="30" />
+          <Property Name="WEG1" Type="nvarchar" MaxLength="30" />
+          <Property Name="WEG2" Type="nvarchar" MaxLength="30" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Enable" Type="char" MaxLength="1" />
+          <Property Name="tblMagneticCard_Memo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmployeeNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="20" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="Type" Type="smallint" />
+          <Property Name="NormalID" Type="int" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="tblMagneticCard_Timestamp" Type="datetime" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="tblCardReaderConfig_ReaderID" Type="int" />
+          <Property Name="tblCardReaderConfig_EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="tblCardReaderConfig_ControlID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReaderType" Type="smallint" />
+          <Property Name="ReaderNO" Type="smallint" />
+          <Property Name="RoomIO" Type="char" MaxLength="1" />
+          <Property Name="tblEntranceGuardConfig_EntranceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="tblEntranceGuardConfig_ERID" Type="int" />
+          <Property Name="Floor" Type="smallint" />
+          <Property Name="EntranceType" Type="nvarchar" MaxLength="20" />
+          <Property Name="tblEntranceGuardConfig_Memo" Type="nvarchar" MaxLength="100" />
+          <Property Name="RoomIOName" Type="varchar" MaxLength="4" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwReaderAbnormalPassLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -2433,7 +2953,6 @@
             <End Role="tblItemConfig" EntitySet="tblItemConfig" />
           </AssociationSet>
           <EntitySet Name="vwCardCommandLog" EntityType="SecureDBModel.vwCardCommandLog" />
-          <EntitySet Name="vwEntranceGuardDetail" EntityType="SecureDBModel.vwEntranceGuardDetail" />
           <EntitySet Name="vwMagneticCardAllowController" EntityType="SecureDBModel.vwMagneticCardAllowController" />
           <EntitySet Name="tblPDAlarmLog" EntityType="SecureDBModel.tblPDAlarmLog" />
           <EntitySet Name="tblPDConfig" EntityType="SecureDBModel.tblPDConfig" />
@@ -2452,8 +2971,6 @@
           <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" />
           <EntitySet Name="vwPDConfig" EntityType="SecureDBModel.vwPDConfig" />
           <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.vwAllAlarmLog" />
-          <EntitySet Name="vwControllerConfig" EntityType="SecureDBModel.vwControllerConfig" />
-          <EntitySet Name="vwDeviceStateLog" EntityType="SecureDBModel.vwDeviceStateLog" />
           <EntitySet Name="vwPDLoopDeviceConfig" EntityType="SecureDBModel.vwPDLoopDeviceConfig" />
           <EntitySet Name="vwReaderAbnormalPassLog" EntityType="SecureDBModel.vwReaderAbnormalPassLog" />
           <EntitySet Name="vwReaderPassList" EntityType="SecureDBModel.vwReaderPassList" />
@@ -2468,6 +2985,14 @@
           <EntitySet Name="vwPDAlarmLog" EntityType="SecureDBModel.vwPDAlarmLog" />
           <EntitySet Name="tblItemGroupTypeInfo" EntityType="SecureDBModel.tblItemGroupTypeInfo" />
           <EntitySet Name="tblItemKindInfo" EntityType="SecureDBModel.tblItemKindInfo" />
+          <EntitySet Name="vwPasswordEveryDayDifference" EntityType="SecureDBModel.vwPasswordEveryDayDifference" />
+          <EntitySet Name="vwR23DeviceStateLog" EntityType="SecureDBModel.vwR23DeviceStateLog" />
+          <EntitySet Name="vwR23EngineRoomLog" EntityType="SecureDBModel.vwR23EngineRoomLog" />
+          <EntitySet Name="vwR23HardwareState" EntityType="SecureDBModel.vwR23HardwareState" />
+          <EntitySet Name="vwR23ReaderLog" EntityType="SecureDBModel.vwR23ReaderLog" />
+          <EntitySet Name="vwControllerConfig" EntityType="SecureDBModel.vwControllerConfig" />
+          <EntitySet Name="vwDeviceStateLog" EntityType="SecureDBModel.vwDeviceStateLog" />
+          <EntitySet Name="vwEntranceGuardDetail" EntityType="SecureDBModel.vwEntranceGuardDetail" />
           </EntityContainer>
         <EntityType Name="tblAIItem1HourLog">
           <Key>
@@ -3334,22 +3859,6 @@
           <Property Type="String" Name="CommandTypeName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="CardTypeName" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="vwEntranceGuardDetail">
-          <Key>
-            <PropertyRef Name="ERID" />
-            <PropertyRef Name="ERName" />
-            <PropertyRef Name="ControlID" />
-            <PropertyRef Name="ControlType" />
-          </Key>
-          <Property Type="Int32" Name="ERID" Nullable="false" />
-          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="IsEnable" />
-          <Property Type="Int32" Name="TriggerCCTVID" />
-          <Property Type="Int32" Name="PlaneID" />
-          <Property Type="Int16" Name="ControlType" Nullable="false" />
-        </EntityType>
         <EntityType Name="vwMagneticCardAllowController">
           <Key>
             <PropertyRef Name="ControlID" />
@@ -3635,45 +4144,6 @@
           <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
           <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="vwControllerConfig">
-          <Key>
-            <PropertyRef Name="ERID" />
-            <PropertyRef Name="ControlID" />
-            <PropertyRef Name="ControlType" />
-            <PropertyRef Name="ControlTypeName" />
-            <PropertyRef Name="Comm_stateName" />
-          </Key>
-          <Property Type="Int32" Name="ERID" Nullable="false" />
-          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="ControlType" Nullable="false" />
-          <Property Type="String" Name="ControlTypeName" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Comm_state" />
-          <Property Type="String" Name="Comm_stateName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsEnable" />
-        </EntityType>
-        <EntityType Name="vwDeviceStateLog">
-          <Key>
-            <PropertyRef Name="FlowID" />
-            <PropertyRef Name="ERID" />
-            <PropertyRef Name="ERName" />
-            <PropertyRef Name="ControlID" />
-            <PropertyRef Name="TimeStamp" />
-            <PropertyRef Name="TypeID" />
-            <PropertyRef Name="TypeCode" />
-          </Key>
-          <Property Type="Int64" Name="FlowID" Nullable="false" />
-          <Property Type="Int32" Name="ERID" Nullable="false" />
-          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
-          <Property Type="Int16" Name="TypeID" Nullable="false" />
-          <Property Type="Int16" Name="TypeCode" Nullable="false" />
-          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="vwPDLoopDeviceConfig">
           <Key>
             <PropertyRef Name="PDName" />
@@ -3810,6 +4280,7 @@
             <PropertyRef Name="NVRName" />
             <PropertyRef Name="IP" />
             <PropertyRef Name="Port" />
+            <PropertyRef Name="CCTVID" />
           </Key>
           <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -3828,6 +4299,7 @@
           <Property Type="String" Name="CCTVIP" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="CCTVPort" />
           <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CCTVID" Nullable="false" />
         </EntityType>
         <EntityType Name="vwEngineRoomLog">
           <Key>
@@ -4042,6 +4514,324 @@
           </Key>
           <Property Type="Int32" Name="KindID" Nullable="false" />
           <Property Type="String" Name="KindName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwPasswordEveryDayDifference">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="DoorPassword" />
+          </Key>
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="DoorPassword" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwR23DeviceStateLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ReaderID" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingalName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ControlType" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="IP" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" />
+          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Loop" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="IsEnable" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="Double" Name="ScaleX" />
+          <Property Type="Double" Name="ScaleY" />
+          <Property Type="Double" Name="Rotation" />
+          <Property Type="Int32" Name="PlaneID" />
+          <Property Type="Int32" Name="TriggerCCTVID" />
+          <Property Type="Int32" Name="RTUBaseAddress" />
+          <Property Type="Int32" Name="RTURegisterLength" />
+          <Property Type="Int32" Name="Comm_state" />
+          <Property Type="String" Name="R23_ADAM" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="R23DoorOpen_DI" />
+          <Property Type="Int16" Name="R23DoorOpen_DO" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Double" Name="GPSX" />
+          <Property Type="Double" Name="GPSY" />
+          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CallOpenDoor" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwR23EngineRoomLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="Result" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="ABA" />
+            <PropertyRef Name="ResultName" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Result" Nullable="false" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Endtime" Precision="3" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="TypeID" />
+          <Property Type="Int16" Name="TypeCode" />
+          <Property Type="String" Name="NVRFile" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="MagneticID" />
+          <Property Type="String" Name="WEG1" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WEG2" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDate" Precision="3" />
+          <Property Type="DateTime" Name="EndDate" Precision="3" />
+          <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="tblMagneticCard_Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Company" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IDNumber" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmployeeNo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JobTitle" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Tel" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mobile" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Type" />
+          <Property Type="Int32" Name="NormalID" />
+          <Property Type="Int32" Name="RoleID" />
+          <Property Type="DateTime" Name="Timestamp" Precision="3" />
+          <Property Type="DateTime" Name="ReturnDate" Precision="3" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Double" Name="GPSX" />
+          <Property Type="Double" Name="GPSY" />
+          <Property Type="String" Name="CallOpenDoor" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ResultName" Nullable="false" MaxLength="21" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vwR23HardwareState">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="tblEntranceGuardConfig_MemoName" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ReaderID" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingalName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ControlType" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="IP" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" />
+          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Loop" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="IsEnable" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="Double" Name="ScaleX" />
+          <Property Type="Double" Name="ScaleY" />
+          <Property Type="Double" Name="Rotation" />
+          <Property Type="Int32" Name="PlaneID" />
+          <Property Type="Int32" Name="TriggerCCTVID" />
+          <Property Type="Int32" Name="RTUBaseAddress" />
+          <Property Type="Int32" Name="RTURegisterLength" />
+          <Property Type="Int32" Name="Comm_state" />
+          <Property Type="String" Name="R23_ADAM" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="R23DoorOpen_DI" />
+          <Property Type="Int16" Name="R23DoorOpen_DO" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Double" Name="GPSX" />
+          <Property Type="Double" Name="GPSY" />
+          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CallOpenDoor" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MagneticID" />
+          <Property Type="String" Name="tblMagneticCard_ABA" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WEG1" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WEG2" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDate" Precision="3" />
+          <Property Type="DateTime" Name="EndDate" Precision="3" />
+          <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="tblMagneticCard_Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Company" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IDNumber" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmployeeNo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JobTitle" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Tel" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mobile" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Type" />
+          <Property Type="Int32" Name="NormalID" />
+          <Property Type="Int32" Name="RoleID" />
+          <Property Type="DateTime" Name="tblMagneticCard_Timestamp" Precision="3" />
+          <Property Type="DateTime" Name="ReturnDate" Precision="3" />
+          <Property Type="Int32" Name="tblCardReaderConfig_ReaderID" />
+          <Property Type="String" Name="tblCardReaderConfig_EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tblCardReaderConfig_ControlID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ReaderType" />
+          <Property Type="Int16" Name="ReaderNO" />
+          <Property Type="String" Name="RoomIO" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="tblEntranceGuardConfig_EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tblEntranceGuardConfig_ERID" />
+          <Property Type="Int16" Name="Floor" />
+          <Property Type="String" Name="EntranceType" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tblEntranceGuardConfig_Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tblEntranceGuardConfig_MemoName" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vwR23ReaderLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ReaderID" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingalName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABA" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ControlType" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="IP" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" />
+          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Loop" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="IsEnable" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="Double" Name="ScaleX" />
+          <Property Type="Double" Name="ScaleY" />
+          <Property Type="Double" Name="Rotation" />
+          <Property Type="Int32" Name="PlaneID" />
+          <Property Type="Int32" Name="TriggerCCTVID" />
+          <Property Type="Int32" Name="RTUBaseAddress" />
+          <Property Type="Int32" Name="RTURegisterLength" />
+          <Property Type="Int32" Name="Comm_state" />
+          <Property Type="String" Name="R23_ADAM" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="R23DoorOpen_DI" />
+          <Property Type="Int16" Name="R23DoorOpen_DO" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Double" Name="GPSX" />
+          <Property Type="Double" Name="GPSY" />
+          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CallOpenDoor" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MagneticID" />
+          <Property Type="String" Name="tblMagneticCard_ABA" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WEG1" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WEG2" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDate" Precision="3" />
+          <Property Type="DateTime" Name="EndDate" Precision="3" />
+          <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="tblMagneticCard_Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Company" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IDNumber" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmployeeNo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JobTitle" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Tel" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mobile" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Type" />
+          <Property Type="Int32" Name="NormalID" />
+          <Property Type="Int32" Name="RoleID" />
+          <Property Type="DateTime" Name="tblMagneticCard_Timestamp" Precision="3" />
+          <Property Type="DateTime" Name="ReturnDate" Precision="3" />
+          <Property Type="Int32" Name="tblCardReaderConfig_ReaderID" />
+          <Property Type="String" Name="tblCardReaderConfig_EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tblCardReaderConfig_ControlID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ReaderType" />
+          <Property Type="Int16" Name="ReaderNO" />
+          <Property Type="String" Name="RoomIO" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="tblEntranceGuardConfig_EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tblEntranceGuardConfig_ERID" />
+          <Property Type="Int16" Name="Floor" />
+          <Property Type="String" Name="EntranceType" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tblEntranceGuardConfig_Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RoomIOName" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vwControllerConfig">
+          <Key>
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="ControlType" />
+            <PropertyRef Name="ControlTypeName" />
+            <PropertyRef Name="Comm_stateName" />
+          </Key>
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ControlType" Nullable="false" />
+          <Property Type="String" Name="ControlTypeName" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EntranceCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Comm_state" />
+          <Property Type="String" Name="Comm_stateName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsEnable" />
+        </EntityType>
+        <EntityType Name="vwDeviceStateLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwEntranceGuardDetail">
+          <Key>
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="ControlType" />
+          </Key>
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsEnable" />
+          <Property Type="Int32" Name="TriggerCCTVID" />
+          <Property Type="Int32" Name="PlaneID" />
+          <Property Type="Int16" Name="ControlType" Nullable="false" />
+          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4578,20 +5368,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwEntranceGuardDetail">
-            <EntityTypeMapping TypeName="SecureDBModel.vwEntranceGuardDetail">
-              <MappingFragment StoreEntitySet="vwEntranceGuardDetail">
-                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
-                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
-                <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
-                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
-                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwMagneticCardAllowController">
             <EntityTypeMapping TypeName="SecureDBModel.vwMagneticCardAllowController">
               <MappingFragment StoreEntitySet="vwMagneticCardAllowController">
@@ -4821,37 +5597,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwControllerConfig">
-            <EntityTypeMapping TypeName="SecureDBModel.vwControllerConfig">
-              <MappingFragment StoreEntitySet="vwControllerConfig">
-                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
-                <ScalarProperty Name="Comm_stateName" ColumnName="Comm_stateName" />
-                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
-                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
-                <ScalarProperty Name="ControlTypeName" ColumnName="ControlTypeName" />
-                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
-                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwDeviceStateLog">
-            <EntityTypeMapping TypeName="SecureDBModel.vwDeviceStateLog">
-              <MappingFragment StoreEntitySet="vwDeviceStateLog">
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Explain" ColumnName="Explain" />
-                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwPDLoopDeviceConfig">
             <EntityTypeMapping TypeName="SecureDBModel.vwPDLoopDeviceConfig">
               <MappingFragment StoreEntitySet="vwPDLoopDeviceConfig">
@@ -4982,6 +5727,7 @@
           <EntitySetMapping Name="vwNVRConfig">
             <EntityTypeMapping TypeName="SecureDBModel.vwNVRConfig">
               <MappingFragment StoreEntitySet="vwNVRConfig">
+                <ScalarProperty Name="CCTVID" ColumnName="CCTVID" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
                 <ScalarProperty Name="CCTVPort" ColumnName="CCTVPort" />
                 <ScalarProperty Name="CCTVIP" ColumnName="CCTVIP" />
@@ -5193,6 +5939,300 @@
               <MappingFragment StoreEntitySet="tblItemKindInfo">
                 <ScalarProperty Name="KindName" ColumnName="KindName" />
                 <ScalarProperty Name="KindID" ColumnName="KindID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPasswordEveryDayDifference">
+            <EntityTypeMapping TypeName="SecureDBModel.vwPasswordEveryDayDifference">
+              <MappingFragment StoreEntitySet="vwPasswordEveryDayDifference">
+                <ScalarProperty Name="DoorPassword" ColumnName="DoorPassword" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwR23DeviceStateLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwR23DeviceStateLog">
+              <MappingFragment StoreEntitySet="vwR23DeviceStateLog">
+                <ScalarProperty Name="CallOpenDoor" ColumnName="CallOpenDoor" />
+                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
+                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
+                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="R23DoorOpen_DO" ColumnName="R23DoorOpen_DO" />
+                <ScalarProperty Name="R23DoorOpen_DI" ColumnName="R23DoorOpen_DI" />
+                <ScalarProperty Name="R23_ADAM" ColumnName="R23_ADAM" />
+                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
+                <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
+                <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
+                <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="Loop" ColumnName="Loop" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="SingalName" ColumnName="SingalName" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ReaderID" ColumnName="ReaderID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwR23EngineRoomLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwR23EngineRoomLog">
+              <MappingFragment StoreEntitySet="vwR23EngineRoomLog">
+                <ScalarProperty Name="ResultName" ColumnName="ResultName" />
+                <ScalarProperty Name="CallOpenDoor" ColumnName="CallOpenDoor" />
+                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
+                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="NormalID" ColumnName="NormalID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="tblMagneticCard_Memo" ColumnName="tblMagneticCard_Memo" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="WEG2" ColumnName="WEG2" />
+                <ScalarProperty Name="WEG1" ColumnName="WEG1" />
+                <ScalarProperty Name="MagneticID" ColumnName="MagneticID" />
+                <ScalarProperty Name="NVRFile" ColumnName="NVRFile" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Endtime" ColumnName="Endtime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwR23HardwareState">
+            <EntityTypeMapping TypeName="SecureDBModel.vwR23HardwareState">
+              <MappingFragment StoreEntitySet="vwR23HardwareState">
+                <ScalarProperty Name="tblEntranceGuardConfig_MemoName" ColumnName="tblEntranceGuardConfig_MemoName" />
+                <ScalarProperty Name="tblEntranceGuardConfig_Memo" ColumnName="tblEntranceGuardConfig_Memo" />
+                <ScalarProperty Name="EntranceType" ColumnName="EntranceType" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="tblEntranceGuardConfig_ERID" ColumnName="tblEntranceGuardConfig_ERID" />
+                <ScalarProperty Name="tblEntranceGuardConfig_EntranceCode" ColumnName="tblEntranceGuardConfig_EntranceCode" />
+                <ScalarProperty Name="RoomIO" ColumnName="RoomIO" />
+                <ScalarProperty Name="ReaderNO" ColumnName="ReaderNO" />
+                <ScalarProperty Name="ReaderType" ColumnName="ReaderType" />
+                <ScalarProperty Name="tblCardReaderConfig_ControlID" ColumnName="tblCardReaderConfig_ControlID" />
+                <ScalarProperty Name="tblCardReaderConfig_EntranceCode" ColumnName="tblCardReaderConfig_EntranceCode" />
+                <ScalarProperty Name="tblCardReaderConfig_ReaderID" ColumnName="tblCardReaderConfig_ReaderID" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="tblMagneticCard_Timestamp" ColumnName="tblMagneticCard_Timestamp" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="NormalID" ColumnName="NormalID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="tblMagneticCard_Memo" ColumnName="tblMagneticCard_Memo" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="WEG2" ColumnName="WEG2" />
+                <ScalarProperty Name="WEG1" ColumnName="WEG1" />
+                <ScalarProperty Name="tblMagneticCard_ABA" ColumnName="tblMagneticCard_ABA" />
+                <ScalarProperty Name="MagneticID" ColumnName="MagneticID" />
+                <ScalarProperty Name="CallOpenDoor" ColumnName="CallOpenDoor" />
+                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
+                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
+                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="R23DoorOpen_DO" ColumnName="R23DoorOpen_DO" />
+                <ScalarProperty Name="R23DoorOpen_DI" ColumnName="R23DoorOpen_DI" />
+                <ScalarProperty Name="R23_ADAM" ColumnName="R23_ADAM" />
+                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
+                <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
+                <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
+                <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="Loop" ColumnName="Loop" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="SingalName" ColumnName="SingalName" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ReaderID" ColumnName="ReaderID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwR23ReaderLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwR23ReaderLog">
+              <MappingFragment StoreEntitySet="vwR23ReaderLog">
+                <ScalarProperty Name="RoomIOName" ColumnName="RoomIOName" />
+                <ScalarProperty Name="tblEntranceGuardConfig_Memo" ColumnName="tblEntranceGuardConfig_Memo" />
+                <ScalarProperty Name="EntranceType" ColumnName="EntranceType" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="tblEntranceGuardConfig_ERID" ColumnName="tblEntranceGuardConfig_ERID" />
+                <ScalarProperty Name="tblEntranceGuardConfig_EntranceCode" ColumnName="tblEntranceGuardConfig_EntranceCode" />
+                <ScalarProperty Name="RoomIO" ColumnName="RoomIO" />
+                <ScalarProperty Name="ReaderNO" ColumnName="ReaderNO" />
+                <ScalarProperty Name="ReaderType" ColumnName="ReaderType" />
+                <ScalarProperty Name="tblCardReaderConfig_ControlID" ColumnName="tblCardReaderConfig_ControlID" />
+                <ScalarProperty Name="tblCardReaderConfig_EntranceCode" ColumnName="tblCardReaderConfig_EntranceCode" />
+                <ScalarProperty Name="tblCardReaderConfig_ReaderID" ColumnName="tblCardReaderConfig_ReaderID" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="tblMagneticCard_Timestamp" ColumnName="tblMagneticCard_Timestamp" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="NormalID" ColumnName="NormalID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="tblMagneticCard_Memo" ColumnName="tblMagneticCard_Memo" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="WEG2" ColumnName="WEG2" />
+                <ScalarProperty Name="WEG1" ColumnName="WEG1" />
+                <ScalarProperty Name="tblMagneticCard_ABA" ColumnName="tblMagneticCard_ABA" />
+                <ScalarProperty Name="MagneticID" ColumnName="MagneticID" />
+                <ScalarProperty Name="CallOpenDoor" ColumnName="CallOpenDoor" />
+                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
+                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
+                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="R23DoorOpen_DO" ColumnName="R23DoorOpen_DO" />
+                <ScalarProperty Name="R23DoorOpen_DI" ColumnName="R23DoorOpen_DI" />
+                <ScalarProperty Name="R23_ADAM" ColumnName="R23_ADAM" />
+                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
+                <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
+                <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
+                <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="Loop" ColumnName="Loop" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="ABA" ColumnName="ABA" />
+                <ScalarProperty Name="SingalName" ColumnName="SingalName" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ReaderID" ColumnName="ReaderID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwControllerConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.vwControllerConfig">
+              <MappingFragment StoreEntitySet="vwControllerConfig">
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="Comm_stateName" ColumnName="Comm_stateName" />
+                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
+                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
+                <ScalarProperty Name="ControlTypeName" ColumnName="ControlTypeName" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwDeviceStateLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwDeviceStateLog">
+              <MappingFragment StoreEntitySet="vwDeviceStateLog">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwEntranceGuardDetail">
+            <EntityTypeMapping TypeName="SecureDBModel.vwEntranceGuardDetail">
+              <MappingFragment StoreEntitySet="vwEntranceGuardDetail">
+                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

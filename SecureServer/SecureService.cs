@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Net;
 using SecureServer.CardReader;
 using SecureServer.BindingData;
+using RoomInterface;
 
 namespace SecureServer
 {
@@ -41,11 +42,11 @@ namespace SecureServer
            itemgrp_mgr = new RTU.ItemGroupManager();
            plane_mgr = new PlaneManager();
            pd_mgr = new PD.PDManager();
-#if !R23     
+//#if !R23     
           
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
            card_mgr.OnAlarmEvent += card_mgr_OnAlarmEvent;
-#endif
+//#endif
            new System.Threading.Thread(CheckCardReaderConnectionTask).Start();
            ExactOneHourTmr = new ExactIntervalTimer(0, 0);
            ExactOneHourTmr.OnElapsed += ExactOneHourTmr_OnElapsed;
@@ -243,7 +244,7 @@ namespace SecureServer
         //    throw new NotImplementedException();
         //}
 
-
+        
         public void NotifyDBChange(DBChangedConstant constant,string value)
         {
 
@@ -252,6 +253,8 @@ namespace SecureServer
             {
                 case DBChangedConstant.AuthorityChanged:
                     Console.WriteLine("notify db Change!");
+                  
+#if !R23
                     SecureDBEntities1 db = new SecureDBEntities1();
                     foreach (tblCardCommandLog cmdlog in db.tblCardCommandLog.Where(n=>n.Timestamp==null))
                     {
@@ -299,7 +302,16 @@ namespace SecureServer
                            
                         }
                     }
-                    db.SaveChanges();
+                        db.SaveChanges();
+#else
+                     List<int > list=new List<int>();
+                    foreach(string GID in value.Split(new char[]{','}))
+                        list.Add(System.Convert.ToInt32(GID));
+
+                    RoomClient.RoomClient.GroupModify(list);
+                    RoomClient.RoomClient.ReloadPerson();
+#endif
+                
                     break;
 
                 case DBChangedConstant.DoorOpenAutoCloseTime:
@@ -488,5 +500,52 @@ namespace SecureServer
            return plane_mgr.GetAllPlaneDegree();
            // throw new NotImplementedException();
         }
+
+
+
+        public byte[] GetR23ReaderStatus(string ReaderId)
+        {
+            return card_mgr[ReaderId].GetR23ReaderStatus();
+        }
+
+        public bool SetR23Parameter(string readerid,int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23)
+        {
+           // throw new NotImplementedException();
+            return card_mgr[readerid].SetR23Parameter(RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23);
+        }
+
+        public bool SetR23EngineRoomRecovery(string ErNo)
+        {
+            return RoomClient.RoomClient.RestaADAMControl(ErNo);//  CardReader23.SetR23EngineRoomRecovery(ErNo);
+        }
+
+        public List<RoomInterface.PersonData> GetR23RoomPerson(string ErNo)
+        {
+            return RoomClient.RoomClient.GetRoomPerson(ErNo);   //CardReader23.GetR23RoomPerson(ErNo);
+            //throw new NotImplementedException();
+        }
+
+        public   object[] GetR23Progress()
+        {
+
+
+            //   RoomClient.RoomClient.GetControlConnect;,
+
+
+            return RoomClient.RoomClient.GetGroupProgress();
+        }
+
+
+        public   string GetR23GroupErrorMessage()
+        {
+            return RoomClient.RoomClient.GetGroupErrorMessage();
+        }
+
+        public   ControlStatus GetR23ControlConnect(string ControllID)
+        {
+            return RoomClient.RoomClient.GetControlConnect(ControllID);
+        }
+
+
     }
 }

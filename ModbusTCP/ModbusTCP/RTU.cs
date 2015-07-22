@@ -10,7 +10,7 @@ namespace ModbusTCP
 {
 
 //public delegate  void RegisterValueChangedHandler(int address, int newValue);
-    public delegate void OnCommStateChangedHandler(RTU sender,int comm_state);
+    public delegate void OnCommStateChangedHandler(IRTU sender,int comm_state);
     public  class RTU : ModbusTCP.IRTU 
     {
       //  public event RegisterValueChangedHandler OnRegisterValueChangeEvent;
@@ -58,7 +58,7 @@ namespace ModbusTCP
 
         int _Comm_state;
 
-        int Comm_state
+          int Comm_state
         {
             get{
                 return _Comm_state;

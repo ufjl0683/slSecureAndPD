@@ -689,23 +689,6 @@ namespace test.RemoteService {
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
-    public enum DoorEventType : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DoorOpen = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DoorClose = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Connected = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DisConnected = 3,
-    }
-    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="AlarmData", Namespace="http://schemas.datacontract.org/2004/07/SecureServer")]
@@ -888,6 +871,26 @@ namespace test.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         RTU = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PD = 2,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    public enum DoorEventType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorOpen = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorClose = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Connected = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DisConnected = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -935,6 +938,45 @@ namespace test.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetAllPlaneInfo", ReplyAction="http://tempuri.org/ISecureService/GetAllPlaneInfoResponse")]
         test.RemoteService.PlaneDegreeInfo[] GetAllPlaneInfo();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23ReaderStatus", ReplyAction="http://tempuri.org/ISecureService/GetR23ReaderStatusResponse")]
+        byte[] GetR23ReaderStatus(string ReaderId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SetR23Parameter", ReplyAction="http://tempuri.org/ISecureService/SetR23ParameterResponse")]
+        bool SetR23Parameter(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SetR23EngineRoomRecovery", ReplyAction="http://tempuri.org/ISecureService/SetR23EngineRoomRecoveryResponse")]
+        bool SetR23EngineRoomRecovery(string ErNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23RoomPerson", ReplyAction="http://tempuri.org/ISecureService/GetR23RoomPersonResponse")]
+        RoomInterface.PersonData[] GetR23RoomPerson(string ErNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23Progress", ReplyAction="http://tempuri.org/ISecureService/GetR23ProgressResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.DBChangedConstant))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.AlarmData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.AlarmType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.DoorBindingData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.DoorBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.CCTVBindingData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.CCTVBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.ItemBindingData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.ItemBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.ItemGroupBindingData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.ItemGroupBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.PlaneDegreeInfo[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.PlaneDegreeInfo))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomInterface.PersonData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomInterface.PersonData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomInterface.ControlStatus))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.DoorEventType))]
+        object[] GetR23Progress();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23GroupErrorMessage", ReplyAction="http://tempuri.org/ISecureService/GetR23GroupErrorMessageResponse")]
+        string GetR23GroupErrorMessage();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23ControlConnect", ReplyAction="http://tempuri.org/ISecureService/GetR23ControlConnectResponse")]
+        RoomInterface.ControlStatus GetR23ControlConnect(string ControllID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1035,6 +1077,34 @@ namespace test.RemoteService {
         
         public test.RemoteService.PlaneDegreeInfo[] GetAllPlaneInfo() {
             return base.Channel.GetAllPlaneInfo();
+        }
+        
+        public byte[] GetR23ReaderStatus(string ReaderId) {
+            return base.Channel.GetR23ReaderStatus(ReaderId);
+        }
+        
+        public bool SetR23Parameter(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23) {
+            return base.Channel.SetR23Parameter(readerid, RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23);
+        }
+        
+        public bool SetR23EngineRoomRecovery(string ErNo) {
+            return base.Channel.SetR23EngineRoomRecovery(ErNo);
+        }
+        
+        public RoomInterface.PersonData[] GetR23RoomPerson(string ErNo) {
+            return base.Channel.GetR23RoomPerson(ErNo);
+        }
+        
+        public object[] GetR23Progress() {
+            return base.Channel.GetR23Progress();
+        }
+        
+        public string GetR23GroupErrorMessage() {
+            return base.Channel.GetR23GroupErrorMessage();
+        }
+        
+        public RoomInterface.ControlStatus GetR23ControlConnect(string ControllID) {
+            return base.Channel.GetR23ControlConnect(ControllID);
         }
     }
 }

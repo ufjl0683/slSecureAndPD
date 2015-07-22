@@ -683,7 +683,7 @@ namespace SecureServer.PD
                   ColorString = "Red",
                   Description = description,
                 //  PlaneID = sender.PlaneID,
-                  IsForkCCTVEvent = false,
+                  IsForkCCTVEvent = false,  
                   PlaneName = this.tblPDConfig.PDName//Global.GetPlaneNameByPlaneID(this.PDName)
                  
 

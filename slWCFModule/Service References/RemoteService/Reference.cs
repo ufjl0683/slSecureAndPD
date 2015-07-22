@@ -590,21 +590,94 @@ namespace slWCFModule.RemoteService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
-    public enum DoorEventType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonData", Namespace="http://schemas.datacontract.org/2004/07/RoomInterface")]
+    public partial struct PersonData : System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DoorOpen = 0,
+        private string CARDNOField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DoorClose = 1,
+        private string COMPField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Connected = 2,
+        private bool ISMANUALField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DisConnected = 3,
+        private string NAMEField;
+        
+        private System.DateTime TIMEField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string CARDNO {
+            get {
+                return this.CARDNOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CARDNOField, value) != true)) {
+                    this.CARDNOField = value;
+                    this.RaisePropertyChanged("CARDNO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string COMP {
+            get {
+                return this.COMPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.COMPField, value) != true)) {
+                    this.COMPField = value;
+                    this.RaisePropertyChanged("COMP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public bool ISMANUAL {
+            get {
+                return this.ISMANUALField;
+            }
+            set {
+                if ((this.ISMANUALField.Equals(value) != true)) {
+                    this.ISMANUALField = value;
+                    this.RaisePropertyChanged("ISMANUAL");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string NAME {
+            get {
+                return this.NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NAMEField, value) != true)) {
+                    this.NAMEField = value;
+                    this.RaisePropertyChanged("NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public System.DateTime TIME {
+            get {
+                return this.TIMEField;
+            }
+            set {
+                if ((this.TIMEField.Equals(value) != true)) {
+                    this.TIMEField = value;
+                    this.RaisePropertyChanged("TIME");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -771,6 +844,83 @@ namespace slWCFModule.RemoteService {
         PD = 2,
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ControlStatus", Namespace="http://schemas.datacontract.org/2004/07/RoomInterface")]
+    public partial class ControlStatus : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private bool connectField;
+        
+        private string controlIDField;
+        
+        private System.DateTime disconnectTimeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public bool connect {
+            get {
+                return this.connectField;
+            }
+            set {
+                if ((this.connectField.Equals(value) != true)) {
+                    this.connectField = value;
+                    this.RaisePropertyChanged("connect");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string controlID {
+            get {
+                return this.controlIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.controlIDField, value) != true)) {
+                    this.controlIDField = value;
+                    this.RaisePropertyChanged("controlID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public System.DateTime disconnectTime {
+            get {
+                return this.disconnectTimeField;
+            }
+            set {
+                if ((this.disconnectTimeField.Equals(value) != true)) {
+                    this.disconnectTimeField = value;
+                    this.RaisePropertyChanged("disconnectTime");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    public enum DoorEventType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorOpen = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorClose = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Connected = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DisConnected = 3,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RemoteService.ISecureService", CallbackContract=typeof(slWCFModule.RemoteService.ISecureServiceCallback))]
     public interface ISecureService {
@@ -844,6 +994,59 @@ namespace slWCFModule.RemoteService {
         System.IAsyncResult BeginGetAllPlaneInfo(System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo> EndGetAllPlaneInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetR23ReaderStatus", ReplyAction="http://tempuri.org/ISecureService/GetR23ReaderStatusResponse")]
+        System.IAsyncResult BeginGetR23ReaderStatus(string ReaderId, System.AsyncCallback callback, object asyncState);
+        
+        byte[] EndGetR23ReaderStatus(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/SetR23Parameter", ReplyAction="http://tempuri.org/ISecureService/SetR23ParameterResponse")]
+        System.IAsyncResult BeginSetR23Parameter(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSetR23Parameter(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/SetR23EngineRoomRecovery", ReplyAction="http://tempuri.org/ISecureService/SetR23EngineRoomRecoveryResponse")]
+        System.IAsyncResult BeginSetR23EngineRoomRecovery(string ErNo, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSetR23EngineRoomRecovery(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetR23RoomPerson", ReplyAction="http://tempuri.org/ISecureService/GetR23RoomPersonResponse")]
+        System.IAsyncResult BeginGetR23RoomPerson(string ErNo, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PersonData> EndGetR23RoomPerson(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetR23Progress", ReplyAction="http://tempuri.org/ISecureService/GetR23ProgressResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.DBChangedConstant))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.AlarmData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.AlarmType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.DoorBindingData>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.DoorBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.CCTVBindingData>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.CCTVBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemBindingData>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.ItemBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.ItemGroupBindingData>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.ItemGroupBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.PlaneDegreeInfo))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PersonData>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.PersonData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.ControlStatus))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<object>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.DoorEventType))]
+        System.IAsyncResult BeginGetR23Progress(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<object> EndGetR23Progress(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetR23GroupErrorMessage", ReplyAction="http://tempuri.org/ISecureService/GetR23GroupErrorMessageResponse")]
+        System.IAsyncResult BeginGetR23GroupErrorMessage(System.AsyncCallback callback, object asyncState);
+        
+        string EndGetR23GroupErrorMessage(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetR23ControlConnect", ReplyAction="http://tempuri.org/ISecureService/GetR23ControlConnectResponse")]
+        System.IAsyncResult BeginGetR23ControlConnect(string ControllID, System.AsyncCallback callback, object asyncState);
+        
+        slWCFModule.RemoteService.ControlStatus EndGetR23ControlConnect(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -982,6 +1185,139 @@ namespace slWCFModule.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetR23ReaderStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetR23ReaderStatusCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public byte[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((byte[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SetR23ParameterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SetR23ParameterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SetR23EngineRoomRecoveryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SetR23EngineRoomRecoveryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetR23RoomPersonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetR23RoomPersonCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PersonData> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PersonData>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetR23ProgressCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetR23ProgressCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<object> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<object>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetR23GroupErrorMessageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetR23GroupErrorMessageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetR23ControlConnectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetR23ControlConnectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public slWCFModule.RemoteService.ControlStatus Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((slWCFModule.RemoteService.ControlStatus)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SecureServiceClient : System.ServiceModel.DuplexClientBase<slWCFModule.RemoteService.ISecureService>, slWCFModule.RemoteService.ISecureService {
         
         private BeginOperationDelegate onBeginRegisterDelegate;
@@ -1067,6 +1403,48 @@ namespace slWCFModule.RemoteService {
         private EndOperationDelegate onEndGetAllPlaneInfoDelegate;
         
         private System.Threading.SendOrPostCallback onGetAllPlaneInfoCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetR23ReaderStatusDelegate;
+        
+        private EndOperationDelegate onEndGetR23ReaderStatusDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetR23ReaderStatusCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSetR23ParameterDelegate;
+        
+        private EndOperationDelegate onEndSetR23ParameterDelegate;
+        
+        private System.Threading.SendOrPostCallback onSetR23ParameterCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSetR23EngineRoomRecoveryDelegate;
+        
+        private EndOperationDelegate onEndSetR23EngineRoomRecoveryDelegate;
+        
+        private System.Threading.SendOrPostCallback onSetR23EngineRoomRecoveryCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetR23RoomPersonDelegate;
+        
+        private EndOperationDelegate onEndGetR23RoomPersonDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetR23RoomPersonCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetR23ProgressDelegate;
+        
+        private EndOperationDelegate onEndGetR23ProgressDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetR23ProgressCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetR23GroupErrorMessageDelegate;
+        
+        private EndOperationDelegate onEndGetR23GroupErrorMessageDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetR23GroupErrorMessageCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetR23ControlConnectDelegate;
+        
+        private EndOperationDelegate onEndGetR23ControlConnectDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetR23ControlConnectCompletedDelegate;
         
         private bool useGeneratedCallback;
         
@@ -1180,6 +1558,20 @@ namespace slWCFModule.RemoteService {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SetItemDOValueCompleted;
         
         public event System.EventHandler<GetAllPlaneInfoCompletedEventArgs> GetAllPlaneInfoCompleted;
+        
+        public event System.EventHandler<GetR23ReaderStatusCompletedEventArgs> GetR23ReaderStatusCompleted;
+        
+        public event System.EventHandler<SetR23ParameterCompletedEventArgs> SetR23ParameterCompleted;
+        
+        public event System.EventHandler<SetR23EngineRoomRecoveryCompletedEventArgs> SetR23EngineRoomRecoveryCompleted;
+        
+        public event System.EventHandler<GetR23RoomPersonCompletedEventArgs> GetR23RoomPersonCompleted;
+        
+        public event System.EventHandler<GetR23ProgressCompletedEventArgs> GetR23ProgressCompleted;
+        
+        public event System.EventHandler<GetR23GroupErrorMessageCompletedEventArgs> GetR23GroupErrorMessageCompleted;
+        
+        public event System.EventHandler<GetR23ControlConnectCompletedEventArgs> GetR23ControlConnectCompleted;
         
         public event System.EventHandler<SayHelloReceivedEventArgs> SayHelloReceived;
         
@@ -1847,6 +2239,339 @@ namespace slWCFModule.RemoteService {
             base.InvokeAsync(this.onBeginGetAllPlaneInfoDelegate, null, this.onEndGetAllPlaneInfoDelegate, this.onGetAllPlaneInfoCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetR23ReaderStatus(string ReaderId, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetR23ReaderStatus(ReaderId, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        byte[] slWCFModule.RemoteService.ISecureService.EndGetR23ReaderStatus(System.IAsyncResult result) {
+            return base.Channel.EndGetR23ReaderStatus(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetR23ReaderStatus(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            string ReaderId = ((string)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetR23ReaderStatus(ReaderId, callback, asyncState);
+        }
+        
+        private object[] OnEndGetR23ReaderStatus(System.IAsyncResult result) {
+            byte[] retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetR23ReaderStatus(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetR23ReaderStatusCompleted(object state) {
+            if ((this.GetR23ReaderStatusCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetR23ReaderStatusCompleted(this, new GetR23ReaderStatusCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetR23ReaderStatusAsync(string ReaderId) {
+            this.GetR23ReaderStatusAsync(ReaderId, null);
+        }
+        
+        public void GetR23ReaderStatusAsync(string ReaderId, object userState) {
+            if ((this.onBeginGetR23ReaderStatusDelegate == null)) {
+                this.onBeginGetR23ReaderStatusDelegate = new BeginOperationDelegate(this.OnBeginGetR23ReaderStatus);
+            }
+            if ((this.onEndGetR23ReaderStatusDelegate == null)) {
+                this.onEndGetR23ReaderStatusDelegate = new EndOperationDelegate(this.OnEndGetR23ReaderStatus);
+            }
+            if ((this.onGetR23ReaderStatusCompletedDelegate == null)) {
+                this.onGetR23ReaderStatusCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetR23ReaderStatusCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetR23ReaderStatusDelegate, new object[] {
+                        ReaderId}, this.onEndGetR23ReaderStatusDelegate, this.onGetR23ReaderStatusCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginSetR23Parameter(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSetR23Parameter(readerid, RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool slWCFModule.RemoteService.ISecureService.EndSetR23Parameter(System.IAsyncResult result) {
+            return base.Channel.EndSetR23Parameter(result);
+        }
+        
+        private System.IAsyncResult OnBeginSetR23Parameter(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            string readerid = ((string)(inValues[0]));
+            int RemoOpenTimeR23 = ((int)(inValues[1]));
+            int DelayTimeR23 = ((int)(inValues[2]));
+            int LoopErrorAlarmTimeR23 = ((int)(inValues[3]));
+            int AlarmTimeR23 = ((int)(inValues[4]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginSetR23Parameter(readerid, RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23, callback, asyncState);
+        }
+        
+        private object[] OnEndSetR23Parameter(System.IAsyncResult result) {
+            bool retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndSetR23Parameter(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSetR23ParameterCompleted(object state) {
+            if ((this.SetR23ParameterCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SetR23ParameterCompleted(this, new SetR23ParameterCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SetR23ParameterAsync(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23) {
+            this.SetR23ParameterAsync(readerid, RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23, null);
+        }
+        
+        public void SetR23ParameterAsync(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23, object userState) {
+            if ((this.onBeginSetR23ParameterDelegate == null)) {
+                this.onBeginSetR23ParameterDelegate = new BeginOperationDelegate(this.OnBeginSetR23Parameter);
+            }
+            if ((this.onEndSetR23ParameterDelegate == null)) {
+                this.onEndSetR23ParameterDelegate = new EndOperationDelegate(this.OnEndSetR23Parameter);
+            }
+            if ((this.onSetR23ParameterCompletedDelegate == null)) {
+                this.onSetR23ParameterCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSetR23ParameterCompleted);
+            }
+            base.InvokeAsync(this.onBeginSetR23ParameterDelegate, new object[] {
+                        readerid,
+                        RemoOpenTimeR23,
+                        DelayTimeR23,
+                        LoopErrorAlarmTimeR23,
+                        AlarmTimeR23}, this.onEndSetR23ParameterDelegate, this.onSetR23ParameterCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginSetR23EngineRoomRecovery(string ErNo, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSetR23EngineRoomRecovery(ErNo, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool slWCFModule.RemoteService.ISecureService.EndSetR23EngineRoomRecovery(System.IAsyncResult result) {
+            return base.Channel.EndSetR23EngineRoomRecovery(result);
+        }
+        
+        private System.IAsyncResult OnBeginSetR23EngineRoomRecovery(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            string ErNo = ((string)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginSetR23EngineRoomRecovery(ErNo, callback, asyncState);
+        }
+        
+        private object[] OnEndSetR23EngineRoomRecovery(System.IAsyncResult result) {
+            bool retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndSetR23EngineRoomRecovery(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSetR23EngineRoomRecoveryCompleted(object state) {
+            if ((this.SetR23EngineRoomRecoveryCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SetR23EngineRoomRecoveryCompleted(this, new SetR23EngineRoomRecoveryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SetR23EngineRoomRecoveryAsync(string ErNo) {
+            this.SetR23EngineRoomRecoveryAsync(ErNo, null);
+        }
+        
+        public void SetR23EngineRoomRecoveryAsync(string ErNo, object userState) {
+            if ((this.onBeginSetR23EngineRoomRecoveryDelegate == null)) {
+                this.onBeginSetR23EngineRoomRecoveryDelegate = new BeginOperationDelegate(this.OnBeginSetR23EngineRoomRecovery);
+            }
+            if ((this.onEndSetR23EngineRoomRecoveryDelegate == null)) {
+                this.onEndSetR23EngineRoomRecoveryDelegate = new EndOperationDelegate(this.OnEndSetR23EngineRoomRecovery);
+            }
+            if ((this.onSetR23EngineRoomRecoveryCompletedDelegate == null)) {
+                this.onSetR23EngineRoomRecoveryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSetR23EngineRoomRecoveryCompleted);
+            }
+            base.InvokeAsync(this.onBeginSetR23EngineRoomRecoveryDelegate, new object[] {
+                        ErNo}, this.onEndSetR23EngineRoomRecoveryDelegate, this.onSetR23EngineRoomRecoveryCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetR23RoomPerson(string ErNo, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetR23RoomPerson(ErNo, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PersonData> slWCFModule.RemoteService.ISecureService.EndGetR23RoomPerson(System.IAsyncResult result) {
+            return base.Channel.EndGetR23RoomPerson(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetR23RoomPerson(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            string ErNo = ((string)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetR23RoomPerson(ErNo, callback, asyncState);
+        }
+        
+        private object[] OnEndGetR23RoomPerson(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PersonData> retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetR23RoomPerson(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetR23RoomPersonCompleted(object state) {
+            if ((this.GetR23RoomPersonCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetR23RoomPersonCompleted(this, new GetR23RoomPersonCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetR23RoomPersonAsync(string ErNo) {
+            this.GetR23RoomPersonAsync(ErNo, null);
+        }
+        
+        public void GetR23RoomPersonAsync(string ErNo, object userState) {
+            if ((this.onBeginGetR23RoomPersonDelegate == null)) {
+                this.onBeginGetR23RoomPersonDelegate = new BeginOperationDelegate(this.OnBeginGetR23RoomPerson);
+            }
+            if ((this.onEndGetR23RoomPersonDelegate == null)) {
+                this.onEndGetR23RoomPersonDelegate = new EndOperationDelegate(this.OnEndGetR23RoomPerson);
+            }
+            if ((this.onGetR23RoomPersonCompletedDelegate == null)) {
+                this.onGetR23RoomPersonCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetR23RoomPersonCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetR23RoomPersonDelegate, new object[] {
+                        ErNo}, this.onEndGetR23RoomPersonDelegate, this.onGetR23RoomPersonCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetR23Progress(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetR23Progress(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<object> slWCFModule.RemoteService.ISecureService.EndGetR23Progress(System.IAsyncResult result) {
+            return base.Channel.EndGetR23Progress(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetR23Progress(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetR23Progress(callback, asyncState);
+        }
+        
+        private object[] OnEndGetR23Progress(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<object> retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetR23Progress(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetR23ProgressCompleted(object state) {
+            if ((this.GetR23ProgressCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetR23ProgressCompleted(this, new GetR23ProgressCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetR23ProgressAsync() {
+            this.GetR23ProgressAsync(null);
+        }
+        
+        public void GetR23ProgressAsync(object userState) {
+            if ((this.onBeginGetR23ProgressDelegate == null)) {
+                this.onBeginGetR23ProgressDelegate = new BeginOperationDelegate(this.OnBeginGetR23Progress);
+            }
+            if ((this.onEndGetR23ProgressDelegate == null)) {
+                this.onEndGetR23ProgressDelegate = new EndOperationDelegate(this.OnEndGetR23Progress);
+            }
+            if ((this.onGetR23ProgressCompletedDelegate == null)) {
+                this.onGetR23ProgressCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetR23ProgressCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetR23ProgressDelegate, null, this.onEndGetR23ProgressDelegate, this.onGetR23ProgressCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetR23GroupErrorMessage(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetR23GroupErrorMessage(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        string slWCFModule.RemoteService.ISecureService.EndGetR23GroupErrorMessage(System.IAsyncResult result) {
+            return base.Channel.EndGetR23GroupErrorMessage(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetR23GroupErrorMessage(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetR23GroupErrorMessage(callback, asyncState);
+        }
+        
+        private object[] OnEndGetR23GroupErrorMessage(System.IAsyncResult result) {
+            string retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetR23GroupErrorMessage(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetR23GroupErrorMessageCompleted(object state) {
+            if ((this.GetR23GroupErrorMessageCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetR23GroupErrorMessageCompleted(this, new GetR23GroupErrorMessageCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetR23GroupErrorMessageAsync() {
+            this.GetR23GroupErrorMessageAsync(null);
+        }
+        
+        public void GetR23GroupErrorMessageAsync(object userState) {
+            if ((this.onBeginGetR23GroupErrorMessageDelegate == null)) {
+                this.onBeginGetR23GroupErrorMessageDelegate = new BeginOperationDelegate(this.OnBeginGetR23GroupErrorMessage);
+            }
+            if ((this.onEndGetR23GroupErrorMessageDelegate == null)) {
+                this.onEndGetR23GroupErrorMessageDelegate = new EndOperationDelegate(this.OnEndGetR23GroupErrorMessage);
+            }
+            if ((this.onGetR23GroupErrorMessageCompletedDelegate == null)) {
+                this.onGetR23GroupErrorMessageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetR23GroupErrorMessageCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetR23GroupErrorMessageDelegate, null, this.onEndGetR23GroupErrorMessageDelegate, this.onGetR23GroupErrorMessageCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetR23ControlConnect(string ControllID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetR23ControlConnect(ControllID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        slWCFModule.RemoteService.ControlStatus slWCFModule.RemoteService.ISecureService.EndGetR23ControlConnect(System.IAsyncResult result) {
+            return base.Channel.EndGetR23ControlConnect(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetR23ControlConnect(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            string ControllID = ((string)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetR23ControlConnect(ControllID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetR23ControlConnect(System.IAsyncResult result) {
+            slWCFModule.RemoteService.ControlStatus retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetR23ControlConnect(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetR23ControlConnectCompleted(object state) {
+            if ((this.GetR23ControlConnectCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetR23ControlConnectCompleted(this, new GetR23ControlConnectCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetR23ControlConnectAsync(string ControllID) {
+            this.GetR23ControlConnectAsync(ControllID, null);
+        }
+        
+        public void GetR23ControlConnectAsync(string ControllID, object userState) {
+            if ((this.onBeginGetR23ControlConnectDelegate == null)) {
+                this.onBeginGetR23ControlConnectDelegate = new BeginOperationDelegate(this.OnBeginGetR23ControlConnect);
+            }
+            if ((this.onEndGetR23ControlConnectDelegate == null)) {
+                this.onEndGetR23ControlConnectDelegate = new EndOperationDelegate(this.OnEndGetR23ControlConnect);
+            }
+            if ((this.onGetR23ControlConnectCompletedDelegate == null)) {
+                this.onGetR23ControlConnectCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetR23ControlConnectCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetR23ControlConnectDelegate, new object[] {
+                        ControllID}, this.onEndGetR23ControlConnectDelegate, this.onGetR23ControlConnectCompletedDelegate, userState);
+        }
+        
         private void OnSayHelloReceived(object state) {
             if ((this.SayHelloReceived != null)) {
                 object[] results = ((object[])(state));
@@ -2165,6 +2890,99 @@ namespace slWCFModule.RemoteService {
             public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo> EndGetAllPlaneInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo> _result = ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PlaneDegreeInfo>)(base.EndInvoke("GetAllPlaneInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetR23ReaderStatus(string ReaderId, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = ReaderId;
+                System.IAsyncResult _result = base.BeginInvoke("GetR23ReaderStatus", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public byte[] EndGetR23ReaderStatus(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                byte[] _result = ((byte[])(base.EndInvoke("GetR23ReaderStatus", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginSetR23Parameter(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[5];
+                _args[0] = readerid;
+                _args[1] = RemoOpenTimeR23;
+                _args[2] = DelayTimeR23;
+                _args[3] = LoopErrorAlarmTimeR23;
+                _args[4] = AlarmTimeR23;
+                System.IAsyncResult _result = base.BeginInvoke("SetR23Parameter", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndSetR23Parameter(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("SetR23Parameter", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginSetR23EngineRoomRecovery(string ErNo, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = ErNo;
+                System.IAsyncResult _result = base.BeginInvoke("SetR23EngineRoomRecovery", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndSetR23EngineRoomRecovery(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("SetR23EngineRoomRecovery", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetR23RoomPerson(string ErNo, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = ErNo;
+                System.IAsyncResult _result = base.BeginInvoke("GetR23RoomPerson", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PersonData> EndGetR23RoomPerson(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PersonData> _result = ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PersonData>)(base.EndInvoke("GetR23RoomPerson", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetR23Progress(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetR23Progress", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<object> EndGetR23Progress(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<object> _result = ((System.Collections.ObjectModel.ObservableCollection<object>)(base.EndInvoke("GetR23Progress", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetR23GroupErrorMessage(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetR23GroupErrorMessage", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public string EndGetR23GroupErrorMessage(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                string _result = ((string)(base.EndInvoke("GetR23GroupErrorMessage", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetR23ControlConnect(string ControllID, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = ControllID;
+                System.IAsyncResult _result = base.BeginInvoke("GetR23ControlConnect", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public slWCFModule.RemoteService.ControlStatus EndGetR23ControlConnect(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                slWCFModule.RemoteService.ControlStatus _result = ((slWCFModule.RemoteService.ControlStatus)(base.EndInvoke("GetR23ControlConnect", _args, result)));
                 return _result;
             }
         }

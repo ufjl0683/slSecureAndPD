@@ -15,9 +15,31 @@ namespace slSecure.Controls
     public partial class CCTVControl : UserControl
     {
         
-          int ch;
+        int ch;
         string UserName, Pwd, Url;
         int LoginType = 0;
+
+      //  bool IsEnableCloseButton;
+
+        public bool IsEnableCloseButton
+        {
+            set
+            {
+                if(value)
+                    this.CancelButton.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.CancelButton.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            get
+            {
+                if (this.CancelButton.Visibility == System.Windows.Visibility.Visible)
+                    return true;
+                else
+                    return false;
+
+            }
+        }
+
         public CCTVControl()
         {
             InitializeComponent();

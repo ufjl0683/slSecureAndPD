@@ -1,4 +1,5 @@
 ﻿using ModbusTCP;
+using RoomInterface;
 //using SecureServer.CardReader;
 //using SecureServer.RTU;
 using System;
@@ -12,16 +13,93 @@ using test.RemoteService;
 
 namespace test
 {
+    class User
+    {
+        public string MCNSID { get; set; }
+        public string CardNo { get; set; }
+        public int[] ERIDs { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Name { get; set; }
+    }
+
     class Program
     {
         static RTU rtu = new RTU("rtu-101", 1, "10.21.12.200", 502, 2001, 46,0);
+        //static void CallBack(object o)
+        //{
+        //    Console.WriteLine("hi");
+        //    System.Threading.Thread.Sleep(40000);
+        //}
+        
+
+
         static void Main(string[] args)
         {
 
 
-            bool status = RoomClient.RoomClient.GetControlConnectionStatus("AN-2400N-1");
 
-         Console.WriteLine(status);
+
+         //   RoomClient.RoomClient.RoomEvent += RoomClient_RoomEvent;
+
+         //   bool status = RoomClient.RoomClient.GetControlConnectionStatus("AN-2400N-1");
+
+         //   byte[] data = RoomClient.RoomClient.GetStatus("AN-ADAM-1");
+
+         //   RoomClient.RoomClient.GroupModify(new List<int>(new int[]{1,2}));
+             
+            while (true)
+            {
+            //  object[] objs=  RoomClient.RoomClient.GetGroupProgress();
+
+            
+
+
+
+            //  Console.WriteLine(objs.Length);
+                byte[] dat=RoomClient.RoomClient.GetStatus("AN-ADAM-1");
+             Console.WriteLine( dat[3]);
+             Console.WriteLine(dat[4]);
+             Console.WriteLine(dat[5]);
+              Console.ReadKey();
+            }
+        //    bool success = false;
+
+        //    success = RoomClient.RoomClient.SetADAMAlarmTime("AN-ADAM-1", 15, 10, 5, 20);
+         //   //if (RoomClient.RoomClient.SetTime("AN-2400N-1", DateTime.Now))
+         //   //    Console.WriteLine("對時成功!");
+         //   //else
+         //   //    Console.WriteLine("對時失敗!");
+
+         ////   success = RoomClient.RoomClient.OpenDoor("AN-ADAM-1", 0, "opendoor");
+         //  //  bool success= RoomClient.RoomClient.RestaADAMControl("AN-ADAM-1");
+
+         
+         //   Console.WriteLine(data[3]);
+          //  Console.WriteLine(success);
+            // success= RoomClient.RoomClient.RestaADAMControl("AN");
+            //foreach (PersonData s in RoomClient.RoomClient.GetRoomPerson("AN"))
+            //{
+            //    Console.WriteLine(s.Name);
+            //}
+             
+          //System.Threading.Timer tmr = new System.Threading.Timer((object o) =>
+          //{
+          //    System.Console.Beep();
+          //});
+          //tmr.Change(0, 1000 * 3);
+            //System.Threading.Timer tmr=new System.Threading.Timer(
+
+            //   CallBack
+                   
+            // );
+            //tmr.Change(0, 3000);
+          //Console.WriteLine(data[3]);
+
+          //Console.WriteLine(data[4]);
+            //RoomClient.RoomClient.GetStatus(
+          //  Console.WriteLine(success);
+       //  Console.WriteLine(status);
 
          //   System.Collections.BitArray bary = new System.Collections.BitArray(new byte[2]);
 
@@ -31,15 +109,35 @@ namespace test
          //   Console.WriteLine("{0:X4}",BitConverter.ToUInt16(kk,0));
          ////   Console.WriteLine(null == 1);
 
-         //   MCNSService.MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
-         //   AddCardInfo info = new AddCardInfo();
-         //   info.CardNo = "1232828117";
-         //   info.ERIDs = new ArrayOfInt { 1, 3, 5 };
-         //   info.StartDate = DateTime.Now;
-         //   info.EndDate = info.StartDate.AddDays(3);
-         //   info.MCNSID = "333333";
-         //   string res = client.AddCard(info);
-         //   Console.WriteLine(res);
+            //MCNSService.MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
+        
+            //AddCardInfo info = new AddCardInfo();
+            //info.CardNo = "999999999";
+            //info.ERIDs = new ArrayOfInt { 1, 3, 5 };
+            //info.StartDate = DateTime.Now;
+            //info.EndDate = info.StartDate.AddDays(3);
+            //info.MCNSID = "7777777";
+            //string res = client.AddCard(info);
+            //Console.WriteLine(res);
+
+            //using (SecureDBEntities db = new SecureDBEntities())
+            //{
+            //    var q = from n in db.vwMagneticCardDetail
+            //            where n.Memo.Contains("7777777")
+            //            group (int)n.ERID by new { n.ABA, n.Memo, n.StartDate, n.EndDate, n.Name } into g
+            //            select new { g.Key.ABA, g, g.Key.Memo, g.Key.EndDate, g.Key.StartDate, Name = g.Key.Name };
+
+            //    System.Collections.Generic.List<User> list = new List<User>();
+            //    foreach (var i in q)
+            //    {
+            //        list.Add(new User() { CardNo = i.ABA, EndDate = (DateTime)i.EndDate, StartDate = (DateTime)i.StartDate, MCNSID = i.Memo, Name = i.Name, ERIDs = i.g.Distinct().ToArray<int>() });
+            //    }
+
+            //    User u = list[0];
+            // //   return list.ToArray();
+            //}
+
+           
            // info.MCNSID
 
       
@@ -67,8 +165,8 @@ namespace test
 
           
           //  modbus.ReadHoldingRegister(1, 1, 2000, 46, ref data);
-            
-            //  new Wrapper();
+              
+           //   new Wrapper();
             //CCTV_TYPE1 cctv=   new CCTV_TYPE1("192.192.85.20", 11000, "admin", "pass");
             //cctv.Preset(1);
             //  Console.ReadKey();
@@ -104,6 +202,17 @@ namespace test
             Console.ReadKey();
         }
 
+        static void RoomClient_RoomEvent(RoomInterface.ControllEventType type, string Name, object obj)
+        {
+
+            Console.WriteLine("{0} , {1}", type, Name);
+            if (type == RoomInterface.ControllEventType.ADAMStatusChange && ((byte[])obj)[1] == 1)
+                Console.WriteLine("合法卡");
+            if (type == RoomInterface.ControllEventType.ADAMStatusChange && ((byte[])obj)[32] == 3)
+                Console.WriteLine("門沒關");
+            //throw new NotImplementedException();
+        }
+
         static void SendTask()
         {
 
@@ -133,7 +242,8 @@ namespace test
                 Console.WriteLine(data.Length);
                 Console.WriteLine("Key:" + Key);
 
-          
+               bool success= client.SetR23Parameter("AN-2400N-1", 15, 10, 5, 20);
+               Console.WriteLine(success);
 
             }
 
