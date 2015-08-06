@@ -16,6 +16,7 @@ namespace slSecure.Controls
     {
         public event MouseButtonEventHandler Click;
         MjpegProcessor.MjpegDecoder decoder;
+        public static int CnCnt=0;
         public CCTVLock()
         {
             InitializeComponent();
@@ -30,10 +31,10 @@ namespace slSecure.Controls
             //#	Result	Protocol	Host	URL	Body	Caching	Content-Type	Process	Comments	Custom	
             //24	 - 	HTTP	210.241.67.167	/abs2mjpg/mjpg?camera=14&resolution=352x240&1399178264829	-1			chrome:25404			
 
-            
 
+            CnCnt++;
             decoder.ParseStream(new Uri(url, UriKind.Absolute));
-
+          
         }
         public CCTVLock(string url,string username,string   pwd):this()
         {
@@ -44,8 +45,8 @@ namespace slSecure.Controls
             //#	Result	Protocol	Host	URL	Body	Caching	Content-Type	Process	Comments	Custom	
             //24	 - 	HTTP	210.241.67.167	/abs2mjpg/mjpg?camera=14&resolution=352x240&1399178264829	-1			chrome:25404			
 
-            
 
+            CnCnt++;
             decoder.ParseStream(new Uri(url, UriKind.Absolute),username,pwd);
 
         }
@@ -59,7 +60,7 @@ namespace slSecure.Controls
             //24	 - 	HTTP	210.241.67.167	/abs2mjpg/mjpg?camera=14&resolution=352x240&1399178264829	-1			chrome:25404			
 
             //    decoder.ParseStream(new Uri("http://210.241.67.167/abs2mjpg/mjpg?resolution=352x240&camera="+ch, UriKind.Absolute));
-
+            CnCnt++;
             decoder.ParseStream(new Uri("http://210.241.67.167/abs2mjpg/mjpg?resolution=352x240&camera=" + ch, UriKind.Absolute));
 
             //  decoder.ParseStream(new Uri("http://192.192.161.17:90/axis-cgi/mjpg/video.cgi?resolution=CIF&camera=1", UriKind.Absolute),"admin","admin");
@@ -112,8 +113,10 @@ namespace slSecure.Controls
         {
             if (decoder != null)
             {
-                decoder.StopStream();
+                decoder.Close();
+                 
                 decoder = null;
+               CnCnt--;
             }
 
            

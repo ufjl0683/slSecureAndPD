@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecure.Web", "slSecure.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomClient", "R23-昭毅程式\RoomClient\RoomClient.csproj", "{2C539972-8B2E-414E-8CB1-89CE468AAE03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMRTest", "SMRTest\SMRTest.csproj", "{1FDEAF34-D9FA-40D3-A3F0-47F88CF2CA0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +102,10 @@ Global
 		{2C539972-8B2E-414E-8CB1-89CE468AAE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C539972-8B2E-414E-8CB1-89CE468AAE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C539972-8B2E-414E-8CB1-89CE468AAE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FDEAF34-D9FA-40D3-A3F0-47F88CF2CA0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FDEAF34-D9FA-40D3-A3F0-47F88CF2CA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FDEAF34-D9FA-40D3-A3F0-47F88CF2CA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FDEAF34-D9FA-40D3-A3F0-47F88CF2CA0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

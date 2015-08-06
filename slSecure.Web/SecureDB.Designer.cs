@@ -34,8 +34,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblMagneticCard_tblSysRole", "tblSysRole", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSysRole), "tblMagneticCard", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblMagneticCard), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblMenu_tblMenuGroup", "tblMenuGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblMenuGroup), "tblMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblMenu), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblUserGroupMenu_tblMenu", "tblMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblMenu), "tblUserGroupMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblUserGroupMenu), true)]
-[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSchConfig_tblUser", "tblUser", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblUser), "tblSchConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSchConfig), true)]
-[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSchLog_tblSchConfig", "tblSchConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSchConfig), "tblSchLog", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblSchLog), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSingalIOLog_tblSingalIO", "tblSingalIO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSingalIO), "tblSingalIOLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSingalIOLog), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSysOperation_tblUser", "tblUser", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblUser), "tblSysOperation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSysOperation), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSysRoleAuthority_tblSysRole", "tblSysRole", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSysRole), "tblSysRoleAuthority", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSysRoleAuthority), true)]
@@ -46,6 +44,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblItemConfig_tblItemGroup", "tblItemGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblItemGroup), "tblItemConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblItemConfig), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblPDConfig_tblEngineRoomConfig", "tblEngineRoomConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblEngineRoomConfig), "tblPDConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblPDConfig), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblPDAlarmLog_tblPDConfig", "tblPDConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblPDConfig), "tblPDAlarmLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblPDAlarmLog), true)]
+[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSchConfig_tblUser", "tblUser", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblUser), "tblSchConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSchConfig), true)]
+[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSchLog_tblSchConfig", "tblSchConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSchConfig), "tblSchLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSchLog), true)]
 
 #endregion
 
@@ -448,38 +448,6 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<tblNVRConfig> _tblNVRConfig;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<tblSchConfig> tblSchConfig
-        {
-            get
-            {
-                if ((_tblSchConfig == null))
-                {
-                    _tblSchConfig = base.CreateObjectSet<tblSchConfig>("tblSchConfig");
-                }
-                return _tblSchConfig;
-            }
-        }
-        private ObjectSet<tblSchConfig> _tblSchConfig;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<tblSchLog> tblSchLog
-        {
-            get
-            {
-                if ((_tblSchLog == null))
-                {
-                    _tblSchLog = base.CreateObjectSet<tblSchLog>("tblSchLog");
-                }
-                return _tblSchLog;
-            }
-        }
-        private ObjectSet<tblSchLog> _tblSchLog;
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -996,54 +964,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwItemConfig> vwItemConfig
-        {
-            get
-            {
-                if ((_vwItemConfig == null))
-                {
-                    _vwItemConfig = base.CreateObjectSet<vwItemConfig>("vwItemConfig");
-                }
-                return _vwItemConfig;
-            }
-        }
-        private ObjectSet<vwItemConfig> _vwItemConfig;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<vwMagneticCard> vwMagneticCard
-        {
-            get
-            {
-                if ((_vwMagneticCard == null))
-                {
-                    _vwMagneticCard = base.CreateObjectSet<vwMagneticCard>("vwMagneticCard");
-                }
-                return _vwMagneticCard;
-            }
-        }
-        private ObjectSet<vwMagneticCard> _vwMagneticCard;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<vwMagneticCardDetail> vwMagneticCardDetail
-        {
-            get
-            {
-                if ((_vwMagneticCardDetail == null))
-                {
-                    _vwMagneticCardDetail = base.CreateObjectSet<vwMagneticCardDetail>("vwMagneticCardDetail");
-                }
-                return _vwMagneticCardDetail;
-            }
-        }
-        private ObjectSet<vwMagneticCardDetail> _vwMagneticCardDetail;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwPDAlarmLog> vwPDAlarmLog
         {
             get
@@ -1216,6 +1136,134 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwEntranceGuardDetail> _vwEntranceGuardDetail;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblReportList> tblReportList
+        {
+            get
+            {
+                if ((_tblReportList == null))
+                {
+                    _tblReportList = base.CreateObjectSet<tblReportList>("tblReportList");
+                }
+                return _tblReportList;
+            }
+        }
+        private ObjectSet<tblReportList> _tblReportList;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblSchConfig> tblSchConfig
+        {
+            get
+            {
+                if ((_tblSchConfig == null))
+                {
+                    _tblSchConfig = base.CreateObjectSet<tblSchConfig>("tblSchConfig");
+                }
+                return _tblSchConfig;
+            }
+        }
+        private ObjectSet<tblSchConfig> _tblSchConfig;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblSchLog> tblSchLog
+        {
+            get
+            {
+                if ((_tblSchLog == null))
+                {
+                    _tblSchLog = base.CreateObjectSet<tblSchLog>("tblSchLog");
+                }
+                return _tblSchLog;
+            }
+        }
+        private ObjectSet<tblSchLog> _tblSchLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwSchConfig> vwSchConfig
+        {
+            get
+            {
+                if ((_vwSchConfig == null))
+                {
+                    _vwSchConfig = base.CreateObjectSet<vwSchConfig>("vwSchConfig");
+                }
+                return _vwSchConfig;
+            }
+        }
+        private ObjectSet<vwSchConfig> _vwSchConfig;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwSchLog> vwSchLog
+        {
+            get
+            {
+                if ((_vwSchLog == null))
+                {
+                    _vwSchLog = base.CreateObjectSet<vwSchLog>("vwSchLog");
+                }
+                return _vwSchLog;
+            }
+        }
+        private ObjectSet<vwSchLog> _vwSchLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwItemConfig> vwItemConfig
+        {
+            get
+            {
+                if ((_vwItemConfig == null))
+                {
+                    _vwItemConfig = base.CreateObjectSet<vwItemConfig>("vwItemConfig");
+                }
+                return _vwItemConfig;
+            }
+        }
+        private ObjectSet<vwItemConfig> _vwItemConfig;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwMagneticCard> vwMagneticCard
+        {
+            get
+            {
+                if ((_vwMagneticCard == null))
+                {
+                    _vwMagneticCard = base.CreateObjectSet<vwMagneticCard>("vwMagneticCard");
+                }
+                return _vwMagneticCard;
+            }
+        }
+        private ObjectSet<vwMagneticCard> _vwMagneticCard;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwMagneticCardDetail> vwMagneticCardDetail
+        {
+            get
+            {
+                if ((_vwMagneticCardDetail == null))
+                {
+                    _vwMagneticCardDetail = base.CreateObjectSet<vwMagneticCardDetail>("vwMagneticCardDetail");
+                }
+                return _vwMagneticCardDetail;
+            }
+        }
+        private ObjectSet<vwMagneticCardDetail> _vwMagneticCardDetail;
 
         #endregion
 
@@ -1395,22 +1443,6 @@ namespace slSecure.Web
         public void AddTotblNVRConfig(tblNVRConfig tblNVRConfig)
         {
             base.AddObject("tblNVRConfig", tblNVRConfig);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 tblSchConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTotblSchConfig(tblSchConfig tblSchConfig)
-        {
-            base.AddObject("tblSchConfig", tblSchConfig);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 tblSchLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTotblSchLog(tblSchLog tblSchLog)
-        {
-            base.AddObject("tblSchLog", tblSchLog);
         }
     
         /// <summary>
@@ -1670,30 +1702,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwItemConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwItemConfig(vwItemConfig vwItemConfig)
-        {
-            base.AddObject("vwItemConfig", vwItemConfig);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 vwMagneticCard EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwMagneticCard(vwMagneticCard vwMagneticCard)
-        {
-            base.AddObject("vwMagneticCard", vwMagneticCard);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 vwMagneticCardDetail EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwMagneticCardDetail(vwMagneticCardDetail vwMagneticCardDetail)
-        {
-            base.AddObject("vwMagneticCardDetail", vwMagneticCardDetail);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwPDAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwPDAlarmLog(vwPDAlarmLog vwPDAlarmLog)
@@ -1779,6 +1787,70 @@ namespace slSecure.Web
         public void AddTovwEntranceGuardDetail(vwEntranceGuardDetail vwEntranceGuardDetail)
         {
             base.AddObject("vwEntranceGuardDetail", vwEntranceGuardDetail);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblReportList EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblReportList(tblReportList tblReportList)
+        {
+            base.AddObject("tblReportList", tblReportList);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblSchConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblSchConfig(tblSchConfig tblSchConfig)
+        {
+            base.AddObject("tblSchConfig", tblSchConfig);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblSchLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblSchLog(tblSchLog tblSchLog)
+        {
+            base.AddObject("tblSchLog", tblSchLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwSchConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwSchConfig(vwSchConfig vwSchConfig)
+        {
+            base.AddObject("vwSchConfig", vwSchConfig);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwSchLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwSchLog(vwSchLog vwSchLog)
+        {
+            base.AddObject("vwSchLog", vwSchLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwItemConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwItemConfig(vwItemConfig vwItemConfig)
+        {
+            base.AddObject("vwItemConfig", vwItemConfig);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwMagneticCard EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwMagneticCard(vwMagneticCard vwMagneticCard)
+        {
+            base.AddObject("vwMagneticCard", vwMagneticCard);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwMagneticCardDetail EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwMagneticCardDetail(vwMagneticCardDetail vwMagneticCardDetail)
+        {
+            base.AddObject("vwMagneticCardDetail", vwMagneticCardDetail);
         }
 
         #endregion
@@ -6883,6 +6955,30 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _KindID;
         partial void OnKindIDChanging(Nullable<global::System.Int32> value);
         partial void OnKindIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Suppress
+        {
+            get
+            {
+                return _Suppress;
+            }
+            set
+            {
+                OnSuppressChanging(value);
+                ReportPropertyChanging("Suppress");
+                _Suppress = StructuralObject.SetValidValue(value, "Suppress");
+                ReportPropertyChanged("Suppress");
+                OnSuppressChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Suppress;
+        partial void OnSuppressChanging(Nullable<global::System.Boolean> value);
+        partial void OnSuppressChanged();
 
         #endregion
 
@@ -7981,6 +8077,78 @@ namespace slSecure.Web
         private Nullable<global::System.DateTime> _ReturnDate;
         partial void OnReturnDateChanging(Nullable<global::System.DateTime> value);
         partial void OnReturnDateChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MCNSID
+        {
+            get
+            {
+                return _MCNSID;
+            }
+            set
+            {
+                OnMCNSIDChanging(value);
+                ReportPropertyChanging("MCNSID");
+                _MCNSID = StructuralObject.SetValidValue(value, true, "MCNSID");
+                ReportPropertyChanged("MCNSID");
+                OnMCNSIDChanged();
+            }
+        }
+        private global::System.String _MCNSID;
+        partial void OnMCNSIDChanging(global::System.String value);
+        partial void OnMCNSIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CardStartDate
+        {
+            get
+            {
+                return _CardStartDate;
+            }
+            set
+            {
+                OnCardStartDateChanging(value);
+                ReportPropertyChanging("CardStartDate");
+                _CardStartDate = StructuralObject.SetValidValue(value, "CardStartDate");
+                ReportPropertyChanged("CardStartDate");
+                OnCardStartDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CardStartDate;
+        partial void OnCardStartDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCardStartDateChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CardEndDate
+        {
+            get
+            {
+                return _CardEndDate;
+            }
+            set
+            {
+                OnCardEndDateChanging(value);
+                ReportPropertyChanging("CardEndDate");
+                _CardEndDate = StructuralObject.SetValidValue(value, "CardEndDate");
+                ReportPropertyChanged("CardEndDate");
+                OnCardEndDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CardEndDate;
+        partial void OnCardEndDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCardEndDateChanged();
 
         #endregion
 
@@ -10199,6 +10367,160 @@ namespace slSecure.Web
     /// <summary>
     /// 沒有可用的中繼資料文件。
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblReportList")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblReportList : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 tblReportList 物件。
+        /// </summary>
+        /// <param name="reportID">ReportID 屬性的初始值。</param>
+        /// <param name="reportName">ReportName 屬性的初始值。</param>
+        public static tblReportList CreatetblReportList(global::System.Int32 reportID, global::System.String reportName)
+        {
+            tblReportList tblReportList = new tblReportList();
+            tblReportList.ReportID = reportID;
+            tblReportList.ReportName = reportName;
+            return tblReportList;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ReportID
+        {
+            get
+            {
+                return _ReportID;
+            }
+            set
+            {
+                if (_ReportID != value)
+                {
+                    OnReportIDChanging(value);
+                    ReportPropertyChanging("ReportID");
+                    _ReportID = StructuralObject.SetValidValue(value, "ReportID");
+                    ReportPropertyChanged("ReportID");
+                    OnReportIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ReportID;
+        partial void OnReportIDChanging(global::System.Int32 value);
+        partial void OnReportIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> ReportType
+        {
+            get
+            {
+                return _ReportType;
+            }
+            set
+            {
+                OnReportTypeChanging(value);
+                ReportPropertyChanging("ReportType");
+                _ReportType = StructuralObject.SetValidValue(value, "ReportType");
+                ReportPropertyChanged("ReportType");
+                OnReportTypeChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _ReportType;
+        partial void OnReportTypeChanging(Nullable<global::System.Int16> value);
+        partial void OnReportTypeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ReportName
+        {
+            get
+            {
+                return _ReportName;
+            }
+            set
+            {
+                OnReportNameChanging(value);
+                ReportPropertyChanging("ReportName");
+                _ReportName = StructuralObject.SetValidValue(value, false, "ReportName");
+                ReportPropertyChanged("ReportName");
+                OnReportNameChanged();
+            }
+        }
+        private global::System.String _ReportName;
+        partial void OnReportNameChanging(global::System.String value);
+        partial void OnReportNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ReportDesc
+        {
+            get
+            {
+                return _ReportDesc;
+            }
+            set
+            {
+                OnReportDescChanging(value);
+                ReportPropertyChanging("ReportDesc");
+                _ReportDesc = StructuralObject.SetValidValue(value, true, "ReportDesc");
+                ReportPropertyChanged("ReportDesc");
+                OnReportDescChanged();
+            }
+        }
+        private global::System.String _ReportDesc;
+        partial void OnReportDescChanging(global::System.String value);
+        partial void OnReportDescChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsEnable
+        {
+            get
+            {
+                return _IsEnable;
+            }
+            set
+            {
+                OnIsEnableChanging(value);
+                ReportPropertyChanging("IsEnable");
+                _IsEnable = StructuralObject.SetValidValue(value, "IsEnable");
+                ReportPropertyChanged("IsEnable");
+                OnIsEnableChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsEnable;
+        partial void OnIsEnableChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsEnableChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblSchConfig")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -10211,14 +10533,16 @@ namespace slSecure.Web
         /// </summary>
         /// <param name="schID">SchID 屬性的初始值。</param>
         /// <param name="timeStamp">TimeStamp 屬性的初始值。</param>
+        /// <param name="reportID">ReportID 屬性的初始值。</param>
         /// <param name="schName">SchName 屬性的初始值。</param>
         /// <param name="userID">UserID 屬性的初始值。</param>
         /// <param name="startTime">StartTime 屬性的初始值。</param>
-        public static tblSchConfig CreatetblSchConfig(global::System.Int64 schID, global::System.DateTime timeStamp, global::System.String schName, global::System.String userID, global::System.DateTime startTime)
+        public static tblSchConfig CreatetblSchConfig(global::System.Int64 schID, global::System.DateTime timeStamp, global::System.Int32 reportID, global::System.String schName, global::System.String userID, global::System.DateTime startTime)
         {
             tblSchConfig tblSchConfig = new tblSchConfig();
             tblSchConfig.SchID = schID;
             tblSchConfig.TimeStamp = timeStamp;
+            tblSchConfig.ReportID = reportID;
             tblSchConfig.SchName = schName;
             tblSchConfig.UserID = userID;
             tblSchConfig.StartTime = startTime;
@@ -10279,6 +10603,30 @@ namespace slSecure.Web
         private global::System.DateTime _TimeStamp;
         partial void OnTimeStampChanging(global::System.DateTime value);
         partial void OnTimeStampChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ReportID
+        {
+            get
+            {
+                return _ReportID;
+            }
+            set
+            {
+                OnReportIDChanging(value);
+                ReportPropertyChanging("ReportID");
+                _ReportID = StructuralObject.SetValidValue(value, "ReportID");
+                ReportPropertyChanged("ReportID");
+                OnReportIDChanged();
+            }
+        }
+        private global::System.Int32 _ReportID;
+        partial void OnReportIDChanging(global::System.Int32 value);
+        partial void OnReportIDChanged();
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -10591,6 +10939,30 @@ namespace slSecure.Web
         private Nullable<global::System.Boolean> _Enable;
         partial void OnEnableChanging(Nullable<global::System.Boolean> value);
         partial void OnEnableChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NextStartTime
+        {
+            get
+            {
+                return _NextStartTime;
+            }
+            set
+            {
+                OnNextStartTimeChanging(value);
+                ReportPropertyChanging("NextStartTime");
+                _NextStartTime = StructuralObject.SetValidValue(value, "NextStartTime");
+                ReportPropertyChanged("NextStartTime");
+                OnNextStartTimeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NextStartTime;
+        partial void OnNextStartTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnNextStartTimeChanged();
 
         #endregion
 
@@ -10641,33 +11013,17 @@ namespace slSecure.Web
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblSchLog_tblSchConfig", "tblSchLog")]
-        public tblSchLog tblSchLog
+        public EntityCollection<tblSchLog> tblSchLog
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblSchLog>("SecureDBModel.FK_tblSchLog_tblSchConfig", "tblSchLog").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblSchLog>("SecureDBModel.FK_tblSchLog_tblSchConfig", "tblSchLog").Value = value;
-            }
-        }
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<tblSchLog> tblSchLogReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblSchLog>("SecureDBModel.FK_tblSchLog_tblSchConfig", "tblSchLog");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblSchLog>("SecureDBModel.FK_tblSchLog_tblSchConfig", "tblSchLog");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblSchLog>("SecureDBModel.FK_tblSchLog_tblSchConfig", "tblSchLog", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblSchLog>("SecureDBModel.FK_tblSchLog_tblSchConfig", "tblSchLog", value);
                 }
             }
         }
@@ -10691,12 +11047,14 @@ namespace slSecure.Web
         /// </summary>
         /// <param name="schID">SchID 屬性的初始值。</param>
         /// <param name="timeStamp">TimeStamp 屬性的初始值。</param>
+        /// <param name="reportID">ReportID 屬性的初始值。</param>
         /// <param name="result">Result 屬性的初始值。</param>
-        public static tblSchLog CreatetblSchLog(global::System.Int64 schID, global::System.DateTime timeStamp, global::System.Boolean result)
+        public static tblSchLog CreatetblSchLog(global::System.Int64 schID, global::System.DateTime timeStamp, global::System.Int32 reportID, global::System.Boolean result)
         {
             tblSchLog tblSchLog = new tblSchLog();
             tblSchLog.SchID = schID;
             tblSchLog.TimeStamp = timeStamp;
+            tblSchLog.ReportID = reportID;
             tblSchLog.Result = result;
             return tblSchLog;
         }
@@ -10735,7 +11093,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime TimeStamp
         {
@@ -10745,16 +11103,46 @@ namespace slSecure.Web
             }
             set
             {
-                OnTimeStampChanging(value);
-                ReportPropertyChanging("TimeStamp");
-                _TimeStamp = StructuralObject.SetValidValue(value, "TimeStamp");
-                ReportPropertyChanged("TimeStamp");
-                OnTimeStampChanged();
+                if (_TimeStamp != value)
+                {
+                    OnTimeStampChanging(value);
+                    ReportPropertyChanging("TimeStamp");
+                    _TimeStamp = StructuralObject.SetValidValue(value, "TimeStamp");
+                    ReportPropertyChanged("TimeStamp");
+                    OnTimeStampChanged();
+                }
             }
         }
         private global::System.DateTime _TimeStamp;
         partial void OnTimeStampChanging(global::System.DateTime value);
         partial void OnTimeStampChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ReportID
+        {
+            get
+            {
+                return _ReportID;
+            }
+            set
+            {
+                if (_ReportID != value)
+                {
+                    OnReportIDChanging(value);
+                    ReportPropertyChanging("ReportID");
+                    _ReportID = StructuralObject.SetValidValue(value, "ReportID");
+                    ReportPropertyChanged("ReportID");
+                    OnReportIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ReportID;
+        partial void OnReportIDChanging(global::System.Int32 value);
+        partial void OnReportIDChanged();
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -12485,28 +12873,6 @@ namespace slSecure.Web
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblSchConfig_tblUser", "tblSchConfig")]
-        public EntityCollection<tblSchConfig> tblSchConfig
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblSchConfig>("SecureDBModel.FK_tblSchConfig_tblUser", "tblSchConfig");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblSchConfig>("SecureDBModel.FK_tblSchConfig_tblUser", "tblSchConfig", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblSysOperation_tblUser", "tblSysOperation")]
         public EntityCollection<tblSysOperation> tblSysOperation
         {
@@ -12557,6 +12923,28 @@ namespace slSecure.Web
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblUserGroup>("SecureDBModel.FK_tblUser_tblUserGroup", "tblUserGroup", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblSchConfig_tblUser", "tblSchConfig")]
+        public EntityCollection<tblSchConfig> tblSchConfig
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblSchConfig>("SecureDBModel.FK_tblSchConfig_tblUser", "tblSchConfig");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblSchConfig>("SecureDBModel.FK_tblSchConfig_tblUser", "tblSchConfig", value);
                 }
             }
         }
@@ -18222,6 +18610,30 @@ namespace slSecure.Web
         private global::System.String _KindName;
         partial void OnKindNameChanging(global::System.String value);
         partial void OnKindNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Suppress
+        {
+            get
+            {
+                return _Suppress;
+            }
+            set
+            {
+                OnSuppressChanging(value);
+                ReportPropertyChanging("Suppress");
+                _Suppress = StructuralObject.SetValidValue(value, "Suppress");
+                ReportPropertyChanged("Suppress");
+                OnSuppressChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Suppress;
+        partial void OnSuppressChanging(Nullable<global::System.Boolean> value);
+        partial void OnSuppressChanged();
 
         #endregion
 
@@ -19497,6 +19909,78 @@ namespace slSecure.Web
         private global::System.String _EnableName;
         partial void OnEnableNameChanging(global::System.String value);
         partial void OnEnableNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MCNSID
+        {
+            get
+            {
+                return _MCNSID;
+            }
+            set
+            {
+                OnMCNSIDChanging(value);
+                ReportPropertyChanging("MCNSID");
+                _MCNSID = StructuralObject.SetValidValue(value, true, "MCNSID");
+                ReportPropertyChanged("MCNSID");
+                OnMCNSIDChanged();
+            }
+        }
+        private global::System.String _MCNSID;
+        partial void OnMCNSIDChanging(global::System.String value);
+        partial void OnMCNSIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CardStartDate
+        {
+            get
+            {
+                return _CardStartDate;
+            }
+            set
+            {
+                OnCardStartDateChanging(value);
+                ReportPropertyChanging("CardStartDate");
+                _CardStartDate = StructuralObject.SetValidValue(value, "CardStartDate");
+                ReportPropertyChanged("CardStartDate");
+                OnCardStartDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CardStartDate;
+        partial void OnCardStartDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCardStartDateChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CardEndDate
+        {
+            get
+            {
+                return _CardEndDate;
+            }
+            set
+            {
+                OnCardEndDateChanging(value);
+                ReportPropertyChanging("CardEndDate");
+                _CardEndDate = StructuralObject.SetValidValue(value, "CardEndDate");
+                ReportPropertyChanged("CardEndDate");
+                OnCardEndDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CardEndDate;
+        partial void OnCardEndDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCardEndDateChanged();
 
         #endregion
 
@@ -20445,6 +20929,78 @@ namespace slSecure.Web
         private global::System.String _EnableName;
         partial void OnEnableNameChanging(global::System.String value);
         partial void OnEnableNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MCNSID
+        {
+            get
+            {
+                return _MCNSID;
+            }
+            set
+            {
+                OnMCNSIDChanging(value);
+                ReportPropertyChanging("MCNSID");
+                _MCNSID = StructuralObject.SetValidValue(value, true, "MCNSID");
+                ReportPropertyChanged("MCNSID");
+                OnMCNSIDChanged();
+            }
+        }
+        private global::System.String _MCNSID;
+        partial void OnMCNSIDChanging(global::System.String value);
+        partial void OnMCNSIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CardStartDate
+        {
+            get
+            {
+                return _CardStartDate;
+            }
+            set
+            {
+                OnCardStartDateChanging(value);
+                ReportPropertyChanging("CardStartDate");
+                _CardStartDate = StructuralObject.SetValidValue(value, "CardStartDate");
+                ReportPropertyChanged("CardStartDate");
+                OnCardStartDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CardStartDate;
+        partial void OnCardStartDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCardStartDateChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CardEndDate
+        {
+            get
+            {
+                return _CardEndDate;
+            }
+            set
+            {
+                OnCardEndDateChanging(value);
+                ReportPropertyChanging("CardEndDate");
+                _CardEndDate = StructuralObject.SetValidValue(value, "CardEndDate");
+                ReportPropertyChanged("CardEndDate");
+                OnCardEndDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CardEndDate;
+        partial void OnCardEndDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCardEndDateChanged();
 
         #endregion
 
@@ -29646,6 +30202,1053 @@ namespace slSecure.Web
         private Nullable<global::System.DateTime> _starttime;
         partial void OnstarttimeChanging(Nullable<global::System.DateTime> value);
         partial void OnstarttimeChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="vwSchConfig")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class vwSchConfig : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 vwSchConfig 物件。
+        /// </summary>
+        /// <param name="schID">SchID 屬性的初始值。</param>
+        /// <param name="timeStamp">TimeStamp 屬性的初始值。</param>
+        /// <param name="reportID">ReportID 屬性的初始值。</param>
+        /// <param name="schName">SchName 屬性的初始值。</param>
+        /// <param name="userID">UserID 屬性的初始值。</param>
+        /// <param name="startTime">StartTime 屬性的初始值。</param>
+        /// <param name="reportName">ReportName 屬性的初始值。</param>
+        /// <param name="schTypeName">SchTypeName 屬性的初始值。</param>
+        /// <param name="enableName">EnableName 屬性的初始值。</param>
+        /// <param name="reportTypeName">ReportTypeName 屬性的初始值。</param>
+        public static vwSchConfig CreatevwSchConfig(global::System.Int64 schID, global::System.DateTime timeStamp, global::System.Int32 reportID, global::System.String schName, global::System.String userID, global::System.DateTime startTime, global::System.String reportName, global::System.String schTypeName, global::System.String enableName, global::System.String reportTypeName)
+        {
+            vwSchConfig vwSchConfig = new vwSchConfig();
+            vwSchConfig.SchID = schID;
+            vwSchConfig.TimeStamp = timeStamp;
+            vwSchConfig.ReportID = reportID;
+            vwSchConfig.SchName = schName;
+            vwSchConfig.UserID = userID;
+            vwSchConfig.StartTime = startTime;
+            vwSchConfig.ReportName = reportName;
+            vwSchConfig.SchTypeName = schTypeName;
+            vwSchConfig.EnableName = enableName;
+            vwSchConfig.ReportTypeName = reportTypeName;
+            return vwSchConfig;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 SchID
+        {
+            get
+            {
+                return _SchID;
+            }
+            set
+            {
+                if (_SchID != value)
+                {
+                    OnSchIDChanging(value);
+                    ReportPropertyChanging("SchID");
+                    _SchID = StructuralObject.SetValidValue(value, "SchID");
+                    ReportPropertyChanged("SchID");
+                    OnSchIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _SchID;
+        partial void OnSchIDChanging(global::System.Int64 value);
+        partial void OnSchIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime TimeStamp
+        {
+            get
+            {
+                return _TimeStamp;
+            }
+            set
+            {
+                if (_TimeStamp != value)
+                {
+                    OnTimeStampChanging(value);
+                    ReportPropertyChanging("TimeStamp");
+                    _TimeStamp = StructuralObject.SetValidValue(value, "TimeStamp");
+                    ReportPropertyChanged("TimeStamp");
+                    OnTimeStampChanged();
+                }
+            }
+        }
+        private global::System.DateTime _TimeStamp;
+        partial void OnTimeStampChanging(global::System.DateTime value);
+        partial void OnTimeStampChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ReportID
+        {
+            get
+            {
+                return _ReportID;
+            }
+            set
+            {
+                if (_ReportID != value)
+                {
+                    OnReportIDChanging(value);
+                    ReportPropertyChanging("ReportID");
+                    _ReportID = StructuralObject.SetValidValue(value, "ReportID");
+                    ReportPropertyChanged("ReportID");
+                    OnReportIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ReportID;
+        partial void OnReportIDChanging(global::System.Int32 value);
+        partial void OnReportIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SchName
+        {
+            get
+            {
+                return _SchName;
+            }
+            set
+            {
+                if (_SchName != value)
+                {
+                    OnSchNameChanging(value);
+                    ReportPropertyChanging("SchName");
+                    _SchName = StructuralObject.SetValidValue(value, false, "SchName");
+                    ReportPropertyChanged("SchName");
+                    OnSchNameChanged();
+                }
+            }
+        }
+        private global::System.String _SchName;
+        partial void OnSchNameChanging(global::System.String value);
+        partial void OnSchNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SchDesc
+        {
+            get
+            {
+                return _SchDesc;
+            }
+            set
+            {
+                OnSchDescChanging(value);
+                ReportPropertyChanging("SchDesc");
+                _SchDesc = StructuralObject.SetValidValue(value, true, "SchDesc");
+                ReportPropertyChanged("SchDesc");
+                OnSchDescChanged();
+            }
+        }
+        private global::System.String _SchDesc;
+        partial void OnSchDescChanging(global::System.String value);
+        partial void OnSchDescChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> SchType
+        {
+            get
+            {
+                return _SchType;
+            }
+            set
+            {
+                OnSchTypeChanging(value);
+                ReportPropertyChanging("SchType");
+                _SchType = StructuralObject.SetValidValue(value, "SchType");
+                ReportPropertyChanged("SchType");
+                OnSchTypeChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _SchType;
+        partial void OnSchTypeChanging(Nullable<global::System.Int16> value);
+        partial void OnSchTypeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Week1
+        {
+            get
+            {
+                return _Week1;
+            }
+            set
+            {
+                OnWeek1Changing(value);
+                ReportPropertyChanging("Week1");
+                _Week1 = StructuralObject.SetValidValue(value, "Week1");
+                ReportPropertyChanged("Week1");
+                OnWeek1Changed();
+            }
+        }
+        private Nullable<global::System.Boolean> _Week1;
+        partial void OnWeek1Changing(Nullable<global::System.Boolean> value);
+        partial void OnWeek1Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Week2
+        {
+            get
+            {
+                return _Week2;
+            }
+            set
+            {
+                OnWeek2Changing(value);
+                ReportPropertyChanging("Week2");
+                _Week2 = StructuralObject.SetValidValue(value, "Week2");
+                ReportPropertyChanged("Week2");
+                OnWeek2Changed();
+            }
+        }
+        private Nullable<global::System.Boolean> _Week2;
+        partial void OnWeek2Changing(Nullable<global::System.Boolean> value);
+        partial void OnWeek2Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Week3
+        {
+            get
+            {
+                return _Week3;
+            }
+            set
+            {
+                OnWeek3Changing(value);
+                ReportPropertyChanging("Week3");
+                _Week3 = StructuralObject.SetValidValue(value, "Week3");
+                ReportPropertyChanged("Week3");
+                OnWeek3Changed();
+            }
+        }
+        private Nullable<global::System.Boolean> _Week3;
+        partial void OnWeek3Changing(Nullable<global::System.Boolean> value);
+        partial void OnWeek3Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Week4
+        {
+            get
+            {
+                return _Week4;
+            }
+            set
+            {
+                OnWeek4Changing(value);
+                ReportPropertyChanging("Week4");
+                _Week4 = StructuralObject.SetValidValue(value, "Week4");
+                ReportPropertyChanged("Week4");
+                OnWeek4Changed();
+            }
+        }
+        private Nullable<global::System.Boolean> _Week4;
+        partial void OnWeek4Changing(Nullable<global::System.Boolean> value);
+        partial void OnWeek4Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Week5
+        {
+            get
+            {
+                return _Week5;
+            }
+            set
+            {
+                OnWeek5Changing(value);
+                ReportPropertyChanging("Week5");
+                _Week5 = StructuralObject.SetValidValue(value, "Week5");
+                ReportPropertyChanged("Week5");
+                OnWeek5Changed();
+            }
+        }
+        private Nullable<global::System.Boolean> _Week5;
+        partial void OnWeek5Changing(Nullable<global::System.Boolean> value);
+        partial void OnWeek5Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Week6
+        {
+            get
+            {
+                return _Week6;
+            }
+            set
+            {
+                OnWeek6Changing(value);
+                ReportPropertyChanging("Week6");
+                _Week6 = StructuralObject.SetValidValue(value, "Week6");
+                ReportPropertyChanged("Week6");
+                OnWeek6Changed();
+            }
+        }
+        private Nullable<global::System.Boolean> _Week6;
+        partial void OnWeek6Changing(Nullable<global::System.Boolean> value);
+        partial void OnWeek6Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Week7
+        {
+            get
+            {
+                return _Week7;
+            }
+            set
+            {
+                OnWeek7Changing(value);
+                ReportPropertyChanging("Week7");
+                _Week7 = StructuralObject.SetValidValue(value, "Week7");
+                ReportPropertyChanged("Week7");
+                OnWeek7Changed();
+            }
+        }
+        private Nullable<global::System.Boolean> _Week7;
+        partial void OnWeek7Changing(Nullable<global::System.Boolean> value);
+        partial void OnWeek7Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                if (_UserID != value)
+                {
+                    OnUserIDChanging(value);
+                    ReportPropertyChanging("UserID");
+                    _UserID = StructuralObject.SetValidValue(value, false, "UserID");
+                    ReportPropertyChanged("UserID");
+                    OnUserIDChanged();
+                }
+            }
+        }
+        private global::System.String _UserID;
+        partial void OnUserIDChanging(global::System.String value);
+        partial void OnUserIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime StartTime
+        {
+            get
+            {
+                return _StartTime;
+            }
+            set
+            {
+                if (_StartTime != value)
+                {
+                    OnStartTimeChanging(value);
+                    ReportPropertyChanging("StartTime");
+                    _StartTime = StructuralObject.SetValidValue(value, "StartTime");
+                    ReportPropertyChanged("StartTime");
+                    OnStartTimeChanged();
+                }
+            }
+        }
+        private global::System.DateTime _StartTime;
+        partial void OnStartTimeChanging(global::System.DateTime value);
+        partial void OnStartTimeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Enable
+        {
+            get
+            {
+                return _Enable;
+            }
+            set
+            {
+                OnEnableChanging(value);
+                ReportPropertyChanging("Enable");
+                _Enable = StructuralObject.SetValidValue(value, "Enable");
+                ReportPropertyChanged("Enable");
+                OnEnableChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Enable;
+        partial void OnEnableChanging(Nullable<global::System.Boolean> value);
+        partial void OnEnableChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NextStartTime
+        {
+            get
+            {
+                return _NextStartTime;
+            }
+            set
+            {
+                OnNextStartTimeChanging(value);
+                ReportPropertyChanging("NextStartTime");
+                _NextStartTime = StructuralObject.SetValidValue(value, "NextStartTime");
+                ReportPropertyChanged("NextStartTime");
+                OnNextStartTimeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NextStartTime;
+        partial void OnNextStartTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnNextStartTimeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> ReportType
+        {
+            get
+            {
+                return _ReportType;
+            }
+            set
+            {
+                OnReportTypeChanging(value);
+                ReportPropertyChanging("ReportType");
+                _ReportType = StructuralObject.SetValidValue(value, "ReportType");
+                ReportPropertyChanged("ReportType");
+                OnReportTypeChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _ReportType;
+        partial void OnReportTypeChanging(Nullable<global::System.Int16> value);
+        partial void OnReportTypeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ReportName
+        {
+            get
+            {
+                return _ReportName;
+            }
+            set
+            {
+                if (_ReportName != value)
+                {
+                    OnReportNameChanging(value);
+                    ReportPropertyChanging("ReportName");
+                    _ReportName = StructuralObject.SetValidValue(value, false, "ReportName");
+                    ReportPropertyChanged("ReportName");
+                    OnReportNameChanged();
+                }
+            }
+        }
+        private global::System.String _ReportName;
+        partial void OnReportNameChanging(global::System.String value);
+        partial void OnReportNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ReportDesc
+        {
+            get
+            {
+                return _ReportDesc;
+            }
+            set
+            {
+                OnReportDescChanging(value);
+                ReportPropertyChanging("ReportDesc");
+                _ReportDesc = StructuralObject.SetValidValue(value, true, "ReportDesc");
+                ReportPropertyChanged("ReportDesc");
+                OnReportDescChanged();
+            }
+        }
+        private global::System.String _ReportDesc;
+        partial void OnReportDescChanging(global::System.String value);
+        partial void OnReportDescChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsEnable
+        {
+            get
+            {
+                return _IsEnable;
+            }
+            set
+            {
+                OnIsEnableChanging(value);
+                ReportPropertyChanging("IsEnable");
+                _IsEnable = StructuralObject.SetValidValue(value, "IsEnable");
+                ReportPropertyChanged("IsEnable");
+                OnIsEnableChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsEnable;
+        partial void OnIsEnableChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsEnableChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SchTypeName
+        {
+            get
+            {
+                return _SchTypeName;
+            }
+            set
+            {
+                if (_SchTypeName != value)
+                {
+                    OnSchTypeNameChanging(value);
+                    ReportPropertyChanging("SchTypeName");
+                    _SchTypeName = StructuralObject.SetValidValue(value, false, "SchTypeName");
+                    ReportPropertyChanged("SchTypeName");
+                    OnSchTypeNameChanged();
+                }
+            }
+        }
+        private global::System.String _SchTypeName;
+        partial void OnSchTypeNameChanging(global::System.String value);
+        partial void OnSchTypeNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String EnableName
+        {
+            get
+            {
+                return _EnableName;
+            }
+            set
+            {
+                if (_EnableName != value)
+                {
+                    OnEnableNameChanging(value);
+                    ReportPropertyChanging("EnableName");
+                    _EnableName = StructuralObject.SetValidValue(value, false, "EnableName");
+                    ReportPropertyChanged("EnableName");
+                    OnEnableNameChanged();
+                }
+            }
+        }
+        private global::System.String _EnableName;
+        partial void OnEnableNameChanging(global::System.String value);
+        partial void OnEnableNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ReportTypeName
+        {
+            get
+            {
+                return _ReportTypeName;
+            }
+            set
+            {
+                if (_ReportTypeName != value)
+                {
+                    OnReportTypeNameChanging(value);
+                    ReportPropertyChanging("ReportTypeName");
+                    _ReportTypeName = StructuralObject.SetValidValue(value, false, "ReportTypeName");
+                    ReportPropertyChanged("ReportTypeName");
+                    OnReportTypeNameChanged();
+                }
+            }
+        }
+        private global::System.String _ReportTypeName;
+        partial void OnReportTypeNameChanging(global::System.String value);
+        partial void OnReportTypeNameChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="vwSchLog")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class vwSchLog : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 vwSchLog 物件。
+        /// </summary>
+        /// <param name="schID">SchID 屬性的初始值。</param>
+        /// <param name="timeStamp">TimeStamp 屬性的初始值。</param>
+        /// <param name="reportID">ReportID 屬性的初始值。</param>
+        /// <param name="result">Result 屬性的初始值。</param>
+        /// <param name="resultName">ResultName 屬性的初始值。</param>
+        /// <param name="schName">SchName 屬性的初始值。</param>
+        /// <param name="schTypeName">SchTypeName 屬性的初始值。</param>
+        /// <param name="enableName">EnableName 屬性的初始值。</param>
+        /// <param name="reportTypeName">ReportTypeName 屬性的初始值。</param>
+        /// <param name="startTime">StartTime 屬性的初始值。</param>
+        /// <param name="userID">UserID 屬性的初始值。</param>
+        public static vwSchLog CreatevwSchLog(global::System.Int64 schID, global::System.DateTime timeStamp, global::System.Int32 reportID, global::System.Boolean result, global::System.String resultName, global::System.String schName, global::System.String schTypeName, global::System.String enableName, global::System.String reportTypeName, global::System.DateTime startTime, global::System.String userID)
+        {
+            vwSchLog vwSchLog = new vwSchLog();
+            vwSchLog.SchID = schID;
+            vwSchLog.TimeStamp = timeStamp;
+            vwSchLog.ReportID = reportID;
+            vwSchLog.Result = result;
+            vwSchLog.ResultName = resultName;
+            vwSchLog.SchName = schName;
+            vwSchLog.SchTypeName = schTypeName;
+            vwSchLog.EnableName = enableName;
+            vwSchLog.ReportTypeName = reportTypeName;
+            vwSchLog.StartTime = startTime;
+            vwSchLog.UserID = userID;
+            return vwSchLog;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 SchID
+        {
+            get
+            {
+                return _SchID;
+            }
+            set
+            {
+                if (_SchID != value)
+                {
+                    OnSchIDChanging(value);
+                    ReportPropertyChanging("SchID");
+                    _SchID = StructuralObject.SetValidValue(value, "SchID");
+                    ReportPropertyChanged("SchID");
+                    OnSchIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _SchID;
+        partial void OnSchIDChanging(global::System.Int64 value);
+        partial void OnSchIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime TimeStamp
+        {
+            get
+            {
+                return _TimeStamp;
+            }
+            set
+            {
+                if (_TimeStamp != value)
+                {
+                    OnTimeStampChanging(value);
+                    ReportPropertyChanging("TimeStamp");
+                    _TimeStamp = StructuralObject.SetValidValue(value, "TimeStamp");
+                    ReportPropertyChanged("TimeStamp");
+                    OnTimeStampChanged();
+                }
+            }
+        }
+        private global::System.DateTime _TimeStamp;
+        partial void OnTimeStampChanging(global::System.DateTime value);
+        partial void OnTimeStampChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ReportID
+        {
+            get
+            {
+                return _ReportID;
+            }
+            set
+            {
+                if (_ReportID != value)
+                {
+                    OnReportIDChanging(value);
+                    ReportPropertyChanging("ReportID");
+                    _ReportID = StructuralObject.SetValidValue(value, "ReportID");
+                    ReportPropertyChanged("ReportID");
+                    OnReportIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ReportID;
+        partial void OnReportIDChanging(global::System.Int32 value);
+        partial void OnReportIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Result
+        {
+            get
+            {
+                return _Result;
+            }
+            set
+            {
+                if (_Result != value)
+                {
+                    OnResultChanging(value);
+                    ReportPropertyChanging("Result");
+                    _Result = StructuralObject.SetValidValue(value, "Result");
+                    ReportPropertyChanged("Result");
+                    OnResultChanged();
+                }
+            }
+        }
+        private global::System.Boolean _Result;
+        partial void OnResultChanging(global::System.Boolean value);
+        partial void OnResultChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Memo
+        {
+            get
+            {
+                return _Memo;
+            }
+            set
+            {
+                OnMemoChanging(value);
+                ReportPropertyChanging("Memo");
+                _Memo = StructuralObject.SetValidValue(value, true, "Memo");
+                ReportPropertyChanged("Memo");
+                OnMemoChanged();
+            }
+        }
+        private global::System.String _Memo;
+        partial void OnMemoChanging(global::System.String value);
+        partial void OnMemoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ResultName
+        {
+            get
+            {
+                return _ResultName;
+            }
+            set
+            {
+                if (_ResultName != value)
+                {
+                    OnResultNameChanging(value);
+                    ReportPropertyChanging("ResultName");
+                    _ResultName = StructuralObject.SetValidValue(value, false, "ResultName");
+                    ReportPropertyChanged("ResultName");
+                    OnResultNameChanged();
+                }
+            }
+        }
+        private global::System.String _ResultName;
+        partial void OnResultNameChanging(global::System.String value);
+        partial void OnResultNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SchName
+        {
+            get
+            {
+                return _SchName;
+            }
+            set
+            {
+                if (_SchName != value)
+                {
+                    OnSchNameChanging(value);
+                    ReportPropertyChanging("SchName");
+                    _SchName = StructuralObject.SetValidValue(value, false, "SchName");
+                    ReportPropertyChanged("SchName");
+                    OnSchNameChanged();
+                }
+            }
+        }
+        private global::System.String _SchName;
+        partial void OnSchNameChanging(global::System.String value);
+        partial void OnSchNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SchTypeName
+        {
+            get
+            {
+                return _SchTypeName;
+            }
+            set
+            {
+                if (_SchTypeName != value)
+                {
+                    OnSchTypeNameChanging(value);
+                    ReportPropertyChanging("SchTypeName");
+                    _SchTypeName = StructuralObject.SetValidValue(value, false, "SchTypeName");
+                    ReportPropertyChanged("SchTypeName");
+                    OnSchTypeNameChanged();
+                }
+            }
+        }
+        private global::System.String _SchTypeName;
+        partial void OnSchTypeNameChanging(global::System.String value);
+        partial void OnSchTypeNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String EnableName
+        {
+            get
+            {
+                return _EnableName;
+            }
+            set
+            {
+                if (_EnableName != value)
+                {
+                    OnEnableNameChanging(value);
+                    ReportPropertyChanging("EnableName");
+                    _EnableName = StructuralObject.SetValidValue(value, false, "EnableName");
+                    ReportPropertyChanged("EnableName");
+                    OnEnableNameChanged();
+                }
+            }
+        }
+        private global::System.String _EnableName;
+        partial void OnEnableNameChanging(global::System.String value);
+        partial void OnEnableNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ReportTypeName
+        {
+            get
+            {
+                return _ReportTypeName;
+            }
+            set
+            {
+                if (_ReportTypeName != value)
+                {
+                    OnReportTypeNameChanging(value);
+                    ReportPropertyChanging("ReportTypeName");
+                    _ReportTypeName = StructuralObject.SetValidValue(value, false, "ReportTypeName");
+                    ReportPropertyChanged("ReportTypeName");
+                    OnReportTypeNameChanged();
+                }
+            }
+        }
+        private global::System.String _ReportTypeName;
+        partial void OnReportTypeNameChanging(global::System.String value);
+        partial void OnReportTypeNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime StartTime
+        {
+            get
+            {
+                return _StartTime;
+            }
+            set
+            {
+                if (_StartTime != value)
+                {
+                    OnStartTimeChanging(value);
+                    ReportPropertyChanging("StartTime");
+                    _StartTime = StructuralObject.SetValidValue(value, "StartTime");
+                    ReportPropertyChanged("StartTime");
+                    OnStartTimeChanged();
+                }
+            }
+        }
+        private global::System.DateTime _StartTime;
+        partial void OnStartTimeChanging(global::System.DateTime value);
+        partial void OnStartTimeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NextStartTime
+        {
+            get
+            {
+                return _NextStartTime;
+            }
+            set
+            {
+                OnNextStartTimeChanging(value);
+                ReportPropertyChanging("NextStartTime");
+                _NextStartTime = StructuralObject.SetValidValue(value, "NextStartTime");
+                ReportPropertyChanged("NextStartTime");
+                OnNextStartTimeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NextStartTime;
+        partial void OnNextStartTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnNextStartTimeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                if (_UserID != value)
+                {
+                    OnUserIDChanging(value);
+                    ReportPropertyChanging("UserID");
+                    _UserID = StructuralObject.SetValidValue(value, false, "UserID");
+                    ReportPropertyChanged("UserID");
+                    OnUserIDChanged();
+                }
+            }
+        }
+        private global::System.String _UserID;
+        partial void OnUserIDChanging(global::System.String value);
+        partial void OnUserIDChanged();
 
         #endregion
 

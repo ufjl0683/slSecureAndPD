@@ -20,17 +20,17 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.21.99.80:8080/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.192.85.64:8080/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="87ad8276-dad9-430a-abf2-ecf62f7a5dec" SourceId="1" SourceUrl="http://10.21.99.80:8080/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="ade9dcb5-b45e-4935-bb1b-e20f621cbcd3" SourceId="1" SourceUrl="http://10.21.99.80:8080/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c1d2e861-4891-42d5-96d2-c8ed88d2a98a" SourceId="1" SourceUrl="http://10.21.99.80:8080/mex" />
-    <MetadataFile FileName="SecureServer.xsd" MetadataType="Schema" ID="33d0712e-8457-499e-8169-72ae6b11c996" SourceId="1" SourceUrl="http://10.21.99.80:8080/mex" />
-    <MetadataFile FileName="SecureServer.BindingData.xsd" MetadataType="Schema" ID="f735fe26-4c3b-4e15-9961-88dfe9257e22" SourceId="1" SourceUrl="http://10.21.99.80:8080/mex" />
-    <MetadataFile FileName="RoomInterface.xsd" MetadataType="Schema" ID="9f255d25-f4a8-459e-b2dd-f757d2cbe0e2" SourceId="1" SourceUrl="http://10.21.99.80:8080/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="5458e9b1-756b-42c5-b196-fc2e93045423" SourceId="1" SourceUrl="http://10.21.99.80:8080/mex" />
-    <MetadataFile FileName="SecureServer.CardReader.xsd" MetadataType="Schema" ID="df019d0f-3276-4bcf-8038-f6da1f15949b" SourceId="1" SourceUrl="http://10.21.99.80:8080/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="d32aede2-6c6a-476f-972a-1321c4b9e896" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="91482b88-018a-45d9-baca-feea2cc46b3b" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="950adbbc-f5e7-4dd6-b4a7-8746c198f789" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer1.xsd" MetadataType="Schema" ID="c831c90d-c1f6-4aec-8840-12b196eb95ae" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer.BindingData1.xsd" MetadataType="Schema" ID="e91105c9-2055-4106-9ab6-bea4557b0a10" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="RoomInterface1.xsd" MetadataType="Schema" ID="f3ead6bc-ea44-4f3f-adad-6cc3c4d57010" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="2f6137ef-7070-404f-9e20-68f8010b45f9" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer.CardReader1.xsd" MetadataType="Schema" ID="493153b9-f83b-4c71-b82c-e40e3706b4b6" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

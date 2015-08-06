@@ -46,6 +46,9 @@ namespace test.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         ItemAttributehanged = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ScheduleChanged = 10,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -977,6 +980,9 @@ namespace test.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23ControlConnect", ReplyAction="http://tempuri.org/ISecureService/GetR23ControlConnectResponse")]
         RoomInterface.ControlStatus GetR23ControlConnect(string ControllID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetTotalConnection", ReplyAction="http://tempuri.org/ISecureService/GetTotalConnectionResponse")]
+        int GetTotalConnection();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1105,6 +1111,10 @@ namespace test.RemoteService {
         
         public RoomInterface.ControlStatus GetR23ControlConnect(string ControllID) {
             return base.Channel.GetR23ControlConnect(ControllID);
+        }
+        
+        public int GetTotalConnection() {
+            return base.Channel.GetTotalConnection();
         }
     }
 }

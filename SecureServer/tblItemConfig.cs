@@ -56,6 +56,7 @@ namespace SecureServer
         public string Lv2Color { get; set; }
         public Nullable<int> GroupTypeID { get; set; }
         public Nullable<int> KindID { get; set; }
+        public Nullable<bool> Suppress { get; set; }
     
         public virtual tblControllerConfig tblControllerConfig { get; set; }
         public virtual tblItemGroup tblItemGroup { get; set; }

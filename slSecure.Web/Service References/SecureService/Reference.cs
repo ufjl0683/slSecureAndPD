@@ -43,6 +43,9 @@ namespace slSecure.Web.SecureService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         EventDoorOpen = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ItemAttributehanged = 9,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -590,6 +593,9 @@ namespace slSecure.Web.SecureService {
         private int AlarmStatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ColorStringField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ERIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -617,6 +623,19 @@ namespace slSecure.Web.SecureService {
                 if ((this.AlarmStatusField.Equals(value) != true)) {
                     this.AlarmStatusField = value;
                     this.RaisePropertyChanged("AlarmStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ColorString {
+            get {
+                return this.ColorStringField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColorStringField, value) != true)) {
+                    this.ColorStringField = value;
+                    this.RaisePropertyChanged("ColorString");
                 }
             }
         }
@@ -670,21 +689,107 @@ namespace slSecure.Web.SecureService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
-    public enum DoorEventType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonData", Namespace="http://schemas.datacontract.org/2004/07/RoomInterface")]
+    [System.SerializableAttribute()]
+    public partial struct PersonData : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DoorOpen = 0,
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DoorClose = 1,
+        private string CARDNOField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Connected = 2,
+        private string COMPField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DisConnected = 3,
+        private bool ISMANUALField;
+        
+        private string NAMEField;
+        
+        private System.DateTime TIMEField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string CARDNO {
+            get {
+                return this.CARDNOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CARDNOField, value) != true)) {
+                    this.CARDNOField = value;
+                    this.RaisePropertyChanged("CARDNO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string COMP {
+            get {
+                return this.COMPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.COMPField, value) != true)) {
+                    this.COMPField = value;
+                    this.RaisePropertyChanged("COMP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public bool ISMANUAL {
+            get {
+                return this.ISMANUALField;
+            }
+            set {
+                if ((this.ISMANUALField.Equals(value) != true)) {
+                    this.ISMANUALField = value;
+                    this.RaisePropertyChanged("ISMANUAL");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string NAME {
+            get {
+                return this.NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NAMEField, value) != true)) {
+                    this.NAMEField = value;
+                    this.RaisePropertyChanged("NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public System.DateTime TIME {
+            get {
+                return this.TIMEField;
+            }
+            set {
+                if ((this.TIMEField.Equals(value) != true)) {
+                    this.TIMEField = value;
+                    this.RaisePropertyChanged("TIME");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -869,6 +974,100 @@ namespace slSecure.Web.SecureService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         RTU = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PD = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ControlStatus", Namespace="http://schemas.datacontract.org/2004/07/RoomInterface")]
+    [System.SerializableAttribute()]
+    public partial class ControlStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private bool connectField;
+        
+        private string controlIDField;
+        
+        private System.DateTime disconnectTimeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public bool connect {
+            get {
+                return this.connectField;
+            }
+            set {
+                if ((this.connectField.Equals(value) != true)) {
+                    this.connectField = value;
+                    this.RaisePropertyChanged("connect");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string controlID {
+            get {
+                return this.controlIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.controlIDField, value) != true)) {
+                    this.controlIDField = value;
+                    this.RaisePropertyChanged("controlID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public System.DateTime disconnectTime {
+            get {
+                return this.disconnectTimeField;
+            }
+            set {
+                if ((this.disconnectTimeField.Equals(value) != true)) {
+                    this.disconnectTimeField = value;
+                    this.RaisePropertyChanged("disconnectTime");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
+    public enum DoorEventType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorOpen = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DoorClose = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Connected = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DisConnected = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -958,6 +1157,66 @@ namespace slSecure.Web.SecureService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetAllPlaneInfo", ReplyAction="http://tempuri.org/ISecureService/GetAllPlaneInfoResponse")]
         System.Threading.Tasks.Task<slSecure.Web.SecureService.PlaneDegreeInfo[]> GetAllPlaneInfoAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23ReaderStatus", ReplyAction="http://tempuri.org/ISecureService/GetR23ReaderStatusResponse")]
+        byte[] GetR23ReaderStatus(string ReaderId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23ReaderStatus", ReplyAction="http://tempuri.org/ISecureService/GetR23ReaderStatusResponse")]
+        System.Threading.Tasks.Task<byte[]> GetR23ReaderStatusAsync(string ReaderId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SetR23Parameter", ReplyAction="http://tempuri.org/ISecureService/SetR23ParameterResponse")]
+        bool SetR23Parameter(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SetR23Parameter", ReplyAction="http://tempuri.org/ISecureService/SetR23ParameterResponse")]
+        System.Threading.Tasks.Task<bool> SetR23ParameterAsync(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SetR23EngineRoomRecovery", ReplyAction="http://tempuri.org/ISecureService/SetR23EngineRoomRecoveryResponse")]
+        bool SetR23EngineRoomRecovery(string ErNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SetR23EngineRoomRecovery", ReplyAction="http://tempuri.org/ISecureService/SetR23EngineRoomRecoveryResponse")]
+        System.Threading.Tasks.Task<bool> SetR23EngineRoomRecoveryAsync(string ErNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23RoomPerson", ReplyAction="http://tempuri.org/ISecureService/GetR23RoomPersonResponse")]
+        slSecure.Web.SecureService.PersonData[] GetR23RoomPerson(string ErNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23RoomPerson", ReplyAction="http://tempuri.org/ISecureService/GetR23RoomPersonResponse")]
+        System.Threading.Tasks.Task<slSecure.Web.SecureService.PersonData[]> GetR23RoomPersonAsync(string ErNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23Progress", ReplyAction="http://tempuri.org/ISecureService/GetR23ProgressResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.DBChangedConstant))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.AlarmData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.AlarmType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.DoorBindingData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.DoorBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.CCTVBindingData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.CCTVBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.ItemBindingData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.ItemBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.ItemGroupBindingData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.ItemGroupBindingData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.PlaneDegreeInfo[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.PlaneDegreeInfo))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.PersonData[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.PersonData))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.ControlStatus))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slSecure.Web.SecureService.DoorEventType))]
+        object[] GetR23Progress();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23Progress", ReplyAction="http://tempuri.org/ISecureService/GetR23ProgressResponse")]
+        System.Threading.Tasks.Task<object[]> GetR23ProgressAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23GroupErrorMessage", ReplyAction="http://tempuri.org/ISecureService/GetR23GroupErrorMessageResponse")]
+        string GetR23GroupErrorMessage();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23GroupErrorMessage", ReplyAction="http://tempuri.org/ISecureService/GetR23GroupErrorMessageResponse")]
+        System.Threading.Tasks.Task<string> GetR23GroupErrorMessageAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23ControlConnect", ReplyAction="http://tempuri.org/ISecureService/GetR23ControlConnectResponse")]
+        slSecure.Web.SecureService.ControlStatus GetR23ControlConnect(string ControllID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23ControlConnect", ReplyAction="http://tempuri.org/ISecureService/GetR23ControlConnectResponse")]
+        System.Threading.Tasks.Task<slSecure.Web.SecureService.ControlStatus> GetR23ControlConnectAsync(string ControllID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1114,6 +1373,62 @@ namespace slSecure.Web.SecureService {
         
         public System.Threading.Tasks.Task<slSecure.Web.SecureService.PlaneDegreeInfo[]> GetAllPlaneInfoAsync() {
             return base.Channel.GetAllPlaneInfoAsync();
+        }
+        
+        public byte[] GetR23ReaderStatus(string ReaderId) {
+            return base.Channel.GetR23ReaderStatus(ReaderId);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> GetR23ReaderStatusAsync(string ReaderId) {
+            return base.Channel.GetR23ReaderStatusAsync(ReaderId);
+        }
+        
+        public bool SetR23Parameter(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23) {
+            return base.Channel.SetR23Parameter(readerid, RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetR23ParameterAsync(string readerid, int RemoOpenTimeR23, int DelayTimeR23, int LoopErrorAlarmTimeR23, int AlarmTimeR23) {
+            return base.Channel.SetR23ParameterAsync(readerid, RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23);
+        }
+        
+        public bool SetR23EngineRoomRecovery(string ErNo) {
+            return base.Channel.SetR23EngineRoomRecovery(ErNo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetR23EngineRoomRecoveryAsync(string ErNo) {
+            return base.Channel.SetR23EngineRoomRecoveryAsync(ErNo);
+        }
+        
+        public slSecure.Web.SecureService.PersonData[] GetR23RoomPerson(string ErNo) {
+            return base.Channel.GetR23RoomPerson(ErNo);
+        }
+        
+        public System.Threading.Tasks.Task<slSecure.Web.SecureService.PersonData[]> GetR23RoomPersonAsync(string ErNo) {
+            return base.Channel.GetR23RoomPersonAsync(ErNo);
+        }
+        
+        public object[] GetR23Progress() {
+            return base.Channel.GetR23Progress();
+        }
+        
+        public System.Threading.Tasks.Task<object[]> GetR23ProgressAsync() {
+            return base.Channel.GetR23ProgressAsync();
+        }
+        
+        public string GetR23GroupErrorMessage() {
+            return base.Channel.GetR23GroupErrorMessage();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetR23GroupErrorMessageAsync() {
+            return base.Channel.GetR23GroupErrorMessageAsync();
+        }
+        
+        public slSecure.Web.SecureService.ControlStatus GetR23ControlConnect(string ControllID) {
+            return base.Channel.GetR23ControlConnect(ControllID);
+        }
+        
+        public System.Threading.Tasks.Task<slSecure.Web.SecureService.ControlStatus> GetR23ControlConnectAsync(string ControllID) {
+            return base.Channel.GetR23ControlConnectAsync(ControllID);
         }
     }
 }

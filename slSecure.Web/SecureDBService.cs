@@ -2081,6 +2081,56 @@ namespace slSecure.Web
             return this.ObjectContext.vwR23ReaderLog;
         }
 
+        public IQueryable<tblReportList> GetTblReportList()
+        {
+            return this.ObjectContext.tblReportList;
+        }
+
+        public void InsertTblReportList(tblReportList tblReportList)
+        {
+            if ((tblReportList.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblReportList, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblReportList.AddObject(tblReportList);
+            }
+        }
+
+        public void UpdateTblReportList(tblReportList currenttblReportList)
+        {
+            this.ObjectContext.tblReportList.AttachAsModified(currenttblReportList, this.ChangeSet.GetOriginal(currenttblReportList));
+        }
+
+        public void DeleteTblReportList(tblReportList tblReportList)
+        {
+            if ((tblReportList.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblReportList, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblReportList.Attach(tblReportList);
+                this.ObjectContext.tblReportList.DeleteObject(tblReportList);
+            }
+        }
+
+        public IQueryable<vwSchConfig> GetVwSchConfig()
+        {
+            return this.ObjectContext.vwSchConfig;
+        }
+
+        // TODO:
+        // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+        // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+        // 為支援分頁，您必須將排序加入至 'vwSchLog' 查詢。
+        public IQueryable<vwSchLog> GetVwSchLog()
+        {
+            return this.ObjectContext.vwSchLog;
+        }
+
+
     }
 
 

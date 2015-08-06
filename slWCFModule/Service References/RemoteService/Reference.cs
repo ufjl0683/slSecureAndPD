@@ -48,6 +48,9 @@ namespace slWCFModule.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         ItemAttributehanged = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ScheduleChanged = 10,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1047,6 +1050,16 @@ namespace slWCFModule.RemoteService {
         System.IAsyncResult BeginGetR23ControlConnect(string ControllID, System.AsyncCallback callback, object asyncState);
         
         slWCFModule.RemoteService.ControlStatus EndGetR23ControlConnect(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetTotalConnection", ReplyAction="http://tempuri.org/ISecureService/GetTotalConnectionResponse")]
+        System.IAsyncResult BeginGetTotalConnection(System.AsyncCallback callback, object asyncState);
+        
+        int EndGetTotalConnection(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/SupressAlarm", ReplyAction="http://tempuri.org/ISecureService/SupressAlarmResponse")]
+        System.IAsyncResult BeginSupressAlarm(int ItemID, System.AsyncCallback callback, object asyncState);
+        
+        void EndSupressAlarm(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1318,6 +1331,25 @@ namespace slWCFModule.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetTotalConnectionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetTotalConnectionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public int Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SecureServiceClient : System.ServiceModel.DuplexClientBase<slWCFModule.RemoteService.ISecureService>, slWCFModule.RemoteService.ISecureService {
         
         private BeginOperationDelegate onBeginRegisterDelegate;
@@ -1446,6 +1478,18 @@ namespace slWCFModule.RemoteService {
         
         private System.Threading.SendOrPostCallback onGetR23ControlConnectCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetTotalConnectionDelegate;
+        
+        private EndOperationDelegate onEndGetTotalConnectionDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetTotalConnectionCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSupressAlarmDelegate;
+        
+        private EndOperationDelegate onEndSupressAlarmDelegate;
+        
+        private System.Threading.SendOrPostCallback onSupressAlarmCompletedDelegate;
+        
         private bool useGeneratedCallback;
         
         private BeginOperationDelegate onBeginOpenDelegate;
@@ -1572,6 +1616,10 @@ namespace slWCFModule.RemoteService {
         public event System.EventHandler<GetR23GroupErrorMessageCompletedEventArgs> GetR23GroupErrorMessageCompleted;
         
         public event System.EventHandler<GetR23ControlConnectCompletedEventArgs> GetR23ControlConnectCompleted;
+        
+        public event System.EventHandler<GetTotalConnectionCompletedEventArgs> GetTotalConnectionCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SupressAlarmCompleted;
         
         public event System.EventHandler<SayHelloReceivedEventArgs> SayHelloReceived;
         
@@ -2572,6 +2620,97 @@ namespace slWCFModule.RemoteService {
                         ControllID}, this.onEndGetR23ControlConnectDelegate, this.onGetR23ControlConnectCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetTotalConnection(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetTotalConnection(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        int slWCFModule.RemoteService.ISecureService.EndGetTotalConnection(System.IAsyncResult result) {
+            return base.Channel.EndGetTotalConnection(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetTotalConnection(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetTotalConnection(callback, asyncState);
+        }
+        
+        private object[] OnEndGetTotalConnection(System.IAsyncResult result) {
+            int retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetTotalConnection(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetTotalConnectionCompleted(object state) {
+            if ((this.GetTotalConnectionCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetTotalConnectionCompleted(this, new GetTotalConnectionCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetTotalConnectionAsync() {
+            this.GetTotalConnectionAsync(null);
+        }
+        
+        public void GetTotalConnectionAsync(object userState) {
+            if ((this.onBeginGetTotalConnectionDelegate == null)) {
+                this.onBeginGetTotalConnectionDelegate = new BeginOperationDelegate(this.OnBeginGetTotalConnection);
+            }
+            if ((this.onEndGetTotalConnectionDelegate == null)) {
+                this.onEndGetTotalConnectionDelegate = new EndOperationDelegate(this.OnEndGetTotalConnection);
+            }
+            if ((this.onGetTotalConnectionCompletedDelegate == null)) {
+                this.onGetTotalConnectionCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetTotalConnectionCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetTotalConnectionDelegate, null, this.onEndGetTotalConnectionDelegate, this.onGetTotalConnectionCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginSupressAlarm(int ItemID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSupressAlarm(ItemID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void slWCFModule.RemoteService.ISecureService.EndSupressAlarm(System.IAsyncResult result) {
+            base.Channel.EndSupressAlarm(result);
+        }
+        
+        private System.IAsyncResult OnBeginSupressAlarm(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            int ItemID = ((int)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginSupressAlarm(ItemID, callback, asyncState);
+        }
+        
+        private object[] OnEndSupressAlarm(System.IAsyncResult result) {
+            ((slWCFModule.RemoteService.ISecureService)(this)).EndSupressAlarm(result);
+            return null;
+        }
+        
+        private void OnSupressAlarmCompleted(object state) {
+            if ((this.SupressAlarmCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SupressAlarmCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SupressAlarmAsync(int ItemID) {
+            this.SupressAlarmAsync(ItemID, null);
+        }
+        
+        public void SupressAlarmAsync(int ItemID, object userState) {
+            if ((this.onBeginSupressAlarmDelegate == null)) {
+                this.onBeginSupressAlarmDelegate = new BeginOperationDelegate(this.OnBeginSupressAlarm);
+            }
+            if ((this.onEndSupressAlarmDelegate == null)) {
+                this.onEndSupressAlarmDelegate = new EndOperationDelegate(this.OnEndSupressAlarm);
+            }
+            if ((this.onSupressAlarmCompletedDelegate == null)) {
+                this.onSupressAlarmCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSupressAlarmCompleted);
+            }
+            base.InvokeAsync(this.onBeginSupressAlarmDelegate, new object[] {
+                        ItemID}, this.onEndSupressAlarmDelegate, this.onSupressAlarmCompletedDelegate, userState);
+        }
+        
         private void OnSayHelloReceived(object state) {
             if ((this.SayHelloReceived != null)) {
                 object[] results = ((object[])(state));
@@ -2984,6 +3123,30 @@ namespace slWCFModule.RemoteService {
                 object[] _args = new object[0];
                 slWCFModule.RemoteService.ControlStatus _result = ((slWCFModule.RemoteService.ControlStatus)(base.EndInvoke("GetR23ControlConnect", _args, result)));
                 return _result;
+            }
+            
+            public System.IAsyncResult BeginGetTotalConnection(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetTotalConnection", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public int EndGetTotalConnection(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                int _result = ((int)(base.EndInvoke("GetTotalConnection", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginSupressAlarm(int ItemID, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = ItemID;
+                System.IAsyncResult _result = base.BeginInvoke("SupressAlarm", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndSupressAlarm(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("SupressAlarm", _args, result);
             }
         }
     }

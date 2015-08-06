@@ -48,11 +48,11 @@ namespace slSecure
         protected  async  override void OnNavigatedTo(NavigationEventArgs e)
         {
 
-           
-         
-            //tmr.Interval = TimeSpan.FromSeconds(30);
-            //tmr.Tick += tmr_Tick;
-            //tmr.Start();
+
+
+            tmr.Interval = TimeSpan.FromSeconds(30);
+            tmr.Tick += tmr_Tick;
+            tmr.Start();
         
            
           //  Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior bev = new Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior();
@@ -138,6 +138,7 @@ namespace slSecure
                 CCTVLock cctvlock = lstCCTVLock.Children.Skip(8).FirstOrDefault() as CCTVLock;
                 if (cctvlock != null)
                 {
+                   
                     lstCCTVLock.Children.Remove(cctvlock);
                 }
             }
@@ -148,10 +149,14 @@ namespace slSecure
 
         void tmr_Tick(object sender, EventArgs e)
         {
+
+            this.txtCCTVCnt.Text = CCTVLock.CnCnt.ToString();
             if (DateTime.Now.Subtract(LastOperationDatetime) > TimeSpan.FromMinutes(1 ))
             {
-                tmr.Stop();
-                this.NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+               // tmr.Stop();
+                //this.NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+              
+                this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
             }
             //throw new NotImplementedException();
         }
@@ -199,6 +204,7 @@ namespace slSecure
 
         private void Page_MouseMove(object sender, MouseEventArgs e)
         {
+            
             LastOperationDatetime = DateTime.Now;
         }
 

@@ -88,6 +88,7 @@ namespace slSecure.Dialog
             this.DBContext.tblItemConfigs.Clear();
             this.DBContext.tblAIItem1HourLogs.Clear();
 
+            // ******* 各個業主所安排的ID都不一樣!!
             // ItemID
             //* 1 = 溫度
             //  2 = 感應式燈狀態
@@ -128,11 +129,23 @@ namespace slSecure.Dialog
 
                 // Get Config Value
                 var _Query = Load_ConfigQuery.Entities.FirstOrDefault();
+
+                // RTU底下的監測儀器名稱
                 this.ItemName = _Query.ItemName;
+
+                // 警告上限
                 this.WarningUpper = _Query.WarningUpper;
+
+                // 警告下限
                 this.WarningLower = _Query.WarningLower;
+
+                // 警報上限
                 this.AlarmUpper = _Query.AlarmUpper;
+
+                // 警報下限
                 this.AlarmLower = _Query.AlarmLower;
+
+                // 數值單位
                 this.Unit = _Query.Unit;
 
                 var Log_Query =
@@ -233,8 +246,20 @@ namespace slSecure.Dialog
                     }
                     else
                     {
-                        MessageBox.Show("查詢不到點資料! 製圖中斷...");
-                        MessageBox.Show("會不會是設備在時間範圍內並沒有上線?");
+                        if (this.Start_Date == this.End_Date)
+                        {
+                            MessageBox.Show("查詢不到 " +
+                                            string.Format("{0:yyyy/MM/dd hh:mm}", this.Start_Date) +
+                                            " 的監測資料資料!!", "提示", MessageBoxButton.OK);
+                        }
+                        else
+                        {
+                            MessageBox.Show("查詢不到" + '\n' +
+                                            string.Format("{0:yyyy/MM/dd hh:mm}", this.Start_Date) + '\n'
+                                            + "          到" + '\n' +
+                                            string.Format("{0:yyyy/MM/dd hh:mm}", this.End_Date) + '\n' +
+                                            "的監測資料資料!!", "提示", MessageBoxButton.OK);
+                        }
                     }
                 };
 
@@ -553,13 +578,9 @@ namespace slSecure.Dialog
                 Axis yaxis = new Axis();
                 yaxis.Title = this.ItemName + "(" + this.Unit + ")";
                 yaxis.Opacity = 100;
-
-                // Max & Min
-                yaxis.AxisMaximum = this.Range[1];
-                yaxis.AxisMinimum = this.Range[0];
-
                 yaxis.Interval = 5;
                 yaxis.ValueFormatString = "#,0.0";
+                //yaxis.ValueFormatString = string.Empty;
 
                 #region Cancel Code
                 /*
@@ -576,13 +597,31 @@ namespace slSecure.Dialog
                 */
                 #endregion
 
-                double _min = Convert.ToDouble(yaxis.AxisMinimum);
-                double _max = Convert.ToDouble(yaxis.AxisMaximum);
-                if (_max <= _min)
+                // Min & Max
+                yaxis.AxisMaximum = this.Range[1];
+                yaxis.AxisMinimum = this.Range[0];
+
+                // if max <= min, don't let chart get any exception
+                // I make a static value for min =0 and max = 1.
+                if ((double)yaxis.AxisMaximum <= (double)yaxis.AxisMinimum)
                 {
                     //MessageBox.Show("產生 最大值 < 最小值 的問題");
-                    yaxis.AxisMaximum = _max = 1;
-                    yaxis.AxisMinimum = _min = 0;
+                    yaxis.AxisMaximum = 1;
+                    yaxis.AxisMinimum = 0;
+                }
+                else
+                {
+                    // Pitch of yaxis's max and min value
+                    double _pitch = (this.Range[0] + this.Range[1]) / 100;
+                    if (_pitch == 0)
+                        _pitch = 1;
+
+                    // Adding a pitch of range, make chart more beautiful
+                    yaxis.AxisMinimum = (double)yaxis.AxisMinimum - _pitch;
+                    yaxis.AxisMaximum = (double)yaxis.AxisMaximum + _pitch;
+
+                    // Let the max and min value has a line to show up their value.
+                    //Create_MinMax_Trend_Lines(chart, this.Range[0], this.Range[1]);
                 }
 
                 // 加入
@@ -615,6 +654,7 @@ namespace slSecure.Dialog
         private void Create_Trend_Lines(Chart chart)
         {
             // Trend Lines
+
             // Warning Lower Line
             chart.TrendLines.Add(new TrendLine()
             {
@@ -638,6 +678,59 @@ namespace slSecure.Dialog
             {
                 Value = this.AlarmUpper,
                 LineColor = new SolidColorBrush(Colors.Red)
+            });
+        }
+
+        private void Create_MinMax_Trend_Lines(Chart chart, double min, double max)
+        {
+            // min
+            chart.TrendLines.Add(new TrendLine()
+            {
+                Value = min,
+                LabelText = string.Format("{0:0.00} " + this.Unit, min),
+                LabelFontColor = new SolidColorBrush(Colors.Blue),
+                LineColor = new SolidColorBrush(Colors.Blue),
+                Opacity = 0.3
+            });
+
+            // max
+            chart.TrendLines.Add(new TrendLine()
+            {
+                Value = max,
+                LabelText = string.Format("{0:0.00} " + this.Unit, max),
+                LabelFontColor = new SolidColorBrush(Colors.Red),
+                LineColor = new SolidColorBrush(Colors.Red),
+                Opacity = 0.3
+            });
+
+            // average
+            chart.TrendLines.Add(new TrendLine()
+            {
+                Value = (min + max) / 2,
+                LabelText = string.Format("{0:0.00} " + this.Unit, (min + max) / 2),
+                LabelFontColor = new SolidColorBrush(Colors.Green),
+                LineColor = new SolidColorBrush(Colors.Green),
+                Opacity = 0.3
+            });
+
+            // pitch between avg <---> max
+            chart.TrendLines.Add(new TrendLine()
+            {
+                Value = ((min + max) / 2) + (max - ((min + max) / 2)) / 2,
+                LabelText = string.Format("{0:0.00} " + this.Unit, ((min + max) / 2) + (max - ((min + max) / 2)) / 2),
+                LabelFontColor = new SolidColorBrush(Colors.White),
+                LineColor = new SolidColorBrush(Colors.White),
+                Opacity = 0.2
+            });
+
+            // pitch between avg <---> min
+            chart.TrendLines.Add(new TrendLine()
+            {
+                Value = ((min + max) / 2) - (((min + max) / 2) - min) / 2,
+                LabelText = string.Format("{0:0.00} " + this.Unit, ((min + max) / 2) - (((min + max) / 2) - min) / 2),
+                LabelFontColor = new SolidColorBrush(Colors.White),
+                LineColor = new SolidColorBrush(Colors.White),
+                Opacity = 0.2
             });
         }
 

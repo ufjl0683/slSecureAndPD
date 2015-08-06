@@ -13,6 +13,7 @@
       <xs:enumeration value="EventExternalForce" />
       <xs:enumeration value="EventDoorOpen" />
       <xs:enumeration value="ItemAttributehanged" />
+      <xs:enumeration value="ScheduleChanged" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="DBChangedConstant" nillable="true" type="tns:DBChangedConstant" />

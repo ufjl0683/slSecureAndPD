@@ -23,6 +23,8 @@ namespace SecureServer
         public static RTU.ItemGroupManager itemgrp_mgr;
         public static PlaneManager plane_mgr;
         public static PD.PDManager pd_mgr ;
+        public static Schedule.ScheduleManager sch_mgr;
+
         ExactIntervalTimer ExactOneHourTmr;
 
 
@@ -46,10 +48,12 @@ namespace SecureServer
           
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
            card_mgr.OnAlarmEvent += card_mgr_OnAlarmEvent;
+           sch_mgr = new Schedule.ScheduleManager();
 //#endif
            new System.Threading.Thread(CheckCardReaderConnectionTask).Start();
            ExactOneHourTmr = new ExactIntervalTimer(0, 0);
            ExactOneHourTmr.OnElapsed += ExactOneHourTmr_OnElapsed;
+
           // CheckCardDueTask();
          //BindingData.ItemBindingData [] datas=  item_mgr.GetAllItemBindingData(1);
          //foreach (ItemBindingData data in datas)
@@ -192,8 +196,8 @@ namespace SecureServer
                 PCName = ( OperationContext.Current.Channel.RemoteAddress).ToString(),
                 CallBack = OperationContext.Current.GetCallbackChannel<ISecureServiceCallBack>(),
                  Key=GUID};
-            
-            dictClientCallBacks.Add(GUID, info);
+            lock(this.dictClientCallBacks)
+              dictClientCallBacks.Add(GUID, info);
             Console.WriteLine(info.PCName + ",registed!");
 
             return GUID;
@@ -251,6 +255,11 @@ namespace SecureServer
          
             switch (constant)
             {
+                
+                case DBChangedConstant.ScheduleChanged:
+                    SecureService.sch_mgr.ScheduleChange(long.Parse(value));
+
+                    break;
                 case DBChangedConstant.AuthorityChanged:
                     Console.WriteLine("notify db Change!");
                   
@@ -348,6 +357,7 @@ namespace SecureServer
 
         public void UnRegist(string guid)
         {
+            lock (this.dictClientCallBacks)
             this.dictClientCallBacks.Remove(guid);
         }
 
@@ -442,7 +452,7 @@ namespace SecureServer
                     {
                       
                         info.CallBack.ItemValueChangedEvenr(itemBindingData);
-                        Console.WriteLine("Call back!");
+                        Console.WriteLine("Call back!" + itemBindingData.ItemID + "," + itemBindingData.Value + "," + itemBindingData.ColorString);
                     }
                     }
                     catch (Exception ex)
@@ -547,5 +557,31 @@ namespace SecureServer
         }
 
 
+
+
+        public int GetTotalConnection()
+        {
+            return this.dictClientCallBacks.Count;
+           // throw new NotImplementedException();
+        }
+
+
+        public void SupressAlarm(int ItemID)
+        {
+             SecureDBEntities1 db;
+            Item item=item_mgr[ItemID];
+               item.ItemConfig.Suppress = true;
+            using(db=new SecureDBEntities1())
+            {
+                tblAlarmLog log = new tblAlarmLog() { ControlID = item.ItemConfig.ControlID, ItemID = ItemID, TypeCode = 5, TypeID = 5, Timestamp = DateTime.Now, Value = 0, Memo = "Supress" };
+                db.tblAlarmLog.Add(log);
+                db.SaveChanges();
+            }
+
+
+            DispatchItemValueChangedEvent(item.ToBindingData());
+           
+           // throw new NotImplementedException();
+        }
     }
 }

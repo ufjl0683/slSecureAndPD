@@ -84,6 +84,7 @@ namespace slSecure.Forms
             //                     Type="EP"
                                   
             //             }).ToArray();
+        
             client = new MyClient("CustomBinding_ISecureService", false);
             client.SecureService.GetAllPlaneInfoCompleted += (s, a) =>
                 {
@@ -103,13 +104,16 @@ namespace slSecure.Forms
                       }
 
                 };
-            client.SecureService.GetAllPlaneInfoAsync();
+            if (!IsExit)
+            {
+                client.SecureService.GetAllPlaneInfoAsync();
 
-          
-            tmr.Interval = TimeSpan.FromSeconds(10);
-            tmr.Tick += tmr_Tick;
-                
-            tmr.Start();
+
+                tmr.Interval = TimeSpan.FromSeconds(10);
+                tmr.Tick += tmr_Tick;
+
+                tmr.Start();
+            }
           //  client.OnItemValueChangedEvent += client_OnItemValueChangedEvent;
         }
 
@@ -221,7 +225,7 @@ namespace slSecure.Forms
 
         private void cboFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lstMenu == null)
+            if (lstMenu == null  || PlaneDegreeInfos==null)
                 return;
             Rectangle r = (sender as ComboBox).SelectedItem as Rectangle;
             if (r.Tag.ToString() == "ALL")
@@ -243,8 +247,10 @@ namespace slSecure.Forms
           //  Common.Util.GetICommon().Navigate(new Uri("/slSecure;component/Forms/ControlRoom.xaml",UriKind.Relative));
         }
 
+        bool IsExit = false;
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
+            IsExit = true;
             client.Dispose();
             tmr.Stop();
           

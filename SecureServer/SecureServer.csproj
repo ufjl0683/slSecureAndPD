@@ -46,7 +46,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;R23</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -58,6 +58,10 @@
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="ReportAutoPrint, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ReportAutoPrint.exe</HintPath>
     </Reference>
     <Reference Include="RoomInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -124,6 +128,9 @@
     <Compile Include="RTU\Plane.cs" />
     <Compile Include="RTU\R23AdamRTU.cs" />
     <Compile Include="RTU\RTUManager.cs" />
+    <Compile Include="Schedule\ISchedule.cs" />
+    <Compile Include="Schedule\Schedule.cs" />
+    <Compile Include="Schedule\ScheduleManager.cs" />
     <Compile Include="SecureService.cs" />
     <Compile Include="ISecureService.cs" />
     <Compile Include="Program.cs" />
@@ -174,6 +181,12 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPDConfig.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSchConfig.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSchLog.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSysParameter.cs">
@@ -238,6 +251,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReportAutoPrint.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="RoomInterface.dll">

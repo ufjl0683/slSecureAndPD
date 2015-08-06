@@ -84,10 +84,10 @@ namespace slWCFModule
         //        tmr.Dispose();
         //    }
         //}
-        public MyClient( string config):this(config,true)
+        public MyClient( string config):this(config,false)
             
         {
-
+           
            
 
          
@@ -174,7 +174,7 @@ namespace slWCFModule
            
             try
             {
-
+                
                 this.SecureService.RegisterAsync(Guid.NewGuid().ToString());
                 this.SecureService.RegisterCompleted += (s, a) =>
                 {
@@ -204,11 +204,35 @@ namespace slWCFModule
            
         }
 
+        bool IsDispose = false;
         public void Dispose()
         {
-            SecureService.CloseAsync();
-            tmr.Change(System.Threading.Timeout.Infinite, 0);
-            tmr.Dispose();
+            if (!IsDispose)
+            {
+
+                if (Key != null && Key != "")
+                {
+                    SecureService.UnRegistCompleted += (s, a) =>
+                        {
+                            SecureService.CloseAsync();
+                            ;
+                            tmr.Change(System.Threading.Timeout.Infinite, 0);
+                            tmr.Dispose();
+                            IsDispose = true;
+                            Key = "";
+                            return;
+                        };
+                    SecureService.UnRegistAsync(Key);
+
+                }
+                else
+                {
+                    SecureService.CloseAsync();
+                    tmr.Change(System.Threading.Timeout.Infinite, 0);
+                    tmr.Dispose();
+                    IsDispose = true;
+                }
+            }
            
         }
 

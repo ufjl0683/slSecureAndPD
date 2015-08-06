@@ -25,7 +25,7 @@ namespace test
 
     class Program
     {
-        static RTU rtu = new RTU("rtu-101", 1, "10.21.12.200", 502, 2001, 46,0);
+     //   static RTU rtu = new RTU("rtu-101", 1, "10.21.12.200", 502, 2001, 46,0);
         //static void CallBack(object o)
         //{
         //    Console.WriteLine("hi");
@@ -48,21 +48,21 @@ namespace test
 
          //   RoomClient.RoomClient.GroupModify(new List<int>(new int[]{1,2}));
              
-            while (true)
-            {
-            //  object[] objs=  RoomClient.RoomClient.GetGroupProgress();
+            //while (true)
+            //{
+            ////  object[] objs=  RoomClient.RoomClient.GetGroupProgress();
 
             
 
 
 
-            //  Console.WriteLine(objs.Length);
-                byte[] dat=RoomClient.RoomClient.GetStatus("AN-ADAM-1");
-             Console.WriteLine( dat[3]);
-             Console.WriteLine(dat[4]);
-             Console.WriteLine(dat[5]);
-              Console.ReadKey();
-            }
+            ////  Console.WriteLine(objs.Length);
+            //    byte[] dat=RoomClient.RoomClient.GetStatus("AN-ADAM-1");
+            // Console.WriteLine( dat[3]);
+            // Console.WriteLine(dat[4]);
+            // Console.WriteLine(dat[5]);
+            //  Console.ReadKey();
+            //}
         //    bool success = false;
 
         //    success = RoomClient.RoomClient.SetADAMAlarmTime("AN-ADAM-1", 15, 10, 5, 20);
@@ -166,7 +166,7 @@ namespace test
           
           //  modbus.ReadHoldingRegister(1, 1, 2000, 46, ref data);
               
-           //   new Wrapper();
+              new Wrapper();
             //CCTV_TYPE1 cctv=   new CCTV_TYPE1("192.192.85.20", 11000, "admin", "pass");
             //cctv.Preset(1);
             //  Console.ReadKey();
@@ -213,18 +213,18 @@ namespace test
             //throw new NotImplementedException();
         }
 
-        static void SendTask()
-        {
+        //static void SendTask()
+        //{
 
-            while (true)
-            {
-                rtu.WriteRegister(2009, 1);
+        //    while (true)
+        //    {
+        //        rtu.WriteRegister(2009, 1);
 
-                System.Threading.Thread.Sleep(2000);
-                rtu.WriteRegister(2009, 0);
-                System.Threading.Thread.Sleep(2000);
-            }
-        }
+        //        System.Threading.Thread.Sleep(2000);
+        //        rtu.WriteRegister(2009, 0);
+        //        System.Threading.Thread.Sleep(2000);
+        //    }
+        //}
 
         static void modbus_OnResponseData(ushort id, byte unit, byte function, byte[] data)
         {
@@ -234,20 +234,28 @@ namespace test
 
         public class Wrapper : RemoteService.ISecureServiceCallback
         {
+            RemoteService.SecureServiceClient client;
             public Wrapper()
             {
-                RemoteService.SecureServiceClient client = new RemoteService.SecureServiceClient(new System.ServiceModel.InstanceContext(this), "CustomBinding_ISecureService");
+                client = new RemoteService.SecureServiceClient(new System.ServiceModel.InstanceContext(this), "CustomBinding_ISecureService");
                 DoorBindingData[] data = client.GetALLDoorBindingData(2);
                 string Key = client.Register(Environment.MachineName);
                 Console.WriteLine(data.Length);
                 Console.WriteLine("Key:" + Key);
-
-               bool success= client.SetR23Parameter("AN-2400N-1", 15, 10, 5, 20);
-               Console.WriteLine(success);
+                new System.Threading.Thread(Task).Start();
+               //bool success= client.SetR23Parameter("AN-2400N-1", 15, 10, 5, 20);
+               //Console.WriteLine(success);
 
             }
 
-
+            public void Task()
+            {
+                while (true)
+                {
+                    Console.WriteLine(client.GetTotalConnection());
+                    System.Threading.Thread.Sleep(3000);
+                }
+            }
             public void SayHello(string hello)
             {
                 Console.WriteLine("Test from Server!");

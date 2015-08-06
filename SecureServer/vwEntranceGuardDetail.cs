@@ -22,5 +22,6 @@ namespace SecureServer
         public Nullable<int> TriggerCCTVID { get; set; }
         public Nullable<int> PlaneID { get; set; }
         public short ControlType { get; set; }
+        public string ERNo { get; set; }
     }
 }

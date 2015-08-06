@@ -235,7 +235,7 @@ namespace SecureServer.CardReader
 
                 this.LoadSystemParameter();
                 this.SendAllReaderParameter();
-                DownloadSuperPassword();
+               // DownloadSuperPassword();
             }
             catch (Exception ex)
             {
@@ -710,54 +710,54 @@ namespace SecureServer.CardReader
             db.SaveChanges();
         }
 
-        void DownloadSuperPassword()
-        {
-            SecureDBEntities1 db = new SecureDBEntities1();
-            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            tblERDoorPassword tbl = (from n in db.tblERDoorPassword
-                                     where n.Timestamp
-                                         == dt
-                                     select n).FirstOrDefault();
+        //void DownloadSuperPassword()
+        //{
+        //    SecureDBEntities1 db = new SecureDBEntities1();
+        //    DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        //    tblPasswordEveryDayDifference tbl = (from n in db.tblPasswordEveryDayDifference
+        //                             where n.Timestamp
+        //                                 == dt
+        //                             select n).FirstOrDefault();
 
-            if (tbl == null)
-                return;
+        //    if (tbl == null)
+        //        return;
 
-            foreach (CardReader reader in dictCardReaders.Values)
-            {
-                try
-                {
-                    if (reader.IsConnected)
-                    {
-                        reader.SetSuperOpenDoorPassword(int.Parse(tbl.DoorPassword));
-                        Console.WriteLine(reader.ControllerID + "設定每日開門密碼成功");
+        //    foreach (CardReader reader in dictCardReaders.Values)
+        //    {
+        //        try
+        //        {
+        //            if (reader.IsConnected)
+        //            {
+        //                reader.SetSuperOpenDoorPassword(int.Parse(tbl.DoorPassword));
+        //                Console.WriteLine(reader.ControllerID + "設定每日開門密碼成功");
 
 
-                        db.tblEngineRoomLog.Add(
-                                      new tblEngineRoomLog()
-                                      {
-                                          ControlID = reader.ControllerID,
-                                          Result = 0,
-                                          StartTime = DateTime.Now,
-                                          ABA = "0",
-                                          TypeID = 8,
-                                          TypeCode = 40,
-                                          Memo = tbl.DoorPassword
-                                      }
-                                      );
+        //                db.tblEngineRoomLog.Add(
+        //                              new tblEngineRoomLog()
+        //                              {
+        //                                  ControlID = reader.ControllerID,
+        //                                  Result = 0,
+        //                                  StartTime = DateTime.Now,
+        //                                  ABA = "0",
+        //                                  TypeID = 8,
+        //                                  TypeCode = 40,
+        //                                  Memo = tbl.DoorPassword
+        //                              }
+        //                              );
                    
                      
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
-                }
-            }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message + "," + ex.StackTrace);
+        //        }
+        //    }
 
-            db.SaveChanges();
+        //    db.SaveChanges();
 
          
-        }
+        //}
 
         void CheckAndGenerateDailySuperPassword()
         {
@@ -796,6 +796,18 @@ namespace SecureServer.CardReader
                             reader.SetSuperOpenDoorPassword(passwd);
                             Console.WriteLine(reader.ControllerID + "設定每日開門密碼成功");
                             db.tblPasswordEveryDayDifference.Add(new tblPasswordEveryDayDifference() { Timestamp = dt, DoorPassword = passwd.ToString("0000"), ControlID = control.ControlID });
+                            db.tblEngineRoomLog.Add(
+                                   new tblEngineRoomLog()
+                                   {
+                                       ControlID = reader.ControllerID,
+                                       Result = 0,
+                                       StartTime = DateTime.Now,
+                                       ABA = "0",
+                                       TypeID = 8,
+                                       TypeCode = 40,
+                                       Memo = pwdString
+                                   }
+                                   );
                             haschanges = true;
                         }
                         catch (Exception ex)

@@ -34,5 +34,8 @@ namespace SecureServer
         public int RoleID { get; set; }
         public System.DateTime Timestamp { get; set; }
         public Nullable<System.DateTime> ReturnDate { get; set; }
+        public string MCNSID { get; set; }
+        public Nullable<System.DateTime> CardStartDate { get; set; }
+        public Nullable<System.DateTime> CardEndDate { get; set; }
     }
 }

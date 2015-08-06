@@ -27,6 +27,9 @@ namespace test.MCNSService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ERNameField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LineIDField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -59,6 +62,19 @@ namespace test.MCNSService {
                 if ((object.ReferenceEquals(this.ERNameField, value) != true)) {
                     this.ERNameField = value;
                     this.RaisePropertyChanged("ERName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string LineID {
+            get {
+                return this.LineIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LineIDField, value) != true)) {
+                    this.LineIDField = value;
+                    this.RaisePropertyChanged("LineID");
                 }
             }
         }

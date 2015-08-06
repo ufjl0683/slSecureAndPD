@@ -50,5 +50,7 @@ namespace SecureServer
         public DbSet<vwUserMenuAllow> vwUserMenuAllow { get; set; }
         public DbSet<tblDeviceStateLog> tblDeviceStateLog { get; set; }
         public DbSet<tblPasswordEveryDayDifference> tblPasswordEveryDayDifference { get; set; }
+        public DbSet<tblSchConfig> tblSchConfig { get; set; }
+        public DbSet<tblSchLog> tblSchLog { get; set; }
     }
 }

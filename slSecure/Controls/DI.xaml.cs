@@ -149,5 +149,21 @@ namespace slSecure.Controls
             ItemBindingData data = this.DataContext as ItemBindingData;
             new slSecureLib.Forms.SingleReport(data.ItemID, data.Type).Show();
         }
+
+        private void mnuSupressAlarm_Click(object sender, RoutedEventArgs e)
+        {
+            slWCFModule.MyClient client = new slWCFModule.MyClient("CustomBinding_ISecureService");
+            ItemBindingData data = ((sender as MenuItem).DataContext as ItemBindingData);
+            if (!data.IsAlarm)
+                return;
+            client.SecureService.SupressAlarmCompleted += (s, a) =>
+                {
+                    if (a.Error != null)
+                        MessageBox.Show(a.Error.Message);
+                    client.Dispose();
+                };
+            client.SecureService.SupressAlarmAsync(data.ItemID);
+           
+        }
     }
 }

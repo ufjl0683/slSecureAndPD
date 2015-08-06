@@ -91,7 +91,7 @@ namespace MjpegProcessor
 			ParseStream(uri, null, null);
 		}
 
-     
+        HttpWebRequest request;
 
 		public void ParseStream(Uri uri, string username, string password)
 		{
@@ -99,7 +99,9 @@ namespace MjpegProcessor
 #if SILVERLIGHT
 			HttpWebRequest.RegisterPrefix("http://", WebRequestCreator.ClientHttp);
 #endif
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            if (IsExit)
+                return;
+			  request = (HttpWebRequest)WebRequest.Create(uri);
 
 
             if (!string.IsNullOrEmpty(username) || !string.IsNullOrEmpty(password))
@@ -117,11 +119,23 @@ namespace MjpegProcessor
 			request.AllowReadStreamBuffering = false;
 #endif
 			// asynchronously get a response
+            if (IsExit)
+                return;
 			request.BeginGetResponse(OnGetResponse, request);
+           
 		}
 
+        bool IsExit = false;
+        public void Close()
+        {
+           IsExit = true;
+            StopStream();
+          
+        }
 		public void StopStream()
 		{
+            if (request != null)
+                request.Abort();
 			_streamActive = false;
 		}
 
@@ -152,14 +166,17 @@ namespace MjpegProcessor
 				string boundary = resp.Headers["Content-Type"].Split('=')[1].Replace("\"", "");
 				byte[] boundaryBytes = Encoding.UTF8.GetBytes(boundary.StartsWith("--") ? boundary : "--" + boundary);
 
+                if (IsExit)
+                    return;
 				Stream s = resp.GetResponseStream();
 				BinaryReader br = new BinaryReader(s);
+
 
 				_streamActive = true;
 
 				byte[] buff = br.ReadBytes(ChunkSize);
 
-				while (_streamActive)
+				while (_streamActive )
 				{
 					// find the JPEG header
 					int imageStart = buff.Find(JpegHeader);

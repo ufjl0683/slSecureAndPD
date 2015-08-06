@@ -88,6 +88,9 @@
     <Content Include="ClientBin\slSecure.xap" />
     <Content Include="ClientBin\slWCFModule.xap" />
     <Content Include="MCNSService.asmx" />
+    <None Include="Service References\SecureService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\SecureService\configuration91.svcinfo" />
     <None Include="Service References\SecureService\configuration.svcinfo" />
     <None Include="Service References\SecureService\Reference.svcmap">
@@ -116,8 +119,6 @@
     <Compile Include="CCTVLock.aspx.designer.cs">
       <DependentUpon>CCTVLock.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DomainService1.cs" />
-    <Compile Include="DomainService1.metadata.cs" />
     <Compile Include="MCNSService.asmx.cs">
       <DependentUpon>MCNSService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -156,6 +157,9 @@
     </Content>
     <None Include="Properties\PublishProfiles\192.192.85.64 sl.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Service References\SecureService\RoomInterface.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\SecureService\SecureServer.BindingData.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -185,6 +189,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\SecureService\slSecure.Web.SecureService.PlaneDegreeInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SecureService\slSecure.Web.SecureService.ControlStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SecureService\slSecure.Web.SecureService.PersonData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">

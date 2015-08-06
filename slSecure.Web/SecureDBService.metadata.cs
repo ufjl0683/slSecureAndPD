@@ -1104,6 +1104,51 @@ namespace slSecure.Web
             public Nullable<bool> Week6 { get; set; }
 
             public Nullable<bool> Week7 { get; set; }
+
+            public int ReportID { get; set; }
+          
+            public Nullable<DateTime> NextStartTime { get; set; }
+
+            [MetadataTypeAttribute(typeof(tblReportList.tblReportListMetadata))]
+            public partial class tblReportList
+            {
+
+                // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblReportList 類別
+                // 的 properties。
+                //
+                // 例如，下列程式碼將 Xyz 屬性標記為
+                // 必要的屬性，並指定有效值的格式:
+                //    [Required]
+                //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+                //    [StringLength(32)]
+                //    public string Xyz { get; set; }
+                internal sealed class tblReportListMetadata
+                {
+
+                    // 中繼資料類別本就不應該具現化。
+                    private tblReportListMetadata()
+                    {
+                    }
+
+                    public Nullable<bool> IsEnable { get; set; }
+
+                    public string ReportDesc { get; set; }
+
+                    public int ReportID { get; set; }
+
+                    public string ReportName { get; set; }
+
+                    public Nullable<short> ReportType { get; set; }
+                }
+            }
+
+
+         /*   [ReportID] [int] NOT NULL,
+[SchDesc] [nvarchar](100) NULL,
+[NextStartTime] [datetime] NULL,
+          * */
+
+
         }
     }
 
@@ -1137,8 +1182,9 @@ namespace slSecure.Web
             public long SchID { get; set; }
 
             public tblSchConfig tblSchConfig { get; set; }
-
+           
             public DateTime TimeStamp { get; set; }
+            public int ReportID { get; set; }
         }
     }
 
@@ -3733,6 +3779,128 @@ namespace slSecure.Web
             public Nullable<double> X { get; set; }
 
             public Nullable<double> Y { get; set; }
+        }
+    }
+
+    [MetadataTypeAttribute(typeof(vwSchConfig.vwSchConfigMetadata))]
+    public partial class vwSchConfig
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwSchConfig 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwSchConfigMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwSchConfigMetadata()
+            {
+            }
+
+            public Nullable<bool> Enable { get; set; }
+
+            public string EnableName { get; set; }
+
+            public Nullable<bool> IsEnable { get; set; }
+
+            public Nullable<DateTime> NextStartTime { get; set; }
+
+            public string ReportDesc { get; set; }
+
+            public int ReportID { get; set; }
+
+            public string ReportName { get; set; }
+
+            public Nullable<short> ReportType { get; set; }
+
+            public string ReportTypeName { get; set; }
+
+            public string SchDesc { get; set; }
+
+            public long SchID { get; set; }
+
+            public string SchName { get; set; }
+
+            public Nullable<short> SchType { get; set; }
+
+            public string SchTypeName { get; set; }
+
+            public DateTime StartTime { get; set; }
+
+            public DateTime TimeStamp { get; set; }
+
+            public string UserID { get; set; }
+
+            public Nullable<bool> Week1 { get; set; }
+
+            public Nullable<bool> Week2 { get; set; }
+
+            public Nullable<bool> Week3 { get; set; }
+
+            public Nullable<bool> Week4 { get; set; }
+
+            public Nullable<bool> Week5 { get; set; }
+
+            public Nullable<bool> Week6 { get; set; }
+
+            public Nullable<bool> Week7 { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwSchLogMetadata 識別為
+    // 帶有 vwSchLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwSchLog.vwSchLogMetadata))]
+    public partial class vwSchLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwSchLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwSchLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwSchLogMetadata()
+            {
+            }
+
+            public string EnableName { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<DateTime> NextStartTime { get; set; }
+
+            public int ReportID { get; set; }
+
+            public string ReportTypeName { get; set; }
+
+            public bool Result { get; set; }
+
+            public string ResultName { get; set; }
+
+            public long SchID { get; set; }
+
+            public string SchName { get; set; }
+
+            public string SchTypeName { get; set; }
+
+            public DateTime StartTime { get; set; }
+
+            public DateTime TimeStamp { get; set; }
+
+            public string UserID { get; set; }
         }
     }
     }

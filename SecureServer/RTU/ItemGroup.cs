@@ -47,6 +47,10 @@ namespace SecureServer.RTU
            {
                try
                {
+                   Item item = Items.Where(n => !n.IsConnected).FirstOrDefault();
+                   if (item != null)
+                       return -1;
+
                    return Items.Where(n => n.AlarmMode == "Y").Max(n => n.Degree ?? 0);
                }
                catch
@@ -58,11 +62,13 @@ namespace SecureServer.RTU
 
        }
 
+
+
        public ItemGroupBindingData ToItemGroupBindingData()
        {
 
            ItemGroupBindingData data = new ItemGroupBindingData() { Content = this.GroupName, GroupID = this.GroupID, PlaneID = this.PlaneID, GroupName = this.GroupName };
-
+            
            switch (this.Degree)
            {
                case 0:

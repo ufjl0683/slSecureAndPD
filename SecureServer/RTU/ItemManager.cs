@@ -65,7 +65,8 @@ namespace SecureServer.RTU
                         //  CCTVBindingData =cctv.ToBindingData(
                       
                 };
-                Program.MyServiceObject.DispatchAlarmEvent(data);
+                if(!(sender.ItemConfig.Suppress??false))
+                      Program.MyServiceObject.DispatchAlarmEvent(data);
 
                 int typecode = 0;
                    switch(sender.ItemType)
@@ -100,6 +101,15 @@ namespace SecureServer.RTU
 
             }
 
+            if (NewValue == 0)
+            {
+                sender.ItemConfig.Suppress = false;
+                tblItemConfig item = db.tblItemConfig.Where(n => n.ItemID == sender.ItemID).FirstOrDefault();
+                if (item != null)
+                    item.Suppress = false;
+
+
+            }
         
             if( NewValue==0 && sender.AlarmMode=="Y")
             {
@@ -140,7 +150,7 @@ namespace SecureServer.RTU
                 {
                     try
                     {
-                        if (item.ItemType == "AI")
+                        if (item.ItemType == "AI" && item.IsConnected )
                         {
                             tblAIItem1HourLog tbl = new tblAIItem1HourLog() { ItemID = item.ItemID, Value = item.Value, Timestamp = dt, Memo=item.ItemConfig.Lable };
                             db1.tblAIItem1HourLog.Add(tbl);

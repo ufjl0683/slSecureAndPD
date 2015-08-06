@@ -54,6 +54,7 @@ namespace slSecure.Forms
                     DoorBindingDatas = a.Result.ToArray();
                     taskCompletionSource.TrySetResult(true);
                 };
+              if (!IsExit)
               client.SecureService.GetALLDoorBindingDataAsync(planeid);
               return taskCompletionSource.Task;
         }
@@ -71,6 +72,7 @@ namespace slSecure.Forms
                     CCTVBindingDatas = a.Result.ToArray();
                     taskCompletionSource.TrySetResult(true);
                 };
+                if (!IsExit)
                 client.SecureService.GetAllCCTVBindingDataAsync(planeid);
                 return taskCompletionSource.Task;
             }
@@ -89,6 +91,8 @@ namespace slSecure.Forms
                     ItemBindingDatas = a.Result.ToArray();
                     taskCompletionSource.TrySetResult(true);
                 };
+
+                if (!IsExit)
                 client.SecureService.GetAllItemBindingDataAsync(planeid);
                 return taskCompletionSource.Task;
             }
@@ -98,6 +102,7 @@ namespace slSecure.Forms
             {
                 TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
 
+             //   System.Threading.Thread.Sleep(1000);
                 client.SecureService.GetAllItemGroupBindingDataCompleted += (s, a) =>
                 {
                     if (a.Error != null)
@@ -108,6 +113,7 @@ namespace slSecure.Forms
                     ItemGroupBindingDatas = a.Result.ToArray();
                     taskCompletionSource.TrySetResult(true);
                 };
+                if (!IsExit)
                 client.SecureService.GetAllItemGroupBindingDataAsync(planeid);
                 return taskCompletionSource.Task;
             }
@@ -146,7 +152,9 @@ namespace slSecure.Forms
 
 
             };
-            client.SecureService.HookItemValueChangedEventAsync(client.Key, planeid);
+
+            if (!IsExit) 
+                    client.SecureService.HookItemValueChangedEventAsync(client.Key, planeid);
 
             return taskCompletionSource.Task;
         }
@@ -161,13 +169,15 @@ namespace slSecure.Forms
             client.OnRegistEvent += async (s) =>
             {
 
-
+                if (!IsExit)
                 await HookDoorEvent(PlaneID);
+                if (!IsExit)
                 await HookItemValueChangeEvent(PlaneID);
 
             };
             client.OnDoorEvent += client_OnDoorEvent;
             client.OnItemValueChangedEvent += client_OnItemValueChangedEvent;
+            if (!IsExit)
             await client.RegistAndGetKey();
 
 
@@ -175,9 +185,13 @@ namespace slSecure.Forms
 #if !R23
           
 #endif
+            if (!IsExit)
             await GetALLDoorBindingData(PlaneID);
+            if (!IsExit)
             await GetALLCCTVBindingData(PlaneID);
+            if (!IsExit)
             await GetAllItemBindingData(PlaneID);
+            if (!IsExit)
             await GetAllItemGroupBindingData(PlaneID);
 #if !R23
            
@@ -194,31 +208,43 @@ namespace slSecure.Forms
 
         void client_OnItemValueChangedEvent(ItemBindingData itemdata)
         {
+            if (IsExit)
+                return;
             if (this.ItemBindingDatas == null)
                 return;
 
             ItemBindingData data = this.ItemBindingDatas.Where(n => n.ItemID == itemdata.ItemID).FirstOrDefault();
-
+            bool IsDegreeChanged = false;
          if (data == null)
              return;
 
          data.Content = itemdata.Content;
          data.ColorString = itemdata.ColorString;
          data.IsAlarm = itemdata.IsAlarm;
+
+         if (data.Degree != itemdata.Degree)
+             IsDegreeChanged = true;
          data.Value = itemdata.Value;
          data.Degree = itemdata.Degree;
-        
-            if(itemdata.GroupID!=null)
+
+         if (itemdata.GroupID != null && IsDegreeChanged)
                    UpdateItemGroup((int)itemdata.GroupID);
         }
         void UpdateItemGroup(int GroupID)
         {
+        
+            if (IsExit)
+                return;
             if (ItemGroupBindingDatas == null)
                 return;
-            client.SecureService.GetAllItemGroupBindingDataCompleted += (s, a) =>
+            MyClient myclient = new MyClient("CustomBinding_ISecureService", false);
+            myclient.SecureService.GetAllItemGroupBindingDataCompleted += (s, a) =>
                 {
                     if (a.Error != null)
+                    {
+                        myclient.Dispose();
                         return;
+                    }
                     ItemGroupBindingData[] datas = a.Result.ToArray();
 
                     ItemGroupBindingData source = datas.Where(n => n.GroupID == GroupID).FirstOrDefault();
@@ -226,13 +252,15 @@ namespace slSecure.Forms
                    ItemGroupBindingData  dest = ItemGroupBindingDatas.Where(n=>n.GroupID==GroupID).FirstOrDefault();
                     if(dest!=null && source!=null)
                         dest.ColorString=source.ColorString;
-
+                    myclient.Dispose();
                 };
-            client.SecureService.GetAllItemGroupBindingDataAsync(this.PlaneID);
+            if (!IsExit)
+            myclient.SecureService.GetAllItemGroupBindingDataAsync(this.PlaneID);
         }
         void client_OnDoorEvent(DoorEventType evttype, DoorBindingData bindingdata)
         {
-
+            if (IsExit)
+                return;
             DOOR door = Canvas.FindName("Door" + bindingdata.ControlID) as DOOR;
             door.DataContext = bindingdata;
 
@@ -241,11 +269,16 @@ namespace slSecure.Forms
 
         async void PlaceCCTV()
         {
+
+            if (IsExit)
+                return;
             var q = from n in db.GetTblCCTVConfigQuery() where  n.PlaneID == this.PlaneID select n;
             var res = await db.LoadAsync<tblCCTVConfig>(q);
 
             foreach (tblCCTVConfig tbl in res)
             {
+
+               
                 CCTV item = new CCTV();
                 item.Name = "CCTV" + tbl.CCTVID;
 
@@ -264,8 +297,10 @@ namespace slSecure.Forms
                 item.SetValue(Grid.MarginProperty, new Thickness(tbl.X, tbl.Y, 0, 0));
                 CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation, ScaleX = tbl.ScaleX, ScaleY = tbl.ScaleY };
                 item.RenderTransform = transform;
-                 
-                CCTVBindingData bindingdata=CCTVBindingDatas.FirstOrDefault(n => n.CCTVID==tbl.CCTVID );
+                CCTVBindingData bindingdata=null;
+                if (CCTVBindingDatas == null)
+                    return;
+                  bindingdata=CCTVBindingDatas.FirstOrDefault(n => n.CCTVID==tbl.CCTVID );
                 item.UserName = bindingdata.UserName;
                 item.Password = bindingdata.Password;
                 item.Url = bindingdata.MjpegCgiString;
@@ -286,7 +321,8 @@ namespace slSecure.Forms
             CCTVBindingData cctvdata = CCTVBindingDatas.FirstOrDefault();
             if (cctvdata == null)
                 return;
-
+            if (IsExit)
+                return;
             CCTVControl cctv = new CCTVControl(cctvdata.MjpegCgiString, cctvdata.UserName, cctvdata.Password);
             cctv.Name = "cctvctl"+cctvdata.CCTVName;
          //   cctv.Width = 400;
@@ -345,6 +381,7 @@ namespace slSecure.Forms
                 item.SetValue(Grid.MarginProperty, new Thickness(tbl.X ?? 0, tbl.Y ?? 0, 0, 0));
                 CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation ?? 0, ScaleX = tbl.ScaleX ?? 0, ScaleY = tbl.ScaleY ?? 0 };
                 item.RenderTransform = transform;
+                if(DoorBindingDatas!=null)
                 item.DataContext =  DoorBindingDatas.FirstOrDefault(n => n.ControlID == tbl.ControlID);
                 this.Canvas.Children.Add(item);
                 item.OnMenuEvent += item_OnMenuEvent;
@@ -386,7 +423,13 @@ namespace slSecure.Forms
                 (item as Control).SetValue(Grid.MarginProperty, new Thickness(tbl.X , tbl.Y , 0, 0));
                 CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation , ScaleX = tbl.ScaleX  , ScaleY = tbl.ScaleY   };
                 (item as Control).RenderTransform = transform;
-                (item as Control).DataContext = ItemGroupBindingDatas.FirstOrDefault(n => n.PlaneID == this.PlaneID && n.GroupID == tbl.GroupID);
+                if (ItemGroupBindingDatas != null)
+                {
+                    ItemGroupBindingData data =ItemGroupBindingDatas.FirstOrDefault(n => n.PlaneID == this.PlaneID && n.GroupID == tbl.GroupID);
+                  //  data.Content = "hello";
+                    (item as Control).DataContext = ItemGroupBindingDatas[0];
+                 
+                }
                 item.MouseLeftButtonDown += itemGroup_MouseLeftButtonDown;
                 this.Canvas.Children.Add(item);
             }
@@ -425,6 +468,7 @@ namespace slSecure.Forms
                  (item as Control).SetValue(Grid.MarginProperty, new Thickness(tbl.X ?? 0, tbl.Y ?? 0, 0, 0));
                  CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation ?? 0, ScaleX = tbl.ScaleX ?? 0, ScaleY = tbl.ScaleY ?? 0 };
                  (item as Control).RenderTransform = transform;
+                if(ItemBindingDatas!=null)
                 (item as Control).DataContext = ItemBindingDatas.FirstOrDefault(n=>n.PlaneID==this.PlaneID && n.ItemID==tbl.ItemID  );
 
                 if (tbl.Type == "DO") 
@@ -482,8 +526,11 @@ namespace slSecure.Forms
             //txtCoor.Text = string.Format("{0},{1}", p.X, p.Y);
         }
 
+
+        bool IsExit = false;
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
+            IsExit = true;
             if(client!=null)
             client.Dispose();
         }

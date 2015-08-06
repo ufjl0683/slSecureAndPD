@@ -180,6 +180,12 @@
     <Compile Include="Dialog\CCTVDialog.xaml.cs">
       <DependentUpon>CCTVDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\PDCompare.xaml.cs">
+      <DependentUpon>PDCompare.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\PDCompare_ChildWindow.xaml.cs">
+      <DependentUpon>PDCompare_ChildWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\TRDialog.xaml.cs">
       <DependentUpon>TRDialog.xaml</DependentUpon>
     </Compile>
@@ -266,6 +272,14 @@
     <Page Include="Dialog\CCTVDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\PDCompare.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\PDCompare_ChildWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialog\TRDialog.xaml">
       <Generator>MSBuild:Compile</Generator>

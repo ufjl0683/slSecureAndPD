@@ -52,8 +52,7 @@ namespace SecureServer
                {
 
                    _Degree = value;
-                   if (this.ItemDegreeChanged!= null)
-                       ItemDegreeChanged(this, value);
+                  
                }
            }
        }
@@ -149,7 +148,9 @@ namespace SecureServer
        {
            while (true)
            {
+               bool IsDegreeChange = false;
                System.Threading.Thread.Sleep(1000);
+               IsDegreeChange = false;
                if (Program.MyServiceObject == null)
                    continue;
                try
@@ -167,15 +168,31 @@ namespace SecureServer
                            case "AI":
                               
                                value = (int)reading * ItemConfig.ValueScale * ItemConfig.Coefficient + ItemConfig.Offset;
-                               Value = value;
+                            
                                if (value <= ItemConfig.WarningUpper && value >= ItemConfig.WarningLower)
+                               {
+                                   if (this.Degree != 0)
+                                       IsDegreeChange = true;
                                    Degree = 0;
+                               }
                                else if (value <= ItemConfig.AlarmUpper && value >= ItemConfig.AlarmLower)
+                               {
+                                   if (this.Degree != 1)
+                                       IsDegreeChange = true;
                                    Degree = 1;
+                               }
                                else
+                               {
+                                   if (this.Degree != 2)
+                                       IsDegreeChange = true;
                                    Degree = 2;
 
+                               }
 
+                               Value = value;
+
+                               if (this.ItemDegreeChanged != null  && IsDegreeChange)
+                                   ItemDegreeChanged(this, Degree);
                            
                                break;
                           
@@ -190,12 +207,27 @@ namespace SecureServer
                                else
                                    value = 0;
 
-                               Value = value;
-                               if (ItemConfig.DIInvokeWarningValue == System.Convert.ToInt32(value) )
+                             
+
+                               if (ItemConfig.DIInvokeWarningValue == System.Convert.ToInt32(value))
+                               {
+                                   if (this.Degree != 2)
+                                       IsDegreeChange = true;
                                    this.Degree = 2;
+                               }
                                else
+                               {
+                                   if (this.Degree != 0)
+                                       IsDegreeChange = true;
                                    this.Degree = 0;
+
+                               }
+
+                               Value = value;
+                               if (this.ItemDegreeChanged != null && IsDegreeChange )
+                                   ItemDegreeChanged(this, Degree);
                                break;
+
                            case "DO":
                                if (System.Convert.ToInt32(reading)>0 /*& (1 << ItemConfig.BitNo)) > 0*/)
                                {
@@ -293,6 +325,10 @@ namespace SecureServer
 
            data.PlaneID = this.ItemConfig.tblItemGroup.PlaneID??0;
            data.Value = this.Value;
+
+           if (ItemConfig.Suppress ?? false)
+               data.IsAlarm =false;
+
            return data;
 
        }

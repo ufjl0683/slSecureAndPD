@@ -66,7 +66,10 @@ namespace SecureServer
        string GetR23GroupErrorMessage();
         [OperationContract]
         ControlStatus GetR23ControlConnect(string ControllID);
-
+        [OperationContract]
+        int GetTotalConnection();
+        [OperationContract]
+        void SupressAlarm(int ItemID);
     }
 
 
@@ -103,7 +106,8 @@ namespace SecureServer
         EventInvalidCard,
         EventExternalForce,
         EventDoorOpen,
-        ItemAttributehanged
+        ItemAttributehanged,
+        ScheduleChanged
 
 
 

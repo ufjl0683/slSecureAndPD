@@ -22,6 +22,8 @@
           <EntitySet Name="tblPasswordEveryDayDifference" EntityType="SecureDBModel.Store.tblPasswordEveryDayDifference" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDAlarmLog" EntityType="SecureDBModel.Store.tblPDAlarmLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDConfig" EntityType="SecureDBModel.Store.tblPDConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSchConfig" EntityType="SecureDBModel.Store.tblSchConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSchLog" EntityType="SecureDBModel.Store.tblSchLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSysParameter" EntityType="SecureDBModel.Store.tblSysParameter" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="vwCardCommandLog" EntityType="SecureDBModel.Store.vwCardCommandLog" store:Type="Views" store:Schema="dbo" store:Name="vwCardCommandLog">
             <DefiningQuery>SELECT 
@@ -76,7 +78,8 @@
       [vwEntranceGuardDetail].[IsEnable] AS [IsEnable], 
       [vwEntranceGuardDetail].[TriggerCCTVID] AS [TriggerCCTVID], 
       [vwEntranceGuardDetail].[PlaneID] AS [PlaneID], 
-      [vwEntranceGuardDetail].[ControlType] AS [ControlType]
+      [vwEntranceGuardDetail].[ControlType] AS [ControlType], 
+      [vwEntranceGuardDetail].[ERNo] AS [ERNo]
       FROM [dbo].[vwEntranceGuardDetail] AS [vwEntranceGuardDetail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwMagneticCard" EntityType="SecureDBModel.Store.vwMagneticCard" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCard">
@@ -103,7 +106,10 @@
       [vwMagneticCard].[ReturnDate] AS [ReturnDate], 
       [vwMagneticCard].[NormalName] AS [NormalName], 
       [vwMagneticCard].[TypeName] AS [TypeName], 
-      [vwMagneticCard].[EnableName] AS [EnableName]
+      [vwMagneticCard].[EnableName] AS [EnableName], 
+      [vwMagneticCard].[MCNSID] AS [MCNSID], 
+      [vwMagneticCard].[CardStartDate] AS [CardStartDate], 
+      [vwMagneticCard].[CardEndDate] AS [CardEndDate]
       FROM [dbo].[vwMagneticCard] AS [vwMagneticCard]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwMagneticCardAllowController" EntityType="SecureDBModel.Store.vwMagneticCardAllowController" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCardAllowController">
@@ -147,7 +153,10 @@
       [vwMagneticCardDetail].[ControlID] AS [ControlID], 
       [vwMagneticCardDetail].[TypeName] AS [TypeName], 
       [vwMagneticCardDetail].[IsEnable] AS [IsEnable], 
-      [vwMagneticCardDetail].[EnableName] AS [EnableName]
+      [vwMagneticCardDetail].[EnableName] AS [EnableName], 
+      [vwMagneticCardDetail].[MCNSID] AS [MCNSID], 
+      [vwMagneticCardDetail].[CardStartDate] AS [CardStartDate], 
+      [vwMagneticCardDetail].[CardEndDate] AS [CardEndDate]
       FROM [dbo].[vwMagneticCardDetail] AS [vwMagneticCardDetail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureDBModel.Store.vwUserGroupMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserGroupMenuAllow">
@@ -191,6 +200,10 @@
           <AssociationSet Name="FK_tblPDAlarmLog_tblPDConfig" Association="SecureDBModel.Store.FK_tblPDAlarmLog_tblPDConfig">
             <End Role="tblPDConfig" EntitySet="tblPDConfig" />
             <End Role="tblPDAlarmLog" EntitySet="tblPDAlarmLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSchLog_tblSchConfig" Association="SecureDBModel.Store.FK_tblSchLog_tblSchConfig">
+            <End Role="tblSchConfig" EntitySet="tblSchConfig" />
+            <End Role="tblSchLog" EntitySet="tblSchLog" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblAIItem1HourLog">
@@ -362,6 +375,7 @@
           <Property Name="Lv2Color" Type="nvarchar" MaxLength="10" />
           <Property Name="GroupTypeID" Type="int" />
           <Property Name="KindID" Type="int" />
+          <Property Name="Suppress" Type="bit" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -402,6 +416,9 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="Timestamp" Type="datetime" Nullable="false" />
           <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="MCNSID" Type="nvarchar" MaxLength="50" />
+          <Property Name="CardStartDate" Type="datetime" />
+          <Property Name="CardEndDate" Type="datetime" />
         </EntityType>
         <EntityType Name="tblNVRConfig">
           <Key>
@@ -468,6 +485,40 @@
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
           <Property Name="ItemID" Type="int" />
           <Property Name="PlaneID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSchConfig">
+          <Key>
+            <PropertyRef Name="SchID" />
+          </Key>
+          <Property Name="SchID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+          <Property Name="SchName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SchDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="SchType" Type="smallint" />
+          <Property Name="Week1" Type="bit" />
+          <Property Name="Week2" Type="bit" />
+          <Property Name="Week3" Type="bit" />
+          <Property Name="Week4" Type="bit" />
+          <Property Name="Week5" Type="bit" />
+          <Property Name="Week6" Type="bit" />
+          <Property Name="Week7" Type="bit" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="Enable" Type="bit" />
+          <Property Name="NextStartTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblSchLog">
+          <Key>
+            <PropertyRef Name="SchID" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="SchID" Type="bigint" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+          <Property Name="Result" Type="bit" Nullable="false" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tblSysParameter">
           <Key>
@@ -561,6 +612,7 @@
           <Property Name="TriggerCCTVID" Type="int" />
           <Property Name="PlaneID" Type="int" />
           <Property Name="ControlType" Type="smallint" Nullable="false" />
+          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwMagneticCard' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -592,6 +644,9 @@
           <Property Name="NormalName" Type="nvarchar" MaxLength="50" />
           <Property Name="TypeName" Type="varchar" MaxLength="6" />
           <Property Name="EnableName" Type="varchar" MaxLength="6" />
+          <Property Name="MCNSID" Type="nvarchar" MaxLength="50" />
+          <Property Name="CardStartDate" Type="datetime" />
+          <Property Name="CardEndDate" Type="datetime" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwMagneticCardAllowController' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -649,6 +704,9 @@
           <Property Name="TypeName" Type="varchar" MaxLength="6" />
           <Property Name="IsEnable" Type="bit" />
           <Property Name="EnableName" Type="varchar" MaxLength="6" />
+          <Property Name="MCNSID" Type="nvarchar" MaxLength="50" />
+          <Property Name="CardStartDate" Type="datetime" />
+          <Property Name="CardEndDate" Type="datetime" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwUserGroupMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -744,6 +802,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblSchLog_tblSchConfig">
+          <End Role="tblSchConfig" Type="SecureDBModel.Store.tblSchConfig" Multiplicity="1" />
+          <End Role="tblSchLog" Type="SecureDBModel.Store.tblSchLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSchConfig">
+              <PropertyRef Name="SchID" />
+            </Principal>
+            <Dependent Role="tblSchLog">
+              <PropertyRef Name="SchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -794,6 +864,12 @@
             <End Role="tblDeviceStateLog" EntitySet="tblDeviceStateLog" />
           </AssociationSet>
           <EntitySet Name="tblPasswordEveryDayDifference" EntityType="SecureDBModel.tblPasswordEveryDayDifference" />
+          <EntitySet Name="tblSchConfig" EntityType="SecureDBModel.tblSchConfig" />
+          <EntitySet Name="tblSchLog" EntityType="SecureDBModel.tblSchLog" />
+          <AssociationSet Name="FK_tblSchLog_tblSchConfig" Association="SecureDBModel.FK_tblSchLog_tblSchConfig">
+            <End Role="tblSchConfig" EntitySet="tblSchConfig" />
+            <End Role="tblSchLog" EntitySet="tblSchLog" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblERDoorPassword">
           <Key>
@@ -864,6 +940,9 @@
           <Property Type="Int32" Name="RoleID" Nullable="false" />
           <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="ReturnDate" Precision="3" />
+          <Property Type="String" Name="MCNSID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CardStartDate" Precision="3" />
+          <Property Type="DateTime" Name="CardEndDate" Precision="3" />
         </EntityType>
         <EntityType Name="vwMagneticCardAllowController">
           <Key>
@@ -959,6 +1038,9 @@
           <Property Type="String" Name="Door" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsEnable" />
           <Property Type="String" Name="EnableName" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MCNSID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CardStartDate" Precision="3" />
+          <Property Type="DateTime" Name="CardEndDate" Precision="3" />
         </EntityType>
         <EntityType Name="tblControllerConfig">
           <Key>
@@ -1032,6 +1114,7 @@
           <Property Type="String" Name="Lv2Color" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="GroupTypeID" />
           <Property Type="Int32" Name="KindID" />
+          <Property Type="Boolean" Name="Suppress" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -1193,6 +1276,9 @@
           <Property Type="String" Name="NormalName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="TypeName" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="EnableName" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MCNSID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CardStartDate" Precision="3" />
+          <Property Type="DateTime" Name="CardEndDate" Precision="3" />
         </EntityType>
         <EntityType Name="vwCardCommandLog">
           <Key>
@@ -1268,6 +1354,7 @@
           <Property Type="Int32" Name="TriggerCCTVID" />
           <Property Type="Int32" Name="PlaneID" />
           <Property Type="Int16" Name="ControlType" Nullable="false" />
+          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vwUserGroupMenuAllow">
           <Key>
@@ -1332,6 +1419,54 @@
           <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
           <Property Type="String" Name="DoorPassword" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tblSchConfig">
+          <Key>
+            <PropertyRef Name="SchID" />
+          </Key>
+          <Property Type="Int64" Name="SchID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ReportID" Nullable="false" />
+          <Property Type="String" Name="SchName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SchDesc" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="SchType" />
+          <Property Type="Boolean" Name="Week1" />
+          <Property Type="Boolean" Name="Week2" />
+          <Property Type="Boolean" Name="Week3" />
+          <Property Type="Boolean" Name="Week4" />
+          <Property Type="Boolean" Name="Week5" />
+          <Property Type="Boolean" Name="Week6" />
+          <Property Type="Boolean" Name="Week7" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Enable" />
+          <Property Type="DateTime" Name="NextStartTime" Precision="3" />
+          <NavigationProperty Name="tblSchLog" Relationship="SecureDBModel.FK_tblSchLog_tblSchConfig" FromRole="tblSchConfig" ToRole="tblSchLog" />
+        </EntityType>
+        <EntityType Name="tblSchLog">
+          <Key>
+            <PropertyRef Name="SchID" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Type="Int64" Name="SchID" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ReportID" Nullable="false" />
+          <Property Type="Boolean" Name="Result" Nullable="false" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSchConfig" Relationship="SecureDBModel.FK_tblSchLog_tblSchConfig" FromRole="tblSchLog" ToRole="tblSchConfig" />
+        </EntityType>
+        <Association Name="FK_tblSchLog_tblSchConfig">
+          <End Type="SecureDBModel.tblSchConfig" Role="tblSchConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblSchLog" Role="tblSchLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSchConfig">
+              <PropertyRef Name="SchID" />
+            </Principal>
+            <Dependent Role="tblSchLog">
+              <PropertyRef Name="SchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1390,6 +1525,9 @@
           <EntitySetMapping Name="tblMagneticCard">
             <EntityTypeMapping TypeName="SecureDBModel.tblMagneticCard">
               <MappingFragment StoreEntitySet="tblMagneticCard">
+                <ScalarProperty Name="CardEndDate" ColumnName="CardEndDate" />
+                <ScalarProperty Name="CardStartDate" ColumnName="CardStartDate" />
+                <ScalarProperty Name="MCNSID" ColumnName="MCNSID" />
                 <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
@@ -1476,6 +1614,9 @@
           <EntitySetMapping Name="vwMagneticCardDetail">
             <EntityTypeMapping TypeName="SecureDBModel.vwMagneticCardDetail">
               <MappingFragment StoreEntitySet="vwMagneticCardDetail">
+                <ScalarProperty Name="CardEndDate" ColumnName="CardEndDate" />
+                <ScalarProperty Name="CardStartDate" ColumnName="CardStartDate" />
+                <ScalarProperty Name="MCNSID" ColumnName="MCNSID" />
                 <ScalarProperty Name="EnableName" ColumnName="EnableName" />
                 <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
                 <ScalarProperty Name="Door" ColumnName="Door" />
@@ -1538,6 +1679,7 @@
           <EntitySetMapping Name="tblItemConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblItemConfig">
               <MappingFragment StoreEntitySet="tblItemConfig">
+                <ScalarProperty Name="Suppress" ColumnName="Suppress" />
                 <ScalarProperty Name="KindID" ColumnName="KindID" />
                 <ScalarProperty Name="GroupTypeID" ColumnName="GroupTypeID" />
                 <ScalarProperty Name="Lv2Color" ColumnName="Lv2Color" />
@@ -1667,6 +1809,9 @@
           <EntitySetMapping Name="vwMagneticCard">
             <EntityTypeMapping TypeName="SecureDBModel.vwMagneticCard">
               <MappingFragment StoreEntitySet="vwMagneticCard">
+                <ScalarProperty Name="CardEndDate" ColumnName="CardEndDate" />
+                <ScalarProperty Name="CardStartDate" ColumnName="CardStartDate" />
+                <ScalarProperty Name="MCNSID" ColumnName="MCNSID" />
                 <ScalarProperty Name="EnableName" ColumnName="EnableName" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
                 <ScalarProperty Name="NormalName" ColumnName="NormalName" />
@@ -1744,6 +1889,7 @@
           <EntitySetMapping Name="vwEntranceGuardDetail">
             <EntityTypeMapping TypeName="SecureDBModel.vwEntranceGuardDetail">
               <MappingFragment StoreEntitySet="vwEntranceGuardDetail">
+                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
                 <ScalarProperty Name="ControlType" ColumnName="ControlType" />
                 <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
                 <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
@@ -1801,6 +1947,40 @@
                 <ScalarProperty Name="DoorPassword" ColumnName="DoorPassword" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
                 <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSchConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSchConfig">
+              <MappingFragment StoreEntitySet="tblSchConfig">
+                <ScalarProperty Name="NextStartTime" ColumnName="NextStartTime" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Week7" ColumnName="Week7" />
+                <ScalarProperty Name="Week6" ColumnName="Week6" />
+                <ScalarProperty Name="Week5" ColumnName="Week5" />
+                <ScalarProperty Name="Week4" ColumnName="Week4" />
+                <ScalarProperty Name="Week3" ColumnName="Week3" />
+                <ScalarProperty Name="Week2" ColumnName="Week2" />
+                <ScalarProperty Name="Week1" ColumnName="Week1" />
+                <ScalarProperty Name="SchType" ColumnName="SchType" />
+                <ScalarProperty Name="SchDesc" ColumnName="SchDesc" />
+                <ScalarProperty Name="SchName" ColumnName="SchName" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="SchID" ColumnName="SchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSchLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblSchLog">
+              <MappingFragment StoreEntitySet="tblSchLog">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="SchID" ColumnName="SchID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
