@@ -84,8 +84,10 @@ namespace slSecure.Forms
             //                     Type="EP"
                                   
             //             }).ToArray();
-        
-            client = new MyClient("CustomBinding_ISecureService", false);
+
+            
+                client = new MyClient("CustomBinding_ISecureService", false);
+          
             client.SecureService.GetAllPlaneInfoCompleted += (s, a) =>
                 {
                     if (a.Error != null)
@@ -173,6 +175,7 @@ namespace slSecure.Forms
                 }
                 // PlaneDegreeInfos = aa.Result;
             };
+            if(!IsExit)
             client.SecureService.GetAllPlaneInfoAsync();
         }
 

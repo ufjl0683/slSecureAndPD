@@ -3903,5 +3903,81 @@ namespace slSecure.Web
             public string UserID { get; set; }
         }
     }
+
+    [MetadataTypeAttribute(typeof(vwPlaneIDAndControlID.vwPlaneIDAndControlIDMetadata))]
+    public partial class vwPlaneIDAndControlID
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPlaneIDAndControlID 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwPlaneIDAndControlIDMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwPlaneIDAndControlIDMetadata()
+            {
+            }
+
+            public Nullable<int> Comm_state { get; set; }
+
+            public string ControlID { get; set; }
+
+            public Nullable<short> ControlType { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public Nullable<bool> IsEnable { get; set; }
+
+            public string LineID { get; set; }
+
+            public string LineName { get; set; }
+
+            public string PictureDesc { get; set; }
+
+            public int PlaneID { get; set; }
+
+            public string PlaneName { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 tblCCTVSplitScreenMetadata 識別為
+    // 帶有 tblCCTVSplitScreen 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(tblCCTVSplitScreen.tblCCTVSplitScreenMetadata))]
+    public partial class tblCCTVSplitScreen
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblCCTVSplitScreen 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblCCTVSplitScreenMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblCCTVSplitScreenMetadata()
+            {
+            }
+
+            public Nullable<int> CCTVID { get; set; }
+
+            public int NO { get; set; }
+        }
+    }
+
+
     }
 

@@ -427,7 +427,7 @@ namespace slSecure.Forms
                 {
                     ItemGroupBindingData data =ItemGroupBindingDatas.FirstOrDefault(n => n.PlaneID == this.PlaneID && n.GroupID == tbl.GroupID);
                   //  data.Content = "hello";
-                    (item as Control).DataContext = ItemGroupBindingDatas[0];
+                    (item as Control).DataContext = data;// ItemGroupBindingDatas[0];
                  
                 }
                 item.MouseLeftButtonDown += itemGroup_MouseLeftButtonDown;

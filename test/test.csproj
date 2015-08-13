@@ -204,6 +204,9 @@
     <None Include="Service References\MCNSService\test.MCNSService.AddCardInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\MCNSService\test.MCNSService.MagneticCardBasicInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\MCNSService\test.MCNSService.RoomInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -109,8 +109,9 @@ namespace test
          //   Console.WriteLine("{0:X4}",BitConverter.ToUInt16(kk,0));
          ////   Console.WriteLine(null == 1);
 
-            //MCNSService.MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
-        
+            MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
+           MagneticCardBasicInfo [] info=  client.GetAllTempMagneticCardBasicInfo();
+           Console.WriteLine(info.Length);
             //AddCardInfo info = new AddCardInfo();
             //info.CardNo = "999999999";
             //info.ERIDs = new ArrayOfInt { 1, 3, 5 };

@@ -54,9 +54,28 @@ namespace slSecure.Web
                 return list.ToArray();
             }
         }
-
         [WebMethod]
-        MagneticCardBasicInfo[] GetMagneticCardBasicInfoByCompany(string CompanyName)
+        public MagneticCardBasicInfo[] GetAllTempMagneticCardBasicInfo()
+        {
+            using (SecureDBEntities db = new SecureDBEntities())
+            {
+                var q = from n in db.tblMagneticCard
+                        where n.Enable == "Y" && n.Type==2
+
+                        select new MagneticCardBasicInfo { ABA = n.ABA, CardEndDate = n.CardEndDate, CardStartDate = n.CardStartDate, Company = n.Company, EmployeeNo = n.EmployeeNo, EndDate = n.EndDate, IDNumber = n.IDNumber, JobTitle = n.JobTitle, Mobile = n.Mobile, Name = n.Name, StartDate = n.StartDate, Tel = n.Tel };
+
+
+                return q.ToArray();
+                //System.Collections.Generic.List<MagneticCardBasicInfo> list = new List<MagneticCardBasicInfo>();
+                //foreach (var i in q)
+                //{
+                //    list.Add(new AddCardInfo() { CardNo = i.ABA, EndDate = (DateTime)i.EndDate, StartDate = (DateTime)i.StartDate, MCNSID = i.Memo, Name = i.Name, ERIDs = i.g.Distinct().ToArray<int>() });
+                //}
+                //return list.ToArray();
+            }
+        }
+        [WebMethod]
+      public   MagneticCardBasicInfo[] GetMagneticCardBasicInfoByCompany(string CompanyName)
         {
             using (SecureDBEntities db = new SecureDBEntities())
             {

@@ -47,17 +47,26 @@ namespace slSecure
         // 使用者巡覽至這個頁面時執行。
         protected  async  override void OnNavigatedTo(NavigationEventArgs e)
         {
+            SecureDBContext db = new SecureDBContext();// DB.GetDB();
+
+            EntityQuery<tblSysParameter> qry = db.GetTblSysParameterQuery().Where(n => n.VariableName == "TimeoutReturnPage");
+
+            var result = await db.LoadAsync(qry);
+
+            tblSysParameter sysparam = result.FirstOrDefault();
+            if (sysparam != null)
+            {
 
 
+                tmr.Interval = TimeSpan.FromMinutes(double.Parse(sysparam.VariableValue)) ;
+                tmr.Tick += tmr_Tick;
+                tmr.Start();
 
-            tmr.Interval = TimeSpan.FromSeconds(30);
-            tmr.Tick += tmr_Tick;
-            tmr.Start();
-        
+            }
            
           //  Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior bev = new Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior();
 
-            SecureDBContext db = new SecureDBContext();// DB.GetDB();
+       
 
         EntityQuery<vwUserMenuAllow> q=   db.GetVwUserMenuAllowQuery().Where(n => n.UserID == Util.GetICommon().GetUserID()  && n.IsAllow==true);
             var UserMenus =  await  db.LoadAsync(q);
@@ -112,15 +121,20 @@ namespace slSecure
         async void client_OnAlarm(slWCFModule.RemoteService.AlarmData alarmdata)
         {
 
-            lstAlarm.Add(alarmdata);
-            lstAlarm.OrderByDescending(n => n.TimeStamp);
-            if (alarmdata.AlarmType == AlarmType.RTU || alarmdata.AlarmType== AlarmType.PD)
-            {
+            while (lstAlarm.Count > 3)
+                lstAlarm.RemoveAt(lstAlarm.Count - 1);
+
+            lstAlarm.Insert(0,alarmdata);
+
+          //  lstAlarm.OrderByDescending(n => n.TimeStamp).Take(8);
+            //if (alarmdata.AlarmType == AlarmType.RTU || alarmdata.AlarmType== AlarmType.PD)
+            //{
               
                 this.alarmPlayer.Stop();
                 this.alarmPlayer.Play();
-            }
-            this.lstMessage.ItemsSource = lstAlarm.OrderByDescending(n => n.TimeStamp);
+            //}
+                if (lstMessage.ItemsSource == null)
+                    this.lstMessage.ItemsSource = lstAlarm;/* lstAlarm.OrderByDescending(n => n.TimeStamp).Take(4);*/
             if (alarmdata.IsForkCCTVEvent)
             {
                 try

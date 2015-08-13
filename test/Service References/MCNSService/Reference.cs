@@ -219,6 +219,223 @@ namespace test.MCNSService {
     public class ArrayOfInt : System.Collections.Generic.List<int> {
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MagneticCardBasicInfo", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class MagneticCardBasicInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CompanyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ABAField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IDNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmployeeNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JobTitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MobileField;
+        
+        private System.Nullable<System.DateTime> CardStartDateField;
+        
+        private System.Nullable<System.DateTime> CardEndDateField;
+        
+        private System.Nullable<System.DateTime> StartDateField;
+        
+        private System.Nullable<System.DateTime> EndDateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Company {
+            get {
+                return this.CompanyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CompanyField, value) != true)) {
+                    this.CompanyField = value;
+                    this.RaisePropertyChanged("Company");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string ABA {
+            get {
+                return this.ABAField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ABAField, value) != true)) {
+                    this.ABAField = value;
+                    this.RaisePropertyChanged("ABA");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string IDNumber {
+            get {
+                return this.IDNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDNumberField, value) != true)) {
+                    this.IDNumberField = value;
+                    this.RaisePropertyChanged("IDNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string EmployeeNo {
+            get {
+                return this.EmployeeNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmployeeNoField, value) != true)) {
+                    this.EmployeeNoField = value;
+                    this.RaisePropertyChanged("EmployeeNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string JobTitle {
+            get {
+                return this.JobTitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JobTitleField, value) != true)) {
+                    this.JobTitleField = value;
+                    this.RaisePropertyChanged("JobTitle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string Tel {
+            get {
+                return this.TelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelField, value) != true)) {
+                    this.TelField = value;
+                    this.RaisePropertyChanged("Tel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        public string Mobile {
+            get {
+                return this.MobileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MobileField, value) != true)) {
+                    this.MobileField = value;
+                    this.RaisePropertyChanged("Mobile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=8)]
+        public System.Nullable<System.DateTime> CardStartDate {
+            get {
+                return this.CardStartDateField;
+            }
+            set {
+                if ((this.CardStartDateField.Equals(value) != true)) {
+                    this.CardStartDateField = value;
+                    this.RaisePropertyChanged("CardStartDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=9)]
+        public System.Nullable<System.DateTime> CardEndDate {
+            get {
+                return this.CardEndDateField;
+            }
+            set {
+                if ((this.CardEndDateField.Equals(value) != true)) {
+                    this.CardEndDateField = value;
+                    this.RaisePropertyChanged("CardEndDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=10)]
+        public System.Nullable<System.DateTime> StartDate {
+            get {
+                return this.StartDateField;
+            }
+            set {
+                if ((this.StartDateField.Equals(value) != true)) {
+                    this.StartDateField = value;
+                    this.RaisePropertyChanged("StartDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=11)]
+        public System.Nullable<System.DateTime> EndDate {
+            get {
+                return this.EndDateField;
+            }
+            set {
+                if ((this.EndDateField.Equals(value) != true)) {
+                    this.EndDateField = value;
+                    this.RaisePropertyChanged("EndDate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MCNSService.MCNSServiceSoap")]
     public interface MCNSServiceSoap {
@@ -234,6 +451,14 @@ namespace test.MCNSService {
         // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  MCNSID 未標示為 nillable，正在產生訊息合約
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCardInfoByMCNSID", ReplyAction="*")]
         test.MCNSService.GetCardInfoByMCNSIDResponse GetCardInfoByMCNSID(test.MCNSService.GetCardInfoByMCNSIDRequest request);
+        
+        // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  GetAllTempMagneticCardBasicInfoResult 未標示為 nillable，正在產生訊息合約
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllTempMagneticCardBasicInfo", ReplyAction="*")]
+        test.MCNSService.GetAllTempMagneticCardBasicInfoResponse GetAllTempMagneticCardBasicInfo(test.MCNSService.GetAllTempMagneticCardBasicInfoRequest request);
+        
+        // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  CompanyName 未標示為 nillable，正在產生訊息合約
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetMagneticCardBasicInfoByCompany", ReplyAction="*")]
+        test.MCNSService.GetMagneticCardBasicInfoByCompanyResponse GetMagneticCardBasicInfoByCompany(test.MCNSService.GetMagneticCardBasicInfoByCompanyRequest request);
         
         // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  info 未標示為 nillable，正在產生訊息合約
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddCard", ReplyAction="*")]
@@ -434,6 +659,135 @@ namespace test.MCNSService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllTempMagneticCardBasicInfoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllTempMagneticCardBasicInfo", Namespace="http://tempuri.org/", Order=0)]
+        public test.MCNSService.GetAllTempMagneticCardBasicInfoRequestBody Body;
+        
+        public GetAllTempMagneticCardBasicInfoRequest() {
+        }
+        
+        public GetAllTempMagneticCardBasicInfoRequest(test.MCNSService.GetAllTempMagneticCardBasicInfoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class GetAllTempMagneticCardBasicInfoRequestBody {
+        
+        public GetAllTempMagneticCardBasicInfoRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllTempMagneticCardBasicInfoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllTempMagneticCardBasicInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public test.MCNSService.GetAllTempMagneticCardBasicInfoResponseBody Body;
+        
+        public GetAllTempMagneticCardBasicInfoResponse() {
+        }
+        
+        public GetAllTempMagneticCardBasicInfoResponse(test.MCNSService.GetAllTempMagneticCardBasicInfoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAllTempMagneticCardBasicInfoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public test.MCNSService.MagneticCardBasicInfo[] GetAllTempMagneticCardBasicInfoResult;
+        
+        public GetAllTempMagneticCardBasicInfoResponseBody() {
+        }
+        
+        public GetAllTempMagneticCardBasicInfoResponseBody(test.MCNSService.MagneticCardBasicInfo[] GetAllTempMagneticCardBasicInfoResult) {
+            this.GetAllTempMagneticCardBasicInfoResult = GetAllTempMagneticCardBasicInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetMagneticCardBasicInfoByCompanyRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMagneticCardBasicInfoByCompany", Namespace="http://tempuri.org/", Order=0)]
+        public test.MCNSService.GetMagneticCardBasicInfoByCompanyRequestBody Body;
+        
+        public GetMagneticCardBasicInfoByCompanyRequest() {
+        }
+        
+        public GetMagneticCardBasicInfoByCompanyRequest(test.MCNSService.GetMagneticCardBasicInfoByCompanyRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetMagneticCardBasicInfoByCompanyRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string CompanyName;
+        
+        public GetMagneticCardBasicInfoByCompanyRequestBody() {
+        }
+        
+        public GetMagneticCardBasicInfoByCompanyRequestBody(string CompanyName) {
+            this.CompanyName = CompanyName;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetMagneticCardBasicInfoByCompanyResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMagneticCardBasicInfoByCompanyResponse", Namespace="http://tempuri.org/", Order=0)]
+        public test.MCNSService.GetMagneticCardBasicInfoByCompanyResponseBody Body;
+        
+        public GetMagneticCardBasicInfoByCompanyResponse() {
+        }
+        
+        public GetMagneticCardBasicInfoByCompanyResponse(test.MCNSService.GetMagneticCardBasicInfoByCompanyResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetMagneticCardBasicInfoByCompanyResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public test.MCNSService.MagneticCardBasicInfo[] GetMagneticCardBasicInfoByCompanyResult;
+        
+        public GetMagneticCardBasicInfoByCompanyResponseBody() {
+        }
+        
+        public GetMagneticCardBasicInfoByCompanyResponseBody(test.MCNSService.MagneticCardBasicInfo[] GetMagneticCardBasicInfoByCompanyResult) {
+            this.GetMagneticCardBasicInfoByCompanyResult = GetMagneticCardBasicInfoByCompanyResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class AddCardRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="AddCard", Namespace="http://tempuri.org/", Order=0)]
@@ -560,6 +914,31 @@ namespace test.MCNSService {
             inValue.Body.MCNSID = MCNSID;
             test.MCNSService.GetCardInfoByMCNSIDResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).GetCardInfoByMCNSID(inValue);
             return retVal.Body.GetCardInfoByMCNSIDResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        test.MCNSService.GetAllTempMagneticCardBasicInfoResponse test.MCNSService.MCNSServiceSoap.GetAllTempMagneticCardBasicInfo(test.MCNSService.GetAllTempMagneticCardBasicInfoRequest request) {
+            return base.Channel.GetAllTempMagneticCardBasicInfo(request);
+        }
+        
+        public test.MCNSService.MagneticCardBasicInfo[] GetAllTempMagneticCardBasicInfo() {
+            test.MCNSService.GetAllTempMagneticCardBasicInfoRequest inValue = new test.MCNSService.GetAllTempMagneticCardBasicInfoRequest();
+            inValue.Body = new test.MCNSService.GetAllTempMagneticCardBasicInfoRequestBody();
+            test.MCNSService.GetAllTempMagneticCardBasicInfoResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).GetAllTempMagneticCardBasicInfo(inValue);
+            return retVal.Body.GetAllTempMagneticCardBasicInfoResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        test.MCNSService.GetMagneticCardBasicInfoByCompanyResponse test.MCNSService.MCNSServiceSoap.GetMagneticCardBasicInfoByCompany(test.MCNSService.GetMagneticCardBasicInfoByCompanyRequest request) {
+            return base.Channel.GetMagneticCardBasicInfoByCompany(request);
+        }
+        
+        public test.MCNSService.MagneticCardBasicInfo[] GetMagneticCardBasicInfoByCompany(string CompanyName) {
+            test.MCNSService.GetMagneticCardBasicInfoByCompanyRequest inValue = new test.MCNSService.GetMagneticCardBasicInfoByCompanyRequest();
+            inValue.Body = new test.MCNSService.GetMagneticCardBasicInfoByCompanyRequestBody();
+            inValue.Body.CompanyName = CompanyName;
+            test.MCNSService.GetMagneticCardBasicInfoByCompanyResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).GetMagneticCardBasicInfoByCompany(inValue);
+            return retVal.Body.GetMagneticCardBasicInfoByCompanyResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

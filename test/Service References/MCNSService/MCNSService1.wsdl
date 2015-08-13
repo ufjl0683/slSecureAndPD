@@ -68,6 +68,51 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetAllTempMagneticCardBasicInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllTempMagneticCardBasicInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTempMagneticCardBasicInfoResult" type="tns:ArrayOfMagneticCardBasicInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMagneticCardBasicInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MagneticCardBasicInfo" nillable="true" type="tns:MagneticCardBasicInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MagneticCardBasicInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ABA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardStartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMagneticCardBasicInfoByCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMagneticCardBasicInfoByCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMagneticCardBasicInfoByCompanyResult" type="tns:ArrayOfMagneticCardBasicInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AddCard">
         <s:complexType>
           <s:sequence>
@@ -102,6 +147,18 @@
   <wsdl:message name="GetCardInfoByMCNSIDSoapOut">
     <wsdl:part name="parameters" element="tns:GetCardInfoByMCNSIDResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllTempMagneticCardBasicInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTempMagneticCardBasicInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTempMagneticCardBasicInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTempMagneticCardBasicInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMagneticCardBasicInfoByCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:GetMagneticCardBasicInfoByCompany" />
+  </wsdl:message>
+  <wsdl:message name="GetMagneticCardBasicInfoByCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:GetMagneticCardBasicInfoByCompanyResponse" />
+  </wsdl:message>
   <wsdl:message name="AddCardSoapIn">
     <wsdl:part name="parameters" element="tns:AddCard" />
   </wsdl:message>
@@ -120,6 +177,14 @@
     <wsdl:operation name="GetCardInfoByMCNSID">
       <wsdl:input message="tns:GetCardInfoByMCNSIDSoapIn" />
       <wsdl:output message="tns:GetCardInfoByMCNSIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTempMagneticCardBasicInfo">
+      <wsdl:input message="tns:GetAllTempMagneticCardBasicInfoSoapIn" />
+      <wsdl:output message="tns:GetAllTempMagneticCardBasicInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMagneticCardBasicInfoByCompany">
+      <wsdl:input message="tns:GetMagneticCardBasicInfoByCompanySoapIn" />
+      <wsdl:output message="tns:GetMagneticCardBasicInfoByCompanySoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddCard">
       <wsdl:input message="tns:AddCardSoapIn" />
@@ -148,6 +213,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetCardInfoByMCNSID">
       <soap:operation soapAction="http://tempuri.org/GetCardInfoByMCNSID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTempMagneticCardBasicInfo">
+      <soap:operation soapAction="http://tempuri.org/GetAllTempMagneticCardBasicInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMagneticCardBasicInfoByCompany">
+      <soap:operation soapAction="http://tempuri.org/GetMagneticCardBasicInfoByCompany" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -187,6 +270,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetCardInfoByMCNSID">
       <soap12:operation soapAction="http://tempuri.org/GetCardInfoByMCNSID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTempMagneticCardBasicInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetAllTempMagneticCardBasicInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMagneticCardBasicInfoByCompany">
+      <soap12:operation soapAction="http://tempuri.org/GetMagneticCardBasicInfoByCompany" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

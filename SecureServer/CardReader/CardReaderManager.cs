@@ -652,6 +652,23 @@ namespace SecureServer.CardReader
                  db.tblEngineRoomLog.Add(log);
                  db.SaveChanges();
                 db.Dispose();
+
+
+                AlarmData data = new AlarmData()
+                {
+                    TimeStamp = DateTime.Now,
+                    AlarmType = AlarmType.Secure,
+                    ColorString = "Red",
+                    Description = reader.ControllerID + "斷線警報",
+                    PlaneID = reader.PlaneID,
+                    IsForkCCTVEvent = false,
+                    PlaneName = Global.GetPlaneNameByPlaneID(reader.PlaneID)
+                    //  CCTVBindingData =cctv.ToBindingData(
+
+                };
+                
+                    Program.MyServiceObject.DispatchAlarmEvent(data);
+
             }
         }
 

@@ -2131,6 +2131,47 @@ namespace slSecure.Web
         }
 
 
+        public IQueryable<vwPlaneIDAndControlID> GetVwPlaneIDAndControlID()
+        {
+            return this.ObjectContext.vwPlaneIDAndControlID;
+        }
+
+        public IQueryable<tblCCTVSplitScreen> GetTblCCTVSplitScreen()
+        {
+            return this.ObjectContext.tblCCTVSplitScreen;
+        }
+
+        public void InsertTblCCTVSplitScreen(tblCCTVSplitScreen tblCCTVSplitScreen)
+        {
+            if ((tblCCTVSplitScreen.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCCTVSplitScreen, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblCCTVSplitScreen.AddObject(tblCCTVSplitScreen);
+            }
+        }
+
+        public void UpdateTblCCTVSplitScreen(tblCCTVSplitScreen currenttblCCTVSplitScreen)
+        {
+            this.ObjectContext.tblCCTVSplitScreen.AttachAsModified(currenttblCCTVSplitScreen, this.ChangeSet.GetOriginal(currenttblCCTVSplitScreen));
+        }
+
+        public void DeleteTblCCTVSplitScreen(tblCCTVSplitScreen tblCCTVSplitScreen)
+        {
+            if ((tblCCTVSplitScreen.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblCCTVSplitScreen, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblCCTVSplitScreen.Attach(tblCCTVSplitScreen);
+                this.ObjectContext.tblCCTVSplitScreen.DeleteObject(tblCCTVSplitScreen);
+            }
+        }
+
+
     }
 
 

@@ -333,6 +333,7 @@
   <ItemGroup>
     <Resource Include="icons\PD.png" />
     <Resource Include="icons\RTU.png" />
+    <Resource Include="icons\Secure.png" />
     <Content Include="slSecureLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
