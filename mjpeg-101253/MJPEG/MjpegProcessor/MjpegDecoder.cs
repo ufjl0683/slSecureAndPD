@@ -135,7 +135,14 @@ namespace MjpegProcessor
 		public void StopStream()
 		{
             if (request != null)
-                request.Abort();
+            {
+
+                try
+                {
+                    request.Abort();
+                }
+                catch { ;}
+            }
 			_streamActive = false;
 		}
 

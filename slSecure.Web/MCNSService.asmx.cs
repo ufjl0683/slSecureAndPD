@@ -49,7 +49,7 @@ namespace slSecure.Web
                 System.Collections.Generic.List<AddCardInfo> list = new List<AddCardInfo>();
                 foreach (var i in q)
                 {
-                    list.Add(new AddCardInfo() { CardNo = i.ABA, EndDate = (DateTime)i.EndDate, StartDate = (DateTime)i.StartDate, MCNSID = i.Memo, Name = i.Name, ERIDs = i.g.Distinct().ToArray<int>() });
+                    list.Add(new AddCardInfo() {  CardNo = i.ABA, EndDate = (DateTime)i.EndDate, StartDate = (DateTime)i.StartDate, MCNSID = i.Memo, Name = i.Name, ERIDs = i.g.Distinct().ToArray<int>() });
                 }
                 return list.ToArray();
             }
@@ -60,9 +60,8 @@ namespace slSecure.Web
             using (SecureDBEntities db = new SecureDBEntities())
             {
                 var q = from n in db.tblMagneticCard
-                        where n.Enable == "Y" && n.Type==2
-
-                        select new MagneticCardBasicInfo { ABA = n.ABA, CardEndDate = n.CardEndDate, CardStartDate = n.CardStartDate, Company = n.Company, EmployeeNo = n.EmployeeNo, EndDate = n.EndDate, IDNumber = n.IDNumber, JobTitle = n.JobTitle, Mobile = n.Mobile, Name = n.Name, StartDate = n.StartDate, Tel = n.Tel };
+                        where n.Enable == "Y" 
+                        select new MagneticCardBasicInfo { ABA = n.ABA, Type=n.Type, CardEndDate = n.CardEndDate, CardStartDate = n.CardStartDate, Company = n.Company, EmployeeNo = n.EmployeeNo, EndDate = n.EndDate, IDNumber = n.IDNumber, JobTitle = n.JobTitle, Mobile = n.Mobile, Name = n.Name, StartDate = n.StartDate, Tel = n.Tel };
 
 
                 return q.ToArray();
@@ -82,7 +81,7 @@ namespace slSecure.Web
                 var q = from n in db.tblMagneticCard
                         where n.Enable == "Y" && n.Company == CompanyName
                        
-                        select new MagneticCardBasicInfo{  ABA=n.ABA, CardEndDate=n.CardEndDate, CardStartDate=n.CardStartDate, Company=n.Company, EmployeeNo=n.EmployeeNo, EndDate=n.EndDate, IDNumber=n.IDNumber, JobTitle=n.JobTitle, Mobile=n.Mobile, Name=n.Name, StartDate=n.StartDate, Tel=n.Tel };
+                        select new MagneticCardBasicInfo{  ABA=n.ABA,Type=n.Type ,CardEndDate=n.CardEndDate, CardStartDate=n.CardStartDate, Company=n.Company, EmployeeNo=n.EmployeeNo, EndDate=n.EndDate, IDNumber=n.IDNumber, JobTitle=n.JobTitle, Mobile=n.Mobile, Name=n.Name, StartDate=n.StartDate, Tel=n.Tel };
 
 
                 return q.ToArray();
@@ -404,8 +403,8 @@ namespace slSecure.Web
 
       public string  Company {get;set;}
       public string ABA  {get;set;}
-     public string  Name   {get;set;}
-       public string IDNumber  {get;set;}
+      public string  Name   {get;set;}
+      public string IDNumber  {get;set;}
       public string EmployeeNo {get;set;}
       public string JobTitle  {get;set;}
       public string  Tel  {get;set;}
@@ -414,6 +413,7 @@ namespace slSecure.Web
       public  DateTime? CardEndDate {get;set;}
       public DateTime? StartDate { get; set; }
       public DateTime? EndDate { get; set; }
+      public short? Type { get; set; }
 
 
     }

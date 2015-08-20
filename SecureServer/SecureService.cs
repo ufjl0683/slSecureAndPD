@@ -7,6 +7,7 @@ using System.Net;
 using SecureServer.CardReader;
 using SecureServer.BindingData;
 using RoomInterface;
+using System.Threading.Tasks;
 
 namespace SecureServer
 {
@@ -264,54 +265,57 @@ namespace SecureServer
                     Console.WriteLine("notify db Change!");
                   
 #if !R23
-                    SecureDBEntities1 db = new SecureDBEntities1();
-                    foreach (tblCardCommandLog cmdlog in db.tblCardCommandLog.Where(n=>n.Timestamp==null))
-                    {
-                        try
+                    Task.Factory.StartNew(() =>
                         {
-                            if (cmdlog.ControlID!="*" && !card_mgr[cmdlog.ControlID].IsConnected )
-                                continue;
-                            if (cmdlog.CommandType == "I")
+                            SecureDBEntities1 db = new SecureDBEntities1();
+                            foreach (tblCardCommandLog cmdlog in db.tblCardCommandLog.Where(n => n.Timestamp == null))
                             {
-                                if (cmdlog.CardType == "C")
+                                try
                                 {
-                                    Console.WriteLine(cmdlog.ControlID+" Add card!"+cmdlog.ABA);
-                                    card_mgr[cmdlog.ControlID].AddCard(cmdlog.ABA);
-                                    
+                                    if (cmdlog.ControlID != "*" && !card_mgr[cmdlog.ControlID].IsConnected)
+                                        continue;
+                                    if (cmdlog.CommandType == "I")
+                                    {
+                                        if (cmdlog.CardType == "C")
+                                        {
+                                            Console.WriteLine(cmdlog.ControlID + " Add card!" + cmdlog.ABA);
+                                            card_mgr[cmdlog.ControlID].AddCard(cmdlog.ABA);
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine(cmdlog.ControlID + " Add virtual card!" + cmdlog.ABA);
+                                            card_mgr[cmdlog.ControlID].AddVirturalCard(cmdlog.ABA);
+
+                                        }
+
+                                    }
+                                    else if (cmdlog.CommandType == "D")
+                                    {
+                                        Console.WriteLine(cmdlog.ControlID + " delete  card!" + cmdlog.ABA);
+                                        card_mgr[cmdlog.ControlID].DeleteCard(cmdlog.ABA);
+                                    }
+                                    else if (cmdlog.CommandType == "*")
+                                    {
+
+                                        Console.WriteLine("Process CheckCardDue");
+                                        CheckCardDueTask(cmdlog.ABA);
+                                    }
+
+                                    cmdlog.Timestamp = DateTime.Now;
+                                    cmdlog.IsSuccess = true;
                                 }
-                                else
+                                catch (Exception ex)
                                 {
-                                    Console.WriteLine(cmdlog.ControlID + " Add virtual card!" + cmdlog.ABA);
-                                    card_mgr[cmdlog.ControlID].AddVirturalCard(cmdlog.ABA);
+                                    cmdlog.Timestamp = DateTime.Now;
+                                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                                    cmdlog.IsSuccess = false;
+                                    //throw ex;
 
                                 }
-
                             }
-                            else if (cmdlog.CommandType == "D")
-                            {
-                                Console.WriteLine(cmdlog.ControlID + " delete  card!" + cmdlog.ABA);
-                                card_mgr[cmdlog.ControlID].DeleteCard(cmdlog.ABA);
-                            }
-                            else if(cmdlog.CommandType=="*")
-                            {
-                               
-                                Console.WriteLine("Process CheckCardDue");
-                                CheckCardDueTask(cmdlog.ABA);
-                            }
-
-                            cmdlog.Timestamp=DateTime.Now;
-                            cmdlog.IsSuccess= true;
-                        }
-                        catch (Exception ex)
-                        {
-                            cmdlog.Timestamp = DateTime.Now;
-                            Console.WriteLine(ex.Message + "," + ex.StackTrace);
-                            cmdlog.IsSuccess = false;
-                            //throw ex;
-                           
-                        }
-                    }
-                        db.SaveChanges();
+                            db.SaveChanges();
+                        });
 #else
                      List<int > list=new List<int>();
                     foreach(string GID in value.Split(new char[]{','}))

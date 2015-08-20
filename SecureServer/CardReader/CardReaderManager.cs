@@ -18,7 +18,8 @@ namespace SecureServer.CardReader
       //  int OpenDoorDetectionAlarmTime = 20;
         int DoorOpenAlarmTime = 20;
         int OpenDoorAutoCloseTime = 10;
-        System.Collections.Generic.Dictionary<string, ICardReader> dictCardReaders = new Dictionary<string, ICardReader>();
+
+        System.Collections.Concurrent.ConcurrentDictionary<string, ICardReader> dictCardReaders = new System.Collections.Concurrent.ConcurrentDictionary<string, ICardReader>();
         System.Collections.Generic.Dictionary<string, ICardReader> dictIp_CardReader = new Dictionary<string, ICardReader>();
           System.Collections.Generic.Dictionary<string, ICardReader> dictAdam_CardReader = new Dictionary<string, ICardReader>();
        
@@ -209,7 +210,7 @@ namespace SecureServer.CardReader
 
                     ICardReader cardreader = new CardReader(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano,data.Comm_state==1?true:false);
  
-                    dictCardReaders.Add(data.ControlID, cardreader);
+                    dictCardReaders.TryAdd(data.ControlID, cardreader);
                     dictIp_CardReader.Add(data.IP, cardreader);
                     cardreader.OnDoorEvent += cardreader_OnDoorEvent;
                     //   cardreader.OnAlarmEvent += cardreader_OnAlarmEvent;
@@ -509,6 +510,7 @@ namespace SecureServer.CardReader
                                 System.Threading.Thread.Sleep(1000 * 20);
 
                                 long flowid = log.FlowID;
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("nvrid:" + reader.NVRID);
                                 try
                                 {
@@ -519,13 +521,13 @@ namespace SecureServer.CardReader
                                         return;
                                     }
 
-                                 
+
                                     bool success = nvr.SaveRecord(
- 
+
                                 //           reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"C:\web\Secure\ClientBin\VideoRecord\" + flowid + ".avi");
- 
+
                                      reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"E:\web\Secure\ClientBin\VideoRecord\" + flowid + ".avi");
- 
+
                                     //bool success = nvr.SaveRecord(
                                     //reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"D:\" + flowid + ".avi");
 
@@ -536,6 +538,10 @@ namespace SecureServer.CardReader
                                 catch (Exception ex)
                                 {
                                     Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                                }
+                                finally
+                                {
+                                    Console.ResetColor();
                                 }
                             });
 #endif
@@ -638,6 +644,23 @@ namespace SecureServer.CardReader
                 db.tblEngineRoomLog.Add(log);
                 db.SaveChanges();
                 db.Dispose();
+
+                 AlarmData data = new AlarmData()
+                {
+                    TimeStamp = DateTime.Now,
+                    AlarmType = AlarmType.Secure,
+                    ColorString = "Green",
+                    Description = reader.ControllerID + "復線",
+                    PlaneID = reader.PlaneID,
+                    IsForkCCTVEvent = false,
+                    PlaneName = Global.GetPlaneNameByPlaneID(reader.PlaneID)
+                    //  CCTVBindingData =cctv.ToBindingData(
+
+                };
+                
+                    Program.MyServiceObject.DispatchAlarmEvent(data);
+
+            
                 this.DownloadSuperPassword(reader.ControllerID);
             }
             if (enumEventType == DoorEventType.DisConnected)
@@ -670,6 +693,9 @@ namespace SecureServer.CardReader
                     Program.MyServiceObject.DispatchAlarmEvent(data);
 
             }
+
+
+
         }
 
 

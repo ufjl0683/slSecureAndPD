@@ -4,14 +4,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SecureServer
 {
     class Program
     {
+
+        public static void NVRTest(string ip)
+        {
+            SecureServer.NVR.NVR_Type1 nvr = new SecureServer.NVR.NVR_Type1() { ERID = 32, NVRID = 1, IP = ip, PlaneID = 41, UserName = "admin", Password = "1111", Port = 80 };
+
+            //nvr.SaveRecord(1, new DateTime(2015, 8, 14, 13, 0, 0), new DateTime(2015, 8, 14, 13, 01, 0), "123.avi");
+             DateTime dt = DateTime.Now;
+                                System.Threading.Thread.Sleep(1000 * 20);
+
+                                long flowid = 1234;
+                              //  Console.WriteLine("nvrid:" + reader.NVRID);
+                                
+                                //    NVR.INVR nvr = SecureService.nvr_mgr[reader.NVRID];
+                                    if (nvr == null)
+                                    {
+                                      //  Console.WriteLine(reader.NVRID + " is null");
+                                        return;
+                                    }
+
+                                 
+                                    bool success = nvr.SaveRecord(
+ 
+                                //           reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"C:\web\Secure\ClientBin\VideoRecord\" + flowid + ".avi");
+ 
+                                     1, dt.AddSeconds(-10), dt.AddSeconds(10), flowid + ".avi");
+ 
+                                    //bool success = nvr.SaveRecord(
+                                    //reader.NVRChNo, dt.AddSeconds(-10), dt.AddSeconds(10), @"D:\" + flowid + ".avi");
+
+                                    //log.NVRFile = flowid + ".wmv";
+                                    //db.SaveChanges();
+                                    Console.WriteLine(success);
+        }
         public static SecureServer.SecureService  MyServiceObject;
         static void Main(string[] args)
         {
+
+            //Task task = Task.Factory.StartNew(() =>
+            //               {
+                           
+            //                   NVRTest(args[0]);
+            //               });
+
+            //Console.ReadLine();
 
             //PD.PD pd = new PD.PD("test", "192.192.85.20", 16502);
 

@@ -38,8 +38,12 @@ namespace test
         {
 
 
+           
+           // SecureServer.NVR.NVR_Type1  nvr=new SecureServer.NVR.NVR_Type1(){ ERID=32, NVRID=18, IP="10.2.50.129", PlaneID=41, UserName="admin", Password="1111", Port=80};
 
+           //nvr.SaveRecord(1,new DateTime(2015,8,14,13,0,0),new DateTime(2015,8,14,13,01,0),"123.avi");
 
+           // Console.ReadLine();
          //   RoomClient.RoomClient.RoomEvent += RoomClient_RoomEvent;
 
          //   bool status = RoomClient.RoomClient.GetControlConnectionStatus("AN-2400N-1");

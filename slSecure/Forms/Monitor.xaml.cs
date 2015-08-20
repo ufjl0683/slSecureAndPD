@@ -244,9 +244,16 @@ namespace slSecure.Forms
 
         private void ControlRoomMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            PlaneDegreeInfo info = (sender as ControlRoomMenu).DataContext as PlaneDegreeInfo;
-            this.lstMenu.ItemsSource = null;
-            this.NavigationService.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID="+info.PlaneID,UriKind.Relative));
+            try
+            {
+                PlaneDegreeInfo info = (sender as ControlRoomMenu).DataContext as PlaneDegreeInfo;
+                this.lstMenu.ItemsSource = null;
+                this.NavigationService.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID=" + info.PlaneID, UriKind.Relative));
+            }
+            catch (Exception ex)
+            {
+                ;
+            }
           //  Common.Util.GetICommon().Navigate(new Uri("/slSecure;component/Forms/ControlRoom.xaml",UriKind.Relative));
         }
 

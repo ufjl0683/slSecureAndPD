@@ -9,9 +9,12 @@
             </customBinding>
         </bindings>
         <client>
-            <endpoint address="net.tcp://localhost:4502/" binding="customBinding"
+          <endpoint address="net.tcp://10.2.10.134:4502/" binding="customBinding"
+              bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
+              name="CustomBinding_ISecureService" />
+            <!--<endpoint address="net.tcp://localhost:4502/" binding="customBinding"
                 bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
-                name="CustomBinding_ISecureService" />
+                name="CustomBinding_ISecureService" />-->
         </client>
     </system.serviceModel>
 </configuration>

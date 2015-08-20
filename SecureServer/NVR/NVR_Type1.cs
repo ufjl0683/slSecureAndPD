@@ -79,19 +79,26 @@ namespace SecureServer.NVR
            {
                try
                {
-                
+                   Console.ForegroundColor = ConsoleColor.Green;
                    string state = "";
-
+                   int cnt = 0;
                    do
                    {
+                       cnt++;
                        url = "http://" + IP + ":" + Port;
-                       Console.WriteLine("check backup State:" + url);
+                       Console.ForegroundColor = ConsoleColor.Green;
+                       Console.WriteLine("check backup State"+cnt+":" + url);
+                       Console.ResetColor();
                        state = NvrGetBackupState(url);
                        System.Threading.Thread.Sleep(3000);
 
-                   } while (state.Trim() != "1");
-
+                   } while (state.Trim() != "1" && cnt <20);
+                   //if (cnt >= 20)
+                   //{
+                   //    return false;
+                   //}
                    // private void NvrBackup(string NvrUrl, string startDate, string startTime, string endDate,string endTime, string channel, string desc)
+                   Console.ForegroundColor = ConsoleColor.Green;
                    string StartDate, StartTime, EndDate, EndTime;
                    StartDate = string.Format("{0:0000}/{1:00}/{2:00}", BeginDateTime.Year, BeginDateTime.Month, BeginDateTime.Day);
                    StartTime = string.Format("{0:00}:{1:00}:00", BeginDateTime.Hour, BeginDateTime.Minute, BeginDateTime.Second);
@@ -176,6 +183,7 @@ namespace SecureServer.NVR
                }
                finally
                {
+                   Console.ResetColor();
                    System.IO.File.Delete(SavePathFilename);
                }
            }
@@ -320,6 +328,7 @@ namespace SecureServer.NVR
        {
            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
            request.Method = WebRequestMethods.Http.Get;
+          
            HttpWebResponse response = null;
            Stream stream = null;
            StreamReader streamReader = null;
