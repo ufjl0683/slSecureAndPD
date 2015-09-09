@@ -92,7 +92,7 @@ namespace SecureServer.CardReader
 
                     ICardReader cardreader = new CardReader23(data.ControlID, data.IP, data.ERID, (int)data.PlaneID, data.TriggerCCTVID ?? -1, nvrid, nvrchano, data);
 
-                    dictCardReaders.Add(data.ControlID, cardreader);
+                    dictCardReaders.TryAdd(data.ControlID, cardreader);
                     dictIp_CardReader.Add(data.IP, cardreader);
                     if(!dictAdam_CardReader.ContainsKey(data.R23_ADAM))
                     dictAdam_CardReader.Add(data.R23_ADAM, cardreader);

@@ -149,7 +149,7 @@ namespace SecureServer
            while (true)
            {
                bool IsDegreeChange = false;
-               System.Threading.Thread.Sleep(1000);
+               System.Threading.Thread.Sleep(5000);
                IsDegreeChange = false;
                if (Program.MyServiceObject == null)
                    continue;

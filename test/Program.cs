@@ -36,9 +36,17 @@ namespace test
 
         static void Main(string[] args)
         {
+            //byte[] retData = new byte[6];
 
-
-           
+            //System.Collections.BitArray ba = new System.Collections.BitArray(new byte[] { 0 });
+            //// bit   0       1      2          3
+            ////      major   minor  SmrWarning AcFail
+            //ba.Set(0, 1 == 0);
+            //ba.Set(1, 0 == 0);
+            //ba.Set(2, 1 == 0);
+            //ba.Set(3, 0 == 0);
+            //ba.CopyTo(retData, 5);
+            //Console.WriteLine(retData[5]);
            // SecureServer.NVR.NVR_Type1  nvr=new SecureServer.NVR.NVR_Type1(){ ERID=32, NVRID=18, IP="10.2.50.129", PlaneID=41, UserName="admin", Password="1111", Port=80};
 
            //nvr.SaveRecord(1,new DateTime(2015,8,14,13,0,0),new DateTime(2015,8,14,13,01,0),"123.avi");

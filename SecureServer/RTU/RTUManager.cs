@@ -40,6 +40,13 @@ namespace SecureServer.RTU
                     rtu = new SecureServer.RTU.R23AdamRTU(tbl.ControlID, 1, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0,tbl.R23_ADAM );
                     rtu.OnCommStateChanged += rtu_OnCommStateChanged;
                 }
+                else if (tbl.ControlType == 6)
+                {
+                    rtu = new SecureServer.RTU.R13SmrRTU(tbl.ControlID, 1, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0 );
+                    rtu.OnCommStateChanged += rtu_OnCommStateChanged;
+                }
+
+
                 if (!dictRTUs.ContainsKey(tbl.ControlID))
                 {
 

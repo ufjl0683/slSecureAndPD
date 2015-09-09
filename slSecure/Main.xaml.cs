@@ -140,10 +140,12 @@ namespace slSecure
                 try
                 {
                     await AddCCTVAsync(alarmdata.CCTVBindingData.MjpegCgiString, alarmdata.CCTVBindingData.UserName, alarmdata.CCTVBindingData.Password, alarmdata);
+                   
+                
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message + "," + ex.StackTrace);
+                    MessageBox.Show("alarm:"+alarmdata.AlarmType+alarmdata.Description+ ex.Message + "," + ex.StackTrace);
                 }
                 }
 

@@ -164,21 +164,7 @@ namespace slSecure.Forms
             db = new SecureDBContext();
             this.PlaneID = int.Parse(this.NavigationContext.QueryString["PlaneID"]);
 
-            client = new MyClient("CustomBinding_ISecureService", false);
-
-            client.OnRegistEvent += async (s) =>
-            {
-
-                if (!IsExit)
-                await HookDoorEvent(PlaneID);
-                if (!IsExit)
-                await HookItemValueChangeEvent(PlaneID);
-
-            };
-            client.OnDoorEvent += client_OnDoorEvent;
-            client.OnItemValueChangedEvent += client_OnItemValueChangedEvent;
-            if (!IsExit)
-            await client.RegistAndGetKey();
+           
 
 
             this.image.Source = new BitmapImage(new Uri("/Diagrams/" + PlaneID + ".png", UriKind.Relative));
@@ -204,6 +190,23 @@ namespace slSecure.Forms
            this.tblPlane= erplanes.FirstOrDefault();
            this.DataContext = tblPlane;
            // tblPlane.PlaneName
+
+
+           client = new MyClient("CustomBinding_ISecureService", false);
+
+           client.OnRegistEvent += async (s) =>
+           {
+
+               if (!IsExit)
+                   await HookDoorEvent(PlaneID);
+               if (!IsExit)
+                   await HookItemValueChangeEvent(PlaneID);
+
+           };
+           client.OnDoorEvent += client_OnDoorEvent;
+           client.OnItemValueChangedEvent += client_OnItemValueChangedEvent;
+           if (!IsExit)
+               await client.RegistAndGetKey();
         }
 
         void client_OnItemValueChangedEvent(ItemBindingData itemdata)

@@ -29,7 +29,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R23</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -50,7 +50,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
@@ -66,6 +65,7 @@
     <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -73,7 +73,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -84,9 +83,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CCTVLock.aspx" />
+    <Content Include="CCTVWindows.html" />
     <Content Include="ClientBin\slEditor.xap" />
     <Content Include="ClientBin\slSecure.xap" />
     <Content Include="ClientBin\slWCFModule.xap" />
+    <Content Include="GetCCTVGridData.aspx" />
     <Content Include="MCNSService.asmx" />
     <None Include="Service References\SecureService\Arrays.xsd">
       <SubType>Designer</SubType>
@@ -97,6 +98,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Microsoft.Web.Infrastructure.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Silverlight.js" />
     <Content Include="SilverlightApplication2TestPage.aspx" />
     <Content Include="SilverlightApplication2TestPage.html" />
@@ -106,6 +110,7 @@
     <Content Include="slSecure.html" />
     <Content Include="slWCFModuleTestPage.aspx" />
     <Content Include="slWCFModuleTestPage.html" />
+    <Content Include="cssreset.css" />
     <Content Include="TRDialog_DownloadForm.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -118,6 +123,13 @@
     </Compile>
     <Compile Include="CCTVLock.aspx.designer.cs">
       <DependentUpon>CCTVLock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetCCTVGridData.aspx.cs">
+      <DependentUpon>GetCCTVGridData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetCCTVGridData.aspx.designer.cs">
+      <DependentUpon>GetCCTVGridData.aspx</DependentUpon>
     </Compile>
     <Compile Include="MCNSService.asmx.cs">
       <DependentUpon>MCNSService.asmx</DependentUpon>

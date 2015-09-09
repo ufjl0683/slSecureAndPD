@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+  <!--  <link  rel="Stylesheet"  href="cssreset.css" >-->
+    <style type="text/css">
+        * {
+           
+            box-sizing: border-box;
+             border:0;
+              padding:0;
+            
+        }
+        body,html {
+            width:100%;
+           height:100%;
+        }
+        .cctv {
+            padding:5px 5px 0px 5px;
+            float:left;
+            width:50%;
+             height:50%;
+           
+ 
+        }
+
+         .cctv_x1 {
+            padding:5px 5px 0px 5px;
+            float:left;
+            width:100%;
+             height:100%;
+           
+ 
+        }
+          .cctv_x4 {
+            padding:5px 5px 0px 5px;
+            float:left;
+            width:50%;
+             height:50%;
+           
+ 
+        }
+
+           .cctv_x9 {
+            padding:5px 5px 0px 5px;
+            float:left;
+            width:calc(100%/3);
+             height:calc(100%/3);
+           
+ 
+        }
+   .cctv_x16 {
+            padding:5px 5px 0px 5px;
+            float:left;
+            width:calc(100%/4.01);
+             height:calc(100%/4);
+           
+ 
+        }
+
+
+        .title {
+             float:left;
+              
+            width:100% ;
+            height:40px ;
+            background-color:green;
+            color:white;
+            font-size:large;
+            text-align:center;
+             padding:5px;
+
+        }
+
+        #frame {
+            width:90%;
+            height:calc(100% - 50px);
+            margin-right:auto;
+            margin-left:auto;
+        }
+
+        embed {
+            float:left;
+            width:100%;
+            height:calc(100% - 40px);
+        }
+        #header {
+            height:50px;
+            width:90%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        button {
+
+            width:100px;
+            font-size:xx-large;
+            margin:0px 5px 0px 5px;
+        }
+
+    </style>
+    <script>
+        var rtime;
+        var timeout = false;
+        var delta = 1000;
+        var CCTVGridInfos;
+        var dictCCTV = new Object();
+
+        var _WndCnt = 4;
+        window.onload = function () {
+            GetCCTVGridInfo(function (res) {
+                CCTVGridInfos = res;
+                for (i = 0; i < res.length; i++) {
+                    dictCCTV[res[i].NO]=res[i];
+                }
+             //   console.log(dictCCTV["1"]);
+                //   console.log(dictCCTV["xx"]);
+                pressButton(_WndCnt);
+            }
+            );
+
+            window.onresize = function (event) {
+                rtime = new Date();
+                if (timeout === false) {
+                    timeout = true;
+                    setTimeout(resizeend, delta);
+                }
+
+              
+            };
+           
+        }
+    
+
+        function resizeend() {
+            if (new Date() - rtime < delta) {
+                setTimeout(resizeend, delta);
+            } else {
+                timeout = false;
+                var res = document.getElementsByClassName("cctv");
+                //for (x in res)
+                //    alert(x.className);
+
+                //for (i = 0; i < res.length; i++) {
+                //    //res[i].className = "";
+                //    res[i].className = "cctv";
+                //}
+                pressButton(_WndCnt);
+            //    location.reload();
+            }
+        }
+      
+        function pressButton(wndcnt) {
+            _WndCnt = wndcnt;
+            
+            var strtemp = '  <div class="@classname"    > <embed type="application/x-vlc-plugin"              pluginspage="http://www.videolan.org"     controls="false"     mrl="@url"  text="抓不到攝影機畫面" />  <div class="title" id="title1"      >@cctvname</div>     </div>';
+
+            //var strtemp = '  <div class="@classname"    > <embed type="application/x-vlc-plugin"     pluginspage="http://www.videolan.org"      controls="false"   src="http://192.192.85.84:9091/tesr"  text="抓不到攝影機畫面" />  <div class="title" id="title1"      ></div>     </div>';
+            var emdstr  = strtemp.replace("@classname", "cctv_x" + wndcnt);
+
+           
+            var str = "";
+            for (i = 0; i < wndcnt; i++) {
+                 
+                if( typeof dictCCTV[i+1] ==="undefined")
+                {
+                    str += emdstr.replace("@url", "");
+                }
+                else
+                {
+                    var obj = dictCCTV[i + 1];
+                   
+                 
+
+                    str = str + emdstr.replace("@url", "http://" + obj.UserName +
+                        ":" + obj.Password + "@" + obj.IP + ":" + obj.Port + "/getimage?fmt=320x240").replace("@cctvname", obj.CCTVName);;
+                  
+                }
+            }
+            console.log(str);
+            document.getElementById("frame").innerHTML = str;
+           // document.getElementById("frame").innerHTML += embedstr;
+          
+           
+        }
+
+
+        function GetCCTVGridInfo(fn) {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    console.log(xmlhttp.responseText);
+                    fn( JSON.parse(xmlhttp.responseText));
+                    //document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "GetCCTVGridData.aspx", true);
+            xmlhttp.send();
+        }
+
+    </script>
+</head>
+<body>
+   <div id="header">
+
+       <button id="x1"  onclick="pressButton(1)"   >x1</button>
+           <button id="x4"  onclick="pressButton(4)"  >x4</button>
+           <button id="x9"   onclick="pressButton(9)"  >x9</button>
+           <button id="x16" onclick="pressButton(16)"    >x16</button>
+   </div>
+    <div id="frame" >
+     <!--   <div class="cctv" id="cctv1"   > 
+            <embed type="application/x-vlc-plugin"
+                       pluginspage="http://www.videolan.org"
+                       
+                       
+                       id="vlc"
+                       controls="false"
+                        
+                       src="http://192.192.85.20:11000/getimage?fmt=320x240" /><noembed>抓不到攝影機畫面</noembed>
+ 
+
+              <div class="title" id="title1"      ></div>
+</div>
+      
+         <div class="cctv" id="cctv2"   >
+              <embed type="application/x-vlc-plugin"
+                       pluginspage="http://www.videolan.org"
+                                         
+                       id="Embed1"
+                       controls="false"
+                       id="vlc" loop="yes" autoplay="yes" mrl="http://192.192.85.84:9091/tesr" /><noembed>抓不到攝影機畫面</noembed>
+                <div class="title" id="title2"    ></div>
+         </div>
+        
+     
+          <div class="cctv" id="cctv3"   >
+               <embed type="application/x-vlc-plugin"
+                       pluginspage="http://www.videolan.org"
+                       
+                       
+                       id="Embed2"
+                       controls="false"
+                       src="http://192.192.85.84:9091/tesr" /><noembed>抓不到攝影機畫面</noembed>
+               <div class="title" id="title3"      ></div>
+          </div>
+    
+         <div class="cctv" id="cctv4"   >
+              <embed type="application/x-vlc-plugin"
+                       pluginspage="http://www.videolan.org"
+                       
+                       
+                       id="Embed3"
+                       controls="false"
+                       src="http://192.192.85.84:9091/tesr" /><noembed>抓不到攝影機畫面</noembed>
+
+              <div class="title" id="title4"    ></div>
+         </div>-->
+           
+       
+    </div>
+
+
+
+</body>
+</html>

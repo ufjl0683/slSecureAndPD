@@ -59,7 +59,7 @@ namespace SecureServer.RTU
                     // 偵測 RTU開 斷線並產生事件
                     if (this.Adam != null)
                         Comm_state = RoomClient.RoomClient.GetControlConnectionStatus(Adam) ? 1 : 0;   // RTUDevice.connected ? 1 : 0;
-
+                    
                     if (Comm_state==1)
                     {
                         lock (lockobj)
@@ -73,13 +73,15 @@ namespace SecureServer.RTU
                             }
                         }
                     }
-                    System.Threading.Thread.Sleep(1000);
+                   
 
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("RTU:" + this.ControlID + "," + ex.Message + "," + ex.StackTrace);
                 }
+
+                System.Threading.Thread.Sleep(3000);
 
             }
 

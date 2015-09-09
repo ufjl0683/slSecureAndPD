@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SecureServer
 {
-    [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single)] 
+    [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single,ConcurrencyMode= ConcurrencyMode.Multiple)] 
    public  class SecureService:ISecureService
     {
 
