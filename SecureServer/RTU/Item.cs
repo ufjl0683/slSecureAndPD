@@ -77,13 +77,19 @@ namespace SecureServer
 
        public Item(int ItemID,ModbusTCP.IRTU rtu,string ItemType,tblItemConfig ItemConfig)
        {
+
+           
            this.rtu = rtu;
+           
            this.ItemConfig = ItemConfig;
            this.ItemType = ItemType;
+
            this.ItemID = ItemID;
            this._Value = ItemConfig.Value??0;
            this._Degree = ItemConfig.Degree;
+           
            Task task = Task.Run(new Action(ReadindAction));
+           
        }
 
        public void LoadItemConfig()
@@ -148,9 +154,11 @@ namespace SecureServer
        {
            while (true)
            {
+               
                bool IsDegreeChange = false;
                System.Threading.Thread.Sleep(5000);
                IsDegreeChange = false;
+               
                if (Program.MyServiceObject == null)
                    continue;
                try
@@ -159,7 +167,9 @@ namespace SecureServer
                        continue;
 
 
-                   int? reading = rtu.GetRegisterReading((ushort)ItemConfig.Address);
+                   int? reading = 0; ;
+                 
+                   reading= rtu.GetRegisterReading((ushort)ItemConfig.Address);
                    double value=0;
                    if (reading != null)
                    {
@@ -258,9 +268,11 @@ namespace SecureServer
                }
                catch (Exception ex)
                {
+                  
+                 
                    Console.WriteLine("RTU:{0},address:{1}",rtu.ControlID,ItemConfig.Address);
                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
-
+                   
 
 
                }

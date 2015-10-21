@@ -97,6 +97,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="CardEndDate" nillable="true" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="StartDate" nillable="true" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="EndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" nillable="true" type="s:short" />
         </s:sequence>
       </s:complexType>
       <s:element name="GetMagneticCardBasicInfoByCompany">
@@ -110,6 +111,26 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetMagneticCardBasicInfoByCompanyResult" type="tns:ArrayOfMagneticCardBasicInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NotifyDbChange">
+        <s:complexType />
+      </s:element>
+      <s:element name="NotifyDbChangeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddCardWithoutNotify">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:AddCardInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCardWithoutNotifyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddCardWithoutNotifyResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -159,6 +180,18 @@
   <wsdl:message name="GetMagneticCardBasicInfoByCompanySoapOut">
     <wsdl:part name="parameters" element="tns:GetMagneticCardBasicInfoByCompanyResponse" />
   </wsdl:message>
+  <wsdl:message name="NotifyDbChangeSoapIn">
+    <wsdl:part name="parameters" element="tns:NotifyDbChange" />
+  </wsdl:message>
+  <wsdl:message name="NotifyDbChangeSoapOut">
+    <wsdl:part name="parameters" element="tns:NotifyDbChangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddCardWithoutNotifySoapIn">
+    <wsdl:part name="parameters" element="tns:AddCardWithoutNotify" />
+  </wsdl:message>
+  <wsdl:message name="AddCardWithoutNotifySoapOut">
+    <wsdl:part name="parameters" element="tns:AddCardWithoutNotifyResponse" />
+  </wsdl:message>
   <wsdl:message name="AddCardSoapIn">
     <wsdl:part name="parameters" element="tns:AddCard" />
   </wsdl:message>
@@ -185,6 +218,14 @@
     <wsdl:operation name="GetMagneticCardBasicInfoByCompany">
       <wsdl:input message="tns:GetMagneticCardBasicInfoByCompanySoapIn" />
       <wsdl:output message="tns:GetMagneticCardBasicInfoByCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyDbChange">
+      <wsdl:input message="tns:NotifyDbChangeSoapIn" />
+      <wsdl:output message="tns:NotifyDbChangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCardWithoutNotify">
+      <wsdl:input message="tns:AddCardWithoutNotifySoapIn" />
+      <wsdl:output message="tns:AddCardWithoutNotifySoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddCard">
       <wsdl:input message="tns:AddCardSoapIn" />
@@ -231,6 +272,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetMagneticCardBasicInfoByCompany">
       <soap:operation soapAction="http://tempuri.org/GetMagneticCardBasicInfoByCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyDbChange">
+      <soap:operation soapAction="http://tempuri.org/NotifyDbChange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCardWithoutNotify">
+      <soap:operation soapAction="http://tempuri.org/AddCardWithoutNotify" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -288,6 +347,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetMagneticCardBasicInfoByCompany">
       <soap12:operation soapAction="http://tempuri.org/GetMagneticCardBasicInfoByCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyDbChange">
+      <soap12:operation soapAction="http://tempuri.org/NotifyDbChange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCardWithoutNotify">
+      <soap12:operation soapAction="http://tempuri.org/AddCardWithoutNotify" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

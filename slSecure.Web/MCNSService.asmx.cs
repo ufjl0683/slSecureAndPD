@@ -199,6 +199,36 @@ namespace slSecure.Web
             return sRoleID;
         }
 #else     
+
+        [WebMethod]
+        public void NotifyDbChange()
+        {
+            SecureService.SecureServiceClient client = new SecureService.SecureServiceClient(new System.ServiceModel.InstanceContext(this));
+            client.NotifyDBChange(SecureService.DBChangedConstant.AuthorityChanged, "");
+        }
+        [WebMethod]
+        public string AddCardWithoutNotify(AddCardInfo info)
+        {
+            try
+            {
+                string rooms = string.Join(",", info.ERIDs);
+
+                for (int i = 0; i < info.ERIDs.ToArray().Length; i++)
+                {
+                    Exchange(info.MCNSID, info.ERIDs[i], info.CardNo, info.Name, info.StartDate, info.EndDate);
+
+                }
+
+          
+
+                return "0:success!" + rooms;
+            }
+            catch (Exception ex)
+            {
+                return "-1:" + ex.Message + "," + ex.StackTrace;
+            }
+        }
+
          [WebMethod]
         public string AddCard(AddCardInfo info)
         {

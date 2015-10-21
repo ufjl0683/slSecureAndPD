@@ -391,7 +391,7 @@ namespace SecureServer.CardReader
 
             get
             {
-                Console.WriteLine("dictCardReaders:" + ControllID);
+                //Console.WriteLine("dictCardReaders:" + ControllID);
                 if (!dictCardReaders.ContainsKey(ControllID))
                     return null;
 

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ec7de1d20ec044bfb352b365ef4a8043" Name="圖表1" >
+        <EntityTypeShape EntityType="SecureDBModel.sysdiagrams" Width="1.5" PointX="8.50603722804507" PointY="28.852491094196445" />
+        <EntityTypeShape EntityType="SecureDBModel.tblAIItem1HourLog" Width="1.5" PointX="8.9850351945427409" PointY="4.4810144773130371" />
+        <EntityTypeShape EntityType="SecureDBModel.tblAlarmLog" Width="1.5" PointX="7.0910266354172613" PointY="20.036842936667075" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="9.9245878448358678" PointY="0.4419618250997559" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCardReaderConfig" Width="1.5" PointX="11.199374472349591" PointY="1.7275764652190619" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCCTVConfig" Width="1.5" PointX="9.887235631182433" PointY="16.582760684463551" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCCTVSplitScreen" Width="1.5" PointX="10.820287858517975" PointY="26.294093337978278" />
+        <EntityTypeShape EntityType="SecureDBModel.tblCCTVType" Width="1.5" PointX="1.0562409297825028" PointY="14.043483204228563" />
+        <EntityTypeShape EntityType="SecureDBModel.tblControllerCard" Width="1.5" PointX="9.53905497749292" PointY="16.439429365303102" />
+        <EntityTypeShape EntityType="SecureDBModel.tblControllerConfig" Width="1.5" PointX="0.6778874195543525" PointY="13.559474608655775" />
+        <EntityTypeShape EntityType="SecureDBModel.tblControlSetting" Width="1.5" PointX="5.5525925073551905" PointY="4.5805355480781458" />
+        <EntityTypeShape EntityType="SecureDBModel.tblDeviceStateLog" Width="1.5" PointX="4.7189776248852615" PointY="7.2232451621551279" />
+        <EntityTypeShape EntityType="SecureDBModel.tblEngineRoomConfig" Width="1.5" PointX="11.196621609477615" PointY="30.883284896092157" />
+        <EntityTypeShape EntityType="SecureDBModel.tblEngineRoomLog" Width="1.5" PointX="9.1467944761490418" PointY="21.13470293075531" />
+        <EntityTypeShape EntityType="SecureDBModel.tblEntranceGuardConfig" Width="1.5" PointX="5.7992518738840015" PointY="8.5049508402612766" />
+        <EntityTypeShape EntityType="SecureDBModel.tblERDoorPassword" Width="1.5" PointX="6.5837069221696378" PointY="28.963578401582119" />
+        <EntityTypeShape EntityType="SecureDBModel.tblERPlane" Width="1.5" PointX="3.6900561729865409" PointY="19.7445101680907" />
+        <EntityTypeShape EntityType="SecureDBModel.tblHostConfig" Width="1.5" PointX="4.6543604715980411" PointY="2.2576833377860877" />
+        <EntityTypeShape EntityType="SecureDBModel.tblItemConfig" Width="1.5" PointX="8.1418341696922827" PointY="4.5285187980758579" />
+        <EntityTypeShape EntityType="SecureDBModel.tblItemGroup" Width="1.5" PointX="1.7822216478093627" PointY="23.252881984809825" />
+        <EntityTypeShape EntityType="SecureDBModel.tblItemGroupTypeInfo" Width="1.5" PointX="6.5962195278127771" PointY="3.709318237243834" />
+        <EntityTypeShape EntityType="SecureDBModel.tblItemKindInfo" Width="1.5" PointX="2.4448661405802081" PointY="22.622812445565504" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMagneticCard" Width="1.5" PointX="8.5000353774521678" PointY="30.434386044011632" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMagneticCardNormalGroup" Width="1.5" PointX="7.7868076077600978" PointY="7.711426365986199" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMenu" Width="1.5" PointX="9.1030970165054761" PointY="21.494088629956398" />
+        <EntityTypeShape EntityType="SecureDBModel.tblMenuGroup" Width="1.5" PointX="11.611564613697848" PointY="17.210662894514698" />
+        <EntityTypeShape EntityType="SecureDBModel.tblNVRConfig" Width="1.5" PointX="8.9849437088635486" PointY="28.316704688741222" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPasswordEveryDayDifference" Width="1.5" PointX="5.4321800532900637" PointY="18.102230393375379" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDAlarmLog" Width="1.5" PointX="6.1007065354384036" PointY="16.736848689958848" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDConfig" Width="1.5" PointX="2.4837588195147733" PointY="20.026119465020543" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPDLoopDeviceConfig" Width="1.5" PointX="10.367021625101112" PointY="5.3308646554736718" />
+        <EntityTypeShape EntityType="SecureDBModel.tblReportList" Width="1.5" PointX="6.3664838105284058" PointY="21.360047752670965" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSchConfig" Width="1.5" PointX="6.064134252287511" PointY="29.402383281571037" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSchLog" Width="1.5" PointX="2.52847908368729" PointY="9.1095907879572326" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSingalIO" Width="1.5" PointX="5.2059245301438146" PointY="0.55895914163392" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSingalIOLog" Width="1.5" PointX="9.12447203189343" PointY="20.908961141905262" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSysOperation" Width="1.5" PointX="4.3825643641793" PointY="10.554817800668449" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSysParameter" Width="1.5" PointX="10.48858345043314" PointY="11.097595115703342" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSysRole" Width="1.5" PointX="11.272834689949097" PointY="21.96112788746186" />
+        <EntityTypeShape EntityType="SecureDBModel.tblSysRoleAuthority" Width="1.5" PointX="6.2086815583560053" PointY="31.423271581262011" />
+        <EntityTypeShape EntityType="SecureDBModel.tblTypeDetail" Width="1.5" PointX="3.7944242282744609" PointY="16.680025570411246" />
+        <EntityTypeShape EntityType="SecureDBModel.tblUser" Width="1.5" PointX="10.822416582527765" PointY="25.970583033734272" />
+        <EntityTypeShape EntityType="SecureDBModel.tblUserGroup" Width="1.5" PointX="3.5777919514001311" PointY="0.34588889793767075" />
+        <EntityTypeShape EntityType="SecureDBModel.tblUserGroupMenu" Width="1.5" PointX="1.8763981917297459" PointY="13.523445105889554" />
+        <AssociationConnector Association="SecureDBModel.FK_tblAIItem1HourLog_tblItemConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblAlarmLog_tblTypeDetail" />
+        <AssociationConnector Association="SecureDBModel.FK_tblCardReaderConfig_tblControllerConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblControllerConfig_tblEngineRoomConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblControlSetting_tblControllerConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblDeviceStateLog_tblControllerConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblControllerConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSingalIO_tblControllerConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblDeviceStateLog_tblTypeDetail" />
+        <AssociationConnector Association="SecureDBModel.FK_tblEntranceGuardConfig_tblEngineRoomConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblERPlane_tblEngineRoomConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblNVRConfig_tblEngineRoomConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblPDConfig_tblEngineRoomConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroup" />
+        <AssociationConnector Association="SecureDBModel.FK_tblMagneticCard_tblSysRole" />
+        <AssociationConnector Association="SecureDBModel.FK_tblMenu_tblMenuGroup" />
+        <AssociationConnector Association="SecureDBModel.FK_tblUserGroupMenu_tblMenu" />
+        <AssociationConnector Association="SecureDBModel.FK_tblPDAlarmLog_tblPDConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSchConfig_tblUser" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSchLog_tblSchConfig" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSingalIOLog_tblSingalIO" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSysOperation_tblUser" />
+        <AssociationConnector Association="SecureDBModel.FK_tblSysRoleAuthority_tblSysRole" />
+        <AssociationConnector Association="SecureDBModel.FK_tblUser_tblUserGroup" />
+        <AssociationConnector Association="SecureDBModel.FK_tblUserGroupMenu_tblUserGroup" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

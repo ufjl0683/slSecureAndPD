@@ -387,7 +387,7 @@ namespace SecureServer.PD
                                     baryD.Set(11, baryS.Get(3));  // cab
                                     baryD.CopyTo(tempdata, 0);
                                 }
-                                else if ((tblPDConfig.type ?? 1) == 3)
+                                else if ((tblPDConfig.type ?? 1) == 3) //R12
                                 {
 
                                     for (int i = 0; i < tempdata.Length; i++)
@@ -407,6 +407,13 @@ namespace SecureServer.PD
                                     //baryD.Set(9, 0baryS.Get(10));  // L3
                                     //baryD.Set(10,0 baryS.Get(11));  // L4
                                     baryD.Set(11, baryS.Get(3) && baryS.Get(4) && baryS.Get(5));  // cab
+                                    baryD.CopyTo(tempdata, 0);
+                                }
+
+                                else if ((tblPDConfig.type ?? 1) == 4) //R23 T74
+                                {
+                                    System.Collections.BitArray baryD = new System.Collections.BitArray(tempdata);
+                                    baryD.Set(11,! baryD.Get(11));
                                     baryD.CopyTo(tempdata, 0);
                                 }
 

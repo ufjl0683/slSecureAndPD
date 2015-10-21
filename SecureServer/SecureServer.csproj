@@ -46,7 +46,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;R23</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -120,6 +120,7 @@
     <Compile Include="PD\PDManager.cs" />
     <Compile Include="PD\PDStatus.cs" />
     <Compile Include="PlaneManager.cs" />
+    <Compile Include="R13Exchange\EventExchange.cs" />
     <Compile Include="RegisterInfo.cs" />
     <Compile Include="RTU\Item.cs" />
     <Compile Include="RTU\ItemGroup.cs" />
@@ -240,6 +241,8 @@
       <LastGenOutput>DB.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RoomInterface.ControlStatus.datasource" />
+    <None Include="Properties\DataSources\RoomInterface.PersonData.datasource" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -292,7 +295,6 @@
       <Name>RoomClient</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

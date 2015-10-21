@@ -1,0 +1,48 @@
+﻿<sdk:Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:slsecurecnv="clr-namespace:MapControl.Converters;assembly=MapControl"
+           xmlns:securectl="clr-namespace:slSecure.Controls"
+           xmlns:MapControl="clr-namespace:MapControl;assembly=MapControl"
+        xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="slSecure.Forms.R23.Monitor"
+           mc:Ignorable="d"
+           d:DesignWidth="728.116" d:DesignHeight="575.072"
+           Title="Monitor Page" Unloaded="Page_Unloaded">
+    <sdk:Page.Resources>
+        <slsecurecnv:AlarmStatusColorConverter x:Key="AlarmStatusColorConverter" />
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <toolkit:WrapPanel x:Name="wrap" Loaded="wrap_Loaded" >
+                <i:Interaction.Behaviors>
+                    <ei:FluidMoveBehavior AppliesTo="Children" Duration="0:0:0.5"  InitialTag="Element" />
+                </i:Interaction.Behaviors>
+            </toolkit:WrapPanel>
+        </ItemsPanelTemplate>
+    </sdk:Page.Resources>
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="lstMenu" ItemsPanel="{StaticResource ItemsPanelTemplate1}" SizeChanged="lstMenu_SizeChanged" Margin="0,38,0,0"   >
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <securectl:ControlRoomMenu MouseEnter="ControlRoomMenu_MouseEnter" MouseLeftButtonDown="ControlRoomMenu_MouseLeftButtonDown"   Width="250" Height="40" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ComboBox x:Name="cboFilter" Height="28" Margin="10,5,10,0"  SelectedIndex="0"  VerticalAlignment="Top" SelectionChanged="cboFilter_SelectionChanged" >
+            <Rectangle  Fill="White" x:Name="All" Tag="ALL"   HorizontalAlignment="Stretch"     Height="20" Loaded="FilterItem_Load"  />
+            <!--<Rectangle  Fill="White" x:Name="All1" Tag="ALL"   HorizontalAlignment="Stretch"  Height="20"  Loaded="FilterItem_Load" />-->
+            <Rectangle  Fill="Red" x:Name="Alart" Tag="ALARM" HorizontalAlignment="Stretch"  Loaded="FilterItem_Load"  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ComboBox, Mode=FindAncestor}}" Height="20"   />
+            <Rectangle  Fill="Yellow" x:Name="Warning"  HorizontalAlignment="Stretch"  Loaded="FilterItem_Load"    Tag="WARNING"   Height="20"   />
+            <Rectangle  Fill="Green" x:Name="Normal"   HorizontalAlignment="Stretch"  Loaded="FilterItem_Load"   Tag="NORMAL"   Height="20"   />
+        </ComboBox>
+
+    </Grid>
+</sdk:Page>

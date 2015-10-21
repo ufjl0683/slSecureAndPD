@@ -43,10 +43,15 @@ namespace SecureServer
                                     //db.SaveChanges();
                                     Console.WriteLine(success);
         }
+
         public static SecureServer.SecureService  MyServiceObject;
         static void Main(string[] args)
         {
 
+            
+          
+
+            
             //Task task = Task.Factory.StartNew(() =>
             //               {
                            
@@ -103,7 +108,7 @@ namespace SecureServer
 
             ServiceHost host = new ServiceHost(MyServiceObject = new SecureServer.SecureService());
             host.Open();
-            System.Console.WriteLine("Secure Server started!");
+            System.Console.WriteLine("======================================Secure Server started!===============================");
           
 
             Console.ReadLine();

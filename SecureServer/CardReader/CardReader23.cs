@@ -206,6 +206,7 @@ namespace SecureServer.CardReader
 
                          if (this.IsConnected)
                          {
+
                              this.IsDoorOpen = (RoomClient.RoomClient.GetStatus(config.R23_ADAM)[config.R23DoorOpen_DI ?? 0] == 0) ? true : false;
                          }
 

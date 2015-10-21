@@ -172,9 +172,16 @@
                     var obj = dictCCTV[i + 1];
                    
                  
+                    if (obj.Type == 1) {
+                        str = str + emdstr.replace("@url", "http://" + obj.UserName +
+                            ":" + obj.Password + "@" + obj.IP + ":" + obj.Port + "/getimage?fmt=320x240").replace("@cctvname", obj.CCTVName);
+                    }
 
-                    str = str + emdstr.replace("@url", "http://" + obj.UserName +
-                        ":" + obj.Password + "@" + obj.IP + ":" + obj.Port + "/getimage?fmt=320x240").replace("@cctvname", obj.CCTVName);;
+                    else if (obj.Type == 2) {
+                        str = str + emdstr.replace("@url", "http://" + obj.UserName +
+                           ":" + obj.Password + "@" + obj.IP + ":" + obj.Port + "/axis-cgi/mjpg/video.cgi?camera=1").replace("@cctvname", obj.CCTVName);
+                    }
+
                   
                 }
             }

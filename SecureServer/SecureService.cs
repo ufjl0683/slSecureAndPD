@@ -8,6 +8,8 @@ using SecureServer.CardReader;
 using SecureServer.BindingData;
 using RoomInterface;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization.Json;
 
 namespace SecureServer
 {
@@ -38,10 +40,17 @@ namespace SecureServer
             cctv_mgr = new CCTV.CCTVManager(this);
       
            card_mgr = new CardReaderManager(this);
- 
+         
            rtu_mgr = new RTU.RTUManager();
-        
-           item_mgr = new RTU.ItemManager();
+           try
+           {
+               item_mgr = new RTU.ItemManager();
+           }
+            catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                    Environment.Exit(-1);
+                }
            itemgrp_mgr = new RTU.ItemGroupManager();
            plane_mgr = new PlaneManager();
            pd_mgr = new PD.PDManager();
@@ -100,13 +109,16 @@ namespace SecureServer
                         if (vw.Type == 4)
                             card_mgr[vw.ControlID].AddVirturalCard(vw.ABA);
                         else
+                        {
                             card_mgr[vw.ControlID].AddCard(vw.ABA);
+                            Console.WriteLine("add card:" + vw.ABA);
+                        }
                     }
                     catch (Exception ex)
                     {
-
+                       
                         ;
-                        // Console.WriteLine(ex.Message+","+ex.StackTrace);
+                        Console.WriteLine(vw.ControlID+","+vw.ABA+ex.Message+","+ex.StackTrace);
                     }
 
 
@@ -249,7 +261,84 @@ namespace SecureServer
         //    throw new NotImplementedException();
         //}
 
-        
+
+        void ProcessNotify()
+        {
+         
+            //foreach (tblCardCommandLog cmdlog in db1.tblCardCommandLog.Where(n => n.Timestamp == null))
+            //{
+            //    Console.WriteLine(cmdlog.ABA);
+            //}
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("=========================start task======================");
+
+            System.Collections.Generic.Dictionary<string, string> abaList = new Dictionary<string, string>();
+            SecureDBEntities1 db = new SecureDBEntities1();
+
+            foreach (tblCardCommandLog cmdlog in db.tblCardCommandLog.Where(n => n.Timestamp == null))
+            {
+
+                Console.WriteLine("==========================" + cmdlog.ABA +","+cmdlog.ControlID+ "======================");
+                try
+                {
+                    if (cmdlog.ControlID != "*" && !card_mgr[cmdlog.ControlID].IsConnected)
+                        continue;
+                    if (cmdlog.CommandType == "I")
+                    {
+                        if (cmdlog.CardType == "C")
+                        {
+                            Console.WriteLine(cmdlog.ControlID + " Add card!" + cmdlog.ABA);
+                            card_mgr[cmdlog.ControlID].AddCard(cmdlog.ABA);
+
+                        }
+                        else
+                        {
+                            Console.WriteLine(cmdlog.ControlID + " Add virtual card!" + cmdlog.ABA);
+                            card_mgr[cmdlog.ControlID].AddVirturalCard(cmdlog.ABA);
+
+                        }
+
+                    }
+                    else if (cmdlog.CommandType == "D")
+                    {
+                        Console.WriteLine(cmdlog.ControlID + " delete  card!" + cmdlog.ABA);
+                        card_mgr[cmdlog.ControlID].DeleteCard(cmdlog.ABA);
+                    }
+                    else if (cmdlog.CommandType == "*")
+                    {
+
+                        Console.WriteLine("=====================Process CheckCardDue==================");
+                        if (!abaList.ContainsKey(cmdlog.ABA))
+                        {
+                            CheckCardDueTask(cmdlog.ABA);
+                            abaList.Add(cmdlog.ABA,cmdlog.ABA);
+                            Console.WriteLine("check card " + cmdlog.ABA);
+                           
+                           
+                        }
+
+                    }
+                    SecureDBEntities1 db1 = new SecureDBEntities1();
+                    tblCardCommandLog log = db1.tblCardCommandLog.Where(n => n.FlowID == cmdlog.FlowID).FirstOrDefault();
+                    log.Timestamp = DateTime.Now;
+                    log.IsSuccess = true;
+                    db1.SaveChanges();
+                    db1.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    SecureDBEntities1 db1 = new SecureDBEntities1();
+                    tblCardCommandLog log = db1.tblCardCommandLog.Where(n => n.FlowID == cmdlog.FlowID).FirstOrDefault();
+                    log.Timestamp = DateTime.Now;
+                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                   log.IsSuccess = false;
+                    //throw ex;
+                    db1.SaveChanges();
+                }
+            }
+          //  db.SaveChanges();
+            Console.ForegroundColor = ConsoleColor.White;
+        }
         public void NotifyDBChange(DBChangedConstant constant,string value)
         {
 
@@ -262,60 +351,13 @@ namespace SecureServer
 
                     break;
                 case DBChangedConstant.AuthorityChanged:
-                    Console.WriteLine("notify db Change!");
+                    Console.WriteLine("==========================notify db Change!======================");
                   
 #if !R23
-                    Task.Factory.StartNew(() =>
-                        {
-                            SecureDBEntities1 db = new SecureDBEntities1();
-                            foreach (tblCardCommandLog cmdlog in db.tblCardCommandLog.Where(n => n.Timestamp == null))
-                            {
-                                try
-                                {
-                                    if (cmdlog.ControlID != "*" && !card_mgr[cmdlog.ControlID].IsConnected)
-                                        continue;
-                                    if (cmdlog.CommandType == "I")
-                                    {
-                                        if (cmdlog.CardType == "C")
-                                        {
-                                            Console.WriteLine(cmdlog.ControlID + " Add card!" + cmdlog.ABA);
-                                            card_mgr[cmdlog.ControlID].AddCard(cmdlog.ABA);
-
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine(cmdlog.ControlID + " Add virtual card!" + cmdlog.ABA);
-                                            card_mgr[cmdlog.ControlID].AddVirturalCard(cmdlog.ABA);
-
-                                        }
-
-                                    }
-                                    else if (cmdlog.CommandType == "D")
-                                    {
-                                        Console.WriteLine(cmdlog.ControlID + " delete  card!" + cmdlog.ABA);
-                                        card_mgr[cmdlog.ControlID].DeleteCard(cmdlog.ABA);
-                                    }
-                                    else if (cmdlog.CommandType == "*")
-                                    {
-
-                                        Console.WriteLine("Process CheckCardDue");
-                                        CheckCardDueTask(cmdlog.ABA);
-                                    }
-
-                                    cmdlog.Timestamp = DateTime.Now;
-                                    cmdlog.IsSuccess = true;
-                                }
-                                catch (Exception ex)
-                                {
-                                    cmdlog.Timestamp = DateTime.Now;
-                                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
-                                    cmdlog.IsSuccess = false;
-                                    //throw ex;
-
-                                }
-                            }
-                            db.SaveChanges();
-                        });
+                    Console.WriteLine("=========================fork thread!======================");
+                    System.Threading.Thread th = new System.Threading.Thread(ProcessNotify);
+                    th.Start();
+                 
 #else
                      List<int > list=new List<int>();
                     foreach(string GID in value.Split(new char[]{','}))
@@ -587,5 +629,7 @@ namespace SecureServer
            
            // throw new NotImplementedException();
         }
+
+      
     }
 }

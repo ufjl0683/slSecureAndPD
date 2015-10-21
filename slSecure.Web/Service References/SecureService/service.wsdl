@@ -145,6 +145,18 @@
   <wsdl:message name="ISecureService_GetR23ControlConnect_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetR23ControlConnectResponse" />
   </wsdl:message>
+  <wsdl:message name="ISecureService_GetTotalConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalConnection" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetTotalConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalConnectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SupressAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:SupressAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SupressAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SupressAlarmResponse" />
+  </wsdl:message>
   <wsdl:message name="ISecureService_SayHello_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SayHello" />
   </wsdl:message>
@@ -241,6 +253,14 @@
     <wsdl:operation name="GetR23ControlConnect">
       <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetR23ControlConnect" message="tns:ISecureService_GetR23ControlConnect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetR23ControlConnectResponse" message="tns:ISecureService_GetR23ControlConnect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalConnection">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetTotalConnection" message="tns:ISecureService_GetTotalConnection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetTotalConnectionResponse" message="tns:ISecureService_GetTotalConnection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SupressAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/SupressAlarm" message="tns:ISecureService_SupressAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SupressAlarmResponse" message="tns:ISecureService_SupressAlarm_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SayHello">
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SayHello" message="tns:ISecureService_SayHello_OutputCallbackMessage" />
@@ -440,6 +460,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetR23ControlConnect">
       <soap12:operation soapAction="http://tempuri.org/ISecureService/GetR23ControlConnect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalConnection">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetTotalConnection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SupressAlarm">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/SupressAlarm" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

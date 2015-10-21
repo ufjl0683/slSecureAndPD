@@ -21,8 +21,8 @@
     <MetadataSource Address="http://192.192.85.64/secure/MCNSService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MCNSService1.wsdl" MetadataType="Wsdl" ID="caef04a5-7468-4b8f-87ef-8918221f19e0" SourceId="1" SourceUrl="http://192.192.85.64/secure/MCNSService.asmx?wsdl" />
-    <MetadataFile FileName="MCNSService1.disco" MetadataType="Disco" ID="7a0eeb44-5b03-4eb9-8361-e1d90dad0cc1" SourceId="1" SourceUrl="http://192.192.85.64/secure/MCNSService.asmx?disco" />
+    <MetadataFile FileName="MCNSService1.wsdl" MetadataType="Wsdl" ID="59f77cc2-e75c-4912-a830-f512638689c9" SourceId="1" SourceUrl="http://192.192.85.64/secure/MCNSService.asmx?wsdl" />
+    <MetadataFile FileName="MCNSService1.disco" MetadataType="Disco" ID="a0802d3b-b81c-485c-a33b-b7b78ff8aad0" SourceId="1" SourceUrl="http://192.192.85.64/secure/MCNSService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

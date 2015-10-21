@@ -20,6 +20,7 @@ using Common;
 using slWCFModule;
 using slWCFModule.RemoteService;
 using slSecure.Controls;
+using System.Windows.Browser;
 
 
 namespace slSecure
@@ -73,7 +74,11 @@ namespace slSecure
 
             var res = from n in UserMenus  group n by n.GroupName into g   select  new UserGroupMenu() { GroupMenu = g.Key, Menus = g.OrderBy(k=>k.MenuOrder).ToList()  }  ;
             this.acdMenu.ItemsSource = res;
-           this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
+#if R23
+             this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
+#else
+            this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
+#endif
            txtTitle.DataContext = new tblMenu() { MenuName = "門禁監控" };
             this.acdMenu.SelectedIndex =1;
 
@@ -171,8 +176,12 @@ namespace slSecure
             {
                // tmr.Stop();
                 //this.NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
-              
+                this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
+#if R23
+#else
+     
                 this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
+#endif
             }
             //throw new NotImplementedException();
         }
@@ -307,10 +316,10 @@ namespace slSecure
 
                 //PaneID is PDID for AlarmType=PD
 #if  R23
-                  button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + alarmdata.PlaneName);
-               
+                button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + HttpUtility.UrlEncode(alarmdata.PlaneName));
+                ;
 #else
-                button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R13/secure/focus?PDName=" + alarmdata.PlaneName);
+                button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R13/secure/focus?PDName=" +   HttpUtility.UrlEncode(alarmdata.PlaneName));
 #endif
                 button.TargetName = "_blank";
 
@@ -329,7 +338,12 @@ namespace slSecure
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+#if R23
+            this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
+           
+#else
             this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
+#endif
             txtTitle.DataContext = new tblMenu() { MenuName = "門禁監控" };
         }
 

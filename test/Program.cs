@@ -5,8 +5,11 @@ using RoomInterface;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using test.MCNSService;
 using test.RemoteService;
@@ -54,9 +57,11 @@ namespace test
            // Console.ReadLine();
          //   RoomClient.RoomClient.RoomEvent += RoomClient_RoomEvent;
 
-         //   bool status = RoomClient.RoomClient.GetControlConnectionStatus("AN-2400N-1");
+       //     bool status = RoomClient.RoomClient.GetControlConnectionStatus("AN-2400N-1");
 
-         //   byte[] data = RoomClient.RoomClient.GetStatus("AN-ADAM-1");
+            byte[] data = RoomClient.RoomClient.GetStatus("AB");
+
+            Console.WriteLine(data[0]);
 
          //   RoomClient.RoomClient.GroupModify(new List<int>(new int[]{1,2}));
              
@@ -121,9 +126,9 @@ namespace test
          //   Console.WriteLine("{0:X4}",BitConverter.ToUInt16(kk,0));
          ////   Console.WriteLine(null == 1);
 
-            MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
-           MagneticCardBasicInfo [] info=  client.GetAllTempMagneticCardBasicInfo();
-           Console.WriteLine(info.Length);
+            //MCNSServiceSoapClient client = new MCNSService.MCNSServiceSoapClient();
+            //MagneticCardBasicInfo[] info = client.GetAllTempMagneticCardBasicInfo();
+            //Console.WriteLine(info.Length);
             //AddCardInfo info = new AddCardInfo();
             //info.CardNo = "999999999";
             //info.ERIDs = new ArrayOfInt { 1, 3, 5 };
@@ -179,7 +184,7 @@ namespace test
           
           //  modbus.ReadHoldingRegister(1, 1, 2000, 46, ref data);
               
-              new Wrapper();
+           //   new Wrapper();
             //CCTV_TYPE1 cctv=   new CCTV_TYPE1("192.192.85.20", 11000, "admin", "pass");
             //cctv.Preset(1);
             //  Console.ReadKey();
@@ -212,7 +217,182 @@ namespace test
          // Console.WriteLine(rtu.GetRegisterReading());
             //    System.Threading.Thread.Sleep(1000);
             //}
+        //   R13EventExchange();
+          //  for (int i = 2; i < 39;i++)
+                R13ddCard(39) ;
+            MCNSService.MCNSServiceSoapClient client = new MCNSServiceSoapClient();
+        //    client.NotifyDbChange();
             Console.ReadKey();
+        }
+
+        static void R13ddCard(int erid)
+        {
+
+            MCNSService.MCNSServiceSoapClient client = new MCNSServiceSoapClient();
+
+         //RoomInfo[] rinfos=   client.GetAllRoom();
+         //foreach (RoomInfo info in rinfos)
+         //    Console.WriteLine(info.ERID + " " + info.ERName);
+     
+          System.IO.StreamReader rd=new StreamReader(  System.IO.File.OpenRead("card.csv"));
+          string s = rd.ReadToEnd();
+          //int[] erids=(from n in rinfos select n.ERID).ToArray();
+          string[] cards = s.Split(new char[]{'\r','\n'}, StringSplitOptions.RemoveEmptyEntries);
+          test.MCNSService.ArrayOfInt ait = new ArrayOfInt();
+          ait.Add(erid);
+          System.Collections.Generic.List<AddCardInfo> list = new List<AddCardInfo>();
+          foreach (string ss in cards)
+          {
+              Console.WriteLine(ss);
+
+
+              AddCardInfo addcard = new AddCardInfo()
+              {
+                   CardNo=ss, ERIDs=ait,
+                    StartDate=DateTime.Now,EndDate=DateTime.Now.AddMonths(24), MCNSID="test", Name="david"
+              };
+              list.Add(addcard);
+           Console.WriteLine(   client.AddCardWithoutNotify(addcard));
+            
+              
+             
+          }
+       //   client.NotifyDbChange();
+       //   client.AddCard(list.ToArray());
+
+        }
+
+        static void R13EventExchange()
+        {
+            EventExchangeData data=new EventExchangeData(){ event_id="100", room_id="1", contents="test", start_time=DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")};
+             DataContractJsonSerializer sr=new DataContractJsonSerializer(typeof(EventExchangeData));
+            MemoryStream ms=new MemoryStream();
+            sr.WriteObject(ms, data);
+            string body = "params=" + System.Text.ASCIIEncoding.ASCII.GetString(ms.ToArray());
+            PushData("http://lab1.sochamp.com/exchange/door-card/trigger", body);
+        }
+
+        static bool PushData(string url, string requestBody )
+        {
+            bool result = true;
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            request.Method = "POST";
+            request.ContentType = "application/json; charset=UTF-8";
+            //request.UserAgent = userAgent
+            //request.Timeout = timeout
+
+            //if (useBasicAuth == true)
+            //{
+            // Create a token for basic authentication and add a header for it
+        //    String authorization = System.Convert.ToBase64String(Encoding.UTF8.GetBytes("aa" + ":" + "aa"));
+          //  request.Headers.Add("Authorization", "Basic " + authorization);
+            //}
+           
+            if (request.Method == "POST" && requestBody != null)
+            {
+                // Convert the request contents to a byte array and include it
+                try
+                {
+                    byte[] requestBodyBytes = System.Text.Encoding.UTF8.GetBytes(requestBody);
+                    Stream requestStream = request.GetRequestStream();
+                    requestStream.Write(requestBodyBytes, 0, requestBodyBytes.Length);
+                   
+                    requestStream.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+
+            // Initialize the response
+            HttpWebResponse response = null;
+            String responseText = null;
+
+            // Now try to send the request
+            try
+            {
+                response = request.GetResponse() as HttpWebResponse;
+
+                // expect the unexpected
+                // WebException may be thrown already for some of this already 
+                // like timeout or 404
+                if (request.HaveResponse == true && response == null)
+                {
+                    String msg = "response was not returned or is null";
+
+                    throw new WebException(msg);
+                }
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    String msg = "response with status: " + response.StatusCode + " " + response.StatusDescription;
+
+                    throw new WebException(msg);
+                }
+
+                // check response headers for the content type
+                string contentType = response.GetResponseHeader("Content-Type");
+
+                // get the response content
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                responseText = reader.ReadToEnd();
+                reader.Close();
+
+                // handle failures
+            }
+            catch (WebException e)
+            {
+                result = false;
+                if (e.Response != null)
+                {
+                    response = (HttpWebResponse)e.Response;
+                    Console.WriteLine(response.StatusCode + " " + response.StatusDescription);
+                    //log.Error(response.StatusCode + " " + response.StatusDescription);
+                }
+                else
+                {
+                    Console.WriteLine(e.Message);
+                    //log.Error(e.Message);
+                }
+
+                // and clean up after ourselves
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    response.Close();
+                }
+            }
+
+            // display the response
+            if (responseText != null)
+            {
+                try
+                {
+                    System.Console.Write(responseText);
+                    //DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Result));
+                    //using (MemoryStream ms = new MemoryStream())
+                    //{
+                    //    byte[] data = System.Text.UTF8Encoding.UTF8.GetBytes(responseText);
+                    //    ms.Write(data, 0, data.Length);
+                    //    ms.Seek(0, SeekOrigin.Begin);
+                    //    // ms.Position = 0;
+                    //    Result res = ser.ReadObject(ms) as Result;
+                    //    Console.WriteLine(res.status);
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                    result = false;
+                }
+
+            }
+
+
+            return result;
         }
 
         static void RoomClient_RoomEvent(RoomInterface.ControllEventType type, string Name, object obj)
@@ -345,5 +525,22 @@ namespace test
                 return "http://" + IP + ":" + Port + "/getimage";
             }
         }
+    }
+
+    [DataContract]
+    public class EventExchangeData
+    {
+        //  [ room_id ] 機房索引 [ event_id ] 事件索引 [ event_status ] 狀態代號(正常; // 0, 斷線; // 1) [ contents ] 事件說明（事件說明或⼦子項⺫⽬目說明（）） [ start_time ] 發⽣生時間 
+
+        [DataMember]
+        public string room_id { get; set; }
+        [DataMember]
+        public string event_id { get; set; }
+        [DataMember]
+        public string event_status { get; set; }
+        [DataMember]
+        public string contents { get; set; }
+        [DataMember]
+        public string start_time { get; set; }
     }
 }

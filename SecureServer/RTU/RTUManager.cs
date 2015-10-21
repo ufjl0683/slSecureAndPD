@@ -25,7 +25,7 @@ namespace SecureServer.RTU
         public RTUManager()
         {
             SecureDBEntities1 db = new SecureDBEntities1();
-            var q = from n in db.tblControllerConfig where n.IsEnable == true &&( n.ControlType == 3   || n.ControlType==5)   select n;    //RTU control type=3
+            var q = from n in db.tblControllerConfig where n.IsEnable == true &&( n.ControlType == 3   || n.ControlType==5 || n.ControlType==6)   select n;    //RTU control type=3
             //var q = from n in db.tblControllerConfig where n.ControlID == "AC-RTU-1" && n.ControlType == 3 && n.IsEnable==true select n;
             foreach (tblControllerConfig tbl in q)
             {

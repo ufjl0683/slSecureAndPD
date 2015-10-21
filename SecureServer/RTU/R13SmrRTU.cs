@@ -63,6 +63,7 @@ namespace SecureServer.RTU
                 {
                     if (tcp == null || !tcp.Connected)
                     {
+                      //  Comm_state = 0;
                         tcp = new TcpClient();
                         try
                         {

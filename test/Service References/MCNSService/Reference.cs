@@ -260,6 +260,8 @@ namespace test.MCNSService {
         
         private System.Nullable<System.DateTime> EndDateField;
         
+        private System.Nullable<short> TypeField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -426,6 +428,19 @@ namespace test.MCNSService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=12)]
+        public System.Nullable<short> Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -459,6 +474,13 @@ namespace test.MCNSService {
         // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  CompanyName 未標示為 nillable，正在產生訊息合約
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetMagneticCardBasicInfoByCompany", ReplyAction="*")]
         test.MCNSService.GetMagneticCardBasicInfoByCompanyResponse GetMagneticCardBasicInfoByCompany(test.MCNSService.GetMagneticCardBasicInfoByCompanyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NotifyDbChange", ReplyAction="*")]
+        void NotifyDbChange();
+        
+        // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  info 未標示為 nillable，正在產生訊息合約
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddCardWithoutNotify", ReplyAction="*")]
+        test.MCNSService.AddCardWithoutNotifyResponse AddCardWithoutNotify(test.MCNSService.AddCardWithoutNotifyRequest request);
         
         // CODEGEN: 命名空間 http://tempuri.org/ 的元素名稱  info 未標示為 nillable，正在產生訊息合約
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddCard", ReplyAction="*")]
@@ -788,6 +810,74 @@ namespace test.MCNSService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddCardWithoutNotifyRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddCardWithoutNotify", Namespace="http://tempuri.org/", Order=0)]
+        public test.MCNSService.AddCardWithoutNotifyRequestBody Body;
+        
+        public AddCardWithoutNotifyRequest() {
+        }
+        
+        public AddCardWithoutNotifyRequest(test.MCNSService.AddCardWithoutNotifyRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AddCardWithoutNotifyRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public test.MCNSService.AddCardInfo info;
+        
+        public AddCardWithoutNotifyRequestBody() {
+        }
+        
+        public AddCardWithoutNotifyRequestBody(test.MCNSService.AddCardInfo info) {
+            this.info = info;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddCardWithoutNotifyResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddCardWithoutNotifyResponse", Namespace="http://tempuri.org/", Order=0)]
+        public test.MCNSService.AddCardWithoutNotifyResponseBody Body;
+        
+        public AddCardWithoutNotifyResponse() {
+        }
+        
+        public AddCardWithoutNotifyResponse(test.MCNSService.AddCardWithoutNotifyResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AddCardWithoutNotifyResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string AddCardWithoutNotifyResult;
+        
+        public AddCardWithoutNotifyResponseBody() {
+        }
+        
+        public AddCardWithoutNotifyResponseBody(string AddCardWithoutNotifyResult) {
+            this.AddCardWithoutNotifyResult = AddCardWithoutNotifyResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class AddCardRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="AddCard", Namespace="http://tempuri.org/", Order=0)]
@@ -939,6 +1029,23 @@ namespace test.MCNSService {
             inValue.Body.CompanyName = CompanyName;
             test.MCNSService.GetMagneticCardBasicInfoByCompanyResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).GetMagneticCardBasicInfoByCompany(inValue);
             return retVal.Body.GetMagneticCardBasicInfoByCompanyResult;
+        }
+        
+        public void NotifyDbChange() {
+            base.Channel.NotifyDbChange();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        test.MCNSService.AddCardWithoutNotifyResponse test.MCNSService.MCNSServiceSoap.AddCardWithoutNotify(test.MCNSService.AddCardWithoutNotifyRequest request) {
+            return base.Channel.AddCardWithoutNotify(request);
+        }
+        
+        public string AddCardWithoutNotify(test.MCNSService.AddCardInfo info) {
+            test.MCNSService.AddCardWithoutNotifyRequest inValue = new test.MCNSService.AddCardWithoutNotifyRequest();
+            inValue.Body = new test.MCNSService.AddCardWithoutNotifyRequestBody();
+            inValue.Body.info = info;
+            test.MCNSService.AddCardWithoutNotifyResponse retVal = ((test.MCNSService.MCNSServiceSoap)(this)).AddCardWithoutNotify(inValue);
+            return retVal.Body.AddCardWithoutNotifyResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

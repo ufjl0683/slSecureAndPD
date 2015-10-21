@@ -65,6 +65,7 @@ namespace SecureServer.RTU
                         //  CCTVBindingData =cctv.ToBindingData(
                       
                 };
+                  
                 if(!(sender.ItemConfig.Suppress??false))
                       Program.MyServiceObject.DispatchAlarmEvent(data);
 
@@ -98,7 +99,7 @@ namespace SecureServer.RTU
                 }
                 tblAlarmLog tblalarmlog = new tblAlarmLog() { ControlID = sender.ItemConfig.ControlID, ItemID = sender.ItemID, Timestamp = DateTime.Now, TypeID = 5, TypeCode = (short)typecode, Value = sender.Value };
                 db.tblAlarmLog.Add(tblalarmlog);
-
+               
             }
 
             if (NewValue == 0)

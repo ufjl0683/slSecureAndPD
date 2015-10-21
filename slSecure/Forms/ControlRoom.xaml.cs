@@ -160,6 +160,7 @@ namespace slSecure.Forms
         }
         protected async  override void OnNavigatedTo(NavigationEventArgs e)
         {
+            client = new MyClient("CustomBinding_ISecureService", false);
          
             db = new SecureDBContext();
             this.PlaneID = int.Parse(this.NavigationContext.QueryString["PlaneID"]);
@@ -192,7 +193,7 @@ namespace slSecure.Forms
            // tblPlane.PlaneName
 
 
-           client = new MyClient("CustomBinding_ISecureService", false);
+      
 
            client.OnRegistEvent += async (s) =>
            {

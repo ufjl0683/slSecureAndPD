@@ -46,6 +46,9 @@ namespace slSecure.Web.SecureService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         ItemAttributehanged = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ScheduleChanged = 10,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1217,6 +1220,18 @@ namespace slSecure.Web.SecureService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetR23ControlConnect", ReplyAction="http://tempuri.org/ISecureService/GetR23ControlConnectResponse")]
         System.Threading.Tasks.Task<slSecure.Web.SecureService.ControlStatus> GetR23ControlConnectAsync(string ControllID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetTotalConnection", ReplyAction="http://tempuri.org/ISecureService/GetTotalConnectionResponse")]
+        int GetTotalConnection();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetTotalConnection", ReplyAction="http://tempuri.org/ISecureService/GetTotalConnectionResponse")]
+        System.Threading.Tasks.Task<int> GetTotalConnectionAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SupressAlarm", ReplyAction="http://tempuri.org/ISecureService/SupressAlarmResponse")]
+        void SupressAlarm(int ItemID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SupressAlarm", ReplyAction="http://tempuri.org/ISecureService/SupressAlarmResponse")]
+        System.Threading.Tasks.Task SupressAlarmAsync(int ItemID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1429,6 +1444,22 @@ namespace slSecure.Web.SecureService {
         
         public System.Threading.Tasks.Task<slSecure.Web.SecureService.ControlStatus> GetR23ControlConnectAsync(string ControllID) {
             return base.Channel.GetR23ControlConnectAsync(ControllID);
+        }
+        
+        public int GetTotalConnection() {
+            return base.Channel.GetTotalConnection();
+        }
+        
+        public System.Threading.Tasks.Task<int> GetTotalConnectionAsync() {
+            return base.Channel.GetTotalConnectionAsync();
+        }
+        
+        public void SupressAlarm(int ItemID) {
+            base.Channel.SupressAlarm(ItemID);
+        }
+        
+        public System.Threading.Tasks.Task SupressAlarmAsync(int ItemID) {
+            return base.Channel.SupressAlarmAsync(ItemID);
         }
     }
 }
