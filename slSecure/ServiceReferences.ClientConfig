@@ -1,23 +1,33 @@
 ﻿<configuration>
   <system.serviceModel>
     <bindings>
+      <basicHttpBinding>
+        <binding name="MCNSServiceSoap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+          <security mode="None" />
+        </binding>
+       <binding name="SsoWebServiceServiceSoapBinding" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+      </basicHttpBinding>
       <customBinding>
         <binding name="CustomBinding_ISecureService">
           <binaryMessageEncoding />
           <tcpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
         </binding>
       </customBinding>
+    
     </bindings>
     <client>
       <endpoint address="net.tcp://192.192.85.64:4502/" binding="customBinding"
-          bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
-          name="CustomBinding_ISecureService" />
-      <!--<endpoint address="net.tcp://10.2.10.134:4502/" binding="customBinding"
-         bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
-         name="CustomBinding_ISecureService" />-->
-     <!--<endpoint address="net.tcp://10.21.99.80:4502/" binding="customBinding"
-          bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
-          name="CustomBinding_ISecureService" />--> 
+        bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
+        name="CustomBinding_ISecureService" />
+      <endpoint address="http://10.21.99.80/secure/MCNSService.asmx"
+        binding="basicHttpBinding" bindingConfiguration="MCNSServiceSoap"
+        contract="MCNSService.MCNSServiceSoap" name="MCNSServiceSoap" />
+      <endpoint address="http://118.163.176.218:8080/sso/services/SsoWebService"
+              binding="basicHttpBinding" bindingConfiguration="SsoWebServiceServiceSoapBinding"
+              contract="SSOService.SsoWebService" name="SsoWebServicePort" />
     </client>
     <!--<endpoint address="net.tcp://127.0.0.1:4502/" binding="customBinding"
          bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"

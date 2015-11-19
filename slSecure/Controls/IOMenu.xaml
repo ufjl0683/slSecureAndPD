@@ -27,7 +27,7 @@
                 	</DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>-->
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LayoutRoot">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackGround">
             	<DiscreteDoubleKeyFrame KeyTime="0" Value="1"/>
             	<DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
             	<DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
@@ -43,7 +43,8 @@
         </Storyboard>-->
     </UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="{Binding ColorString,Converter={StaticResource  ColorStringValueConverter} }">
+    <Grid x:Name="LayoutRoot"  >
+        <Rectangle  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0" Fill="{Binding ColorString,Converter={StaticResource  ColorStringValueConverter} }" x:Name="BackGround" />
         <Image HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Source="{Binding Type,StringFormat=/slsecure;component/icons/\{0\}.png}"  VerticalAlignment="Center" Width="24"/>
         <TextBlock x:Name="txtContent"  Text="{Binding Content}" Margin="42,10,10,10" TextWrapping="Wrap"  FontSize="12"/>
         <menu:ContextMenuService.ContextMenu>

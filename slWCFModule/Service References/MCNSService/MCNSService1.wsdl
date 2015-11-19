@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllRoom">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllRoomResult" type="tns:ArrayOfRoomInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRoomInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomInfo" nillable="true" type="tns:RoomInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ERID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ERName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCardInfoByMCNSID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MCNSID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardInfoByMCNSIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCardInfoByMCNSIDResult" type="tns:ArrayOfAddCardInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAddCardInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AddCardInfo" nillable="true" type="tns:AddCardInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddCardInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MCNSID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ERIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllTempMagneticCardBasicInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllTempMagneticCardBasicInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTempMagneticCardBasicInfoResult" type="tns:ArrayOfMagneticCardBasicInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMagneticCardBasicInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MagneticCardBasicInfo" nillable="true" type="tns:MagneticCardBasicInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MagneticCardBasicInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ABA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardStartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" nillable="true" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMagneticCardBasicInfoByCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMagneticCardBasicInfoByCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMagneticCardBasicInfoByCompanyResult" type="tns:ArrayOfMagneticCardBasicInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetR23DoorInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetR23DoorInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetR23DoorInfoResult" type="tns:ArrayOfR23DoorInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfR23DoorInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="R23DoorInfo" nillable="true" type="tns:R23DoorInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="R23DoorInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ERName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="stateHardware" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsShowPerson" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="StayDoorName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="state" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="stateAlarm" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="infos" type="tns:ArrayOfAddCardInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProgress">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProgressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProgressResult" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllRoom" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCardInfoByMCNSIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCardInfoByMCNSID" />
+  </wsdl:message>
+  <wsdl:message name="GetCardInfoByMCNSIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCardInfoByMCNSIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTempMagneticCardBasicInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTempMagneticCardBasicInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTempMagneticCardBasicInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTempMagneticCardBasicInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMagneticCardBasicInfoByCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:GetMagneticCardBasicInfoByCompany" />
+  </wsdl:message>
+  <wsdl:message name="GetMagneticCardBasicInfoByCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:GetMagneticCardBasicInfoByCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetR23DoorInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetR23DoorInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetR23DoorInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetR23DoorInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddCardSoapIn">
+    <wsdl:part name="parameters" element="tns:AddCard" />
+  </wsdl:message>
+  <wsdl:message name="AddCardSoapOut">
+    <wsdl:part name="parameters" element="tns:AddCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProgressSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProgress" />
+  </wsdl:message>
+  <wsdl:message name="GetProgressSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProgressResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MCNSServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoom">
+      <wsdl:input message="tns:GetAllRoomSoapIn" />
+      <wsdl:output message="tns:GetAllRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardInfoByMCNSID">
+      <wsdl:input message="tns:GetCardInfoByMCNSIDSoapIn" />
+      <wsdl:output message="tns:GetCardInfoByMCNSIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTempMagneticCardBasicInfo">
+      <wsdl:input message="tns:GetAllTempMagneticCardBasicInfoSoapIn" />
+      <wsdl:output message="tns:GetAllTempMagneticCardBasicInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMagneticCardBasicInfoByCompany">
+      <wsdl:input message="tns:GetMagneticCardBasicInfoByCompanySoapIn" />
+      <wsdl:output message="tns:GetMagneticCardBasicInfoByCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetR23DoorInfo">
+      <wsdl:input message="tns:GetR23DoorInfoSoapIn" />
+      <wsdl:output message="tns:GetR23DoorInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCard">
+      <wsdl:input message="tns:AddCardSoapIn" />
+      <wsdl:output message="tns:AddCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProgress">
+      <wsdl:input message="tns:GetProgressSoapIn" />
+      <wsdl:output message="tns:GetProgressSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MCNSServiceSoap" type="tns:MCNSServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoom">
+      <soap:operation soapAction="http://tempuri.org/GetAllRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardInfoByMCNSID">
+      <soap:operation soapAction="http://tempuri.org/GetCardInfoByMCNSID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTempMagneticCardBasicInfo">
+      <soap:operation soapAction="http://tempuri.org/GetAllTempMagneticCardBasicInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMagneticCardBasicInfoByCompany">
+      <soap:operation soapAction="http://tempuri.org/GetMagneticCardBasicInfoByCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetR23DoorInfo">
+      <soap:operation soapAction="http://tempuri.org/GetR23DoorInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCard">
+      <soap:operation soapAction="http://tempuri.org/AddCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProgress">
+      <soap:operation soapAction="http://tempuri.org/GetProgress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MCNSServiceSoap12" type="tns:MCNSServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoom">
+      <soap12:operation soapAction="http://tempuri.org/GetAllRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardInfoByMCNSID">
+      <soap12:operation soapAction="http://tempuri.org/GetCardInfoByMCNSID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTempMagneticCardBasicInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetAllTempMagneticCardBasicInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMagneticCardBasicInfoByCompany">
+      <soap12:operation soapAction="http://tempuri.org/GetMagneticCardBasicInfoByCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetR23DoorInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetR23DoorInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCard">
+      <soap12:operation soapAction="http://tempuri.org/AddCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProgress">
+      <soap12:operation soapAction="http://tempuri.org/GetProgress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MCNSService">
+    <wsdl:port name="MCNSServiceSoap" binding="tns:MCNSServiceSoap">
+      <soap:address location="http://10.21.99.80/secure/MCNSService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MCNSServiceSoap12" binding="tns:MCNSServiceSoap12">
+      <soap12:address location="http://10.21.99.80/secure/MCNSService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

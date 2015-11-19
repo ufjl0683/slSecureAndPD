@@ -36,6 +36,7 @@
       <xs:enumeration value="Secure" />
       <xs:enumeration value="RTU" />
       <xs:enumeration value="PD" />
+      <xs:enumeration value="CARD" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="AlarmType" nillable="true" type="tns:AlarmType" />

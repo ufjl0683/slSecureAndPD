@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SecureServer.CardReader
 {
       public delegate void OnElaspedHandler (object sender);
     public   class ExactIntervalTimer
     {
-       
+        System.Timers.Timer tmr1;
         int atHour; int atMin; int atSec;
         System.Threading.Timer tmr;
         public event OnElaspedHandler OnElapsed;
@@ -18,11 +19,13 @@ namespace SecureServer.CardReader
 
        public    ExactIntervalTimer(int atHour, int atMin, int atSec)
           {
+              tmr1 = new System.Timers.Timer();
+           
               tmr=new System.Threading.Timer(tmr_Elapse);
               this.atHour= atHour;
               this.atMin=atMin;
               this.atSec=atSec;
-
+              
               System.DateTime now = System.DateTime.Now;
               if (atHour != -1 && atMin != -1 && atSec != -1)
               {

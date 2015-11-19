@@ -9,12 +9,8 @@
 
 
 
-		<toolkit:ExpressionDarkTheme>
+    <toolkit:ExpressionDarkTheme>
+        <sdk:Frame x:Name="frame" />
+    </toolkit:ExpressionDarkTheme>
 
-
-
-		<sdk:Frame x:Name="frame"  Content="Frame" Source=""  />
-	
-	</toolkit:ExpressionDarkTheme>
-	
 </UserControl>

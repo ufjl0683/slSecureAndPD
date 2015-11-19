@@ -144,6 +144,7 @@ namespace slSecure
             {
                 try
                 {
+                    if(alarmdata.CCTVBindingData!=null)
                     await AddCCTVAsync(alarmdata.CCTVBindingData.MjpegCgiString, alarmdata.CCTVBindingData.UserName, alarmdata.CCTVBindingData.Password, alarmdata);
                    
                 
@@ -309,8 +310,17 @@ namespace slSecure
         {
 
             AlarmData alarmdata = (sender as StackPanel).DataContext as AlarmData;
-         //   client.Dispose();
-            if (alarmdata.AlarmType == AlarmType.PD)
+            //   client.Dispose();
+#if !R23
+            if (alarmdata.AlarmType == AlarmType.CARD)
+            {
+
+                this.frameMain.Navigate(new Uri("/slSecureLib;component/Forms/R13/slReport.xaml?IsShowNoReturnMagneticCard=1" , UriKind.Relative));
+            
+            }
+            else
+#endif
+                if (alarmdata.AlarmType == AlarmType.PD)
             {
                 MyHyperlinkButton button = new MyHyperlinkButton();
 

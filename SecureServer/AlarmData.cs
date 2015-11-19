@@ -13,7 +13,8 @@ namespace SecureServer
     {
         Secure,
         RTU,
-        PD
+        PD,
+        CARD
         
 
     }

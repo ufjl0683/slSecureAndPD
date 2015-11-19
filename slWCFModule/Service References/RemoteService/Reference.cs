@@ -845,6 +845,9 @@ namespace slWCFModule.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         PD = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CARD = 3,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

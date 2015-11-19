@@ -36,6 +36,22 @@ namespace slSecure
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
 
+#if R23
+
+            //slWCFModule.SSOService.SsoWebServiceClient client = new slWCFModule.SSOService.SsoWebServiceClient();
+            //client.loginCompleted += (s, a) =>
+            //    {
+            //        if (a.Error != null)
+            //            return;
+            //        var res = a.Result;
+            //        if (!res.status)
+            //            MessageBox.Show("帳號密碼錯誤");
+                    
+            //    };
+
+            //client.loginAsync("SVWS", txtAccount.Text.Trim(), pwdPassword.Password.Trim());
+
+#else
 
             SecureDBContext db = new SecureDBContext();//DB.GetDB();
 
@@ -69,8 +85,10 @@ namespace slSecure
 
 
                 };
-           
+ 
 
+           
+#endif
            
 
             //tblUser user = result.FirstOrDefault();

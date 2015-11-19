@@ -61,9 +61,10 @@ namespace SecureServer
            sch_mgr = new Schedule.ScheduleManager();
 //#endif
            new System.Threading.Thread(CheckCardReaderConnectionTask).Start();
-           ExactOneHourTmr = new ExactIntervalTimer(0, 0);
-           ExactOneHourTmr.OnElapsed += ExactOneHourTmr_OnElapsed;
-
+           new System.Threading.Thread(CheckCardDueStatusTask).Start();
+           //ExactOneHourTmr = new ExactIntervalTimer(30);
+           //ExactOneHourTmr.OnElapsed += ExactOneHourTmr_OnElapsed;
+           
           // CheckCardDueTask();
          //BindingData.ItemBindingData [] datas=  item_mgr.GetAllItemBindingData(1);
          //foreach (ItemBindingData data in datas)
@@ -72,13 +73,31 @@ namespace SecureServer
          //}
         }
 
-        void ExactOneHourTmr_OnElapsed(object sender)
+        void CheckCardDueStatusTask( )
         {
 
 #if !R23
-            CheckCardDueTask();
-#endif
+            while (true)
+            {
+                Console.WriteLine("========================================CheckCardDueTask===================================");
+                try
+                {
+                    CheckCardDueTask();
 
+                }
+                catch(Exception ex) {
+                    Console.WriteLine(ex.Message);
+                    ;}
+                Console.WriteLine("=====================================out===CheckCardDueTask===================================");
+                try
+                {
+                    Console.WriteLine("========================================CheckCardNotReturnTask===================================");
+                    CheckCardNotReturnTask();
+                }
+                catch { ;}
+#endif
+                System.Threading.Thread.Sleep(60 * 1000);
+            }
             //throw new NotImplementedException();
         }
 
@@ -131,7 +150,9 @@ namespace SecureServer
         void CheckCardDueTask() 
         {
             SecureDBEntities1 db = new SecureDBEntities1();
-            var q = from n in db.vwMagneticCardAllowController  select n;
+            DateTime dt=System.DateTime.Now.Date;
+            DateTime dt1 = dt.AddDays(1);
+            var q = from n in db.vwMagneticCardAllowController where n.StartDate >= dt && n.StartDate < dt1 || n.EndDate >= dt.Date && n.EndDate < dt1 select n;
             foreach (vwMagneticCardAllowController vw in q)
             {
                 if (card_mgr[vw.ControlID] == null)
@@ -152,10 +173,10 @@ namespace SecureServer
                 {
                     try
                     {
-                       if(vw.Type==4)
-                           card_mgr[vw.ControlID].AddVirturalCard(vw.ABA);
+                        if (vw.Type == 4)
+                            card_mgr[vw.ControlID].AddVirturalCard(vw.ABA);
                         else
-                        card_mgr[vw.ControlID].AddCard(vw.ABA);
+                            card_mgr[vw.ControlID].AddCard(vw.ABA);
                     }
                     catch (Exception ex)
                     {
@@ -171,7 +192,19 @@ namespace SecureServer
 
            // NotifyDBChange(DBChangedConstant.AuthorityChanged);
         }
+        void CheckCardNotReturnTask()
+        {
+            SecureDBEntities1 db = new SecureDBEntities1();
+            int  cnt= (from n in db.tblMagneticCard where n.ReturnDate == null && n.CardEndDate < DateTime.Now select n).Count();
+            if (cnt > 0)
+            {
+                AlarmData adata = new AlarmData() { AlarmType = AlarmType.CARD, TimeStamp = DateTime.Now, Description = "卡片未歸還警報", ColorString = "Orange", IsForkCCTVEvent=false, PlaneID=-1 }
+                    ;
+                DispatchAlarmEvent(adata);
+            }
 
+
+        }
         void card_mgr_OnAlarmEvent(CardReader.ICardReader reader, AlarmData alarmdata)
         {
             try{
@@ -274,67 +307,76 @@ namespace SecureServer
 
             System.Collections.Generic.Dictionary<string, string> abaList = new Dictionary<string, string>();
             SecureDBEntities1 db = new SecureDBEntities1();
-
-            foreach (tblCardCommandLog cmdlog in db.tblCardCommandLog.Where(n => n.Timestamp == null))
+            try
             {
-
-                Console.WriteLine("==========================" + cmdlog.ABA +","+cmdlog.ControlID+ "======================");
-                try
+                foreach (tblCardCommandLog cmdlog in db.tblCardCommandLog.Where(n => n.Timestamp == null))
                 {
-                    if (cmdlog.ControlID != "*" && !card_mgr[cmdlog.ControlID].IsConnected)
-                        continue;
-                    if (cmdlog.CommandType == "I")
+
+                    Console.WriteLine("==========================" + cmdlog.ABA + "," + cmdlog.ControlID + "======================");
+                    try
                     {
-                        if (cmdlog.CardType == "C")
+                        if (cmdlog.ControlID != "*" && !card_mgr[cmdlog.ControlID].IsConnected)
+                            continue;
+                        if (cmdlog.CommandType == "I")
                         {
-                            Console.WriteLine(cmdlog.ControlID + " Add card!" + cmdlog.ABA);
-                            card_mgr[cmdlog.ControlID].AddCard(cmdlog.ABA);
+                            if (cmdlog.CardType == "C")
+                            {
+                                Console.WriteLine(cmdlog.ControlID + " Add card!" + cmdlog.ABA);
+                                card_mgr[cmdlog.ControlID].AddCard(cmdlog.ABA);
+
+                            }
+                            else
+                            {
+                                Console.WriteLine(cmdlog.ControlID + " Add virtual card!" + cmdlog.ABA);
+                                card_mgr[cmdlog.ControlID].AddVirturalCard(cmdlog.ABA);
+
+                            }
 
                         }
-                        else
+                        else if (cmdlog.CommandType == "D")
                         {
-                            Console.WriteLine(cmdlog.ControlID + " Add virtual card!" + cmdlog.ABA);
-                            card_mgr[cmdlog.ControlID].AddVirturalCard(cmdlog.ABA);
+                            Console.WriteLine(cmdlog.ControlID + " delete  card!" + cmdlog.ABA);
+                            card_mgr[cmdlog.ControlID].DeleteCard(cmdlog.ABA);
+                        }
+                        else if (cmdlog.CommandType == "*")
+                        {
+
+                            Console.WriteLine("=====================Process CheckCardDue==================");
+                            if (!abaList.ContainsKey(cmdlog.ABA))
+                            {
+                                CheckCardDueTask(cmdlog.ABA);
+                                abaList.Add(cmdlog.ABA, cmdlog.ABA);
+                                Console.WriteLine("check card " + cmdlog.ABA);
+
+
+                            }
 
                         }
-
+                        SecureDBEntities1 db1 = new SecureDBEntities1();
+                        tblCardCommandLog log = db1.tblCardCommandLog.Where(n => n.FlowID == cmdlog.FlowID).FirstOrDefault();
+                        log.Timestamp = DateTime.Now;
+                        log.IsSuccess = true;
+                        db1.SaveChanges();
+                        db1.Dispose();
                     }
-                    else if (cmdlog.CommandType == "D")
+                    catch (Exception ex)
                     {
-                        Console.WriteLine(cmdlog.ControlID + " delete  card!" + cmdlog.ABA);
-                        card_mgr[cmdlog.ControlID].DeleteCard(cmdlog.ABA);
-                    }
-                    else if (cmdlog.CommandType == "*")
-                    {
-
-                        Console.WriteLine("=====================Process CheckCardDue==================");
-                        if (!abaList.ContainsKey(cmdlog.ABA))
+                        SecureDBEntities1 db1 = new SecureDBEntities1();
+                        tblCardCommandLog log = db1.tblCardCommandLog.Where(n => n.FlowID == cmdlog.FlowID).FirstOrDefault();
+                        if (log != null)
                         {
-                            CheckCardDueTask(cmdlog.ABA);
-                            abaList.Add(cmdlog.ABA,cmdlog.ABA);
-                            Console.WriteLine("check card " + cmdlog.ABA);
-                           
-                           
+                            log.Timestamp = DateTime.Now;
+                            Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                            log.IsSuccess = false;
+                            //throw ex;
+                            db1.SaveChanges();
                         }
-
                     }
-                    SecureDBEntities1 db1 = new SecureDBEntities1();
-                    tblCardCommandLog log = db1.tblCardCommandLog.Where(n => n.FlowID == cmdlog.FlowID).FirstOrDefault();
-                    log.Timestamp = DateTime.Now;
-                    log.IsSuccess = true;
-                    db1.SaveChanges();
-                    db1.Dispose();
                 }
-                catch (Exception ex)
-                {
-                    SecureDBEntities1 db1 = new SecureDBEntities1();
-                    tblCardCommandLog log = db1.tblCardCommandLog.Where(n => n.FlowID == cmdlog.FlowID).FirstOrDefault();
-                    log.Timestamp = DateTime.Now;
-                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
-                   log.IsSuccess = false;
-                    //throw ex;
-                    db1.SaveChanges();
-                }
+            }
+            catch (Exception ex1)
+            {
+                Console.WriteLine(ex1.Message + "," + ex1.StackTrace);
             }
           //  db.SaveChanges();
             Console.ForegroundColor = ConsoleColor.White;

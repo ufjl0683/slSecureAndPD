@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sso.ngtms.hwacom.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="SsoWebServiceService" targetNamespace="http://sso.ngtms.hwacom.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://sso.ngtms.hwacom.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="checkAuthentication" type="tns:checkAuthentication" />
+      <xs:element name="checkAuthenticationResponse" type="tns:checkAuthenticationResponse" />
+      <xs:element name="checkAuthenticationWithClientAddress" type="tns:checkAuthenticationWithClientAddress" />
+      <xs:element name="checkAuthenticationWithClientAddressResponse" type="tns:checkAuthenticationWithClientAddressResponse" />
+      <xs:element name="checkAuthenticationWithIdAndPwd" type="tns:checkAuthenticationWithIdAndPwd" />
+      <xs:element name="checkAuthenticationWithIdAndPwdResponse" type="tns:checkAuthenticationWithIdAndPwdResponse" />
+      <xs:element name="findAllUnits" type="tns:findAllUnits" />
+      <xs:element name="findAllUnitsResponse" type="tns:findAllUnitsResponse" />
+      <xs:element name="findRolesBySpCode" type="tns:findRolesBySpCode" />
+      <xs:element name="findRolesBySpCodeResponse" type="tns:findRolesBySpCodeResponse" />
+      <xs:element name="findUsersBySpCode" type="tns:findUsersBySpCode" />
+      <xs:element name="findUsersBySpCodeResponse" type="tns:findUsersBySpCodeResponse" />
+      <xs:element name="getSsoWsStatus" type="tns:getSsoWsStatus" />
+      <xs:element name="getSsoWsStatusResponse" type="tns:getSsoWsStatusResponse" />
+      <xs:element name="isCurPwdValid" type="tns:isCurPwdValid" />
+      <xs:element name="isCurPwdValidResponse" type="tns:isCurPwdValidResponse" />
+      <xs:element name="login" type="tns:login" />
+      <xs:element name="loginResponse" type="tns:loginResponse" />
+      <xs:element name="logout" type="tns:logout" />
+      <xs:element name="logoutResponse" type="tns:logoutResponse" />
+      <xs:element name="modifyPwd" type="tns:modifyPwd" />
+      <xs:element name="modifyPwdResponse" type="tns:modifyPwdResponse" />
+      <xs:element name="removeAuthentication" type="tns:removeAuthentication" />
+      <xs:element name="removeAuthenticationResponse" type="tns:removeAuthenticationResponse" />
+      <xs:element name="resetPwd" type="tns:resetPwd" />
+      <xs:element name="resetPwdResponse" type="tns:resetPwdResponse" />
+      <xs:element name="updateAuthentication" type="tns:updateAuthentication" />
+      <xs:element name="updateAuthenticationResponse" type="tns:updateAuthenticationResponse" />
+      <xs:complexType name="findUsersBySpCode">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="spCode" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findUsersBySpCodeResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="userValue" type="tns:ssoWsUser" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ssoWsUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="login" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="properies" nillable="true" type="tns:ssoWsUserProperty" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="roles" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ssoWsUserProperty">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSsoWsStatus">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getSsoWsStatusResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wsStatus" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="login">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="spCode" type="xs:string" />
+          <xs:element minOccurs="0" name="userAccount" type="xs:string" />
+          <xs:element minOccurs="0" name="userPassword" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="authenticationValue" type="tns:ssoWsAuthentication" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ssoWsAuthentication">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="sessionId" type="xs:string" />
+          <xs:element name="status" type="xs:boolean" />
+          <xs:element minOccurs="0" name="userValue" type="tns:ssoWsUser" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findRolesBySpCode">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="spCode" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findRolesBySpCodeResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="roleValue" type="tns:ssoWsRole" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ssoWsRole">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="logout">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="logoutResponse">
+        <xs:sequence>
+          <xs:element name="logoutValue" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateAuthentication">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="clientAddr" type="xs:string" />
+          <xs:element minOccurs="0" name="userAccount" type="xs:string" />
+          <xs:element minOccurs="0" name="userPassword" type="xs:string" />
+          <xs:element minOccurs="0" name="sessionId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateAuthenticationResponse">
+        <xs:sequence>
+          <xs:element name="updateValue" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="resetPwd">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userAccount" type="xs:string" />
+          <xs:element minOccurs="0" name="userName" type="xs:string" />
+          <xs:element minOccurs="0" name="userEmail" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="resetPwdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="resetResult" type="tns:ssoWsResetPwd" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ssoWsResetPwd">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userAccount" type="xs:string" />
+          <xs:element name="result" type="xs:boolean" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="isCurPwdValid">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userAccount" type="xs:string" />
+          <xs:element minOccurs="0" name="curPwd" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="isCurPwdValidResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="validResult" type="tns:ssoWsIsCurPwdValid" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ssoWsIsCurPwdValid">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userAccount" type="xs:string" />
+          <xs:element name="pwdCorrect" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="modifyPwd">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userAccount" type="xs:string" />
+          <xs:element minOccurs="0" name="curPwd" type="xs:string" />
+          <xs:element minOccurs="0" name="newPwd" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="modifyPwdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="modifyResult" type="tns:ssoWsModifyPwd" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ssoWsModifyPwd">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userAccount" type="xs:string" />
+          <xs:element name="result" type="xs:boolean" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeAuthentication">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="clientAddr" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeAuthenticationResponse">
+        <xs:sequence>
+          <xs:element name="removeValue" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="checkAuthentication">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="checkAuthenticationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="authenticationValue" type="tns:ssoWsAuthentication" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="checkAuthenticationWithClientAddress">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="clientAddr" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="checkAuthenticationWithClientAddressResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="authenticationValue" type="tns:ssoWsAuthentication" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="checkAuthenticationWithIdAndPwd">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="spCode" type="xs:string" />
+          <xs:element minOccurs="0" name="userAccount" type="xs:string" />
+          <xs:element minOccurs="0" name="userPassword" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="checkAuthenticationWithIdAndPwdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userValue" type="tns:ssoWsUser" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findAllUnits">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="findAllUnitsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="unitValue" type="tns:ssoJobUnitDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ssoJobUnitDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="email" type="xs:string" />
+          <xs:element minOccurs="0" name="fax" type="xs:string" />
+          <xs:element minOccurs="0" name="fullName" type="xs:string" />
+          <xs:element name="haveAccountApprove" type="xs:boolean" />
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="manInCharge" type="xs:string" />
+          <xs:element minOccurs="0" name="phone" type="xs:string" />
+          <xs:element minOccurs="0" name="taxId" type="xs:string" />
+          <xs:element minOccurs="0" name="unit" type="xs:string" />
+          <xs:element minOccurs="0" name="unitType" type="tns:unitType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="unitType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SUPERVISION" />
+          <xs:enumeration value="VENDOR" />
+          <xs:enumeration value="CENTER" />
+          <xs:enumeration value="BRANCH" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="SsoWebServiceFault" nillable="true" type="xs:string" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="logoutResponse">
+    <wsdl:part name="parameters" element="tns:logoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="findAllUnitsResponse">
+    <wsdl:part name="parameters" element="tns:findAllUnitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSsoWsStatus">
+    <wsdl:part name="parameters" element="tns:getSsoWsStatus" />
+  </wsdl:message>
+  <wsdl:message name="updateAuthenticationResponse">
+    <wsdl:part name="parameters" element="tns:updateAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="login">
+    <wsdl:part name="parameters" element="tns:login" />
+  </wsdl:message>
+  <wsdl:message name="resetPwdResponse">
+    <wsdl:part name="parameters" element="tns:resetPwdResponse" />
+  </wsdl:message>
+  <wsdl:message name="logout">
+    <wsdl:part name="parameters" element="tns:logout" />
+  </wsdl:message>
+  <wsdl:message name="updateAuthentication">
+    <wsdl:part name="parameters" element="tns:updateAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="modifyPwd">
+    <wsdl:part name="parameters" element="tns:modifyPwd" />
+  </wsdl:message>
+  <wsdl:message name="removeAuthenticationResponse">
+    <wsdl:part name="parameters" element="tns:removeAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="removeAuthentication">
+    <wsdl:part name="parameters" element="tns:removeAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="modifyPwdResponse">
+    <wsdl:part name="parameters" element="tns:modifyPwdResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkAuthentication">
+    <wsdl:part name="parameters" element="tns:checkAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="checkAuthenticationWithClientAddress">
+    <wsdl:part name="parameters" element="tns:checkAuthenticationWithClientAddress" />
+  </wsdl:message>
+  <wsdl:message name="checkAuthenticationResponse">
+    <wsdl:part name="parameters" element="tns:checkAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkAuthenticationWithIdAndPwd">
+    <wsdl:part name="parameters" element="tns:checkAuthenticationWithIdAndPwd" />
+  </wsdl:message>
+  <wsdl:message name="SsoWebServiceFault">
+    <wsdl:part name="SsoWebServiceFault" element="tns:SsoWebServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part name="parameters" element="tns:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="findUsersBySpCode">
+    <wsdl:part name="parameters" element="tns:findUsersBySpCode" />
+  </wsdl:message>
+  <wsdl:message name="findRolesBySpCodeResponse">
+    <wsdl:part name="parameters" element="tns:findRolesBySpCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSsoWsStatusResponse">
+    <wsdl:part name="parameters" element="tns:getSsoWsStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkAuthenticationWithIdAndPwdResponse">
+    <wsdl:part name="parameters" element="tns:checkAuthenticationWithIdAndPwdResponse" />
+  </wsdl:message>
+  <wsdl:message name="findUsersBySpCodeResponse">
+    <wsdl:part name="parameters" element="tns:findUsersBySpCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="findRolesBySpCode">
+    <wsdl:part name="parameters" element="tns:findRolesBySpCode" />
+  </wsdl:message>
+  <wsdl:message name="resetPwd">
+    <wsdl:part name="parameters" element="tns:resetPwd" />
+  </wsdl:message>
+  <wsdl:message name="isCurPwdValid">
+    <wsdl:part name="parameters" element="tns:isCurPwdValid" />
+  </wsdl:message>
+  <wsdl:message name="isCurPwdValidResponse">
+    <wsdl:part name="parameters" element="tns:isCurPwdValidResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkAuthenticationWithClientAddressResponse">
+    <wsdl:part name="parameters" element="tns:checkAuthenticationWithClientAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="findAllUnits">
+    <wsdl:part name="parameters" element="tns:findAllUnits" />
+  </wsdl:message>
+  <wsdl:portType name="SsoWebService">
+    <wsdl:operation name="findUsersBySpCode">
+      <wsdl:input name="findUsersBySpCode" message="tns:findUsersBySpCode" />
+      <wsdl:output name="findUsersBySpCodeResponse" message="tns:findUsersBySpCodeResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getSsoWsStatus">
+      <wsdl:input name="getSsoWsStatus" message="tns:getSsoWsStatus" />
+      <wsdl:output name="getSsoWsStatusResponse" message="tns:getSsoWsStatusResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input name="login" message="tns:login" />
+      <wsdl:output name="loginResponse" message="tns:loginResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="findRolesBySpCode">
+      <wsdl:input name="findRolesBySpCode" message="tns:findRolesBySpCode" />
+      <wsdl:output name="findRolesBySpCodeResponse" message="tns:findRolesBySpCodeResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <wsdl:input name="logout" message="tns:logout" />
+      <wsdl:output name="logoutResponse" message="tns:logoutResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="updateAuthentication">
+      <wsdl:input name="updateAuthentication" message="tns:updateAuthentication" />
+      <wsdl:output name="updateAuthenticationResponse" message="tns:updateAuthenticationResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="resetPwd">
+      <wsdl:input name="resetPwd" message="tns:resetPwd" />
+      <wsdl:output name="resetPwdResponse" message="tns:resetPwdResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="isCurPwdValid">
+      <wsdl:input name="isCurPwdValid" message="tns:isCurPwdValid" />
+      <wsdl:output name="isCurPwdValidResponse" message="tns:isCurPwdValidResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="modifyPwd">
+      <wsdl:input name="modifyPwd" message="tns:modifyPwd" />
+      <wsdl:output name="modifyPwdResponse" message="tns:modifyPwdResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="removeAuthentication">
+      <wsdl:input name="removeAuthentication" message="tns:removeAuthentication" />
+      <wsdl:output name="removeAuthenticationResponse" message="tns:removeAuthenticationResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="checkAuthentication">
+      <wsdl:input name="checkAuthentication" message="tns:checkAuthentication" />
+      <wsdl:output name="checkAuthenticationResponse" message="tns:checkAuthenticationResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="checkAuthenticationWithClientAddress">
+      <wsdl:input name="checkAuthenticationWithClientAddress" message="tns:checkAuthenticationWithClientAddress" />
+      <wsdl:output name="checkAuthenticationWithClientAddressResponse" message="tns:checkAuthenticationWithClientAddressResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="checkAuthenticationWithIdAndPwd">
+      <wsdl:input name="checkAuthenticationWithIdAndPwd" message="tns:checkAuthenticationWithIdAndPwd" />
+      <wsdl:output name="checkAuthenticationWithIdAndPwdResponse" message="tns:checkAuthenticationWithIdAndPwdResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+    <wsdl:operation name="findAllUnits">
+      <wsdl:input name="findAllUnits" message="tns:findAllUnits" />
+      <wsdl:output name="findAllUnitsResponse" message="tns:findAllUnitsResponse" />
+      <wsdl:fault name="SsoWebServiceFault" message="tns:SsoWebServiceFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SsoWebServiceServiceSoapBinding" type="tns:SsoWebService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="findUsersBySpCode">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="findUsersBySpCode">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findUsersBySpCodeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSsoWsStatus">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getSsoWsStatus">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSsoWsStatusResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="login">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="loginResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findRolesBySpCode">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="findRolesBySpCode">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findRolesBySpCodeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="logout">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="logoutResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateAuthentication">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="updateAuthentication">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateAuthenticationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="resetPwd">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="resetPwd">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="resetPwdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isCurPwdValid">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="isCurPwdValid">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isCurPwdValidResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modifyPwd">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="modifyPwd">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="modifyPwdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeAuthentication">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="removeAuthentication">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="removeAuthenticationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkAuthentication">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="checkAuthentication">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkAuthenticationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkAuthenticationWithClientAddress">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="checkAuthenticationWithClientAddress">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkAuthenticationWithClientAddressResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkAuthenticationWithIdAndPwd">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="checkAuthenticationWithIdAndPwd">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkAuthenticationWithIdAndPwdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllUnits">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="findAllUnits">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findAllUnitsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SsoWebServiceFault">
+        <soap:fault use="literal" name="SsoWebServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SsoWebServiceService">
+    <wsdl:port name="SsoWebServicePort" binding="tns:SsoWebServiceServiceSoapBinding">
+      <soap:address location="http://118.163.176.218:8080/sso/services/SsoWebService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

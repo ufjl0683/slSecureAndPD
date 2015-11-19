@@ -33,12 +33,38 @@ namespace slSecure
 
                 Application.Current.MainWindow.WindowState = WindowState.Maximized;
             }
-            
+
+            //slWCFModule.MCNSService.MCNSServiceSoapClient client = new slWCFModule.MCNSService.MCNSServiceSoapClient();
+            //client.GetR23DoorInfoAsync();
             
 #if DEBUG
            this.frame.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
-#else
+#else 
+
+
+         //   slWCFModule.SSOService.SsoWebServiceClient client = new slWCFModule.SSOService.SsoWebServiceClient("SsoWebServicePort");
+#if R23           
+            //client.checkAuthenticationCompleted += (s, a) =>
+            //    {
+            //        if(a.Result.status)
+            //             //已登入
+            //            this.frame.Navigate(new Uri("/Main.xaml", UriKind.Relative));
+            //        else
+            //             this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+            //            //未登入
+                   
+            //    };
+          //   client.checkAuthenticationAsync();
             this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+#else
+
+            this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+#endif
+
+
+
+
+            
 #endif
         }
 

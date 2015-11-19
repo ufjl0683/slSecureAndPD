@@ -343,7 +343,7 @@ namespace SecureServer.PD
 
                try
                {
-                   if (RTUDevice.connected != IsConnected)
+                   if (RTUDevice!=null && RTUDevice.connected != IsConnected)
                    {
                        IsConnected = RTUDevice.connected;
                       using( SecureDBEntities1 db = new SecureDBEntities1())
@@ -439,7 +439,7 @@ namespace SecureServer.PD
                }
                catch (Exception ex)
                {
-                   Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                 Console.WriteLine(this.PDName+","+((tempdata==null)?"突然斷線":ex.Message) + "," + ex.StackTrace);
                }
                finally
                {

@@ -19,6 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slWCFModule", "slWCFModule\slWCFModule.csproj", "{36C2EB23-CAAB-456B-912F-ED107DDCCD0D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D95219E-DE42-42C0-9C26-15C7AEED383D}"
 	ProjectSection(SolutionItems) = preProject

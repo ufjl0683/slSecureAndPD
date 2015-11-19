@@ -20,12 +20,13 @@ namespace slSecure.Web
     public class MCNSService : System.Web.Services.WebService, SecureService.ISecureServiceCallback
     {
 
+        System.Collections.Generic.List<R23DoorInfo> d_R23DoorInfo = new List<R23DoorInfo>();
         [WebMethod]
         public string HelloWorld()
         {
             return   "Hello World";
         }
-
+       
 
         [WebMethod]
         public RoomInfo[] GetAllRoom()
@@ -95,9 +96,172 @@ namespace slSecure.Web
 
 
         }
+       
 
 
 #if R23
+         [WebMethod]
+        public System.Collections.Generic.List<R23DoorInfo> GetR23DoorInfo()
+        {
+            clsDBComm commDB = new clsDBComm();
+
+            DataTable dt = new DataTable();
+            DataTable dtSelect = new DataTable();
+            string cmd = "";
+
+            SecureService.SecureServiceClient client = new SecureService.SecureServiceClient(new System.ServiceModel.InstanceContext(this), "CustomBinding_ISecureService");
+
+            cmd = string.Format("select * from tblEngineRoomConfig;");
+            dt = commDB.SelectDBData(cmd);
+            try
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow ERData in dt.Rows)
+                    {
+                        R23DoorInfo GDI = new R23DoorInfo();
+                        SecureService.PersonData[] RoomPerson;
+                        RoomPerson = client.GetR23RoomPerson(ERData["ERNo"].ToString());//查看讀卡機人員清單；取最後一人刷進記錄(公司+姓名)
+
+                        if (RoomPerson.Count() > 0)
+                        {
+                            string sComp = RoomPerson.Last().COMP;
+                            string sName = RoomPerson.Last().NAME;
+
+                            if (sComp != "")
+                            {
+                                if (sComp == "中工處南投工務段")
+                                    sComp = sComp.Substring(3, 2);
+                                else
+                                    sComp = sComp.Substring(0, 2);
+                            }
+                            GDI.StayDoorName = sComp + sName;
+                        }
+
+
+                        cmd = string.Format("select * from vwEntranceGuardDetail where ERName='{0}';", ERData["ERName"].ToString());
+
+                        dtSelect = commDB.SelectDBData(cmd);
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            bool SingleHardWareState1 = false;
+                            bool SingleHardWareState0 = false;
+
+                            foreach (DataRow vwEGDData in dtSelect.Rows)
+                            {
+                                SecureService.ControlStatus ControlConnect;
+                                ControlConnect = client.GetR23ControlConnect(vwEGDData["ControlID"].ToString());//查詢機房硬體狀態
+
+                                if (ControlConnect.connect)   //連線
+                                    SingleHardWareState1 = true;
+                                if (!ControlConnect.connect)  //斷線
+                                    SingleHardWareState0 = true;
+
+
+                                byte[] ReaderStatus;
+
+                                if ((vwEGDData["ControlType"].ToString() == "1") || (vwEGDData["ControlID"].ToString() == "AB-960N-1") || (vwEGDData["ControlID"].ToString() == "AG-960N-1"))
+                                {
+                                    if ((bool)vwEGDData["IsEnable"])
+                                    {
+                                        //查看機房ADAM之狀態
+                                        if ((vwEGDData["ControlID"].ToString() == "AB-960N-1") || (vwEGDData["ControlID"].ToString() == "AG-960N-1"))//苗栗or中交控
+                                        {
+                                            //ReaderStatus = client.GetR23ReaderStatus(vwEGDData["ERNo"].ToString());//("AB"/"AG");
+                                            if (RoomPerson.Count() > 0)
+                                            {
+                                                GDI.IsShowPerson = true;
+                                                GDI.state = 1;//有人逗留 
+                                                GDI.stateAlarm = 1;
+                                            }
+                                            else
+                                            {
+                                                GDI.IsShowPerson = false;
+                                                GDI.state = 0;     //無人在內 
+                                                GDI.stateAlarm = 2;//保全啟動
+                                            }
+                                        }
+                                        else//非苗栗or中交控 無控制器 讀取讀卡機  
+                                        {
+                                            ReaderStatus = client.GetR23ReaderStatus(vwEGDData["ControlID"].ToString());//("AN-2400N-1");
+                                            if (ReaderStatus != null)
+                                            {
+                                                if (ReaderStatus[32] != 0)
+                                                {
+                                                    if (RoomPerson.Count() > 0) //查讀卡機是否有人員逗留
+                                                    {
+                                                        GDI.IsShowPerson = true;
+                                                        GDI.state = 1; //有人逗留 
+
+                                                        if (ReaderStatus[32] == 2)//當收到狀態為「保全啟動」在此要強制把stateAlarm設定為「人員逗留」狀態
+                                                            GDI.stateAlarm = 1;              //有人逗留 
+                                                        else
+                                                            GDI.stateAlarm = ReaderStatus[32];
+                                                    }
+                                                    else
+                                                    {
+                                                        if (ReaderStatus[32] == 1)           //門禁被開啟
+                                                        {
+                                                            GDI.StayDoorName = "門禁被開啟";
+                                                            GDI.state = 1; //有人逗留 
+                                                            GDI.IsShowPerson = true;
+                                                        }
+                                                        else
+                                                        {
+                                                            GDI.IsShowPerson = false;
+                                                            GDI.state = 0; //無人在內
+                                                        }
+                                                        GDI.stateAlarm = ReaderStatus[32];               //保全警報  
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    GDI.IsShowPerson = false;
+                                                    GDI.state = 3;     //斷線
+                                                    GDI.stateAlarm = ReaderStatus[32];               //保全警報 
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if ((SingleHardWareState1) && (SingleHardWareState0))
+                            {
+                                GDI.ERName = ERData["ERName"].ToString();
+                                //為硬體異常(只要state有一個為true)
+                                GDI.stateHardware = 1;
+                            }
+                            else if ((SingleHardWareState1) && (!SingleHardWareState0))
+                            {
+                                GDI.ERName = ERData["ERName"].ToString();
+                                //為硬體正常
+                                GDI.stateHardware = 0;
+                            }
+                            else
+                            {
+                                //全部顯示斷線
+                                GDI.ERName = ERData["ERName"].ToString();
+                                GDI.stateHardware = 2;
+                                GDI.IsShowPerson = false;
+                                GDI.state = 3;
+                                GDI.stateAlarm = 0;
+                            }
+                            d_R23DoorInfo.Add(GDI);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+                throw ex;
+            }
+            return d_R23DoorInfo;
+
+        }
         [WebMethod]
         public string AddCard(AddCardInfo[] infos)
         {
@@ -198,7 +362,7 @@ namespace slSecure.Web
             sRoleID = Convert.ToString(RoleID);
             return sRoleID;
         }
-#else     
+#else
 
         [WebMethod]
         public void NotifyDbChange()
@@ -467,6 +631,16 @@ namespace slSecure.Web
         public string Name { get; set; }
     }
 
+
+    public class R23DoorInfo
+    {
+        public string ERName { get; set; }
+        public int stateHardware { get; set; }
+        public bool IsShowPerson { get; set; }
+        public string StayDoorName { get; set; }
+        public int state { get; set; }
+        public int stateAlarm { get; set; }
+    }
     public class clsDBComm
     {
         //string sErrMsg;

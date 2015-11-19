@@ -39,6 +39,12 @@ namespace test
 
         static void Main(string[] args)
         {
+
+
+            SSOService.SsoWebServiceClient client = new SSOService.SsoWebServiceClient();
+            var res=client.checkAuthentication();
+            Console.WriteLine(res.status);
+            Console.ReadKey();
             //byte[] retData = new byte[6];
 
             //System.Collections.BitArray ba = new System.Collections.BitArray(new byte[] { 0 });
@@ -59,9 +65,9 @@ namespace test
 
        //     bool status = RoomClient.RoomClient.GetControlConnectionStatus("AN-2400N-1");
 
-            byte[] data = RoomClient.RoomClient.GetStatus("AB");
+            //byte[] data = RoomClient.RoomClient.GetStatus("AB");
 
-            Console.WriteLine(data[0]);
+            //Console.WriteLine(data[0]);
 
          //   RoomClient.RoomClient.GroupModify(new List<int>(new int[]{1,2}));
              
@@ -219,9 +225,11 @@ namespace test
             //}
         //   R13EventExchange();
           //  for (int i = 2; i < 39;i++)
-                R13ddCard(39) ;
-            MCNSService.MCNSServiceSoapClient client = new MCNSServiceSoapClient();
+            //    R13ddCard(39) ;
+            //MCNSService.MCNSServiceSoapClient client = new MCNSServiceSoapClient();
         //    client.NotifyDbChange();
+            ModbusTCP.RTU rtu = new RTU("1", 1, "10.2.84.220", 502, 2001, 32,1);
+            
             Console.ReadKey();
         }
 
