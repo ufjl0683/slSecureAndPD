@@ -52,5 +52,6 @@ namespace SecureServer
         public DbSet<tblPasswordEveryDayDifference> tblPasswordEveryDayDifference { get; set; }
         public DbSet<tblSchConfig> tblSchConfig { get; set; }
         public DbSet<tblSchLog> tblSchLog { get; set; }
+        public DbSet<tblPowerMeter> tblPowerMeter { get; set; }
     }
 }

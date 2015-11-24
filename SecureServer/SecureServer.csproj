@@ -46,7 +46,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;R23</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -113,6 +113,8 @@
     <Compile Include="ExactIntervalTimer.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="CardReader\ICardReader.cs" />
+    <Compile Include="Meter\PowerMeterManager.cs" />
+    <Compile Include="Meter\R23PowerMeter.cs" />
     <Compile Include="NVR\INVR.cs" />
     <Compile Include="NVR\NVR_Type1.cs" />
     <Compile Include="NVR\NVRManager.cs" />
@@ -183,6 +185,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPDConfig.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPowerMeter.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSchConfig.cs">

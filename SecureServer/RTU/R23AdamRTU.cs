@@ -55,30 +55,32 @@ namespace SecureServer.RTU
 
                 try
                 {
-
+                    
                     // 偵測 RTU開 斷線並產生事件
-                    if (this.Adam != null)
-                    {
-                        if (Adam == "AB" || Adam == "AG")
-                            Comm_state = 1;
-                        else
-                        Comm_state = RoomClient.RoomClient.GetControlConnectionStatus(Adam) ? 1 : 0;   // RTUDevice.connected ? 1 : 0;
-                            
-                    }
-                    if (Comm_state==1)
-                    {
-                        lock (lockobj)
-                        {
-                           // RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)255, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
-                            tempdata = RoomClient.RoomClient.GetStatus(Adam);
-                            if (tempdata != null && tempdata.Length != 0)
-                            {
-                                for (int i = 0; i < tempdata.Length; i++)
-                                    data[i] = tempdata[i];
-                            }
-                        }
-                    }
-                   
+
+
+                    //if (this.Adam != null)
+                    //{
+                    //    if (Adam == "AB" || Adam == "AG")
+                    //        Comm_state = 1;
+                    //    else
+                    //        Comm_state = RoomClient.RoomClient.GetControlConnectionStatus(Adam) ? 1 : 0;   // RTUDevice.connected ? 1 : 0;
+
+                    //}
+                    //if (Comm_state == 1)
+                    //{
+                    //    lock (lockobj)
+                    //    {
+
+                    //        tempdata = RoomClient.RoomClient.GetStatus(Adam);
+                    //        if (tempdata != null && tempdata.Length != 0)
+                    //        {
+                    //            for (int i = 0; i < tempdata.Length; i++)
+                    //                data[i] = tempdata[i];
+                    //        }
+                    //    }
+                    //}
+
 
                 }
                 catch (Exception ex)

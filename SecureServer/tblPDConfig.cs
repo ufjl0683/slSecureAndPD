@@ -46,6 +46,9 @@ namespace SecureServer
         public string Memo { get; set; }
         public Nullable<int> ItemID { get; set; }
         public Nullable<int> PlaneID { get; set; }
+        public string Mapping_DeviceName { get; set; }
+        public string Classify { get; set; }
+        public Nullable<int> WorkInfo { get; set; }
     
         public virtual ICollection<tblPDAlarmLog> tblPDAlarmLog { get; set; }
     }

@@ -26,6 +26,7 @@ namespace SecureServer
         public static RTU.ItemGroupManager itemgrp_mgr;
         public static PlaneManager plane_mgr;
         public static PD.PDManager pd_mgr ;
+        public static Meter.PowerMeterManager r23_pm_mgr;
         public static Schedule.ScheduleManager sch_mgr;
 
         ExactIntervalTimer ExactOneHourTmr;
@@ -54,6 +55,9 @@ namespace SecureServer
            itemgrp_mgr = new RTU.ItemGroupManager();
            plane_mgr = new PlaneManager();
            pd_mgr = new PD.PDManager();
+#if R23
+           r23_pm_mgr = new Meter.PowerMeterManager();
+#endif
 //#if !R23     
           
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
@@ -76,9 +80,10 @@ namespace SecureServer
         void CheckCardDueStatusTask( )
         {
 
-#if !R23
+
             while (true)
             {
+#if !R23
                 Console.WriteLine("========================================CheckCardDueTask===================================");
                 try
                 {

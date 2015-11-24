@@ -41,10 +41,34 @@ namespace test
         {
 
 
-            SSOService.SsoWebServiceClient client = new SSOService.SsoWebServiceClient();
-            var res=client.checkAuthentication();
-            Console.WriteLine(res.status);
+            //SSOService.SsoWebServiceClient client = new SSOService.SsoWebServiceClient();
+            //var res=client.checkAuthentication();
+            //Console.WriteLine(res.status);
+
+            SecureServer.Meter.R23PowerMeter meter = new SecureServer.Meter.R23PowerMeter("10.21.233.200", 502);
+            while (true)
+            {
+                Console.WriteLine(meter.VA);
+                System.Threading.Thread.Sleep(1000);
+            }
+/*========================================================= 用電
+            ModbusTCP.Master client = new Master();
+            client.connect("10.21.233.200", 502);
+            byte[] data=new byte[4];
+            client.ReadHoldingRegister(1, 0, 2300, 2,ref data
+                );
+            Console.WriteLine(data[0]);
+            byte[] dest = new byte[4];
+            dest[0] = data[1];
+            dest[1] = data[0];
+            dest[2] = data[3];
+            dest[3] = data[2];
+            Console.WriteLine(System.BitConverter.ToSingle(dest,0));
+            
             Console.ReadKey();
+====================================================*/
+
+
             //byte[] retData = new byte[6];
 
             //System.Collections.BitArray ba = new System.Collections.BitArray(new byte[] { 0 });
@@ -228,7 +252,7 @@ namespace test
             //    R13ddCard(39) ;
             //MCNSService.MCNSServiceSoapClient client = new MCNSServiceSoapClient();
         //    client.NotifyDbChange();
-            ModbusTCP.RTU rtu = new RTU("1", 1, "10.2.84.220", 502, 2001, 32,1);
+        //    ModbusTCP.RTU rtu = new RTU("1", 1, "10.2.84.220", 502, 2001, 32,1);
             
             Console.ReadKey();
         }

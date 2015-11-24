@@ -38,6 +38,7 @@
         <EntityTypeShape EntityType="SecureDBModel.tblSchConfig" Width="1.5" PointX="0.22733231271958554" PointY="23.290580730554918" />
         <EntityTypeShape EntityType="SecureDBModel.tblSchLog" Width="1.5" PointX="2.9688364039030093" PointY="17.276677169500235" />
         <AssociationConnector Association="SecureDBModel.FK_tblSchLog_tblSchConfig" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPowerMeter" Width="1.5" PointX="7.5227445045126347" PointY="9.8006816254000562" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

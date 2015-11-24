@@ -4,9 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SecureDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="SecureDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SecureDBModelStoreContainer">
-          <EntitySet Name="vwAIImmediatelyCheck" EntityType="SecureDBModel.Store.vwAIImmediatelyCheck" store:Type="Views" store:Schema="dbo" store:Name="vwAIImmediatelyCheck">
+          <EntitySet Name="vwAIImmediatelyCheck" EntityType="SecureDBModel.Store.vwAIImmediatelyCheck" store:Type="Views" store:Schema="dbo" store:Name="vwAIImmediatelyCheck" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwAIImmediatelyCheck].[LineID] AS [LineID], 
       [vwAIImmediatelyCheck].[ControlID] AS [ControlID], 
@@ -28,7 +28,7 @@
       [vwAIImmediatelyCheck].[Transmitter10Value] AS [Transmitter10Value]
       FROM [dbo].[vwAIImmediatelyCheck] AS [vwAIImmediatelyCheck]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwAlarmLog" EntityType="SecureDBModel.Store.vwAlarmLog" store:Type="Views" store:Schema="dbo" store:Name="vwAlarmLog">
+          <EntitySet Name="vwAlarmLog" EntityType="SecureDBModel.Store.vwAlarmLog" store:Type="Views" store:Schema="dbo" store:Name="vwAlarmLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwAlarmLog].[EventID] AS [EventID], 
       [vwAlarmLog].[TypeID] AS [TypeID], 
@@ -71,7 +71,7 @@
       [vwAlarmLog].[TypeDetail_Memo] AS [TypeDetail_Memo]
       FROM [dbo].[vwAlarmLog] AS [vwAlarmLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.Store.vwAllAlarmLog" store:Type="Views" store:Schema="dbo" store:Name="vwAllAlarmLog">
+          <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.Store.vwAllAlarmLog" store:Type="Views" store:Schema="dbo" store:Name="vwAllAlarmLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwAllAlarmLog].[ERName] AS [ERName], 
       [vwAllAlarmLog].[Item] AS [Item], 
@@ -82,7 +82,7 @@
       [vwAllAlarmLog].[Status] AS [Status]
       FROM [dbo].[vwAllAlarmLog] AS [vwAllAlarmLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwCardCommandLog" EntityType="SecureDBModel.Store.vwCardCommandLog" store:Type="Views" store:Schema="dbo" store:Name="vwCardCommandLog">
+          <EntitySet Name="vwCardCommandLog" EntityType="SecureDBModel.Store.vwCardCommandLog" store:Type="Views" store:Schema="dbo" store:Name="vwCardCommandLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwCardCommandLog].[FlowID] AS [FlowID], 
       [vwCardCommandLog].[ABA] AS [ABA], 
@@ -101,7 +101,7 @@
       [vwCardCommandLog].[CardTypeName] AS [CardTypeName]
       FROM [dbo].[vwCardCommandLog] AS [vwCardCommandLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwControllerConfig" EntityType="SecureDBModel.Store.vwControllerConfig" store:Type="Views" store:Schema="dbo" store:Name="vwControllerConfig">
+          <EntitySet Name="vwControllerConfig" EntityType="SecureDBModel.Store.vwControllerConfig" store:Type="Views" store:Schema="dbo" store:Name="vwControllerConfig" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwControllerConfig].[ERID] AS [ERID], 
       [vwControllerConfig].[ERName] AS [ERName], 
@@ -115,7 +115,7 @@
       [vwControllerConfig].[IsEnable] AS [IsEnable]
       FROM [dbo].[vwControllerConfig] AS [vwControllerConfig]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwDeviceStateLog" EntityType="SecureDBModel.Store.vwDeviceStateLog" store:Type="Views" store:Schema="dbo" store:Name="vwDeviceStateLog">
+          <EntitySet Name="vwDeviceStateLog" EntityType="SecureDBModel.Store.vwDeviceStateLog" store:Type="Views" store:Schema="dbo" store:Name="vwDeviceStateLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwDeviceStateLog].[FlowID] AS [FlowID], 
       [vwDeviceStateLog].[ERID] AS [ERID], 
@@ -128,7 +128,7 @@
       [vwDeviceStateLog].[Memo] AS [Memo]
       FROM [dbo].[vwDeviceStateLog] AS [vwDeviceStateLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwEngineRoomLog" EntityType="SecureDBModel.Store.vwEngineRoomLog" store:Type="Views" store:Schema="dbo" store:Name="vwEngineRoomLog">
+          <EntitySet Name="vwEngineRoomLog" EntityType="SecureDBModel.Store.vwEngineRoomLog" store:Type="Views" store:Schema="dbo" store:Name="vwEngineRoomLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwEngineRoomLog].[FlowID] AS [FlowID], 
       [vwEngineRoomLog].[ERNo] AS [ERNo], 
@@ -153,7 +153,7 @@
       [vwEngineRoomLog].[ResultName] AS [ResultName]
       FROM [dbo].[vwEngineRoomLog] AS [vwEngineRoomLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwEntranceGuardDetail" EntityType="SecureDBModel.Store.vwEntranceGuardDetail" store:Type="Views" store:Schema="dbo" store:Name="vwEntranceGuardDetail">
+          <EntitySet Name="vwEntranceGuardDetail" EntityType="SecureDBModel.Store.vwEntranceGuardDetail" store:Type="Views" store:Schema="dbo" store:Name="vwEntranceGuardDetail" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwEntranceGuardDetail].[ERID] AS [ERID], 
       [vwEntranceGuardDetail].[ERName] AS [ERName], 
@@ -165,7 +165,7 @@
       [vwEntranceGuardDetail].[ControlType] AS [ControlType]
       FROM [dbo].[vwEntranceGuardDetail] AS [vwEntranceGuardDetail]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwERNamePlaneList" EntityType="SecureDBModel.Store.vwERNamePlaneList" store:Type="Views" store:Schema="dbo" store:Name="vwERNamePlaneList">
+          <EntitySet Name="vwERNamePlaneList" EntityType="SecureDBModel.Store.vwERNamePlaneList" store:Type="Views" store:Schema="dbo" store:Name="vwERNamePlaneList" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwERNamePlaneList].[ERID] AS [ERID], 
       [vwERNamePlaneList].[ERName] AS [ERName], 
@@ -176,14 +176,14 @@
       [vwERNamePlaneList].[LineName] AS [LineName]
       FROM [dbo].[vwERNamePlaneList] AS [vwERNamePlaneList]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwERNameRTUList" EntityType="SecureDBModel.Store.vwERNameRTUList" store:Type="Views" store:Schema="dbo" store:Name="vwERNameRTUList">
+          <EntitySet Name="vwERNameRTUList" EntityType="SecureDBModel.Store.vwERNameRTUList" store:Type="Views" store:Schema="dbo" store:Name="vwERNameRTUList" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwERNameRTUList].[ERID] AS [ERID], 
       [vwERNameRTUList].[ERName] AS [ERName], 
       [vwERNameRTUList].[ControlID] AS [ControlID]
       FROM [dbo].[vwERNameRTUList] AS [vwERNameRTUList]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwItemConfig" EntityType="SecureDBModel.Store.vwItemConfig" store:Type="Views" store:Schema="dbo" store:Name="vwItemConfig">
+          <EntitySet Name="vwItemConfig" EntityType="SecureDBModel.Store.vwItemConfig" store:Type="Views" store:Schema="dbo" store:Name="vwItemConfig" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwItemConfig].[ItemID] AS [ItemID], 
       [vwItemConfig].[ItemName] AS [ItemName], 
@@ -246,7 +246,7 @@
       [vwItemConfig].[KindName] AS [KindName]
       FROM [dbo].[vwItemConfig] AS [vwItemConfig]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwItemGroup" EntityType="SecureDBModel.Store.vwItemGroup" store:Type="Views" store:Schema="dbo" store:Name="vwItemGroup">
+          <EntitySet Name="vwItemGroup" EntityType="SecureDBModel.Store.vwItemGroup" store:Type="Views" store:Schema="dbo" store:Name="vwItemGroup" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwItemGroup].[GroupID] AS [GroupID], 
       [vwItemGroup].[GroupType] AS [GroupType], 
@@ -276,7 +276,7 @@
       [vwItemGroup].[LineName] AS [LineName]
       FROM [dbo].[vwItemGroup] AS [vwItemGroup]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwMagneticCard" EntityType="SecureDBModel.Store.vwMagneticCard" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCard">
+          <EntitySet Name="vwMagneticCard" EntityType="SecureDBModel.Store.vwMagneticCard" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCard" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwMagneticCard].[MagneticID] AS [MagneticID], 
       [vwMagneticCard].[ABA] AS [ABA], 
@@ -303,7 +303,7 @@
       [vwMagneticCard].[EnableName] AS [EnableName]
       FROM [dbo].[vwMagneticCard] AS [vwMagneticCard]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwMagneticCardAllowController" EntityType="SecureDBModel.Store.vwMagneticCardAllowController" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCardAllowController">
+          <EntitySet Name="vwMagneticCardAllowController" EntityType="SecureDBModel.Store.vwMagneticCardAllowController" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCardAllowController" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwMagneticCardAllowController].[ControlID] AS [ControlID], 
       [vwMagneticCardAllowController].[MagneticID] AS [MagneticID], 
@@ -314,7 +314,7 @@
       [vwMagneticCardAllowController].[Type] AS [Type]
       FROM [dbo].[vwMagneticCardAllowController] AS [vwMagneticCardAllowController]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwMagneticCardDetail" EntityType="SecureDBModel.Store.vwMagneticCardDetail" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCardDetail">
+          <EntitySet Name="vwMagneticCardDetail" EntityType="SecureDBModel.Store.vwMagneticCardDetail" store:Type="Views" store:Schema="dbo" store:Name="vwMagneticCardDetail" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwMagneticCardDetail].[MagneticID] AS [MagneticID], 
       [vwMagneticCardDetail].[ABA] AS [ABA], 
@@ -347,7 +347,7 @@
       [vwMagneticCardDetail].[EnableName] AS [EnableName]
       FROM [dbo].[vwMagneticCardDetail] AS [vwMagneticCardDetail]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwNVRConfig" EntityType="SecureDBModel.Store.vwNVRConfig" store:Type="Views" store:Schema="dbo" store:Name="vwNVRConfig">
+          <EntitySet Name="vwNVRConfig" EntityType="SecureDBModel.Store.vwNVRConfig" store:Type="Views" store:Schema="dbo" store:Name="vwNVRConfig" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwNVRConfig].[ERName] AS [ERName], 
       [vwNVRConfig].[LineID] AS [LineID], 
@@ -369,7 +369,7 @@
       [vwNVRConfig].[Memo] AS [Memo]
       FROM [dbo].[vwNVRConfig] AS [vwNVRConfig]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwPasswordEveryDayDifference" EntityType="SecureDBModel.Store.vwPasswordEveryDayDifference" store:Type="Views" store:Schema="dbo" store:Name="vwPasswordEveryDayDifference">
+          <EntitySet Name="vwPasswordEveryDayDifference" EntityType="SecureDBModel.Store.vwPasswordEveryDayDifference" store:Type="Views" store:Schema="dbo" store:Name="vwPasswordEveryDayDifference" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwPasswordEveryDayDifference].[ERName] AS [ERName], 
       [vwPasswordEveryDayDifference].[Memo] AS [Memo], 
@@ -378,7 +378,7 @@
       [vwPasswordEveryDayDifference].[DoorPassword] AS [DoorPassword]
       FROM [dbo].[vwPasswordEveryDayDifference] AS [vwPasswordEveryDayDifference]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwPDAlarmLog" EntityType="SecureDBModel.Store.vwPDAlarmLog" store:Type="Views" store:Schema="dbo" store:Name="vwPDAlarmLog">
+          <EntitySet Name="vwPDAlarmLog" EntityType="SecureDBModel.Store.vwPDAlarmLog" store:Type="Views" store:Schema="dbo" store:Name="vwPDAlarmLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwPDAlarmLog].[FlowID] AS [FlowID], 
       [vwPDAlarmLog].[Timestamp] AS [Timestamp], 
@@ -398,7 +398,7 @@
       [vwPDAlarmLog].[DirectionName] AS [DirectionName]
       FROM [dbo].[vwPDAlarmLog] AS [vwPDAlarmLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.Store.vwPDAlarmLoopDeviceLog" store:Type="Views" store:Schema="dbo" store:Name="vwPDAlarmLoopDeviceLog">
+          <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.Store.vwPDAlarmLoopDeviceLog" store:Type="Views" store:Schema="dbo" store:Name="vwPDAlarmLoopDeviceLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwPDAlarmLoopDeviceLog].[FlowID] AS [FlowID], 
       [vwPDAlarmLoopDeviceLog].[Timestamp] AS [Timestamp], 
@@ -428,7 +428,7 @@
       [vwPDAlarmLoopDeviceLog].[Diameter] AS [Diameter]
       FROM [dbo].[vwPDAlarmLoopDeviceLog] AS [vwPDAlarmLoopDeviceLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwPDConfig" EntityType="SecureDBModel.Store.vwPDConfig" store:Type="Views" store:Schema="dbo" store:Name="vwPDConfig">
+          <EntitySet Name="vwPDConfig" EntityType="SecureDBModel.Store.vwPDConfig" store:Type="Views" store:Schema="dbo" store:Name="vwPDConfig" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwPDConfig].[PDName] AS [PDName], 
       [vwPDConfig].[ERID] AS [ERID], 
@@ -475,7 +475,7 @@
       [vwPDConfig].[Comm_stateDetail] AS [Comm_stateDetail]
       FROM [dbo].[vwPDConfig] AS [vwPDConfig]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwPDLoopDeviceConfig" EntityType="SecureDBModel.Store.vwPDLoopDeviceConfig" store:Type="Views" store:Schema="dbo" store:Name="vwPDLoopDeviceConfig">
+          <EntitySet Name="vwPDLoopDeviceConfig" EntityType="SecureDBModel.Store.vwPDLoopDeviceConfig" store:Type="Views" store:Schema="dbo" store:Name="vwPDLoopDeviceConfig" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwPDLoopDeviceConfig].[PDName] AS [PDName], 
       [vwPDLoopDeviceConfig].[PD_LoopNO] AS [PD_LoopNO], 
@@ -498,7 +498,7 @@
       [vwPDLoopDeviceConfig].[Diameter] AS [Diameter]
       FROM [dbo].[vwPDLoopDeviceConfig] AS [vwPDLoopDeviceConfig]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwR23DeviceStateLog" EntityType="SecureDBModel.Store.vwR23DeviceStateLog" store:Type="Views" store:Schema="dbo" store:Name="vwR23DeviceStateLog">
+          <EntitySet Name="vwR23DeviceStateLog" EntityType="SecureDBModel.Store.vwR23DeviceStateLog" store:Type="Views" store:Schema="dbo" store:Name="vwR23DeviceStateLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwR23DeviceStateLog].[FlowID] AS [FlowID], 
       [vwR23DeviceStateLog].[TypeID] AS [TypeID], 
@@ -539,7 +539,7 @@
       [vwR23DeviceStateLog].[CallOpenDoor] AS [CallOpenDoor]
       FROM [dbo].[vwR23DeviceStateLog] AS [vwR23DeviceStateLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwR23EngineRoomLog" EntityType="SecureDBModel.Store.vwR23EngineRoomLog" store:Type="Views" store:Schema="dbo" store:Name="vwR23EngineRoomLog">
+          <EntitySet Name="vwR23EngineRoomLog" EntityType="SecureDBModel.Store.vwR23EngineRoomLog" store:Type="Views" store:Schema="dbo" store:Name="vwR23EngineRoomLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwR23EngineRoomLog].[FlowID] AS [FlowID], 
       [vwR23EngineRoomLog].[ERNo] AS [ERNo], 
@@ -581,7 +581,7 @@
       [vwR23EngineRoomLog].[ResultName] AS [ResultName]
       FROM [dbo].[vwR23EngineRoomLog] AS [vwR23EngineRoomLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwR23HardwareState" EntityType="SecureDBModel.Store.vwR23HardwareState" store:Type="Views" store:Schema="dbo" store:Name="vwR23HardwareState">
+          <EntitySet Name="vwR23HardwareState" EntityType="SecureDBModel.Store.vwR23HardwareState" store:Type="Views" store:Schema="dbo" store:Name="vwR23HardwareState" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwR23HardwareState].[FlowID] AS [FlowID], 
       [vwR23HardwareState].[TypeID] AS [TypeID], 
@@ -654,7 +654,7 @@
       [vwR23HardwareState].[tblEntranceGuardConfig_MemoName] AS [tblEntranceGuardConfig_MemoName]
       FROM [dbo].[vwR23HardwareState] AS [vwR23HardwareState]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwR23ReaderLog" EntityType="SecureDBModel.Store.vwR23ReaderLog" store:Type="Views" store:Schema="dbo" store:Name="vwR23ReaderLog">
+          <EntitySet Name="vwR23ReaderLog" EntityType="SecureDBModel.Store.vwR23ReaderLog" store:Type="Views" store:Schema="dbo" store:Name="vwR23ReaderLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwR23ReaderLog].[FlowID] AS [FlowID], 
       [vwR23ReaderLog].[TypeID] AS [TypeID], 
@@ -727,7 +727,7 @@
       [vwR23ReaderLog].[RoomIOName] AS [RoomIOName]
       FROM [dbo].[vwR23ReaderLog] AS [vwR23ReaderLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwReaderAbnormalPassLog" EntityType="SecureDBModel.Store.vwReaderAbnormalPassLog" store:Type="Views" store:Schema="dbo" store:Name="vwReaderAbnormalPassLog">
+          <EntitySet Name="vwReaderAbnormalPassLog" EntityType="SecureDBModel.Store.vwReaderAbnormalPassLog" store:Type="Views" store:Schema="dbo" store:Name="vwReaderAbnormalPassLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwReaderAbnormalPassLog].[FlowID] AS [FlowID], 
       [vwReaderAbnormalPassLog].[ERName] AS [ERName], 
@@ -738,7 +738,7 @@
       [vwReaderAbnormalPassLog].[DoorPassword] AS [DoorPassword]
       FROM [dbo].[vwReaderAbnormalPassLog] AS [vwReaderAbnormalPassLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwReaderPassList" EntityType="SecureDBModel.Store.vwReaderPassList" store:Type="Views" store:Schema="dbo" store:Name="vwReaderPassList">
+          <EntitySet Name="vwReaderPassList" EntityType="SecureDBModel.Store.vwReaderPassList" store:Type="Views" store:Schema="dbo" store:Name="vwReaderPassList" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwReaderPassList].[FlowID] AS [FlowID], 
       [vwReaderPassList].[ERName] AS [ERName], 
@@ -748,13 +748,13 @@
       [vwReaderPassList].[Memo] AS [Memo]
       FROM [dbo].[vwReaderPassList] AS [vwReaderPassList]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwReaderPassLog" EntityType="SecureDBModel.Store.vwReaderPassLog" store:Type="Views" store:Schema="dbo" store:Name="vwReaderPassLog">
+          <EntitySet Name="vwReaderPassLog" EntityType="SecureDBModel.Store.vwReaderPassLog" store:Type="Views" store:Schema="dbo" store:Name="vwReaderPassLog" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwReaderPassLog].[ControlID] AS [ControlID], 
       [vwReaderPassLog].[starttime] AS [starttime]
       FROM [dbo].[vwReaderPassLog] AS [vwReaderPassLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureDBModel.Store.vwUserGroupMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserGroupMenuAllow">
+          <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureDBModel.Store.vwUserGroupMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserGroupMenuAllow" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwUserGroupMenuAllow].[GroupID] AS [GroupID], 
       [vwUserGroupMenuAllow].[GroupName] AS [GroupName], 
@@ -763,7 +763,7 @@
       [vwUserGroupMenuAllow].[MenuName] AS [MenuName]
       FROM [dbo].[vwUserGroupMenuAllow] AS [vwUserGroupMenuAllow]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwUserMenuAllow" EntityType="SecureDBModel.Store.vwUserMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserMenuAllow">
+          <EntitySet Name="vwUserMenuAllow" EntityType="SecureDBModel.Store.vwUserMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserMenuAllow" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [vwUserMenuAllow].[GroupID] AS [GroupID], 
       [vwUserMenuAllow].[MenuID] AS [MenuID], 
@@ -1788,8 +1788,8 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SecureDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="SecureDBEntities" annotation:LazyLoadingEnabled="true">
+      <Schema Namespace="SecureDBModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SecureDBEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
           <EntitySet Name="vwAIImmediatelyCheck" EntityType="SecureDBModel.vwAIImmediatelyCheck" />
           <EntitySet Name="vwAlarmLog" EntityType="SecureDBModel.vwAlarmLog" />
           <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.vwAllAlarmLog" />
@@ -3594,6 +3594,6 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams />
   </Designer>
 </edmx:Edmx>
