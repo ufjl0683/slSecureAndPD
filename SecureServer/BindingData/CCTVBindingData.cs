@@ -33,7 +33,13 @@ namespace SecureServer.BindingData
 
         [DataMember]
         public int Port { get; set; }
-       
+          [DataMember]
+        public double ScaleX { get; set; }
+          [DataMember]
+        public double ScaleY { get; set; }
+          [DataMember]
+        public double Rotation { get; set; }
+        
 
     }
 }

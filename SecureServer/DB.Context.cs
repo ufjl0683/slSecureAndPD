@@ -53,5 +53,29 @@ namespace SecureServer
         public DbSet<tblSchConfig> tblSchConfig { get; set; }
         public DbSet<tblSchLog> tblSchLog { get; set; }
         public DbSet<tblPowerMeter> tblPowerMeter { get; set; }
+        public DbSet<tblCardReaderConfig> tblCardReaderConfig { get; set; }
+        public DbSet<tblCCTVSplitScreen> tblCCTVSplitScreen { get; set; }
+        public DbSet<tblCCTVType> tblCCTVType { get; set; }
+        public DbSet<tblControllerCard> tblControllerCard { get; set; }
+        public DbSet<tblControlSetting> tblControlSetting { get; set; }
+        public DbSet<tblEngineRoomConfig> tblEngineRoomConfig { get; set; }
+        public DbSet<tblEntranceGuardConfig> tblEntranceGuardConfig { get; set; }
+        public DbSet<tblHostConfig> tblHostConfig { get; set; }
+        public DbSet<tblItemGroupTypeInfo> tblItemGroupTypeInfo { get; set; }
+        public DbSet<tblItemKindInfo> tblItemKindInfo { get; set; }
+        public DbSet<tblMagneticCardNormalGroup> tblMagneticCardNormalGroup { get; set; }
+        public DbSet<tblMenu> tblMenu { get; set; }
+        public DbSet<tblMenuGroup> tblMenuGroup { get; set; }
+        public DbSet<tblPDLoopDeviceConfig> tblPDLoopDeviceConfig { get; set; }
+        public DbSet<tblReportList> tblReportList { get; set; }
+        public DbSet<tblSingalIO> tblSingalIO { get; set; }
+        public DbSet<tblSingalIOLog> tblSingalIOLog { get; set; }
+        public DbSet<tblSysOperation> tblSysOperation { get; set; }
+        public DbSet<tblSysRole> tblSysRole { get; set; }
+        public DbSet<tblSysRoleAuthority> tblSysRoleAuthority { get; set; }
+        public DbSet<tblTypeDetail> tblTypeDetail { get; set; }
+        public DbSet<tblUser> tblUser { get; set; }
+        public DbSet<tblUserGroup> tblUserGroup { get; set; }
+        public DbSet<tblUserGroupMenu> tblUserGroupMenu { get; set; }
     }
 }

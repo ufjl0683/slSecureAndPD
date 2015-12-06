@@ -29,10 +29,14 @@
 
     <Grid x:Name="LayoutRoot"  MouseLeftButtonDown="LayoutRoot_MouseLeftButtonDown"    >
         <Grid.RenderTransform>
-            <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
+            <CompositeTransform  ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
         </Grid.RenderTransform>
-        <Image HorizontalAlignment="Left"  Stretch="None"  VerticalAlignment="Top"   Source="/slSecure;component/icons/cctv.png" MouseLeftButtonDown="Image_MouseLeftButtonDown"   />
+        <Image HorizontalAlignment="Left"  Stretch="None"  VerticalAlignment="Top"   Source="/slSecure;component/icons/cctv.png" MouseLeftButtonDown="Image_MouseLeftButtonDown" RenderTransformOrigin="0.5,0.5"   >
+            <Image.RenderTransform>
+                <CompositeTransform Rotation="{Binding Rotation}"  />
+            </Image.RenderTransform>
+        </Image>
         <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
-        <TextBlock HorizontalAlignment="Center" Height="35" Margin="-132,41,-132,-40" Foreground="Black" TextWrapping="NoWrap" TextAlignment="Center" Text="{Binding CCTVName}" VerticalAlignment="Top" Width="100"/>
+        <TextBlock Margin="0,0,0,-16" Foreground="Black" TextWrapping="NoWrap" FontSize="16" TextAlignment="Center" Text="{Binding CCTVName}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

@@ -20,7 +20,10 @@ namespace SecureServer.CCTV
          public int PlaneID {get;set;}
          public int NVRID { get; set; }
          public int NVRChNo { get; set; }
-         public CCTV_TYPE1(int CCTVID,string CCTVName,int PlaneID,string IP, int  Port, string UserName, string Password,int NVRID,int NVRChanno)
+         public double ScaleX { get; set; }
+         public double ScaleY { get; set; }
+         public double Rotation { get; set; }
+         public CCTV_TYPE1(int CCTVID,string CCTVName,int PlaneID,string IP, int  Port, string UserName, string Password,int NVRID,int NVRChanno,double ScaleX,double ScaleY,double Rotation)
          {
              this.CCTVID=CCTVID;
              this.UserName = UserName;
@@ -31,6 +34,9 @@ namespace SecureServer.CCTV
              this.PlaneID = PlaneID;
              this.NVRChNo = NVRChanno;
              this.NVRID = NVRID;
+             this.ScaleX = ScaleX;
+             this.ScaleY = ScaleY;
+             this.Rotation = Rotation;
          }
         public void Preset(int preset)
         {
@@ -68,7 +74,7 @@ namespace SecureServer.CCTV
         public CCTVBindingData ToBindingData()
         {
             CCTVBindingData ret = new CCTVBindingData() {  CCTVID=this.CCTVID, MjpegCgiString=GetMjpgCGIString( ),
-             IP=this.IP, Password=this.Password, Port=this.Port, UserName=this.UserName, CCTVName=CCTVName
+             IP=this.IP, Password=this.Password, Port=this.Port, UserName=this.UserName, CCTVName=CCTVName,ScaleX=ScaleY,ScaleY=ScaleY, Rotation=Rotation
             };
              
              return ret;

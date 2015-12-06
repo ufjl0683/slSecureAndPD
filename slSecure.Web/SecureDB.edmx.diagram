@@ -107,6 +107,7 @@
         <AssociationConnector Association="SecureDBModel.FK_tblSingalIO_tblControllerConfig" />
         <AssociationConnector Association="SecureDBModel.FK_tblSingalIOLog_tblSingalIO" />
         <EntityTypeShape EntityType="SecureDBModel.tblCCTVSplitScreen" Width="1.5" PointX="6.338328237802874" PointY="4.2034243811869176" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPowerMeter" Width="1.5" PointX="9.7206983518417438" PointY="28.488743944321175" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

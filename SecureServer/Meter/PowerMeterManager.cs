@@ -49,6 +49,8 @@ namespace SecureServer.Meter
                           tbl.AVGI = meter.AVGI;
                           tbl.KW = meter.KW;
                           tbl.PF = meter.PF;
+                          tbl.CumulateValue = meter.CumulateValue;
+                          tbl.InstantaneousValue = meter.InstantaneousValue;
                           tbl.UpdateDate = DateTime.Now;
                           db.SaveChanges();
                           db.Dispose();

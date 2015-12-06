@@ -2171,6 +2171,41 @@ namespace slSecure.Web
             }
         }
 
+        public IQueryable<tblPowerMeter> GetTblPowerMeter()
+        {
+            return this.ObjectContext.tblPowerMeter;
+        }
+
+        public void InsertTblPowerMeter(tblPowerMeter tblPowerMeter)
+        {
+            if ((tblPowerMeter.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblPowerMeter, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblPowerMeter.AddObject(tblPowerMeter);
+            }
+        }
+
+        public void UpdateTblPowerMeter(tblPowerMeter currenttblPowerMeter)
+        {
+            this.ObjectContext.tblPowerMeter.AttachAsModified(currenttblPowerMeter, this.ChangeSet.GetOriginal(currenttblPowerMeter));
+        }
+
+        public void DeleteTblPowerMeter(tblPowerMeter tblPowerMeter)
+        {
+            if ((tblPowerMeter.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblPowerMeter, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblPowerMeter.Attach(tblPowerMeter);
+                this.ObjectContext.tblPowerMeter.DeleteObject(tblPowerMeter);
+            }
+        }
+
 
     }
 

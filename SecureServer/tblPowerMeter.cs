@@ -30,5 +30,7 @@ namespace SecureServer
         public Nullable<double> PF { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Memo { get; set; }
+        public Nullable<double> CumulateValue { get; set; }
+        public Nullable<double> InstantaneousValue { get; set; }
     }
 }

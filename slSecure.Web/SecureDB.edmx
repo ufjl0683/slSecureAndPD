@@ -41,6 +41,7 @@
           <EntitySet Name="tblPDAlarmLog" EntityType="SecureDBModel.Store.tblPDAlarmLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDConfig" EntityType="SecureDBModel.Store.tblPDConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDLoopDeviceConfig" EntityType="SecureDBModel.Store.tblPDLoopDeviceConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPowerMeter" EntityType="SecureDBModel.Store.tblPowerMeter" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblReportList" EntityType="SecureDBModel.Store.tblReportList" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSchConfig" EntityType="SecureDBModel.Store.tblSchConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSchLog" EntityType="SecureDBModel.Store.tblSchLog" store:Type="Tables" Schema="dbo" />
@@ -1396,6 +1397,9 @@
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
           <Property Name="ItemID" Type="int" />
           <Property Name="PlaneID" Type="int" />
+          <Property Name="Mapping_DeviceName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Classify" Type="nvarchar" MaxLength="10" />
+          <Property Name="WorkInfo" Type="int" />
         </EntityType>
         <EntityType Name="tblPDLoopDeviceConfig">
           <Key>
@@ -1420,6 +1424,29 @@
           <Property Name="Enable" Type="char" MaxLength="1" />
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
           <Property Name="Diameter" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPowerMeter">
+          <Key>
+            <PropertyRef Name="ERID" />
+          </Key>
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="ERName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="RTU_IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="VA" Type="float" />
+          <Property Name="VB" Type="float" />
+          <Property Name="VC" Type="float" />
+          <Property Name="AVGV" Type="float" />
+          <Property Name="IA" Type="float" />
+          <Property Name="IB" Type="float" />
+          <Property Name="IC" Type="float" />
+          <Property Name="AVGI" Type="float" />
+          <Property Name="KW" Type="float" />
+          <Property Name="PF" Type="float" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="200" />
+          <Property Name="CumulateValue" Type="float" />
+          <Property Name="InstantaneousValue" Type="float" />
         </EntityType>
         <EntityType Name="tblReportList">
           <Key>
@@ -3202,6 +3229,7 @@
             <End Role="tblSingalIOLog" EntitySet="tblSingalIOLog" />
           </AssociationSet>
           <EntitySet Name="tblCCTVSplitScreen" EntityType="SecureDBModel.tblCCTVSplitScreen" />
+          <EntitySet Name="tblPowerMeter" EntityType="SecureDBModel.tblPowerMeter" />
           </EntityContainer>
         <EntityType Name="tblAIItem1HourLog">
           <Key>
@@ -4037,6 +4065,9 @@
           <Property Type="Int32" Name="PlaneID" />
           <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblPDConfig_tblEngineRoomConfig" FromRole="tblPDConfig" ToRole="tblEngineRoomConfig" />
           <NavigationProperty Name="tblPDAlarmLog" Relationship="SecureDBModel.FK_tblPDAlarmLog_tblPDConfig" FromRole="tblPDConfig" ToRole="tblPDAlarmLog" />
+          <Property Type="String" Name="Mapping_DeviceName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="WorkInfo" />
         </EntityType>
         <EntityType Name="tblPDLoopDeviceConfig">
           <Key>
@@ -5165,6 +5196,29 @@
           <Property Type="Int32" Name="NO" Nullable="false" />
           <Property Type="Int32" Name="CCTVID" />
         </EntityType>
+        <EntityType Name="tblPowerMeter">
+          <Key>
+            <PropertyRef Name="ERID" />
+          </Key>
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RTU_IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="Double" Name="VA" />
+          <Property Type="Double" Name="VB" />
+          <Property Type="Double" Name="VC" />
+          <Property Type="Double" Name="AVGV" />
+          <Property Type="Double" Name="IA" />
+          <Property Type="Double" Name="IB" />
+          <Property Type="Double" Name="IC" />
+          <Property Type="Double" Name="AVGI" />
+          <Property Type="Double" Name="KW" />
+          <Property Type="Double" Name="PF" />
+          <Property Type="DateTime" Name="UpdateDate" Precision="3" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="CumulateValue" />
+          <Property Type="Double" Name="InstantaneousValue" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5690,6 +5744,9 @@
           <EntitySetMapping Name="tblPDConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblPDConfig">
               <MappingFragment StoreEntitySet="tblPDConfig">
+                <ScalarProperty Name="WorkInfo" ColumnName="WorkInfo" />
+                <ScalarProperty Name="Classify" ColumnName="Classify" />
+                <ScalarProperty Name="Mapping_DeviceName" ColumnName="Mapping_DeviceName" />
                 <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
@@ -6667,6 +6724,30 @@
               <MappingFragment StoreEntitySet="tblCCTVSplitScreen">
                 <ScalarProperty Name="CCTVID" ColumnName="CCTVID" />
                 <ScalarProperty Name="NO" ColumnName="NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPowerMeter">
+            <EntityTypeMapping TypeName="SecureDBModel.tblPowerMeter">
+              <MappingFragment StoreEntitySet="tblPowerMeter">
+                <ScalarProperty Name="InstantaneousValue" ColumnName="InstantaneousValue" />
+                <ScalarProperty Name="CumulateValue" ColumnName="CumulateValue" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
+                <ScalarProperty Name="KW" ColumnName="KW" />
+                <ScalarProperty Name="AVGI" ColumnName="AVGI" />
+                <ScalarProperty Name="IC" ColumnName="IC" />
+                <ScalarProperty Name="IB" ColumnName="IB" />
+                <ScalarProperty Name="IA" ColumnName="IA" />
+                <ScalarProperty Name="AVGV" ColumnName="AVGV" />
+                <ScalarProperty Name="VC" ColumnName="VC" />
+                <ScalarProperty Name="VB" ColumnName="VB" />
+                <ScalarProperty Name="VA" ColumnName="VA" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="RTU_IP" ColumnName="RTU_IP" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -37,5 +37,7 @@ namespace SecureServer
         public string MCNSID { get; set; }
         public Nullable<System.DateTime> CardStartDate { get; set; }
         public Nullable<System.DateTime> CardEndDate { get; set; }
+    
+        public virtual tblSysRole tblSysRole { get; set; }
     }
 }

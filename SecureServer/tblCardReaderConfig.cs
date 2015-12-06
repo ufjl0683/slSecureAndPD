@@ -12,18 +12,15 @@ namespace SecureServer
     using System;
     using System.Collections.Generic;
     
-    public partial class tblDeviceStateLog
+    public partial class tblCardReaderConfig
     {
-        public long FlowID { get; set; }
-        public short TypeID { get; set; }
-        public short TypeCode { get; set; }
-        public System.DateTime TimeStamp { get; set; }
-        public Nullable<int> ReaderID { get; set; }
+        public int ReaderID { get; set; }
+        public string EntranceCode { get; set; }
         public string ControlID { get; set; }
-        public string SingalName { get; set; }
-        public string ABA { get; set; }
+        public Nullable<short> ReaderType { get; set; }
+        public Nullable<short> ReaderNO { get; set; }
+        public string RoomIO { get; set; }
     
         public virtual tblControllerConfig tblControllerConfig { get; set; }
-        public virtual tblTypeDetail tblTypeDetail { get; set; }
     }
 }

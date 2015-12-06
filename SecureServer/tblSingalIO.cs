@@ -12,18 +12,20 @@ namespace SecureServer
     using System;
     using System.Collections.Generic;
     
-    public partial class tblDeviceStateLog
+    public partial class tblSingalIO
     {
-        public long FlowID { get; set; }
-        public short TypeID { get; set; }
-        public short TypeCode { get; set; }
-        public System.DateTime TimeStamp { get; set; }
-        public Nullable<int> ReaderID { get; set; }
+        public tblSingalIO()
+        {
+            this.tblSingalIOLog = new HashSet<tblSingalIOLog>();
+        }
+    
         public string ControlID { get; set; }
         public string SingalName { get; set; }
-        public string ABA { get; set; }
+        public string SingalType { get; set; }
+        public Nullable<short> Place { get; set; }
+        public string Memo { get; set; }
     
         public virtual tblControllerConfig tblControllerConfig { get; set; }
-        public virtual tblTypeDetail tblTypeDetail { get; set; }
+        public virtual ICollection<tblSingalIOLog> tblSingalIOLog { get; set; }
     }
 }

@@ -30,6 +30,9 @@
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
       <xs:element minOccurs="0" name="Port" type="xs:int" />
+      <xs:element minOccurs="0" name="Rotation" type="xs:double" />
+      <xs:element minOccurs="0" name="ScaleX" type="xs:double" />
+      <xs:element minOccurs="0" name="ScaleY" type="xs:double" />
       <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

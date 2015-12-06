@@ -6,7 +6,7 @@
                xmlns:menu="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
     xmlns:conveter="clr-namespace:slSecure.Converters"
     mc:Ignorable="d"
-    d:DesignHeight="71" d:DesignWidth="236">
+    d:DesignHeight="90" d:DesignWidth="259">
     <UserControl.Resources>
         <conveter:ColorStringValueConverter x:Key="ColorStringValueConverter" />
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">

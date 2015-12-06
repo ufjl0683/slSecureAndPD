@@ -147,6 +147,12 @@ namespace slWCFModule.RemoteService {
         
         private int PortField;
         
+        private double RotationField;
+        
+        private double ScaleXField;
+        
+        private double ScaleYField;
+        
         private string UserNameField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
@@ -236,6 +242,45 @@ namespace slWCFModule.RemoteService {
                 if ((this.PortField.Equals(value) != true)) {
                     this.PortField = value;
                     this.RaisePropertyChanged("Port");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Rotation {
+            get {
+                return this.RotationField;
+            }
+            set {
+                if ((this.RotationField.Equals(value) != true)) {
+                    this.RotationField = value;
+                    this.RaisePropertyChanged("Rotation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ScaleX {
+            get {
+                return this.ScaleXField;
+            }
+            set {
+                if ((this.ScaleXField.Equals(value) != true)) {
+                    this.ScaleXField = value;
+                    this.RaisePropertyChanged("ScaleX");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ScaleY {
+            get {
+                return this.ScaleYField;
+            }
+            set {
+                if ((this.ScaleYField.Equals(value) != true)) {
+                    this.ScaleYField = value;
+                    this.RaisePropertyChanged("ScaleY");
                 }
             }
         }

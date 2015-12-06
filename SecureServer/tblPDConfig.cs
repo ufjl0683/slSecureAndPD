@@ -51,5 +51,6 @@ namespace SecureServer
         public Nullable<int> WorkInfo { get; set; }
     
         public virtual ICollection<tblPDAlarmLog> tblPDAlarmLog { get; set; }
+        public virtual tblEngineRoomConfig tblEngineRoomConfig { get; set; }
     }
 }

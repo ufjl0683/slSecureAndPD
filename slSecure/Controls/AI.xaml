@@ -9,53 +9,53 @@
      xmlns:menu="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
     x:Class="slSecure.Controls.AI"
     mc:Ignorable="d"
-    d:DesignHeight="30" d:DesignWidth="240" Height="30" Width="240">
+    d:DesignHeight="40" d:DesignWidth="240" Height="Auto" Width="Auto">
     <UserControl.Resources>
         <conveter:ColorStringValueConverter x:Key="ColorStringValueConverter" />
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
-        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot">
-        		<DiscreteObjectKeyFrame KeyTime="0">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Visible</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Collapsed</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:1">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Collapsed</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        	</ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
-    	<Storyboard x:Name="stbDemo" RepeatBehavior="Forever">
-    		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
-    			<EasingColorKeyFrame KeyTime="0" Value="Black"/>
-    			<DiscreteColorKeyFrame KeyTime="0:0:1" Value="#FFE79813"/>
-    			<DiscreteColorKeyFrame KeyTime="0:0:2" Value="#FFFD410A"/>
-    			<DiscreteColorKeyFrame KeyTime="0:0:3" Value="#FFFD410A"/>
-    		</ColorAnimationUsingKeyFrames>
-    	</Storyboard>
+        <Storyboard x:Name="stbDemo" RepeatBehavior="Forever">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                <EasingColorKeyFrame KeyTime="0" Value="Black"/>
+                <DiscreteColorKeyFrame KeyTime="0:0:1" Value="#FFE79813"/>
+                <DiscreteColorKeyFrame KeyTime="0:0:2" Value="#FFFD410A"/>
+                <DiscreteColorKeyFrame KeyTime="0:0:3" Value="#FFFD410A"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
-	<Grid x:Name="LayoutRoot" HorizontalAlignment="Right" Width="240" RenderTransformOrigin="0.5,0.5">
-        
+    <Grid x:Name="LayoutRoot" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top">
+
         <Grid.RenderTransform>
             <CompositeTransform Rotation="{Binding Rotation}" ScaleX="{Binding ScaleX}" ScaleY="{Binding ScaleY}" />
         </Grid.RenderTransform>
         <i:Interaction.Triggers>
-			<i:EventTrigger EventName="Loaded">
-				<ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}" ControlStoryboardOption="Stop"/>
-			</i:EventTrigger>
-		</i:Interaction.Triggers>
-        <TextBlock x:Name="txtContent" TextWrapping="Wrap" FontSize="16" Text="{Binding Content}" Foreground="{Binding ColorString,Converter={StaticResource ResourceKey=ColorStringValueConverter} }"   >
+            <i:EventTrigger EventName="Loaded">
+                <ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}" ControlStoryboardOption="Stop"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <TextBlock x:Name="txtContent" TextWrapping="NoWrap" FontSize="16"  Text="{Binding Content}" Foreground="{Binding ColorString,Converter={StaticResource ResourceKey=ColorStringValueConverter} }" HorizontalAlignment="Left"   >
             
 			<!--<Run Text="{Binding Label}" />
 			<Run Text=":"/>
 			<Run Text="{Binding Value,StringFormat=\{0:0.00\}}"   /> <Run Text="{Binding Unit}" />-->
-		</TextBlock>
+        </TextBlock>
         <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
 
         <menu:ContextMenuService.ContextMenu>

@@ -57,7 +57,7 @@ namespace slSecure
           //   client.checkAuthenticationAsync();
             this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
 #else
-
+            // this.Content=new slSecureLib.Forms.R23.slPowerMeterAndWaterMeter();
             this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
 #endif
 

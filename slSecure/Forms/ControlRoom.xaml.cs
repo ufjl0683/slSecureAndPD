@@ -297,18 +297,20 @@ namespace slSecure.Forms
 
 
 
-
+                
                 item.SetValue(Grid.MarginProperty, new Thickness(tbl.X, tbl.Y, 0, 0));
-                CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation, ScaleX = tbl.ScaleX, ScaleY = tbl.ScaleY };
-                item.RenderTransform = transform;
+               // CompositeTransform transform = new CompositeTransform() { Rotation = tbl.Rotation, ScaleX = tbl.ScaleX, ScaleY = tbl.ScaleY };
+               // item.RenderTransform = transform;
                 CCTVBindingData bindingdata=null;
+                
                 if (CCTVBindingDatas == null)
                     return;
+             
                   bindingdata=CCTVBindingDatas.FirstOrDefault(n => n.CCTVID==tbl.CCTVID );
                 item.UserName = bindingdata.UserName;
                 item.Password = bindingdata.Password;
                 item.Url = bindingdata.MjpegCgiString;
-           
+                 
                 item.DataContext =   bindingdata;
                 item.MouseLeftButtonDown += CCTVLock_MouseLeftButtonDown;
 

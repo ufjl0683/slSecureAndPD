@@ -12,18 +12,19 @@ namespace SecureServer
     using System;
     using System.Collections.Generic;
     
-    public partial class tblDeviceStateLog
+    public partial class tblSysOperation
     {
-        public long FlowID { get; set; }
-        public short TypeID { get; set; }
-        public short TypeCode { get; set; }
-        public System.DateTime TimeStamp { get; set; }
-        public Nullable<int> ReaderID { get; set; }
+        public long OPID { get; set; }
+        public System.DateTime OPTime { get; set; }
+        public string UserID { get; set; }
+        public string OPItem { get; set; }
+        public string OPDesc { get; set; }
+        public bool OPResult { get; set; }
         public string ControlID { get; set; }
-        public string SingalName { get; set; }
-        public string ABA { get; set; }
+        public Nullable<short> TypeID { get; set; }
+        public Nullable<short> TypeCode { get; set; }
+        public string Memo { get; set; }
     
-        public virtual tblControllerConfig tblControllerConfig { get; set; }
-        public virtual tblTypeDetail tblTypeDetail { get; set; }
+        public virtual tblUser tblUser { get; set; }
     }
 }

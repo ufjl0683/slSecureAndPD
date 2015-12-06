@@ -38,5 +38,6 @@ namespace SecureServer
         public Nullable<System.DateTime> NextStartTime { get; set; }
     
         public virtual ICollection<tblSchLog> tblSchLog { get; set; }
+        public virtual tblUser tblUser { get; set; }
     }
 }

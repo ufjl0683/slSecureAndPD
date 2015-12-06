@@ -18,5 +18,7 @@ namespace SecureServer
         public int ERID { get; set; }
         public string PlaneName { get; set; }
         public string PictureDesc { get; set; }
+    
+        public virtual tblEngineRoomConfig tblEngineRoomConfig { get; set; }
     }
 }

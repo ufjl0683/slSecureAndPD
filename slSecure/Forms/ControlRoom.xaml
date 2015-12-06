@@ -14,7 +14,7 @@
            Title="ControlRoom Page" Unloaded="Page_Unloaded">
     <sdk:Page.Resources>
         <DataTemplate x:Key="DataTemplate1">
-            <Grid   Width="150" Height="45"           d:DesignWidth="365" d:DesignHeight="98">
+            <Grid   Width="150" Height="50"           d:DesignWidth="365" d:DesignHeight="98">
                 <Controls:IOMenu  MouseLeftButtonDown="IOMenu_MouseLeftButtonDown"  />
             </Grid>
         </DataTemplate>

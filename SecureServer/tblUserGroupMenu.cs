@@ -12,18 +12,13 @@ namespace SecureServer
     using System;
     using System.Collections.Generic;
     
-    public partial class tblNVRConfig
+    public partial class tblUserGroupMenu
     {
-        public int NVRID { get; set; }
-        public int ERID { get; set; }
-        public string NVRName { get; set; }
-        public string IP { get; set; }
-        public int Port { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public Nullable<int> PlaneID { get; set; }
-        public Nullable<int> Type { get; set; }
+        public int GroupID { get; set; }
+        public int MenuID { get; set; }
+        public Nullable<bool> IsAllow { get; set; }
     
-        public virtual tblEngineRoomConfig tblEngineRoomConfig { get; set; }
+        public virtual tblMenu tblMenu { get; set; }
+        public virtual tblUserGroup tblUserGroup { get; set; }
     }
 }

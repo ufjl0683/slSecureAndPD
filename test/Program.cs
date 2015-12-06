@@ -44,13 +44,37 @@ namespace test
             //SSOService.SsoWebServiceClient client = new SSOService.SsoWebServiceClient();
             //var res=client.checkAuthentication();
             //Console.WriteLine(res.status);
+            //EasyModbus.ModbusClient client = new EasyModbus.ModbusClient();
+          
+            //client.Connect("10.21.223.20",(ushort)502);
+           
+            //bool[] data=null;
+           //client.WriteSingleCoil(16,false);
 
-            SecureServer.Meter.R23PowerMeter meter = new SecureServer.Meter.R23PowerMeter("10.21.233.200", 502);
+            ModbusTCP.Master client = new Master();
+            client.OnException += client_OnException;
+            client.connect("10.21.223.20", (ushort)502);
             while (true)
             {
-                Console.WriteLine(meter.VA);
+                byte[] data=null;
+               
+
+
+
+
+                client.ReadCoils(1, 0, 0, 18, ref data);
+                if(data!=null)
+                Console.WriteLine(data[0]);
+                
+           
                 System.Threading.Thread.Sleep(1000);
             }
+            //SecureServer.Meter.R23PowerMeter meter = new SecureServer.Meter.R23PowerMeter(1,"10.21.133.200", 502);
+            //while (true)
+            //{
+            //    Console.WriteLine(meter.VA);
+            //    System.Threading.Thread.Sleep(1000);
+            //}
 /*========================================================= 用電
             ModbusTCP.Master client = new Master();
             client.connect("10.21.233.200", 502);
@@ -255,6 +279,11 @@ namespace test
         //    ModbusTCP.RTU rtu = new RTU("1", 1, "10.2.84.220", 502, 2001, 32,1);
             
             Console.ReadKey();
+        }
+
+        static void client_OnException(ushort id, byte unit, byte function, byte exception)
+        {
+            throw new NotImplementedException();
         }
 
         static void R13ddCard(int erid)

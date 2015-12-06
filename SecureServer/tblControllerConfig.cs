@@ -18,6 +18,9 @@ namespace SecureServer
         {
             this.tblItemConfig = new HashSet<tblItemConfig>();
             this.tblDeviceStateLog = new HashSet<tblDeviceStateLog>();
+            this.tblCardReaderConfig = new HashSet<tblCardReaderConfig>();
+            this.tblSingalIO = new HashSet<tblSingalIO>();
+            this.tblSysRoleAuthority = new HashSet<tblSysRoleAuthority>();
         }
     
         public string ControlID { get; set; }
@@ -44,5 +47,10 @@ namespace SecureServer
     
         public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
         public virtual ICollection<tblDeviceStateLog> tblDeviceStateLog { get; set; }
+        public virtual ICollection<tblCardReaderConfig> tblCardReaderConfig { get; set; }
+        public virtual tblEngineRoomConfig tblEngineRoomConfig { get; set; }
+        public virtual tblControlSetting tblControlSetting { get; set; }
+        public virtual ICollection<tblSingalIO> tblSingalIO { get; set; }
+        public virtual ICollection<tblSysRoleAuthority> tblSysRoleAuthority { get; set; }
     }
 }

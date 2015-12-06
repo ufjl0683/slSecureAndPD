@@ -18,15 +18,18 @@ namespace SecureServer.Meter
         IC = 2361 - 1,
         AVGI = 2362 - 1,
         KW = 2367 - 1,
-        PF = 2379 - 1
+        PF = 2379 - 1,
+        CumulateValue = 2301 - 1,
+        InstantaneousValue = 2303 - 1
+
     }
     public class R23PowerMeter
     {
         string ip;
         int port;
-        byte[] data;
+        byte[] data = new byte[29 * 2];
         System.Threading.Timer tmr;
-        public R23PowerMeter(int erid,string ip, int port)
+        public R23PowerMeter(int erid, string ip, int port)
         {
             this.ip = ip;
             this.port = port;
@@ -61,19 +64,46 @@ namespace SecureServer.Meter
         void GetAllData()
         {
             ModbusTCP.Master master = new ModbusTCP.Master();
-            data = new byte[29 * 2];
-
+            //   data = new byte[29 * 2];
+            byte[] tdata = null;
             try
             {
                 master.connect(ip, (ushort)port);
-                master.ReadHoldingRegister(1, 0, (ushort)(Address.VA), 29, ref data);
-                //this.data = data;
+                master.ReadHoldingRegister(1, 0, (ushort)(Address.VA), 29, ref tdata);
+                if (tdata != null)
+                    data = tdata;
+                byte[] temp = new byte[4];
+                byte[] dest = new byte[4];
+                master.ReadHoldingRegister(1, 0, (ushort)(Address.CumulateValue), 2, ref temp);
+                if (temp != null)
+                {
+                    dest[0] = temp[1];
+                    dest[1] = temp[0];
+                    dest[2] = temp[3];
+                    dest[3] = temp[2];
+                    CumulateValue = System.BitConverter.ToSingle(dest, 0);
+                }
 
+                //this.data = data;
+                master.ReadHoldingRegister(1, 0, (ushort)(Address.InstantaneousValue), 2, ref temp);
+                if (temp != null)
+                {
+                    dest[0] = temp[1];
+                    dest[1] = temp[0];
+                    dest[2] = temp[3];
+                    dest[3] = temp[2];
+                    InstantaneousValue = System.BitConverter.ToSingle(dest, 0);
+                }
 
             }
             catch
             {
-                data = null;
+                //  data = null;
+                Console.WriteLine(master.connected);
+
+            }
+            finally
+            {
                 master.Dispose();
             };
         }
@@ -85,6 +115,20 @@ namespace SecureServer.Meter
                 return !(data == null);
             }
         }
+
+        public double CumulateValue
+        {
+            get;
+            set;
+        }
+
+        public double InstantaneousValue
+        {
+            get;
+            set;
+        }
+
+
         public double VA
         {
             get
@@ -199,7 +243,7 @@ namespace SecureServer.Meter
 
         int value(int address)
         {
-            return data[(address - (int)Address.VA)*2] * 256 + data[(address - (int)Address.VA)*2 + 1];
+            return data[(address - (int)Address.VA) * 2] * 256 + data[(address - (int)Address.VA) * 2 + 1];
         }
 
     }

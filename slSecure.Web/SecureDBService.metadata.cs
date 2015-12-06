@@ -3979,5 +3979,64 @@ namespace slSecure.Web
     }
 
 
+    [MetadataTypeAttribute(typeof(tblPowerMeter.tblPowerMeterMetadata))]
+    public partial class tblPowerMeter
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblPowerMeter 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblPowerMeterMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblPowerMeterMetadata()
+            {
+            }
+
+            public Nullable<double> AVGI { get; set; }
+
+            public Nullable<double> AVGV { get; set; }
+
+            public Nullable<double> CumulateValue { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public Nullable<double> IA { get; set; }
+
+            public Nullable<double> IB { get; set; }
+
+            public Nullable<double> IC { get; set; }
+
+            public Nullable<double> InstantaneousValue { get; set; }
+
+            public Nullable<double> KW { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<double> PF { get; set; }
+
+            public int Port { get; set; }
+
+            public string RTU_IP { get; set; }
+
+            public Nullable<DateTime> UpdateDate { get; set; }
+
+            public Nullable<double> VA { get; set; }
+
+            public Nullable<double> VB { get; set; }
+
+            public Nullable<double> VC { get; set; }
+        }
+    }
+
     }
 

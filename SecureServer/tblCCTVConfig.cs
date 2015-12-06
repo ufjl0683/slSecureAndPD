@@ -30,5 +30,7 @@ namespace SecureServer
         public Nullable<int> NVRID { get; set; }
         public Nullable<int> NVRChNO { get; set; }
         public Nullable<int> Type { get; set; }
+    
+        public virtual tblEngineRoomConfig tblEngineRoomConfig { get; set; }
     }
 }

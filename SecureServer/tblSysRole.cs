@@ -12,17 +12,20 @@ namespace SecureServer
     using System;
     using System.Collections.Generic;
     
-    public partial class tblAlarmLog
+    public partial class tblSysRole
     {
-        public long EventID { get; set; }
-        public short TypeID { get; set; }
-        public short TypeCode { get; set; }
-        public System.DateTime Timestamp { get; set; }
-        public string ControlID { get; set; }
-        public Nullable<int> ItemID { get; set; }
-        public Nullable<double> Value { get; set; }
+        public tblSysRole()
+        {
+            this.tblMagneticCard = new HashSet<tblMagneticCard>();
+            this.tblSysRoleAuthority = new HashSet<tblSysRoleAuthority>();
+        }
+    
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Memo { get; set; }
     
-        public virtual tblTypeDetail tblTypeDetail { get; set; }
+        public virtual ICollection<tblMagneticCard> tblMagneticCard { get; set; }
+        public virtual ICollection<tblSysRoleAuthority> tblSysRoleAuthority { get; set; }
     }
 }
