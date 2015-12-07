@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="34" d:DesignWidth="35" Width="36" Height="36" DataContextChanged="UserControl_DataContextChanged" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" >
+    d:DesignHeight="34" d:DesignWidth="35" Width="Auto" Height="Auto" DataContextChanged="UserControl_DataContextChanged" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" >
     <UserControl.Resources>
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LayoutRoot">

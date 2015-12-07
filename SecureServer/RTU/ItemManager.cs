@@ -31,7 +31,7 @@ namespace SecureServer.RTU
 
 
             SecureDBEntities1 db = new SecureDBEntities1();
-            var q = from n in db.tblItemConfig select n;
+            var q = from n in db.tblItemConfig  select n;
             foreach (tblItemConfig tblitem in q)
             {
                 Item item = new Item(tblitem.ItemID, SecureService.rtu_mgr[tblitem.ControlID], tblitem.Type, tblitem);

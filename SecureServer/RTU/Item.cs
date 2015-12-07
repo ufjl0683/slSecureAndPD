@@ -87,8 +87,9 @@ namespace SecureServer
            this.ItemID = ItemID;
            this._Value = ItemConfig.Value??0;
            this._Degree = ItemConfig.Degree;
+           new System.Threading.Thread(ReadindAction).Start();
            
-           Task task = Task.Run(new Action(ReadindAction));
+         //  Task task = Task.Run(new Action(ReadindAction));
            
        }
 
@@ -182,7 +183,7 @@ namespace SecureServer
                                if (value <= ItemConfig.WarningUpper && value >= ItemConfig.WarningLower)
                                {
                                    if (this.Degree != 0)
-                                       IsDegreeChange = true;
+                                       IsDegreeChange = true;                        
                                    Degree = 0;
                                }
                                else if (value <= ItemConfig.AlarmUpper && value >= ItemConfig.AlarmLower)

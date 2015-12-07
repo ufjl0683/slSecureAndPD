@@ -42,6 +42,7 @@ namespace slSecure
             // 如果應用程式是在偵錯工具外執行，則使用瀏覽器的例外狀況機制
             // 報告例外狀況。在 IE 中，這會顯示為狀態列中的黃色提醒圖示，
             // 而 Firefox 則會顯示指令碼錯誤。
+            e.Handled = true;
             if (!System.Diagnostics.Debugger.IsAttached)
             {
 

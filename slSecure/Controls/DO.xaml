@@ -7,7 +7,7 @@
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:conveter="clr-namespace:slSecure.Converters"
     mc:Ignorable="d"
-    d:DesignHeight="40" d:DesignWidth="52" Width="52" Height="40"  >
+    d:DesignHeight="32" d:DesignWidth="43.5" Width="Auto" Height="Auto"  >
     <UserControl.Resources>
         <conveter:ColorStringValueConverter x:Key="ColorStringValueConverter" />
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
@@ -47,7 +47,7 @@
                 <ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}" ControlStoryboardOption="Stop"/>
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <Ellipse Margin="5,0,6,-1">
+        <Ellipse Margin="5,0,6,-1" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Ellipse.Fill>
                 <RadialGradientBrush>
                     <GradientStop Color="#FF959595" Offset="1"/>
@@ -56,8 +56,8 @@
                 </RadialGradientBrush>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBlock x:Name="txtContent" Height="22" Margin="0,40,0,-22" Text="{Binding Content}" FontSize="16" TextWrapping="NoWrap" Width="Auto"  VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <Ellipse Margin="10,5,11,4" Fill="{Binding ColorString}"/>
+        <TextBlock x:Name="txtContent" Margin="0,29,0,-13" Text="{Binding Content}" Foreground="Black" FontSize="16" TextWrapping="NoWrap" Width="Auto"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <Ellipse Margin="10,5,11,4" Fill="{Binding ColorString}" Width="21" Height="21" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
     </Grid>
 </UserControl>

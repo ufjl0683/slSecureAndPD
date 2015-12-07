@@ -10,7 +10,7 @@ namespace SecureServer.RTU
 {
 
 //public delegate  void RegisterValueChangedHandler(int address, int newValue);
-    public delegate void OnCommStateChangedHandler(IRTU sender,int comm_state);
+ //   public delegate void OnCommStateChangedHandler(IRTU sender,int comm_state);
     public  class R13IEDRTU : ModbusTCP.IRTU 
     {
       //  public event RegisterValueChangedHandler OnRegisterValueChangeEvent;
@@ -92,7 +92,7 @@ namespace SecureServer.RTU
                     {
                         lock (lockobj)
                         {
-                            RTUDevice.ReadInputRegister((ushort)this.DevID, (byte)255, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
+                            RTUDevice.ReadInputRegister((ushort)this.DevID, (byte)1, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
                             if (tempdata != null && tempdata.Length != 0)
                             {
                                 for (int i = 0; i < tempdata.Length; i++)

@@ -51,22 +51,25 @@ namespace test
             //bool[] data=null;
            //client.WriteSingleCoil(16,false);
 
+
+
+
             ModbusTCP.Master client = new Master();
             client.OnException += client_OnException;
-            client.connect("10.21.223.20", (ushort)502);
+            client.connect("127.0.0.1", (ushort)502);
             while (true)
             {
-                byte[] data=null;
-               
+                byte[] data = null;
 
 
 
 
-                client.ReadCoils(1, 0, 0, 18, ref data);
-                if(data!=null)
-                Console.WriteLine(data[0]);
-                
-           
+
+                client.ReadInputRegister(1,0, 0, 100, ref data);
+                if (data != null)
+                    Console.WriteLine(data[0]);
+
+
                 System.Threading.Thread.Sleep(1000);
             }
             //SecureServer.Meter.R23PowerMeter meter = new SecureServer.Meter.R23PowerMeter(1,"10.21.133.200", 502);

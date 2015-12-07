@@ -44,12 +44,43 @@ namespace SecureServer
                                     Console.WriteLine(success);
         }
 
+        public static void IEDTest()
+        {
+            //ModbusTCP.Master client = new Master();
+
+            //client.OnException += client_OnException;
+            //client.connect("127.0.0.1", 502);
+            //byte[] data=new byte[100];
+            //while (true)
+            //{
+
+                
+            //    client.ReadHoldingRegister(1, 255, 0, 1, ref data);
+            //    Console.WriteLine(data[0]);
+            //}
+
+            SecureServer.RTU.R13IEDRTU rtu = new RTU.R13IEDRTU("1", 1, "127.0.0.1", 502, 1, 100, 1);
+
+
+            while (true)
+            {
+                Console.WriteLine(rtu.GetRegisterReading(1));
+                Console.WriteLine(rtu.GetRegisterReading(2));
+                System.Threading.Thread.Sleep(1000);
+            }
+        }
+
+        static void client_OnException(ushort id, byte unit, byte function, byte exception)
+        {
+            //throw new NotImplementedException();
+        }
+
         public static SecureServer.SecureService  MyServiceObject;
         static void Main(string[] args)
         {
 
-            
-          
+
+         //   IEDTest();
 
             
             //Task task = Task.Factory.StartNew(() =>
