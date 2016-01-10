@@ -2206,6 +2206,41 @@ namespace slSecure.Web
             }
         }
 
+        public IQueryable<tblRemotePowerControl> GetTblRemotePowerControl()
+        {
+            return this.ObjectContext.tblRemotePowerControl;
+        }
+
+        public void InsertTblRemotePowerControl(tblRemotePowerControl tblRemotePowerControl)
+        {
+            if ((tblRemotePowerControl.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblRemotePowerControl, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblRemotePowerControl.AddObject(tblRemotePowerControl);
+            }
+        }
+
+        public void UpdateTblRemotePowerControl(tblRemotePowerControl currenttblRemotePowerControl)
+        {
+            this.ObjectContext.tblRemotePowerControl.AttachAsModified(currenttblRemotePowerControl, this.ChangeSet.GetOriginal(currenttblRemotePowerControl));
+        }
+
+        public void DeleteTblRemotePowerControl(tblRemotePowerControl tblRemotePowerControl)
+        {
+            if ((tblRemotePowerControl.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblRemotePowerControl, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblRemotePowerControl.Attach(tblRemotePowerControl);
+                this.ObjectContext.tblRemotePowerControl.DeleteObject(tblRemotePowerControl);
+            }
+        }
+
 
     }
 

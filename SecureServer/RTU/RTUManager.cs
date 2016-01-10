@@ -25,7 +25,7 @@ namespace SecureServer.RTU
         public RTUManager()
         {
             SecureDBEntities1 db = new SecureDBEntities1();
-            var q = from n in db.tblControllerConfig where n.IsEnable == true &&( n.ControlType == 3   || n.ControlType==5 || n.ControlType==6  || n.ControlType==7)   select n;    //RTU control type=3
+            var q = from n in db.tblControllerConfig where n.IsEnable == true &&( n.ControlType == 3   || n.ControlType==5 || n.ControlType==6  || n.ControlType==7 || n.ControlType==8)   select n;    //RTU control type=3  8: for TowerRTU
             //var q = from n in db.tblControllerConfig where n.ControlID == "AC-RTU-1" && n.ControlType == 3 && n.IsEnable==true select n;
             foreach (tblControllerConfig tbl in q)
             {
@@ -47,7 +47,15 @@ namespace SecureServer.RTU
                 }
                 else if (tbl.ControlType == 7)  //IED
                 {
-                    rtu = new SecureServer.RTU.R13IEDRTU(tbl.ControlID, 1, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0);
+                    int devid = 1;
+                    if (tbl.Port == 503)
+                        devid = 2;
+                    rtu = new SecureServer.RTU.R13IEDRTU(tbl.ControlID, devid, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0);
+                    rtu.OnCommStateChanged += rtu_OnCommStateChanged;
+                }
+                else if (tbl.ControlType == 8) //TowerRTU
+                {
+                    rtu = new SecureServer.RTU.R13TowerRTU(tbl.ControlID, 1, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0);
                     rtu.OnCommStateChanged += rtu_OnCommStateChanged;
                 }
 

@@ -66,16 +66,25 @@ namespace MapControl
             zoomentry = false;
             this.map1.ZoomToResolution(resolution);
 
-            map1.ExtentChanged += (s, a) =>
+            EventHandler<ExtentEventArgs> handler = null;
+            handler = (s, a) =>
             {
-                if (!zoomentry)
-                    this.map1.PanTo(point);
+                try
+                {
+                    if (!zoomentry)
+                    {
+                        zoomentry = true;
+                        this.map1.PanTo(point);
+                    }
 
-                zoomentry = true;
 
-                //   SwitchLayerVisibility();
+                }
+                finally
+                {
+                    map1.ExtentChanged -= handler;
+                }
             };
-
+            map1.ExtentChanged += handler;
 
 
         }

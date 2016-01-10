@@ -45,33 +45,77 @@ namespace test
             //var res=client.checkAuthentication();
             //Console.WriteLine(res.status);
             //EasyModbus.ModbusClient client = new EasyModbus.ModbusClient();
-          
-            //client.Connect("10.21.223.20",(ushort)502);
-           
+
+            //client.Connect("10.21.223.20", (ushort)502);
+//
+     //       SecureServer.RTU.R13IEDRTU rtu = new SecureServer.RTU.R13IEDRTU("AA", 2, "10.2.10.159", 503, 1, 20, 0);
+           ModbusTCP.Master rtu = new ModbusTCP.Master();//.RTU("AA", 2, "10.2.10.159", 503, 1, 20, 0);
+           Console.WriteLine("rtu conecting...");
+           rtu.connect("10.2.10.159", 503);
+           Console.WriteLine("rtu ...");
+            while (true)
+            {
+                if (!rtu.connected)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    continue;
+                }
+
+                byte[] data=new byte[40];
+
+                rtu.ReadInputRegister(0, 2, 0, 20,ref data);
+                if (data != null)
+                    Console.WriteLine(data[1]);
+                System.Threading.Thread.Sleep(1000);
+            }
+            Console.ReadKey();
+          //  rtu.WriteRegister(1, 1);
+
+          // PowerControl ctl = new PowerControl("10.21.223.20", 502);
+            //bool onoff = false;
+            //while (true)
+            //{
+            //    Console.ReadKey();
+            //    ctl.SwitchPower(onoff);
+            //    onoff = !onoff;
+            //    Console.WriteLine(ctl.status);   
+            //}
+
             //bool[] data=null;
            //client.WriteSingleCoil(16,false);
 
+            //byte[] d = null;
+            //ModbusTCP.Master client1 = new Master();
+            //client1.OnException += client_OnException;
+            //client1.connect("10.21.223.20", (ushort)502);
+            //client1.WriteSingleCoils(1,1,16,false,ref d);
+
+            //ModbusTCP.Master client = new Master();
+            //client.OnException += client_OnException;
+            //client.connect("10.21.223.20", (ushort)502);
+         
+            //while (true)
+            //{
+            //    byte[] data = null;
+               
 
 
+            
+            //    client.ReadCoils(1,1, 0,10, ref data);
+            //    if (data != null)
+            //        Console.WriteLine(data[0]);
+            //    else
+            //        Console.WriteLine("null");
 
-            ModbusTCP.Master client = new Master();
-            client.OnException += client_OnException;
-            client.connect("127.0.0.1", (ushort)502);
-            while (true)
-            {
-                byte[] data = null;
+            // //   client.WriteSingleCoils(1, 1, 16, true, ref data);
+            //    //client.disconnect();
+            //    //client.Dispose();
+            //    System.Threading.Thread.Sleep(5000);
+            //}
+
+        //    R13EventExchange();
 
 
-
-
-
-                client.ReadInputRegister(1,0, 0, 100, ref data);
-                if (data != null)
-                    Console.WriteLine(data[0]);
-
-
-                System.Threading.Thread.Sleep(1000);
-            }
             //SecureServer.Meter.R23PowerMeter meter = new SecureServer.Meter.R23PowerMeter(1,"10.21.133.200", 502);
             //while (true)
             //{
@@ -286,7 +330,7 @@ namespace test
 
         static void client_OnException(ushort id, byte unit, byte function, byte exception)
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         static void R13ddCard(int erid)
@@ -328,7 +372,7 @@ namespace test
 
         static void R13EventExchange()
         {
-            EventExchangeData data=new EventExchangeData(){ event_id="100", room_id="1", contents="test", start_time=DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")};
+            EventExchangeData data=new EventExchangeData(){ event_id="100", room_id="1", event_status=1, contents="test", start_time=DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")};
              DataContractJsonSerializer sr=new DataContractJsonSerializer(typeof(EventExchangeData));
             MemoryStream ms=new MemoryStream();
             sr.WriteObject(ms, data);
@@ -601,7 +645,7 @@ namespace test
         [DataMember]
         public string event_id { get; set; }
         [DataMember]
-        public string event_status { get; set; }
+        public int event_status { get; set; }
         [DataMember]
         public string contents { get; set; }
         [DataMember]

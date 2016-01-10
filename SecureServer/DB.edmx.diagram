@@ -84,6 +84,7 @@
         <AssociationConnector Association="SecureDBModel.FK_tblSysRoleAuthority_tblSysRole" />
         <AssociationConnector Association="SecureDBModel.FK_tblUser_tblUserGroup" />
         <AssociationConnector Association="SecureDBModel.FK_tblUserGroupMenu_tblUserGroup" />
+        <EntityTypeShape EntityType="SecureDBModel.tblRemotePowerControl" Width="1.5" PointX="4.4936599417094421" PointY="5.9909273860933849" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

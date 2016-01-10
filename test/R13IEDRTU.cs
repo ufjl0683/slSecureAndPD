@@ -164,7 +164,7 @@ namespace SecureServer.RTU
                             RTUDevice.connect(IP, (ushort)Port);
                             RTUDevice.OnResponseData += RTUDevice_OnResponseData;
                             RTUDevice.OnException += RTUDevice_OnException;
-                          
+                            Console.WriteLine(this.ControlID + "  Connected!");
                         }
                         catch (Exception ex)
                         {
@@ -189,6 +189,8 @@ namespace SecureServer.RTU
 
         void RTUDevice_OnException(ushort id, byte unit, byte function, byte exception)
         {
+            Console.WriteLine("Exception:{0},{1},{2}", id, unit, exception);
+
             if (exception == 254)
             {
                 RTUDevice.disconnect();

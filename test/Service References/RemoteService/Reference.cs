@@ -175,6 +175,15 @@ namespace test.RemoteService {
         private int PortField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double RotationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ScaleXField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ScaleYField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UserNameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -274,6 +283,45 @@ namespace test.RemoteService {
                 if ((this.PortField.Equals(value) != true)) {
                     this.PortField = value;
                     this.RaisePropertyChanged("Port");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Rotation {
+            get {
+                return this.RotationField;
+            }
+            set {
+                if ((this.RotationField.Equals(value) != true)) {
+                    this.RotationField = value;
+                    this.RaisePropertyChanged("Rotation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ScaleX {
+            get {
+                return this.ScaleXField;
+            }
+            set {
+                if ((this.ScaleXField.Equals(value) != true)) {
+                    this.ScaleXField = value;
+                    this.RaisePropertyChanged("ScaleX");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ScaleY {
+            get {
+                return this.ScaleYField;
+            }
+            set {
+                if ((this.ScaleYField.Equals(value) != true)) {
+                    this.ScaleYField = value;
+                    this.RaisePropertyChanged("ScaleY");
                 }
             }
         }
@@ -877,6 +925,102 @@ namespace test.RemoteService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         PD = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CARD = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PowerControlInfo", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.RTU")]
+    [System.SerializableAttribute()]
+    public partial class PowerControlInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DevNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int InxField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsConnectedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int statusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DevName {
+            get {
+                return this.DevNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DevNameField, value) != true)) {
+                    this.DevNameField = value;
+                    this.RaisePropertyChanged("DevName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Inx {
+            get {
+                return this.InxField;
+            }
+            set {
+                if ((this.InxField.Equals(value) != true)) {
+                    this.InxField = value;
+                    this.RaisePropertyChanged("Inx");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsConnected {
+            get {
+                return this.IsConnectedField;
+            }
+            set {
+                if ((this.IsConnectedField.Equals(value) != true)) {
+                    this.IsConnectedField = value;
+                    this.RaisePropertyChanged("IsConnected");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int status {
+            get {
+                return this.statusField;
+            }
+            set {
+                if ((this.statusField.Equals(value) != true)) {
+                    this.statusField = value;
+                    this.RaisePropertyChanged("status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -972,6 +1116,8 @@ namespace test.RemoteService {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomInterface.PersonData))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomInterface.ControlStatus))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.PowerControlInfo[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.PowerControlInfo))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(test.RemoteService.DoorEventType))]
         object[] GetR23Progress();
         
@@ -983,6 +1129,18 @@ namespace test.RemoteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetTotalConnection", ReplyAction="http://tempuri.org/ISecureService/GetTotalConnectionResponse")]
         int GetTotalConnection();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SupressAlarm", ReplyAction="http://tempuri.org/ISecureService/SupressAlarmResponse")]
+        void SupressAlarm(int ItemID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetPowerStatus", ReplyAction="http://tempuri.org/ISecureService/GetPowerStatusResponse")]
+        bool GetPowerStatus(out byte status, out bool IsConnected, int inx);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/SwitchPower", ReplyAction="http://tempuri.org/ISecureService/SwitchPowerResponse")]
+        bool SwitchPower(int inx, bool off);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISecureService/GetAllPowerControlInfo", ReplyAction="http://tempuri.org/ISecureService/GetAllPowerControlInfoResponse")]
+        test.RemoteService.PowerControlInfo[] GetAllPowerControlInfo();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1115,6 +1273,22 @@ namespace test.RemoteService {
         
         public int GetTotalConnection() {
             return base.Channel.GetTotalConnection();
+        }
+        
+        public void SupressAlarm(int ItemID) {
+            base.Channel.SupressAlarm(ItemID);
+        }
+        
+        public bool GetPowerStatus(out byte status, out bool IsConnected, int inx) {
+            return base.Channel.GetPowerStatus(out status, out IsConnected, inx);
+        }
+        
+        public bool SwitchPower(int inx, bool off) {
+            return base.Channel.SwitchPower(inx, off);
+        }
+        
+        public test.RemoteService.PowerControlInfo[] GetAllPowerControlInfo() {
+            return base.Channel.GetAllPowerControlInfo();
         }
     }
 }

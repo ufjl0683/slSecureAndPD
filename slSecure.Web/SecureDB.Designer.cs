@@ -756,22 +756,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwPDAlarmLoopDeviceLog> vwPDAlarmLoopDeviceLog
-        {
-            get
-            {
-                if ((_vwPDAlarmLoopDeviceLog == null))
-                {
-                    _vwPDAlarmLoopDeviceLog = base.CreateObjectSet<vwPDAlarmLoopDeviceLog>("vwPDAlarmLoopDeviceLog");
-                }
-                return _vwPDAlarmLoopDeviceLog;
-            }
-        }
-        private ObjectSet<vwPDAlarmLoopDeviceLog> _vwPDAlarmLoopDeviceLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwAllAlarmLog> vwAllAlarmLog
         {
             get
@@ -896,22 +880,6 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwEngineRoomLog> _vwEngineRoomLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<vwPDAlarmLog> vwPDAlarmLog
-        {
-            get
-            {
-                if ((_vwPDAlarmLog == null))
-                {
-                    _vwPDAlarmLog = base.CreateObjectSet<vwPDAlarmLog>("vwPDAlarmLog");
-                }
-                return _vwPDAlarmLog;
-            }
-        }
-        private ObjectSet<vwPDAlarmLog> _vwPDAlarmLog;
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -1252,22 +1220,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwPDConfig> vwPDConfig
-        {
-            get
-            {
-                if ((_vwPDConfig == null))
-                {
-                    _vwPDConfig = base.CreateObjectSet<vwPDConfig>("vwPDConfig");
-                }
-                return _vwPDConfig;
-            }
-        }
-        private ObjectSet<vwPDConfig> _vwPDConfig;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<tblSingalIO> tblSingalIO
         {
             get
@@ -1312,6 +1264,70 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<tblPowerMeter> _tblPowerMeter;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPDAlarmLog> vwPDAlarmLog
+        {
+            get
+            {
+                if ((_vwPDAlarmLog == null))
+                {
+                    _vwPDAlarmLog = base.CreateObjectSet<vwPDAlarmLog>("vwPDAlarmLog");
+                }
+                return _vwPDAlarmLog;
+            }
+        }
+        private ObjectSet<vwPDAlarmLog> _vwPDAlarmLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPDAlarmLoopDeviceLog> vwPDAlarmLoopDeviceLog
+        {
+            get
+            {
+                if ((_vwPDAlarmLoopDeviceLog == null))
+                {
+                    _vwPDAlarmLoopDeviceLog = base.CreateObjectSet<vwPDAlarmLoopDeviceLog>("vwPDAlarmLoopDeviceLog");
+                }
+                return _vwPDAlarmLoopDeviceLog;
+            }
+        }
+        private ObjectSet<vwPDAlarmLoopDeviceLog> _vwPDAlarmLoopDeviceLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPDConfig> vwPDConfig
+        {
+            get
+            {
+                if ((_vwPDConfig == null))
+                {
+                    _vwPDConfig = base.CreateObjectSet<vwPDConfig>("vwPDConfig");
+                }
+                return _vwPDConfig;
+            }
+        }
+        private ObjectSet<vwPDConfig> _vwPDConfig;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblRemotePowerControl> tblRemotePowerControl
+        {
+            get
+            {
+                if ((_tblRemotePowerControl == null))
+                {
+                    _tblRemotePowerControl = base.CreateObjectSet<tblRemotePowerControl>("tblRemotePowerControl");
+                }
+                return _tblRemotePowerControl;
+            }
+        }
+        private ObjectSet<tblRemotePowerControl> _tblRemotePowerControl;
 
         #endregion
 
@@ -1646,14 +1662,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwPDAlarmLoopDeviceLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwPDAlarmLoopDeviceLog(vwPDAlarmLoopDeviceLog vwPDAlarmLoopDeviceLog)
-        {
-            base.AddObject("vwPDAlarmLoopDeviceLog", vwPDAlarmLoopDeviceLog);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwAllAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwAllAlarmLog(vwAllAlarmLog vwAllAlarmLog)
@@ -1715,14 +1723,6 @@ namespace slSecure.Web
         public void AddTovwEngineRoomLog(vwEngineRoomLog vwEngineRoomLog)
         {
             base.AddObject("vwEngineRoomLog", vwEngineRoomLog);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 vwPDAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwPDAlarmLog(vwPDAlarmLog vwPDAlarmLog)
-        {
-            base.AddObject("vwPDAlarmLog", vwPDAlarmLog);
         }
     
         /// <summary>
@@ -1894,14 +1894,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwPDConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwPDConfig(vwPDConfig vwPDConfig)
-        {
-            base.AddObject("vwPDConfig", vwPDConfig);
-        }
-    
-        /// <summary>
         /// 將新物件加入 tblSingalIO EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTotblSingalIO(tblSingalIO tblSingalIO)
@@ -1923,6 +1915,38 @@ namespace slSecure.Web
         public void AddTotblPowerMeter(tblPowerMeter tblPowerMeter)
         {
             base.AddObject("tblPowerMeter", tblPowerMeter);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPDAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPDAlarmLog(vwPDAlarmLog vwPDAlarmLog)
+        {
+            base.AddObject("vwPDAlarmLog", vwPDAlarmLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPDAlarmLoopDeviceLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPDAlarmLoopDeviceLog(vwPDAlarmLoopDeviceLog vwPDAlarmLoopDeviceLog)
+        {
+            base.AddObject("vwPDAlarmLoopDeviceLog", vwPDAlarmLoopDeviceLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPDConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPDConfig(vwPDConfig vwPDConfig)
+        {
+            base.AddObject("vwPDConfig", vwPDConfig);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblRemotePowerControl EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblRemotePowerControl(tblRemotePowerControl tblRemotePowerControl)
+        {
+            base.AddObject("tblRemotePowerControl", tblRemotePowerControl);
         }
 
         #endregion
@@ -11053,6 +11077,164 @@ namespace slSecure.Web
         private Nullable<global::System.Double> _InstantaneousValue;
         partial void OnInstantaneousValueChanging(Nullable<global::System.Double> value);
         partial void OnInstantaneousValueChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblRemotePowerControl")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblRemotePowerControl : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 tblRemotePowerControl 物件。
+        /// </summary>
+        /// <param name="inx">Inx 屬性的初始值。</param>
+        /// <param name="deviceName">DeviceName 屬性的初始值。</param>
+        /// <param name="iP">IP 屬性的初始值。</param>
+        /// <param name="port">Port 屬性的初始值。</param>
+        public static tblRemotePowerControl CreatetblRemotePowerControl(global::System.Int32 inx, global::System.String deviceName, global::System.String iP, global::System.Int32 port)
+        {
+            tblRemotePowerControl tblRemotePowerControl = new tblRemotePowerControl();
+            tblRemotePowerControl.Inx = inx;
+            tblRemotePowerControl.DeviceName = deviceName;
+            tblRemotePowerControl.IP = iP;
+            tblRemotePowerControl.Port = port;
+            return tblRemotePowerControl;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Inx
+        {
+            get
+            {
+                return _Inx;
+            }
+            set
+            {
+                if (_Inx != value)
+                {
+                    OnInxChanging(value);
+                    ReportPropertyChanging("Inx");
+                    _Inx = StructuralObject.SetValidValue(value, "Inx");
+                    ReportPropertyChanged("Inx");
+                    OnInxChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Inx;
+        partial void OnInxChanging(global::System.Int32 value);
+        partial void OnInxChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DeviceName
+        {
+            get
+            {
+                return _DeviceName;
+            }
+            set
+            {
+                OnDeviceNameChanging(value);
+                ReportPropertyChanging("DeviceName");
+                _DeviceName = StructuralObject.SetValidValue(value, false, "DeviceName");
+                ReportPropertyChanged("DeviceName");
+                OnDeviceNameChanged();
+            }
+        }
+        private global::System.String _DeviceName;
+        partial void OnDeviceNameChanging(global::System.String value);
+        partial void OnDeviceNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String IP
+        {
+            get
+            {
+                return _IP;
+            }
+            set
+            {
+                OnIPChanging(value);
+                ReportPropertyChanging("IP");
+                _IP = StructuralObject.SetValidValue(value, false, "IP");
+                ReportPropertyChanged("IP");
+                OnIPChanged();
+            }
+        }
+        private global::System.String _IP;
+        partial void OnIPChanging(global::System.String value);
+        partial void OnIPChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Port
+        {
+            get
+            {
+                return _Port;
+            }
+            set
+            {
+                OnPortChanging(value);
+                ReportPropertyChanging("Port");
+                _Port = StructuralObject.SetValidValue(value, "Port");
+                ReportPropertyChanged("Port");
+                OnPortChanged();
+            }
+        }
+        private global::System.Int32 _Port;
+        partial void OnPortChanging(global::System.Int32 value);
+        partial void OnPortChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Memo
+        {
+            get
+            {
+                return _Memo;
+            }
+            set
+            {
+                OnMemoChanging(value);
+                ReportPropertyChanging("Memo");
+                _Memo = StructuralObject.SetValidValue(value, true, "Memo");
+                ReportPropertyChanged("Memo");
+                OnMemoChanged();
+            }
+        }
+        private global::System.String _Memo;
+        partial void OnMemoChanging(global::System.String value);
+        partial void OnMemoChanged();
 
         #endregion
 
@@ -22442,8 +22624,7 @@ namespace slSecure.Web
         /// <param name="pDItem">PDItem 屬性的初始值。</param>
         /// <param name="pDItemDetail">PDItemDetail 屬性的初始值。</param>
         /// <param name="loop">Loop 屬性的初始值。</param>
-        /// <param name="statusDetail">StatusDetail 屬性的初始值。</param>
-        public static vwPDAlarmLog CreatevwPDAlarmLog(global::System.Int64 flowID, global::System.DateTime timestamp, global::System.String pDName, global::System.String pDItem, global::System.String pDItemDetail, global::System.Int32 loop, global::System.String statusDetail)
+        public static vwPDAlarmLog CreatevwPDAlarmLog(global::System.Int64 flowID, global::System.DateTime timestamp, global::System.String pDName, global::System.String pDItem, global::System.String pDItemDetail, global::System.Int32 loop)
         {
             vwPDAlarmLog vwPDAlarmLog = new vwPDAlarmLog();
             vwPDAlarmLog.FlowID = flowID;
@@ -22452,7 +22633,6 @@ namespace slSecure.Web
             vwPDAlarmLog.PDItem = pDItem;
             vwPDAlarmLog.PDItemDetail = pDItemDetail;
             vwPDAlarmLog.Loop = loop;
-            vwPDAlarmLog.StatusDetail = statusDetail;
             return vwPDAlarmLog;
         }
 
@@ -22673,7 +22853,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String StatusDetail
         {
@@ -22683,14 +22863,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_StatusDetail != value)
-                {
-                    OnStatusDetailChanging(value);
-                    ReportPropertyChanging("StatusDetail");
-                    _StatusDetail = StructuralObject.SetValidValue(value, false, "StatusDetail");
-                    ReportPropertyChanged("StatusDetail");
-                    OnStatusDetailChanged();
-                }
+                OnStatusDetailChanging(value);
+                ReportPropertyChanging("StatusDetail");
+                _StatusDetail = StructuralObject.SetValidValue(value, true, "StatusDetail");
+                ReportPropertyChanged("StatusDetail");
+                OnStatusDetailChanged();
             }
         }
         private global::System.String _StatusDetail;
@@ -22864,6 +23041,78 @@ namespace slSecure.Web
         private global::System.String _DirectionName;
         partial void OnDirectionNameChanging(global::System.String value);
         partial void OnDirectionNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Mapping_DeviceName
+        {
+            get
+            {
+                return _Mapping_DeviceName;
+            }
+            set
+            {
+                OnMapping_DeviceNameChanging(value);
+                ReportPropertyChanging("Mapping_DeviceName");
+                _Mapping_DeviceName = StructuralObject.SetValidValue(value, true, "Mapping_DeviceName");
+                ReportPropertyChanged("Mapping_DeviceName");
+                OnMapping_DeviceNameChanged();
+            }
+        }
+        private global::System.String _Mapping_DeviceName;
+        partial void OnMapping_DeviceNameChanging(global::System.String value);
+        partial void OnMapping_DeviceNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Classify
+        {
+            get
+            {
+                return _Classify;
+            }
+            set
+            {
+                OnClassifyChanging(value);
+                ReportPropertyChanging("Classify");
+                _Classify = StructuralObject.SetValidValue(value, true, "Classify");
+                ReportPropertyChanged("Classify");
+                OnClassifyChanged();
+            }
+        }
+        private global::System.String _Classify;
+        partial void OnClassifyChanging(global::System.String value);
+        partial void OnClassifyChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> WorkInfo
+        {
+            get
+            {
+                return _WorkInfo;
+            }
+            set
+            {
+                OnWorkInfoChanging(value);
+                ReportPropertyChanging("WorkInfo");
+                _WorkInfo = StructuralObject.SetValidValue(value, "WorkInfo");
+                ReportPropertyChanged("WorkInfo");
+                OnWorkInfoChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _WorkInfo;
+        partial void OnWorkInfoChanging(Nullable<global::System.Int32> value);
+        partial void OnWorkInfoChanged();
 
         #endregion
 
@@ -22888,8 +23137,7 @@ namespace slSecure.Web
         /// <param name="pDItem">PDItem 屬性的初始值。</param>
         /// <param name="pDItemDetail">PDItemDetail 屬性的初始值。</param>
         /// <param name="loop">Loop 屬性的初始值。</param>
-        /// <param name="statusDetail">StatusDetail 屬性的初始值。</param>
-        public static vwPDAlarmLoopDeviceLog CreatevwPDAlarmLoopDeviceLog(global::System.Int64 flowID, global::System.DateTime timestamp, global::System.String pDName, global::System.String pDItem, global::System.String pDItemDetail, global::System.Int32 loop, global::System.String statusDetail)
+        public static vwPDAlarmLoopDeviceLog CreatevwPDAlarmLoopDeviceLog(global::System.Int64 flowID, global::System.DateTime timestamp, global::System.String pDName, global::System.String pDItem, global::System.String pDItemDetail, global::System.Int32 loop)
         {
             vwPDAlarmLoopDeviceLog vwPDAlarmLoopDeviceLog = new vwPDAlarmLoopDeviceLog();
             vwPDAlarmLoopDeviceLog.FlowID = flowID;
@@ -22898,7 +23146,6 @@ namespace slSecure.Web
             vwPDAlarmLoopDeviceLog.PDItem = pDItem;
             vwPDAlarmLoopDeviceLog.PDItemDetail = pDItemDetail;
             vwPDAlarmLoopDeviceLog.Loop = loop;
-            vwPDAlarmLoopDeviceLog.StatusDetail = statusDetail;
             return vwPDAlarmLoopDeviceLog;
         }
 
@@ -23287,7 +23534,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String StatusDetail
         {
@@ -23297,14 +23544,11 @@ namespace slSecure.Web
             }
             set
             {
-                if (_StatusDetail != value)
-                {
-                    OnStatusDetailChanging(value);
-                    ReportPropertyChanging("StatusDetail");
-                    _StatusDetail = StructuralObject.SetValidValue(value, false, "StatusDetail");
-                    ReportPropertyChanged("StatusDetail");
-                    OnStatusDetailChanged();
-                }
+                OnStatusDetailChanging(value);
+                ReportPropertyChanging("StatusDetail");
+                _StatusDetail = StructuralObject.SetValidValue(value, true, "StatusDetail");
+                ReportPropertyChanged("StatusDetail");
+                OnStatusDetailChanged();
             }
         }
         private global::System.String _StatusDetail;
@@ -23550,6 +23794,78 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _Diameter;
         partial void OnDiameterChanging(Nullable<global::System.Int32> value);
         partial void OnDiameterChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PD_Mapping_DeviceName
+        {
+            get
+            {
+                return _PD_Mapping_DeviceName;
+            }
+            set
+            {
+                OnPD_Mapping_DeviceNameChanging(value);
+                ReportPropertyChanging("PD_Mapping_DeviceName");
+                _PD_Mapping_DeviceName = StructuralObject.SetValidValue(value, true, "PD_Mapping_DeviceName");
+                ReportPropertyChanged("PD_Mapping_DeviceName");
+                OnPD_Mapping_DeviceNameChanged();
+            }
+        }
+        private global::System.String _PD_Mapping_DeviceName;
+        partial void OnPD_Mapping_DeviceNameChanging(global::System.String value);
+        partial void OnPD_Mapping_DeviceNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Classify
+        {
+            get
+            {
+                return _Classify;
+            }
+            set
+            {
+                OnClassifyChanging(value);
+                ReportPropertyChanging("Classify");
+                _Classify = StructuralObject.SetValidValue(value, true, "Classify");
+                ReportPropertyChanged("Classify");
+                OnClassifyChanged();
+            }
+        }
+        private global::System.String _Classify;
+        partial void OnClassifyChanging(global::System.String value);
+        partial void OnClassifyChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> WorkInfo
+        {
+            get
+            {
+                return _WorkInfo;
+            }
+            set
+            {
+                OnWorkInfoChanging(value);
+                ReportPropertyChanging("WorkInfo");
+                _WorkInfo = StructuralObject.SetValidValue(value, "WorkInfo");
+                ReportPropertyChanged("WorkInfo");
+                OnWorkInfoChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _WorkInfo;
+        partial void OnWorkInfoChanging(Nullable<global::System.Int32> value);
+        partial void OnWorkInfoChanged();
 
         #endregion
 
@@ -24679,6 +24995,78 @@ namespace slSecure.Web
         private global::System.String _Comm_stateDetail;
         partial void OnComm_stateDetailChanging(global::System.String value);
         partial void OnComm_stateDetailChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Mapping_DeviceName
+        {
+            get
+            {
+                return _Mapping_DeviceName;
+            }
+            set
+            {
+                OnMapping_DeviceNameChanging(value);
+                ReportPropertyChanging("Mapping_DeviceName");
+                _Mapping_DeviceName = StructuralObject.SetValidValue(value, true, "Mapping_DeviceName");
+                ReportPropertyChanged("Mapping_DeviceName");
+                OnMapping_DeviceNameChanged();
+            }
+        }
+        private global::System.String _Mapping_DeviceName;
+        partial void OnMapping_DeviceNameChanging(global::System.String value);
+        partial void OnMapping_DeviceNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Classify
+        {
+            get
+            {
+                return _Classify;
+            }
+            set
+            {
+                OnClassifyChanging(value);
+                ReportPropertyChanging("Classify");
+                _Classify = StructuralObject.SetValidValue(value, true, "Classify");
+                ReportPropertyChanged("Classify");
+                OnClassifyChanged();
+            }
+        }
+        private global::System.String _Classify;
+        partial void OnClassifyChanging(global::System.String value);
+        partial void OnClassifyChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> WorkInfo
+        {
+            get
+            {
+                return _WorkInfo;
+            }
+            set
+            {
+                OnWorkInfoChanging(value);
+                ReportPropertyChanging("WorkInfo");
+                _WorkInfo = StructuralObject.SetValidValue(value, "WorkInfo");
+                ReportPropertyChanged("WorkInfo");
+                OnWorkInfoChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _WorkInfo;
+        partial void OnWorkInfoChanging(Nullable<global::System.Int32> value);
+        partial void OnWorkInfoChanged();
 
         #endregion
 

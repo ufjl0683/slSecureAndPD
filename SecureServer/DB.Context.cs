@@ -77,5 +77,6 @@ namespace SecureServer
         public DbSet<tblUser> tblUser { get; set; }
         public DbSet<tblUserGroup> tblUserGroup { get; set; }
         public DbSet<tblUserGroupMenu> tblUserGroupMenu { get; set; }
+        public DbSet<tblRemotePowerControl> tblRemotePowerControl { get; set; }
     }
 }

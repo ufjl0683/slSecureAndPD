@@ -46,7 +46,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;R23</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -129,7 +129,10 @@
     <Compile Include="RTU\ItemGroupManager.cs" />
     <Compile Include="RTU\ItemManager.cs" />
     <Compile Include="RTU\Plane.cs" />
+    <Compile Include="RTU\PowerControl.cs" />
+    <Compile Include="RTU\PowerControlManager.cs" />
     <Compile Include="RTU\R13SmrRTU.cs" />
+    <Compile Include="RTU\R13TowerRTU.cs" />
     <Compile Include="RTU\R23AdamRTU.cs" />
     <Compile Include="RTU\R13IEDRTU.cs" />
     <Compile Include="RTU\RTUManager.cs" />
@@ -231,6 +234,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPowerMeter.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRemotePowerControl.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblReportList.cs">

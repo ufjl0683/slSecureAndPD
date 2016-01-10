@@ -955,6 +955,81 @@ namespace slWCFModule.RemoteService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PowerControlInfo", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.RTU")]
+    public partial class PowerControlInfo : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string DevNameField;
+        
+        private int InxField;
+        
+        private bool IsConnectedField;
+        
+        private int statusField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DevName {
+            get {
+                return this.DevNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DevNameField, value) != true)) {
+                    this.DevNameField = value;
+                    this.RaisePropertyChanged("DevName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Inx {
+            get {
+                return this.InxField;
+            }
+            set {
+                if ((this.InxField.Equals(value) != true)) {
+                    this.InxField = value;
+                    this.RaisePropertyChanged("Inx");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsConnected {
+            get {
+                return this.IsConnectedField;
+            }
+            set {
+                if ((this.IsConnectedField.Equals(value) != true)) {
+                    this.IsConnectedField = value;
+                    this.RaisePropertyChanged("IsConnected");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int status {
+            get {
+                return this.statusField;
+            }
+            set {
+                if ((this.statusField.Equals(value) != true)) {
+                    this.statusField = value;
+                    this.RaisePropertyChanged("status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DoorEventType", Namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader")]
     public enum DoorEventType : int {
@@ -1084,6 +1159,8 @@ namespace slWCFModule.RemoteService {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.PersonData))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.ControlStatus))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<object>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PowerControlInfo>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.PowerControlInfo))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(slWCFModule.RemoteService.DoorEventType))]
         System.IAsyncResult BeginGetR23Progress(System.AsyncCallback callback, object asyncState);
         
@@ -1108,6 +1185,21 @@ namespace slWCFModule.RemoteService {
         System.IAsyncResult BeginSupressAlarm(int ItemID, System.AsyncCallback callback, object asyncState);
         
         void EndSupressAlarm(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetPowerStatus", ReplyAction="http://tempuri.org/ISecureService/GetPowerStatusResponse")]
+        System.IAsyncResult BeginGetPowerStatus(int inx, System.AsyncCallback callback, object asyncState);
+        
+        bool EndGetPowerStatus(out byte status, out bool IsConnected, System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/SwitchPower", ReplyAction="http://tempuri.org/ISecureService/SwitchPowerResponse")]
+        System.IAsyncResult BeginSwitchPower(int inx, bool off, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSwitchPower(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISecureService/GetAllPowerControlInfo", ReplyAction="http://tempuri.org/ISecureService/GetAllPowerControlInfoResponse")]
+        System.IAsyncResult BeginGetAllPowerControlInfo(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PowerControlInfo> EndGetAllPowerControlInfo(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1398,6 +1490,77 @@ namespace slWCFModule.RemoteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetPowerStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetPowerStatusCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public byte status {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((byte)(this.results[0]));
+            }
+        }
+        
+        public bool IsConnected {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[1]));
+            }
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[2]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SwitchPowerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SwitchPowerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllPowerControlInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllPowerControlInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PowerControlInfo> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PowerControlInfo>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SecureServiceClient : System.ServiceModel.DuplexClientBase<slWCFModule.RemoteService.ISecureService>, slWCFModule.RemoteService.ISecureService {
         
         private BeginOperationDelegate onBeginRegisterDelegate;
@@ -1538,6 +1701,24 @@ namespace slWCFModule.RemoteService {
         
         private System.Threading.SendOrPostCallback onSupressAlarmCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetPowerStatusDelegate;
+        
+        private EndOperationDelegate onEndGetPowerStatusDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetPowerStatusCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSwitchPowerDelegate;
+        
+        private EndOperationDelegate onEndSwitchPowerDelegate;
+        
+        private System.Threading.SendOrPostCallback onSwitchPowerCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAllPowerControlInfoDelegate;
+        
+        private EndOperationDelegate onEndGetAllPowerControlInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllPowerControlInfoCompletedDelegate;
+        
         private bool useGeneratedCallback;
         
         private BeginOperationDelegate onBeginOpenDelegate;
@@ -1668,6 +1849,12 @@ namespace slWCFModule.RemoteService {
         public event System.EventHandler<GetTotalConnectionCompletedEventArgs> GetTotalConnectionCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SupressAlarmCompleted;
+        
+        public event System.EventHandler<GetPowerStatusCompletedEventArgs> GetPowerStatusCompleted;
+        
+        public event System.EventHandler<SwitchPowerCompletedEventArgs> SwitchPowerCompleted;
+        
+        public event System.EventHandler<GetAllPowerControlInfoCompletedEventArgs> GetAllPowerControlInfoCompleted;
         
         public event System.EventHandler<SayHelloReceivedEventArgs> SayHelloReceived;
         
@@ -2759,6 +2946,151 @@ namespace slWCFModule.RemoteService {
                         ItemID}, this.onEndSupressAlarmDelegate, this.onSupressAlarmCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetPowerStatus(int inx, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetPowerStatus(inx, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool slWCFModule.RemoteService.ISecureService.EndGetPowerStatus(out byte status, out bool IsConnected, System.IAsyncResult result) {
+            return base.Channel.EndGetPowerStatus(out status, out IsConnected, result);
+        }
+        
+        private System.IAsyncResult OnBeginGetPowerStatus(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            int inx = ((int)(inValues[0]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetPowerStatus(inx, callback, asyncState);
+        }
+        
+        private object[] OnEndGetPowerStatus(System.IAsyncResult result) {
+            byte status = this.GetDefaultValueForInitialization<byte>();
+            bool IsConnected = this.GetDefaultValueForInitialization<bool>();
+            bool retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetPowerStatus(out status, out IsConnected, result);
+            return new object[] {
+                    status,
+                    IsConnected,
+                    retVal};
+        }
+        
+        private void OnGetPowerStatusCompleted(object state) {
+            if ((this.GetPowerStatusCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetPowerStatusCompleted(this, new GetPowerStatusCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetPowerStatusAsync(int inx) {
+            this.GetPowerStatusAsync(inx, null);
+        }
+        
+        public void GetPowerStatusAsync(int inx, object userState) {
+            if ((this.onBeginGetPowerStatusDelegate == null)) {
+                this.onBeginGetPowerStatusDelegate = new BeginOperationDelegate(this.OnBeginGetPowerStatus);
+            }
+            if ((this.onEndGetPowerStatusDelegate == null)) {
+                this.onEndGetPowerStatusDelegate = new EndOperationDelegate(this.OnEndGetPowerStatus);
+            }
+            if ((this.onGetPowerStatusCompletedDelegate == null)) {
+                this.onGetPowerStatusCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetPowerStatusCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetPowerStatusDelegate, new object[] {
+                        inx}, this.onEndGetPowerStatusDelegate, this.onGetPowerStatusCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginSwitchPower(int inx, bool off, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSwitchPower(inx, off, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool slWCFModule.RemoteService.ISecureService.EndSwitchPower(System.IAsyncResult result) {
+            return base.Channel.EndSwitchPower(result);
+        }
+        
+        private System.IAsyncResult OnBeginSwitchPower(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            int inx = ((int)(inValues[0]));
+            bool off = ((bool)(inValues[1]));
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginSwitchPower(inx, off, callback, asyncState);
+        }
+        
+        private object[] OnEndSwitchPower(System.IAsyncResult result) {
+            bool retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndSwitchPower(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSwitchPowerCompleted(object state) {
+            if ((this.SwitchPowerCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SwitchPowerCompleted(this, new SwitchPowerCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SwitchPowerAsync(int inx, bool off) {
+            this.SwitchPowerAsync(inx, off, null);
+        }
+        
+        public void SwitchPowerAsync(int inx, bool off, object userState) {
+            if ((this.onBeginSwitchPowerDelegate == null)) {
+                this.onBeginSwitchPowerDelegate = new BeginOperationDelegate(this.OnBeginSwitchPower);
+            }
+            if ((this.onEndSwitchPowerDelegate == null)) {
+                this.onEndSwitchPowerDelegate = new EndOperationDelegate(this.OnEndSwitchPower);
+            }
+            if ((this.onSwitchPowerCompletedDelegate == null)) {
+                this.onSwitchPowerCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSwitchPowerCompleted);
+            }
+            base.InvokeAsync(this.onBeginSwitchPowerDelegate, new object[] {
+                        inx,
+                        off}, this.onEndSwitchPowerDelegate, this.onSwitchPowerCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult slWCFModule.RemoteService.ISecureService.BeginGetAllPowerControlInfo(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllPowerControlInfo(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PowerControlInfo> slWCFModule.RemoteService.ISecureService.EndGetAllPowerControlInfo(System.IAsyncResult result) {
+            return base.Channel.EndGetAllPowerControlInfo(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllPowerControlInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            this.VerifyCallbackEvents();
+            return ((slWCFModule.RemoteService.ISecureService)(this)).BeginGetAllPowerControlInfo(callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllPowerControlInfo(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PowerControlInfo> retVal = ((slWCFModule.RemoteService.ISecureService)(this)).EndGetAllPowerControlInfo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllPowerControlInfoCompleted(object state) {
+            if ((this.GetAllPowerControlInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllPowerControlInfoCompleted(this, new GetAllPowerControlInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllPowerControlInfoAsync() {
+            this.GetAllPowerControlInfoAsync(null);
+        }
+        
+        public void GetAllPowerControlInfoAsync(object userState) {
+            if ((this.onBeginGetAllPowerControlInfoDelegate == null)) {
+                this.onBeginGetAllPowerControlInfoDelegate = new BeginOperationDelegate(this.OnBeginGetAllPowerControlInfo);
+            }
+            if ((this.onEndGetAllPowerControlInfoDelegate == null)) {
+                this.onEndGetAllPowerControlInfoDelegate = new EndOperationDelegate(this.OnEndGetAllPowerControlInfo);
+            }
+            if ((this.onGetAllPowerControlInfoCompletedDelegate == null)) {
+                this.onGetAllPowerControlInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllPowerControlInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllPowerControlInfoDelegate, null, this.onEndGetAllPowerControlInfoDelegate, this.onGetAllPowerControlInfoCompletedDelegate, userState);
+        }
+        
         private void OnSayHelloReceived(object state) {
             if ((this.SayHelloReceived != null)) {
                 object[] results = ((object[])(state));
@@ -3195,6 +3527,47 @@ namespace slWCFModule.RemoteService {
             public void EndSupressAlarm(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 base.EndInvoke("SupressAlarm", _args, result);
+            }
+            
+            public System.IAsyncResult BeginGetPowerStatus(int inx, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = inx;
+                System.IAsyncResult _result = base.BeginInvoke("GetPowerStatus", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndGetPowerStatus(out byte status, out bool IsConnected, System.IAsyncResult result) {
+                object[] _args = new object[2];
+                bool _result = ((bool)(base.EndInvoke("GetPowerStatus", _args, result)));
+                status = ((byte)(_args[0]));
+                IsConnected = ((bool)(_args[1]));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginSwitchPower(int inx, bool off, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = inx;
+                _args[1] = off;
+                System.IAsyncResult _result = base.BeginInvoke("SwitchPower", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndSwitchPower(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("SwitchPower", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetAllPowerControlInfo(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetAllPowerControlInfo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PowerControlInfo> EndGetAllPowerControlInfo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PowerControlInfo> _result = ((System.Collections.ObjectModel.ObservableCollection<slWCFModule.RemoteService.PowerControlInfo>)(base.EndInvoke("GetAllPowerControlInfo", _args, result)));
+                return _result;
             }
         }
     }

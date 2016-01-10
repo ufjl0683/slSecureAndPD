@@ -69,7 +69,7 @@ namespace RoomDoorControlServer
 
             
             System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel(tcp, false);
-            RemotingConfiguration.RegisterWellKnownServiceType(typeof(RoomObj), "RoomObj", WellKnownObjectMode.SingleCall);
+            RemotingConfiguration.RegisterWellKnownServiceType(typeof(RoomObj), "RoomObj", WellKnownObjectMode.Singleton);
 
             ReadServerData();
             DatabaseAccess.StartDatabaseAcces();

@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using SecureServer.BindingData;
 using SecureServer.CardReader;
 using RoomInterface;
+using SecureServer.RTU;
 
 namespace SecureServer
 {
@@ -70,6 +71,13 @@ namespace SecureServer
         int GetTotalConnection();
         [OperationContract]
         void SupressAlarm(int ItemID);
+        [OperationContract]
+        bool GetPowerStatus(int inx, out byte status, out bool IsConnected);
+        [OperationContract]
+        bool SwitchPower(int inx, bool off);
+
+        [OperationContract]
+        PowerControlInfo[] GetAllPowerControlInfo();
     }
 
 

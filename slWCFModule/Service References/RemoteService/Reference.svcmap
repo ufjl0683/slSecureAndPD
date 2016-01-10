@@ -30,6 +30,7 @@
     <MetadataFile FileName="SecureServer.BindingData1.xsd" MetadataType="Schema" ID="e91105c9-2055-4106-9ab6-bea4557b0a10" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
     <MetadataFile FileName="RoomInterface1.xsd" MetadataType="Schema" ID="f3ead6bc-ea44-4f3f-adad-6cc3c4d57010" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
     <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="2f6137ef-7070-404f-9e20-68f8010b45f9" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
+    <MetadataFile FileName="SecureServer.RTU.xsd" MetadataType="Schema" ID="4e996a10-32a2-46da-8091-dc95fe06f1ec" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
     <MetadataFile FileName="SecureServer.CardReader1.xsd" MetadataType="Schema" ID="493153b9-f83b-4c71-b82c-e40e3706b4b6" SourceId="1" SourceUrl="http://192.192.85.64:8080/mex" />
   </Metadata>
   <Extensions>

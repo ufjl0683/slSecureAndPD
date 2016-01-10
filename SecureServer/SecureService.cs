@@ -28,6 +28,7 @@ namespace SecureServer
         public static PD.PDManager pd_mgr ;
         public static Meter.PowerMeterManager r23_pm_mgr;
         public static Schedule.ScheduleManager sch_mgr;
+        public static RTU.PowerControlManager pwr_mgr;
 
         ExactIntervalTimer ExactOneHourTmr;
 
@@ -55,10 +56,13 @@ namespace SecureServer
            itemgrp_mgr = new RTU.ItemGroupManager();
            plane_mgr = new PlaneManager();
            pd_mgr = new PD.PDManager();
+          
 #if R23
            r23_pm_mgr = new Meter.PowerMeterManager();
+             pwr_mgr = new RTU.PowerControlManager();
+        
 #endif
-//#if !R23     
+           //#if !R23     
           
            card_mgr.OnDoorEvent += card_mgr_OnDoorEvent;
            card_mgr.OnAlarmEvent += card_mgr_OnAlarmEvent;
@@ -677,6 +681,45 @@ namespace SecureServer
            // throw new NotImplementedException();
         }
 
-      
+
+
+
+        public bool GetPowerStatus(int inx, out byte status, out bool IsConnected)
+        {
+#if R23
+
+                return SecureService.pwr_mgr.GetStatus(inx,out status,out IsConnected);
+#else
+            if (inx == 0)
+            {
+                status = 0;
+                IsConnected = false;
+                return false;
+            }
+            else
+            {
+                status = 1;
+                IsConnected = true;
+                return false;
+            }
+#endif
+            
+        }
+
+        public bool SwitchPower(int inx, bool off)
+        {
+#if R23
+             return SecureService.pwr_mgr.SwitchPower(inx,off);
+#else
+           
+            return false;
+#endif
+        }
+
+
+        public RTU.PowerControlInfo[] GetAllPowerControlInfo()
+        {
+          return   SecureService.pwr_mgr.GetAllPowerControlInfo();
+        }
     }
 }

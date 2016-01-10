@@ -43,6 +43,7 @@
           <EntitySet Name="tblPDConfig" EntityType="SecureDBModel.Store.tblPDConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDLoopDeviceConfig" EntityType="SecureDBModel.Store.tblPDLoopDeviceConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPowerMeter" EntityType="SecureDBModel.Store.tblPowerMeter" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblRemotePowerControl" EntityType="SecureDBModel.Store.tblRemotePowerControl" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblReportList" EntityType="SecureDBModel.Store.tblReportList" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSchConfig" EntityType="SecureDBModel.Store.tblSchConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSchLog" EntityType="SecureDBModel.Store.tblSchLog" store:Type="Tables" Schema="dbo" />
@@ -772,6 +773,16 @@
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
           <Property Name="CumulateValue" Type="float" />
           <Property Name="InstantaneousValue" Type="float" />
+        </EntityType>
+        <EntityType Name="tblRemotePowerControl">
+          <Key>
+            <PropertyRef Name="Inx" />
+          </Key>
+          <Property Name="Inx" Type="int" Nullable="false" />
+          <Property Name="DeviceName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="tblReportList">
           <Key>
@@ -1626,6 +1637,7 @@
             <End Role="tblUserGroup" EntitySet="tblUserGroup" />
             <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
           </AssociationSet>
+          <EntitySet Name="tblRemotePowerControl" EntityType="SecureDBModel.tblRemotePowerControl" />
         </EntityContainer>
         <EntityType Name="tblERDoorPassword">
           <Key>
@@ -2794,6 +2806,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblRemotePowerControl">
+          <Key>
+            <PropertyRef Name="Inx" />
+          </Key>
+          <Property Type="Int32" Name="Inx" Nullable="false" />
+          <Property Type="String" Name="DeviceName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3597,6 +3619,17 @@
                 <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
                 <ScalarProperty Name="MenuID" ColumnName="MenuID" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRemotePowerControl">
+            <EntityTypeMapping TypeName="SecureDBModel.tblRemotePowerControl">
+              <MappingFragment StoreEntitySet="tblRemotePowerControl">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="Inx" ColumnName="Inx" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

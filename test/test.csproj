@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Class2.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,6 +80,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="R13IEDRTU.cs" />
     <Compile Include="R23PowerMeter.cs" />
     <Compile Include="Service References\MCNSService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -189,6 +192,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\RemoteService\SecureServer.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\RemoteService\test.RemoteService.DoorBindingData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

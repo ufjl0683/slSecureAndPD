@@ -126,10 +126,10 @@ namespace SecureServer.CardReader
                 //      };
                 //tmr.Start(); 
 
-               
-                this.LoadSystemParameter();
-                this.SendAllReaderParameter();
-              //  DownloadSuperPassword();
+             //===============2015/12/8========================  
+               //this.LoadSystemParameter();
+               // this.SendAllReaderParameter();
+             
             }
             catch (Exception ex)
             {

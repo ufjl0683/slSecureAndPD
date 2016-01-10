@@ -153,6 +153,12 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\MCNSService\MCNSService1.disco" />
+    <None Include="Service References\RemoteService\SecureServer.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RemoteService\slWCFModule.RemoteService.PowerControlInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\SSOService\configuration91.svcinfo" />
     <None Include="Service References\SSOService\configuration.svcinfo" />
     <None Include="Service References\SSOService\Reference.svcmap">

@@ -16,6 +16,7 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.BindingData" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/RoomInterface" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.RTU" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/SecureServer.CardReader" />
     </xsd:schema>
   </wsdl:types>
@@ -157,6 +158,24 @@
   <wsdl:message name="ISecureService_SupressAlarm_OutputMessage">
     <wsdl:part name="parameters" element="tns:SupressAlarmResponse" />
   </wsdl:message>
+  <wsdl:message name="ISecureService_GetPowerStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPowerStatus" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetPowerStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPowerStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SwitchPower_InputMessage">
+    <wsdl:part name="parameters" element="tns:SwitchPower" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_SwitchPower_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SwitchPowerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetAllPowerControlInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPowerControlInfo" />
+  </wsdl:message>
+  <wsdl:message name="ISecureService_GetAllPowerControlInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPowerControlInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="ISecureService_SayHello_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SayHello" />
   </wsdl:message>
@@ -261,6 +280,18 @@
     <wsdl:operation name="SupressAlarm">
       <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/SupressAlarm" message="tns:ISecureService_SupressAlarm_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SupressAlarmResponse" message="tns:ISecureService_SupressAlarm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPowerStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetPowerStatus" message="tns:ISecureService_GetPowerStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetPowerStatusResponse" message="tns:ISecureService_GetPowerStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SwitchPower">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/SwitchPower" message="tns:ISecureService_SwitchPower_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SwitchPowerResponse" message="tns:ISecureService_SwitchPower_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPowerControlInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISecureService/GetAllPowerControlInfo" message="tns:ISecureService_GetAllPowerControlInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/GetAllPowerControlInfoResponse" message="tns:ISecureService_GetAllPowerControlInfo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SayHello">
       <wsdl:output wsaw:Action="http://tempuri.org/ISecureService/SayHello" message="tns:ISecureService_SayHello_OutputCallbackMessage" />
@@ -478,6 +509,33 @@
     </wsdl:operation>
     <wsdl:operation name="SupressAlarm">
       <soap12:operation soapAction="http://tempuri.org/ISecureService/SupressAlarm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPowerStatus">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetPowerStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SwitchPower">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/SwitchPower" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPowerControlInfo">
+      <soap12:operation soapAction="http://tempuri.org/ISecureService/GetAllPowerControlInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

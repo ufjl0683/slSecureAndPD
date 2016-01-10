@@ -4037,6 +4037,37 @@ namespace slSecure.Web
             public Nullable<double> VC { get; set; }
         }
     }
+    [MetadataTypeAttribute(typeof(tblRemotePowerControl.tblRemotePowerControlMetadata))]
+    public partial class tblRemotePowerControl
+    {
 
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblRemotePowerControl 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class tblRemotePowerControlMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private tblRemotePowerControlMetadata()
+            {
+            }
+
+            public string DeviceName { get; set; }
+
+            public int Inx { get; set; }
+
+            public string IP { get; set; }
+
+            public string Memo { get; set; }
+
+            public int Port { get; set; }
+        }
+    }
     }
 
