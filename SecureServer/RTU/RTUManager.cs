@@ -58,6 +58,16 @@ namespace SecureServer.RTU
                     rtu = new SecureServer.RTU.R13TowerRTU(tbl.ControlID, 1, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0);
                     rtu.OnCommStateChanged += rtu_OnCommStateChanged;
                 }
+                else if (tbl.ControlType == 9)  //rtu device id=3
+                {
+                    //rtu = new  ModbusTCP.RTU(tbl.ControlID, 3, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0);
+                    //rtu.OnCommStateChanged += rtu_OnCommStateChanged;
+                }
+                else if (tbl.ControlType == 10)  //rtu device id=3
+                {
+                    rtu = new SecureServer.RTU.R13NewSmrRTU(tbl.ControlID, 1, tbl.IP, tbl.Port, (int)tbl.RTUBaseAddress, (int)tbl.RTURegisterLength, tbl.Comm_state ?? 0);
+                    rtu.OnCommStateChanged += rtu_OnCommStateChanged;
+                }
 
                 if (!dictRTUs.ContainsKey(tbl.ControlID))
                 {

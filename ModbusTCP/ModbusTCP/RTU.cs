@@ -92,7 +92,7 @@ namespace ModbusTCP
                     {
                         lock (lockobj)
                         {
-                            RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)255, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
+                            RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)this.DevID, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
                             if (tempdata != null && tempdata.Length != 0)
                             {
                                 for (int i = 0; i < tempdata.Length; i++)
