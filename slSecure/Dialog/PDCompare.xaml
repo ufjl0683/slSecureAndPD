@@ -110,7 +110,7 @@
         </Grid>
 
         <Grid x:Name="Right_Panel"
-                Margin="0,10,0,10"
+                Margin="0,10,100,10"
 			    Grid.Row="0"
 			    Grid.Column="2"
 			    Grid.RowSpan="3"

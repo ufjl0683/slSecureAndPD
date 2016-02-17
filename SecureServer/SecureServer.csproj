@@ -131,8 +131,6 @@
     <Compile Include="RTU\Plane.cs" />
     <Compile Include="RTU\PowerControl.cs" />
     <Compile Include="RTU\PowerControlManager.cs" />
-    <Compile Include="RTU\R13BatteryPackRTU.cs" />
-    <Compile Include="RTU\R13NewSmrRTU.cs" />
     <Compile Include="RTU\R13SmrRTU.cs" />
     <Compile Include="RTU\R13TowerRTU.cs" />
     <Compile Include="RTU\R23AdamRTU.cs" />

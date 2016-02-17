@@ -33,7 +33,7 @@ namespace slSecure.Dialog
 
         #region Definition of DB object
 
-      //  slSecure.Web.SecureDBContext DBContext = new SecureDBContext();
+        slSecure.Web.SecureDBContext DBContext = new SecureDBContext();
 
         #endregion
 
@@ -87,13 +87,12 @@ namespace slSecure.Dialog
         /// <param name="e"></param>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            SecureDBContext db = new SecureDBContext();
             var Engine_Room_Data =
-                from n in db.GetTblEngineRoomConfigQuery()
+                from n in this.DBContext.GetTblEngineRoomConfigQuery()
                 select n;
 
             LoadOperation<tblEngineRoomConfig> lo_ERD =
-                db.Load<tblEngineRoomConfig>(Engine_Room_Data);
+                this.DBContext.Load<tblEngineRoomConfig>(Engine_Room_Data);
 
             lo_ERD.Completed += (o_ERD, e_ERD) =>
                 {
@@ -114,7 +113,7 @@ namespace slSecure.Dialog
                     }
                     else { MessageBox.Show("查詢不到各地區的機房資料!", "錯誤", MessageBoxButton.OK); }
                 };
-        //    this.DBContext.tblEngineRoomConfigs.Clear();
+            this.DBContext.tblEngineRoomConfigs.Clear();
 
         }
 
@@ -249,20 +248,15 @@ namespace slSecure.Dialog
             if (me.SelectedIndex != -1)
             {
                 _erid = Convert.ToInt32((me.SelectedItem as ComboBoxItem).Tag);
-                SecureDBContext db1=new SecureDBContext();
+
                 var RTU =
-                    from n in db1.GetTblControllerConfigQuery()
-                    where n.ERID == _erid && (
-                          n.ControlType == 3 ||
-                          n.ControlType==6 ||
-                          n.ControlType==7 ||
-                          n.ControlType==8 ||
-                          n.ControlType==9 || n.ControlType==10)
+                    from n in this.DBContext.GetTblControllerConfigQuery()
+                    where n.ERID == _erid &&
+                          n.ControlType == 3
                     select n;
 
-               
                 LoadOperation<tblControllerConfig> lo_RTU =
-                    db1.Load<tblControllerConfig>(RTU);
+                    this.DBContext.Load<tblControllerConfig>(RTU);
 
                 lo_RTU.Completed += (o_RTU, e_RTU) =>
                     {
@@ -271,15 +265,14 @@ namespace slSecure.Dialog
                             // It is posible if this company has more than 1 RTU.
                             foreach (tblControllerConfig _controller in lo_RTU.Entities)
                             {
-                                SecureDBContext db2 = new SecureDBContext();
                                 var ItemConfig =
-                                    from n in db2.GetTblItemConfigQuery()
+                                    from n in this.DBContext.GetTblItemConfigQuery()
                                     where n.ControlID == _controller.ControlID &&
                                           n.Type == "AI"
                                     select n;
-                              
+
                                 LoadOperation<tblItemConfig> lo_item =
-                                    db2.Load<tblItemConfig>(ItemConfig);
+                                    this.DBContext.Load<tblItemConfig>(ItemConfig);
 
                                 lo_item.Completed += (o_item, e_item) =>
                                     {
@@ -289,12 +282,12 @@ namespace slSecure.Dialog
                                             {
                                                 if (this.Compare_Collection.Count != 0)
                                                 {
-                                                    Sensor snr =
-                                                       ( from n in this.Compare_Collection
+                                                    var isContain =
+                                                        from n in this.Compare_Collection
                                                         where n.ItemID == _item.ItemID
-                                                         select n).FirstOrDefault() ;
+                                                        select n;
 
-                                                    if (snr==null)
+                                                    if (isContain.Count() == 0)
                                                         this.Item_Collection.Add(
                                                                 new Sensor(_ername,
                                                                            _controller.ControlID,
@@ -315,18 +308,17 @@ namespace slSecure.Dialog
 
                                             // Binding
                                             this.Selection_List.ItemsSource = this.Item_Collection;
-                                           
                                         }
-                                        //else { MessageBox.Show(_ername + "底下的" + _controller.ControlID + "並沒有可用的感知器!"); }
+                                        else { MessageBox.Show(_ername + "底下的" + _controller.ControlID + "並沒有可用的感知器!"); }
                                     };
-                              //  this.DBContext.tblItemConfigs.Clear();
+                                this.DBContext.tblItemConfigs.Clear();
 
                             }
                         }
                         else { MessageBox.Show("找不到ER ID: " + _erid + " 的 RTU資料!"); }
                         
                     };
-            //    this.DBContext.tblControllerConfigs.Clear();
+                this.DBContext.tblControllerConfigs.Clear();
 
             }
         }
@@ -449,12 +441,11 @@ namespace slSecure.Dialog
 
         public override string ToString()
         {
-            // (old format)中交控中心-RTU32A (12) 濕度計
-            // (now formet)中交控中心-濕度計
+            // 中交控中心-RTU32A (12) 濕度計
             return this._ERName 
-                 //+ "-" + this._RTUName
-                 //+ " (" + this._ItemID + ") " 
-                 + "-" + this._ItemName;
+                 + "-" + this._RTUName
+                 + " (" + this._ItemID + ") " 
+                 + this._ItemName;
             //return base.ToString();
         }
     }
