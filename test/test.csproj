@@ -63,23 +63,21 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Class2.cs" />
-    <Compile Include="DB.Context.cs">
-      <DependentUpon>DB.Context.tt</DependentUpon>
+    <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+    <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB.Designer.cs">
-      <DependentUpon>DB.edmx</DependentUpon>
+    <Compile Include="Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PD.cs" />
-    <Compile Include="PDStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="R13IEDRTU.cs" />
@@ -99,187 +97,101 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="tblAIItem1HourLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+    <Compile Include="vwAIImmediatelyCheck.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="tblAlarmLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+    <Compile Include="vwAlarmLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="tblCardCommandLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblCardReaderConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblCCTVConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblCCTVSplitScreen.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblCCTVType.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblControllerCard.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblControllerConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblControlSetting.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblDeviceStateLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblEngineRoomConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblEngineRoomLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblEntranceGuardConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblERDoorPassword.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblERPlane.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblHostConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblItemConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblItemGroup.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblItemGroupTypeInfo.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblItemKindInfo.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblMagneticCard.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblMagneticCardNormalGroup.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblMenu.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblMenuGroup.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblNVRConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPasswordEveryDayDifference.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPDAlarmLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPDConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPDLoopDeviceConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPowerMeter.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblRemotePowerControl.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblReportList.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblSchConfig.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblSchLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblSingalIO.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblSingalIOLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblSysOperation.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblSysParameter.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblSysRole.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblSysRoleAuthority.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblTypeDetail.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblUser.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblUserGroup.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblUserGroupMenu.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+    <Compile Include="vwAllAlarmLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="vwCardCommandLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwControllerConfig.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwDeviceStateLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="vwEngineRoomLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="vwEntranceGuardDetail.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwERNamePlaneList.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwERNameRTUList.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwItemConfig.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwItemGroup.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="vwMagneticCard.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="vwMagneticCardAllowController.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="vwMagneticCardDetail.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwNVRConfig.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwPasswordEveryDayDifference.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwPDAlarmLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwPDAlarmLoopDeviceLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwPDConfig.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwPDLoopDeviceConfig.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwR23DeviceStateLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwR23EngineRoomLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwR23HardwareState.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwR23ReaderLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwReaderAbnormalPassLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwReaderPassList.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwReaderPassLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="vwUserGroupMenuAllow.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="vwUserMenuAllow.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="DB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.Context.cs</LastGenOutput>
-    </None>
-    <None Include="DB.edmx.diagram">
-      <DependentUpon>DB.edmx</DependentUpon>
-    </None>
-    <None Include="DB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.cs</LastGenOutput>
-    </None>
     <None Include="Service References\RemoteService\SecureServer.RTU.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -296,6 +208,10 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <Content Include="batterypack.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -306,6 +222,19 @@
     <Content Include="card.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RoomInterface.ControlStatus.datasource" />
     <None Include="Properties\DataSources\RoomInterface.PersonData.datasource" />

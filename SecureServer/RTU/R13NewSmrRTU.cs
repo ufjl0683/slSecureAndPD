@@ -112,7 +112,7 @@ namespace SecureServer.RTU
                                 System.Array.Copy(temp, 0, data, 2, 2);
                             }
                             // double temperature = 0, humidity = 0;
-                            RTUDevice.ReadInputRegister((ushort)this.DevID, (byte)DevID, (ushort)5, (ushort)3, ref temp);
+                            RTUDevice.ReadInputRegister((ushort)this.DevID, (byte)DevID, (ushort)5, (ushort)2, ref temp);
 
                             if (temp != null)
                                 System.Array.Copy(temp, 0, data, 2 * 2, temp.Length);

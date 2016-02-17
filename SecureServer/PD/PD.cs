@@ -437,14 +437,6 @@ namespace SecureServer.PD
                                     baryD.Set(11,! baryD.Get(11));
                                     baryD.CopyTo(tempdata, 0);
                                 }
-                                else if ((tblPDConfig.type ?? 1) == 6)
-                                {
-                                    System.Collections.BitArray bard = new System.Collections.BitArray(tempdata);
-                                    for (int i = 0; i < 11; i++)
-                                        bard.Set(i, !bard.Get(i));
-
-                                    bard.CopyTo(tempdata, 0);
-                                }
 
                                 
                            //  RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)255, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
@@ -497,22 +489,15 @@ namespace SecureServer.PD
        }
        void CheckDataChange(byte[] temp)
        {
-            
            string description="";
-
-           if (data[0] == temp[0] && data[1] == temp[1])
-           {
-             //  Console.WriteLine("沒變化!");
-               return;
-           }
            
-           Console.WriteLine(this.PDName);
+           if (data[0] == temp[0] && data[1] == temp[1])
+               return;
+
            SecureDBEntities1 db = new SecureDBEntities1();
            tblPDConfig tblpd=  db.tblPDConfig.Where(n=>n.PDName==this.PDName).FirstOrDefault();
-         
            if(tblpd==null)
                return;
-         
            PDStatus d= new PDStatus(data);
            PDStatus t = new PDStatus(temp);
           
@@ -748,14 +733,9 @@ namespace SecureServer.PD
                  
 
               };
-              try
-              {
-                  Program.MyServiceObject.DispatchAlarmEvent(alarmdata);
-              }
-              catch { ;}
+              Program.MyServiceObject.DispatchAlarmEvent(alarmdata);
           }
 
-        //  Console.WriteLine("save change");
           db.SaveChanges();
           db.Dispose();
 

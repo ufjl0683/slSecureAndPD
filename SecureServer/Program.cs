@@ -69,16 +69,7 @@ namespace SecureServer
                 System.Threading.Thread.Sleep(1000);
             }
         }
-        public static void PDTEst()
-        {
-            SecureDBEntities1 db=new SecureDBEntities1();
-            PD.PD pd = new PD.PD("PD-N1-N-69.135", "10.2.31.68", 502, db.tblPDConfig.Where(n => n.PDName == "PD-N1-N-69.135").FirstOrDefault());
-            while (true)
-            {
-                Console.WriteLine(pd.ToString());
-                System.Threading.Thread.Sleep(1000);
-            }
-        }
+
         static void client_OnException(ushort id, byte unit, byte function, byte exception)
         {
             //throw new NotImplementedException();
@@ -89,8 +80,8 @@ namespace SecureServer
         {
 
 
-            //PDTEst();
-            //Console.ReadKey();
+         //   IEDTest();
+
             
             //Task task = Task.Factory.StartNew(() =>
             //               {

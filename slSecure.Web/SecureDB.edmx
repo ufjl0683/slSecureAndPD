@@ -884,46 +884,6 @@
       [vwSchLog].[UserID] AS [UserID]
       FROM [dbo].[vwSchLog] AS [vwSchLog]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vwSingalIO" EntityType="SecureDBModel.Store.vwSingalIO" store:Type="Views" store:Schema="dbo" store:Name="vwSingalIO">
-            <DefiningQuery>SELECT 
-      [vwSingalIO].[ControlID] AS [ControlID], 
-      [vwSingalIO].[SingalName] AS [SingalName], 
-      [vwSingalIO].[SingalType] AS [SingalType], 
-      [vwSingalIO].[Place] AS [Place], 
-      [vwSingalIO].[SingalIO_Memo] AS [SingalIO_Memo], 
-      [vwSingalIO].[ControllerConfig_ControlID] AS [ControllerConfig_ControlID], 
-      [vwSingalIO].[ControlType] AS [ControlType], 
-      [vwSingalIO].[IP] AS [IP], 
-      [vwSingalIO].[Port] AS [Port], 
-      [vwSingalIO].[Loop] AS [Loop], 
-      [vwSingalIO].[IsEnable] AS [IsEnable], 
-      [vwSingalIO].[X] AS [X], 
-      [vwSingalIO].[Y] AS [Y], 
-      [vwSingalIO].[ScaleX] AS [ScaleX], 
-      [vwSingalIO].[ScaleY] AS [ScaleY], 
-      [vwSingalIO].[Rotation] AS [Rotation], 
-      [vwSingalIO].[PlaneID] AS [PlaneID], 
-      [vwSingalIO].[TriggerCCTVID] AS [TriggerCCTVID], 
-      [vwSingalIO].[RTUBaseAddress] AS [RTUBaseAddress], 
-      [vwSingalIO].[RTURegisterLength] AS [RTURegisterLength], 
-      [vwSingalIO].[Comm_state] AS [Comm_state], 
-      [vwSingalIO].[R23_ADAM] AS [R23_ADAM], 
-      [vwSingalIO].[R23DoorOpen_DI] AS [R23DoorOpen_DI], 
-      [vwSingalIO].[R23DoorOpen_DO] AS [R23DoorOpen_DO], 
-      [vwSingalIO].[EntranceCode] AS [EntranceCode], 
-      [vwSingalIO].[ERID] AS [ERID], 
-      [vwSingalIO].[Floor] AS [Floor], 
-      [vwSingalIO].[EntranceType] AS [EntranceType], 
-      [vwSingalIO].[Memo] AS [Memo], 
-      [vwSingalIO].[ERName] AS [ERName], 
-      [vwSingalIO].[LineID] AS [LineID], 
-      [vwSingalIO].[Direction] AS [Direction], 
-      [vwSingalIO].[GPSX] AS [GPSX], 
-      [vwSingalIO].[GPSY] AS [GPSY], 
-      [vwSingalIO].[ERNo] AS [ERNo], 
-      [vwSingalIO].[CallOpenDoor] AS [CallOpenDoor]
-      FROM [dbo].[vwSingalIO] AS [vwSingalIO]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="vwUserGroupMenuAllow" EntityType="SecureDBModel.Store.vwUserGroupMenuAllow" store:Type="Views" store:Schema="dbo" store:Name="vwUserGroupMenuAllow">
             <DefiningQuery>SELECT 
       [vwUserGroupMenuAllow].[GroupID] AS [GroupID], 
@@ -2745,62 +2705,6 @@
           <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--產生期間發現錯誤:
-      警告 6002: 資料表/檢視 'SecureDB.dbo.vwSingalIO' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
-      -->
-        <EntityType Name="vwSingalIO">
-          <Key>
-            <PropertyRef Name="ControlID" />
-            <PropertyRef Name="SingalName" />
-            <PropertyRef Name="ControllerConfig_ControlID" />
-            <PropertyRef Name="ControlType" />
-            <PropertyRef Name="IP" />
-            <PropertyRef Name="Port" />
-            <PropertyRef Name="EntranceCode" />
-            <PropertyRef Name="ERID" />
-            <PropertyRef Name="ERName" />
-            <PropertyRef Name="LineID" />
-            <PropertyRef Name="Direction" />
-            <PropertyRef Name="GPSX" />
-            <PropertyRef Name="GPSY" />
-          </Key>
-          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="SingalName" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="SingalType" Type="nvarchar" MaxLength="2" />
-          <Property Name="Place" Type="smallint" />
-          <Property Name="SingalIO_Memo" Type="nvarchar" MaxLength="100" />
-          <Property Name="ControllerConfig_ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ControlType" Type="smallint" Nullable="false" />
-          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="Port" Type="int" Nullable="false" />
-          <Property Name="Loop" Type="char" MaxLength="1" />
-          <Property Name="IsEnable" Type="bit" />
-          <Property Name="X" Type="float" />
-          <Property Name="Y" Type="float" />
-          <Property Name="ScaleX" Type="float" />
-          <Property Name="ScaleY" Type="float" />
-          <Property Name="Rotation" Type="float" />
-          <Property Name="PlaneID" Type="int" />
-          <Property Name="TriggerCCTVID" Type="int" />
-          <Property Name="RTUBaseAddress" Type="int" />
-          <Property Name="RTURegisterLength" Type="int" />
-          <Property Name="Comm_state" Type="int" />
-          <Property Name="R23_ADAM" Type="nvarchar" MaxLength="50" />
-          <Property Name="R23DoorOpen_DI" Type="smallint" />
-          <Property Name="R23DoorOpen_DO" Type="smallint" />
-          <Property Name="EntranceCode" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ERID" Type="int" Nullable="false" />
-          <Property Name="Floor" Type="smallint" />
-          <Property Name="EntranceType" Type="nvarchar" MaxLength="20" />
-          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
-          <Property Name="ERName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="LineID" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="Direction" Type="char" Nullable="false" MaxLength="1" />
-          <Property Name="GPSX" Type="float" Nullable="false" />
-          <Property Name="GPSY" Type="float" Nullable="false" />
-          <Property Name="ERNo" Type="nvarchar" MaxLength="20" />
-          <Property Name="CallOpenDoor" Type="nvarchar" MaxLength="20" />
-        </EntityType>
-        <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwUserGroupMenuAllow' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
       -->
         <EntityType Name="vwUserGroupMenuAllow">
@@ -3354,7 +3258,6 @@
           <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" />
           <EntitySet Name="vwPDConfig" EntityType="SecureDBModel.vwPDConfig" />
           <EntitySet Name="tblRemotePowerControl" EntityType="SecureDBModel.tblRemotePowerControl" />
-          <EntitySet Name="vwSingalIO" EntityType="SecureDBModel.vwSingalIO" />
           </EntityContainer>
         <EntityType Name="tblAIItem1HourLog">
           <Key>
@@ -5361,59 +5264,6 @@
           <Property Type="Int32" Name="Port" Nullable="false" />
           <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="vwSingalIO">
-          <Key>
-            <PropertyRef Name="ControlID" />
-            <PropertyRef Name="SingalName" />
-            <PropertyRef Name="ControllerConfig_ControlID" />
-            <PropertyRef Name="ControlType" />
-            <PropertyRef Name="IP" />
-            <PropertyRef Name="Port" />
-            <PropertyRef Name="EntranceCode" />
-            <PropertyRef Name="ERID" />
-            <PropertyRef Name="ERName" />
-            <PropertyRef Name="LineID" />
-            <PropertyRef Name="Direction" />
-            <PropertyRef Name="GPSX" />
-            <PropertyRef Name="GPSY" />
-          </Key>
-          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SingalName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SingalType" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="Place" />
-          <Property Type="String" Name="SingalIO_Memo" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ControllerConfig_ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="ControlType" Nullable="false" />
-          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Port" Nullable="false" />
-          <Property Type="String" Name="Loop" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Boolean" Name="IsEnable" />
-          <Property Type="Double" Name="X" />
-          <Property Type="Double" Name="Y" />
-          <Property Type="Double" Name="ScaleX" />
-          <Property Type="Double" Name="ScaleY" />
-          <Property Type="Double" Name="Rotation" />
-          <Property Type="Int32" Name="PlaneID" />
-          <Property Type="Int32" Name="TriggerCCTVID" />
-          <Property Type="Int32" Name="RTUBaseAddress" />
-          <Property Type="Int32" Name="RTURegisterLength" />
-          <Property Type="Int32" Name="Comm_state" />
-          <Property Type="String" Name="R23_ADAM" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="R23DoorOpen_DI" />
-          <Property Type="Int16" Name="R23DoorOpen_DO" />
-          <Property Type="String" Name="EntranceCode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ERID" Nullable="false" />
-          <Property Type="Int16" Name="Floor" />
-          <Property Type="String" Name="EntranceType" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LineID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Direction" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Double" Name="GPSX" Nullable="false" />
-          <Property Type="Double" Name="GPSY" Nullable="false" />
-          <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CallOpenDoor" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6963,48 +6813,6 @@
                 <ScalarProperty Name="IP" ColumnName="IP" />
                 <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
                 <ScalarProperty Name="Inx" ColumnName="Inx" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwSingalIO">
-            <EntityTypeMapping TypeName="SecureDBModel.vwSingalIO">
-              <MappingFragment StoreEntitySet="vwSingalIO">
-                <ScalarProperty Name="CallOpenDoor" ColumnName="CallOpenDoor" />
-                <ScalarProperty Name="ERNo" ColumnName="ERNo" />
-                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
-                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
-                <ScalarProperty Name="Direction" ColumnName="Direction" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="EntranceType" ColumnName="EntranceType" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="EntranceCode" ColumnName="EntranceCode" />
-                <ScalarProperty Name="R23DoorOpen_DO" ColumnName="R23DoorOpen_DO" />
-                <ScalarProperty Name="R23DoorOpen_DI" ColumnName="R23DoorOpen_DI" />
-                <ScalarProperty Name="R23_ADAM" ColumnName="R23_ADAM" />
-                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
-                <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
-                <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
-                <ScalarProperty Name="TriggerCCTVID" ColumnName="TriggerCCTVID" />
-                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
-                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
-                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
-                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
-                <ScalarProperty Name="Y" ColumnName="Y" />
-                <ScalarProperty Name="X" ColumnName="X" />
-                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
-                <ScalarProperty Name="Loop" ColumnName="Loop" />
-                <ScalarProperty Name="Port" ColumnName="Port" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
-                <ScalarProperty Name="ControllerConfig_ControlID" ColumnName="ControllerConfig_ControlID" />
-                <ScalarProperty Name="SingalIO_Memo" ColumnName="SingalIO_Memo" />
-                <ScalarProperty Name="Place" ColumnName="Place" />
-                <ScalarProperty Name="SingalType" ColumnName="SingalType" />
-                <ScalarProperty Name="SingalName" ColumnName="SingalName" />
-                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

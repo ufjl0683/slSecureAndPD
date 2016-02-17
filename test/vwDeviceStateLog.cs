@@ -12,14 +12,16 @@ namespace test
     using System;
     using System.Collections.Generic;
     
-    public partial class vwMagneticCardAllowController
+    public partial class vwDeviceStateLog
     {
+        public long FlowID { get; set; }
+        public int ERID { get; set; }
+        public string ERName { get; set; }
         public string ControlID { get; set; }
-        public int MagneticID { get; set; }
-        public string ABA { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public string Enable { get; set; }
-        public Nullable<short> Type { get; set; }
+        public System.DateTime TimeStamp { get; set; }
+        public short TypeID { get; set; }
+        public short TypeCode { get; set; }
+        public string Explain { get; set; }
+        public string Memo { get; set; }
     }
 }

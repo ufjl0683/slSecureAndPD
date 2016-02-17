@@ -12,16 +12,26 @@ namespace test
     using System;
     using System.Collections.Generic;
     
-    public partial class vwMagneticCard
+    public partial class vwR23EngineRoomLog
     {
-        public int MagneticID { get; set; }
+        public long FlowID { get; set; }
+        public string ERNo { get; set; }
+        public string ControlID { get; set; }
+        public short Result { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public Nullable<System.DateTime> Endtime { get; set; }
+        public string Memo { get; set; }
         public string ABA { get; set; }
+        public Nullable<short> TypeID { get; set; }
+        public Nullable<short> TypeCode { get; set; }
+        public string NVRFile { get; set; }
+        public Nullable<int> MagneticID { get; set; }
         public string WEG1 { get; set; }
         public string WEG2 { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public string Enable { get; set; }
-        public string Memo { get; set; }
+        public string tblMagneticCard_Memo { get; set; }
         public string Company { get; set; }
         public string Name { get; set; }
         public string IDNumber { get; set; }
@@ -34,8 +44,13 @@ namespace test
         public Nullable<int> RoleID { get; set; }
         public Nullable<System.DateTime> Timestamp { get; set; }
         public Nullable<System.DateTime> ReturnDate { get; set; }
-        public string NormalName { get; set; }
-        public string TypeName { get; set; }
-        public string EnableName { get; set; }
+        public Nullable<int> ERID { get; set; }
+        public string ERName { get; set; }
+        public string LineID { get; set; }
+        public string Direction { get; set; }
+        public Nullable<double> GPSX { get; set; }
+        public Nullable<double> GPSY { get; set; }
+        public string CallOpenDoor { get; set; }
+        public string ResultName { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer
+namespace test
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace SecureServer
         public string WEG1 { get; set; }
         public string WEG2 { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
         public string Enable { get; set; }
         public string Memo { get; set; }
         public string Company { get; set; }
@@ -36,15 +36,12 @@ namespace SecureServer
         public Nullable<System.DateTime> ReturnDate { get; set; }
         public string NormalName { get; set; }
         public string RoleName { get; set; }
-        public string TypeName { get; set; }
-        public string ControlID { get; set; }
         public Nullable<int> ERID { get; set; }
         public string ERName { get; set; }
         public string Door { get; set; }
+        public string ControlID { get; set; }
+        public string TypeName { get; set; }
         public Nullable<bool> IsEnable { get; set; }
         public string EnableName { get; set; }
-        public string MCNSID { get; set; }
-        public Nullable<System.DateTime> CardStartDate { get; set; }
-        public Nullable<System.DateTime> CardEndDate { get; set; }
     }
 }

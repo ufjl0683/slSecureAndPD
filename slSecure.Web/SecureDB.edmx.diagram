@@ -109,7 +109,6 @@
         <EntityTypeShape EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" Width="1.5" PointX="7.2207264840699388" PointY="26.812512752978371" />
         <EntityTypeShape EntityType="SecureDBModel.vwPDConfig" Width="1.5" PointX="4.60998017741832" PointY="16.287265472247853" />
         <EntityTypeShape EntityType="SecureDBModel.tblRemotePowerControl" Width="1.5" PointX="2.8033609440565859" PointY="9.243440602553747" />
-        <EntityTypeShape EntityType="SecureDBModel.vwSingalIO" Width="1.5" PointX="10.174293044104378" PointY="11.102875073953939" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
