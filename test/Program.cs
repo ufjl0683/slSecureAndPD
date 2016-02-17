@@ -11,6 +11,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Text.RegularExpressions;
 using test.MCNSService;
 using test.RemoteService;
 
@@ -34,12 +35,34 @@ namespace test
         //    Console.WriteLine("hi");
         //    System.Threading.Thread.Sleep(40000);
         //}
-        
 
+       static void BatteryPackTest()
+        {
+           // WebClient client = new WebClient();
+           //string s=  client.DownloadString("http://192.192.85.64/secure/slsecure.aspx"/*"http://10.2.190.125:80/stringindex?0_0"*/);
+         
+           // Regex regex = new Regex(@"(?<v>[0-9]+.[0-9]+)\s*V|(?<temp>[0-9]+.[0-9]+)&deg;C");
+           // MatchCollection collection = regex.Matches(s);
+           //for(int i=0;i<collection.Count;i++)
+           //    Console.WriteLine(collection[i].Groups[(i%2)+1].Value);
+           // Console.WriteLine(collection.Count);
+
+            SecureServer.RTU.R13BatteryPackRTU rtu = new SecureServer.RTU.R13BatteryPackRTU("AA", 1, "10.2.190.125", 80, 1, 48, 1);
+
+            while (true)
+            {
+                for (int i = 0; i < 48; i++)
+                {
+                    Console.WriteLine(rtu.GetRegisterReading((ushort)(1+ i)));
+                }
+                System.Threading.Thread.Sleep(1000);
+            }
+        }
 
         static void Main(string[] args)
         {
-
+            BatteryPackTest();
+            Console.ReadLine();
 
             //SSOService.SsoWebServiceClient client = new SSOService.SsoWebServiceClient();
             //var res=client.checkAuthentication();
@@ -48,24 +71,15 @@ namespace test
 
             //client.Connect("10.21.223.20", (ushort)502);
 //
-     //       SecureServer.RTU.R13IEDRTU rtu = new SecureServer.RTU.R13IEDRTU("AA", 2, "10.2.10.159", 503, 1, 20, 0);
-           ModbusTCP.Master rtu = new ModbusTCP.Master();//.RTU("AA", 2, "10.2.10.159", 503, 1, 20, 0);
-           Console.WriteLine("rtu conecting...");
-           rtu.connect("10.2.10.159", 503);
-           Console.WriteLine("rtu ...");
+            SecureServer.RTU.R13NewSmrRTU rtu = new SecureServer.RTU.R13NewSmrRTU("AA", 1, "10.2.190.126", 502, 1, 20, 0);
+           //ModbusTCP.Master rtu = new ModbusTCP.Master();//.RTU("AA", 2, "10.2.10.159", 503, 1, 20, 0);
+            Console.WriteLine("rtu conecting...");
+           // rtu.connect("10.2.180.126", 502);
+           // Console.WriteLine("rtu ...");
             while (true)
             {
-                if (!rtu.connected)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                    continue;
-                }
-
-                byte[] data=new byte[40];
-
-                rtu.ReadInputRegister(0, 2, 0, 20,ref data);
-                if (data != null)
-                    Console.WriteLine(data[1]);
+                Console.WriteLine("volt:"+rtu.GetRegisterReading(3));
+                Console.WriteLine("amp:" + rtu.GetRegisterReading(4));
                 System.Threading.Thread.Sleep(1000);
             }
             Console.ReadKey();
