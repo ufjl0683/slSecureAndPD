@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace test
+namespace SecureServer
 {
     using System;
     using System.Collections.Generic;

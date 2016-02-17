@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace test
+namespace SecureServer
 {
     using System;
     using System.Collections.Generic;
@@ -37,5 +37,8 @@ namespace test
         public string NormalName { get; set; }
         public string TypeName { get; set; }
         public string EnableName { get; set; }
+        public string MCNSID { get; set; }
+        public Nullable<System.DateTime> CardStartDate { get; set; }
+        public Nullable<System.DateTime> CardEndDate { get; set; }
     }
 }
