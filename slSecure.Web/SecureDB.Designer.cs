@@ -1124,22 +1124,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwItemConfig> vwItemConfig
-        {
-            get
-            {
-                if ((_vwItemConfig == null))
-                {
-                    _vwItemConfig = base.CreateObjectSet<vwItemConfig>("vwItemConfig");
-                }
-                return _vwItemConfig;
-            }
-        }
-        private ObjectSet<vwItemConfig> _vwItemConfig;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwMagneticCard> vwMagneticCard
         {
             get
@@ -1200,22 +1184,6 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwAlarmLog> _vwAlarmLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<vwItemGroup> vwItemGroup
-        {
-            get
-            {
-                if ((_vwItemGroup == null))
-                {
-                    _vwItemGroup = base.CreateObjectSet<vwItemGroup>("vwItemGroup");
-                }
-                return _vwItemGroup;
-            }
-        }
-        private ObjectSet<vwItemGroup> _vwItemGroup;
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -1344,6 +1312,38 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwSingalIO> _vwSingalIO;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwItemConfig> vwItemConfig
+        {
+            get
+            {
+                if ((_vwItemConfig == null))
+                {
+                    _vwItemConfig = base.CreateObjectSet<vwItemConfig>("vwItemConfig");
+                }
+                return _vwItemConfig;
+            }
+        }
+        private ObjectSet<vwItemConfig> _vwItemConfig;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwItemGroup> vwItemGroup
+        {
+            get
+            {
+                if ((_vwItemGroup == null))
+                {
+                    _vwItemGroup = base.CreateObjectSet<vwItemGroup>("vwItemGroup");
+                }
+                return _vwItemGroup;
+            }
+        }
+        private ObjectSet<vwItemGroup> _vwItemGroup;
 
         #endregion
 
@@ -1862,14 +1862,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwItemConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwItemConfig(vwItemConfig vwItemConfig)
-        {
-            base.AddObject("vwItemConfig", vwItemConfig);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwMagneticCard EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwMagneticCard(vwMagneticCard vwMagneticCard)
@@ -1899,14 +1891,6 @@ namespace slSecure.Web
         public void AddTovwAlarmLog(vwAlarmLog vwAlarmLog)
         {
             base.AddObject("vwAlarmLog", vwAlarmLog);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 vwItemGroup EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwItemGroup(vwItemGroup vwItemGroup)
-        {
-            base.AddObject("vwItemGroup", vwItemGroup);
         }
     
         /// <summary>
@@ -1971,6 +1955,22 @@ namespace slSecure.Web
         public void AddTovwSingalIO(vwSingalIO vwSingalIO)
         {
             base.AddObject("vwSingalIO", vwSingalIO);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwItemConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwItemConfig(vwItemConfig vwItemConfig)
+        {
+            base.AddObject("vwItemConfig", vwItemConfig);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwItemGroup EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwItemGroup(vwItemGroup vwItemGroup)
+        {
+            base.AddObject("vwItemGroup", vwItemGroup);
         }
 
         #endregion
@@ -19606,6 +19606,30 @@ namespace slSecure.Web
         private Nullable<global::System.Boolean> _Suppress;
         partial void OnSuppressChanging(Nullable<global::System.Boolean> value);
         partial void OnSuppressChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String GroupNameDetail
+        {
+            get
+            {
+                return _GroupNameDetail;
+            }
+            set
+            {
+                OnGroupNameDetailChanging(value);
+                ReportPropertyChanging("GroupNameDetail");
+                _GroupNameDetail = StructuralObject.SetValidValue(value, true, "GroupNameDetail");
+                ReportPropertyChanged("GroupNameDetail");
+                OnGroupNameDetailChanged();
+            }
+        }
+        private global::System.String _GroupNameDetail;
+        partial void OnGroupNameDetailChanging(global::System.String value);
+        partial void OnGroupNameDetailChanged();
 
         #endregion
 
@@ -19632,7 +19656,8 @@ namespace slSecure.Web
         /// <param name="scaleX">ScaleX 屬性的初始值。</param>
         /// <param name="scaleY">ScaleY 屬性的初始值。</param>
         /// <param name="isShow">IsShow 屬性的初始值。</param>
-        public static vwItemGroup CreatevwItemGroup(global::System.Int32 groupID, global::System.String groupName, global::System.Double x, global::System.Double y, global::System.Double rotation, global::System.Double scaleX, global::System.Double scaleY, global::System.Boolean isShow)
+        /// <param name="controlID">ControlID 屬性的初始值。</param>
+        public static vwItemGroup CreatevwItemGroup(global::System.Int32 groupID, global::System.String groupName, global::System.Double x, global::System.Double y, global::System.Double rotation, global::System.Double scaleX, global::System.Double scaleY, global::System.Boolean isShow, global::System.String controlID)
         {
             vwItemGroup vwItemGroup = new vwItemGroup();
             vwItemGroup.GroupID = groupID;
@@ -19643,6 +19668,7 @@ namespace slSecure.Web
             vwItemGroup.ScaleX = scaleX;
             vwItemGroup.ScaleY = scaleY;
             vwItemGroup.IsShow = isShow;
+            vwItemGroup.ControlID = controlID;
             return vwItemGroup;
         }
 
@@ -20013,7 +20039,7 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String ControlID
         {
@@ -20023,11 +20049,14 @@ namespace slSecure.Web
             }
             set
             {
-                OnControlIDChanging(value);
-                ReportPropertyChanging("ControlID");
-                _ControlID = StructuralObject.SetValidValue(value, true, "ControlID");
-                ReportPropertyChanged("ControlID");
-                OnControlIDChanged();
+                if (_ControlID != value)
+                {
+                    OnControlIDChanging(value);
+                    ReportPropertyChanging("ControlID");
+                    _ControlID = StructuralObject.SetValidValue(value, false, "ControlID");
+                    ReportPropertyChanged("ControlID");
+                    OnControlIDChanged();
+                }
             }
         }
         private global::System.String _ControlID;
@@ -20297,6 +20326,30 @@ namespace slSecure.Web
         private global::System.String _LineName;
         partial void OnLineNameChanging(global::System.String value);
         partial void OnLineNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String GroupNameDetail
+        {
+            get
+            {
+                return _GroupNameDetail;
+            }
+            set
+            {
+                OnGroupNameDetailChanging(value);
+                ReportPropertyChanging("GroupNameDetail");
+                _GroupNameDetail = StructuralObject.SetValidValue(value, true, "GroupNameDetail");
+                ReportPropertyChanged("GroupNameDetail");
+                OnGroupNameDetailChanged();
+            }
+        }
+        private global::System.String _GroupNameDetail;
+        partial void OnGroupNameDetailChanging(global::System.String value);
+        partial void OnGroupNameDetailChanged();
 
         #endregion
 

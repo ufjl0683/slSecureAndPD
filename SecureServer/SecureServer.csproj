@@ -46,7 +46,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;R23</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -280,13 +280,40 @@
     <Compile Include="tblUserGroupMenu.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="vwAIImmediatelyCheck.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwAlarmLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwAllAlarmLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="vwCardCommandLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwControllerConfig.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwDeviceStateLog.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="vwEngineRoomLog.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="vwEntranceGuardDetail.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwERNamePlaneList.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwERNameRTUList.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwItemConfig.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwItemGroup.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="vwMagneticCard.cs">

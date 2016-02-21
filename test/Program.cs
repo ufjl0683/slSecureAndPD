@@ -59,9 +59,18 @@ namespace test
             }
         }
 
+        static  void  PDTest()
+        {
+            //SecureDBEntities db=new SecureDBEntities();
+            //tblPDConfig config=new tblPDConfig();
+            //config.type = 1;
+            //SecureServer.PD.PD pd = new SecureServer.PD.PD("aa", "10.21.93.35", 502, config);
+            
+        }
+
         static void Main(string[] args)
         {
-            BatteryPackTest();
+            PDTest();
             Console.ReadLine();
 
             //SSOService.SsoWebServiceClient client = new SSOService.SsoWebServiceClient();

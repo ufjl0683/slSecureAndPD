@@ -15,16 +15,8 @@ namespace SecureServer
 using System;
     using System.Collections.Generic;
     
-public partial class tblItemConfig
+public partial class vwItemConfig
 {
-
-    public tblItemConfig()
-    {
-
-        this.tblAIItem1HourLog = new HashSet<tblAIItem1HourLog>();
-
-    }
-
 
     public int ItemID { get; set; }
 
@@ -50,7 +42,7 @@ public partial class tblItemConfig
 
     public Nullable<double> AlarmLower { get; set; }
 
-    public Nullable<double> Value { get; set; }
+    public string Value { get; set; }
 
     public int Address { get; set; }
 
@@ -68,6 +60,8 @@ public partial class tblItemConfig
 
     public string AbnormalRecoveryMode { get; set; }
 
+    public Nullable<int> DIInvokeWarningValue { get; set; }
+
     public string UIType { get; set; }
 
     public double ValueScale { get; set; }
@@ -75,8 +69,6 @@ public partial class tblItemConfig
     public double Offset { get; set; }
 
     public double Coefficient { get; set; }
-
-    public Nullable<int> DIInvokeWarningValue { get; set; }
 
     public bool IsShow { get; set; }
 
@@ -90,6 +82,46 @@ public partial class tblItemConfig
 
     public Nullable<double> Y { get; set; }
 
+    public Nullable<short> GroupType { get; set; }
+
+    public string GroupName { get; set; }
+
+    public Nullable<int> PlaneID { get; set; }
+
+    public bool GroupIsShow { get; set; }
+
+    public Nullable<int> ERID { get; set; }
+
+    public string ERName { get; set; }
+
+    public string PlaneName { get; set; }
+
+    public string PictureDesc { get; set; }
+
+    public Nullable<short> ControlType { get; set; }
+
+    public string EntranceCode { get; set; }
+
+    public string Loop { get; set; }
+
+    public Nullable<bool> IsEnable { get; set; }
+
+    public Nullable<int> TriggerCCTVID { get; set; }
+
+    public Nullable<int> RTUBaseAddress { get; set; }
+
+    public Nullable<int> RTURegisterLength { get; set; }
+
+    public string LineID { get; set; }
+
+    public string LineName { get; set; }
+
+    public string Lv0ColorName { get; set; }
+
+    public string Lv1ColorName { get; set; }
+
+    public string Lv2ColorName { get; set; }
+
     public string Lv0Color { get; set; }
 
     public string Lv1Color { get; set; }
@@ -98,17 +130,15 @@ public partial class tblItemConfig
 
     public Nullable<int> GroupTypeID { get; set; }
 
+    public string GroupTypeName { get; set; }
+
     public Nullable<int> KindID { get; set; }
+
+    public string KindName { get; set; }
 
     public Nullable<bool> Suppress { get; set; }
 
-
-
-    public virtual tblControllerConfig tblControllerConfig { get; set; }
-
-    public virtual tblItemGroup tblItemGroup { get; set; }
-
-    public virtual ICollection<tblAIItem1HourLog> tblAIItem1HourLog { get; set; }
+    public string GroupNameDetail { get; set; }
 
 }
 

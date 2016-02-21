@@ -72,7 +72,8 @@ namespace SecureServer
         public static void PDTEst()
         {
             SecureDBEntities1 db=new SecureDBEntities1();
-            PD.PD pd = new PD.PD("PD-N1-N-69.135", "10.2.31.68", 502, db.tblPDConfig.Where(n => n.PDName == "PD-N1-N-69.135").FirstOrDefault());
+            tblPDConfig config= db.tblPDConfig.Where(n => n.PDName == "PD-T78-W-22.0").FirstOrDefault();
+            PD.PD pd = new PD.PD("PD-T78-W-22.0", config.IP, 502,config);
             while (true)
             {
                 Console.WriteLine(pd.ToString());

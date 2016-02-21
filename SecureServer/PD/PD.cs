@@ -22,6 +22,7 @@ namespace SecureServer.PD
        object lockobj = new object();
        tblPDConfig tblPDConfig;
        System.Collections.BitArray bits;
+       int reading_fail_cnt = 0;
        public PD(string  PDName,string IP, int Port, tblPDConfig tblpdconfig)
        {
            this.IP = IP;
@@ -364,7 +365,14 @@ namespace SecureServer.PD
                        {
                          
                                 RTUDevice.ReadDiscreteInputs(1, 0, 0, 12, ref tempdata);
-
+                                if (tempdata == null)
+                                {
+                                    Console.WriteLine(this.PDName + "讀取資料失敗");
+                                    reading_fail_cnt++;
+                                    continue;
+                                }
+                                else
+                                    reading_fail_cnt = 0;
 
                                 if ((tblPDConfig.type ?? 1) == 2)  //R11
                                 {
@@ -781,15 +789,27 @@ namespace SecureServer.PD
            IsInConnected = true;
            while (true)
            {
-               while (RTUDevice == null || !RTUDevice.connected)
+               while (RTUDevice == null || !RTUDevice.connected || reading_fail_cnt>5)
                {
                    try
                    {
+                       try
+                       {
+                           if (RTUDevice != null)
+                           {
+                               RTUDevice.disconnect();
+                               RTUDevice.Dispose();
+
+                           }
+                       }
+                       catch { ;}
+                       finally { reading_fail_cnt = 0; }
                        Console.WriteLine(this.PDName + "  Connecting!");
                        RTUDevice = new Master();
                        RTUDevice.connect(IP, (ushort)Port);
                        RTUDevice.OnResponseData += RTUDevice_OnResponseData;
                        RTUDevice.OnException += RTUDevice_OnException;
+                       Console.WriteLine("connected!");
 
                    }
                    catch (Exception ex)
@@ -800,9 +820,9 @@ namespace SecureServer.PD
                    }
                    finally
                    {
-                       System.Threading.Thread.Sleep(30000);
+                       System.Threading.Thread.Sleep(5000);
                    }
-                   Console.WriteLine("connected!");
+                
                }
 
                System.Threading.Thread.Sleep(1000);
@@ -815,10 +835,24 @@ namespace SecureServer.PD
 
        void RTUDevice_OnException(ushort id, byte unit, byte function, byte exception)
        {
+           Console.WriteLine(this.PDName + "通訊異常" + exception);
+           try
+           {
+               System.IO.StreamWriter wr = new System.IO.StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\pd_err.log");
+               wr.WriteLine(DateTime.Now.ToString() + ":" + this.PDName + "," + exception);
+               wr.Flush();
+               wr.Close();
+           }
+           catch { ;}
+
            if (exception == 254)
            {
-               RTUDevice.disconnect();
-               RTUDevice.Dispose();
+               try
+               {
+                   RTUDevice.disconnect();
+                   RTUDevice.Dispose();
+               }
+               catch { ;}
 
            }
            //  throw new NotImplementedException();
@@ -836,8 +870,8 @@ namespace SecureServer.PD
           System.Collections.BitArray bits = new System.Collections.BitArray(data);
            //string res = string.Format("R0:S0:T0 {0}:{1}:{2}, R1:S1:T1 {3}:{4}:{5} L1-L5:{6}{7}{8}{9}{10} C:{11}\n", Cvt01(bits.Get(0)), Cvt01(bits.Get(1)), Cvt01(bits.Get(2)), Cvt01(bits.Get(3)), Cvt01(bits.Get(4)), Cvt01(bits.Get(5))
            //   , Cvt01(bits.Get(6)), Cvt01(bits.Get(7)), Cvt01(bits.Get(8)), Cvt01(bits.Get(9)), Cvt01(bits.Get(10)), Cvt01(bits.Get(11)));    
-           string res = string.Format("R0:S0:T0 {0}:{1}:{2}, R1:S1:T1 {3}:{4}:{5} L1-L5:{6}{7}{8}{9}{10} C:{11}", R0, S0, T0, R1, S1,T1
-               , L0, L1, L2, L3, L4,Cabinet);
+           string res = string.Format(this.PDName+"R0:S0:T0 {0}:{1}:{2}, R1:S1:T1 {3}:{4}:{5} L1-L5:{6}{7}{8}{9}{10} C:{11} isCOnnected:{12}", R0, S0, T0, R1, S1,T1
+               , L0, L1, L2, L3, L4,Cabinet,IsConnected);
            //for (int i = 0; i < data.Length; i++)
            //{
            //    sb.Append(string.Format("{0:X2}", data[i]) + " ");

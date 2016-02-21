@@ -15,12 +15,28 @@ namespace SecureServer
 using System;
     using System.Collections.Generic;
     
-public partial class tblControllerCard
+public partial class vwControllerConfig
 {
+
+    public int ERID { get; set; }
+
+    public string ERName { get; set; }
+
+    public string Memo { get; set; }
 
     public string ControlID { get; set; }
 
-    public string ABA { get; set; }
+    public short ControlType { get; set; }
+
+    public string ControlTypeName { get; set; }
+
+    public string EntranceCode { get; set; }
+
+    public Nullable<int> Comm_state { get; set; }
+
+    public string Comm_stateName { get; set; }
+
+    public Nullable<bool> IsEnable { get; set; }
 
 }
 

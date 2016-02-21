@@ -15,16 +15,8 @@ namespace SecureServer
 using System;
     using System.Collections.Generic;
     
-public partial class tblItemGroup
+public partial class vwItemGroup
 {
-
-    public tblItemGroup()
-    {
-
-        this.tblItemConfig = new HashSet<tblItemConfig>();
-
-    }
-
 
     public int GroupID { get; set; }
 
@@ -46,9 +38,39 @@ public partial class tblItemGroup
 
     public bool IsShow { get; set; }
 
+    public Nullable<int> ERID { get; set; }
 
+    public string ERName { get; set; }
 
-    public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
+    public string PlaneName { get; set; }
+
+    public string PictureDesc { get; set; }
+
+    public string ControlID { get; set; }
+
+    public Nullable<short> ControlType { get; set; }
+
+    public string IP { get; set; }
+
+    public Nullable<int> Port { get; set; }
+
+    public string EntranceCode { get; set; }
+
+    public string Loop { get; set; }
+
+    public Nullable<bool> IsEnable { get; set; }
+
+    public Nullable<int> TriggerCCTVID { get; set; }
+
+    public Nullable<int> RTUBaseAddress { get; set; }
+
+    public Nullable<int> RTURegisterLength { get; set; }
+
+    public string LineID { get; set; }
+
+    public string LineName { get; set; }
+
+    public string GroupNameDetail { get; set; }
 
 }
 

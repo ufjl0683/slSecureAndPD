@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer
+namespace test
 {
     using System;
     using System.Collections.Generic;
@@ -16,9 +16,9 @@ namespace SecureServer
     {
         public tblControllerConfig()
         {
-            this.tblItemConfig = new HashSet<tblItemConfig>();
-            this.tblDeviceStateLog = new HashSet<tblDeviceStateLog>();
             this.tblCardReaderConfig = new HashSet<tblCardReaderConfig>();
+            this.tblDeviceStateLog = new HashSet<tblDeviceStateLog>();
+            this.tblItemConfig = new HashSet<tblItemConfig>();
             this.tblSingalIO = new HashSet<tblSingalIO>();
             this.tblSysRoleAuthority = new HashSet<tblSysRoleAuthority>();
         }
@@ -45,11 +45,11 @@ namespace SecureServer
         public Nullable<short> R23DoorOpen_DI { get; set; }
         public Nullable<short> R23DoorOpen_DO { get; set; }
     
-        public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
-        public virtual ICollection<tblDeviceStateLog> tblDeviceStateLog { get; set; }
         public virtual ICollection<tblCardReaderConfig> tblCardReaderConfig { get; set; }
         public virtual tblEngineRoomConfig tblEngineRoomConfig { get; set; }
         public virtual tblControlSetting tblControlSetting { get; set; }
+        public virtual ICollection<tblDeviceStateLog> tblDeviceStateLog { get; set; }
+        public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
         public virtual ICollection<tblSingalIO> tblSingalIO { get; set; }
         public virtual ICollection<tblSysRoleAuthority> tblSysRoleAuthority { get; set; }
     }

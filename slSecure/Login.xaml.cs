@@ -26,6 +26,10 @@ namespace slSecure
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
+          
+
+
+
               
            
         }

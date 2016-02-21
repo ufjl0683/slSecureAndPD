@@ -24,7 +24,7 @@ namespace ModbusTCP
         Master RTUDevice;
         System.Threading.Timer tmr;
         byte?[] data;
-
+        int reading_fail_cnt = 0;
         object lockobj = new object();
         public RTU(string ControlID,int DevID,string IP, int Port,int StartAddress, int RegisterLength,int comm_state)
         {
@@ -93,6 +93,14 @@ namespace ModbusTCP
                         lock (lockobj)
                         {
                             RTUDevice.ReadHoldingRegister((ushort)this.DevID, (byte)this.DevID, (ushort)(StartAddress - 1), this.RegisterLength, ref tempdata);
+                            if (tempdata == null)
+                            {
+                                Console.WriteLine(this.ControlID + "," + "讀取失敗");
+                                reading_fail_cnt++;
+                            }
+                            else
+                                reading_fail_cnt = 0;
+
                             if (tempdata != null && tempdata.Length != 0)
                             {
                                 for (int i = 0; i < tempdata.Length; i++)
@@ -100,12 +108,16 @@ namespace ModbusTCP
                             }
                         }
                     }
-                    System.Threading.Thread.Sleep(1000);
+                   
 
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("RTU:"+this.ControlID+","+ex.Message + "," + ex.StackTrace);
+                    Console.WriteLine("RTU:" + this.ControlID + "," + ex.Message + "," + ex.StackTrace);
+                }
+                finally
+                {
+                    System.Threading.Thread.Sleep(1000);
                 }
              
             }
@@ -152,10 +164,22 @@ namespace ModbusTCP
                 IsInConnected = true;
                 while (true)
                 {
-                    while (RTUDevice == null || !RTUDevice.connected)
+                    while (RTUDevice == null || !RTUDevice.connected||reading_fail_cnt>5)
                     {
                         try
                         {
+                            try
+                            {
+                                if (RTUDevice != null)
+                                {
+                                    RTUDevice.disconnect();
+                                    RTUDevice.Dispose();
+
+                                }
+                            }
+                            catch { ;}
+                            finally { reading_fail_cnt = 0; }
+
                             Console.WriteLine(this.ControlID+"  Connecting!");
                             RTUDevice = new Master();
                             RTUDevice.connect(IP, (ushort)Port);

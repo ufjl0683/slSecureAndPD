@@ -128,5 +128,4 @@ namespace SecureServer.RTU
             return data[(address - StartAddress) * 2] * 256 + data[(address - StartAddress) * 2 + 1];
         }
     }
- }
- 
+}

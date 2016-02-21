@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer
+namespace test
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class vwUserGroupMenuAllow
+    public partial class sysdiagrams
     {
-        public int GroupID { get; set; }
-        public string GroupName { get; set; }
-        public Nullable<bool> IsAllow { get; set; }
-        public int MenuID { get; set; }
-        public string MenuName { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer
+namespace test
 {
     using System;
     using System.Collections.Generic;
@@ -40,11 +40,11 @@ namespace SecureServer
         public string AlarmContent { get; set; }
         public string AbnormalRecoveryContent { get; set; }
         public string AbnormalRecoveryMode { get; set; }
+        public Nullable<int> DIInvokeWarningValue { get; set; }
         public string UIType { get; set; }
         public double ValueScale { get; set; }
         public double Offset { get; set; }
         public double Coefficient { get; set; }
-        public Nullable<int> DIInvokeWarningValue { get; set; }
         public bool IsShow { get; set; }
         public Nullable<double> ScaleX { get; set; }
         public Nullable<double> ScaleY { get; set; }
@@ -58,8 +58,8 @@ namespace SecureServer
         public Nullable<int> KindID { get; set; }
         public Nullable<bool> Suppress { get; set; }
     
+        public virtual ICollection<tblAIItem1HourLog> tblAIItem1HourLog { get; set; }
         public virtual tblControllerConfig tblControllerConfig { get; set; }
         public virtual tblItemGroup tblItemGroup { get; set; }
-        public virtual ICollection<tblAIItem1HourLog> tblAIItem1HourLog { get; set; }
     }
 }

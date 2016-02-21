@@ -64,21 +64,20 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Class2.cs" />
     <Compile Include="DB.Context.cs">
-      <DependentUpon>DB.Context.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>DB.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="DB.cs">
-      <DependentUpon>DB.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="DB.Designer.cs">
-      <DependentUpon>DB.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>DB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PD.cs" />
     <Compile Include="PDStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +99,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblAIItem1HourLog.cs">
       <DependentUpon>DB.tt</DependentUpon>
@@ -234,30 +236,6 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUserGroupMenu.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vwCardCommandLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vwEngineRoomLog.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vwEntranceGuardDetail.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vwMagneticCard.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vwMagneticCardAllowController.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vwMagneticCardDetail.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vwUserGroupMenuAllow.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vwUserMenuAllow.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
   </ItemGroup>

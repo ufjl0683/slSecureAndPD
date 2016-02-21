@@ -85,6 +85,15 @@
         <AssociationConnector Association="SecureDBModel.FK_tblUser_tblUserGroup" />
         <AssociationConnector Association="SecureDBModel.FK_tblUserGroupMenu_tblUserGroup" />
         <EntityTypeShape EntityType="SecureDBModel.tblRemotePowerControl" Width="1.5" PointX="4.4936599417094421" PointY="5.9909273860933849" />
+        <EntityTypeShape EntityType="SecureDBModel.vwAIImmediatelyCheck" Width="1.5" PointX="4.72702218439757" PointY="25.538614165754343" />
+        <EntityTypeShape EntityType="SecureDBModel.vwAlarmLog" Width="1.5" PointX="0.365201471543499" PointY="17.04623443682037" />
+        <EntityTypeShape EntityType="SecureDBModel.vwAllAlarmLog" Width="1.5" PointX="7.6899665462272084" PointY="5.3216888631329358" />
+        <EntityTypeShape EntityType="SecureDBModel.vwControllerConfig" Width="1.5" PointX="5.6606984500124575" PointY="13.183009690224663" />
+        <EntityTypeShape EntityType="SecureDBModel.vwDeviceStateLog" Width="1.5" PointX="5.8834179834851144" PointY="23.116387422716425" />
+        <EntityTypeShape EntityType="SecureDBModel.vwERNamePlaneList" Width="1.5" PointX="3.6102541348013348" PointY="28.183658165942717" />
+        <EntityTypeShape EntityType="SecureDBModel.vwERNameRTUList" Width="1.5" PointX="11.380176124805667" PointY="26.467013192580552" />
+        <EntityTypeShape EntityType="SecureDBModel.vwItemConfig" Width="1.5" PointX="8.57634553153829" PointY="22.858905579363416" />
+        <EntityTypeShape EntityType="SecureDBModel.vwItemGroup" Width="1.5" PointX="10.985887739335134" PointY="21.337130541604537" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

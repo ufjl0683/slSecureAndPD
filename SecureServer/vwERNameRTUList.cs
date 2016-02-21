@@ -15,12 +15,14 @@ namespace SecureServer
 using System;
     using System.Collections.Generic;
     
-public partial class tblControllerCard
+public partial class vwERNameRTUList
 {
 
-    public string ControlID { get; set; }
+    public int ERID { get; set; }
 
-    public string ABA { get; set; }
+    public string ERName { get; set; }
+
+    public string ControlID { get; set; }
 
 }
 

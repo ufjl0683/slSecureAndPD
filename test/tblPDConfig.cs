@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer
+namespace test
 {
     using System;
     using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace SecureServer
         public string Classify { get; set; }
         public Nullable<int> WorkInfo { get; set; }
     
-        public virtual ICollection<tblPDAlarmLog> tblPDAlarmLog { get; set; }
         public virtual tblEngineRoomConfig tblEngineRoomConfig { get; set; }
+        public virtual ICollection<tblPDAlarmLog> tblPDAlarmLog { get; set; }
     }
 }

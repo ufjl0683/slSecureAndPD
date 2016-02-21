@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecureServer
+namespace test
 {
     using System;
     using System.Collections.Generic;
@@ -37,7 +37,7 @@ namespace SecureServer
         public Nullable<bool> Enable { get; set; }
         public Nullable<System.DateTime> NextStartTime { get; set; }
     
-        public virtual ICollection<tblSchLog> tblSchLog { get; set; }
         public virtual tblUser tblUser { get; set; }
+        public virtual ICollection<tblSchLog> tblSchLog { get; set; }
     }
 }
