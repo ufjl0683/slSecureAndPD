@@ -12,7 +12,7 @@
     <UserControl.Resources>
         <converter:ColorStringValueConverter x:Key="ColorStringValueConverter" />
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="txtContent">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ellipse">
         		<DiscreteObjectKeyFrame KeyTime="0">
         			<DiscreteObjectKeyFrame.Value>
         				<Visibility>Visible</Visibility>
@@ -48,7 +48,8 @@
 			</i:EventTrigger>
 		</i:Interaction.Triggers>
         <Ellipse x:Name="ellipse" Fill="{Binding ColorString}" StrokeThickness="1" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-		<TextBlock Text="{Binding Content}" HorizontalAlignment="Left" Foreground="Black" TextWrapping="NoWrap" FontSize="16" Margin="25,0,0,0" Width="Auto" x:Name="txtContent" VerticalAlignment="Center"  />
+        <!--<Rectangle x:Name="Background" Margin="0" Fill="Yellow"  Visibility="Collapsed" />-->
+        <TextBlock Text="{Binding Content}" HorizontalAlignment="Left" Foreground="Black" TextWrapping="NoWrap" FontSize="16" Margin="25,0,0,0" Width="Auto" x:Name="txtContent" VerticalAlignment="Center"  />
         <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
         <menu:ContextMenuService.ContextMenu>
             <menu:ContextMenu>

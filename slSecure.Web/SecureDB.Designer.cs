@@ -46,6 +46,9 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSchLog_tblSchConfig", "tblSchConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSchConfig), "tblSchLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSchLog), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSingalIO_tblControllerConfig", "tblControllerConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblControllerConfig), "tblSingalIO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSingalIO), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSingalIOLog_tblSingalIO", "tblSingalIO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSingalIO), "tblSingalIOLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSingalIOLog), true)]
+[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemGroupTypeInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblItemGroupTypeInfo), "tblItemConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblItemConfig), true)]
+[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblItemConfig_tblItemKindInfo", "tblItemKindInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblItemKindInfo), "tblItemConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblItemConfig), true)]
+[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblPDConfig_tblPDPinDef", "tblPDPinDef", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblPDPinDef), "tblPDConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblPDConfig), true)]
 
 #endregion
 
@@ -708,22 +711,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<tblPDLoopDeviceConfig> tblPDLoopDeviceConfig
-        {
-            get
-            {
-                if ((_tblPDLoopDeviceConfig == null))
-                {
-                    _tblPDLoopDeviceConfig = base.CreateObjectSet<tblPDLoopDeviceConfig>("tblPDLoopDeviceConfig");
-                }
-                return _tblPDLoopDeviceConfig;
-            }
-        }
-        private ObjectSet<tblPDLoopDeviceConfig> _tblPDLoopDeviceConfig;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwERNamePlaneList> vwERNamePlaneList
         {
             get
@@ -768,22 +755,6 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwAllAlarmLog> _vwAllAlarmLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<vwPDLoopDeviceConfig> vwPDLoopDeviceConfig
-        {
-            get
-            {
-                if ((_vwPDLoopDeviceConfig == null))
-                {
-                    _vwPDLoopDeviceConfig = base.CreateObjectSet<vwPDLoopDeviceConfig>("vwPDLoopDeviceConfig");
-                }
-                return _vwPDLoopDeviceConfig;
-            }
-        }
-        private ObjectSet<vwPDLoopDeviceConfig> _vwPDLoopDeviceConfig;
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -1252,22 +1223,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwPDAlarmLoopDeviceLog> vwPDAlarmLoopDeviceLog
-        {
-            get
-            {
-                if ((_vwPDAlarmLoopDeviceLog == null))
-                {
-                    _vwPDAlarmLoopDeviceLog = base.CreateObjectSet<vwPDAlarmLoopDeviceLog>("vwPDAlarmLoopDeviceLog");
-                }
-                return _vwPDAlarmLoopDeviceLog;
-            }
-        }
-        private ObjectSet<vwPDAlarmLoopDeviceLog> _vwPDAlarmLoopDeviceLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwPDConfig> vwPDConfig
         {
             get
@@ -1344,6 +1299,86 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwItemGroup> _vwItemGroup;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblPasswordEveryDayDifference> tblPasswordEveryDayDifference
+        {
+            get
+            {
+                if ((_tblPasswordEveryDayDifference == null))
+                {
+                    _tblPasswordEveryDayDifference = base.CreateObjectSet<tblPasswordEveryDayDifference>("tblPasswordEveryDayDifference");
+                }
+                return _tblPasswordEveryDayDifference;
+            }
+        }
+        private ObjectSet<tblPasswordEveryDayDifference> _tblPasswordEveryDayDifference;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblPDLoopDeviceConfig> tblPDLoopDeviceConfig
+        {
+            get
+            {
+                if ((_tblPDLoopDeviceConfig == null))
+                {
+                    _tblPDLoopDeviceConfig = base.CreateObjectSet<tblPDLoopDeviceConfig>("tblPDLoopDeviceConfig");
+                }
+                return _tblPDLoopDeviceConfig;
+            }
+        }
+        private ObjectSet<tblPDLoopDeviceConfig> _tblPDLoopDeviceConfig;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblPDPinDef> tblPDPinDef
+        {
+            get
+            {
+                if ((_tblPDPinDef == null))
+                {
+                    _tblPDPinDef = base.CreateObjectSet<tblPDPinDef>("tblPDPinDef");
+                }
+                return _tblPDPinDef;
+            }
+        }
+        private ObjectSet<tblPDPinDef> _tblPDPinDef;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPDAlarmLoopDeviceLog> vwPDAlarmLoopDeviceLog
+        {
+            get
+            {
+                if ((_vwPDAlarmLoopDeviceLog == null))
+                {
+                    _vwPDAlarmLoopDeviceLog = base.CreateObjectSet<vwPDAlarmLoopDeviceLog>("vwPDAlarmLoopDeviceLog");
+                }
+                return _vwPDAlarmLoopDeviceLog;
+            }
+        }
+        private ObjectSet<vwPDAlarmLoopDeviceLog> _vwPDAlarmLoopDeviceLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPDLoopDeviceConfig> vwPDLoopDeviceConfig
+        {
+            get
+            {
+                if ((_vwPDLoopDeviceConfig == null))
+                {
+                    _vwPDLoopDeviceConfig = base.CreateObjectSet<vwPDLoopDeviceConfig>("vwPDLoopDeviceConfig");
+                }
+                return _vwPDLoopDeviceConfig;
+            }
+        }
+        private ObjectSet<vwPDLoopDeviceConfig> _vwPDLoopDeviceConfig;
 
         #endregion
 
@@ -1654,14 +1689,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 tblPDLoopDeviceConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTotblPDLoopDeviceConfig(tblPDLoopDeviceConfig tblPDLoopDeviceConfig)
-        {
-            base.AddObject("tblPDLoopDeviceConfig", tblPDLoopDeviceConfig);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwERNamePlaneList EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwERNamePlaneList(vwERNamePlaneList vwERNamePlaneList)
@@ -1683,14 +1710,6 @@ namespace slSecure.Web
         public void AddTovwAllAlarmLog(vwAllAlarmLog vwAllAlarmLog)
         {
             base.AddObject("vwAllAlarmLog", vwAllAlarmLog);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 vwPDLoopDeviceConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwPDLoopDeviceConfig(vwPDLoopDeviceConfig vwPDLoopDeviceConfig)
-        {
-            base.AddObject("vwPDLoopDeviceConfig", vwPDLoopDeviceConfig);
         }
     
         /// <summary>
@@ -1926,14 +1945,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwPDAlarmLoopDeviceLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwPDAlarmLoopDeviceLog(vwPDAlarmLoopDeviceLog vwPDAlarmLoopDeviceLog)
-        {
-            base.AddObject("vwPDAlarmLoopDeviceLog", vwPDAlarmLoopDeviceLog);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwPDConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwPDConfig(vwPDConfig vwPDConfig)
@@ -1971,6 +1982,46 @@ namespace slSecure.Web
         public void AddTovwItemGroup(vwItemGroup vwItemGroup)
         {
             base.AddObject("vwItemGroup", vwItemGroup);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblPasswordEveryDayDifference EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblPasswordEveryDayDifference(tblPasswordEveryDayDifference tblPasswordEveryDayDifference)
+        {
+            base.AddObject("tblPasswordEveryDayDifference", tblPasswordEveryDayDifference);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblPDLoopDeviceConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblPDLoopDeviceConfig(tblPDLoopDeviceConfig tblPDLoopDeviceConfig)
+        {
+            base.AddObject("tblPDLoopDeviceConfig", tblPDLoopDeviceConfig);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblPDPinDef EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblPDPinDef(tblPDPinDef tblPDPinDef)
+        {
+            base.AddObject("tblPDPinDef", tblPDPinDef);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPDAlarmLoopDeviceLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPDAlarmLoopDeviceLog(vwPDAlarmLoopDeviceLog vwPDAlarmLoopDeviceLog)
+        {
+            base.AddObject("vwPDAlarmLoopDeviceLog", vwPDAlarmLoopDeviceLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPDLoopDeviceConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPDLoopDeviceConfig(vwPDLoopDeviceConfig vwPDLoopDeviceConfig)
+        {
+            base.AddObject("vwPDLoopDeviceConfig", vwPDLoopDeviceConfig);
         }
 
         #endregion
@@ -7281,6 +7332,82 @@ namespace slSecure.Web
                 }
             }
         }
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemGroupTypeInfo")]
+        public tblItemGroupTypeInfo tblItemGroupTypeInfo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblItemGroupTypeInfo>("SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemGroupTypeInfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblItemGroupTypeInfo>("SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemGroupTypeInfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tblItemGroupTypeInfo> tblItemGroupTypeInfoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblItemGroupTypeInfo>("SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemGroupTypeInfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblItemGroupTypeInfo>("SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemGroupTypeInfo", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblItemConfig_tblItemKindInfo", "tblItemKindInfo")]
+        public tblItemKindInfo tblItemKindInfo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblItemKindInfo>("SecureDBModel.FK_tblItemConfig_tblItemKindInfo", "tblItemKindInfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblItemKindInfo>("SecureDBModel.FK_tblItemConfig_tblItemKindInfo", "tblItemKindInfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tblItemKindInfo> tblItemKindInfoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblItemKindInfo>("SecureDBModel.FK_tblItemConfig_tblItemKindInfo", "tblItemKindInfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblItemKindInfo>("SecureDBModel.FK_tblItemConfig_tblItemKindInfo", "tblItemKindInfo", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -7678,6 +7805,32 @@ namespace slSecure.Web
 
         #endregion
 
+        #region 導覽屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemConfig")]
+        public EntityCollection<tblItemConfig> tblItemConfig
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblItemConfig>("SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemConfig");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblItemConfig>("SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemConfig", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -7757,6 +7910,32 @@ namespace slSecure.Web
         private global::System.String _KindName;
         partial void OnKindNameChanging(global::System.String value);
         partial void OnKindNameChanged();
+
+        #endregion
+
+        #region 導覽屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblItemConfig_tblItemKindInfo", "tblItemConfig")]
+        public EntityCollection<tblItemConfig> tblItemConfig
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblItemConfig>("SecureDBModel.FK_tblItemConfig_tblItemKindInfo", "tblItemConfig");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblItemConfig>("SecureDBModel.FK_tblItemConfig_tblItemKindInfo", "tblItemConfig", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -9149,6 +9328,117 @@ namespace slSecure.Web
     /// <summary>
     /// 沒有可用的中繼資料文件。
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblPasswordEveryDayDifference")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblPasswordEveryDayDifference : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 tblPasswordEveryDayDifference 物件。
+        /// </summary>
+        /// <param name="controlID">ControlID 屬性的初始值。</param>
+        /// <param name="timestamp">Timestamp 屬性的初始值。</param>
+        /// <param name="doorPassword">DoorPassword 屬性的初始值。</param>
+        public static tblPasswordEveryDayDifference CreatetblPasswordEveryDayDifference(global::System.String controlID, global::System.DateTime timestamp, global::System.String doorPassword)
+        {
+            tblPasswordEveryDayDifference tblPasswordEveryDayDifference = new tblPasswordEveryDayDifference();
+            tblPasswordEveryDayDifference.ControlID = controlID;
+            tblPasswordEveryDayDifference.Timestamp = timestamp;
+            tblPasswordEveryDayDifference.DoorPassword = doorPassword;
+            return tblPasswordEveryDayDifference;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ControlID
+        {
+            get
+            {
+                return _ControlID;
+            }
+            set
+            {
+                if (_ControlID != value)
+                {
+                    OnControlIDChanging(value);
+                    ReportPropertyChanging("ControlID");
+                    _ControlID = StructuralObject.SetValidValue(value, false, "ControlID");
+                    ReportPropertyChanged("ControlID");
+                    OnControlIDChanged();
+                }
+            }
+        }
+        private global::System.String _ControlID;
+        partial void OnControlIDChanging(global::System.String value);
+        partial void OnControlIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Timestamp
+        {
+            get
+            {
+                return _Timestamp;
+            }
+            set
+            {
+                if (_Timestamp != value)
+                {
+                    OnTimestampChanging(value);
+                    ReportPropertyChanging("Timestamp");
+                    _Timestamp = StructuralObject.SetValidValue(value, "Timestamp");
+                    ReportPropertyChanged("Timestamp");
+                    OnTimestampChanged();
+                }
+            }
+        }
+        private global::System.DateTime _Timestamp;
+        partial void OnTimestampChanging(global::System.DateTime value);
+        partial void OnTimestampChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DoorPassword
+        {
+            get
+            {
+                return _DoorPassword;
+            }
+            set
+            {
+                OnDoorPasswordChanging(value);
+                ReportPropertyChanging("DoorPassword");
+                _DoorPassword = StructuralObject.SetValidValue(value, false, "DoorPassword");
+                ReportPropertyChanged("DoorPassword");
+                OnDoorPasswordChanged();
+            }
+        }
+        private global::System.String _DoorPassword;
+        partial void OnDoorPasswordChanging(global::System.String value);
+        partial void OnDoorPasswordChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblPDAlarmLog")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -10181,6 +10471,44 @@ namespace slSecure.Web
                 }
             }
         }
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblPDConfig_tblPDPinDef", "tblPDPinDef")]
+        public tblPDPinDef tblPDPinDef
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblPDPinDef>("SecureDBModel.FK_tblPDConfig_tblPDPinDef", "tblPDPinDef").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblPDPinDef>("SecureDBModel.FK_tblPDConfig_tblPDPinDef", "tblPDPinDef").Value = value;
+            }
+        }
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tblPDPinDef> tblPDPinDefReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblPDPinDef>("SecureDBModel.FK_tblPDConfig_tblPDPinDef", "tblPDPinDef");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblPDPinDef>("SecureDBModel.FK_tblPDConfig_tblPDPinDef", "tblPDPinDef", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -10613,7 +10941,7 @@ namespace slSecure.Web
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Diameter
+        public Nullable<global::System.Double> Diameter
         {
             get
             {
@@ -10628,9 +10956,141 @@ namespace slSecure.Web
                 OnDiameterChanged();
             }
         }
-        private Nullable<global::System.Int32> _Diameter;
-        partial void OnDiameterChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Double> _Diameter;
+        partial void OnDiameterChanging(Nullable<global::System.Double> value);
         partial void OnDiameterChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblPDPinDef")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblPDPinDef : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 tblPDPinDef 物件。
+        /// </summary>
+        /// <param name="typeID">TypeID 屬性的初始值。</param>
+        /// <param name="content">Content 屬性的初始值。</param>
+        public static tblPDPinDef CreatetblPDPinDef(global::System.Int32 typeID, global::System.String content)
+        {
+            tblPDPinDef tblPDPinDef = new tblPDPinDef();
+            tblPDPinDef.TypeID = typeID;
+            tblPDPinDef.Content = content;
+            return tblPDPinDef;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TypeID
+        {
+            get
+            {
+                return _TypeID;
+            }
+            set
+            {
+                if (_TypeID != value)
+                {
+                    OnTypeIDChanging(value);
+                    ReportPropertyChanging("TypeID");
+                    _TypeID = StructuralObject.SetValidValue(value, "TypeID");
+                    ReportPropertyChanged("TypeID");
+                    OnTypeIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TypeID;
+        partial void OnTypeIDChanging(global::System.Int32 value);
+        partial void OnTypeIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                OnContentChanging(value);
+                ReportPropertyChanging("Content");
+                _Content = StructuralObject.SetValidValue(value, false, "Content");
+                ReportPropertyChanged("Content");
+                OnContentChanged();
+            }
+        }
+        private global::System.String _Content;
+        partial void OnContentChanging(global::System.String value);
+        partial void OnContentChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Memo
+        {
+            get
+            {
+                return _Memo;
+            }
+            set
+            {
+                OnMemoChanging(value);
+                ReportPropertyChanging("Memo");
+                _Memo = StructuralObject.SetValidValue(value, true, "Memo");
+                ReportPropertyChanged("Memo");
+                OnMemoChanged();
+            }
+        }
+        private global::System.String _Memo;
+        partial void OnMemoChanging(global::System.String value);
+        partial void OnMemoChanged();
+
+        #endregion
+
+        #region 導覽屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SecureDBModel", "FK_tblPDConfig_tblPDPinDef", "tblPDConfig")]
+        public EntityCollection<tblPDConfig> tblPDConfig
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblPDConfig>("SecureDBModel.FK_tblPDConfig_tblPDPinDef", "tblPDConfig");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblPDConfig>("SecureDBModel.FK_tblPDConfig_tblPDPinDef", "tblPDConfig", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -23853,7 +24313,7 @@ namespace slSecure.Web
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Diameter
+        public Nullable<global::System.Double> Diameter
         {
             get
             {
@@ -23868,8 +24328,8 @@ namespace slSecure.Web
                 OnDiameterChanged();
             }
         }
-        private Nullable<global::System.Int32> _Diameter;
-        partial void OnDiameterChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Double> _Diameter;
+        partial void OnDiameterChanging(Nullable<global::System.Double> value);
         partial void OnDiameterChanged();
     
         /// <summary>
@@ -25624,7 +26084,7 @@ namespace slSecure.Web
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Diameter
+        public Nullable<global::System.Double> Diameter
         {
             get
             {
@@ -25639,8 +26099,8 @@ namespace slSecure.Web
                 OnDiameterChanged();
             }
         }
-        private Nullable<global::System.Int32> _Diameter;
-        partial void OnDiameterChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Double> _Diameter;
+        partial void OnDiameterChanging(Nullable<global::System.Double> value);
         partial void OnDiameterChanged();
 
         #endregion

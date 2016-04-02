@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <conveter:ColorStringValueConverter x:Key="ColorStringValueConverter" />
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="txtContent">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Background">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -50,12 +50,14 @@
                 <ei:ControlStoryboardAction Storyboard="{StaticResource stbDemo}" ControlStoryboardOption="Stop"/>
             </i:EventTrigger>
         </i:Interaction.Triggers>
+        <Rectangle x:Name="Background" Margin="0" Fill="Yellow"  Visibility="Collapsed" />
         <TextBlock x:Name="txtContent" TextWrapping="NoWrap" FontSize="16"  Text="{Binding Content}" Foreground="{Binding ColorString,Converter={StaticResource ResourceKey=ColorStringValueConverter} }" HorizontalAlignment="Left"   >
-            
+        
 			<!--<Run Text="{Binding Label}" />
 			<Run Text=":"/>
 			<Run Text="{Binding Value,StringFormat=\{0:0.00\}}"   /> <Run Text="{Binding Unit}" />-->
         </TextBlock>
+       
         <Rectangle x:Name="SelectLine" Margin="0" Stroke="Black" StrokeDashArray="2 1" Visibility="Collapsed" />
 
         <menu:ContextMenuService.ContextMenu>

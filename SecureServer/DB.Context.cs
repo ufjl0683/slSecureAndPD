@@ -156,6 +156,8 @@ public partial class SecureDBEntities1 : DbContext
 
     public DbSet<vwItemGroup> vwItemGroup { get; set; }
 
+    public DbSet<tblPowerMeter1HourLog> tblPowerMeter1HourLog { get; set; }
+
 }
 
 }

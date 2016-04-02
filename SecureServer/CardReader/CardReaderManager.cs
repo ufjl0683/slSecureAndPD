@@ -157,12 +157,13 @@ namespace SecureServer.CardReader
             CardReaderEventReport rpt=null;
             switch (type)
             {
-                case  RoomInterface.ControllEventType.ErrorCard:
-                   rpt=   MakeReaderEventReport( (byte)CardReaderStatusEnum.號碼錯誤);
+                case RoomInterface.ControllEventType.ErrorCard:
+                    rpt = MakeReaderEventReport((byte)CardReaderStatusEnum.號碼錯誤);
                     break;
                 case RoomInterface.ControllEventType.ADAMStatusChange:
                     if (((byte[])obj)[32] == 5)
                      rpt=  MakeReaderEventReport( (byte)CardReaderStatusEnum.異常入侵);
+                  
                     break;
                 default:
                     return;

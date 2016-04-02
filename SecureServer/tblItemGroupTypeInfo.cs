@@ -18,9 +18,21 @@ using System;
 public partial class tblItemGroupTypeInfo
 {
 
+    public tblItemGroupTypeInfo()
+    {
+
+        this.tblItemConfig = new HashSet<tblItemConfig>();
+
+    }
+
+
     public int GroupTypeID { get; set; }
 
     public string GroupTypeName { get; set; }
+
+
+
+    public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
 
 }
 

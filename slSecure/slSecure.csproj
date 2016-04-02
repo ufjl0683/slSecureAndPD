@@ -56,7 +56,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT R23</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -178,6 +178,7 @@
     </Compile>
     <Compile Include="Controls\I_IO.cs" />
     <Compile Include="Converters\ColorStringValueConverter.cs" />
+    <Compile Include="Converters\DateTimeConverter.cs" />
     <Compile Include="Dialog\CCTVDialog.xaml.cs">
       <DependentUpon>CCTVDialog.xaml</DependentUpon>
     </Compile>
@@ -192,6 +193,9 @@
     </Compile>
     <Compile Include="Dialog\TRDialog_Pro.xaml.cs">
       <DependentUpon>TRDialog_Pro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DivHtmlPage.xaml.cs">
+      <DependentUpon>DivHtmlPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ControlRoom.xaml.cs">
       <DependentUpon>ControlRoom.xaml</DependentUpon>
@@ -292,6 +296,10 @@
     <Page Include="Dialog\TRDialog_Pro.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DivHtmlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ControlRoom.xaml">
       <SubType>Designer</SubType>

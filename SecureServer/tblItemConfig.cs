@@ -110,6 +110,10 @@ public partial class tblItemConfig
 
     public virtual ICollection<tblAIItem1HourLog> tblAIItem1HourLog { get; set; }
 
+    public virtual tblItemGroupTypeInfo tblItemGroupTypeInfo { get; set; }
+
+    public virtual tblItemKindInfo tblItemKindInfo { get; set; }
+
 }
 
 }

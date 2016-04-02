@@ -20,6 +20,7 @@ namespace SecureServer.CardReader
 
         System.Threading.Timer tmr;
 
+        byte[] status;
         public void AddCard(string cardno)
         {
             throw new NotImplementedException();
@@ -126,6 +127,8 @@ namespace SecureServer.CardReader
                         else
                             this.OnDoorEvent(this, DoorEventType.DoorClose);
                     }
+
+                    this.InvokeStatusChange(CardReaderManager.MakeReaderEventReport( (byte)CardReaderStatusEnum.開鎖));
                 }
             }
         }
@@ -208,6 +211,7 @@ namespace SecureServer.CardReader
                          {
 
                              this.IsDoorOpen = (RoomClient.RoomClient.GetStatus(config.R23_ADAM)[config.R23DoorOpen_DI ?? 0] == 0) ? true : false;
+                             
                          }
 
                          System.Threading.Thread.Sleep(3000);

@@ -395,6 +395,28 @@ namespace SecureServer.PD
                                     baryD.Set(11, baryS.Get(3));  // cab
                                     baryD.CopyTo(tempdata, 0);
                                 }
+                                else if((tblPDConfig.type ?? 1) == 7)
+                                {
+
+                                    //for (int i = 0; i < tempdata.Length; i++)
+                                    //    tempdata[i] = (byte)(~tempdata[i]);
+
+                                    System.Collections.BitArray baryD = new System.Collections.BitArray(new byte[2]);
+                                    System.Collections.BitArray baryS = new System.Collections.BitArray(tempdata);
+                                    baryD.Set(0, baryS.Get(4));  //r0
+                                    baryD.Set(1, baryS.Get(5));  //s0
+                                    baryD.Set(2, baryS.Get(6));  // t0
+                                    baryD.Set(3, baryS.Get(0));  //r1
+                                    baryD.Set(4, baryS.Get(1)); //s1
+                                    baryD.Set(5, baryS.Get(2));  //t1
+                                    baryD.Set(6, baryS.Get(7));  // L0
+                                    baryD.Set(7, baryS.Get(8));  // L1
+                                    baryD.Set(8, baryS.Get(9));  // L2
+                                    baryD.Set(9, baryS.Get(10));  // L3
+                                    baryD.Set(10, baryS.Get(11));  // L4
+                                    baryD.Set(11, !baryS.Get(3));  // cab
+                                    baryD.CopyTo(tempdata, 0);
+                                }
                            else if ((tblPDConfig.type ?? 1) == 5)  //R13
                                 {
                                     for (int i = 0; i < tempdata.Length; i++)
@@ -524,6 +546,7 @@ namespace SecureServer.PD
            PDStatus d= new PDStatus(data);
            PDStatus t = new PDStatus(temp);
           
+           if(tblPDConfig.R0!=-1)
            if (d.R0 != t.R0   )
            {
                tblpd.R0 = t.R0;
@@ -539,7 +562,8 @@ namespace SecureServer.PD
                    description += "R0 "+GetPDStatusDescription(0, tblpd);
                }
            }
-       
+
+           if (tblPDConfig.S0 != -1)
            if (d.S0 != t.S0)
            {
                tblpd.S0 = t.S0;
@@ -558,6 +582,8 @@ namespace SecureServer.PD
                    description += "S0 " + GetPDStatusDescription(0, tblpd); ;
                }
            }
+
+           if (tblPDConfig.T0 != -1)
            if (d.T0 != t.T0  )
            {
                tblpd.T0  =t.T0;

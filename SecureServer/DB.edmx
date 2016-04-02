@@ -43,6 +43,7 @@
           <EntitySet Name="tblPDConfig" EntityType="SecureDBModel.Store.tblPDConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDLoopDeviceConfig" EntityType="SecureDBModel.Store.tblPDLoopDeviceConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPowerMeter" EntityType="SecureDBModel.Store.tblPowerMeter" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPowerMeter1HourLog" EntityType="SecureDBModel.Store.tblPowerMeter1HourLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblRemotePowerControl" EntityType="SecureDBModel.Store.tblRemotePowerControl" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblReportList" EntityType="SecureDBModel.Store.tblReportList" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblSchConfig" EntityType="SecureDBModel.Store.tblSchConfig" store:Type="Tables" Schema="dbo" />
@@ -479,6 +480,14 @@
           </AssociationSet>
           <AssociationSet Name="FK_tblItemConfig_tblItemGroup" Association="SecureDBModel.Store.FK_tblItemConfig_tblItemGroup">
             <End Role="tblItemGroup" EntitySet="tblItemGroup" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItemConfig_tblItemGroupTypeInfo" Association="SecureDBModel.Store.FK_tblItemConfig_tblItemGroupTypeInfo">
+            <End Role="tblItemGroupTypeInfo" EntitySet="tblItemGroupTypeInfo" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItemConfig_tblItemKindInfo" Association="SecureDBModel.Store.FK_tblItemConfig_tblItemKindInfo">
+            <End Role="tblItemKindInfo" EntitySet="tblItemKindInfo" />
             <End Role="tblItemConfig" EntitySet="tblItemConfig" />
           </AssociationSet>
           <AssociationSet Name="FK_tblMagneticCard_tblSysRole" Association="SecureDBModel.Store.FK_tblMagneticCard_tblSysRole">
@@ -969,7 +978,7 @@
           <Property Name="ISBREAKDOWN" Type="char" MaxLength="1" />
           <Property Name="Enable" Type="char" MaxLength="1" />
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
-          <Property Name="Diameter" Type="int" />
+          <Property Name="Diameter" Type="float" />
         </EntityType>
         <EntityType Name="tblPowerMeter">
           <Key>
@@ -993,6 +1002,17 @@
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
           <Property Name="CumulateValue" Type="float" />
           <Property Name="InstantaneousValue" Type="float" />
+        </EntityType>
+        <EntityType Name="tblPowerMeter1HourLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Name="FlowID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="KW" Type="float" />
+          <Property Name="CumulateValue" Type="float" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="tblRemotePowerControl">
           <Key>
@@ -1811,6 +1831,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblItemConfig_tblItemGroupTypeInfo">
+          <End Role="tblItemGroupTypeInfo" Type="SecureDBModel.Store.tblItemGroupTypeInfo" Multiplicity="0..1" />
+          <End Role="tblItemConfig" Type="SecureDBModel.Store.tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemGroupTypeInfo">
+              <PropertyRef Name="GroupTypeID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="GroupTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItemConfig_tblItemKindInfo">
+          <End Role="tblItemKindInfo" Type="SecureDBModel.Store.tblItemKindInfo" Multiplicity="0..1" />
+          <End Role="tblItemConfig" Type="SecureDBModel.Store.tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemKindInfo">
+              <PropertyRef Name="KindID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="KindID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblMagneticCard_tblSysRole">
           <End Role="tblSysRole" Type="SecureDBModel.Store.tblSysRole" Multiplicity="1" />
           <End Role="tblMagneticCard" Type="SecureDBModel.Store.tblMagneticCard" Multiplicity="*" />
@@ -2168,6 +2212,15 @@
           <EntitySet Name="vwERNameRTUList" EntityType="SecureDBModel.vwERNameRTUList" />
           <EntitySet Name="vwItemConfig" EntityType="SecureDBModel.vwItemConfig" />
           <EntitySet Name="vwItemGroup" EntityType="SecureDBModel.vwItemGroup" />
+          <EntitySet Name="tblPowerMeter1HourLog" EntityType="SecureDBModel.tblPowerMeter1HourLog" />
+          <AssociationSet Name="FK_tblItemConfig_tblItemGroupTypeInfo" Association="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo">
+            <End Role="tblItemGroupTypeInfo" EntitySet="tblItemGroupTypeInfo" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItemConfig_tblItemKindInfo" Association="SecureDBModel.FK_tblItemConfig_tblItemKindInfo">
+            <End Role="tblItemKindInfo" EntitySet="tblItemKindInfo" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblERDoorPassword">
           <Key>
@@ -2422,6 +2475,8 @@
           <Property Type="Int32" Name="GroupTypeID" />
           <Property Type="Int32" Name="KindID" />
           <Property Type="Boolean" Name="Suppress" />
+          <NavigationProperty Name="tblItemGroupTypeInfo" Relationship="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo" FromRole="tblItemConfig" ToRole="tblItemGroupTypeInfo" />
+          <NavigationProperty Name="tblItemKindInfo" Relationship="SecureDBModel.FK_tblItemConfig_tblItemKindInfo" FromRole="tblItemConfig" ToRole="tblItemKindInfo" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -2898,6 +2953,7 @@
           </Key>
           <Property Type="Int32" Name="GroupTypeID" Nullable="false" />
           <Property Type="String" Name="GroupTypeName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo" FromRole="tblItemGroupTypeInfo" ToRole="tblItemConfig" />
         </EntityType>
         <EntityType Name="tblItemKindInfo">
           <Key>
@@ -2905,6 +2961,7 @@
           </Key>
           <Property Type="Int32" Name="KindID" Nullable="false" />
           <Property Type="String" Name="KindName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblItemKindInfo" FromRole="tblItemKindInfo" ToRole="tblItemConfig" />
         </EntityType>
         <EntityType Name="tblMagneticCardNormalGroup">
           <Key>
@@ -3620,6 +3677,41 @@
           <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="GroupNameDetail" MaxLength="152" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tblPowerMeter1HourLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="Double" Name="KW" />
+          <Property Type="Double" Name="CumulateValue" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tblItemConfig_tblItemGroupTypeInfo">
+          <End Type="SecureDBModel.tblItemGroupTypeInfo" Role="tblItemGroupTypeInfo" Multiplicity="0..1" />
+          <End Type="SecureDBModel.tblItemConfig" Role="tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemGroupTypeInfo">
+              <PropertyRef Name="GroupTypeID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="GroupTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItemConfig_tblItemKindInfo">
+          <End Type="SecureDBModel.tblItemKindInfo" Role="tblItemKindInfo" Multiplicity="0..1" />
+          <End Type="SecureDBModel.tblItemConfig" Role="tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemKindInfo">
+              <PropertyRef Name="KindID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="KindID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4672,6 +4764,18 @@
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="GroupType" ColumnName="GroupType" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPowerMeter1HourLog">
+            <EntityTypeMapping TypeName="SecureDBModel.tblPowerMeter1HourLog">
+              <MappingFragment StoreEntitySet="tblPowerMeter1HourLog">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="CumulateValue" ColumnName="CumulateValue" />
+                <ScalarProperty Name="KW" ColumnName="KW" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

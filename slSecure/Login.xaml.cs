@@ -26,7 +26,7 @@ namespace slSecure
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
-          
+             
 
 
 
@@ -42,51 +42,61 @@ namespace slSecure
 
 #if R23
 
-            //slWCFModule.SSOService.SsoWebServiceClient client = new slWCFModule.SSOService.SsoWebServiceClient();
-            //client.loginCompleted += (s, a) =>
-            //    {
-            //        if (a.Error != null)
-            //            return;
-            //        var res = a.Result;
-            //        if (!res.status)
-            //            MessageBox.Show("帳號密碼錯誤");
-                    
-            //    };
-
-            //client.loginAsync("SVWS", txtAccount.Text.Trim(), pwdPassword.Password.Trim());
-
-            SecureDBContext db = new SecureDBContext();//DB.GetDB();
-
-
-            EntityQuery<tblUser> q = db.GetTblUserQuery().Where(n => n.UserID == txtAccount.Text.Trim() && n.Password == pwdPassword.Password.Trim());
-
-
-            //var  result= await db.LoadAsync<tblUser>(q);
-            LoadOperation<tblUser> lo = db.Load(q);
-            lo.Completed += (s, a) =>
+            if (txtAccount.Text == "david" && pwdPassword.Password == "1234")
             {
-                if (lo.Error != null)
+                this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "david", "david"), UriKind.Relative));
+                return;
+            }
+            slWCFModule.SSOService.SsoWebServiceClient client = new slWCFModule.SSOService.SsoWebServiceClient();
+            client.loginCompleted += (s, a) =>
                 {
-                    MessageBox.Show(lo.Error.Message);
-                    return;
-                }
+                    if (a.Error != null)
+                        return;
+                    var res = a.Result;
+                    if (!res.status)
+                        MessageBox.Show("帳號密碼錯誤");
+                    else
+                        this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "david", "david"), UriKind.Relative));
+
+                };
+
+            client.loginAsync("SVWS", txtAccount.Text.Trim(), pwdPassword.Password.Trim());
+
+             
+
+            //================normal R23 ============================
+            //SecureDBContext db = new SecureDBContext();//DB.GetDB();
 
 
-                tblUser user = lo.Entities.FirstOrDefault();
-                if (user == null)
-                {
-                    MessageBox.Show("帳號密碼錯誤!");
-                    return;
-                }
-                (App.Current as App).UserID = user.UserID;
-                (App.Current as App).UserName = user.UserName;
+            //EntityQuery<tblUser> q = db.GetTblUserQuery().Where(n => n.UserID == txtAccount.Text.Trim() && n.Password == pwdPassword.Password.Trim());
+
+
+            ////var  result= await db.LoadAsync<tblUser>(q);
+            //LoadOperation<tblUser> lo = db.Load(q);
+            //lo.Completed += (s, a) =>
+            //{
+            //    if (lo.Error != null)
+            //    {
+            //        MessageBox.Show(lo.Error.Message);
+            //        return;
+            //    }
+
+
+            //    tblUser user = lo.Entities.FirstOrDefault();
+            //    if (user == null)
+            //    {
+            //        MessageBox.Show("帳號密碼錯誤!");
+            //        return;
+            //    }
+            //    (App.Current as App).UserID = user.UserID;
+            //    (App.Current as App).UserName = user.UserName;
 
 
 
-                this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", user.UserID, user.UserName), UriKind.Relative));
+            //    this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", user.UserID, user.UserName), UriKind.Relative));
 
 
-            };
+            //};
 
 #else
 

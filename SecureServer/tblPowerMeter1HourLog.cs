@@ -15,24 +15,20 @@ namespace SecureServer
 using System;
     using System.Collections.Generic;
     
-public partial class tblItemKindInfo
+public partial class tblPowerMeter1HourLog
 {
 
-    public tblItemKindInfo()
-    {
+    public long FlowID { get; set; }
 
-        this.tblItemConfig = new HashSet<tblItemConfig>();
+    public System.DateTime Timestamp { get; set; }
 
-    }
+    public int ERID { get; set; }
 
+    public Nullable<double> KW { get; set; }
 
-    public int KindID { get; set; }
+    public Nullable<double> CumulateValue { get; set; }
 
-    public string KindName { get; set; }
-
-
-
-    public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }
+    public string Memo { get; set; }
 
 }
 

@@ -43,6 +43,7 @@ namespace slSecure
             // 報告例外狀況。在 IE 中，這會顯示為狀態列中的黃色提醒圖示，
             // 而 Firefox 則會顯示指令碼錯誤。
             e.Handled = true;
+            return;
             if (!System.Diagnostics.Debugger.IsAttached)
             {
 

@@ -13,6 +13,7 @@
            Title="Main Page" MouseMove="Page_MouseMove" Unloaded="Page_Unloaded">
     <sdk:Page.Resources>
         <converter:ColorStringValueConverter x:Key="ColorStringValueConverter"  />
+        <converter:DateTimeConverter x:Key="DateTimeConverter" />
         <Style x:Key="ButtonStyle1" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -114,10 +115,11 @@
         <ListBox  x:Name="lstMessage" SelectionChanged="lstMessage_SelectionChanged"  Grid.Column="1" Margin="0,14,0,0" Grid.Row="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown"   >
+                    <StackPanel    Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown"   >
+                        <TextBlock FontSize="16"  Text="{Binding TimeStamp, Converter={StaticResource DateTimeConverter}}"/>
                         <Image Source="{Binding AlarmType,StringFormat=/slSecure;component/icons/\{0\}.png}" Width="30" Height="30" Margin="5" />
-                        <TextBlock Text="{Binding PlaneName}"/>
-                        <TextBlock Text="{Binding Description}" FontSize="16"  Foreground="{Binding  ColorString, Converter={StaticResource ColorStringValueConverter}}" />
+                        <TextBlock FontSize="16"  Text="{Binding PlaneName}"/>
+                        <TextBlock FontSize="16"   Text="{Binding Description}"   Foreground="{Binding  ColorString, Converter={StaticResource ColorStringValueConverter}}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

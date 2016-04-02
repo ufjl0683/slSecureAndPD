@@ -94,6 +94,9 @@
         <EntityTypeShape EntityType="SecureDBModel.vwERNameRTUList" Width="1.5" PointX="11.380176124805667" PointY="26.467013192580552" />
         <EntityTypeShape EntityType="SecureDBModel.vwItemConfig" Width="1.5" PointX="8.57634553153829" PointY="22.858905579363416" />
         <EntityTypeShape EntityType="SecureDBModel.vwItemGroup" Width="1.5" PointX="10.985887739335134" PointY="21.337130541604537" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPowerMeter1HourLog" Width="1.5" PointX="2.742759683515299" PointY="2.8582275374132338" />
+        <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo" />
+        <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemKindInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

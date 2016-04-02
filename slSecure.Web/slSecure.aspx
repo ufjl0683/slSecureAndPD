@@ -69,7 +69,10 @@
 		  <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0" style="text-decoration:none">
  			  <img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="取得 Microsoft Silverlight" style="border-style:none"/>
 		  </a>
-	    </object><%--<iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>--%></div>
+	    </object>
+        <iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
+
+    </div>
     </form>
 </body>
 </html>

@@ -204,6 +204,7 @@ namespace slSecure
         {
             this.txtTitle.DataContext = (sender as Control).DataContext;
             vwUserMenuAllow menu = (sender as Control).DataContext as vwUserMenuAllow;
+
             if (menu.XAML.Trim().ToUpper().StartsWith("HTTP:"))
             {
                 MyHyperlinkButton button = new MyHyperlinkButton();
@@ -215,6 +216,13 @@ namespace slSecure
                 button.ClickMe();
 
             }
+            else if (menu.XAML.Trim().ToUpper().StartsWith("@HTTP:"))
+            {
+              //  this.frameMain.Navigate(new Uri("/DivHtmlPage.xaml?url=" + menu.XAML.TrimStart(new char[] { '@' }), UriKind.Relative));
+                this.frameMain.Navigate(new Uri("/Forms/WebPage.xaml?url=" + menu.XAML.TrimStart(new char[]{'@'}), UriKind.Relative));
+
+            }
+
             //  this.frameMain.Navigate(new Uri("/Forms/WebPage.xaml?url=" + menu.XAML, UriKind.Relative));
             // System.Windows.Browser.HtmlPage.Window.Navigate(new Uri(System.Windows.Browser.HtmlPage.Document.DocumentUri, filePath), "_blank");
             else
@@ -224,6 +232,14 @@ namespace slSecure
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             tmr.Stop();
+#if R23
+            slWCFModule.SSOService.SsoWebServiceClient client = new slWCFModule.SSOService.SsoWebServiceClient();
+            try
+            {
+                client.logoutAsync();
+            }
+            catch { ;}
+#endif
             this.NavigationService.Navigate(new  Uri("/Login.xaml",UriKind.Relative));
           
         }
@@ -322,18 +338,21 @@ namespace slSecure
 #endif
                 if (alarmdata.AlarmType == AlarmType.PD)
             {
-                MyHyperlinkButton button = new MyHyperlinkButton();
+               
 
                 //PaneID is PDID for AlarmType=PD
 #if  R23
-                button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + HttpUtility.UrlEncode(alarmdata.PlaneName));
-                ;
+                //button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + HttpUtility.UrlEncode(alarmdata.PlaneName));
+                //;
+                this.frameMain.Navigate(new Uri("/Forms/WebPage.xaml?url=" + "http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + HttpUtility.UrlEncode(alarmdata.PlaneName), UriKind.Relative));
 #else
+                      MyHyperlinkButton button = new MyHyperlinkButton();
                 button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R13/secure/focus?PDName=" +   HttpUtility.UrlEncode(alarmdata.PlaneName));
-#endif
                 button.TargetName = "_blank";
 
                 button.ClickMe();
+#endif
+
             }
             else
                 this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID=" + alarmdata.PlaneID, UriKind.Relative));

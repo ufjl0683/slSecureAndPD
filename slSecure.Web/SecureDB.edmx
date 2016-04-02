@@ -38,9 +38,11 @@
           <EntitySet Name="tblMenu" EntityType="SecureDBModel.Store.tblMenu" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblMenuGroup" EntityType="SecureDBModel.Store.tblMenuGroup" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblNVRConfig" EntityType="SecureDBModel.Store.tblNVRConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPasswordEveryDayDifference" EntityType="SecureDBModel.Store.tblPasswordEveryDayDifference" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDAlarmLog" EntityType="SecureDBModel.Store.tblPDAlarmLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDConfig" EntityType="SecureDBModel.Store.tblPDConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPDLoopDeviceConfig" EntityType="SecureDBModel.Store.tblPDLoopDeviceConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPDPinDef" EntityType="SecureDBModel.Store.tblPDPinDef" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblPowerMeter" EntityType="SecureDBModel.Store.tblPowerMeter" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblRemotePowerControl" EntityType="SecureDBModel.Store.tblRemotePowerControl" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblReportList" EntityType="SecureDBModel.Store.tblReportList" store:Type="Tables" Schema="dbo" />
@@ -996,6 +998,14 @@
             <End Role="tblItemGroup" EntitySet="tblItemGroup" />
             <End Role="tblItemConfig" EntitySet="tblItemConfig" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblItemConfig_tblItemGroupTypeInfo" Association="SecureDBModel.Store.FK_tblItemConfig_tblItemGroupTypeInfo">
+            <End Role="tblItemGroupTypeInfo" EntitySet="tblItemGroupTypeInfo" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItemConfig_tblItemKindInfo" Association="SecureDBModel.Store.FK_tblItemConfig_tblItemKindInfo">
+            <End Role="tblItemKindInfo" EntitySet="tblItemKindInfo" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblMagneticCard_tblSysRole" Association="SecureDBModel.Store.FK_tblMagneticCard_tblSysRole">
             <End Role="tblSysRole" EntitySet="tblSysRole" />
             <End Role="tblMagneticCard" EntitySet="tblMagneticCard" />
@@ -1014,6 +1024,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_tblPDConfig_tblEngineRoomConfig" Association="SecureDBModel.Store.FK_tblPDConfig_tblEngineRoomConfig">
             <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblPDConfig" EntitySet="tblPDConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPDConfig_tblPDPinDef" Association="SecureDBModel.Store.FK_tblPDConfig_tblPDPinDef">
+            <End Role="tblPDPinDef" EntitySet="tblPDPinDef" />
             <End Role="tblPDConfig" EntitySet="tblPDConfig" />
           </AssociationSet>
           <AssociationSet Name="FK_tblSchConfig_tblUser" Association="SecureDBModel.Store.FK_tblSchConfig_tblUser">
@@ -1407,6 +1421,15 @@
           <Property Name="PlaneID" Type="int" />
           <Property Name="Type" Type="int" />
         </EntityType>
+        <EntityType Name="tblPasswordEveryDayDifference">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="DoorPassword" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tblPDAlarmLog">
           <Key>
             <PropertyRef Name="FlowID" />
@@ -1475,7 +1498,15 @@
           <Property Name="ISBREAKDOWN" Type="char" MaxLength="1" />
           <Property Name="Enable" Type="char" MaxLength="1" />
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
-          <Property Name="Diameter" Type="int" />
+          <Property Name="Diameter" Type="float" />
+        </EntityType>
+        <EntityType Name="tblPDPinDef">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="tblPowerMeter">
           <Key>
@@ -2249,7 +2280,7 @@
           <Property Name="device_type" Type="nvarchar" MaxLength="20" />
           <Property Name="Device_LineName" Type="nvarchar" MaxLength="20" />
           <Property Name="Device_DirectionName" Type="varchar" MaxLength="4" />
-          <Property Name="Diameter" Type="int" />
+          <Property Name="Diameter" Type="float" />
           <Property Name="PD_Mapping_DeviceName" Type="nvarchar" MaxLength="250" />
           <Property Name="Classify" Type="nvarchar" MaxLength="10" />
           <Property Name="WorkInfo" Type="int" />
@@ -2348,7 +2379,7 @@
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
           <Property Name="LineName" Type="nvarchar" MaxLength="20" />
           <Property Name="DirectionName" Type="varchar" MaxLength="4" />
-          <Property Name="Diameter" Type="int" />
+          <Property Name="Diameter" Type="float" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwPlaneIDAndControlID' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -2987,6 +3018,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblItemConfig_tblItemGroupTypeInfo">
+          <End Role="tblItemGroupTypeInfo" Type="SecureDBModel.Store.tblItemGroupTypeInfo" Multiplicity="0..1" />
+          <End Role="tblItemConfig" Type="SecureDBModel.Store.tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemGroupTypeInfo">
+              <PropertyRef Name="GroupTypeID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="GroupTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItemConfig_tblItemKindInfo">
+          <End Role="tblItemKindInfo" Type="SecureDBModel.Store.tblItemKindInfo" Multiplicity="0..1" />
+          <End Role="tblItemConfig" Type="SecureDBModel.Store.tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemKindInfo">
+              <PropertyRef Name="KindID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="KindID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblMagneticCard_tblSysRole">
           <End Role="tblSysRole" Type="SecureDBModel.Store.tblSysRole" Multiplicity="1" />
           <End Role="tblMagneticCard" Type="SecureDBModel.Store.tblMagneticCard" Multiplicity="*" />
@@ -3044,6 +3099,18 @@
             </Principal>
             <Dependent Role="tblPDConfig">
               <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPDConfig_tblPDPinDef">
+          <End Role="tblPDPinDef" Type="SecureDBModel.Store.tblPDPinDef" Multiplicity="0..1" />
+          <End Role="tblPDConfig" Type="SecureDBModel.Store.tblPDConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPDPinDef">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="tblPDConfig">
+              <PropertyRef Name="type" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3296,7 +3363,6 @@
           <EntitySet Name="vwMagneticCardAllowController" EntityType="SecureDBModel.vwMagneticCardAllowController" />
           <EntitySet Name="tblPDAlarmLog" EntityType="SecureDBModel.tblPDAlarmLog" />
           <EntitySet Name="tblPDConfig" EntityType="SecureDBModel.tblPDConfig" />
-          <EntitySet Name="tblPDLoopDeviceConfig" EntityType="SecureDBModel.tblPDLoopDeviceConfig" />
           <AssociationSet Name="FK_tblPDConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblPDConfig_tblEngineRoomConfig">
             <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
             <End Role="tblPDConfig" EntitySet="tblPDConfig" />
@@ -3308,7 +3374,6 @@
           <EntitySet Name="vwERNamePlaneList" EntityType="SecureDBModel.vwERNamePlaneList" />
           <EntitySet Name="vwERNameRTUList" EntityType="SecureDBModel.vwERNameRTUList" />
           <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.vwAllAlarmLog" />
-          <EntitySet Name="vwPDLoopDeviceConfig" EntityType="SecureDBModel.vwPDLoopDeviceConfig" />
           <EntitySet Name="vwReaderAbnormalPassLog" EntityType="SecureDBModel.vwReaderAbnormalPassLog" />
           <EntitySet Name="vwReaderPassList" EntityType="SecureDBModel.vwReaderPassList" />
           <EntitySet Name="vwReaderPassLog" EntityType="SecureDBModel.vwReaderPassLog" />
@@ -3354,12 +3419,28 @@
           <EntitySet Name="tblCCTVSplitScreen" EntityType="SecureDBModel.tblCCTVSplitScreen" />
           <EntitySet Name="tblPowerMeter" EntityType="SecureDBModel.tblPowerMeter" />
           <EntitySet Name="vwPDAlarmLog" EntityType="SecureDBModel.vwPDAlarmLog" />
-          <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" />
           <EntitySet Name="vwPDConfig" EntityType="SecureDBModel.vwPDConfig" />
           <EntitySet Name="tblRemotePowerControl" EntityType="SecureDBModel.tblRemotePowerControl" />
           <EntitySet Name="vwSingalIO" EntityType="SecureDBModel.vwSingalIO" />
           <EntitySet Name="vwItemConfig" EntityType="SecureDBModel.vwItemConfig" />
           <EntitySet Name="vwItemGroup" EntityType="SecureDBModel.vwItemGroup" />
+          <EntitySet Name="tblPasswordEveryDayDifference" EntityType="SecureDBModel.tblPasswordEveryDayDifference" />
+          <EntitySet Name="tblPDLoopDeviceConfig" EntityType="SecureDBModel.tblPDLoopDeviceConfig" />
+          <EntitySet Name="tblPDPinDef" EntityType="SecureDBModel.tblPDPinDef" />
+          <AssociationSet Name="FK_tblItemConfig_tblItemGroupTypeInfo" Association="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo">
+            <End Role="tblItemGroupTypeInfo" EntitySet="tblItemGroupTypeInfo" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItemConfig_tblItemKindInfo" Association="SecureDBModel.FK_tblItemConfig_tblItemKindInfo">
+            <End Role="tblItemKindInfo" EntitySet="tblItemKindInfo" />
+            <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPDConfig_tblPDPinDef" Association="SecureDBModel.FK_tblPDConfig_tblPDPinDef">
+            <End Role="tblPDPinDef" EntitySet="tblPDPinDef" />
+            <End Role="tblPDConfig" EntitySet="tblPDConfig" />
+          </AssociationSet>
+          <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" />
+          <EntitySet Name="vwPDLoopDeviceConfig" EntityType="SecureDBModel.vwPDLoopDeviceConfig" />
           </EntityContainer>
         <EntityType Name="tblAIItem1HourLog">
           <Key>
@@ -4070,6 +4151,8 @@
           <Property Type="Int32" Name="GroupTypeID" />
           <Property Type="Int32" Name="KindID" />
           <Property Type="Boolean" Name="Suppress" />
+          <NavigationProperty Name="tblItemGroupTypeInfo" Relationship="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo" FromRole="tblItemConfig" ToRole="tblItemGroupTypeInfo" />
+          <NavigationProperty Name="tblItemKindInfo" Relationship="SecureDBModel.FK_tblItemConfig_tblItemKindInfo" FromRole="tblItemConfig" ToRole="tblItemKindInfo" />
         </EntityType>
         <Association Name="FK_tblAIItem1HourLog_tblItemConfig">
           <End Type="SecureDBModel.tblItemConfig" Role="tblItemConfig" Multiplicity="1" />
@@ -4198,30 +4281,7 @@
           <Property Type="String" Name="Mapping_DeviceName" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="WorkInfo" />
-        </EntityType>
-        <EntityType Name="tblPDLoopDeviceConfig">
-          <Key>
-            <PropertyRef Name="PDName" />
-            <PropertyRef Name="PD_LoopNO" />
-            <PropertyRef Name="DeviceName" />
-          </Key>
-          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="PD_LoopNO" Nullable="false" />
-          <Property Type="String" Name="DeviceName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Mapping_DeviceName" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Location" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Int32" Name="mile_m" />
-          <Property Type="String" Name="IP" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Port" />
-          <Property Type="Double" Name="GPSX" />
-          <Property Type="Double" Name="GPSY" />
-          <Property Type="String" Name="device_type" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ISBREAKDOWN" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Diameter" />
+          <NavigationProperty Name="tblPDPinDef" Relationship="SecureDBModel.FK_tblPDConfig_tblPDPinDef" FromRole="tblPDConfig" ToRole="tblPDPinDef" />
         </EntityType>
         <Association Name="FK_tblPDConfig_tblEngineRoomConfig">
           <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="0..1" />
@@ -4286,32 +4346,6 @@
           <Property Type="String" Name="NameAndType" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
           <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="vwPDLoopDeviceConfig">
-          <Key>
-            <PropertyRef Name="PDName" />
-            <PropertyRef Name="PD_LoopNO" />
-            <PropertyRef Name="DeviceName" />
-          </Key>
-          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="PD_LoopNO" Nullable="false" />
-          <Property Type="String" Name="DeviceName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Mapping_DeviceName" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Location" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Int32" Name="mile_m" />
-          <Property Type="String" Name="IP" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Port" />
-          <Property Type="Double" Name="GPSX" />
-          <Property Type="Double" Name="GPSY" />
-          <Property Type="String" Name="device_type" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ISBREAKDOWN" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Diameter" />
         </EntityType>
         <EntityType Name="vwReaderAbnormalPassLog">
           <Key>
@@ -4433,6 +4467,7 @@
           </Key>
           <Property Type="Int32" Name="GroupTypeID" Nullable="false" />
           <Property Type="String" Name="GroupTypeName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo" FromRole="tblItemGroupTypeInfo" ToRole="tblItemConfig" />
         </EntityType>
         <EntityType Name="tblItemKindInfo">
           <Key>
@@ -4440,6 +4475,7 @@
           </Key>
           <Property Type="Int32" Name="KindID" Nullable="false" />
           <Property Type="String" Name="KindName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblItemConfig" Relationship="SecureDBModel.FK_tblItemConfig_tblItemKindInfo" FromRole="tblItemKindInfo" ToRole="tblItemConfig" />
         </EntityType>
         <EntityType Name="vwPasswordEveryDayDifference">
           <Key>
@@ -5135,45 +5171,6 @@
           <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="WorkInfo" />
         </EntityType>
-        <EntityType Name="vwPDAlarmLoopDeviceLog">
-          <Key>
-            <PropertyRef Name="FlowID" />
-            <PropertyRef Name="Timestamp" />
-            <PropertyRef Name="PDName" />
-            <PropertyRef Name="PDItem" />
-            <PropertyRef Name="PDItemDetail" />
-            <PropertyRef Name="Loop" />
-          </Key>
-          <Property Type="Int64" Name="FlowID" Nullable="false" />
-          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="ERID" />
-          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Int32" Name="mile_m" />
-          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PDItem" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PDItemDetail" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Loop" Nullable="false" />
-          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Status" />
-          <Property Type="String" Name="StatusDetail" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DeviceName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="PD_LoopNO" />
-          <Property Type="String" Name="Mapping_DeviceName" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Device_LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Device_Direction" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Int32" Name="Device_mile_m" />
-          <Property Type="String" Name="device_type" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Device_LineName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Device_DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Diameter" />
-          <Property Type="String" Name="PD_Mapping_DeviceName" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="WorkInfo" />
-        </EntityType>
         <EntityType Name="vwPDConfig">
           <Key>
             <PropertyRef Name="PDName" />
@@ -5421,6 +5418,149 @@
           <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="GroupNameDetail" MaxLength="152" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblPasswordEveryDayDifference">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="DoorPassword" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblPDLoopDeviceConfig">
+          <Key>
+            <PropertyRef Name="PDName" />
+            <PropertyRef Name="PD_LoopNO" />
+            <PropertyRef Name="DeviceName" />
+          </Key>
+          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="PD_LoopNO" Nullable="false" />
+          <Property Type="String" Name="DeviceName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mapping_DeviceName" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Location" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="mile_m" />
+          <Property Type="String" Name="IP" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" />
+          <Property Type="Double" Name="GPSX" />
+          <Property Type="Double" Name="GPSY" />
+          <Property Type="String" Name="device_type" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ISBREAKDOWN" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Diameter" />
+        </EntityType>
+        <EntityType Name="tblPDPinDef">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Type="Int32" Name="TypeID" Nullable="false" />
+          <Property Type="String" Name="Content" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblPDConfig" Relationship="SecureDBModel.FK_tblPDConfig_tblPDPinDef" FromRole="tblPDPinDef" ToRole="tblPDConfig" />
+        </EntityType>
+        <Association Name="FK_tblItemConfig_tblItemGroupTypeInfo">
+          <End Type="SecureDBModel.tblItemGroupTypeInfo" Role="tblItemGroupTypeInfo" Multiplicity="0..1" />
+          <End Type="SecureDBModel.tblItemConfig" Role="tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemGroupTypeInfo">
+              <PropertyRef Name="GroupTypeID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="GroupTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItemConfig_tblItemKindInfo">
+          <End Type="SecureDBModel.tblItemKindInfo" Role="tblItemKindInfo" Multiplicity="0..1" />
+          <End Type="SecureDBModel.tblItemConfig" Role="tblItemConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItemKindInfo">
+              <PropertyRef Name="KindID" />
+            </Principal>
+            <Dependent Role="tblItemConfig">
+              <PropertyRef Name="KindID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPDConfig_tblPDPinDef">
+          <End Type="SecureDBModel.tblPDPinDef" Role="tblPDPinDef" Multiplicity="0..1" />
+          <End Type="SecureDBModel.tblPDConfig" Role="tblPDConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPDPinDef">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="tblPDConfig">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vwPDAlarmLoopDeviceLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="PDName" />
+            <PropertyRef Name="PDItem" />
+            <PropertyRef Name="PDItemDetail" />
+            <PropertyRef Name="Loop" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="mile_m" />
+          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PDItem" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PDItemDetail" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Loop" Nullable="false" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Status" />
+          <Property Type="String" Name="StatusDetail" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DeviceName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="PD_LoopNO" />
+          <Property Type="String" Name="Mapping_DeviceName" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Device_LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Device_Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="Device_mile_m" />
+          <Property Type="String" Name="device_type" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Device_LineName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Device_DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Diameter" />
+          <Property Type="String" Name="PD_Mapping_DeviceName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="WorkInfo" />
+        </EntityType>
+        <EntityType Name="vwPDLoopDeviceConfig">
+          <Key>
+            <PropertyRef Name="PDName" />
+            <PropertyRef Name="PD_LoopNO" />
+            <PropertyRef Name="DeviceName" />
+          </Key>
+          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="PD_LoopNO" Nullable="false" />
+          <Property Type="String" Name="DeviceName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mapping_DeviceName" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Location" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="mile_m" />
+          <Property Type="String" Name="IP" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" />
+          <Property Type="Double" Name="GPSX" />
+          <Property Type="Double" Name="GPSY" />
+          <Property Type="String" Name="device_type" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ISBREAKDOWN" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Diameter" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -5980,29 +6120,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblPDLoopDeviceConfig">
-            <EntityTypeMapping TypeName="SecureDBModel.tblPDLoopDeviceConfig">
-              <MappingFragment StoreEntitySet="tblPDLoopDeviceConfig">
-                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Enable" ColumnName="Enable" />
-                <ScalarProperty Name="ISBREAKDOWN" ColumnName="ISBREAKDOWN" />
-                <ScalarProperty Name="device_type" ColumnName="device_type" />
-                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
-                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
-                <ScalarProperty Name="Port" ColumnName="Port" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
-                <ScalarProperty Name="Direction" ColumnName="Direction" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Mapping_DeviceName" ColumnName="Mapping_DeviceName" />
-                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
-                <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
-                <ScalarProperty Name="PDName" ColumnName="PDName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwERNamePlaneList">
             <EntityTypeMapping TypeName="SecureDBModel.vwERNamePlaneList">
               <MappingFragment StoreEntitySet="vwERNamePlaneList">
@@ -6035,31 +6152,6 @@
                 <ScalarProperty Name="DoorAndGroupName" ColumnName="DoorAndGroupName" />
                 <ScalarProperty Name="Item" ColumnName="Item" />
                 <ScalarProperty Name="ERName" ColumnName="ERName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwPDLoopDeviceConfig">
-            <EntityTypeMapping TypeName="SecureDBModel.vwPDLoopDeviceConfig">
-              <MappingFragment StoreEntitySet="vwPDLoopDeviceConfig">
-                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
-                <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
-                <ScalarProperty Name="LineName" ColumnName="LineName" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Enable" ColumnName="Enable" />
-                <ScalarProperty Name="ISBREAKDOWN" ColumnName="ISBREAKDOWN" />
-                <ScalarProperty Name="device_type" ColumnName="device_type" />
-                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
-                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
-                <ScalarProperty Name="Port" ColumnName="Port" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
-                <ScalarProperty Name="Direction" ColumnName="Direction" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Mapping_DeviceName" ColumnName="Mapping_DeviceName" />
-                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
-                <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
-                <ScalarProperty Name="PDName" ColumnName="PDName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6778,41 +6870,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwPDAlarmLoopDeviceLog">
-            <EntityTypeMapping TypeName="SecureDBModel.vwPDAlarmLoopDeviceLog">
-              <MappingFragment StoreEntitySet="vwPDAlarmLoopDeviceLog">
-                <ScalarProperty Name="WorkInfo" ColumnName="WorkInfo" />
-                <ScalarProperty Name="Classify" ColumnName="Classify" />
-                <ScalarProperty Name="PD_Mapping_DeviceName" ColumnName="PD_Mapping_DeviceName" />
-                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
-                <ScalarProperty Name="Device_DirectionName" ColumnName="Device_DirectionName" />
-                <ScalarProperty Name="Device_LineName" ColumnName="Device_LineName" />
-                <ScalarProperty Name="device_type" ColumnName="device_type" />
-                <ScalarProperty Name="Device_mile_m" ColumnName="Device_mile_m" />
-                <ScalarProperty Name="Device_Direction" ColumnName="Device_Direction" />
-                <ScalarProperty Name="Device_LineID" ColumnName="Device_LineID" />
-                <ScalarProperty Name="Mapping_DeviceName" ColumnName="Mapping_DeviceName" />
-                <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
-                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
-                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Loop" ColumnName="Loop" />
-                <ScalarProperty Name="PDItemDetail" ColumnName="PDItemDetail" />
-                <ScalarProperty Name="PDItem" ColumnName="PDItem" />
-                <ScalarProperty Name="PDName" ColumnName="PDName" />
-                <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
-                <ScalarProperty Name="LineName" ColumnName="LineName" />
-                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
-                <ScalarProperty Name="Direction" ColumnName="Direction" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwPDConfig">
             <EntityTypeMapping TypeName="SecureDBModel.vwPDConfig">
               <MappingFragment StoreEntitySet="vwPDConfig">
@@ -7015,6 +7072,107 @@
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="GroupType" ColumnName="GroupType" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPasswordEveryDayDifference">
+            <EntityTypeMapping TypeName="SecureDBModel.tblPasswordEveryDayDifference">
+              <MappingFragment StoreEntitySet="tblPasswordEveryDayDifference">
+                <ScalarProperty Name="DoorPassword" ColumnName="DoorPassword" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPDLoopDeviceConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblPDLoopDeviceConfig">
+              <MappingFragment StoreEntitySet="tblPDLoopDeviceConfig">
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="ISBREAKDOWN" ColumnName="ISBREAKDOWN" />
+                <ScalarProperty Name="device_type" ColumnName="device_type" />
+                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
+                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Mapping_DeviceName" ColumnName="Mapping_DeviceName" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
+                <ScalarProperty Name="PDName" ColumnName="PDName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPDPinDef">
+            <EntityTypeMapping TypeName="SecureDBModel.tblPDPinDef">
+              <MappingFragment StoreEntitySet="tblPDPinDef">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPDAlarmLoopDeviceLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwPDAlarmLoopDeviceLog">
+              <MappingFragment StoreEntitySet="vwPDAlarmLoopDeviceLog">
+                <ScalarProperty Name="WorkInfo" ColumnName="WorkInfo" />
+                <ScalarProperty Name="Classify" ColumnName="Classify" />
+                <ScalarProperty Name="PD_Mapping_DeviceName" ColumnName="PD_Mapping_DeviceName" />
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
+                <ScalarProperty Name="Device_DirectionName" ColumnName="Device_DirectionName" />
+                <ScalarProperty Name="Device_LineName" ColumnName="Device_LineName" />
+                <ScalarProperty Name="device_type" ColumnName="device_type" />
+                <ScalarProperty Name="Device_mile_m" ColumnName="Device_mile_m" />
+                <ScalarProperty Name="Device_Direction" ColumnName="Device_Direction" />
+                <ScalarProperty Name="Device_LineID" ColumnName="Device_LineID" />
+                <ScalarProperty Name="Mapping_DeviceName" ColumnName="Mapping_DeviceName" />
+                <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Loop" ColumnName="Loop" />
+                <ScalarProperty Name="PDItemDetail" ColumnName="PDItemDetail" />
+                <ScalarProperty Name="PDItem" ColumnName="PDItem" />
+                <ScalarProperty Name="PDName" ColumnName="PDName" />
+                <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPDLoopDeviceConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.vwPDLoopDeviceConfig">
+              <MappingFragment StoreEntitySet="vwPDLoopDeviceConfig">
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
+                <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="ISBREAKDOWN" ColumnName="ISBREAKDOWN" />
+                <ScalarProperty Name="device_type" ColumnName="device_type" />
+                <ScalarProperty Name="GPSY" ColumnName="GPSY" />
+                <ScalarProperty Name="GPSX" ColumnName="GPSX" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Mapping_DeviceName" ColumnName="Mapping_DeviceName" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
+                <ScalarProperty Name="PDName" ColumnName="PDName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

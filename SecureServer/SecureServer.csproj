@@ -238,6 +238,9 @@
     <Compile Include="tblPowerMeter.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblPowerMeter1HourLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblRemotePowerControl.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>

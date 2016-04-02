@@ -42,20 +42,29 @@ namespace slSecure
 #else 
 
 
-         //   slWCFModule.SSOService.SsoWebServiceClient client = new slWCFModule.SSOService.SsoWebServiceClient("SsoWebServicePort");
-#if R23           
-            //client.checkAuthenticationCompleted += (s, a) =>
-            //    {
-            //        if(a.Result.status)
-            //             //已登入
-            //            this.frame.Navigate(new Uri("/Main.xaml", UriKind.Relative));
-            //        else
-            //             this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
-            //            //未登入
-                   
-            //    };
-          //   client.checkAuthenticationAsync();
-            this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+       
+#if R23          
+            slWCFModule.SSOService.SsoWebServiceClient client = new slWCFModule.SSOService.SsoWebServiceClient("SsoWebServicePort");
+            client.checkAuthenticationCompleted += (s, a) =>
+                {
+                    if (a.Error != null)
+                    {
+                        this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+                        return;
+                    }
+
+                    if (a.Result.status)
+                        //已登入
+                        this.frame.Navigate(new Uri("/Main.xaml", UriKind.Relative));
+                    else
+                        this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+                    //未登入
+
+                };
+            client.checkAuthenticationAsync();
+
+            //normal r23 login procedure
+           // this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
 #else
             // this.Content=new slSecureLib.Forms.R23.slPowerMeterAndWaterMeter();
             this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));

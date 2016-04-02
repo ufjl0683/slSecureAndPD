@@ -75,12 +75,20 @@ namespace slSecure.Controls
 
         void decoder_Error(object sender, MjpegProcessor.ErrorEventArgs e)
         {
-            MessageBox.Show(e.Message);
+            
+         //   MessageBox.Show(e.Message);
         }
 
         void decoder_FrameReady(object sender, MjpegProcessor.FrameReadyEventArgs e)
         {
-            this.cctv.Source = e.BitmapImage;
+            if (e.BitmapImage != null)
+            {
+                try
+                {
+                    this.cctv.Source = e.BitmapImage;
+                }
+                catch { ;}
+            }
         }
 
         private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

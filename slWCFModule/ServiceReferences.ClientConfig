@@ -15,6 +15,10 @@
                     <binaryMessageEncoding />
                     <tcpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
                 </binding>
+                <binding name="CustomBinding_ISecureService1">
+                    <binaryMessageEncoding />
+                    <tcpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
+                </binding>
             </customBinding>
         </bindings>
         <client>
@@ -27,6 +31,9 @@
             <endpoint address="http://118.163.176.218:8080/sso/services/SsoWebService"
                 binding="basicHttpBinding" bindingConfiguration="SsoWebServiceServiceSoapBinding"
                 contract="SSOService.SsoWebService" name="SsoWebServicePort" />
+            <endpoint address="net.tcp://localhost:4502/" binding="customBinding"
+                bindingConfiguration="CustomBinding_ISecureService1" contract="RemoteService.ISecureService"
+                name="CustomBinding_ISecureService1" />
         </client>
     </system.serviceModel>
 </configuration>
