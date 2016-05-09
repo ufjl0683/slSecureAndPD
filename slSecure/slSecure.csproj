@@ -56,14 +56,14 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT　R13</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>EEE4F0C3FDF5E7D4CDFCF5C34D3C75B59181C5B9</ManifestCertificateThumbprint>
@@ -158,6 +158,9 @@
     <Compile Include="Controls\CCTVLock.xaml.cs">
       <DependentUpon>CCTVLock.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CCTVLock1.xaml.cs">
+      <DependentUpon>CCTVLock1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ControlRoomMenu.xaml.cs">
       <DependentUpon>ControlRoomMenu.xaml</DependentUpon>
     </Compile>
@@ -250,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CCTVLock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CCTVLock1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -351,6 +358,8 @@
     <Resource Include="icons\RTU.png" />
     <Resource Include="icons\Secure.png" />
     <Resource Include="icons\CARD.png" />
+    <Resource Include="icons\WaterMeter.png" />
+    <Resource Include="icons\PowerMeter.png" />
     <Content Include="slSecureLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

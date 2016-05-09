@@ -64,7 +64,8 @@ namespace SecureServer.CCTV
 
             //http://@IP/axis-cgi/mjpg/video.cgi?camera=1  
           //  return string.Format("http://{0}:{1}/getimage?fmt=320x240", IP, Port);
-            return string.Format("http://{0}:{1}/axis-cgi/mjpg/video.cgi?camera=1", IP, Port);
+            //http://192.192.85.33/axis-cgi/jpg/image.cgi?camera=1&resolution=320x240
+            return string.Format("http://{0}:{1}/axis-cgi/jpg/image.cgi?camera=1&resolution=320x240", IP, Port);
         }
 
 

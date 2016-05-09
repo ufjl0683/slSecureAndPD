@@ -54,8 +54,28 @@ namespace slSecure
                     }
 
                     if (a.Result.status)
+                    {
+                        var res = a.Result;
                         //已登入
-                        this.frame.Navigate(new Uri("/Main.xaml", UriKind.Relative));
+                        if (res.userValue.roles.SingleOrDefault(n => n == "SVWS_Admin") != null)
+                        {
+                            (App.Current as App).UserID = "ssoadmin";
+                            (App.Current as App).UserName = res.userValue.login;
+                            this.frame.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "ssoadmin", res.userValue.login), UriKind.Relative));
+                        }
+                        else if (res.userValue.roles.SingleOrDefault(n => n == "SVWS_User") != null)
+                        {
+                            (App.Current as App).UserID = "ssonormal";
+                            (App.Current as App).UserName = res.userValue.login;
+
+                            this.frame.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "ssonormal", res.userValue.login), UriKind.Relative));
+                            //   this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "ssoadmin", "SSO管理者"), UriKind.Relative));
+                        }
+                        else
+                        {
+                            MessageBox.Show("非授權帳號");
+                        }
+                    }
                     else
                         this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
                     //未登入

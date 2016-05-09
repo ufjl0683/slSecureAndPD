@@ -30,6 +30,16 @@ public partial class tblPowerMeter1HourLog
 
     public string Memo { get; set; }
 
+    public Nullable<double> WaterAlarmAvg { get; set; }
+
+    public Nullable<double> PowerAlarmAvg { get; set; }
+
+    public Nullable<bool> WaterAlarm { get; set; }
+
+    public Nullable<bool> PowerAlarm { get; set; }
+
+    public Nullable<double> WaterConsume { get; set; }
+
 }
 
 }

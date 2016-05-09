@@ -44,6 +44,8 @@ namespace slSecure
 
             if (txtAccount.Text == "david" && pwdPassword.Password == "1234")
             {
+                (App.Current as App).UserID = "david";
+                (App.Current as App).UserName = "david";
                 this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "david", "david"), UriKind.Relative));
                 return;
             }
@@ -51,12 +53,35 @@ namespace slSecure
             client.loginCompleted += (s, a) =>
                 {
                     if (a.Error != null)
+                    {
+                        MessageBox.Show(a.Error.Message);
                         return;
+                    }
                     var res = a.Result;
                     if (!res.status)
                         MessageBox.Show("帳號密碼錯誤");
                     else
-                        this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "david", "david"), UriKind.Relative));
+                    {
+                        if (res.userValue.roles.SingleOrDefault(n => n == "SVWS_Admin") != null)
+                        {
+                            (App.Current as App).UserID = "ssoadmin";
+                            (App.Current as App).UserName = res.userValue.login;
+                            this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "ssoadmin", res.userValue.login), UriKind.Relative));
+                        }
+                        else if (res.userValue.roles.SingleOrDefault(n => n == "SVWS_User") != null)
+                        {
+                            (App.Current as App).UserID = "ssonormal";
+                            (App.Current as App).UserName = res.userValue.login;
+                            this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "ssonormal", res.userValue.login), UriKind.Relative));
+                            //   this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "ssoadmin", "SSO管理者"), UriKind.Relative));
+                        }
+                        else
+                        {
+                            MessageBox.Show("非授權帳號");
+                        }
+
+
+                    }
 
                 };
 

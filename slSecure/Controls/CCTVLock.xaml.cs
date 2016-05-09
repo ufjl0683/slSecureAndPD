@@ -36,7 +36,7 @@ namespace slSecure.Controls
             decoder.ParseStream(new Uri(url, UriKind.Absolute));
           
         }
-        public CCTVLock(string url,string username,string   pwd):this()
+        public CCTVLock(string url,string username,string   pwd,bool TimeLimit):this()
         {
 
             decoder = new MjpegProcessor.MjpegDecoder();
@@ -47,7 +47,7 @@ namespace slSecure.Controls
 
 
             CnCnt++;
-            decoder.ParseStream(new Uri(url, UriKind.Absolute),username,pwd);
+            decoder.ParseStream(new Uri(url, UriKind.Absolute), username, pwd, TimeLimit);
 
         }
 
@@ -62,8 +62,9 @@ namespace slSecure.Controls
             //    decoder.ParseStream(new Uri("http://210.241.67.167/abs2mjpg/mjpg?resolution=352x240&camera="+ch, UriKind.Absolute));
             CnCnt++;
             decoder.ParseStream(new Uri("http://210.241.67.167/abs2mjpg/mjpg?resolution=352x240&camera=" + ch, UriKind.Absolute));
+             // decoder.ParseStream(new Uri("http://192.192.85.20:11000/getimage?fmt=320x240", UriKind.Absolute),"admin","pass",true); 
 
-            //  decoder.ParseStream(new Uri("http://192.192.161.17:90/axis-cgi/mjpg/video.cgi?resolution=CIF&camera=1", UriKind.Absolute),"admin","admin");
+             // decoder.ParseStream(new Uri("http://192.192.161.17:90/axis-cgi/mjpg/video.cgi?resolution=CIF&camera=1", UriKind.Absolute),"admin","admin");
 #if DEBUG
             //this.browser.Navigate(new Uri("http://localhost:65254/CCTVLock.aspx?ch=" + ch, UriKind.Absolute));
 #else
@@ -85,7 +86,11 @@ namespace slSecure.Controls
             {
                 try
                 {
-                    this.cctv.Source = e.BitmapImage;
+                    Dispatcher.BeginInvoke(() =>
+                       {
+                           this.cctv.Source = e.BitmapImage;
+                       }
+                       );
                 }
                 catch { ;}
             }

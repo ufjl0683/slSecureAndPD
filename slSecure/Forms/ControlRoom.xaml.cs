@@ -332,6 +332,7 @@ namespace slSecure.Forms
             CCTVControl cctv = new CCTVControl(cctvdata.MjpegCgiString, cctvdata.UserName, cctvdata.Password);
             cctv.Name = "cctvctl"+cctvdata.CCTVName;
          //   cctv.Width = 400;
+          //  cctv.Width = 300;
             cctv.Height = 200;
           //  Interaction.GetBehaviors(cctv).Add(new Microsoft.Expression.Interactivity.Layout.MouseDragElementBehavior());
             cctv.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;

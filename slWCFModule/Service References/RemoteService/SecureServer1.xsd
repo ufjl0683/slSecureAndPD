@@ -37,6 +37,8 @@
       <xs:enumeration value="RTU" />
       <xs:enumeration value="PD" />
       <xs:enumeration value="CARD" />
+      <xs:enumeration value="PowerMeter" />
+      <xs:enumeration value="WaterMeter" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="AlarmType" nillable="true" type="tns:AlarmType" />

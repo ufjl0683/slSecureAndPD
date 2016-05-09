@@ -70,7 +70,7 @@ namespace slSecure.Dialog
                 break;
 
              case 3:
-                CCTVLock cctv = new Controls.CCTVLock(Url, UserName, Pwd);
+                CCTVLock cctv = new Controls.CCTVLock(Url, UserName, Pwd,false);
                 cctv.SetCCTVTitleVisivle(false);
                 this.LayoutRoot.Children.Add(cctv);
                 break;

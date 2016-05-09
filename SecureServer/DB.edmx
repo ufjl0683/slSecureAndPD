@@ -1002,6 +1002,17 @@
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
           <Property Name="CumulateValue" Type="float" />
           <Property Name="InstantaneousValue" Type="float" />
+          <Property Name="PowerAlarmUpper" Type="float" />
+          <Property Name="PowerAlarmLower" Type="float" />
+          <Property Name="WaterAlarmUpper" Type="float" />
+          <Property Name="WaterAlarmLower" Type="float" />
+          <Property Name="WaterAlarm" Type="bit" />
+          <Property Name="PowerAlarm" Type="bit" />
+          <Property Name="WaterAlarmAvg" Type="float" />
+          <Property Name="PowerAlarmAvg" Type="float" />
+          <Property Name="WaterConsume" Type="float" />
+          <Property Name="WaterAlarmDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="PowerAlarmDesc" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblPowerMeter1HourLog">
           <Key>
@@ -1013,6 +1024,11 @@
           <Property Name="KW" Type="float" />
           <Property Name="CumulateValue" Type="float" />
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
+          <Property Name="WaterAlarmAvg" Type="float" />
+          <Property Name="PowerAlarmAvg" Type="float" />
+          <Property Name="WaterAlarm" Type="bit" />
+          <Property Name="PowerAlarm" Type="bit" />
+          <Property Name="WaterConsume" Type="float" />
         </EntityType>
         <EntityType Name="tblRemotePowerControl">
           <Key>
@@ -2858,6 +2874,17 @@
           <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="Double" Name="CumulateValue" />
           <Property Type="Double" Name="InstantaneousValue" />
+          <Property Type="Double" Name="PowerAlarmUpper" />
+          <Property Type="Double" Name="PowerAlarmLower" />
+          <Property Type="Double" Name="WaterAlarmUpper" />
+          <Property Type="Double" Name="WaterAlarmLower" />
+          <Property Type="Boolean" Name="WaterAlarm" />
+          <Property Type="Boolean" Name="PowerAlarm" />
+          <Property Type="Double" Name="WaterAlarmAvg" />
+          <Property Type="Double" Name="PowerAlarmAvg" />
+          <Property Type="Double" Name="WaterConsume" />
+          <Property Type="String" Name="WaterAlarmDesc" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PowerAlarmDesc" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblCardReaderConfig">
           <Key>
@@ -3687,6 +3714,11 @@
           <Property Type="Double" Name="KW" />
           <Property Type="Double" Name="CumulateValue" />
           <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="WaterAlarmAvg" />
+          <Property Type="Double" Name="PowerAlarmAvg" />
+          <Property Type="Boolean" Name="WaterAlarm" />
+          <Property Type="Boolean" Name="PowerAlarm" />
+          <Property Type="Double" Name="WaterConsume" />
         </EntityType>
         <Association Name="FK_tblItemConfig_tblItemGroupTypeInfo">
           <End Type="SecureDBModel.tblItemGroupTypeInfo" Role="tblItemGroupTypeInfo" Multiplicity="0..1" />
@@ -4235,6 +4267,17 @@
           <EntitySetMapping Name="tblPowerMeter">
             <EntityTypeMapping TypeName="SecureDBModel.tblPowerMeter">
               <MappingFragment StoreEntitySet="tblPowerMeter">
+                <ScalarProperty Name="PowerAlarmDesc" ColumnName="PowerAlarmDesc" />
+                <ScalarProperty Name="WaterAlarmDesc" ColumnName="WaterAlarmDesc" />
+                <ScalarProperty Name="WaterConsume" ColumnName="WaterConsume" />
+                <ScalarProperty Name="PowerAlarmAvg" ColumnName="PowerAlarmAvg" />
+                <ScalarProperty Name="WaterAlarmAvg" ColumnName="WaterAlarmAvg" />
+                <ScalarProperty Name="PowerAlarm" ColumnName="PowerAlarm" />
+                <ScalarProperty Name="WaterAlarm" ColumnName="WaterAlarm" />
+                <ScalarProperty Name="WaterAlarmLower" ColumnName="WaterAlarmLower" />
+                <ScalarProperty Name="WaterAlarmUpper" ColumnName="WaterAlarmUpper" />
+                <ScalarProperty Name="PowerAlarmLower" ColumnName="PowerAlarmLower" />
+                <ScalarProperty Name="PowerAlarmUpper" ColumnName="PowerAlarmUpper" />
                 <ScalarProperty Name="InstantaneousValue" ColumnName="InstantaneousValue" />
                 <ScalarProperty Name="CumulateValue" ColumnName="CumulateValue" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
@@ -4770,6 +4813,11 @@
           <EntitySetMapping Name="tblPowerMeter1HourLog">
             <EntityTypeMapping TypeName="SecureDBModel.tblPowerMeter1HourLog">
               <MappingFragment StoreEntitySet="tblPowerMeter1HourLog">
+                <ScalarProperty Name="WaterConsume" ColumnName="WaterConsume" />
+                <ScalarProperty Name="PowerAlarm" ColumnName="PowerAlarm" />
+                <ScalarProperty Name="WaterAlarm" ColumnName="WaterAlarm" />
+                <ScalarProperty Name="PowerAlarmAvg" ColumnName="PowerAlarmAvg" />
+                <ScalarProperty Name="WaterAlarmAvg" ColumnName="WaterAlarmAvg" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
                 <ScalarProperty Name="CumulateValue" ColumnName="CumulateValue" />
                 <ScalarProperty Name="KW" ColumnName="KW" />

@@ -83,22 +83,22 @@ namespace slSecure.Controls
 
         private void ChildWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            CCTVLock cctv=null;
+            CCTVLock1 cctv=null;
             switch(LoginType)
             {
             case 0:
-                this.LayoutRoot.Children.Add(new Controls.CCTVLock(3));
+                this.LayoutRoot.Children.Add(new Controls.CCTVLock1(3));
                 break;
              case 1:
-                    this.LayoutRoot.Children.Add(new Controls.CCTVLock(ch));
+                    this.LayoutRoot.Children.Add(new Controls.CCTVLock1(ch));
                 break;
              case 2:
-                  cctv = new Controls.CCTVLock(Url );
-              //  this.LayoutRoot.Children.Add(new Controls.CCTVLock(Url));
+                  cctv = new Controls.CCTVLock1(Url );
+              //  this.LayoutRoot.Children.Add(new Controls.CCTVLock1(Url));
                 break;
 
              case 3:
-                  cctv = new Controls.CCTVLock(Url, UserName, Pwd);
+                  cctv = new Controls.CCTVLock1(Url, UserName, Pwd,false);
                 cctv.SetCCTVTitleVisivle(false);
 
              

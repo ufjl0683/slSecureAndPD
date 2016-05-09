@@ -67,7 +67,8 @@ namespace SecureServer.CCTV
 
         public string GetMjpgCGIString( )
         {
-            return string.Format("http://{0}:{1}/getimage?fmt=320x240",IP,Port);
+           // return string.Format("http://{0}:{1}/getimage?fmt=320x240",IP,Port);
+            return string.Format("http://{0}:{1}/snapcif", IP, Port);
         }
 
 

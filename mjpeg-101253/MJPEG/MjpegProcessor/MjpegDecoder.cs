@@ -84,18 +84,18 @@ namespace MjpegProcessor
 				_dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
 #endif
 		}
-
+        bool TimeLimit;
 
 		public void ParseStream(Uri uri)
 		{
-			ParseStream(uri, null, null);
+			ParseStream(uri, null, null,false);
 		}
 
         HttpWebRequest request;
 
-		public void ParseStream(Uri uri, string username, string password)
+		public void ParseStream(Uri uri, string username, string password,bool TimeLimit)
 		{
-          
+            this.TimeLimit = TimeLimit;
 #if SILVERLIGHT
 			HttpWebRequest.RegisterPrefix("http://", WebRequestCreator.ClientHttp);
 #endif
@@ -128,18 +128,19 @@ namespace MjpegProcessor
         bool IsExit = false;
         public void Close()
         {
-           IsExit = true;
+         
             StopStream();
           
         }
 		public void StopStream()
 		{
+            IsExit = true;
             if (request != null)
             {
 
                 try
                 {
-                    request.Abort();
+       //             request.Abort();
                 }
                 catch { ;}
             }
@@ -158,16 +159,28 @@ namespace MjpegProcessor
 		private void OnGetResponse(IAsyncResult asyncResult)
 		{
 			byte[] imageBuffer = new byte[1024 * 1024];
-
+            DateTime startTime = DateTime.Now;
 			// get the response
 			HttpWebRequest req = (HttpWebRequest)asyncResult.AsyncState;
+            HttpWebResponse resp=null;
 
 			try
 			{
-				HttpWebResponse resp = (HttpWebResponse)req.EndGetResponse(asyncResult);
-
+				  resp = (HttpWebResponse)req.EndGetResponse(asyncResult);
+                if (resp == null)
+                    return;
 				// find our magic boundary value
 				string contentType = resp.Headers["Content-Type"];
+                if (contentType == null)
+                {
+                    try
+                    {
+                        resp.Close();
+                        req.Abort();
+                    }
+                    catch { ;}
+                    return;
+                }
 				if(!string.IsNullOrEmpty(contentType) && !contentType.Contains("="))
 					throw new Exception("Invalid content-type header.  The camera is likely not returning a proper MJPEG stream.");
 				string boundary = resp.Headers["Content-Type"].Split('=')[1].Replace("\"", "");
@@ -182,22 +195,27 @@ namespace MjpegProcessor
 				_streamActive = true;
 
 				byte[] buff = br.ReadBytes(ChunkSize);
-
-				while (_streamActive )
+                int framefilterCnt = 0;
+				while (_streamActive  )
 				{
 					// find the JPEG header
 					int imageStart = buff.Find(JpegHeader);
+                   
 
+                    framefilterCnt = framefilterCnt++;
+                    framefilterCnt = framefilterCnt % 5;
 					if(imageStart != -1)
-					{
+					
+                    {
 						// copy the start of the JPEG image to the imageBuffer
 						int size = buff.Length - imageStart;
+                        if(framefilterCnt==0)
 						Array.Copy(buff, imageStart, imageBuffer, 0, size);
 
 						while(true && _streamActive)
 						{
 							buff = br.ReadBytes(ChunkSize);
-
+                           
 							// find the boundary text
 							int imageEnd = buff.Find(boundaryBytes);
 							if(imageEnd != -1)
@@ -207,18 +225,24 @@ namespace MjpegProcessor
 								size += imageEnd;
 
 								byte[] frame = new byte[size];
+                              if (framefilterCnt == 0)
 								Array.Copy(imageBuffer, 0, frame, 0, size);
-                                if (this.OnJpegEvent != null)
-                                    this.OnJpegEvent(frame);
-                                else
-								    ProcessFrame(frame);
+                              if (this.OnJpegEvent != null)
+                                  this.OnJpegEvent(frame);
+                              else
+                              {
+
+                                  if (framefilterCnt == 0)
+                                            ProcessFrame(frame);
+                              }
 
 								// copy the leftover data to the start
+                              if (framefilterCnt == 0)
 								Array.Copy(buff, imageEnd, buff, 0, buff.Length - imageEnd);
 
 								// fill the remainder of the buffer with new data and start over
 								byte[] temp = br.ReadBytes(imageEnd);
-
+                                if (framefilterCnt == 0)
 								Array.Copy(temp, 0, buff, buff.Length - imageEnd, temp.Length);
 								break;
 							}
@@ -226,23 +250,34 @@ namespace MjpegProcessor
 							// copy all of the data to the imageBuffer
 							Array.Copy(buff, 0, imageBuffer, size, buff.Length);
 							size += buff.Length;
+                           
 						}
+                     
+                        
 					}
+                  
+                   // GC.Collect();
+                    if (TimeLimit && DateTime.Now.Subtract(startTime) > TimeSpan.FromSeconds(180))
+                        break;
 				}
 #if WINRT
 				resp.Dispose();
 #else
+                resp.GetResponseStream().Close();
+                resp.Close();
+                //imageBuffer = null;
                 req.Abort();
-                s.Close();
-                s.Dispose();
-                br.BaseStream.Close();
-                br.BaseStream.Dispose();
-                br.Close();
-                br.BaseStream.Dispose();
+                imageBuffer = null;
+                //br.BaseStream.Close();
+                //br.BaseStream.Dispose();
+                //br.Close();
+                //s.Close();
+                //s.Dispose();
+              //  br.BaseStream.Dispose();
                 
-				resp.Close();
-                resp.GetResponseStream().Dispose();
-                s = null; br = null; resp = null;
+				//resp.Close();
+               // resp.GetResponseStream().Dispose();
+              //  s = null; br = null; resp = null;
                 GC.Collect();
 
 #endif
@@ -257,6 +292,24 @@ namespace MjpegProcessor
 					_context.Post(delegate { Error(this, new ErrorEventArgs() { Message = ex.Message }); }, null);
 #endif
 
+                try
+                {
+                    if(resp!=null)
+                            resp.Close();
+                }
+                catch { ;}
+                try
+                {
+                    if (req != null)
+                        req.Abort();
+                }
+                catch { ;}
+                try
+                {
+                  //  ((HttpWebResponse)req.EndGetResponse(asyncResult)).Dispose();
+                }
+                catch { ;}
+                imageBuffer = null;
 				return;
 			}
 		}

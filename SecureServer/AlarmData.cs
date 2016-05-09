@@ -14,7 +14,9 @@ namespace SecureServer
         Secure,
         RTU,
         PD,
-        CARD
+        CARD,
+        PowerMeter,
+        WaterMeter
         
 
     }

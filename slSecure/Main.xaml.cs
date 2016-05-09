@@ -155,9 +155,12 @@ namespace slSecure
                 }
                 }
 
-            while (lstCCTVLock.Children.Count > 8)
+            int cnt = 0;
+            while (lstCCTVLock.Children.Count > 3)
             {
-                CCTVLock cctvlock = lstCCTVLock.Children.Skip(8).FirstOrDefault() as CCTVLock;
+                if (cnt++ > 10)
+                    break;
+                CCTVLock1 cctvlock = lstCCTVLock.Children.Skip(3).FirstOrDefault() as CCTVLock1;
                 if (cctvlock != null)
                 {
                    
@@ -260,7 +263,16 @@ namespace slSecure
 
             //cctvLocks.Add(new Source.CCTVLockInfo() { DateTime = DateTime.Now });
             //lstCCTVLock.ItemsSource = from n in cctvLocks orderby n.DateTime descending select n;
-            this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock(1) { Width = 250, Height =200 });
+
+
+
+
+            if(lstCCTVLock.Children.Count>=3)
+               this.lstCCTVLock.Children.RemoveAt(0);// lstCCTVLock.Children.First()
+            this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock1("http://10.2.10.124:80/snapcif","admin","pass",true) { Width = 250, Height =200 });
+           
+            
+            
             //while (lstCCTVLock.Children.Count > 8)
             //{
             //    CCTVLock cctvlock = lstCCTVLock.Children.Skip(8).FirstOrDefault() as CCTVLock;
@@ -275,13 +287,16 @@ namespace slSecure
 
         public Task<object> AddCCTVAsync(string url,string username,string pasword,AlarmData adata)
         {
-            slSecure.Controls.CCTVLock cctv = new Controls.CCTVLock(url, username, pasword) { Width = 250, Height = 200, Margin = new Thickness(10) };
+            slSecure.Controls.CCTVLock1 cctv = new Controls.CCTVLock1(url, username, pasword,true) { Width = 320, Height = 240, Margin = new Thickness(10) };
 
                 //new slSecure.Controls.CCTVLock(new Random().Next(1,40)) { Width = 250, Height =200, Margin = new Thickness(10) };
             System.Threading.Tasks.TaskCompletionSource<object> source = new TaskCompletionSource<object>();
             cctv.DataContext = adata;
             cctv.Click += cctv_Click;
-            this.lstCCTVLock.Children.Insert(0,cctv );
+            //Dispatcher.BeginInvoke(() =>
+            //    {
+                    this.lstCCTVLock.Children.Insert(0, cctv);
+                //});
             source.SetResult(new object());
             return source.Task;
         }
@@ -343,8 +358,9 @@ namespace slSecure
                 //PaneID is PDID for AlarmType=PD
 #if  R23
                 //button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + HttpUtility.UrlEncode(alarmdata.PlaneName));
-                //;
-                this.frameMain.Navigate(new Uri("/Forms/WebPage.xaml?url=" + "http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R23/secure/focus?PDName=" + HttpUtility.UrlEncode(alarmdata.PlaneName), UriKind.Relative));
+                
+                 // http://10.21.99.80/PD/secure/focus?PDName=PD-030008-S-M-32
+                this.frameMain.Navigate(new Uri("/Forms/WebPage.xaml?url=" + "http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/PD/secure/focus?PDName=" + HttpUtility.UrlEncode(alarmdata.PlaneName), UriKind.Relative));
 #else
                       MyHyperlinkButton button = new MyHyperlinkButton();
                 button.NavigateUri = new Uri("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port + "/R13/secure/focus?PDName=" +   HttpUtility.UrlEncode(alarmdata.PlaneName));
@@ -354,7 +370,10 @@ namespace slSecure
 #endif
 
             }
-            else
+                else if (alarmdata.AlarmType == AlarmType.PowerMeter || alarmdata.AlarmType == AlarmType.WaterMeter)
+                {
+                }
+                else
                 this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID=" + alarmdata.PlaneID, UriKind.Relative));
             //this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml", UriKind.Relative));
         }

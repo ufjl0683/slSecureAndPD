@@ -13,6 +13,7 @@ namespace SecureServer.Meter
       ExactIntervalTimer OneHourTmr;
       public PowerMeterManager()
       {
+            
           SecureDBEntities1 db=new SecureDBEntities1();
           var q = from n in db.tblPowerMeter select n;
           foreach (tblPowerMeter tbl in q)
@@ -21,7 +22,7 @@ namespace SecureServer.Meter
 
           }
           new System.Threading.Thread(ReadingTask).Start();
-          OneHourTmr = new ExactIntervalTimer( 5,0);
+          OneHourTmr = new ExactIntervalTimer( 10,0);
           OneHourTmr.OnElapsed += OneHourTmr_OnElapsed;
           
       }
@@ -41,21 +42,93 @@ namespace SecureServer.Meter
                    
                   if (tbl != null)
                   {
+                      
                       DateTime dt=DateTime.Now;
+                      DateTime lastbeg=DateTime.Now.Subtract(TimeSpan.FromHours(24 * 30));
                       tblPowerMeter1HourLog lastlog=  db.tblPowerMeter1HourLog.Where(n=>n.ERID==tbl.ERID).OrderByDescending(n=>n.Timestamp).Take(1).FirstOrDefault();
-                     
-                      db.tblPowerMeter1HourLog.Add(new tblPowerMeter1HourLog()
-                      {
-                           ERID=tbl.ERID,
-                            KW=tbl.KW, 
-                             Timestamp=new DateTime(dt.Year,dt.Month,dt.Day,dt.Hour,0,0),
-                              CumulateValue=(lastlog==null)?tbl.CumulateValue:tbl.CumulateValue-lastlog.CumulateValue,
-                              
-                       
-                      }
-                      );
+                      double? PowerAvg = db.tblPowerMeter1HourLog.Where(n =>/* n.Timestamp >= lastbeg && */ n.ERID==tbl.ERID ).Average(n => n.KW);
+                      double? WaterAvg = db.tblPowerMeter1HourLog.Where(n => /*n.Timestamp >= lastbeg  && */ n.ERID==tbl.ERID ).Average(n => n.WaterConsume);
+
+                      
+                      double? wateCurrent=(tbl.CumulateValue-lastlog.CumulateValue)/ (new DateTime(dt.Year,dt.Month,dt.Day,dt.Hour,0,0)-lastlog.Timestamp).Hours;
+                      bool PowerAlarm=false,WaterAlarm=false;
+                      if(PowerAvg!=null  &&  (tbl.KW> PowerAvg*(1+tbl.PowerAlarmUpper/100) || tbl.KW< PowerAvg*(1-tbl.PowerAlarmLower/100 )) )
+                          PowerAlarm=true;
+                      if(WaterAvg!=null  &&  (wateCurrent> WaterAvg*(1+tbl.WaterAlarmUpper/100) /* || wateCurrent< WaterAvg*(1-tbl.WaterAlarmLower/100 )*/) )
+                          WaterAlarm=true;
+                      tbl.PowerAlarm = PowerAlarm;
+                      tbl.WaterAlarm = WaterAlarm;
+                      bool PowerAlarmChanged, WaterAlarmChanged;
+                      PowerAlarmChanged = (tbl.PowerAlarm ?? false) ^ PowerAlarm;
+                      WaterAlarmChanged = (tbl.WaterAlarm ?? false) ^ WaterAlarm;
+
+                      tblPowerMeter1HourLog log = new tblPowerMeter1HourLog()
+                     {
+                         ERID = tbl.ERID,
+                         KW = tbl.KW,
+                         Timestamp = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, 0, 0),
+                         CumulateValue = tbl.CumulateValue,  //(lastlog==null)?tbl.CumulateValue:tbl.CumulateValue-lastlog.CumulateValue,
+                         WaterAlarm = WaterAlarm,
+                         PowerAlarm = PowerAlarm,
+                         PowerAlarmAvg = PowerAvg ?? tbl.KW,
+                         WaterAlarmAvg = WaterAvg ?? ((lastlog == null) ? tbl.CumulateValue : tbl.CumulateValue - lastlog.CumulateValue),
+                         WaterConsume = (lastlog == null) ? tbl.CumulateValue : tbl.CumulateValue - lastlog.CumulateValue
+
+
+                     };
+                      db.tblPowerMeter1HourLog.Add(log);
+
+                      tbl.WaterConsume = log.WaterConsume;
+                      tbl.WaterAlarmAvg = log.WaterAlarmAvg;
+                      tbl.PowerAlarmAvg = log.PowerAlarmAvg;
+
+                      if ((log.PowerAlarm ?? false) && log.KW > log.PowerAlarmAvg)
+                          tbl.PowerAlarmDesc = "用電過高";
+                      else if ((log.PowerAlarm) ?? false && log.KW < log.PowerAlarmAvg)
+                          tbl.PowerAlarmDesc = "用電量過低 ";
+
+                      if ((log.WaterAlarm ?? false) && log.WaterConsume > log.WaterAlarmAvg)
+                          tbl.PowerAlarmDesc = "用電過高";
+                      else if ((log.PowerAlarm ?? false) && log.WaterConsume < log.PowerAlarmAvg)
+                          tbl.WaterAlarmDesc = "用電量過低 ";
 
                       db.SaveChanges();
+
+                      if (PowerAlarm && PowerAlarmChanged)
+                      {
+                          AlarmData data = new AlarmData()
+                          {
+                              AlarmType = AlarmType.PowerMeter,
+                              ColorString = "Red",
+                              TimeStamp = DateTime.Now,
+                              PlaneName = tbl.ERName,
+                              TimeStampString = string.Format("HH:mm")
+
+                          };
+
+                          Program.MyServiceObject.DispatchAlarmEvent(data);
+                         
+                          
+                      }
+
+                      if (WaterAlarm && WaterAlarmChanged)
+                      {
+                          AlarmData data = new AlarmData()
+                          {
+                              AlarmType = AlarmType.WaterMeter,
+                              ColorString = "Red",
+                              TimeStamp = DateTime.Now,
+                              PlaneName = tbl.ERName,
+                              TimeStampString = string.Format("HH:mm")
+
+                          };
+
+                          Program.MyServiceObject.DispatchAlarmEvent(data);
+
+
+                      }
+
+
                       //tbl.VA = meter.VA;
                       //tbl.VB = meter.VB;
                       //tbl.VC = meter.VC;

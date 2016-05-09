@@ -22,10 +22,10 @@
     <Grid x:Name="LayoutRoot" MouseMove="LayoutRoot_MouseMove">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="128*"/>
-            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="320"/>
         </Grid.ColumnDefinitions>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="scrollViewer" SizeChanged="ScrollViewer_SizeChanged" Margin="0,40,0,0"  >
-            <Viewbox x:Name="viewBox" Grid.ColumnSpan="1" SizeChanged="Viewbox_SizeChanged" >
+            <Viewbox x:Name="viewBox"   Grid.ColumnSpan="1" SizeChanged="Viewbox_SizeChanged" >
 
 
                 <Grid x:Name="Canvas"    >

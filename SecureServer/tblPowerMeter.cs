@@ -54,6 +54,28 @@ public partial class tblPowerMeter
 
     public Nullable<double> InstantaneousValue { get; set; }
 
+    public Nullable<double> PowerAlarmUpper { get; set; }
+
+    public Nullable<double> PowerAlarmLower { get; set; }
+
+    public Nullable<double> WaterAlarmUpper { get; set; }
+
+    public Nullable<double> WaterAlarmLower { get; set; }
+
+    public Nullable<bool> WaterAlarm { get; set; }
+
+    public Nullable<bool> PowerAlarm { get; set; }
+
+    public Nullable<double> WaterAlarmAvg { get; set; }
+
+    public Nullable<double> PowerAlarmAvg { get; set; }
+
+    public Nullable<double> WaterConsume { get; set; }
+
+    public string WaterAlarmDesc { get; set; }
+
+    public string PowerAlarmDesc { get; set; }
+
 }
 
 }

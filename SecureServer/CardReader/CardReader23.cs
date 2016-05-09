@@ -128,7 +128,9 @@ namespace SecureServer.CardReader
                             this.OnDoorEvent(this, DoorEventType.DoorClose);
                     }
 
+#if R23
                     this.InvokeStatusChange(CardReaderManager.MakeReaderEventReport( (byte)CardReaderStatusEnum.開鎖));
+#endif
                 }
             }
         }
