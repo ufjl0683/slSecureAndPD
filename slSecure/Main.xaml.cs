@@ -77,7 +77,8 @@ namespace slSecure
 #if R23
              this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
 #else
-            this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
+            this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
+          //  this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
 #endif
            txtTitle.DataContext = new tblMenu() { MenuName = "門禁監控" };
             this.acdMenu.SelectedIndex =1;
@@ -180,11 +181,12 @@ namespace slSecure
             {
                // tmr.Stop();
                 //this.NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
-                this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
+                
 #if R23
+                this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
 #else
-     
-                this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
+                this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
+              //  this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
 #endif
             }
             //throw new NotImplementedException();
@@ -269,8 +271,8 @@ namespace slSecure
 
             if(lstCCTVLock.Children.Count>=3)
                this.lstCCTVLock.Children.RemoveAt(0);// lstCCTVLock.Children.First()
-            this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock1("http://10.2.10.124:80/snapcif","admin","pass",true) { Width = 250, Height =200 });
-           
+            //this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock1("http://10.2.10.124:80/snapcif","admin","pass",true) { Width = 250, Height =200 });
+            this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock1("http://192.192.85.20:11000/snapcif", "admin", "pass", true) { Width = 250, Height = 200 });
             
             
             //while (lstCCTVLock.Children.Count > 8)
@@ -390,7 +392,8 @@ namespace slSecure
             this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
            
 #else
-            this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
+            this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
+          //  this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
 #endif
             txtTitle.DataContext = new tblMenu() { MenuName = "門禁監控" };
         }

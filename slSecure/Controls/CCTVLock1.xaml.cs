@@ -107,6 +107,7 @@ namespace slSecure.Controls
             client.Credentials = new NetworkCredential(username, pwd);
             client.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
             client.OpenReadAsync(new Uri(url   , UriKind.Absolute));
+
            // imginx = (imginx + 1) % 90000;
            // cctvinfo.CCTV_INX = imginx;
             //  cctvinfo.CCTV_INX = (cctvinfo.CCTV_INX+1) % 90000;

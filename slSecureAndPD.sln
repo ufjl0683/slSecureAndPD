@@ -1,6 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D95219E-DE42-42C0-9C26-15C7AEED383D}"
+	ProjectSection(SolutionItems) = preProject
+		E:\slSecureLib\slSecureLib.csproj = E:\slSecureLib\slSecureLib.csproj
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8B0479A1-0B29-4B85-9E78-F2895AED3F8B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecure", "slSecure\slSecure.csproj", "{BD4B7145-7513-4120-A19B-E9A373D4F7CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{E8A4C97F-53DF-4C7C-873B-03611A1A021A}"
@@ -23,21 +35,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slWCFModule", "slWCFModule\
 		{5ED07E26-CE56-4770-BBBC-00004A7C5BBC} = {5ED07E26-CE56-4770-BBBC-00004A7C5BBC}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D95219E-DE42-42C0-9C26-15C7AEED383D}"
-	ProjectSection(SolutionItems) = preProject
-		E:\slSecureLib\slSecureLib.csproj = E:\slSecureLib\slSecureLib.csproj
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MjpegProcessorSL", "mjpeg-101253\MJPEG\MjpegProcessorSL\MjpegProcessorSL.csproj", "{B5C64E2B-F0B0-4AA4-8852-CD000388FC51}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusTCP", "ModbusTCP\ModbusTCP\ModbusTCP.csproj", "{78A23B5B-CB72-4EDB-B594-5370D086197D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8B0479A1-0B29-4B85-9E78-F2895AED3F8B}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slSecureLib", "slSecureLib\slSecureLib.csproj", "{6459107B-1DE9-43E4-B7D4-98984C565345}"
 EndProject
