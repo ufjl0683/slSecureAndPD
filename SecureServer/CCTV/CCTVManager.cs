@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace SecureServer.CCTV
         System.Collections.Generic.Dictionary<int, ICCTV> dictCCTVs = new Dictionary<int, ICCTV>();
         System.Threading.Timer tmr;
         SecureService service;
+        
 
         public ICCTV this[int CCTVID]
         {
@@ -24,6 +26,8 @@ namespace SecureServer.CCTV
                 return dictCCTVs[CCTVID];
             }
         }
+
+
 
         public CCTVManager(SecureService service)
         {
@@ -48,13 +52,47 @@ namespace SecureServer.CCTV
 
             //tmr = new System.Threading.Timer(OneMinTask);
             //tmr.Change(0, 1000 * 60);
-           
 
 
+            new System.Threading.Thread(TestConnectionTask).Start();
 
         }
 
+        void TestConnectionTask()
+        {
 
+            while (true)
+            {
+
+                SecureDBEntities1 db = new SecureDBEntities1();  
+                Ping ping = new Ping();
+
+                var q = db.tblCCTVConfig;
+                foreach (tblCCTVConfig cctv in q)
+                {
+                    try
+                    {
+                        if (ping.Send(cctv.IP).Status == IPStatus.Success)
+                        {
+                            if (cctv.Comm_state != 1)
+                                cctv.Comm_state = 1;
+                        }
+                        else
+                        {
+                            if(cctv.Comm_state!=0)
+                                 cctv.Comm_state = 0;
+                        }
+                    }
+                    catch { ;}
+                }
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch { ;}
+                System.Threading.Thread.Sleep(60000);
+            }
+        }
         public BindingData.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID)
         {
             System.Collections.Generic.List<CCTVBindingData> list = new List<CCTVBindingData>();

@@ -36,6 +36,8 @@ public partial class tblNVRConfig
 
     public Nullable<int> Type { get; set; }
 
+    public Nullable<int> Comm_state { get; set; }
+
 
 
     public virtual tblEngineRoomConfig tblEngineRoomConfig { get; set; }

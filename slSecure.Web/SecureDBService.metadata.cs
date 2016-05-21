@@ -4046,5 +4046,216 @@ namespace slSecure.Web
             public Nullable<double> Y { get; set; }
         }
     }
+
+    // MetadataTypeAttribute 會將 vwCCTVStateMetadata 識別為
+    // 帶有 vwCCTVState 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwCCTVState.vwCCTVStateMetadata))]
+    public partial class vwCCTVState
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwCCTVState 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwCCTVStateMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwCCTVStateMetadata()
+            {
+            }
+
+            public int CCTVID { get; set; }
+
+            public string CCTVName { get; set; }
+
+            public Nullable<int> Comm_state { get; set; }
+
+            public string Comm_stateName { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string IP { get; set; }
+
+            public int Port { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwNVRStateMetadata 識別為
+    // 帶有 vwNVRState 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwNVRState.vwNVRStateMetadata))]
+    public partial class vwNVRState
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwNVRState 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwNVRStateMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwNVRStateMetadata()
+            {
+            }
+
+            public Nullable<int> Comm_state { get; set; }
+
+            public string Comm_stateName { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public string IP { get; set; }
+
+            public int NVRID { get; set; }
+
+            public string NVRName { get; set; }
+
+            public int Port { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwPowerMeter1HourLogMetadata 識別為
+    // 帶有 vwPowerMeter1HourLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwPowerMeter1HourLog.vwPowerMeter1HourLogMetadata))]
+    public partial class vwPowerMeter1HourLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPowerMeter1HourLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwPowerMeter1HourLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwPowerMeter1HourLogMetadata()
+            {
+            }
+
+            public Nullable<double> CumulateValue { get; set; }
+
+            public Nullable<double> CumulateValueAlarm { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public long FlowID { get; set; }
+
+            public Nullable<double> KW { get; set; }
+
+            public Nullable<double> KWAlarm { get; set; }
+
+            public Nullable<bool> PowerAlarm { get; set; }
+
+            public Nullable<double> PowerAlarmAvg { get; set; }
+
+            public Nullable<double> PowerAlarmLower { get; set; }
+
+            public Nullable<double> PowerAlarmUpper { get; set; }
+
+            public DateTime Timestamp { get; set; }
+
+            public Nullable<bool> WaterAlarm { get; set; }
+
+            public Nullable<double> WaterAlarmAvg { get; set; }
+
+            public Nullable<double> WaterAlarmLower { get; set; }
+
+            public Nullable<double> WaterAlarmUpper { get; set; }
+
+            public Nullable<double> WaterConsume { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwR23AllAlarmLogMetadata 識別為
+    // 帶有 vwR23AllAlarmLog 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwR23AllAlarmLog.vwR23AllAlarmLogMetadata))]
+    public partial class vwR23AllAlarmLog
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwR23AllAlarmLog 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwR23AllAlarmLogMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwR23AllAlarmLogMetadata()
+            {
+            }
+
+            public string ControlID { get; set; }
+
+            public string Explain { get; set; }
+
+            public Nullable<int> PlaneID { get; set; }
+
+            public string PlaneName { get; set; }
+
+            public DateTime TimeStamp { get; set; }
+        }
+    }
+
+    // MetadataTypeAttribute 會將 vwR23PDAlarmMetadata 識別為
+    // 帶有 vwR23PDAlarm 類別其他中繼資料的類別。
+    [MetadataTypeAttribute(typeof(vwR23PDAlarm.vwR23PDAlarmMetadata))]
+    public partial class vwR23PDAlarm
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwR23PDAlarm 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwR23PDAlarmMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwR23PDAlarmMetadata()
+            {
+            }
+
+            public string Mapping_DeviceName { get; set; }
+
+            public string PDItemDetail { get; set; }
+
+            public string PDName { get; set; }
+
+            public string StatusDetail { get; set; }
+
+            public DateTime Timestamp { get; set; }
+        }
+    }
     }
 

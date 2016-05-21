@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,8 +44,47 @@ namespace SecureServer.NVR
 
           }
 
+          new System.Threading.Thread(TestConnectionTask).Start();
+
       }
 
+
+      void TestConnectionTask()
+      {
+
+          while (true)
+          {
+
+              SecureDBEntities1 db = new SecureDBEntities1();
+              Ping ping = new Ping();
+
+              var q = db.tblNVRConfig;
+              foreach (tblNVRConfig nvr in q)
+              {
+                  try
+                  {
+                      if (ping.Send(nvr.IP).Status == IPStatus.Success)
+                      {
+                          if (nvr.Comm_state != 1)
+                              nvr.Comm_state = 1;
+                      }
+                      else
+                      {
+                          if (nvr.Comm_state != 0)
+                              nvr.Comm_state = 0;
+                      }
+                  }
+                  catch { ;}
+              }
+
+              try
+              {
+                  db.SaveChanges();
+              }
+              catch { ;}
+              System.Threading.Thread.Sleep(60000);
+          }
+      }
 
       public INVR this[int nvrid]
       {

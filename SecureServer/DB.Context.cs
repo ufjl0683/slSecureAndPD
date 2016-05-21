@@ -44,10 +44,6 @@ public partial class SecureDBEntities1 : DbContext
 
     public DbSet<vwMagneticCardAllowController> vwMagneticCardAllowController { get; set; }
 
-    public DbSet<tblCCTVConfig> tblCCTVConfig { get; set; }
-
-    public DbSet<tblNVRConfig> tblNVRConfig { get; set; }
-
     public DbSet<tblSysParameter> tblSysParameter { get; set; }
 
     public DbSet<vwMagneticCardDetail> vwMagneticCardDetail { get; set; }
@@ -157,6 +153,10 @@ public partial class SecureDBEntities1 : DbContext
     public DbSet<vwItemGroup> vwItemGroup { get; set; }
 
     public DbSet<tblPowerMeter1HourLog> tblPowerMeter1HourLog { get; set; }
+
+    public DbSet<tblCCTVConfig> tblCCTVConfig { get; set; }
+
+    public DbSet<tblNVRConfig> tblNVRConfig { get; set; }
 
 }
 

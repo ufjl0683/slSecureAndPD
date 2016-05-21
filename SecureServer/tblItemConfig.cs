@@ -102,6 +102,8 @@ public partial class tblItemConfig
 
     public Nullable<bool> Suppress { get; set; }
 
+    public string Classify { get; set; }
+
 
 
     public virtual tblControllerConfig tblControllerConfig { get; set; }

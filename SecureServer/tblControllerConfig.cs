@@ -76,6 +76,8 @@ public partial class tblControllerConfig
 
     public Nullable<short> R23DoorOpen_DO { get; set; }
 
+    public string Classify { get; set; }
+
 
 
     public virtual ICollection<tblItemConfig> tblItemConfig { get; set; }

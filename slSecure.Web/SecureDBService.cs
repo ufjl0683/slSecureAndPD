@@ -2250,6 +2250,44 @@ namespace slSecure.Web
             {
                 return this.ObjectContext.vwSingalIO;
             }
+
+            public IQueryable<vwCCTVState> GetVwCCTVState()
+            {
+                return this.ObjectContext.vwCCTVState;
+            }
+
+            // TODO:
+            // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+            // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+            // 為支援分頁，您必須將排序加入至 'vwNVRState' 查詢。
+            public IQueryable<vwNVRState> GetVwNVRState()
+            {
+                return this.ObjectContext.vwNVRState;
+            }
+
+            public IQueryable<vwPowerMeter1HourLog> GetVwPowerMeter1HourLog()
+            {
+                return this.ObjectContext.vwPowerMeter1HourLog;
+            }
+
+            // TODO:
+            // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+            // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+            // 為支援分頁，您必須將排序加入至 'vwR23AllAlarmLog' 查詢。
+            public IQueryable<vwR23AllAlarmLog> GetVwR23AllAlarmLog()
+            {
+                return this.ObjectContext.vwR23AllAlarmLog;
+            }
+
+            // TODO:
+            // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+            // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+            // 為支援分頁，您必須將排序加入至 'vwR23PDAlarm' 查詢。
+            public IQueryable<vwR23PDAlarm> GetVwR23PDAlarm()
+            {
+                return this.ObjectContext.vwR23PDAlarm;
+            }
+
         
 
     }

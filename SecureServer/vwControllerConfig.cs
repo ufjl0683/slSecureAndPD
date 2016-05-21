@@ -38,6 +38,16 @@ public partial class vwControllerConfig
 
     public Nullable<bool> IsEnable { get; set; }
 
+    public string Classify { get; set; }
+
+    public string IP { get; set; }
+
+    public int Port { get; set; }
+
+    public Nullable<int> RTUBaseAddress { get; set; }
+
+    public Nullable<int> RTURegisterLength { get; set; }
+
 }
 
 }

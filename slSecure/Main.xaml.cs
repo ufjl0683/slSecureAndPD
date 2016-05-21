@@ -49,37 +49,41 @@ namespace slSecure
         protected  async  override void OnNavigatedTo(NavigationEventArgs e)
         {
             SecureDBContext db = new SecureDBContext();// DB.GetDB();
-
-            EntityQuery<tblSysParameter> qry = db.GetTblSysParameterQuery().Where(n => n.VariableName == "TimeoutReturnPage");
-
-            var result = await db.LoadAsync(qry);
-
-            tblSysParameter sysparam = result.FirstOrDefault();
-            if (sysparam != null)
+            try
             {
+                EntityQuery<tblSysParameter> qry = db.GetTblSysParameterQuery().Where(n => n.VariableName == "TimeoutReturnPage");
+
+                var result = await db.LoadAsync(qry);
+
+                tblSysParameter sysparam = result.FirstOrDefault();
+                if (sysparam != null)
+                {
 
 
-                tmr.Interval = TimeSpan.FromMinutes(double.Parse(sysparam.VariableValue)) ;
-                tmr.Tick += tmr_Tick;
-                tmr.Start();
+                    tmr.Interval = TimeSpan.FromMinutes(double.Parse(sysparam.VariableValue));
+                    tmr.Tick += tmr_Tick;
+                    tmr.Start();
 
-            }
-           
-          //  Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior bev = new Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior();
+                }
 
-       
+                //  Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior bev = new Microsoft.Expression.Interactivity.Layout.FluidMoveBehavior();
 
-        EntityQuery<vwUserMenuAllow> q=   db.GetVwUserMenuAllowQuery().Where(n => n.UserID == Util.GetICommon().GetUserID()  && n.IsAllow==true);
-            var UserMenus =  await  db.LoadAsync(q);
 
-            var res = from n in UserMenus  group n by n.GroupName into g   select  new UserGroupMenu() { GroupMenu = g.Key, Menus = g.OrderBy(k=>k.MenuOrder).ToList()  }  ;
-            this.acdMenu.ItemsSource = res;
+
+                EntityQuery<vwUserMenuAllow> q = db.GetVwUserMenuAllowQuery().Where(n => n.UserID == Util.GetICommon().GetUserID() && n.IsAllow == true);
+                var UserMenus = await db.LoadAsync(q);
+
+                var res = from n in UserMenus group n by n.GroupName into g select new UserGroupMenu() { GroupMenu = g.Key, Menus = g.OrderBy(k => k.MenuOrder).ToList() };
+                this.acdMenu.ItemsSource = res;
 #if R23
-             this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
+                this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
 #else
             this.frameMain.Navigate(new Uri("/Forms/R23/Monitor.xaml", UriKind.Relative));
           //  this.frameMain.Navigate(new Uri("/Forms/Monitor.xaml", UriKind.Relative));
 #endif
+
+            }
+            catch { ;}
            txtTitle.DataContext = new tblMenu() { MenuName = "門禁監控" };
             this.acdMenu.SelectedIndex =1;
 
@@ -92,6 +96,8 @@ namespace slSecure
 
 
                  };
+
+             this.txtCCTVCnt1.Text = this.NavigationContext.QueryString["username"];
           //   await client.RegistAndGetKey();
         
           
@@ -176,7 +182,7 @@ namespace slSecure
         void tmr_Tick(object sender, EventArgs e)
         {
 
-            this.txtCCTVCnt.Text = CCTVLock.CnCnt.ToString();
+           // this.txtCCTVCnt.Text = CCTVLock.CnCnt.ToString();
             if (DateTime.Now.Subtract(LastOperationDatetime) > TimeSpan.FromMinutes(1 ))
             {
                // tmr.Stop();
@@ -272,7 +278,7 @@ namespace slSecure
             if(lstCCTVLock.Children.Count>=3)
                this.lstCCTVLock.Children.RemoveAt(0);// lstCCTVLock.Children.First()
             //this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock1("http://10.2.10.124:80/snapcif","admin","pass",true) { Width = 250, Height =200 });
-            this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock1("http://192.192.85.20:11000/snapcif", "admin", "pass", true) { Width = 250, Height = 200 });
+           // this.lstCCTVLock.Children.Add(new slSecure.Controls.CCTVLock1("http://192.192.85.20:11000/snapcif", "admin", "pass", true) { Width = 250, Height = 200 });
             
             
             //while (lstCCTVLock.Children.Count > 8)
@@ -344,15 +350,17 @@ namespace slSecure
 
             AlarmData alarmdata = (sender as StackPanel).DataContext as AlarmData;
             //   client.Dispose();
-#if !R23
-            if (alarmdata.AlarmType == AlarmType.CARD)
-            {
 
+            if (alarmdata.AlarmType == AlarmType.CARD) //未歸還卡片警告
+            {
+#if !R23
                 this.frameMain.Navigate(new Uri("/slSecureLib;component/Forms/R13/slReport.xaml?IsShowNoReturnMagneticCard=1" , UriKind.Relative));
-            
+#else
+                this.frameMain.Navigate(new Uri("/slSecureLib;component/Forms/R23/slReport.xaml?IsShowNoReturnMagneticCard=1" , UriKind.Relative));
+#endif
             }
             else
-#endif
+
                 if (alarmdata.AlarmType == AlarmType.PD)
             {
                
@@ -372,9 +380,18 @@ namespace slSecure
 #endif
 
             }
-                else if (alarmdata.AlarmType == AlarmType.PowerMeter || alarmdata.AlarmType == AlarmType.WaterMeter)
+#if R23
+                else if (alarmdata.AlarmType == AlarmType.PowerMeter) 
                 {
+                     this.NavigationService.Navigate(new Uri("slSecureLib;component/Forms/R23/slPowerMeterAndWaterMeter.xaml?IsShowWaterOrPower=Power",UriKind.Relative));
+                  
                 }
+                else if( alarmdata.AlarmType == AlarmType.WaterMeter)
+                {
+                     this.NavigationService.Navigate(new Uri("slSecureLib;component/Forms/R23/slPowerMeterAndWaterMeter.xaml?IsShowWaterOrPower=Water",UriKind.Relative));
+                }
+#endif
+
                 else
                 this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml?PlaneID=" + alarmdata.PlaneID, UriKind.Relative));
             //this.frameMain.Navigate(new Uri("/Forms/ControlRoom.xaml", UriKind.Relative));

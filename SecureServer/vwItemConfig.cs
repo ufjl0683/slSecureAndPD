@@ -140,6 +140,8 @@ public partial class vwItemConfig
 
     public string GroupNameDetail { get; set; }
 
+    public string Classify { get; set; }
+
 }
 
 }

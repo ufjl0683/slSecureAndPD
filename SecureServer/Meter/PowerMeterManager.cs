@@ -83,14 +83,14 @@ namespace SecureServer.Meter
                       tbl.PowerAlarmAvg = log.PowerAlarmAvg;
 
                       if ((log.PowerAlarm ?? false) && log.KW > log.PowerAlarmAvg)
-                          tbl.PowerAlarmDesc = "用電過高";
+                          tbl.PowerAlarmDesc = "用電量過高";
                       else if ((log.PowerAlarm) ?? false && log.KW < log.PowerAlarmAvg)
                           tbl.PowerAlarmDesc = "用電量過低 ";
 
                       if ((log.WaterAlarm ?? false) && log.WaterConsume > log.WaterAlarmAvg)
-                          tbl.PowerAlarmDesc = "用電過高";
-                      else if ((log.PowerAlarm ?? false) && log.WaterConsume < log.PowerAlarmAvg)
-                          tbl.WaterAlarmDesc = "用電量過低 ";
+                          tbl.PowerAlarmDesc = "用水量過高";
+                      else if ((log.WaterAlarm ?? false) && log.WaterConsume < log.PowerAlarmAvg)
+                          tbl.WaterAlarmDesc = "用水量過低 ";
 
                       db.SaveChanges();
 

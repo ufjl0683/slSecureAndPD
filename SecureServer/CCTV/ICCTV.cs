@@ -18,5 +18,7 @@ namespace SecureServer.CCTV
        string Password { get; set; }
          int NVRID { get; set; }
          int NVRChNo { get; set; }
+           string IP { get; set; }
+           int Port { get; set; }
     }
 }

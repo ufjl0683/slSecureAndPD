@@ -167,7 +167,12 @@
       [vwControllerConfig].[EntranceCode] AS [EntranceCode], 
       [vwControllerConfig].[Comm_state] AS [Comm_state], 
       [vwControllerConfig].[Comm_stateName] AS [Comm_stateName], 
-      [vwControllerConfig].[IsEnable] AS [IsEnable]
+      [vwControllerConfig].[IsEnable] AS [IsEnable], 
+      [vwControllerConfig].[Classify] AS [Classify], 
+      [vwControllerConfig].[IP] AS [IP], 
+      [vwControllerConfig].[Port] AS [Port], 
+      [vwControllerConfig].[RTUBaseAddress] AS [RTUBaseAddress], 
+      [vwControllerConfig].[RTURegisterLength] AS [RTURegisterLength]
       FROM [dbo].[vwControllerConfig] AS [vwControllerConfig]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwDeviceStateLog" EntityType="SecureDBModel.Store.vwDeviceStateLog" store:Type="Views" store:Schema="dbo" store:Name="vwDeviceStateLog">
@@ -301,7 +306,8 @@
       [vwItemConfig].[KindID] AS [KindID], 
       [vwItemConfig].[KindName] AS [KindName], 
       [vwItemConfig].[Suppress] AS [Suppress], 
-      [vwItemConfig].[GroupNameDetail] AS [GroupNameDetail]
+      [vwItemConfig].[GroupNameDetail] AS [GroupNameDetail], 
+      [vwItemConfig].[Classify] AS [Classify]
       FROM [dbo].[vwItemConfig] AS [vwItemConfig]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwItemGroup" EntityType="SecureDBModel.Store.vwItemGroup" store:Type="Views" store:Schema="dbo" store:Name="vwItemGroup">
@@ -618,6 +624,7 @@
           <Property Name="NVRID" Type="int" />
           <Property Name="NVRChNO" Type="int" />
           <Property Name="Type" Type="int" />
+          <Property Name="Comm_state" Type="int" />
         </EntityType>
         <EntityType Name="tblCCTVSplitScreen">
           <Key>
@@ -670,6 +677,7 @@
           <Property Name="R23_ADAM" Type="nvarchar" MaxLength="50" />
           <Property Name="R23DoorOpen_DI" Type="smallint" />
           <Property Name="R23DoorOpen_DO" Type="smallint" />
+          <Property Name="Classify" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="tblControlSetting">
           <Key>
@@ -803,6 +811,7 @@
           <Property Name="GroupTypeID" Type="int" />
           <Property Name="KindID" Type="int" />
           <Property Name="Suppress" Type="bit" />
+          <Property Name="Classify" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -900,6 +909,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="PlaneID" Type="int" />
           <Property Name="Type" Type="int" />
+          <Property Name="Comm_state" Type="int" />
         </EntityType>
         <EntityType Name="tblPasswordEveryDayDifference">
           <Key>
@@ -1322,6 +1332,8 @@
             <PropertyRef Name="ControlType" />
             <PropertyRef Name="ControlTypeName" />
             <PropertyRef Name="Comm_stateName" />
+            <PropertyRef Name="IP" />
+            <PropertyRef Name="Port" />
           </Key>
           <Property Name="ERID" Type="int" Nullable="false" />
           <Property Name="ERName" Type="nvarchar" MaxLength="50" />
@@ -1333,6 +1345,11 @@
           <Property Name="Comm_state" Type="int" />
           <Property Name="Comm_stateName" Type="varchar" Nullable="false" MaxLength="4" />
           <Property Name="IsEnable" Type="bit" />
+          <Property Name="Classify" Type="nvarchar" MaxLength="10" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="RTUBaseAddress" Type="int" />
+          <Property Name="RTURegisterLength" Type="int" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwDeviceStateLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -1526,7 +1543,8 @@
           <Property Name="KindID" Type="int" />
           <Property Name="KindName" Type="nvarchar" MaxLength="50" />
           <Property Name="Suppress" Type="bit" />
-          <Property Name="GroupNameDetail" Type="nvarchar" MaxLength="151" />
+          <Property Name="GroupNameDetail" Type="nvarchar" MaxLength="152" />
+          <Property Name="Classify" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwItemGroup' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -2064,8 +2082,6 @@
           <EntitySet Name="tblERPlane" EntityType="SecureDBModel.tblERPlane" />
           <EntitySet Name="tblMagneticCard" EntityType="SecureDBModel.tblMagneticCard" />
           <EntitySet Name="vwMagneticCardAllowController" EntityType="SecureDBModel.vwMagneticCardAllowController" />
-          <EntitySet Name="tblCCTVConfig" EntityType="SecureDBModel.tblCCTVConfig" />
-          <EntitySet Name="tblNVRConfig" EntityType="SecureDBModel.tblNVRConfig" />
           <EntitySet Name="tblSysParameter" EntityType="SecureDBModel.tblSysParameter" />
           <EntitySet Name="vwMagneticCardDetail" EntityType="SecureDBModel.vwMagneticCardDetail" />
           <EntitySet Name="tblControllerConfig" EntityType="SecureDBModel.tblControllerConfig" />
@@ -2142,10 +2158,6 @@
             <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
             <End Role="tblCardReaderConfig" EntitySet="tblCardReaderConfig" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblCCTVConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig">
-            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
-            <End Role="tblCCTVConfig" EntitySet="tblCCTVConfig" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblControllerConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblControllerConfig_tblEngineRoomConfig">
             <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
             <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
@@ -2173,10 +2185,6 @@
           <AssociationSet Name="FK_tblERPlane_tblEngineRoomConfig" Association="SecureDBModel.FK_tblERPlane_tblEngineRoomConfig">
             <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
             <End Role="tblERPlane" EntitySet="tblERPlane" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblNVRConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblNVRConfig_tblEngineRoomConfig">
-            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
-            <End Role="tblNVRConfig" EntitySet="tblNVRConfig" />
           </AssociationSet>
           <AssociationSet Name="FK_tblPDConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblPDConfig_tblEngineRoomConfig">
             <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
@@ -2236,6 +2244,16 @@
           <AssociationSet Name="FK_tblItemConfig_tblItemKindInfo" Association="SecureDBModel.FK_tblItemConfig_tblItemKindInfo">
             <End Role="tblItemKindInfo" EntitySet="tblItemKindInfo" />
             <End Role="tblItemConfig" EntitySet="tblItemConfig" />
+          </AssociationSet>
+          <EntitySet Name="tblCCTVConfig" EntityType="SecureDBModel.tblCCTVConfig" />
+          <EntitySet Name="tblNVRConfig" EntityType="SecureDBModel.tblNVRConfig" />
+          <AssociationSet Name="FK_tblCCTVConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblCCTVConfig" EntitySet="tblCCTVConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNVRConfig_tblEngineRoomConfig" Association="SecureDBModel.FK_tblNVRConfig_tblEngineRoomConfig">
+            <End Role="tblEngineRoomConfig" EntitySet="tblEngineRoomConfig" />
+            <End Role="tblNVRConfig" EntitySet="tblNVRConfig" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblERDoorPassword">
@@ -2328,43 +2346,6 @@
           <Property Type="String" Name="Enable" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Type="Int16" Name="Type" />
         </EntityType>
-        <EntityType Name="tblCCTVConfig">
-          <Key>
-            <PropertyRef Name="CCTVID" />
-          </Key>
-          <Property Type="Int32" Name="CCTVID" Nullable="false" />
-          <Property Type="Int32" Name="ERID" Nullable="false" />
-          <Property Type="String" Name="CCTVName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Port" Nullable="false" />
-          <Property Type="Double" Name="X" Nullable="false" />
-          <Property Type="Double" Name="Y" Nullable="false" />
-          <Property Type="Double" Name="ScaleX" Nullable="false" />
-          <Property Type="Double" Name="ScaleY" Nullable="false" />
-          <Property Type="Double" Name="Rotation" Nullable="false" />
-          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="PlaneID" />
-          <Property Type="Int32" Name="NVRID" />
-          <Property Type="Int32" Name="NVRChNO" />
-          <Property Type="Int32" Name="Type" />
-          <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" FromRole="tblCCTVConfig" ToRole="tblEngineRoomConfig" />
-        </EntityType>
-        <EntityType Name="tblNVRConfig">
-          <Key>
-            <PropertyRef Name="NVRID" />
-          </Key>
-          <Property Type="Int32" Name="NVRID" Nullable="false" />
-          <Property Type="Int32" Name="ERID" Nullable="false" />
-          <Property Type="String" Name="NVRName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Port" Nullable="false" />
-          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="PlaneID" />
-          <Property Type="Int32" Name="Type" />
-          <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblNVRConfig_tblEngineRoomConfig" FromRole="tblNVRConfig" ToRole="tblEngineRoomConfig" />
-        </EntityType>
         <EntityType Name="tblSysParameter">
           <Key>
             <PropertyRef Name="SysID" />
@@ -2445,6 +2426,7 @@
           <NavigationProperty Name="tblControlSetting" Relationship="SecureDBModel.FK_tblControlSetting_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblControlSetting" />
           <NavigationProperty Name="tblSingalIO" Relationship="SecureDBModel.FK_tblSingalIO_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblSingalIO" />
           <NavigationProperty Name="tblSysRoleAuthority" Relationship="SecureDBModel.FK_tblSysRoleAuthority_tblControllerConfig" FromRole="tblControllerConfig" ToRole="tblSysRoleAuthority" />
+          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblItemConfig">
           <Key>
@@ -2493,6 +2475,7 @@
           <Property Type="Boolean" Name="Suppress" />
           <NavigationProperty Name="tblItemGroupTypeInfo" Relationship="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo" FromRole="tblItemConfig" ToRole="tblItemGroupTypeInfo" />
           <NavigationProperty Name="tblItemKindInfo" Relationship="SecureDBModel.FK_tblItemConfig_tblItemKindInfo" FromRole="tblItemConfig" ToRole="tblItemKindInfo" />
+          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblItemGroup">
           <Key>
@@ -2946,12 +2929,12 @@
           <Property Type="Double" Name="GPSY" Nullable="false" />
           <Property Type="String" Name="ERNo" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CallOpenDoor" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblCCTVConfig" Relationship="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblCCTVConfig" />
           <NavigationProperty Name="tblControllerConfig" Relationship="SecureDBModel.FK_tblControllerConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblControllerConfig" />
           <NavigationProperty Name="tblEntranceGuardConfig" Relationship="SecureDBModel.FK_tblEntranceGuardConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblEntranceGuardConfig" />
           <NavigationProperty Name="tblERPlane" Relationship="SecureDBModel.FK_tblERPlane_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblERPlane" />
-          <NavigationProperty Name="tblNVRConfig" Relationship="SecureDBModel.FK_tblNVRConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblNVRConfig" />
           <NavigationProperty Name="tblPDConfig" Relationship="SecureDBModel.FK_tblPDConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblPDConfig" />
+          <NavigationProperty Name="tblCCTVConfig" Relationship="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblCCTVConfig" />
+          <NavigationProperty Name="tblNVRConfig" Relationship="SecureDBModel.FK_tblNVRConfig_tblEngineRoomConfig" FromRole="tblEngineRoomConfig" ToRole="tblNVRConfig" />
         </EntityType>
         <EntityType Name="tblEntranceGuardConfig">
           <Key>
@@ -3188,18 +3171,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblCCTVConfig_tblEngineRoomConfig">
-          <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="1" />
-          <End Type="SecureDBModel.tblCCTVConfig" Role="tblCCTVConfig" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEngineRoomConfig">
-              <PropertyRef Name="ERID" />
-            </Principal>
-            <Dependent Role="tblCCTVConfig">
-              <PropertyRef Name="ERID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblControllerConfig_tblEngineRoomConfig">
           <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="1" />
           <End Type="SecureDBModel.tblControllerConfig" Role="tblControllerConfig" Multiplicity="*" />
@@ -3282,18 +3253,6 @@
               <PropertyRef Name="ERID" />
             </Principal>
             <Dependent Role="tblERPlane">
-              <PropertyRef Name="ERID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblNVRConfig_tblEngineRoomConfig">
-          <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="1" />
-          <End Type="SecureDBModel.tblNVRConfig" Role="tblNVRConfig" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEngineRoomConfig">
-              <PropertyRef Name="ERID" />
-            </Principal>
-            <Dependent Role="tblNVRConfig">
               <PropertyRef Name="ERID" />
             </Dependent>
           </ReferentialConstraint>
@@ -3524,6 +3483,8 @@
             <PropertyRef Name="ControlType" />
             <PropertyRef Name="ControlTypeName" />
             <PropertyRef Name="Comm_stateName" />
+            <PropertyRef Name="IP" />
+            <PropertyRef Name="Port" />
           </Key>
           <Property Type="Int32" Name="ERID" Nullable="false" />
           <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -3535,6 +3496,11 @@
           <Property Type="Int32" Name="Comm_state" />
           <Property Type="String" Name="Comm_stateName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="IsEnable" />
+          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="Int32" Name="RTUBaseAddress" />
+          <Property Type="Int32" Name="RTURegisterLength" />
         </EntityType>
         <EntityType Name="vwDeviceStateLog">
           <Key>
@@ -3662,7 +3628,8 @@
           <Property Type="Int32" Name="KindID" />
           <Property Type="String" Name="KindName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Suppress" />
-          <Property Type="String" Name="GroupNameDetail" MaxLength="151" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GroupNameDetail" MaxLength="152" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vwItemGroup">
           <Key>
@@ -3741,6 +3708,69 @@
             </Principal>
             <Dependent Role="tblItemConfig">
               <PropertyRef Name="KindID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblCCTVConfig">
+          <Key>
+            <PropertyRef Name="CCTVID" />
+          </Key>
+          <Property Type="Int32" Name="CCTVID" Nullable="false" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="CCTVName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="Double" Name="X" Nullable="false" />
+          <Property Type="Double" Name="Y" Nullable="false" />
+          <Property Type="Double" Name="ScaleX" Nullable="false" />
+          <Property Type="Double" Name="ScaleY" Nullable="false" />
+          <Property Type="Double" Name="Rotation" Nullable="false" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PlaneID" />
+          <Property Type="Int32" Name="NVRID" />
+          <Property Type="Int32" Name="NVRChNO" />
+          <Property Type="Int32" Name="Type" />
+          <Property Type="Int32" Name="Comm_state" />
+          <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" FromRole="tblCCTVConfig" ToRole="tblEngineRoomConfig" />
+        </EntityType>
+        <EntityType Name="tblNVRConfig">
+          <Key>
+            <PropertyRef Name="NVRID" />
+          </Key>
+          <Property Type="Int32" Name="NVRID" Nullable="false" />
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="NVRName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PlaneID" />
+          <Property Type="Int32" Name="Type" />
+          <Property Type="Int32" Name="Comm_state" />
+          <NavigationProperty Name="tblEngineRoomConfig" Relationship="SecureDBModel.FK_tblNVRConfig_tblEngineRoomConfig" FromRole="tblNVRConfig" ToRole="tblEngineRoomConfig" />
+        </EntityType>
+        <Association Name="FK_tblCCTVConfig_tblEngineRoomConfig">
+          <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblCCTVConfig" Role="tblCCTVConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblCCTVConfig">
+              <PropertyRef Name="ERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNVRConfig_tblEngineRoomConfig">
+          <End Type="SecureDBModel.tblEngineRoomConfig" Role="tblEngineRoomConfig" Multiplicity="1" />
+          <End Type="SecureDBModel.tblNVRConfig" Role="tblNVRConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEngineRoomConfig">
+              <PropertyRef Name="ERID" />
+            </Principal>
+            <Dependent Role="tblNVRConfig">
+              <PropertyRef Name="ERID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3841,43 +3871,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblCCTVConfig">
-            <EntityTypeMapping TypeName="SecureDBModel.tblCCTVConfig">
-              <MappingFragment StoreEntitySet="tblCCTVConfig">
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="NVRChNO" ColumnName="NVRChNO" />
-                <ScalarProperty Name="NVRID" ColumnName="NVRID" />
-                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
-                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
-                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
-                <ScalarProperty Name="Y" ColumnName="Y" />
-                <ScalarProperty Name="X" ColumnName="X" />
-                <ScalarProperty Name="Port" ColumnName="Port" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="CCTVName" ColumnName="CCTVName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="CCTVID" ColumnName="CCTVID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblNVRConfig">
-            <EntityTypeMapping TypeName="SecureDBModel.tblNVRConfig">
-              <MappingFragment StoreEntitySet="tblNVRConfig">
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Port" ColumnName="Port" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="NVRName" ColumnName="NVRName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="NVRID" ColumnName="NVRID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblSysParameter">
             <EntityTypeMapping TypeName="SecureDBModel.tblSysParameter">
               <MappingFragment StoreEntitySet="tblSysParameter">
@@ -3929,6 +3922,7 @@
           <EntitySetMapping Name="tblControllerConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblControllerConfig">
               <MappingFragment StoreEntitySet="tblControllerConfig">
+                <ScalarProperty Name="Classify" ColumnName="Classify" />
                 <ScalarProperty Name="R23DoorOpen_DO" ColumnName="R23DoorOpen_DO" />
                 <ScalarProperty Name="R23DoorOpen_DI" ColumnName="R23DoorOpen_DI" />
                 <ScalarProperty Name="R23_ADAM" ColumnName="R23_ADAM" />
@@ -3956,6 +3950,7 @@
           <EntitySetMapping Name="tblItemConfig">
             <EntityTypeMapping TypeName="SecureDBModel.tblItemConfig">
               <MappingFragment StoreEntitySet="tblItemConfig">
+                <ScalarProperty Name="Classify" ColumnName="Classify" />
                 <ScalarProperty Name="Suppress" ColumnName="Suppress" />
                 <ScalarProperty Name="KindID" ColumnName="KindID" />
                 <ScalarProperty Name="GroupTypeID" ColumnName="GroupTypeID" />
@@ -4660,6 +4655,11 @@
           <EntitySetMapping Name="vwControllerConfig">
             <EntityTypeMapping TypeName="SecureDBModel.vwControllerConfig">
               <MappingFragment StoreEntitySet="vwControllerConfig">
+                <ScalarProperty Name="RTURegisterLength" ColumnName="RTURegisterLength" />
+                <ScalarProperty Name="RTUBaseAddress" ColumnName="RTUBaseAddress" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Classify" ColumnName="Classify" />
                 <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
                 <ScalarProperty Name="Comm_stateName" ColumnName="Comm_stateName" />
                 <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
@@ -4713,6 +4713,7 @@
           <EntitySetMapping Name="vwItemConfig">
             <EntityTypeMapping TypeName="SecureDBModel.vwItemConfig">
               <MappingFragment StoreEntitySet="vwItemConfig">
+                <ScalarProperty Name="Classify" ColumnName="Classify" />
                 <ScalarProperty Name="GroupNameDetail" ColumnName="GroupNameDetail" />
                 <ScalarProperty Name="Suppress" ColumnName="Suppress" />
                 <ScalarProperty Name="KindName" ColumnName="KindName" />
@@ -4824,6 +4825,45 @@
                 <ScalarProperty Name="ERID" ColumnName="ERID" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
                 <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCCTVConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblCCTVConfig">
+              <MappingFragment StoreEntitySet="tblCCTVConfig">
+                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="NVRChNO" ColumnName="NVRChNO" />
+                <ScalarProperty Name="NVRID" ColumnName="NVRID" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Rotation" ColumnName="Rotation" />
+                <ScalarProperty Name="ScaleY" ColumnName="ScaleY" />
+                <ScalarProperty Name="ScaleX" ColumnName="ScaleX" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CCTVName" ColumnName="CCTVName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="CCTVID" ColumnName="CCTVID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNVRConfig">
+            <EntityTypeMapping TypeName="SecureDBModel.tblNVRConfig">
+              <MappingFragment StoreEntitySet="tblNVRConfig">
+                <ScalarProperty Name="Comm_state" ColumnName="Comm_state" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="NVRName" ColumnName="NVRName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="NVRID" ColumnName="NVRID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

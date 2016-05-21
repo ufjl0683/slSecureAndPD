@@ -25,11 +25,21 @@ namespace SecureServer.CardReader
        
         SecureService serivce;
        // bool IntrusionAlarm = false;
+        bool R23InvalidCardAlarm = true;
+#if R23
+        bool EventIntrusionAlarm = true;
+        bool EventDoorOpenOverTimeAlarm = false;
+        bool EventInvalidCardAlarm = true;
+        bool EventExternalForceAlarm = false;
+        bool EventDoorOpenAlarm = false;
+#else
         bool EventIntrusionAlarm = false;
         bool EventDoorOpenOverTimeAlarm = false;
         bool EventInvalidCardAlarm = false;
         bool EventExternalForceAlarm = false;
         bool EventDoorOpenAlarm = false;
+      
+#endif
         ClassSockets.ServerSocket ServerScoket;
 #if R23
         int RemoOpenTimeR23, DelayTimeR23, LoopErrorAlarmTimeR23, AlarmTimeR23;
@@ -104,7 +114,9 @@ namespace SecureServer.CardReader
 
                 // 
 
-                RoomClient.RoomClient.RoomEvent += RoomClient_RoomEvent;                //ServerScoket = new ClassSockets.ServerSocket();
+                RoomClient.RoomClient.RoomEvent += RoomClient_RoomEvent;
+              
+                //ServerScoket = new ClassSockets.ServerSocket();
                 //ServerScoket.OnRead += new ServerSocket.ConnectionDelegate(Server_OnRead);
 
                 //if (ServerScoket.Active())
@@ -176,9 +188,9 @@ namespace SecureServer.CardReader
              //    data[11] = (byte)((DateTime.Now.Minute) / 10 * 16 + (DateTime.Now.Minute) % 10);
              //    data[13] = (byte)((DateTime.Now.Second) / 10 * 16 + (DateTime.Now.Second) % 10);
              //    CardReaderEventReport rpt = new CardReaderEventReport(data);
-                 if (dictAdam_CardReader.ContainsKey(Name))
+            if (rpt != null && dictCardReaders.ContainsKey(Name))
                  {
-                     dictAdam_CardReader[Name].InvokeStatusChange(rpt);
+                     dictCardReaders[Name].InvokeStatusChange(rpt);
                  }
              
               
@@ -433,7 +445,7 @@ namespace SecureServer.CardReader
             {
                 if (rpt.Status == (int)CardReaderStatusEnum.卡號連續錯誤 && this.EventInvalidCardAlarm || rpt.Status == (int)CardReaderStatusEnum.外力破壞 && this.EventExternalForceAlarm ||
                      rpt.Status == (int)CardReaderStatusEnum.異常入侵 && this.EventIntrusionAlarm || rpt.Status == (int)CardReaderStatusEnum.開門超時 && this.EventDoorOpenOverTimeAlarm ||
-                     rpt.Status == (int)CardReaderStatusEnum.開鎖 && this.EventDoorOpenAlarm
+                     rpt.Status == (int)CardReaderStatusEnum.開鎖 && this.EventDoorOpenAlarm || rpt.Status == (int)CardReaderStatusEnum.號碼錯誤 && this.R23InvalidCardAlarm
                    )
                 {
                     if (this.OnAlarmEvent != null)
@@ -708,9 +720,12 @@ namespace SecureServer.CardReader
                 {
 #if !R23
                     CheckAndGenerateDailySuperPassword();
+#else
+                      // this.RoomClient_RoomEvent(RoomInterface.ControllEventType.ErrorCard, dictCardReaders.Values.ToArray()[0].ControllerID, null);
 #endif
                     Console.WriteLine("In one Min task!");
                  //   System.Console.Beep();
+                 
                     System.Threading.Thread.Sleep(1000*60);
                 }
             }

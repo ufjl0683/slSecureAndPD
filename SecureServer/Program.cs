@@ -89,7 +89,8 @@ namespace SecureServer
         static void Main(string[] args)
         {
 
-
+            //CardReader.CardReaderManager mgr = new CardReader.CardReaderManager(MyServiceObject);
+            //Console.ReadKey();
             //PDTEst();
             //Console.ReadKey();
             
@@ -148,6 +149,7 @@ namespace SecureServer
             //db.SaveChanges();
 
             ServiceHost host = new ServiceHost(MyServiceObject = new SecureServer.SecureService());
+            
             host.Open();
             System.Console.WriteLine("======================================Secure Server started!===============================");
           
