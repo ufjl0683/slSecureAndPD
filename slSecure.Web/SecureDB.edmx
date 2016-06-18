@@ -856,6 +856,15 @@
       [vwR23PDAlarm].[Mapping_DeviceName] AS [Mapping_DeviceName]
       FROM [dbo].[vwR23PDAlarm] AS [vwR23PDAlarm]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vwR23PowerAlarm" EntityType="SecureDBModel.Store.vwR23PowerAlarm" store:Type="Views" store:Schema="dbo" store:Name="vwR23PowerAlarm">
+            <DefiningQuery>SELECT 
+      [vwR23PowerAlarm].[Timestamp] AS [Timestamp], 
+      [vwR23PowerAlarm].[ERName] AS [ERName], 
+      [vwR23PowerAlarm].[Item] AS [Item], 
+      [vwR23PowerAlarm].[Explain] AS [Explain], 
+      [vwR23PowerAlarm].[PlaneID] AS [PlaneID]
+      FROM [dbo].[vwR23PowerAlarm] AS [vwR23PowerAlarm]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vwR23ReaderAlarm" EntityType="SecureDBModel.Store.vwR23ReaderAlarm" store:Type="Views" store:Schema="dbo" store:Name="vwR23ReaderAlarm">
             <DefiningQuery>SELECT 
       [vwR23ReaderAlarm].[TimeStamp] AS [TimeStamp], 
@@ -946,6 +955,15 @@
       [vwR23RTUAlarm].[Explain] AS [Explain], 
       [vwR23RTUAlarm].[PlaneID] AS [PlaneID]
       FROM [dbo].[vwR23RTUAlarm] AS [vwR23RTUAlarm]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwR23WaterAlarm" EntityType="SecureDBModel.Store.vwR23WaterAlarm" store:Type="Views" store:Schema="dbo" store:Name="vwR23WaterAlarm">
+            <DefiningQuery>SELECT 
+      [vwR23WaterAlarm].[Timestamp] AS [Timestamp], 
+      [vwR23WaterAlarm].[ERName] AS [ERName], 
+      [vwR23WaterAlarm].[Item] AS [Item], 
+      [vwR23WaterAlarm].[Explain] AS [Explain], 
+      [vwR23WaterAlarm].[PlaneID] AS [PlaneID]
+      FROM [dbo].[vwR23WaterAlarm] AS [vwR23WaterAlarm]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwReaderAbnormalPassLog" EntityType="SecureDBModel.Store.vwReaderAbnormalPassLog" store:Type="Views" store:Schema="dbo" store:Name="vwReaderAbnormalPassLog">
             <DefiningQuery>SELECT 
@@ -2696,10 +2714,12 @@
         <EntityType Name="vwR23AllAlarmLog">
           <Key>
             <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="PlaneName" />
+            <PropertyRef Name="ControlID" />
           </Key>
           <Property Name="TimeStamp" Type="datetime" Nullable="false" />
-          <Property Name="PlaneName" Type="nvarchar" MaxLength="20" />
-          <Property Name="ControlID" Type="nvarchar" MaxLength="182" />
+          <Property Name="PlaneName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="182" />
           <Property Name="Explain" Type="nvarchar" MaxLength="100" />
           <Property Name="PlaneID" Type="int" />
         </EntityType>
@@ -2913,6 +2933,23 @@
           <Property Name="Mapping_DeviceName" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwR23PowerAlarm' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwR23PowerAlarm">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="Item" />
+            <PropertyRef Name="Explain" />
+            <PropertyRef Name="PlaneID" />
+          </Key>
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="ERName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Item" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="Explain" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="PlaneID" Type="varchar" Nullable="false" MaxLength="4" />
+        </EntityType>
+        <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwR23ReaderAlarm' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
       -->
         <EntityType Name="vwR23ReaderAlarm">
@@ -3023,6 +3060,23 @@
           <Property Name="ControlID" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Explain" Type="nvarchar" MaxLength="50" />
           <Property Name="PlaneID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwR23WaterAlarm' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwR23WaterAlarm">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="Item" />
+            <PropertyRef Name="Explain" />
+            <PropertyRef Name="PlaneID" />
+          </Key>
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="ERName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Item" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="Explain" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="PlaneID" Type="varchar" Nullable="false" MaxLength="4" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwReaderAbnormalPassLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -3730,7 +3784,6 @@
           </AssociationSet>
           <EntitySet Name="vwERNamePlaneList" EntityType="SecureDBModel.vwERNamePlaneList" />
           <EntitySet Name="vwERNameRTUList" EntityType="SecureDBModel.vwERNameRTUList" />
-          <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.vwAllAlarmLog" />
           <EntitySet Name="vwReaderAbnormalPassLog" EntityType="SecureDBModel.vwReaderAbnormalPassLog" />
           <EntitySet Name="vwReaderPassList" EntityType="SecureDBModel.vwReaderPassList" />
           <EntitySet Name="vwReaderPassLog" EntityType="SecureDBModel.vwReaderPassLog" />
@@ -3804,11 +3857,14 @@
           <EntitySet Name="vwItemList" EntityType="SecureDBModel.vwItemList" />
           <EntitySet Name="vwR23ADAMAlarm" EntityType="SecureDBModel.vwR23ADAMAlarm" />
           <EntitySet Name="vwR23ADAMReaderAlarm" EntityType="SecureDBModel.vwR23ADAMReaderAlarm" />
-          <EntitySet Name="vwR23AllAlarmLog" EntityType="SecureDBModel.vwR23AllAlarmLog" />
           <EntitySet Name="vwR23ItemAlarm" EntityType="SecureDBModel.vwR23ItemAlarm" />
           <EntitySet Name="vwR23PDAlarm" EntityType="SecureDBModel.vwR23PDAlarm" />
           <EntitySet Name="vwR23ReaderAlarm" EntityType="SecureDBModel.vwR23ReaderAlarm" />
           <EntitySet Name="vwR23RTUAlarm" EntityType="SecureDBModel.vwR23RTUAlarm" />
+          <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.vwAllAlarmLog" />
+          <EntitySet Name="vwR23AllAlarmLog" EntityType="SecureDBModel.vwR23AllAlarmLog" />
+          <EntitySet Name="vwR23PowerAlarm" EntityType="SecureDBModel.vwR23PowerAlarm" />
+          <EntitySet Name="vwR23WaterAlarm" EntityType="SecureDBModel.vwR23WaterAlarm" />
           </EntityContainer>
         <EntityType Name="tblAIItem1HourLog">
           <Key>
@@ -4705,19 +4761,6 @@
           <Property Type="Int32" Name="ERID" Nullable="false" />
           <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="vwAllAlarmLog">
-          <Key>
-            <PropertyRef Name="Item" />
-            <PropertyRef Name="Timestamp" />
-          </Key>
-          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Item" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DoorAndGroupName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ABAAndItemName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="NameAndType" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
-          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vwReaderAbnormalPassLog">
           <Key>
@@ -6066,16 +6109,6 @@
           <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="PlaneID" Nullable="false" />
         </EntityType>
-        <EntityType Name="vwR23AllAlarmLog">
-          <Key>
-            <PropertyRef Name="TimeStamp" />
-          </Key>
-          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
-          <Property Type="String" Name="PlaneName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ControlID" MaxLength="182" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Explain" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="PlaneID" />
-        </EntityType>
         <EntityType Name="vwR23ItemAlarm">
           <Key>
             <PropertyRef Name="Timestamp" />
@@ -6122,6 +6155,59 @@
           <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="PlaneID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwAllAlarmLog">
+          <Key>
+            <PropertyRef Name="Item" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Item" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DoorAndGroupName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ABAAndItemName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameAndType" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwR23AllAlarmLog">
+          <Key>
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="PlaneName" />
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="PlaneName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="182" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Explain" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PlaneID" />
+        </EntityType>
+        <EntityType Name="vwR23PowerAlarm">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="Item" />
+            <PropertyRef Name="Explain" />
+            <PropertyRef Name="PlaneID" />
+          </Key>
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Item" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Explain" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PlaneID" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vwR23WaterAlarm">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="Item" />
+            <PropertyRef Name="Explain" />
+            <PropertyRef Name="PlaneID" />
+          </Key>
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Item" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Explain" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PlaneID" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -6704,19 +6790,6 @@
                 <ScalarProperty Name="ControlID" ColumnName="ControlID" />
                 <ScalarProperty Name="ERName" ColumnName="ERName" />
                 <ScalarProperty Name="ERID" ColumnName="ERID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwAllAlarmLog">
-            <EntityTypeMapping TypeName="SecureDBModel.vwAllAlarmLog">
-              <MappingFragment StoreEntitySet="vwAllAlarmLog">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="NameAndType" ColumnName="NameAndType" />
-                <ScalarProperty Name="ABAAndItemName" ColumnName="ABAAndItemName" />
-                <ScalarProperty Name="DoorAndGroupName" ColumnName="DoorAndGroupName" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7850,17 +7923,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwR23AllAlarmLog">
-            <EntityTypeMapping TypeName="SecureDBModel.vwR23AllAlarmLog">
-              <MappingFragment StoreEntitySet="vwR23AllAlarmLog">
-                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
-                <ScalarProperty Name="Explain" ColumnName="Explain" />
-                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
-                <ScalarProperty Name="PlaneName" ColumnName="PlaneName" />
-                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwR23ItemAlarm">
             <EntityTypeMapping TypeName="SecureDBModel.vwR23ItemAlarm">
               <MappingFragment StoreEntitySet="vwR23ItemAlarm">
@@ -7902,6 +7964,52 @@
                 <ScalarProperty Name="ControlID" ColumnName="ControlID" />
                 <ScalarProperty Name="PlaneName" ColumnName="PlaneName" />
                 <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwAllAlarmLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwAllAlarmLog">
+              <MappingFragment StoreEntitySet="vwAllAlarmLog">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="NameAndType" ColumnName="NameAndType" />
+                <ScalarProperty Name="ABAAndItemName" ColumnName="ABAAndItemName" />
+                <ScalarProperty Name="DoorAndGroupName" ColumnName="DoorAndGroupName" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwR23AllAlarmLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwR23AllAlarmLog">
+              <MappingFragment StoreEntitySet="vwR23AllAlarmLog">
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="PlaneName" ColumnName="PlaneName" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwR23PowerAlarm">
+            <EntityTypeMapping TypeName="SecureDBModel.vwR23PowerAlarm">
+              <MappingFragment StoreEntitySet="vwR23PowerAlarm">
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwR23WaterAlarm">
+            <EntityTypeMapping TypeName="SecureDBModel.vwR23WaterAlarm">
+              <MappingFragment StoreEntitySet="vwR23WaterAlarm">
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -47,16 +47,16 @@ namespace test
            //    Console.WriteLine(collection[i].Groups[(i%2)+1].Value);
            // Console.WriteLine(collection.Count);
 
-            SecureServer.RTU.R13BatteryPackRTU rtu = new SecureServer.RTU.R13BatteryPackRTU("AA", 1, "10.2.190.125", 80, 1, 48, 1);
-
-            while (true)
-            {
-                for (int i = 0; i < 48; i++)
-                {
-                    Console.WriteLine(rtu.GetRegisterReading((ushort)(1+ i)));
-                }
-                System.Threading.Thread.Sleep(1000);
-            }
+            //SecureServer.RTU.R13BatteryPackRTU rtu = new SecureServer.RTU.R13BatteryPackRTU("AA", 1, "10.2.190.125", 80, 1, 48, 1);
+            //SecureServer.RTU.R13NewSmrRTU rtu = new SecureServer.RTU.R13NewSmrRTU(""Para  );
+            //while (true)
+            //{
+            //    for (int i = 0; i < 48; i++)
+            //    {
+            //        Console.WriteLine(rtu.GetRegisterReading((ushort)(1+ i)));
+            //    }
+            //    System.Threading.Thread.Sleep(1000);
+            //}
         }
 
         static  void  PDTest()

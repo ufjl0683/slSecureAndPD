@@ -20,19 +20,33 @@ namespace SMRTest
 
         static void Main(string[] args)
         {
-            SecureServer.RTU.R13SmrRTU rtu = new SecureServer.RTU.R13SmrRTU("1", 1, "10.2.52.80", 4000, 2001, 3, 0);
+          SecureServer.RTU.R13NewSmrRTU rtu = new SecureServer.RTU.R13NewSmrRTU("1", 1, "10.21.50.8",502, 1, 6, 0);
+           // SecureServer.RTU.R13NewSmrRTU rtu = new SecureServer.RTU.R13NewSmrRTU("1", 1, "127.0.0.1", 502, 1, 6, 0);
 
-            while (true)
-            {
-                int v = rtu.GetRegisterReading(2001) ?? 0;
-                int i = rtu.GetRegisterReading(2002) ?? 0;
-                int bits=rtu.GetRegisterReading(2003)??0;
-                Console.WriteLine("v:{0} i{1} major:{2} minor:{3} smrwarning:{4} acfail:{5}  isconnected{6}", v, i, bits & 1, (bits >> 1) & 1,
-                    (bits >> 2) & 1, (bits >> 3) & 1, rtu.IsConnected);
-               
+                 while (true)
+                {
+                    int v = rtu.GetRegisterReading(3) ?? 0;
+                    int i = rtu.GetRegisterReading(4) ?? 0;
+                    int bits=rtu.GetRegisterReading(5)??0;
+                    Console.Write("v:{0} i:{1} \n",v,i);
+                    //Console.WriteLine("v:{0} i{1} major:{2} minor:{3} smrwarning:{4} acfail:{5}  isconnected{6}", v, i, bits & 1, (bits >> 1) & 1,
+                    //    (bits >> 2) & 1, (bits >> 3) & 1, rtu.IsConnected);
+
                 System.Threading.Thread.Sleep(1000);
 
             }
+
+            //while (true)
+            //{
+            //    int v = rtu.GetRegisterReading(2001) ?? 0;
+            //    int i = rtu.GetRegisterReading(2002) ?? 0;
+            //    int bits=rtu.GetRegisterReading(2003)??0;
+            //    Console.WriteLine("v:{0} i{1} major:{2} minor:{3} smrwarning:{4} acfail:{5}  isconnected{6}", v, i, bits & 1, (bits >> 1) & 1,
+            //        (bits >> 2) & 1, (bits >> 3) & 1, rtu.IsConnected);
+               
+            //    System.Threading.Thread.Sleep(1000);
+
+            //}
            // SmrTest(args);
 
             Console.ReadKey();

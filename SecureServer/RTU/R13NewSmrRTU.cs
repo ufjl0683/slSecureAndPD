@@ -73,6 +73,7 @@ namespace SecureServer.RTU
             }
         }
 
+        int rcnt = 0;
         void ReadingTask()
         {
             byte[] tempdata = new byte[data.Length];
@@ -81,7 +82,8 @@ namespace SecureServer.RTU
 
                 try
                 {
-
+                    if (rcnt > 10)
+                        rcnt = 0;
                     // 偵測 RTU開 斷線並產生事件
                     if (RTUDevice != null)
                         Comm_state = RTUDevice.connected ? 1 : 0;
@@ -93,7 +95,7 @@ namespace SecureServer.RTU
                             byte[] temp = null;
 
                             //reading dout0~dout15
-                            RTUDevice.ReadCoils((ushort)this.DevID, (byte)DevID, (ushort)0, (ushort)16, ref temp);
+                            RTUDevice.ReadCoils((ushort)rcnt++/*this.DevID*/, (byte)DevID, (ushort)0, (ushort)16, ref temp);
                             if (temp != null)
                             {
 
@@ -104,18 +106,39 @@ namespace SecureServer.RTU
                             }
 
                             //reading di0~di15
-                            RTUDevice.ReadDiscreteInputs((ushort)this.DevID, (byte)DevID, (ushort)0, (ushort)16, ref temp);
+                            RTUDevice.ReadDiscreteInputs((ushort)rcnt++/*this.DevID*/, (byte)DevID, (ushort)0, (ushort)16, ref temp);
 
-                            if (temp != null)
+                            if (temp != null)  //40002  
                             {
                                 Array.Reverse(temp);
-                                System.Array.Copy(temp, 0, data, 2, 2);
+                                System.Array.Copy(temp, 0, data, 2*1, 2);
                             }
                             // double temperature = 0, humidity = 0;
-                            RTUDevice.ReadInputRegister((ushort)this.DevID, (byte)DevID, (ushort)5, (ushort)3, ref temp);
+                           // RTUDevice.ReadInputRegister((ushort)this.DevID, (byte)DevID, (ushort)5, (ushort)3, ref temp);
+                            //3006 ~ 3007 ignore 3008 remain
+                               RTUDevice.ReadInputRegister((ushort)rcnt++/*this.DevID*/, (byte)DevID, (ushort)7, (ushort)1, ref temp);
 
+                               if (temp != null)
+                               {
+                                   System.Array.Copy(temp, 0, data, 4 * 2, temp.Length);//40005
+                               }
+
+                            
+
+                            RTUDevice.ReadInputRegister((ushort)rcnt++/*this.DevID*/, (byte)DevID, (ushort)110, (ushort)1, ref temp);
                             if (temp != null)
-                                System.Array.Copy(temp, 0, data, 2 * 2, temp.Length);
+                            {
+                                System.Array.Copy(temp, 0, data, 2 * 2, temp.Length);  //40003
+                              //  Console.WriteLine("30111:"+(temp[1]+temp[0]*256));
+                            }
+
+                            RTUDevice.ReadInputRegister((ushort)rcnt++/*this.DevID*/, (byte)DevID, (ushort)113, (ushort)1, ref temp);
+                            if (temp != null)
+                            {
+                                System.Array.Copy(temp, 0, data, 3 * 2, temp.Length);    //40004
+                               // Console.WriteLine("30114:" + (temp[0] * 256 + temp[1]));
+                            }
+
                             //   if (temp != null)
                             //   {
                             //       byte[] dest = new byte[4];
@@ -215,7 +238,7 @@ namespace SecureServer.RTU
                         RTUDevice.connect(IP, (ushort)Port);
                         RTUDevice.OnResponseData += RTUDevice_OnResponseData;
                         RTUDevice.OnException += RTUDevice_OnException;
-
+                        Console.WriteLine("connected!");
                     }
                     catch (Exception ex)
                     {
@@ -225,9 +248,9 @@ namespace SecureServer.RTU
                     }
                     finally
                     {
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(5000);
                     }
-                    Console.WriteLine("connected!");
+                   
                 }
 
                 System.Threading.Thread.Sleep(1000);
@@ -242,8 +265,18 @@ namespace SecureServer.RTU
         {
             if (exception == 254)
             {
-                RTUDevice.disconnect();
-                RTUDevice.Dispose();
+                Console.WriteLine("Exception no:" + exception);
+
+                try
+                {
+                    RTUDevice.disconnect();
+                }
+                catch { ;}
+                try
+                {
+                    RTUDevice.Dispose();
+                }
+                catch { ;}
 
             }
             //  throw new NotImplementedException();

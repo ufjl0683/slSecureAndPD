@@ -48,6 +48,10 @@ namespace slSecure
         // 使用者巡覽至這個頁面時執行。
         protected  async  override void OnNavigatedTo(NavigationEventArgs e)
         {
+
+#if R23
+            this.chkIsWindowsAlarm.Visibility = Visibility;
+#endif
             SecureDBContext db = new SecureDBContext();// DB.GetDB();
             try
             {
@@ -174,6 +178,9 @@ namespace slSecure
                     lstCCTVLock.Children.Remove(cctvlock);
                 }
             }
+
+            if(chkIsWindowsAlarm.IsChecked??false)
+                MessageBox.Show(alarmdata.Description);
             
 
           //  this.lstMessage.Items.Add(alarmdata.Description);

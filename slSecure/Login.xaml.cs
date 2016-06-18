@@ -80,6 +80,8 @@ namespace slSecure
                         else
                         {
                             MessageBox.Show("非授權帳號");
+                            client.logoutAsync();
+                            // this.NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
                         }
 
 

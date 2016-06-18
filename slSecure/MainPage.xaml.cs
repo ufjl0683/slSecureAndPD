@@ -60,20 +60,26 @@ namespace slSecure
                         if (res.userValue.roles.SingleOrDefault(n => n == "SVWS_Admin") != null)
                         {
                             (App.Current as App).UserID = "ssoadmin";
-                            (App.Current as App).UserName = res.userValue.login;
+                            (App.Current as App).UserName = res.userValue.properies.Where(n => n.name == "name").Select(n => n.value).FirstOrDefault();
+                           // (App.Current as App).UserName = res.userValue.login;
                             this.frame.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "ssoadmin", res.userValue.login), UriKind.Relative));
                         }
                         else if (res.userValue.roles.SingleOrDefault(n => n == "SVWS_User") != null)
                         {
                             (App.Current as App).UserID = "ssonormal";
-                            (App.Current as App).UserName = res.userValue.login;
+                           // (App.Current as App).UserName = res.userValue.login;
+                            (App.Current as App).UserName = res.userValue.properies.Where(n => n.name == "name").Select(n => n.value).FirstOrDefault();
 
                             this.frame.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "ssonormal", res.userValue.login), UriKind.Relative));
                             //   this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", "ssoadmin", "SSO管理者"), UriKind.Relative));
                         }
                         else
                         {
+
                             MessageBox.Show("非授權帳號");
+                            client.logoutAsync();
+                            this.frame.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+                           
                         }
                     }
                     else

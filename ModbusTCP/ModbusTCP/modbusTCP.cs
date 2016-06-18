@@ -212,13 +212,14 @@ namespace ModbusTCP
 
         internal void CallException(ushort id, byte unit, byte function, byte exception)
         {
-            if ((tcpAsyCl == null) || (tcpSynCl == null)) return;
-            if (exception == excExceptionConnectionLost)
-            {
-                tcpSynCl = null;
-                tcpAsyCl = null;
-            }
+            if ( (tcpSynCl == null)) return;
+            
             if(OnException != null) OnException(id, unit, function, exception);
+            //if (exception == excExceptionConnectionLost)
+            //{
+            //    tcpSynCl = null;
+            //    tcpAsyCl = null;
+            //}
         }
 
         internal static UInt16 SwapUInt16(UInt16 inValue)
@@ -635,7 +636,8 @@ namespace ModbusTCP
         private byte[] WriteSyncData(byte[] write_data, ushort id)
         {
 
-            if (tcpSynCl.Connected)
+
+            if (tcpSynCl != null && tcpSynCl.Connected)
             {
                 try
                 {
@@ -645,6 +647,14 @@ namespace ModbusTCP
                     byte unit = tcpSynClBuffer[6];
                     byte function = tcpSynClBuffer[7];
                     byte[] data;
+                    ushort tid = (ushort)(tcpSynClBuffer[0] * 256 + tcpSynClBuffer[1]);
+                    if (tid != id)
+                    {
+                        Console.WriteLine("transact id error!"+id+","+tid);
+                        CallException(id, unit, function, excExceptionConnectionLost);
+                        return null;
+                    }
+
 
                     if (result == 0) CallException(id, unit, write_data[7], excExceptionConnectionLost);
 

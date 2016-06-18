@@ -111,7 +111,8 @@ namespace slSecure.Web
 
             SecureService.SecureServiceClient client = new SecureService.SecureServiceClient(new System.ServiceModel.InstanceContext(this), "CustomBinding_ISecureService");
 
-            cmd = string.Format("select * from tblEngineRoomConfig;");
+            //client.SetR23EngineRoomRecovery("AT");覆歸
+            cmd = string.Format("select * from tblEngineRoomConfig where ERID not in (18,22,23,24);"); //過濾無門禁功能 18國姓1號東口機房 22國姓1號隧道 23國姓2號隧道 24埔里隧道  
             dt = commDB.SelectDBData(cmd);
             try
             {
@@ -125,8 +126,27 @@ namespace slSecure.Web
 
                         if (RoomPerson.Count() > 0)
                         {
-                            string sComp = RoomPerson.Last().COMP;
-                            string sName = RoomPerson.Last().NAME;
+                            string sComp = "";
+                            string sName = "";
+
+                            if (RoomPerson.Last().COMP == null)
+                            {
+                                sComp = "";
+                            }
+                            else
+                            {
+                                sComp = RoomPerson.Last().COMP;
+                            }
+
+                            if (RoomPerson.Last().NAME == null)
+                            {
+                                sName = "";
+                            }
+                            else
+                            {
+                                sName = RoomPerson.Last().NAME;
+                            }
+
 
                             if (sComp != "")
                             {
@@ -135,15 +155,29 @@ namespace slSecure.Web
                                 else
                                     sComp = sComp.Substring(0, 2);
                             }
-                            GDI.StayDoorName = sComp + sName;
+                            if (sName == "強制開門帳號")
+                            {
+                                sName = "強制開門";
+                            }
+                            if ((sName == "") && (sComp == ""))
+                            {
+                                GDI.StayDoorName = RoomPerson.Last().CARDNO;
+                            }
+                            else
+                            {
+                                GDI.StayDoorName = sComp + sName;
+                            }
                         }
-
+                        //else
+                        //{
+                        //    GDI.StayDoorName = "none";
+                        //}
 
                         cmd = string.Format("select * from vwEntranceGuardDetail where ERName='{0}';", ERData["ERName"].ToString());
 
                         dtSelect = commDB.SelectDBData(cmd);
 
-                        if (dt.Rows.Count > 0)
+                        if (dtSelect.Rows.Count > 0)
                         {
                             bool SingleHardWareState1 = false;
                             bool SingleHardWareState0 = false;
@@ -153,7 +187,7 @@ namespace slSecure.Web
                                 SecureService.ControlStatus ControlConnect;
                                 ControlConnect = client.GetR23ControlConnect(vwEGDData["ControlID"].ToString());//查詢機房硬體狀態
 
-                                if (ControlConnect.connect)   //連線
+                                if (ControlConnect.connect)   //連線   
                                     SingleHardWareState1 = true;
                                 if (!ControlConnect.connect)  //斷線
                                     SingleHardWareState0 = true;
@@ -250,13 +284,35 @@ namespace slSecure.Web
                             }
                             d_R23DoorInfo.Add(GDI);
                         }
+                        //ControlConnect = client.GetR23ControlConnect("AA-2400N-1");
+                        //RoomPerson = client.GetR23RoomPerson("AA");
+                        //ReaderStatus = client.GetR23ReaderStatus("AA-2400N-1");
+
+                        //if (RoomPerson.Count() > 0)
+                        //{
+                        //    string aa = RoomPerson.Last().COMP;
+                        //}
+
+
+                        //string status = ReaderStatus[32].ToString();
+
+                        //GDI.ERName = row["ERName"].ToString();
+                        //GDI.stateHardware = 0;
+                        //GDI.IsShowPerson = false;
+                        //GDI.StayDoorName = "";
+                        //GDI.state = 0;
+                        //GDI.stateAlarm = ReaderStatus[32];
+                        //if (!d_R23DoorInfo.ContainsKey(row["ERID"].ToString()))
+                        //{
+                        //    d_R23DoorInfo.Add(row["ERID"].ToString(), GDI);
+                        //}
 
                     }
                 }
             }
             catch (Exception ex)
             {
-                var message = ex.Message;
+                var message = ex.Message + "," + ex.StackTrace;
                 throw ex;
             }
             return d_R23DoorInfo;

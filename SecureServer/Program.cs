@@ -15,6 +15,7 @@ namespace SecureServer
         {
             SecureServer.NVR.NVR_Type1 nvr = new SecureServer.NVR.NVR_Type1() { ERID = 32, NVRID = 1, IP = ip, PlaneID = 41, UserName = "admin", Password = "1111", Port = 80 };
 
+
             //nvr.SaveRecord(1, new DateTime(2015, 8, 14, 13, 0, 0), new DateTime(2015, 8, 14, 13, 01, 0), "123.avi");
              DateTime dt = DateTime.Now;
                                 System.Threading.Thread.Sleep(1000 * 20);
@@ -88,6 +89,7 @@ namespace SecureServer
         public static SecureServer.SecureService  MyServiceObject;
         static void Main(string[] args)
         {
+            RoomClient.RoomClient.GetGroupProgress();
 
             //CardReader.CardReaderManager mgr = new CardReader.CardReaderManager(MyServiceObject);
             //Console.ReadKey();
@@ -147,6 +149,8 @@ namespace SecureServer
             //tblERDoorPassword  tbl = new tblERDoorPassword() { Timestamp = dt, DoorPassword = pwdString };
             //db.tblERDoorPassword.Add(tbl);
             //db.SaveChanges();
+ 
+
 
             ServiceHost host = new ServiceHost(MyServiceObject = new SecureServer.SecureService());
             

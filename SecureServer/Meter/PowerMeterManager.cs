@@ -22,7 +22,7 @@ namespace SecureServer.Meter
 
           }
           new System.Threading.Thread(ReadingTask).Start();
-          OneHourTmr = new ExactIntervalTimer( 10,0);
+          OneHourTmr = new ExactIntervalTimer( 10, 0);
           OneHourTmr.OnElapsed += OneHourTmr_OnElapsed;
           
       }
@@ -84,17 +84,21 @@ namespace SecureServer.Meter
 
                       if ((log.PowerAlarm ?? false) && log.KW > log.PowerAlarmAvg)
                           tbl.PowerAlarmDesc = "用電量過高";
-                      else if ((log.PowerAlarm) ?? false && log.KW < log.PowerAlarmAvg)
+                      else if ((log.PowerAlarm ?? false) && log.KW <= log.PowerAlarmAvg)
                           tbl.PowerAlarmDesc = "用電量過低 ";
 
                       if ((log.WaterAlarm ?? false) && log.WaterConsume > log.WaterAlarmAvg)
-                          tbl.PowerAlarmDesc = "用水量過高";
-                      else if ((log.WaterAlarm ?? false) && log.WaterConsume < log.PowerAlarmAvg)
+                          tbl.WaterAlarmDesc = "用水量過高";
+                      else if ((log.WaterAlarm ?? false) && log.WaterConsume <= log.WaterAlarmAvg)
                           tbl.WaterAlarmDesc = "用水量過低 ";
 
+                      if (!(log.PowerAlarm ?? false))
+                          tbl.PowerAlarmDesc = "";
+                      if (!(log.WaterAlarm ?? false))
+                          tbl.WaterAlarmDesc = "";
                       db.SaveChanges();
 
-                      if (PowerAlarm && PowerAlarmChanged)
+                      if (PowerAlarm /*&& PowerAlarmChanged*/)
                       {
                           AlarmData data = new AlarmData()
                           {
@@ -102,7 +106,9 @@ namespace SecureServer.Meter
                               ColorString = "Red",
                               TimeStamp = DateTime.Now,
                               PlaneName = tbl.ERName,
-                              TimeStampString = string.Format("HH:mm")
+                              TimeStampString = string.Format("HH:mm"),
+                               IsForkCCTVEvent=false,
+                                Description=tbl.PowerAlarmDesc
 
                           };
 
@@ -111,7 +117,7 @@ namespace SecureServer.Meter
                           
                       }
 
-                      if (WaterAlarm && WaterAlarmChanged)
+                      if (WaterAlarm /*&& WaterAlarmChanged*/)
                       {
                           AlarmData data = new AlarmData()
                           {
@@ -119,8 +125,9 @@ namespace SecureServer.Meter
                               ColorString = "Red",
                               TimeStamp = DateTime.Now,
                               PlaneName = tbl.ERName,
-                              TimeStampString = string.Format("HH:mm")
-
+                              TimeStampString = string.Format("HH:mm"),
+                              IsForkCCTVEvent=false,
+                              Description=tbl.WaterAlarmDesc
                           };
 
                           Program.MyServiceObject.DispatchAlarmEvent(data);

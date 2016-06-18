@@ -87,7 +87,7 @@ namespace SecureServer
 
             while (true)
             {
-#if !R23
+//#if !R23
                 Console.WriteLine("========================================CheckCardDueTask===================================");
                 try
                 {
@@ -104,7 +104,7 @@ namespace SecureServer
                     CheckCardNotReturnTask();
                 }
                 catch { ;}
-#endif
+//#endif
                 System.Threading.Thread.Sleep(60 * 1000);
             }
             //throw new NotImplementedException();
