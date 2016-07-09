@@ -86,6 +86,7 @@ namespace SecureServer.RTU
                     catch
                     {
                         Comm_state = 0;
+                        continue;
                     }
 
                     Regex regex = new Regex(@"(?<v>[0-9]+.[0-9]+)\s*V|(?<temp>[0-9]+.[0-9]+)&deg;C");

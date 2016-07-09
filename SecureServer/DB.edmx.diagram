@@ -90,13 +90,15 @@
         <EntityTypeShape EntityType="SecureDBModel.vwERNameRTUList" Width="1.5" PointX="11.380176124805667" PointY="26.467013192580552" />
         <EntityTypeShape EntityType="SecureDBModel.vwItemConfig" Width="1.5" PointX="8.57634553153829" PointY="22.858905579363416" />
         <EntityTypeShape EntityType="SecureDBModel.vwItemGroup" Width="1.5" PointX="10.985887739335134" PointY="21.337130541604537" />
-        <EntityTypeShape EntityType="SecureDBModel.tblPowerMeter1HourLog" Width="2" PointX="4.375" PointY="3.125" />
+        <EntityTypeShape EntityType="SecureDBModel.tblPowerMeter1HourLog" Width="2" PointX="6.625" PointY="1.25" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemKindInfo" />
         <EntityTypeShape EntityType="SecureDBModel.tblCCTVConfig" Width="1.5" PointX="11.375536204956255" PointY="28.27467737918472" />
         <EntityTypeShape EntityType="SecureDBModel.tblNVRConfig" Width="1.5" PointX="9.2504972765457332" PointY="16.827722110239659" />
         <AssociationConnector Association="SecureDBModel.FK_tblCCTVConfig_tblEngineRoomConfig" />
         <AssociationConnector Association="SecureDBModel.FK_tblNVRConfig_tblEngineRoomConfig" />
+        <EntityTypeShape EntityType="SecureDBModel.vwCCTVState" Width="1.5" PointX="7.7008761184759784" PointY="17.68477893699183" />
+        <EntityTypeShape EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" Width="1.5" PointX="6.1313958569110349" PointY="18.453481280456057" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

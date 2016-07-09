@@ -2490,80 +2490,7 @@ namespace slSecure.Web
         }
     }
 
-    // MetadataTypeAttribute 會將 vwPDAlarmLoopDeviceLogMetadata 識別為
-    // 帶有 vwPDAlarmLoopDeviceLog 類別其他中繼資料的類別。
-    [MetadataTypeAttribute(typeof(vwPDAlarmLoopDeviceLog.vwPDAlarmLoopDeviceLogMetadata))]
-    public partial class vwPDAlarmLoopDeviceLog
-    {
-
-        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPDAlarmLoopDeviceLog 類別
-        // 的 properties。
-        //
-        // 例如，下列程式碼將 Xyz 屬性標記為
-        // 必要的屬性，並指定有效值的格式:
-        //    [Required]
-        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
-        //    [StringLength(32)]
-        //    public string Xyz { get; set; }
-        internal sealed class vwPDAlarmLoopDeviceLogMetadata
-        {
-
-            // 中繼資料類別本就不應該具現化。
-            private vwPDAlarmLoopDeviceLogMetadata()
-            {
-            }
-
-            public string Device_Direction { get; set; }
-
-            public string Device_DirectionName { get; set; }
-
-            public string Device_LineID { get; set; }
-
-            public string Device_LineName { get; set; }
-
-            public Nullable<int> Device_mile_m { get; set; }
-
-            public string device_type { get; set; }
-
-            public string DeviceName { get; set; }
-
-            public string Direction { get; set; }
-
-            public string DirectionName { get; set; }
-
-            public Nullable<int> ERID { get; set; }
-
-            public string ERName { get; set; }
-
-            public long FlowID { get; set; }
-
-            public string LineID { get; set; }
-
-            public string LineName { get; set; }
-
-            public int Loop { get; set; }
-
-            public string Mapping_DeviceName { get; set; }
-
-            public string Memo { get; set; }
-
-            public Nullable<int> mile_m { get; set; }
-
-            public Nullable<short> PD_LoopNO { get; set; }
-
-            public string PDItem { get; set; }
-
-            public string PDItemDetail { get; set; }
-
-            public string PDName { get; set; }
-
-            public Nullable<int> Status { get; set; }
-
-            public string StatusDetail { get; set; }
-
-            public DateTime Timestamp { get; set; }
-        }
-    }
+ 
 
     // MetadataTypeAttribute 會將 vwPDConfigMetadata 識別為
     // 帶有 vwPDConfig 類別其他中繼資料的類別。
@@ -4255,6 +4182,93 @@ namespace slSecure.Web
             public string StatusDetail { get; set; }
 
             public DateTime Timestamp { get; set; }
+        }
+    }
+
+    [MetadataTypeAttribute(typeof(vwPowerMeter.vwPowerMeterMetadata))]
+    public partial class vwPowerMeter
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPowerMeter 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwPowerMeterMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwPowerMeterMetadata()
+            {
+            }
+
+            public Nullable<double> AVGI { get; set; }
+
+            public Nullable<double> AVGV { get; set; }
+
+            public Nullable<double> CumulateValue { get; set; }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public Nullable<double> IA { get; set; }
+
+            public Nullable<double> IB { get; set; }
+
+            public Nullable<double> IC { get; set; }
+
+            public Nullable<double> InstantaneousValue { get; set; }
+
+            public Nullable<double> KW { get; set; }
+
+            public Nullable<double> KW24Avg { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<double> PF { get; set; }
+
+            public int Port { get; set; }
+
+            public Nullable<bool> PowerAlarm { get; set; }
+
+            public Nullable<double> PowerAlarmAvg { get; set; }
+
+            public string PowerAlarmDesc { get; set; }
+
+            public Nullable<double> PowerAlarmLower { get; set; }
+
+            public Nullable<double> PowerAlarmUpper { get; set; }
+
+            public Nullable<double> PowerSubtraction { get; set; }
+
+            public string RTU_IP { get; set; }
+
+            public Nullable<DateTime> UpdateDate { get; set; }
+
+            public Nullable<double> VA { get; set; }
+
+            public Nullable<double> VB { get; set; }
+
+            public Nullable<double> VC { get; set; }
+
+            public Nullable<bool> WaterAlarm { get; set; }
+
+            public Nullable<double> WaterAlarmAvg { get; set; }
+
+            public string WaterAlarmDesc { get; set; }
+
+            public Nullable<double> WaterAlarmLower { get; set; }
+
+            public Nullable<double> WaterAlarmUpper { get; set; }
+
+            public Nullable<double> WaterConsume { get; set; }
+
+            public Nullable<double> WaterSubtraction { get; set; }
         }
     }
     }

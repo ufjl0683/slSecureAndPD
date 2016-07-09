@@ -80,17 +80,20 @@ namespace SecureServer.RTU
                     string s = "";
                     try
                     {
-                          s = client.DownloadString("http://" + IP + ":" + Port + "/stringindex?0_0");
+                        s = client.DownloadString("http://" + IP + ":" + Port + "/stringindex?0_0");
                         Comm_state = 1;
                     }
-                    catch
+                    catch(Exception ex)
+
                     {
+                        Console.WriteLine(ex.Message + "," + ex.StackTrace);
                         Comm_state = 0;
                     }
 
                     Regex regex = new Regex(@"(?<v>[0-9]+.[0-9]+)\s*V|(?<temp>[0-9]+.[0-9]+)&deg;C");
                     MatchCollection collection = regex.Matches(s);
                     byte[] temp = new byte[2];
+                    Console.WriteLine("count="+collection.Count);
                     for (int i = 0; i < collection.Count; i++)
                     {
                         double val = double.Parse(collection[i].Groups[(i % 2) + 1].Value);

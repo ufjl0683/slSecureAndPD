@@ -89,7 +89,7 @@ namespace SecureServer
         public static SecureServer.SecureService  MyServiceObject;
         static void Main(string[] args)
         {
-            RoomClient.RoomClient.GetGroupProgress();
+          //  RoomClient.RoomClient.GetGroupProgress();
 
             //CardReader.CardReaderManager mgr = new CardReader.CardReaderManager(MyServiceObject);
             //Console.ReadKey();

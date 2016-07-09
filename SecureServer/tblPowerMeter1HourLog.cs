@@ -40,6 +40,8 @@ public partial class tblPowerMeter1HourLog
 
     public Nullable<double> WaterConsume { get; set; }
 
+    public Nullable<double> KW24Avg { get; set; }
+
 }
 
 }

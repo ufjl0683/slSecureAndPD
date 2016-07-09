@@ -47,17 +47,27 @@ namespace test
            //    Console.WriteLine(collection[i].Groups[(i%2)+1].Value);
            // Console.WriteLine(collection.Count);
 
-            //SecureServer.RTU.R13BatteryPackRTU rtu = new SecureServer.RTU.R13BatteryPackRTU("AA", 1, "10.2.190.125", 80, 1, 48, 1);
+            SecureServer.RTU.R13BatteryPackRTU rtu = new SecureServer.RTU.R13BatteryPackRTU("AA", 1, "10.21.50.9", 80, 1, 50, 1);
             //SecureServer.RTU.R13NewSmrRTU rtu = new SecureServer.RTU.R13NewSmrRTU(""Para  );
-            //while (true)
-            //{
-            //    for (int i = 0; i < 48; i++)
-            //    {
-            //        Console.WriteLine(rtu.GetRegisterReading((ushort)(1+ i)));
-            //    }
-            //    System.Threading.Thread.Sleep(1000);
-            //}
+            Console.WriteLine("started");
+            while (true)
+            {
+                Console.WriteLine("commstate" + rtu.IsConnected);
+                for (int i = 0; i < 50; i++)
+                {
+                   
+                    Console.WriteLine(rtu.GetRegisterReading((ushort)(1+ i)));
+
+                }
+                System.Threading.Thread.Sleep(1000);
+            }
         }
+
+       static void R13SmrTest()
+       {
+           SecureServer.RTU.R13SmrRTU rtu = new SecureServer.RTU.R13SmrRTU("1", 1, "10.2.21.80", 4000, 1, 3,1);
+
+       }
 
         static  void  PDTest()
         {
@@ -70,7 +80,9 @@ namespace test
 
         static void Main(string[] args)
         {
-            PDTest();
+            //PDTest();
+            //R13SmrTest();
+            BatteryPackTest();
             Console.ReadLine();
 
             //SSOService.SsoWebServiceClient client = new SSOService.SsoWebServiceClient();
@@ -80,18 +92,18 @@ namespace test
 
             //client.Connect("10.21.223.20", (ushort)502);
 //
-            SecureServer.RTU.R13NewSmrRTU rtu = new SecureServer.RTU.R13NewSmrRTU("AA", 1, "10.2.190.126", 502, 1, 20, 0);
-           //ModbusTCP.Master rtu = new ModbusTCP.Master();//.RTU("AA", 2, "10.2.10.159", 503, 1, 20, 0);
-            Console.WriteLine("rtu conecting...");
-           // rtu.connect("10.2.180.126", 502);
-           // Console.WriteLine("rtu ...");
-            while (true)
-            {
-                Console.WriteLine("volt:"+rtu.GetRegisterReading(3));
-                Console.WriteLine("amp:" + rtu.GetRegisterReading(4));
-                System.Threading.Thread.Sleep(1000);
-            }
-            Console.ReadKey();
+           // SecureServer.RTU.R13NewSmrRTU rtu = new SecureServer.RTU.R13NewSmrRTU("AA", 1, "10.2.190.126", 502, 1, 20, 0);
+           ////ModbusTCP.Master rtu = new ModbusTCP.Master();//.RTU("AA", 2, "10.2.10.159", 503, 1, 20, 0);
+           // Console.WriteLine("rtu conecting...");
+           //// rtu.connect("10.2.180.126", 502);
+           //// Console.WriteLine("rtu ...");
+           // while (true)
+           // {
+           //     Console.WriteLine("volt:"+rtu.GetRegisterReading(3));
+           //     Console.WriteLine("amp:" + rtu.GetRegisterReading(4));
+           //     System.Threading.Thread.Sleep(1000);
+           // }
+           // Console.ReadKey();
           //  rtu.WriteRegister(1, 1);
 
           // PowerControl ctl = new PowerControl("10.21.223.20", 502);

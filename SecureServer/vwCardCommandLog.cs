@@ -48,6 +48,8 @@ public partial class vwCardCommandLog
 
     public string CardTypeName { get; set; }
 
+    public string MCNSID { get; set; }
+
 }
 
 }

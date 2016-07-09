@@ -37,6 +37,8 @@ namespace slSecure.Web
             }
         }
 
+      
+
         [WebMethod]
         public AddCardInfo[] GetCardInfoByMCNSID(string MCNSID)
         {
@@ -100,6 +102,7 @@ namespace slSecure.Web
 
 
 #if R23
+
          [WebMethod]
         public System.Collections.Generic.List<R23DoorInfo> GetR23DoorInfo()
         {
@@ -355,6 +358,33 @@ namespace slSecure.Web
 
               SecureService.SecureServiceClient client = new SecureService.SecureServiceClient(new System.ServiceModel.InstanceContext(this));
               return  client.GetR23Progress();
+        }
+
+        [WebMethod]
+        public CardSendingResult[] GetR23CardSendingResult(string mcnsid)
+        {
+            IQueryable<CardSendingResult> q;
+            
+            using (SecureDBEntities db = new SecureDBEntities())
+            {
+                 q = from n in db.vwCardCommandLog where n.MCNSID == mcnsid select new CardSendingResult() {
+                     ABA=n.ABA,
+                      ComandTypeName=n.CommandTypeName,
+                       ERName=n.ERName,
+                        IsSuccessName=n.IsSuccessName,
+                         Memo=n.Memo,
+                          MSNCID=n.MCNSID,
+                           Name=n.Name,
+                            TimeStamp=n.Timestamp
+
+                };
+                 if (q == null)
+                     return new CardSendingResult[0];
+                 return q.ToArray();
+                
+            }
+
+           
         }
 
         public static string GetWEG(string ABA)
@@ -646,7 +676,16 @@ namespace slSecure.Web
          }
     }
 
-
+    public class  CardSendingResult{
+      public string MSNCID {get;set;}
+      public string ABA {get;set;}
+      public DateTime? TimeStamp {get;set;}
+      public string ERName{get;set;}
+      public string Memo {get;set;}
+      public string Name {get;set;}
+      public string ComandTypeName{get;set;}
+      public string IsSuccessName {get;set;}
+    }
 
     public class MagneticCardBasicInfo
     {

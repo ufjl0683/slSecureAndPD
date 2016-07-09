@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8ba30e97fbe5487d8755fdc5c604fb07" Name="圖表1" ZoomLevel="63">
+      <Diagram DiagramId="8ba30e97fbe5487d8755fdc5c604fb07" Name="圖表1" ZoomLevel="93">
         <EntityTypeShape EntityType="SecureDBModel.tblAIItem1HourLog" Width="1.5" PointX="14.75" PointY="7.625" IsExpanded="false" />
         <EntityTypeShape EntityType="SecureDBModel.tblAlarmLog" Width="1.5" PointX="11.482555148882119" PointY="20.8530443854877" IsExpanded="false" />
         <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="9.879361352827102" PointY="0.32596063629070327" IsExpanded="false" />
@@ -110,9 +110,7 @@
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemGroupTypeInfo" />
         <AssociationConnector Association="SecureDBModel.FK_tblItemConfig_tblItemKindInfo" />
         <AssociationConnector Association="SecureDBModel.FK_tblPDConfig_tblPDPinDef" />
-        <EntityTypeShape EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" Width="1.5" PointX="4.375" PointY="17.5" />
         <EntityTypeShape EntityType="SecureDBModel.vwPDLoopDeviceConfig" Width="1.5" PointX="7.065617337387808" PointY="25.207177442129318" />
-        <EntityTypeShape EntityType="SecureDBModel.vwPowerMeter1HourLog" Width="1.5" PointX="7.2636304401157563" PointY="12.666878706154822" />
         <EntityTypeShape EntityType="SecureDBModel.vwCCTVState" Width="1.5" PointX="9.9750514896470364" PointY="3.3530402646181363" />
         <EntityTypeShape EntityType="SecureDBModel.vwControllerConfig" Width="1.5" PointX="4.3304302004773305" PointY="18.212690287368694" />
         <EntityTypeShape EntityType="SecureDBModel.vwItemConfig" Width="1.5" PointX="6.8300560129946364" PointY="25.209366944250355" />
@@ -128,6 +126,9 @@
         <EntityTypeShape EntityType="SecureDBModel.vwR23AllAlarmLog" Width="1.5" PointX="9.1601431263425113" PointY="25.5171821534248" />
         <EntityTypeShape EntityType="SecureDBModel.vwR23PowerAlarm" Width="1.5" PointX="8.550744008529346" PointY="5.9857257781483817" />
         <EntityTypeShape EntityType="SecureDBModel.vwR23WaterAlarm" Width="1.5" PointX="9.58844241387604" PointY="23.954561319181025" />
+        <EntityTypeShape EntityType="SecureDBModel.vwPowerMeter1HourLog" Width="1.5" PointX="3.7665922528908551" PointY="6.8571399035198333" />
+        <EntityTypeShape EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" Width="1.5" PointX="4.2231406328376107" PointY="26.417613608025764" />
+        <EntityTypeShape EntityType="SecureDBModel.vwPowerMeter" Width="1.5" PointX="1.0413360842696093" PointY="25.201061409526069" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

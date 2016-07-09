@@ -2288,6 +2288,20 @@ namespace slSecure.Web
                 return this.ObjectContext.vwR23PDAlarm;
             }
 
+            //public IQueryable<vwPDAlarmLoopDeviceLog> GetVwPDAlarmLoopDeviceLog()
+            //{
+            //    return this.ObjectContext.vwPDAlarmLoopDeviceLog;
+            //}
+
+            // TODO:
+            // 考慮限制查詢方法的結果。如果需要其他輸入，可以將
+            // 參數加入至這個中繼資料，或建立其他不同名稱的其他查詢方法。
+            // 為支援分頁，您必須將排序加入至 'vwPowerMeter' 查詢。
+            public IQueryable<vwPowerMeter> GetVwPowerMeter()
+            {
+                return this.ObjectContext.vwPowerMeter;
+            }
+
         
 
     }

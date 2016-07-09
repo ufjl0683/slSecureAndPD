@@ -153,7 +153,8 @@
       [vwCardCommandLog].[Name] AS [Name], 
       [vwCardCommandLog].[IsSuccessName] AS [IsSuccessName], 
       [vwCardCommandLog].[CommandTypeName] AS [CommandTypeName], 
-      [vwCardCommandLog].[CardTypeName] AS [CardTypeName]
+      [vwCardCommandLog].[CardTypeName] AS [CardTypeName], 
+      [vwCardCommandLog].[MCNSID] AS [MCNSID]
       FROM [dbo].[vwCardCommandLog] AS [vwCardCommandLog]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwCCTVState" EntityType="SecureDBModel.Store.vwCCTVState" store:Type="Views" store:Schema="dbo" store:Name="vwCCTVState">
@@ -540,10 +541,10 @@
       [vwPDAlarmLoopDeviceLog].[device_type] AS [device_type], 
       [vwPDAlarmLoopDeviceLog].[Device_LineName] AS [Device_LineName], 
       [vwPDAlarmLoopDeviceLog].[Device_DirectionName] AS [Device_DirectionName], 
-      [vwPDAlarmLoopDeviceLog].[Diameter] AS [Diameter], 
       [vwPDAlarmLoopDeviceLog].[PD_Mapping_DeviceName] AS [PD_Mapping_DeviceName], 
       [vwPDAlarmLoopDeviceLog].[Classify] AS [Classify], 
-      [vwPDAlarmLoopDeviceLog].[WorkInfo] AS [WorkInfo]
+      [vwPDAlarmLoopDeviceLog].[WorkInfo] AS [WorkInfo], 
+      [vwPDAlarmLoopDeviceLog].[Diameter] AS [Diameter]
       FROM [dbo].[vwPDAlarmLoopDeviceLog] AS [vwPDAlarmLoopDeviceLog]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwPDConfig" EntityType="SecureDBModel.Store.vwPDConfig" store:Type="Views" store:Schema="dbo" store:Name="vwPDConfig">
@@ -634,6 +635,42 @@
       [vwPlaneIDAndControlID].[Comm_state] AS [Comm_state]
       FROM [dbo].[vwPlaneIDAndControlID] AS [vwPlaneIDAndControlID]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vwPowerMeter" EntityType="SecureDBModel.Store.vwPowerMeter" store:Type="Views" store:Schema="dbo" store:Name="vwPowerMeter">
+            <DefiningQuery>SELECT 
+      [vwPowerMeter].[ERID] AS [ERID], 
+      [vwPowerMeter].[ERName] AS [ERName], 
+      [vwPowerMeter].[RTU_IP] AS [RTU_IP], 
+      [vwPowerMeter].[Port] AS [Port], 
+      [vwPowerMeter].[VA] AS [VA], 
+      [vwPowerMeter].[VB] AS [VB], 
+      [vwPowerMeter].[VC] AS [VC], 
+      [vwPowerMeter].[AVGV] AS [AVGV], 
+      [vwPowerMeter].[IA] AS [IA], 
+      [vwPowerMeter].[IB] AS [IB], 
+      [vwPowerMeter].[IC] AS [IC], 
+      [vwPowerMeter].[AVGI] AS [AVGI], 
+      [vwPowerMeter].[KW] AS [KW], 
+      [vwPowerMeter].[PF] AS [PF], 
+      [vwPowerMeter].[UpdateDate] AS [UpdateDate], 
+      [vwPowerMeter].[Memo] AS [Memo], 
+      [vwPowerMeter].[CumulateValue] AS [CumulateValue], 
+      [vwPowerMeter].[InstantaneousValue] AS [InstantaneousValue], 
+      [vwPowerMeter].[PowerAlarmUpper] AS [PowerAlarmUpper], 
+      [vwPowerMeter].[PowerAlarmLower] AS [PowerAlarmLower], 
+      [vwPowerMeter].[WaterAlarmUpper] AS [WaterAlarmUpper], 
+      [vwPowerMeter].[WaterAlarmLower] AS [WaterAlarmLower], 
+      [vwPowerMeter].[WaterAlarm] AS [WaterAlarm], 
+      [vwPowerMeter].[PowerAlarm] AS [PowerAlarm], 
+      [vwPowerMeter].[WaterAlarmAvg] AS [WaterAlarmAvg], 
+      [vwPowerMeter].[PowerAlarmAvg] AS [PowerAlarmAvg], 
+      [vwPowerMeter].[WaterConsume] AS [WaterConsume], 
+      [vwPowerMeter].[WaterAlarmDesc] AS [WaterAlarmDesc], 
+      [vwPowerMeter].[PowerAlarmDesc] AS [PowerAlarmDesc], 
+      [vwPowerMeter].[KW24Avg] AS [KW24Avg], 
+      [vwPowerMeter].[WaterSubtraction] AS [WaterSubtraction], 
+      [vwPowerMeter].[PowerSubtraction] AS [PowerSubtraction]
+      FROM [dbo].[vwPowerMeter] AS [vwPowerMeter]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vwPowerMeter1HourLog" EntityType="SecureDBModel.Store.vwPowerMeter1HourLog" store:Type="Views" store:Schema="dbo" store:Name="vwPowerMeter1HourLog">
             <DefiningQuery>SELECT 
       [vwPowerMeter1HourLog].[ERID] AS [ERID], 
@@ -652,7 +689,8 @@
       [vwPowerMeter1HourLog].[PowerAlarmAvg] AS [PowerAlarmAvg], 
       [vwPowerMeter1HourLog].[WaterAlarm] AS [WaterAlarm], 
       [vwPowerMeter1HourLog].[PowerAlarm] AS [PowerAlarm], 
-      [vwPowerMeter1HourLog].[WaterConsume] AS [WaterConsume]
+      [vwPowerMeter1HourLog].[WaterConsume] AS [WaterConsume], 
+      [vwPowerMeter1HourLog].[KW24Avg] AS [KW24Avg]
       FROM [dbo].[vwPowerMeter1HourLog] AS [vwPowerMeter1HourLog]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwR23ADAMAlarm" EntityType="SecureDBModel.Store.vwR23ADAMAlarm" store:Type="Views" store:Schema="dbo" store:Name="vwR23ADAMAlarm">
@@ -1694,6 +1732,7 @@
           <Property Name="WaterConsume" Type="float" />
           <Property Name="WaterAlarmDesc" Type="nvarchar" MaxLength="50" />
           <Property Name="PowerAlarmDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="KW24Avg" Type="float" />
         </EntityType>
         <EntityType Name="tblRemotePowerControl">
           <Key>
@@ -1976,6 +2015,7 @@
           <Property Name="IsSuccessName" Type="varchar" Nullable="false" MaxLength="4" />
           <Property Name="CommandTypeName" Type="varchar" Nullable="false" MaxLength="4" />
           <Property Name="CardTypeName" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="MCNSID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwCCTVState' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -2498,6 +2538,8 @@
             <PropertyRef Name="PDItem" />
             <PropertyRef Name="PDItemDetail" />
             <PropertyRef Name="Loop" />
+            <PropertyRef Name="DeviceName" />
+            <PropertyRef Name="PD_LoopNO" />
           </Key>
           <Property Name="FlowID" Type="bigint" Nullable="false" />
           <Property Name="Timestamp" Type="datetime" Nullable="false" />
@@ -2515,8 +2557,8 @@
           <Property Name="Memo" Type="nvarchar" MaxLength="200" />
           <Property Name="Status" Type="int" />
           <Property Name="StatusDetail" Type="nvarchar" MaxLength="200" />
-          <Property Name="DeviceName" Type="nvarchar" MaxLength="100" />
-          <Property Name="PD_LoopNO" Type="smallint" />
+          <Property Name="DeviceName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="PD_LoopNO" Type="smallint" Nullable="false" />
           <Property Name="Mapping_DeviceName" Type="nvarchar" MaxLength="200" />
           <Property Name="Device_LineID" Type="nvarchar" MaxLength="20" />
           <Property Name="Device_Direction" Type="char" MaxLength="1" />
@@ -2524,10 +2566,10 @@
           <Property Name="device_type" Type="nvarchar" MaxLength="20" />
           <Property Name="Device_LineName" Type="nvarchar" MaxLength="20" />
           <Property Name="Device_DirectionName" Type="varchar" MaxLength="4" />
-          <Property Name="Diameter" Type="float" />
           <Property Name="PD_Mapping_DeviceName" Type="nvarchar" MaxLength="250" />
           <Property Name="Classify" Type="nvarchar" MaxLength="10" />
           <Property Name="WorkInfo" Type="int" />
+          <Property Name="Diameter" Type="float" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwPDConfig' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -2650,6 +2692,49 @@
           <Property Name="Comm_state" Type="int" />
         </EntityType>
         <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SecureDB.dbo.vwPowerMeter' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwPowerMeter">
+          <Key>
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="RTU_IP" />
+            <PropertyRef Name="Port" />
+          </Key>
+          <Property Name="ERID" Type="int" Nullable="false" />
+          <Property Name="ERName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="RTU_IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="VA" Type="float" />
+          <Property Name="VB" Type="float" />
+          <Property Name="VC" Type="float" />
+          <Property Name="AVGV" Type="float" />
+          <Property Name="IA" Type="float" />
+          <Property Name="IB" Type="float" />
+          <Property Name="IC" Type="float" />
+          <Property Name="AVGI" Type="float" />
+          <Property Name="KW" Type="float" />
+          <Property Name="PF" Type="float" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="200" />
+          <Property Name="CumulateValue" Type="float" />
+          <Property Name="InstantaneousValue" Type="float" />
+          <Property Name="PowerAlarmUpper" Type="float" />
+          <Property Name="PowerAlarmLower" Type="float" />
+          <Property Name="WaterAlarmUpper" Type="float" />
+          <Property Name="WaterAlarmLower" Type="float" />
+          <Property Name="WaterAlarm" Type="bit" />
+          <Property Name="PowerAlarm" Type="bit" />
+          <Property Name="WaterAlarmAvg" Type="float" />
+          <Property Name="PowerAlarmAvg" Type="float" />
+          <Property Name="WaterConsume" Type="float" />
+          <Property Name="WaterAlarmDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="PowerAlarmDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="KW24Avg" Type="float" />
+          <Property Name="WaterSubtraction" Type="float" />
+          <Property Name="PowerSubtraction" Type="float" />
+        </EntityType>
+        <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwPowerMeter1HourLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
       -->
         <EntityType Name="vwPowerMeter1HourLog">
@@ -2676,6 +2761,7 @@
           <Property Name="WaterAlarm" Type="bit" />
           <Property Name="PowerAlarm" Type="bit" />
           <Property Name="WaterConsume" Type="float" />
+          <Property Name="KW24Avg" Type="float" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwR23ADAMAlarm' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -3847,9 +3933,7 @@
             <End Role="tblPDPinDef" EntitySet="tblPDPinDef" />
             <End Role="tblPDConfig" EntitySet="tblPDConfig" />
           </AssociationSet>
-          <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" />
           <EntitySet Name="vwPDLoopDeviceConfig" EntityType="SecureDBModel.vwPDLoopDeviceConfig" />
-          <EntitySet Name="vwPowerMeter1HourLog" EntityType="SecureDBModel.vwPowerMeter1HourLog" />
           <EntitySet Name="vwCCTVState" EntityType="SecureDBModel.vwCCTVState" />
           <EntitySet Name="vwControllerConfig" EntityType="SecureDBModel.vwControllerConfig" />
           <EntitySet Name="vwItemConfig" EntityType="SecureDBModel.vwItemConfig" />
@@ -3865,6 +3949,9 @@
           <EntitySet Name="vwR23AllAlarmLog" EntityType="SecureDBModel.vwR23AllAlarmLog" />
           <EntitySet Name="vwR23PowerAlarm" EntityType="SecureDBModel.vwR23PowerAlarm" />
           <EntitySet Name="vwR23WaterAlarm" EntityType="SecureDBModel.vwR23WaterAlarm" />
+          <EntitySet Name="vwPowerMeter1HourLog" EntityType="SecureDBModel.vwPowerMeter1HourLog" />
+          <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" />
+          <EntitySet Name="vwPowerMeter" EntityType="SecureDBModel.vwPowerMeter" />
           </EntityContainer>
         <EntityType Name="tblAIItem1HourLog">
           <Key>
@@ -4645,6 +4732,7 @@
           <Property Type="String" Name="IsSuccessName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="CommandTypeName" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="CardTypeName" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MCNSID" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vwMagneticCardAllowController">
           <Key>
@@ -5548,6 +5636,7 @@
           <Property Type="Double" Name="WaterConsume" />
           <Property Type="String" Name="WaterAlarmDesc" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="PowerAlarmDesc" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="KW24Avg" />
         </EntityType>
         <EntityType Name="vwPDAlarmLog">
           <Key>
@@ -5823,45 +5912,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vwPDAlarmLoopDeviceLog">
-          <Key>
-            <PropertyRef Name="FlowID" />
-            <PropertyRef Name="Timestamp" />
-            <PropertyRef Name="PDName" />
-            <PropertyRef Name="PDItem" />
-            <PropertyRef Name="PDItemDetail" />
-            <PropertyRef Name="Loop" />
-          </Key>
-          <Property Type="Int64" Name="FlowID" Nullable="false" />
-          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="ERID" />
-          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Int32" Name="mile_m" />
-          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PDItem" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PDItemDetail" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Loop" Nullable="false" />
-          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Status" />
-          <Property Type="String" Name="StatusDetail" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DeviceName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="PD_LoopNO" />
-          <Property Type="String" Name="Mapping_DeviceName" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Device_LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Device_Direction" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Int32" Name="Device_mile_m" />
-          <Property Type="String" Name="device_type" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Device_LineName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Device_DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Diameter" />
-          <Property Type="String" Name="PD_Mapping_DeviceName" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="WorkInfo" />
-        </EntityType>
         <EntityType Name="vwPDLoopDeviceConfig">
           <Key>
             <PropertyRef Name="PDName" />
@@ -5887,31 +5937,6 @@
           <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="Double" Name="Diameter" />
-        </EntityType>
-        <EntityType Name="vwPowerMeter1HourLog">
-          <Key>
-            <PropertyRef Name="ERID" />
-            <PropertyRef Name="ERName" />
-            <PropertyRef Name="FlowID" />
-            <PropertyRef Name="Timestamp" />
-          </Key>
-          <Property Type="Int32" Name="ERID" Nullable="false" />
-          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Double" Name="KW" />
-          <Property Type="Double" Name="CumulateValue" />
-          <Property Type="Double" Name="PowerAlarmUpper" />
-          <Property Type="Double" Name="PowerAlarmLower" />
-          <Property Type="Double" Name="WaterAlarmUpper" />
-          <Property Type="Double" Name="WaterAlarmLower" />
-          <Property Type="Int64" Name="FlowID" Nullable="false" />
-          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
-          <Property Type="Double" Name="KWAlarm" />
-          <Property Type="Double" Name="CumulateValueAlarm" />
-          <Property Type="Double" Name="WaterAlarmAvg" />
-          <Property Type="Double" Name="PowerAlarmAvg" />
-          <Property Type="Boolean" Name="WaterAlarm" />
-          <Property Type="Boolean" Name="PowerAlarm" />
-          <Property Type="Double" Name="WaterConsume" />
         </EntityType>
         <EntityType Name="vwCCTVState">
           <Key>
@@ -6208,6 +6233,113 @@
           <Property Type="String" Name="Item" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Explain" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="PlaneID" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vwPowerMeter1HourLog">
+          <Key>
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="KW" />
+          <Property Type="Double" Name="CumulateValue" />
+          <Property Type="Double" Name="PowerAlarmUpper" />
+          <Property Type="Double" Name="PowerAlarmLower" />
+          <Property Type="Double" Name="WaterAlarmUpper" />
+          <Property Type="Double" Name="WaterAlarmLower" />
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="Double" Name="KWAlarm" />
+          <Property Type="Double" Name="CumulateValueAlarm" />
+          <Property Type="Double" Name="WaterAlarmAvg" />
+          <Property Type="Double" Name="PowerAlarmAvg" />
+          <Property Type="Boolean" Name="WaterAlarm" />
+          <Property Type="Boolean" Name="PowerAlarm" />
+          <Property Type="Double" Name="WaterConsume" />
+          <Property Type="Double" Name="KW24Avg" />
+        </EntityType>
+        <EntityType Name="vwPDAlarmLoopDeviceLog">
+          <Key>
+            <PropertyRef Name="FlowID" />
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="PDName" />
+            <PropertyRef Name="PDItem" />
+            <PropertyRef Name="PDItemDetail" />
+            <PropertyRef Name="Loop" />
+            <PropertyRef Name="DeviceName" />
+            <PropertyRef Name="PD_LoopNO" />
+          </Key>
+          <Property Type="Int64" Name="FlowID" Nullable="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="mile_m" />
+          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PDName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PDItem" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PDItemDetail" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Loop" Nullable="false" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Status" />
+          <Property Type="String" Name="StatusDetail" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DeviceName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="PD_LoopNO" Nullable="false" />
+          <Property Type="String" Name="Mapping_DeviceName" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Device_LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Device_Direction" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="Device_mile_m" />
+          <Property Type="String" Name="device_type" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Device_LineName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Device_DirectionName" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PD_Mapping_DeviceName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="WorkInfo" />
+          <Property Type="Double" Name="Diameter" />
+        </EntityType>
+        <EntityType Name="vwPowerMeter">
+          <Key>
+            <PropertyRef Name="ERID" />
+            <PropertyRef Name="ERName" />
+            <PropertyRef Name="RTU_IP" />
+            <PropertyRef Name="Port" />
+          </Key>
+          <Property Type="Int32" Name="ERID" Nullable="false" />
+          <Property Type="String" Name="ERName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RTU_IP" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" Nullable="false" />
+          <Property Type="Double" Name="VA" />
+          <Property Type="Double" Name="VB" />
+          <Property Type="Double" Name="VC" />
+          <Property Type="Double" Name="AVGV" />
+          <Property Type="Double" Name="IA" />
+          <Property Type="Double" Name="IB" />
+          <Property Type="Double" Name="IC" />
+          <Property Type="Double" Name="AVGI" />
+          <Property Type="Double" Name="KW" />
+          <Property Type="Double" Name="PF" />
+          <Property Type="DateTime" Name="UpdateDate" Precision="3" />
+          <Property Type="String" Name="Memo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="CumulateValue" />
+          <Property Type="Double" Name="InstantaneousValue" />
+          <Property Type="Double" Name="PowerAlarmUpper" />
+          <Property Type="Double" Name="PowerAlarmLower" />
+          <Property Type="Double" Name="WaterAlarmUpper" />
+          <Property Type="Double" Name="WaterAlarmLower" />
+          <Property Type="Boolean" Name="WaterAlarm" />
+          <Property Type="Boolean" Name="PowerAlarm" />
+          <Property Type="Double" Name="WaterAlarmAvg" />
+          <Property Type="Double" Name="PowerAlarmAvg" />
+          <Property Type="Double" Name="WaterConsume" />
+          <Property Type="String" Name="WaterAlarmDesc" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PowerAlarmDesc" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="KW24Avg" />
+          <Property Type="Double" Name="WaterSubtraction" />
+          <Property Type="Double" Name="PowerSubtraction" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -6692,6 +6824,7 @@
           <EntitySetMapping Name="vwCardCommandLog">
             <EntityTypeMapping TypeName="SecureDBModel.vwCardCommandLog">
               <MappingFragment StoreEntitySet="vwCardCommandLog">
+                <ScalarProperty Name="MCNSID" ColumnName="MCNSID" />
                 <ScalarProperty Name="CardTypeName" ColumnName="CardTypeName" />
                 <ScalarProperty Name="CommandTypeName" ColumnName="CommandTypeName" />
                 <ScalarProperty Name="IsSuccessName" ColumnName="IsSuccessName" />
@@ -7446,6 +7579,7 @@
           <EntitySetMapping Name="tblPowerMeter">
             <EntityTypeMapping TypeName="SecureDBModel.tblPowerMeter">
               <MappingFragment StoreEntitySet="tblPowerMeter">
+                <ScalarProperty Name="KW24Avg" ColumnName="KW24Avg" />
                 <ScalarProperty Name="PowerAlarmDesc" ColumnName="PowerAlarmDesc" />
                 <ScalarProperty Name="WaterAlarmDesc" ColumnName="WaterAlarmDesc" />
                 <ScalarProperty Name="WaterConsume" ColumnName="WaterConsume" />
@@ -7682,41 +7816,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwPDAlarmLoopDeviceLog">
-            <EntityTypeMapping TypeName="SecureDBModel.vwPDAlarmLoopDeviceLog">
-              <MappingFragment StoreEntitySet="vwPDAlarmLoopDeviceLog">
-                <ScalarProperty Name="WorkInfo" ColumnName="WorkInfo" />
-                <ScalarProperty Name="Classify" ColumnName="Classify" />
-                <ScalarProperty Name="PD_Mapping_DeviceName" ColumnName="PD_Mapping_DeviceName" />
-                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
-                <ScalarProperty Name="Device_DirectionName" ColumnName="Device_DirectionName" />
-                <ScalarProperty Name="Device_LineName" ColumnName="Device_LineName" />
-                <ScalarProperty Name="device_type" ColumnName="device_type" />
-                <ScalarProperty Name="Device_mile_m" ColumnName="Device_mile_m" />
-                <ScalarProperty Name="Device_Direction" ColumnName="Device_Direction" />
-                <ScalarProperty Name="Device_LineID" ColumnName="Device_LineID" />
-                <ScalarProperty Name="Mapping_DeviceName" ColumnName="Mapping_DeviceName" />
-                <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
-                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
-                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Loop" ColumnName="Loop" />
-                <ScalarProperty Name="PDItemDetail" ColumnName="PDItemDetail" />
-                <ScalarProperty Name="PDItem" ColumnName="PDItem" />
-                <ScalarProperty Name="PDName" ColumnName="PDName" />
-                <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
-                <ScalarProperty Name="LineName" ColumnName="LineName" />
-                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
-                <ScalarProperty Name="Direction" ColumnName="Direction" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwPDLoopDeviceConfig">
             <EntityTypeMapping TypeName="SecureDBModel.vwPDLoopDeviceConfig">
               <MappingFragment StoreEntitySet="vwPDLoopDeviceConfig">
@@ -7739,29 +7838,6 @@
                 <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
                 <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
                 <ScalarProperty Name="PDName" ColumnName="PDName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwPowerMeter1HourLog">
-            <EntityTypeMapping TypeName="SecureDBModel.vwPowerMeter1HourLog">
-              <MappingFragment StoreEntitySet="vwPowerMeter1HourLog">
-                <ScalarProperty Name="WaterConsume" ColumnName="WaterConsume" />
-                <ScalarProperty Name="PowerAlarm" ColumnName="PowerAlarm" />
-                <ScalarProperty Name="WaterAlarm" ColumnName="WaterAlarm" />
-                <ScalarProperty Name="PowerAlarmAvg" ColumnName="PowerAlarmAvg" />
-                <ScalarProperty Name="WaterAlarmAvg" ColumnName="WaterAlarmAvg" />
-                <ScalarProperty Name="CumulateValueAlarm" ColumnName="CumulateValueAlarm" />
-                <ScalarProperty Name="KWAlarm" ColumnName="KWAlarm" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
-                <ScalarProperty Name="WaterAlarmLower" ColumnName="WaterAlarmLower" />
-                <ScalarProperty Name="WaterAlarmUpper" ColumnName="WaterAlarmUpper" />
-                <ScalarProperty Name="PowerAlarmLower" ColumnName="PowerAlarmLower" />
-                <ScalarProperty Name="PowerAlarmUpper" ColumnName="PowerAlarmUpper" />
-                <ScalarProperty Name="CumulateValue" ColumnName="CumulateValue" />
-                <ScalarProperty Name="KW" ColumnName="KW" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8010,6 +8086,103 @@
                 <ScalarProperty Name="Item" ColumnName="Item" />
                 <ScalarProperty Name="ERName" ColumnName="ERName" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPowerMeter1HourLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwPowerMeter1HourLog">
+              <MappingFragment StoreEntitySet="vwPowerMeter1HourLog">
+                <ScalarProperty Name="KW24Avg" ColumnName="KW24Avg" />
+                <ScalarProperty Name="WaterConsume" ColumnName="WaterConsume" />
+                <ScalarProperty Name="PowerAlarm" ColumnName="PowerAlarm" />
+                <ScalarProperty Name="WaterAlarm" ColumnName="WaterAlarm" />
+                <ScalarProperty Name="PowerAlarmAvg" ColumnName="PowerAlarmAvg" />
+                <ScalarProperty Name="WaterAlarmAvg" ColumnName="WaterAlarmAvg" />
+                <ScalarProperty Name="CumulateValueAlarm" ColumnName="CumulateValueAlarm" />
+                <ScalarProperty Name="KWAlarm" ColumnName="KWAlarm" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+                <ScalarProperty Name="WaterAlarmLower" ColumnName="WaterAlarmLower" />
+                <ScalarProperty Name="WaterAlarmUpper" ColumnName="WaterAlarmUpper" />
+                <ScalarProperty Name="PowerAlarmLower" ColumnName="PowerAlarmLower" />
+                <ScalarProperty Name="PowerAlarmUpper" ColumnName="PowerAlarmUpper" />
+                <ScalarProperty Name="CumulateValue" ColumnName="CumulateValue" />
+                <ScalarProperty Name="KW" ColumnName="KW" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPDAlarmLoopDeviceLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwPDAlarmLoopDeviceLog">
+              <MappingFragment StoreEntitySet="vwPDAlarmLoopDeviceLog">
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
+                <ScalarProperty Name="WorkInfo" ColumnName="WorkInfo" />
+                <ScalarProperty Name="Classify" ColumnName="Classify" />
+                <ScalarProperty Name="PD_Mapping_DeviceName" ColumnName="PD_Mapping_DeviceName" />
+                <ScalarProperty Name="Device_DirectionName" ColumnName="Device_DirectionName" />
+                <ScalarProperty Name="Device_LineName" ColumnName="Device_LineName" />
+                <ScalarProperty Name="device_type" ColumnName="device_type" />
+                <ScalarProperty Name="Device_mile_m" ColumnName="Device_mile_m" />
+                <ScalarProperty Name="Device_Direction" ColumnName="Device_Direction" />
+                <ScalarProperty Name="Device_LineID" ColumnName="Device_LineID" />
+                <ScalarProperty Name="Mapping_DeviceName" ColumnName="Mapping_DeviceName" />
+                <ScalarProperty Name="PD_LoopNO" ColumnName="PD_LoopNO" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Loop" ColumnName="Loop" />
+                <ScalarProperty Name="PDItemDetail" ColumnName="PDItemDetail" />
+                <ScalarProperty Name="PDItem" ColumnName="PDItem" />
+                <ScalarProperty Name="PDName" ColumnName="PDName" />
+                <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="mile_m" ColumnName="mile_m" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPowerMeter">
+            <EntityTypeMapping TypeName="SecureDBModel.vwPowerMeter">
+              <MappingFragment StoreEntitySet="vwPowerMeter">
+                <ScalarProperty Name="PowerSubtraction" ColumnName="PowerSubtraction" />
+                <ScalarProperty Name="WaterSubtraction" ColumnName="WaterSubtraction" />
+                <ScalarProperty Name="KW24Avg" ColumnName="KW24Avg" />
+                <ScalarProperty Name="PowerAlarmDesc" ColumnName="PowerAlarmDesc" />
+                <ScalarProperty Name="WaterAlarmDesc" ColumnName="WaterAlarmDesc" />
+                <ScalarProperty Name="WaterConsume" ColumnName="WaterConsume" />
+                <ScalarProperty Name="PowerAlarmAvg" ColumnName="PowerAlarmAvg" />
+                <ScalarProperty Name="WaterAlarmAvg" ColumnName="WaterAlarmAvg" />
+                <ScalarProperty Name="PowerAlarm" ColumnName="PowerAlarm" />
+                <ScalarProperty Name="WaterAlarm" ColumnName="WaterAlarm" />
+                <ScalarProperty Name="WaterAlarmLower" ColumnName="WaterAlarmLower" />
+                <ScalarProperty Name="WaterAlarmUpper" ColumnName="WaterAlarmUpper" />
+                <ScalarProperty Name="PowerAlarmLower" ColumnName="PowerAlarmLower" />
+                <ScalarProperty Name="PowerAlarmUpper" ColumnName="PowerAlarmUpper" />
+                <ScalarProperty Name="InstantaneousValue" ColumnName="InstantaneousValue" />
+                <ScalarProperty Name="CumulateValue" ColumnName="CumulateValue" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
+                <ScalarProperty Name="KW" ColumnName="KW" />
+                <ScalarProperty Name="AVGI" ColumnName="AVGI" />
+                <ScalarProperty Name="IC" ColumnName="IC" />
+                <ScalarProperty Name="IB" ColumnName="IB" />
+                <ScalarProperty Name="IA" ColumnName="IA" />
+                <ScalarProperty Name="AVGV" ColumnName="AVGV" />
+                <ScalarProperty Name="VC" ColumnName="VC" />
+                <ScalarProperty Name="VB" ColumnName="VB" />
+                <ScalarProperty Name="VA" ColumnName="VA" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="RTU_IP" ColumnName="RTU_IP" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

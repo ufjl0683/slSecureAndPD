@@ -158,6 +158,10 @@ public partial class SecureDBEntities1 : DbContext
 
     public DbSet<tblNVRConfig> tblNVRConfig { get; set; }
 
+    public DbSet<vwCCTVState> vwCCTVState { get; set; }
+
+    public DbSet<vwPDAlarmLoopDeviceLog> vwPDAlarmLoopDeviceLog { get; set; }
+
 }
 
 }

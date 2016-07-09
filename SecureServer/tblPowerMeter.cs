@@ -76,6 +76,8 @@ public partial class tblPowerMeter
 
     public string PowerAlarmDesc { get; set; }
 
+    public Nullable<double> KW24Avg { get; set; }
+
 }
 
 }

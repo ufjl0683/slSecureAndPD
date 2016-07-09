@@ -48,20 +48,24 @@ namespace SecureServer.Meter
                       tblPowerMeter1HourLog lastlog=  db.tblPowerMeter1HourLog.Where(n=>n.ERID==tbl.ERID).OrderByDescending(n=>n.Timestamp).Take(1).FirstOrDefault();
                       double? PowerAvg = db.tblPowerMeter1HourLog.Where(n =>/* n.Timestamp >= lastbeg && */ n.ERID==tbl.ERID ).Average(n => n.KW);
                       double? WaterAvg = db.tblPowerMeter1HourLog.Where(n => /*n.Timestamp >= lastbeg  && */ n.ERID==tbl.ERID ).Average(n => n.WaterConsume);
-
+                      double? Kw24avg = db.tblPowerMeter1HourLog.Where(n=>n.ERID==tbl.ERID).OrderByDescending(n => n.Timestamp ).Take(24).Average(n=>n.KW);
                       
                       double? wateCurrent=(tbl.CumulateValue-lastlog.CumulateValue)/ (new DateTime(dt.Year,dt.Month,dt.Day,dt.Hour,0,0)-lastlog.Timestamp).Hours;
+                      
                       bool PowerAlarm=false,WaterAlarm=false;
-                      if(PowerAvg!=null  &&  (tbl.KW> PowerAvg*(1+tbl.PowerAlarmUpper/100) || tbl.KW< PowerAvg*(1-tbl.PowerAlarmLower/100 )) )
-                          PowerAlarm=true;
+                                           
+                      //if(PowerAvg!=null  &&  (tbl.KW> PowerAvg*(1+tbl.PowerAlarmUpper/100) || tbl.KW< PowerAvg*(1-tbl.PowerAlarmLower/100 )) )
+                      if (PowerAvg != null && (Kw24avg > PowerAvg * (1 + tbl.PowerAlarmUpper / 100) || Kw24avg < PowerAvg * (1 - tbl.PowerAlarmLower / 100)))
+                            PowerAlarm=true;
                       if(WaterAvg!=null  &&  (wateCurrent> WaterAvg*(1+tbl.WaterAlarmUpper/100) /* || wateCurrent< WaterAvg*(1-tbl.WaterAlarmLower/100 )*/) )
                           WaterAlarm=true;
+
                       tbl.PowerAlarm = PowerAlarm;
                       tbl.WaterAlarm = WaterAlarm;
                       bool PowerAlarmChanged, WaterAlarmChanged;
                       PowerAlarmChanged = (tbl.PowerAlarm ?? false) ^ PowerAlarm;
                       WaterAlarmChanged = (tbl.WaterAlarm ?? false) ^ WaterAlarm;
-
+                      tbl.KW24Avg = Kw24avg;
                       tblPowerMeter1HourLog log = new tblPowerMeter1HourLog()
                      {
                          ERID = tbl.ERID,
@@ -72,7 +76,8 @@ namespace SecureServer.Meter
                          PowerAlarm = PowerAlarm,
                          PowerAlarmAvg = PowerAvg ?? tbl.KW,
                          WaterAlarmAvg = WaterAvg ?? ((lastlog == null) ? tbl.CumulateValue : tbl.CumulateValue - lastlog.CumulateValue),
-                         WaterConsume = (lastlog == null) ? tbl.CumulateValue : tbl.CumulateValue - lastlog.CumulateValue
+                         WaterConsume = (lastlog == null) ? tbl.CumulateValue : tbl.CumulateValue - lastlog.CumulateValue,
+                          KW24Avg=Kw24avg
 
 
                      };

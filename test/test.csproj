@@ -84,6 +84,7 @@
     <Compile Include="R13BatteryPackRTU.cs" />
     <Compile Include="R13IEDRTU.cs" />
     <Compile Include="R13NewSmrRTU.cs" />
+    <Compile Include="R13SmrRTU.cs" />
     <Compile Include="R23PowerMeter.cs" />
     <Compile Include="Service References\MCNSService\Reference.cs">
       <AutoGen>True</AutoGen>

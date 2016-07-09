@@ -295,6 +295,9 @@
     <Compile Include="vwCardCommandLog.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="vwCCTVState.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="vwControllerConfig.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -326,6 +329,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="vwMagneticCardDetail.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwPDAlarmLoopDeviceLog.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="vwUserGroupMenuAllow.cs">
