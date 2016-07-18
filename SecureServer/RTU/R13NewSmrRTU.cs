@@ -125,7 +125,7 @@ namespace SecureServer.RTU
 
                             
 
-                            RTUDevice.ReadInputRegister((ushort)rcnt++/*this.DevID*/, (byte)DevID, (ushort)110, (ushort)1, ref temp);
+                            RTUDevice.ReadInputRegister((ushort)rcnt++/*this.DevID*/, (byte)DevID, (ushort)114, (ushort)1, ref temp);
                             if (temp != null)
                             {
                                 System.Array.Copy(temp, 0, data, 2 * 2, temp.Length);  //40003

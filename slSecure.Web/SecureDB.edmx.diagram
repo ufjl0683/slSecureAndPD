@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8ba30e97fbe5487d8755fdc5c604fb07" Name="圖表1" ZoomLevel="93">
+      <Diagram DiagramId="8ba30e97fbe5487d8755fdc5c604fb07" Name="圖表1" ZoomLevel="48">
         <EntityTypeShape EntityType="SecureDBModel.tblAIItem1HourLog" Width="1.5" PointX="14.75" PointY="7.625" IsExpanded="false" />
         <EntityTypeShape EntityType="SecureDBModel.tblAlarmLog" Width="1.5" PointX="11.482555148882119" PointY="20.8530443854877" IsExpanded="false" />
         <EntityTypeShape EntityType="SecureDBModel.tblCardCommandLog" Width="1.5" PointX="9.879361352827102" PointY="0.32596063629070327" IsExpanded="false" />

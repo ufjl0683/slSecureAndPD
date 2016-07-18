@@ -89,12 +89,21 @@ namespace SecureServer.RTU
                         continue;
                     }
 
-                    Regex regex = new Regex(@"(?<v>[0-9]+.[0-9]+)\s*V|(?<temp>[0-9]+.[0-9]+)&deg;C");
+                  //Regex regex = new Regex(@">(?<v>[0-9]+.[0-9]+)\s*V|>(?<temp>[0-9]+.[0-9]+)&deg;C");
+                    Regex regex = new Regex(@">(?<v>[0-9]+.[0-9]+)\s*V|>(?<temp>[0-9]+.[0-9]+)&deg;C");
                     MatchCollection collection = regex.Matches(s);
                     byte[] temp = new byte[2];
                     for (int i = 0; i < collection.Count; i++)
                     {
-                        double val = double.Parse(collection[i].Groups[(i % 2) + 1].Value);
+                        double val=0;
+                        try
+                        {
+                            val = double.Parse(collection[i].Groups[(i % 2) + 1].Value);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(collection[i].Groups[(i % 2) + 1].Value + ",Parse error!");
+                        }
                         temp[0] = (byte)(((short)(val * 100)) / 256);
                         temp[1] = (byte)(((short)(val * 100)) % 256);
                         Array.Copy(temp, 0, data, i * 2, 2);

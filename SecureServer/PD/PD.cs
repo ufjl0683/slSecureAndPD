@@ -356,6 +356,8 @@ namespace SecureServer.PD
                                db.SaveChanges();
                            }
 
+                           db.tblPDAlarmLog.Add(new tblPDAlarmLog() { Timestamp = DateTime.Now, PDItem = "Comm_state", PDName = this.PDName, Status = IsConnected ? 1 : 0 });
+                           db.SaveChanges();
                        }
                    }
 

@@ -38,29 +38,36 @@ namespace test
 
        static void BatteryPackTest()
         {
-           // WebClient client = new WebClient();
-           //string s=  client.DownloadString("http://192.192.85.64/secure/slsecure.aspx"/*"http://10.2.190.125:80/stringindex?0_0"*/);
+            WebClient client = new WebClient();
+            string s = client.DownloadString("http://10.21.50.9:80/stringindex?0_0"/*"http://10.21.50.9:80/stringindex?0_0"*/);
          
-           // Regex regex = new Regex(@"(?<v>[0-9]+.[0-9]+)\s*V|(?<temp>[0-9]+.[0-9]+)&deg;C");
-           // MatchCollection collection = regex.Matches(s);
-           //for(int i=0;i<collection.Count;i++)
-           //    Console.WriteLine(collection[i].Groups[(i%2)+1].Value);
-           // Console.WriteLine(collection.Count);
-
-            SecureServer.RTU.R13BatteryPackRTU rtu = new SecureServer.RTU.R13BatteryPackRTU("AA", 1, "10.21.50.9", 80, 1, 50, 1);
-            //SecureServer.RTU.R13NewSmrRTU rtu = new SecureServer.RTU.R13NewSmrRTU(""Para  );
-            Console.WriteLine("started");
-            while (true)
-            {
-                Console.WriteLine("commstate" + rtu.IsConnected);
-                for (int i = 0; i < 50; i++)
-                {
+           //  string s= new StreamReader( System.IO.File.OpenRead(AppDomain.CurrentDomain.BaseDirectory+"batterypack.txt")).ReadToEnd();
+             Regex regex = new Regex(@">(?<v>[0-9]+.[0-9]+)\s*V|>(?<temp>[0-9]+.[0-9]+)&deg;C");
+             MatchCollection collection = regex.Matches(s);
+             byte[] temp = new byte[2];
+             for (int i = 0; i < collection.Count; i++)
+             {
+                 double val = double.Parse(collection[i].Groups[(i % 2) + 1].Value);
+                 temp[0] = (byte)(((short)(val * 100)) / 256);
+                 temp[1] = (byte)(((short)(val * 100)) % 256);
+                 Console.WriteLine(collection[i].Groups[(i % 2) + 1].Value);
+             }
+             Console.WriteLine(collection.Count);
+            
+            //SecureServer.RTU.R13BatteryPackRTU rtu = new SecureServer.RTU.R13BatteryPackRTU("AA", 1, "10.21.50.9", 80, 1, 50, 1);
+            ////SecureServer.RTU.R13NewSmrRTU rtu = new SecureServer.RTU.R13NewSmrRTU(""Para  );
+            //Console.WriteLine("started");
+            //while (true)
+            //{
+            //    Console.WriteLine("commstate" + rtu.IsConnected);
+            //    for (int i = 0; i < 50; i++)
+            //    {
                    
-                    Console.WriteLine(rtu.GetRegisterReading((ushort)(1+ i)));
+            //        Console.WriteLine(rtu.GetRegisterReading((ushort)(1+ i)));
 
-                }
-                System.Threading.Thread.Sleep(1000);
-            }
+            //    }
+            //    System.Threading.Thread.Sleep(1000);
+            //}
         }
 
        static void R13SmrTest()
