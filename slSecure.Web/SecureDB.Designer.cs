@@ -1111,22 +1111,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwAlarmLog> vwAlarmLog
-        {
-            get
-            {
-                if ((_vwAlarmLog == null))
-                {
-                    _vwAlarmLog = base.CreateObjectSet<vwAlarmLog>("vwAlarmLog");
-                }
-                return _vwAlarmLog;
-            }
-        }
-        private ObjectSet<vwAlarmLog> _vwAlarmLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<tblSingalIO> tblSingalIO
         {
             get
@@ -1603,6 +1587,22 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwPowerMeter> _vwPowerMeter;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwAlarmLog> vwAlarmLog
+        {
+            get
+            {
+                if ((_vwAlarmLog == null))
+                {
+                    _vwAlarmLog = base.CreateObjectSet<vwAlarmLog>("vwAlarmLog");
+                }
+                return _vwAlarmLog;
+            }
+        }
+        private ObjectSet<vwAlarmLog> _vwAlarmLog;
 
         #endregion
 
@@ -2113,14 +2113,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwAlarmLog(vwAlarmLog vwAlarmLog)
-        {
-            base.AddObject("vwAlarmLog", vwAlarmLog);
-        }
-    
-        /// <summary>
         /// 將新物件加入 tblSingalIO EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTotblSingalIO(tblSingalIO tblSingalIO)
@@ -2358,6 +2350,14 @@ namespace slSecure.Web
         public void AddTovwPowerMeter(vwPowerMeter vwPowerMeter)
         {
             base.AddObject("vwPowerMeter", vwPowerMeter);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwAlarmLog(vwAlarmLog vwAlarmLog)
+        {
+            base.AddObject("vwAlarmLog", vwAlarmLog);
         }
 
         #endregion
@@ -16869,6 +16869,30 @@ namespace slSecure.Web
         private Nullable<global::System.Boolean> _Suppress;
         partial void OnSuppressChanging(Nullable<global::System.Boolean> value);
         partial void OnSuppressChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Classify
+        {
+            get
+            {
+                return _Classify;
+            }
+            set
+            {
+                OnClassifyChanging(value);
+                ReportPropertyChanging("Classify");
+                _Classify = StructuralObject.SetValidValue(value, true, "Classify");
+                ReportPropertyChanged("Classify");
+                OnClassifyChanged();
+            }
+        }
+        private global::System.String _Classify;
+        partial void OnClassifyChanging(global::System.String value);
+        partial void OnClassifyChanged();
 
         #endregion
 

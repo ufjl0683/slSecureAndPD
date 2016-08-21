@@ -123,7 +123,8 @@
       [vwAlarmLog].[TypeDetail_Memo] AS [TypeDetail_Memo], 
       [vwAlarmLog].[GroupTypeName] AS [GroupTypeName], 
       [vwAlarmLog].[KindName] AS [KindName], 
-      [vwAlarmLog].[Suppress] AS [Suppress]
+      [vwAlarmLog].[Suppress] AS [Suppress], 
+      [vwAlarmLog].[Classify] AS [Classify]
       FROM [dbo].[vwAlarmLog] AS [vwAlarmLog]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwAllAlarmLog" EntityType="SecureDBModel.Store.vwAllAlarmLog" store:Type="Views" store:Schema="dbo" store:Name="vwAllAlarmLog">
@@ -1945,7 +1946,7 @@
           <Property Name="WarningLower" Type="float" />
           <Property Name="AlarmUpper" Type="float" />
           <Property Name="AlarmLower" Type="float" />
-          <Property Name="ItemConfig_Value" Type="varchar" MaxLength="10" />
+          <Property Name="ItemConfig_Value" Type="nvarchar" MaxLength="100" />
           <Property Name="Address" Type="int" />
           <Property Name="BitNo" Type="int" />
           <Property Name="Length" Type="int" />
@@ -1968,6 +1969,7 @@
           <Property Name="GroupTypeName" Type="nvarchar" MaxLength="50" />
           <Property Name="KindName" Type="nvarchar" MaxLength="50" />
           <Property Name="Suppress" Type="bit" />
+          <Property Name="Classify" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SecureDB.dbo.vwAllAlarmLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -2212,7 +2214,7 @@
           <Property Name="WarningLower" Type="float" />
           <Property Name="AlarmUpper" Type="float" />
           <Property Name="AlarmLower" Type="float" />
-          <Property Name="Value" Type="varchar" MaxLength="10" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
           <Property Name="Address" Type="int" Nullable="false" />
           <Property Name="BitNo" Type="int" Nullable="false" />
           <Property Name="Length" Type="int" Nullable="false" />
@@ -3901,7 +3903,6 @@
           <EntitySet Name="vwMagneticCard" EntityType="SecureDBModel.vwMagneticCard" />
           <EntitySet Name="vwMagneticCardDetail" EntityType="SecureDBModel.vwMagneticCardDetail" />
           <EntitySet Name="vwPlaneIDAndControlID" EntityType="SecureDBModel.vwPlaneIDAndControlID" />
-          <EntitySet Name="vwAlarmLog" EntityType="SecureDBModel.vwAlarmLog" />
           <EntitySet Name="tblSingalIO" EntityType="SecureDBModel.tblSingalIO" />
           <AssociationSet Name="FK_tblSingalIO_tblControllerConfig" Association="SecureDBModel.FK_tblSingalIO_tblControllerConfig">
             <End Role="tblControllerConfig" EntitySet="tblControllerConfig" />
@@ -3952,6 +3953,7 @@
           <EntitySet Name="vwPowerMeter1HourLog" EntityType="SecureDBModel.vwPowerMeter1HourLog" />
           <EntitySet Name="vwPDAlarmLoopDeviceLog" EntityType="SecureDBModel.vwPDAlarmLoopDeviceLog" />
           <EntitySet Name="vwPowerMeter" EntityType="SecureDBModel.vwPowerMeter" />
+          <EntitySet Name="vwAlarmLog" EntityType="SecureDBModel.vwAlarmLog" />
           </EntityContainer>
         <EntityType Name="tblAIItem1HourLog">
           <Key>
@@ -5506,57 +5508,6 @@
           <Property Type="Boolean" Name="IsEnable" />
           <Property Type="Int32" Name="Comm_state" />
         </EntityType>
-        <EntityType Name="vwAlarmLog">
-          <Key>
-            <PropertyRef Name="EventID" />
-            <PropertyRef Name="TypeID" />
-            <PropertyRef Name="TypeCode" />
-            <PropertyRef Name="Timestamp" />
-            <PropertyRef Name="ControlID" />
-          </Key>
-          <Property Type="Int64" Name="EventID" Nullable="false" />
-          <Property Type="Int16" Name="TypeID" Nullable="false" />
-          <Property Type="Int16" Name="TypeCode" Nullable="false" />
-          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
-          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ItemID" />
-          <Property Type="String" Name="Value" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ERID" />
-          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ItemName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Lable" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Unit" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Degree" />
-          <Property Type="Double" Name="WarningUpper" />
-          <Property Type="Double" Name="WarningLower" />
-          <Property Type="Double" Name="AlarmUpper" />
-          <Property Type="Double" Name="AlarmLower" />
-          <Property Type="String" Name="ItemConfig_Value" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Address" />
-          <Property Type="Int32" Name="BitNo" />
-          <Property Type="Int32" Name="Length" />
-          <Property Type="String" Name="Depiction" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AlarmMode" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AlarmContent" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AbnormalRecoveryContent" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AbnormalRecoveryMode" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="DIInvokeWarningValue" />
-          <Property Type="Double" Name="ValueScale" />
-          <Property Type="Double" Name="Offset" />
-          <Property Type="Double" Name="Coefficient" />
-          <Property Type="Boolean" Name="IsShow" />
-          <Property Type="String" Name="GroupName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="GroupType" />
-          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="TypeDetail_Memo" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="GroupTypeName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="KindName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Suppress" />
-        </EntityType>
         <EntityType Name="tblSingalIO">
           <Key>
             <PropertyRef Name="ControlID" />
@@ -6014,7 +5965,7 @@
           <Property Type="Double" Name="WarningLower" />
           <Property Type="Double" Name="AlarmUpper" />
           <Property Type="Double" Name="AlarmLower" />
-          <Property Type="String" Name="Value" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Value" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Address" Nullable="false" />
           <Property Type="Int32" Name="BitNo" Nullable="false" />
           <Property Type="Int32" Name="Length" Nullable="false" />
@@ -6340,6 +6291,58 @@
           <Property Type="Double" Name="KW24Avg" />
           <Property Type="Double" Name="WaterSubtraction" />
           <Property Type="Double" Name="PowerSubtraction" />
+        </EntityType>
+        <EntityType Name="vwAlarmLog">
+          <Key>
+            <PropertyRef Name="EventID" />
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Type="Int64" Name="EventID" Nullable="false" />
+          <Property Type="Int16" Name="TypeID" Nullable="false" />
+          <Property Type="Int16" Name="TypeCode" Nullable="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ControlID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ItemID" />
+          <Property Type="String" Name="Value" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ERID" />
+          <Property Type="String" Name="ERName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ItemName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lable" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Unit" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Degree" />
+          <Property Type="Double" Name="WarningUpper" />
+          <Property Type="Double" Name="WarningLower" />
+          <Property Type="Double" Name="AlarmUpper" />
+          <Property Type="Double" Name="AlarmLower" />
+          <Property Type="String" Name="ItemConfig_Value" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Address" />
+          <Property Type="Int32" Name="BitNo" />
+          <Property Type="Int32" Name="Length" />
+          <Property Type="String" Name="Depiction" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AlarmMode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AlarmContent" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AbnormalRecoveryContent" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AbnormalRecoveryMode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DIInvokeWarningValue" />
+          <Property Type="Double" Name="ValueScale" />
+          <Property Type="Double" Name="Offset" />
+          <Property Type="Double" Name="Coefficient" />
+          <Property Type="Boolean" Name="IsShow" />
+          <Property Type="String" Name="GroupName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="GroupType" />
+          <Property Type="String" Name="LineID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LineName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Explain" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TypeDetail_Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GroupTypeName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KindName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Suppress" />
+          <Property Type="String" Name="Classify" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -7509,54 +7512,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwAlarmLog">
-            <EntityTypeMapping TypeName="SecureDBModel.vwAlarmLog">
-              <MappingFragment StoreEntitySet="vwAlarmLog">
-                <ScalarProperty Name="Suppress" ColumnName="Suppress" />
-                <ScalarProperty Name="KindName" ColumnName="KindName" />
-                <ScalarProperty Name="GroupTypeName" ColumnName="GroupTypeName" />
-                <ScalarProperty Name="TypeDetail_Memo" ColumnName="TypeDetail_Memo" />
-                <ScalarProperty Name="Explain" ColumnName="Explain" />
-                <ScalarProperty Name="LineName" ColumnName="LineName" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
-                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
-                <ScalarProperty Name="Offset" ColumnName="Offset" />
-                <ScalarProperty Name="ValueScale" ColumnName="ValueScale" />
-                <ScalarProperty Name="DIInvokeWarningValue" ColumnName="DIInvokeWarningValue" />
-                <ScalarProperty Name="AbnormalRecoveryMode" ColumnName="AbnormalRecoveryMode" />
-                <ScalarProperty Name="AbnormalRecoveryContent" ColumnName="AbnormalRecoveryContent" />
-                <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
-                <ScalarProperty Name="AlarmMode" ColumnName="AlarmMode" />
-                <ScalarProperty Name="Depiction" ColumnName="Depiction" />
-                <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="BitNo" ColumnName="BitNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ItemConfig_Value" ColumnName="ItemConfig_Value" />
-                <ScalarProperty Name="AlarmLower" ColumnName="AlarmLower" />
-                <ScalarProperty Name="AlarmUpper" ColumnName="AlarmUpper" />
-                <ScalarProperty Name="WarningLower" ColumnName="WarningLower" />
-                <ScalarProperty Name="WarningUpper" ColumnName="WarningUpper" />
-                <ScalarProperty Name="Degree" ColumnName="Degree" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="Lable" ColumnName="Lable" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ERName" ColumnName="ERName" />
-                <ScalarProperty Name="ERID" ColumnName="ERID" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblSingalIO">
             <EntityTypeMapping TypeName="SecureDBModel.tblSingalIO">
               <MappingFragment StoreEntitySet="tblSingalIO">
@@ -8183,6 +8138,55 @@
                 <ScalarProperty Name="RTU_IP" ColumnName="RTU_IP" />
                 <ScalarProperty Name="ERName" ColumnName="ERName" />
                 <ScalarProperty Name="ERID" ColumnName="ERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwAlarmLog">
+            <EntityTypeMapping TypeName="SecureDBModel.vwAlarmLog">
+              <MappingFragment StoreEntitySet="vwAlarmLog">
+                <ScalarProperty Name="Classify" ColumnName="Classify" />
+                <ScalarProperty Name="Suppress" ColumnName="Suppress" />
+                <ScalarProperty Name="KindName" ColumnName="KindName" />
+                <ScalarProperty Name="GroupTypeName" ColumnName="GroupTypeName" />
+                <ScalarProperty Name="TypeDetail_Memo" ColumnName="TypeDetail_Memo" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
+                <ScalarProperty Name="Offset" ColumnName="Offset" />
+                <ScalarProperty Name="ValueScale" ColumnName="ValueScale" />
+                <ScalarProperty Name="DIInvokeWarningValue" ColumnName="DIInvokeWarningValue" />
+                <ScalarProperty Name="AbnormalRecoveryMode" ColumnName="AbnormalRecoveryMode" />
+                <ScalarProperty Name="AbnormalRecoveryContent" ColumnName="AbnormalRecoveryContent" />
+                <ScalarProperty Name="AlarmContent" ColumnName="AlarmContent" />
+                <ScalarProperty Name="AlarmMode" ColumnName="AlarmMode" />
+                <ScalarProperty Name="Depiction" ColumnName="Depiction" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="BitNo" ColumnName="BitNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ItemConfig_Value" ColumnName="ItemConfig_Value" />
+                <ScalarProperty Name="AlarmLower" ColumnName="AlarmLower" />
+                <ScalarProperty Name="AlarmUpper" ColumnName="AlarmUpper" />
+                <ScalarProperty Name="WarningLower" ColumnName="WarningLower" />
+                <ScalarProperty Name="WarningUpper" ColumnName="WarningUpper" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Lable" ColumnName="Lable" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ERName" ColumnName="ERName" />
+                <ScalarProperty Name="ERID" ColumnName="ERID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
