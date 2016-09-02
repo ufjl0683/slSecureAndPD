@@ -22,12 +22,16 @@
       <endpoint address="net.tcp://10.21.99.80:4502/" binding="customBinding"
         bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
         name="CustomBinding_ISecureService" />
+        
       <endpoint address="http://10.21.99.80/secure/MCNSService.asmx"
         binding="basicHttpBinding" bindingConfiguration="MCNSServiceSoap"
         contract="MCNSService.MCNSServiceSoap" name="MCNSServiceSoap" />
+      <!--<endpoint address="net.tcp://192.192.85.64:4502/" binding="customBinding"
+        bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
+        name="CustomBinding_ISecureService" />
       <endpoint address="http://172.16.3.27/sso/services/SsoWebService"
               binding="basicHttpBinding" bindingConfiguration="SsoWebServiceServiceSoapBinding"
-              contract="SSOService.SsoWebService" name="SsoWebServicePort" />
+              contract="SSOService.SsoWebService" name="SsoWebServicePort" />-->
       <!--<endpoint address="net.tcp://192.192.85.64:4502/" binding="customBinding"
         bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"
         name="CustomBinding_ISecureService" />

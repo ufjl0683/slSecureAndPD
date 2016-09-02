@@ -181,7 +181,7 @@ namespace slSecure.Forms
             if (!IsExit)
             await GetAllItemGroupBindingData(PlaneID);
 #if !R23
-           
+
 #endif
             PlaceDoor();
             PlaceCCTV();
@@ -273,6 +273,12 @@ namespace slSecure.Forms
 
         async void PlaceCCTV()
         {
+            //CCTV temp = new CCTV();
+            //temp.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            //temp.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            //temp.SetValue(Grid.MarginProperty, new Thickness(625, 500, 0, 0));
+            //this.Canvas.Children.Add(temp);
+            //return;
 
             if (IsExit)
                 return;
@@ -285,7 +291,7 @@ namespace slSecure.Forms
                
                 CCTV item = new CCTV();
                 item.Name = "CCTV" + tbl.CCTVID;
-
+                
 
                 item.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                 item.VerticalAlignment = System.Windows.VerticalAlignment.Top;
@@ -316,7 +322,7 @@ namespace slSecure.Forms
 
 
                 this.Canvas.Children.Add(item);
-
+               
              //   CCTVLock_MouseLeftButtonDown(item, null);
                
                 

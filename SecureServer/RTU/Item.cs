@@ -324,7 +324,7 @@ namespace SecureServer
                        data.Content = this.ItemConfig.Lable + string.Format("{0:0.0}", this.Value) + ItemConfig.Unit;
                    else
                    {
-                       if (this.Degree > 0 && ItemConfig.AlarmMode == "Y")
+                       if (this.Degree > 0 /*&& ItemConfig.AlarmMode == "Y"*/)//不管是否發出警報均要帶出 Alarm Content
                            data.Content = this.ItemConfig.AlarmContent;
                        else
                            data.Content = this.ItemConfig.Lable;

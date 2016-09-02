@@ -705,7 +705,7 @@ namespace SecureServer.PD
                   }
                   else
                   {
-                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L2", Timestamp = DateTime.Now, PDName = this.PDName, Status = 1 };
+                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L2", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
                       db.tblPDAlarmLog.Add(log);
                       description += "L2 ";
                   }

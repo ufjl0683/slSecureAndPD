@@ -42,12 +42,24 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <ComboBox x:Name="cboFilter" Grid.Column="1" Height="28" Margin="16,5,10,0"  SelectedIndex="0"  VerticalAlignment="Top" SelectionChanged="cboFilter_SelectionChanged" >
-            <Rectangle  Fill="White" x:Name="All" Tag="ALL"   HorizontalAlignment="Stretch"     Height="20" Loaded="FilterItem_Load"  />
+            <StackPanel Orientation="Horizontal">
+                <Rectangle  Fill="White" x:Name="All" Tag="ALL"   HorizontalAlignment="Stretch"     Height="20" Loaded="FilterItem_Load"  />
+                <TextBlock Text="全部" />
+            </StackPanel>
             <!--<Rectangle  Fill="White" x:Name="All1" Tag="ALL"   HorizontalAlignment="Stretch"  Height="20"  Loaded="FilterItem_Load" />-->
-            <Rectangle  Fill="Red" x:Name="Alart" Tag="ALARM" HorizontalAlignment="Stretch"  Loaded="FilterItem_Load"  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ComboBox, Mode=FindAncestor}}" Height="20"   />
-            <Rectangle  Fill="Yellow" x:Name="Warning"  HorizontalAlignment="Stretch"  Loaded="FilterItem_Load"    Tag="WARNING"   Height="20"   />
-            <Rectangle  Fill="Green" x:Name="Normal"   HorizontalAlignment="Stretch"  Loaded="FilterItem_Load"   Tag="NORMAL"   Height="20"   />
-        </ComboBox>
+            <StackPanel Orientation="Horizontal">
+                <Rectangle  Fill="Red" x:Name="Alart" Tag="ALARM" HorizontalAlignment="Stretch"  Loaded="FilterItem_Load"  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ComboBox, Mode=FindAncestor}}" Height="20"   />
+                <TextBlock Text="警報" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Rectangle  Fill="Yellow" x:Name="Warning"  HorizontalAlignment="Stretch"  Loaded="FilterItem_Load"    Tag="WARNING"   Height="20"   />
+                <TextBlock Text="警告" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Rectangle  Fill="Green" x:Name="Normal"   HorizontalAlignment="Stretch"  Loaded="FilterItem_Load"   Tag="NORMAL"   Height="20"   />
+                <TextBlock Text="正常" />
+            </StackPanel>
+            </ComboBox>
 
     </Grid>
 </sdk:Page>
