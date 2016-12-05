@@ -4271,5 +4271,91 @@ namespace slSecure.Web
             public Nullable<double> WaterSubtraction { get; set; }
         }
     }
+
+    [MetadataTypeAttribute(typeof(vwPowerAndWaterMeterYearMonthDailyAvg.vwPowerAndWaterMeterYearMonthDailyAvgMetadata))]
+    public partial class vwPowerAndWaterMeterYearMonthDailyAvg
+    {
+
+        // 這個類別可讓您將自訂屬性 (Attribute) 附加到 vwPowerAndWaterMeterYearMonthDailyAvg 類別
+        // 的 properties。
+        //
+        // 例如，下列程式碼將 Xyz 屬性標記為
+        // 必要的屬性，並指定有效值的格式:
+        //    [Required]
+        //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+        //    [StringLength(32)]
+        //    public string Xyz { get; set; }
+        internal sealed class vwPowerAndWaterMeterYearMonthDailyAvgMetadata
+        {
+
+            // 中繼資料類別本就不應該具現化。
+            private vwPowerAndWaterMeterYearMonthDailyAvgMetadata()
+            {
+            }
+
+            public int ERID { get; set; }
+
+            public string ERName { get; set; }
+
+            public long FlowID { get; set; }
+
+            public string Memo { get; set; }
+
+            public Nullable<double> Power10MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power11MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power12MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power1MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power2MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power3MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power4MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power5MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power6MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power7MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power8MonthDailyAvg { get; set; }
+
+            public Nullable<double> Power9MonthDailyAvg { get; set; }
+
+            public Nullable<DateTime> PowerUpdateDate { get; set; }
+
+            public Nullable<double> Water10MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water11MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water12MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water1MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water2MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water3MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water4MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water5MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water6MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water7MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water8MonthDailyAvg { get; set; }
+
+            public Nullable<double> Water9MonthDailyAvg { get; set; }
+
+            public Nullable<DateTime> WaterUpdateDate { get; set; }
+
+            public int YearsNo { get; set; }
+        }
+    }
+
     }
 

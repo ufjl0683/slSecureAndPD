@@ -2302,7 +2302,11 @@ namespace slSecure.Web
                 return this.ObjectContext.vwPowerMeter;
             }
 
-        
+            public IQueryable<vwPowerAndWaterMeterYearMonthDailyAvg> GetVwPowerAndWaterMeterYearMonthDailyAvg()
+            {
+                return this.ObjectContext.vwPowerAndWaterMeterYearMonthDailyAvg;
+                
+            }
 
     }
 

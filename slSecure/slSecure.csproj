@@ -56,7 +56,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT R23</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -197,6 +197,9 @@
     <Compile Include="Dialog\TRDialog_Pro.xaml.cs">
       <DependentUpon>TRDialog_Pro.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\WaterPowerDiagram.xaml.cs">
+      <DependentUpon>WaterPowerDiagram.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DivHtmlPage.xaml.cs">
       <DependentUpon>DivHtmlPage.xaml</DependentUpon>
     </Compile>
@@ -304,6 +307,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Dialog\WaterPowerDiagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DivHtmlPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -363,7 +370,9 @@
     <Content Include="slSecureLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="slSecureLib.pdb" />
+    <Content Include="slSecureLib.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sound\alarm.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

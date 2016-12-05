@@ -34,7 +34,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblMenu_tblMenuGroup", "tblMenuGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblMenuGroup), "tblMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblMenu), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblUserGroupMenu_tblMenu", "tblMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblMenu), "tblUserGroupMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblUserGroupMenu), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSysOperation_tblUser", "tblUser", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblUser), "tblSysOperation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSysOperation), true)]
-[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSysRoleAuthority_tblSysRole", "tblSysRole", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSysRole), "tblSysRoleAuthority", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSysRoleAuthority), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblUser_tblUserGroup", "tblUserGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblUserGroup), "tblUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblUser), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblUserGroupMenu_tblUserGroup", "tblUserGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblUserGroup), "tblUserGroupMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblUserGroupMenu), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblAIItem1HourLog_tblItemConfig", "tblItemConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblItemConfig), "tblAIItem1HourLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblAIItem1HourLog), true)]
@@ -49,6 +48,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblItemConfig_tblItemGroupTypeInfo", "tblItemGroupTypeInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblItemGroupTypeInfo), "tblItemConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblItemConfig), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblItemConfig_tblItemKindInfo", "tblItemKindInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblItemKindInfo), "tblItemConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblItemConfig), true)]
 [assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblPDConfig_tblPDPinDef", "tblPDPinDef", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(slSecure.Web.tblPDPinDef), "tblPDConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblPDConfig), true)]
+[assembly: EdmRelationshipAttribute("SecureDBModel", "FK_tblSysRoleAuthority_tblSysRole", "tblSysRole", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(slSecure.Web.tblSysRole), "tblSysRoleAuthority", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(slSecure.Web.tblSysRoleAuthority), true)]
 
 #endregion
 
@@ -1159,38 +1159,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwPDAlarmLog> vwPDAlarmLog
-        {
-            get
-            {
-                if ((_vwPDAlarmLog == null))
-                {
-                    _vwPDAlarmLog = base.CreateObjectSet<vwPDAlarmLog>("vwPDAlarmLog");
-                }
-                return _vwPDAlarmLog;
-            }
-        }
-        private ObjectSet<vwPDAlarmLog> _vwPDAlarmLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        public ObjectSet<vwPDConfig> vwPDConfig
-        {
-            get
-            {
-                if ((_vwPDConfig == null))
-                {
-                    _vwPDConfig = base.CreateObjectSet<vwPDConfig>("vwPDConfig");
-                }
-                return _vwPDConfig;
-            }
-        }
-        private ObjectSet<vwPDConfig> _vwPDConfig;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<tblRemotePowerControl> tblRemotePowerControl
         {
             get
@@ -1495,22 +1463,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwR23AllAlarmLog> vwR23AllAlarmLog
-        {
-            get
-            {
-                if ((_vwR23AllAlarmLog == null))
-                {
-                    _vwR23AllAlarmLog = base.CreateObjectSet<vwR23AllAlarmLog>("vwR23AllAlarmLog");
-                }
-                return _vwR23AllAlarmLog;
-            }
-        }
-        private ObjectSet<vwR23AllAlarmLog> _vwR23AllAlarmLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwR23PowerAlarm> vwR23PowerAlarm
         {
             get
@@ -1543,22 +1495,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwPowerMeter1HourLog> vwPowerMeter1HourLog
-        {
-            get
-            {
-                if ((_vwPowerMeter1HourLog == null))
-                {
-                    _vwPowerMeter1HourLog = base.CreateObjectSet<vwPowerMeter1HourLog>("vwPowerMeter1HourLog");
-                }
-                return _vwPowerMeter1HourLog;
-            }
-        }
-        private ObjectSet<vwPowerMeter1HourLog> _vwPowerMeter1HourLog;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwPDAlarmLoopDeviceLog> vwPDAlarmLoopDeviceLog
         {
             get
@@ -1575,22 +1511,6 @@ namespace slSecure.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwPowerMeter> vwPowerMeter
-        {
-            get
-            {
-                if ((_vwPowerMeter == null))
-                {
-                    _vwPowerMeter = base.CreateObjectSet<vwPowerMeter>("vwPowerMeter");
-                }
-                return _vwPowerMeter;
-            }
-        }
-        private ObjectSet<vwPowerMeter> _vwPowerMeter;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwAlarmLog> vwAlarmLog
         {
             get
@@ -1603,6 +1523,118 @@ namespace slSecure.Web
             }
         }
         private ObjectSet<vwAlarmLog> _vwAlarmLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblPowerMeter1HourLog> tblPowerMeter1HourLog
+        {
+            get
+            {
+                if ((_tblPowerMeter1HourLog == null))
+                {
+                    _tblPowerMeter1HourLog = base.CreateObjectSet<tblPowerMeter1HourLog>("tblPowerMeter1HourLog");
+                }
+                return _tblPowerMeter1HourLog;
+            }
+        }
+        private ObjectSet<tblPowerMeter1HourLog> _tblPowerMeter1HourLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwR23AllAlarmLog> vwR23AllAlarmLog
+        {
+            get
+            {
+                if ((_vwR23AllAlarmLog == null))
+                {
+                    _vwR23AllAlarmLog = base.CreateObjectSet<vwR23AllAlarmLog>("vwR23AllAlarmLog");
+                }
+                return _vwR23AllAlarmLog;
+            }
+        }
+        private ObjectSet<vwR23AllAlarmLog> _vwR23AllAlarmLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPowerAndWaterMeterYearMonthDailyAvg> vwPowerAndWaterMeterYearMonthDailyAvg
+        {
+            get
+            {
+                if ((_vwPowerAndWaterMeterYearMonthDailyAvg == null))
+                {
+                    _vwPowerAndWaterMeterYearMonthDailyAvg = base.CreateObjectSet<vwPowerAndWaterMeterYearMonthDailyAvg>("vwPowerAndWaterMeterYearMonthDailyAvg");
+                }
+                return _vwPowerAndWaterMeterYearMonthDailyAvg;
+            }
+        }
+        private ObjectSet<vwPowerAndWaterMeterYearMonthDailyAvg> _vwPowerAndWaterMeterYearMonthDailyAvg;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPowerMeter1HourLog> vwPowerMeter1HourLog
+        {
+            get
+            {
+                if ((_vwPowerMeter1HourLog == null))
+                {
+                    _vwPowerMeter1HourLog = base.CreateObjectSet<vwPowerMeter1HourLog>("vwPowerMeter1HourLog");
+                }
+                return _vwPowerMeter1HourLog;
+            }
+        }
+        private ObjectSet<vwPowerMeter1HourLog> _vwPowerMeter1HourLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPDConfig> vwPDConfig
+        {
+            get
+            {
+                if ((_vwPDConfig == null))
+                {
+                    _vwPDConfig = base.CreateObjectSet<vwPDConfig>("vwPDConfig");
+                }
+                return _vwPDConfig;
+            }
+        }
+        private ObjectSet<vwPDConfig> _vwPDConfig;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPDAlarmLog> vwPDAlarmLog
+        {
+            get
+            {
+                if ((_vwPDAlarmLog == null))
+                {
+                    _vwPDAlarmLog = base.CreateObjectSet<vwPDAlarmLog>("vwPDAlarmLog");
+                }
+                return _vwPDAlarmLog;
+            }
+        }
+        private ObjectSet<vwPDAlarmLog> _vwPDAlarmLog;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwPowerMeter> vwPowerMeter
+        {
+            get
+            {
+                if ((_vwPowerMeter == null))
+                {
+                    _vwPowerMeter = base.CreateObjectSet<vwPowerMeter>("vwPowerMeter");
+                }
+                return _vwPowerMeter;
+            }
+        }
+        private ObjectSet<vwPowerMeter> _vwPowerMeter;
 
         #endregion
 
@@ -2137,22 +2169,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwPDAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwPDAlarmLog(vwPDAlarmLog vwPDAlarmLog)
-        {
-            base.AddObject("vwPDAlarmLog", vwPDAlarmLog);
-        }
-    
-        /// <summary>
-        /// 將新物件加入 vwPDConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwPDConfig(vwPDConfig vwPDConfig)
-        {
-            base.AddObject("vwPDConfig", vwPDConfig);
-        }
-    
-        /// <summary>
         /// 將新物件加入 tblRemotePowerControl EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTotblRemotePowerControl(tblRemotePowerControl tblRemotePowerControl)
@@ -2305,14 +2321,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwR23AllAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwR23AllAlarmLog(vwR23AllAlarmLog vwR23AllAlarmLog)
-        {
-            base.AddObject("vwR23AllAlarmLog", vwR23AllAlarmLog);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwR23PowerAlarm EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwR23PowerAlarm(vwR23PowerAlarm vwR23PowerAlarm)
@@ -2329,14 +2337,6 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwPowerMeter1HourLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwPowerMeter1HourLog(vwPowerMeter1HourLog vwPowerMeter1HourLog)
-        {
-            base.AddObject("vwPowerMeter1HourLog", vwPowerMeter1HourLog);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwPDAlarmLoopDeviceLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwPDAlarmLoopDeviceLog(vwPDAlarmLoopDeviceLog vwPDAlarmLoopDeviceLog)
@@ -2345,19 +2345,67 @@ namespace slSecure.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwPowerMeter EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwPowerMeter(vwPowerMeter vwPowerMeter)
-        {
-            base.AddObject("vwPowerMeter", vwPowerMeter);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwAlarmLog(vwAlarmLog vwAlarmLog)
         {
             base.AddObject("vwAlarmLog", vwAlarmLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblPowerMeter1HourLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblPowerMeter1HourLog(tblPowerMeter1HourLog tblPowerMeter1HourLog)
+        {
+            base.AddObject("tblPowerMeter1HourLog", tblPowerMeter1HourLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwR23AllAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwR23AllAlarmLog(vwR23AllAlarmLog vwR23AllAlarmLog)
+        {
+            base.AddObject("vwR23AllAlarmLog", vwR23AllAlarmLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPowerAndWaterMeterYearMonthDailyAvg EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPowerAndWaterMeterYearMonthDailyAvg(vwPowerAndWaterMeterYearMonthDailyAvg vwPowerAndWaterMeterYearMonthDailyAvg)
+        {
+            base.AddObject("vwPowerAndWaterMeterYearMonthDailyAvg", vwPowerAndWaterMeterYearMonthDailyAvg);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPowerMeter1HourLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPowerMeter1HourLog(vwPowerMeter1HourLog vwPowerMeter1HourLog)
+        {
+            base.AddObject("vwPowerMeter1HourLog", vwPowerMeter1HourLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPDConfig EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPDConfig(vwPDConfig vwPDConfig)
+        {
+            base.AddObject("vwPDConfig", vwPDConfig);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPDAlarmLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPDAlarmLog(vwPDAlarmLog vwPDAlarmLog)
+        {
+            base.AddObject("vwPDAlarmLog", vwPDAlarmLog);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwPowerMeter EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwPowerMeter(vwPowerMeter vwPowerMeter)
+        {
+            base.AddObject("vwPowerMeter", vwPowerMeter);
         }
 
         #endregion
@@ -10045,6 +10093,30 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _Status;
         partial void OnStatusChanging(Nullable<global::System.Int32> value);
         partial void OnStatusChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserMemo
+        {
+            get
+            {
+                return _UserMemo;
+            }
+            set
+            {
+                OnUserMemoChanging(value);
+                ReportPropertyChanging("UserMemo");
+                _UserMemo = StructuralObject.SetValidValue(value, true, "UserMemo");
+                ReportPropertyChanged("UserMemo");
+                OnUserMemoChanged();
+            }
+        }
+        private global::System.String _UserMemo;
+        partial void OnUserMemoChanging(global::System.String value);
+        partial void OnUserMemoChanged();
 
         #endregion
 
@@ -10839,6 +10911,78 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _WorkInfo;
         partial void OnWorkInfoChanging(Nullable<global::System.Int32> value);
         partial void OnWorkInfoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MeterNo
+        {
+            get
+            {
+                return _MeterNo;
+            }
+            set
+            {
+                OnMeterNoChanging(value);
+                ReportPropertyChanging("MeterNo");
+                _MeterNo = StructuralObject.SetValidValue(value, true, "MeterNo");
+                ReportPropertyChanged("MeterNo");
+                OnMeterNoChanged();
+            }
+        }
+        private global::System.String _MeterNo;
+        partial void OnMeterNoChanging(global::System.String value);
+        partial void OnMeterNoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Area
+        {
+            get
+            {
+                return _Area;
+            }
+            set
+            {
+                OnAreaChanging(value);
+                ReportPropertyChanging("Area");
+                _Area = StructuralObject.SetValidValue(value, true, "Area");
+                ReportPropertyChanged("Area");
+                OnAreaChanged();
+            }
+        }
+        private global::System.String _Area;
+        partial void OnAreaChanging(global::System.String value);
+        partial void OnAreaChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Tel
+        {
+            get
+            {
+                return _Tel;
+            }
+            set
+            {
+                OnTelChanging(value);
+                ReportPropertyChanging("Tel");
+                _Tel = StructuralObject.SetValidValue(value, true, "Tel");
+                ReportPropertyChanged("Tel");
+                OnTelChanged();
+            }
+        }
+        private global::System.String _Tel;
+        partial void OnTelChanging(global::System.String value);
+        partial void OnTelChanged();
 
         #endregion
 
@@ -12281,6 +12425,1602 @@ namespace slSecure.Web
         private Nullable<global::System.Double> _KW24Avg;
         partial void OnKW24AvgChanging(Nullable<global::System.Double> value);
         partial void OnKW24AvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> kWh
+        {
+            get
+            {
+                return _kWh;
+            }
+            set
+            {
+                OnkWhChanging(value);
+                ReportPropertyChanging("kWh");
+                _kWh = StructuralObject.SetValidValue(value, "kWh");
+                ReportPropertyChanged("kWh");
+                OnkWhChanged();
+            }
+        }
+        private Nullable<global::System.Double> _kWh;
+        partial void OnkWhChanging(Nullable<global::System.Double> value);
+        partial void OnkWhChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerConsume
+        {
+            get
+            {
+                return _PowerConsume;
+            }
+            set
+            {
+                OnPowerConsumeChanging(value);
+                ReportPropertyChanging("PowerConsume");
+                _PowerConsume = StructuralObject.SetValidValue(value, "PowerConsume");
+                ReportPropertyChanged("PowerConsume");
+                OnPowerConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerConsume;
+        partial void OnPowerConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnPowerConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power24Consume
+        {
+            get
+            {
+                return _Power24Consume;
+            }
+            set
+            {
+                OnPower24ConsumeChanging(value);
+                ReportPropertyChanging("Power24Consume");
+                _Power24Consume = StructuralObject.SetValidValue(value, "Power24Consume");
+                ReportPropertyChanged("Power24Consume");
+                OnPower24ConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power24Consume;
+        partial void OnPower24ConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnPower24ConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_LastYear
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_LastYear;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_LastYearChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_LastYear");
+                _PowerAlarmBaseValue_LastYear = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_LastYear");
+                ReportPropertyChanged("PowerAlarmBaseValue_LastYear");
+                OnPowerAlarmBaseValue_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_LastYear;
+        partial void OnPowerAlarmBaseValue_LastYearChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_Yesterday
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_Yesterday;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_YesterdayChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_Yesterday");
+                _PowerAlarmBaseValue_Yesterday = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_Yesterday");
+                ReportPropertyChanged("PowerAlarmBaseValue_Yesterday");
+                OnPowerAlarmBaseValue_YesterdayChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_Yesterday;
+        partial void OnPowerAlarmBaseValue_YesterdayChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_YesterdayChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_LastHour
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_LastHour;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_LastHourChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_LastHour");
+                _PowerAlarmBaseValue_LastHour = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_LastHour");
+                ReportPropertyChanged("PowerAlarmBaseValue_LastHour");
+                OnPowerAlarmBaseValue_LastHourChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_LastHour;
+        partial void OnPowerAlarmBaseValue_LastHourChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_LastHourChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_LastYear
+        {
+            get
+            {
+                return _PowerAlarm_LastYear;
+            }
+            set
+            {
+                OnPowerAlarm_LastYearChanging(value);
+                ReportPropertyChanging("PowerAlarm_LastYear");
+                _PowerAlarm_LastYear = StructuralObject.SetValidValue(value, "PowerAlarm_LastYear");
+                ReportPropertyChanged("PowerAlarm_LastYear");
+                OnPowerAlarm_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_LastYear;
+        partial void OnPowerAlarm_LastYearChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_Yesterday
+        {
+            get
+            {
+                return _PowerAlarm_Yesterday;
+            }
+            set
+            {
+                OnPowerAlarm_YesterdayChanging(value);
+                ReportPropertyChanging("PowerAlarm_Yesterday");
+                _PowerAlarm_Yesterday = StructuralObject.SetValidValue(value, "PowerAlarm_Yesterday");
+                ReportPropertyChanged("PowerAlarm_Yesterday");
+                OnPowerAlarm_YesterdayChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_Yesterday;
+        partial void OnPowerAlarm_YesterdayChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_YesterdayChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_LastHour
+        {
+            get
+            {
+                return _PowerAlarm_LastHour;
+            }
+            set
+            {
+                OnPowerAlarm_LastHourChanging(value);
+                ReportPropertyChanging("PowerAlarm_LastHour");
+                _PowerAlarm_LastHour = StructuralObject.SetValidValue(value, "PowerAlarm_LastHour");
+                ReportPropertyChanged("PowerAlarm_LastHour");
+                OnPowerAlarm_LastHourChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_LastHour;
+        partial void OnPowerAlarm_LastHourChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_LastHourChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power1MonthDailyAvg
+        {
+            get
+            {
+                return _Power1MonthDailyAvg;
+            }
+            set
+            {
+                OnPower1MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power1MonthDailyAvg");
+                _Power1MonthDailyAvg = StructuralObject.SetValidValue(value, "Power1MonthDailyAvg");
+                ReportPropertyChanged("Power1MonthDailyAvg");
+                OnPower1MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power1MonthDailyAvg;
+        partial void OnPower1MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower1MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power2MonthDailyAvg
+        {
+            get
+            {
+                return _Power2MonthDailyAvg;
+            }
+            set
+            {
+                OnPower2MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power2MonthDailyAvg");
+                _Power2MonthDailyAvg = StructuralObject.SetValidValue(value, "Power2MonthDailyAvg");
+                ReportPropertyChanged("Power2MonthDailyAvg");
+                OnPower2MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power2MonthDailyAvg;
+        partial void OnPower2MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower2MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power3MonthDailyAvg
+        {
+            get
+            {
+                return _Power3MonthDailyAvg;
+            }
+            set
+            {
+                OnPower3MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power3MonthDailyAvg");
+                _Power3MonthDailyAvg = StructuralObject.SetValidValue(value, "Power3MonthDailyAvg");
+                ReportPropertyChanged("Power3MonthDailyAvg");
+                OnPower3MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power3MonthDailyAvg;
+        partial void OnPower3MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower3MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power4MonthDailyAvg
+        {
+            get
+            {
+                return _Power4MonthDailyAvg;
+            }
+            set
+            {
+                OnPower4MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power4MonthDailyAvg");
+                _Power4MonthDailyAvg = StructuralObject.SetValidValue(value, "Power4MonthDailyAvg");
+                ReportPropertyChanged("Power4MonthDailyAvg");
+                OnPower4MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power4MonthDailyAvg;
+        partial void OnPower4MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower4MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power5MonthDailyAvg
+        {
+            get
+            {
+                return _Power5MonthDailyAvg;
+            }
+            set
+            {
+                OnPower5MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power5MonthDailyAvg");
+                _Power5MonthDailyAvg = StructuralObject.SetValidValue(value, "Power5MonthDailyAvg");
+                ReportPropertyChanged("Power5MonthDailyAvg");
+                OnPower5MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power5MonthDailyAvg;
+        partial void OnPower5MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower5MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power6MonthDailyAvg
+        {
+            get
+            {
+                return _Power6MonthDailyAvg;
+            }
+            set
+            {
+                OnPower6MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power6MonthDailyAvg");
+                _Power6MonthDailyAvg = StructuralObject.SetValidValue(value, "Power6MonthDailyAvg");
+                ReportPropertyChanged("Power6MonthDailyAvg");
+                OnPower6MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power6MonthDailyAvg;
+        partial void OnPower6MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower6MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power7MonthDailyAvg
+        {
+            get
+            {
+                return _Power7MonthDailyAvg;
+            }
+            set
+            {
+                OnPower7MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power7MonthDailyAvg");
+                _Power7MonthDailyAvg = StructuralObject.SetValidValue(value, "Power7MonthDailyAvg");
+                ReportPropertyChanged("Power7MonthDailyAvg");
+                OnPower7MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power7MonthDailyAvg;
+        partial void OnPower7MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower7MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power8MonthDailyAvg
+        {
+            get
+            {
+                return _Power8MonthDailyAvg;
+            }
+            set
+            {
+                OnPower8MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power8MonthDailyAvg");
+                _Power8MonthDailyAvg = StructuralObject.SetValidValue(value, "Power8MonthDailyAvg");
+                ReportPropertyChanged("Power8MonthDailyAvg");
+                OnPower8MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power8MonthDailyAvg;
+        partial void OnPower8MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower8MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power9MonthDailyAvg
+        {
+            get
+            {
+                return _Power9MonthDailyAvg;
+            }
+            set
+            {
+                OnPower9MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power9MonthDailyAvg");
+                _Power9MonthDailyAvg = StructuralObject.SetValidValue(value, "Power9MonthDailyAvg");
+                ReportPropertyChanged("Power9MonthDailyAvg");
+                OnPower9MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power9MonthDailyAvg;
+        partial void OnPower9MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower9MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power10MonthDailyAvg
+        {
+            get
+            {
+                return _Power10MonthDailyAvg;
+            }
+            set
+            {
+                OnPower10MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power10MonthDailyAvg");
+                _Power10MonthDailyAvg = StructuralObject.SetValidValue(value, "Power10MonthDailyAvg");
+                ReportPropertyChanged("Power10MonthDailyAvg");
+                OnPower10MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power10MonthDailyAvg;
+        partial void OnPower10MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower10MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power11MonthDailyAvg
+        {
+            get
+            {
+                return _Power11MonthDailyAvg;
+            }
+            set
+            {
+                OnPower11MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power11MonthDailyAvg");
+                _Power11MonthDailyAvg = StructuralObject.SetValidValue(value, "Power11MonthDailyAvg");
+                ReportPropertyChanged("Power11MonthDailyAvg");
+                OnPower11MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power11MonthDailyAvg;
+        partial void OnPower11MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower11MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power12MonthDailyAvg
+        {
+            get
+            {
+                return _Power12MonthDailyAvg;
+            }
+            set
+            {
+                OnPower12MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power12MonthDailyAvg");
+                _Power12MonthDailyAvg = StructuralObject.SetValidValue(value, "Power12MonthDailyAvg");
+                ReportPropertyChanged("Power12MonthDailyAvg");
+                OnPower12MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power12MonthDailyAvg;
+        partial void OnPower12MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower12MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SetThisPeriodkWh
+        {
+            get
+            {
+                return _SetThisPeriodkWh;
+            }
+            set
+            {
+                OnSetThisPeriodkWhChanging(value);
+                ReportPropertyChanging("SetThisPeriodkWh");
+                _SetThisPeriodkWh = StructuralObject.SetValidValue(value, "SetThisPeriodkWh");
+                ReportPropertyChanged("SetThisPeriodkWh");
+                OnSetThisPeriodkWhChanged();
+            }
+        }
+        private Nullable<global::System.Double> _SetThisPeriodkWh;
+        partial void OnSetThisPeriodkWhChanging(Nullable<global::System.Double> value);
+        partial void OnSetThisPeriodkWhChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water24Consume
+        {
+            get
+            {
+                return _Water24Consume;
+            }
+            set
+            {
+                OnWater24ConsumeChanging(value);
+                ReportPropertyChanging("Water24Consume");
+                _Water24Consume = StructuralObject.SetValidValue(value, "Water24Consume");
+                ReportPropertyChanged("Water24Consume");
+                OnWater24ConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water24Consume;
+        partial void OnWater24ConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnWater24ConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> WaterAlarmBaseValue_LastYear
+        {
+            get
+            {
+                return _WaterAlarmBaseValue_LastYear;
+            }
+            set
+            {
+                OnWaterAlarmBaseValue_LastYearChanging(value);
+                ReportPropertyChanging("WaterAlarmBaseValue_LastYear");
+                _WaterAlarmBaseValue_LastYear = StructuralObject.SetValidValue(value, "WaterAlarmBaseValue_LastYear");
+                ReportPropertyChanged("WaterAlarmBaseValue_LastYear");
+                OnWaterAlarmBaseValue_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Double> _WaterAlarmBaseValue_LastYear;
+        partial void OnWaterAlarmBaseValue_LastYearChanging(Nullable<global::System.Double> value);
+        partial void OnWaterAlarmBaseValue_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> WaterAlarm_LastYear
+        {
+            get
+            {
+                return _WaterAlarm_LastYear;
+            }
+            set
+            {
+                OnWaterAlarm_LastYearChanging(value);
+                ReportPropertyChanging("WaterAlarm_LastYear");
+                _WaterAlarm_LastYear = StructuralObject.SetValidValue(value, "WaterAlarm_LastYear");
+                ReportPropertyChanged("WaterAlarm_LastYear");
+                OnWaterAlarm_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _WaterAlarm_LastYear;
+        partial void OnWaterAlarm_LastYearChanging(Nullable<global::System.Int16> value);
+        partial void OnWaterAlarm_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water1MonthDailyAvg
+        {
+            get
+            {
+                return _Water1MonthDailyAvg;
+            }
+            set
+            {
+                OnWater1MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water1MonthDailyAvg");
+                _Water1MonthDailyAvg = StructuralObject.SetValidValue(value, "Water1MonthDailyAvg");
+                ReportPropertyChanged("Water1MonthDailyAvg");
+                OnWater1MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water1MonthDailyAvg;
+        partial void OnWater1MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater1MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water2MonthDailyAvg
+        {
+            get
+            {
+                return _Water2MonthDailyAvg;
+            }
+            set
+            {
+                OnWater2MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water2MonthDailyAvg");
+                _Water2MonthDailyAvg = StructuralObject.SetValidValue(value, "Water2MonthDailyAvg");
+                ReportPropertyChanged("Water2MonthDailyAvg");
+                OnWater2MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water2MonthDailyAvg;
+        partial void OnWater2MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater2MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water3MonthDailyAvg
+        {
+            get
+            {
+                return _Water3MonthDailyAvg;
+            }
+            set
+            {
+                OnWater3MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water3MonthDailyAvg");
+                _Water3MonthDailyAvg = StructuralObject.SetValidValue(value, "Water3MonthDailyAvg");
+                ReportPropertyChanged("Water3MonthDailyAvg");
+                OnWater3MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water3MonthDailyAvg;
+        partial void OnWater3MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater3MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water4MonthDailyAvg
+        {
+            get
+            {
+                return _Water4MonthDailyAvg;
+            }
+            set
+            {
+                OnWater4MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water4MonthDailyAvg");
+                _Water4MonthDailyAvg = StructuralObject.SetValidValue(value, "Water4MonthDailyAvg");
+                ReportPropertyChanged("Water4MonthDailyAvg");
+                OnWater4MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water4MonthDailyAvg;
+        partial void OnWater4MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater4MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water5MonthDailyAvg
+        {
+            get
+            {
+                return _Water5MonthDailyAvg;
+            }
+            set
+            {
+                OnWater5MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water5MonthDailyAvg");
+                _Water5MonthDailyAvg = StructuralObject.SetValidValue(value, "Water5MonthDailyAvg");
+                ReportPropertyChanged("Water5MonthDailyAvg");
+                OnWater5MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water5MonthDailyAvg;
+        partial void OnWater5MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater5MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water6MonthDailyAvg
+        {
+            get
+            {
+                return _Water6MonthDailyAvg;
+            }
+            set
+            {
+                OnWater6MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water6MonthDailyAvg");
+                _Water6MonthDailyAvg = StructuralObject.SetValidValue(value, "Water6MonthDailyAvg");
+                ReportPropertyChanged("Water6MonthDailyAvg");
+                OnWater6MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water6MonthDailyAvg;
+        partial void OnWater6MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater6MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water7MonthDailyAvg
+        {
+            get
+            {
+                return _Water7MonthDailyAvg;
+            }
+            set
+            {
+                OnWater7MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water7MonthDailyAvg");
+                _Water7MonthDailyAvg = StructuralObject.SetValidValue(value, "Water7MonthDailyAvg");
+                ReportPropertyChanged("Water7MonthDailyAvg");
+                OnWater7MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water7MonthDailyAvg;
+        partial void OnWater7MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater7MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water8MonthDailyAvg
+        {
+            get
+            {
+                return _Water8MonthDailyAvg;
+            }
+            set
+            {
+                OnWater8MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water8MonthDailyAvg");
+                _Water8MonthDailyAvg = StructuralObject.SetValidValue(value, "Water8MonthDailyAvg");
+                ReportPropertyChanged("Water8MonthDailyAvg");
+                OnWater8MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water8MonthDailyAvg;
+        partial void OnWater8MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater8MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water9MonthDailyAvg
+        {
+            get
+            {
+                return _Water9MonthDailyAvg;
+            }
+            set
+            {
+                OnWater9MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water9MonthDailyAvg");
+                _Water9MonthDailyAvg = StructuralObject.SetValidValue(value, "Water9MonthDailyAvg");
+                ReportPropertyChanged("Water9MonthDailyAvg");
+                OnWater9MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water9MonthDailyAvg;
+        partial void OnWater9MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater9MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water10MonthDailyAvg
+        {
+            get
+            {
+                return _Water10MonthDailyAvg;
+            }
+            set
+            {
+                OnWater10MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water10MonthDailyAvg");
+                _Water10MonthDailyAvg = StructuralObject.SetValidValue(value, "Water10MonthDailyAvg");
+                ReportPropertyChanged("Water10MonthDailyAvg");
+                OnWater10MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water10MonthDailyAvg;
+        partial void OnWater10MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater10MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water11MonthDailyAvg
+        {
+            get
+            {
+                return _Water11MonthDailyAvg;
+            }
+            set
+            {
+                OnWater11MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water11MonthDailyAvg");
+                _Water11MonthDailyAvg = StructuralObject.SetValidValue(value, "Water11MonthDailyAvg");
+                ReportPropertyChanged("Water11MonthDailyAvg");
+                OnWater11MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water11MonthDailyAvg;
+        partial void OnWater11MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater11MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water12MonthDailyAvg
+        {
+            get
+            {
+                return _Water12MonthDailyAvg;
+            }
+            set
+            {
+                OnWater12MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water12MonthDailyAvg");
+                _Water12MonthDailyAvg = StructuralObject.SetValidValue(value, "Water12MonthDailyAvg");
+                ReportPropertyChanged("Water12MonthDailyAvg");
+                OnWater12MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water12MonthDailyAvg;
+        partial void OnWater12MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater12MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SetThisPeriodWater
+        {
+            get
+            {
+                return _SetThisPeriodWater;
+            }
+            set
+            {
+                OnSetThisPeriodWaterChanging(value);
+                ReportPropertyChanging("SetThisPeriodWater");
+                _SetThisPeriodWater = StructuralObject.SetValidValue(value, "SetThisPeriodWater");
+                ReportPropertyChanged("SetThisPeriodWater");
+                OnSetThisPeriodWaterChanged();
+            }
+        }
+        private Nullable<global::System.Double> _SetThisPeriodWater;
+        partial void OnSetThisPeriodWaterChanging(Nullable<global::System.Double> value);
+        partial void OnSetThisPeriodWaterChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> CT
+        {
+            get
+            {
+                return _CT;
+            }
+            set
+            {
+                OnCTChanging(value);
+                ReportPropertyChanging("CT");
+                _CT = StructuralObject.SetValidValue(value, "CT");
+                ReportPropertyChanged("CT");
+                OnCTChanged();
+            }
+        }
+        private Nullable<global::System.Double> _CT;
+        partial void OnCTChanging(Nullable<global::System.Double> value);
+        partial void OnCTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SysThisPeriodWater
+        {
+            get
+            {
+                return _SysThisPeriodWater;
+            }
+            set
+            {
+                OnSysThisPeriodWaterChanging(value);
+                ReportPropertyChanging("SysThisPeriodWater");
+                _SysThisPeriodWater = StructuralObject.SetValidValue(value, "SysThisPeriodWater");
+                ReportPropertyChanged("SysThisPeriodWater");
+                OnSysThisPeriodWaterChanged();
+            }
+        }
+        private Nullable<global::System.Double> _SysThisPeriodWater;
+        partial void OnSysThisPeriodWaterChanging(Nullable<global::System.Double> value);
+        partial void OnSysThisPeriodWaterChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SysThisPeriodPower
+        {
+            get
+            {
+                return _SysThisPeriodPower;
+            }
+            set
+            {
+                OnSysThisPeriodPowerChanging(value);
+                ReportPropertyChanging("SysThisPeriodPower");
+                _SysThisPeriodPower = StructuralObject.SetValidValue(value, "SysThisPeriodPower");
+                ReportPropertyChanged("SysThisPeriodPower");
+                OnSysThisPeriodPowerChanged();
+            }
+        }
+        private Nullable<global::System.Double> _SysThisPeriodPower;
+        partial void OnSysThisPeriodPowerChanging(Nullable<global::System.Double> value);
+        partial void OnSysThisPeriodPowerChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="tblPowerMeter1HourLog")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblPowerMeter1HourLog : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 tblPowerMeter1HourLog 物件。
+        /// </summary>
+        /// <param name="flowID">FlowID 屬性的初始值。</param>
+        /// <param name="timestamp">Timestamp 屬性的初始值。</param>
+        /// <param name="eRID">ERID 屬性的初始值。</param>
+        public static tblPowerMeter1HourLog CreatetblPowerMeter1HourLog(global::System.Int64 flowID, global::System.DateTime timestamp, global::System.Int32 eRID)
+        {
+            tblPowerMeter1HourLog tblPowerMeter1HourLog = new tblPowerMeter1HourLog();
+            tblPowerMeter1HourLog.FlowID = flowID;
+            tblPowerMeter1HourLog.Timestamp = timestamp;
+            tblPowerMeter1HourLog.ERID = eRID;
+            return tblPowerMeter1HourLog;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 FlowID
+        {
+            get
+            {
+                return _FlowID;
+            }
+            set
+            {
+                if (_FlowID != value)
+                {
+                    OnFlowIDChanging(value);
+                    ReportPropertyChanging("FlowID");
+                    _FlowID = StructuralObject.SetValidValue(value, "FlowID");
+                    ReportPropertyChanged("FlowID");
+                    OnFlowIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _FlowID;
+        partial void OnFlowIDChanging(global::System.Int64 value);
+        partial void OnFlowIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Timestamp
+        {
+            get
+            {
+                return _Timestamp;
+            }
+            set
+            {
+                OnTimestampChanging(value);
+                ReportPropertyChanging("Timestamp");
+                _Timestamp = StructuralObject.SetValidValue(value, "Timestamp");
+                ReportPropertyChanged("Timestamp");
+                OnTimestampChanged();
+            }
+        }
+        private global::System.DateTime _Timestamp;
+        partial void OnTimestampChanging(global::System.DateTime value);
+        partial void OnTimestampChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ERID
+        {
+            get
+            {
+                return _ERID;
+            }
+            set
+            {
+                OnERIDChanging(value);
+                ReportPropertyChanging("ERID");
+                _ERID = StructuralObject.SetValidValue(value, "ERID");
+                ReportPropertyChanged("ERID");
+                OnERIDChanged();
+            }
+        }
+        private global::System.Int32 _ERID;
+        partial void OnERIDChanging(global::System.Int32 value);
+        partial void OnERIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> KW
+        {
+            get
+            {
+                return _KW;
+            }
+            set
+            {
+                OnKWChanging(value);
+                ReportPropertyChanging("KW");
+                _KW = StructuralObject.SetValidValue(value, "KW");
+                ReportPropertyChanged("KW");
+                OnKWChanged();
+            }
+        }
+        private Nullable<global::System.Double> _KW;
+        partial void OnKWChanging(Nullable<global::System.Double> value);
+        partial void OnKWChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> CumulateValue
+        {
+            get
+            {
+                return _CumulateValue;
+            }
+            set
+            {
+                OnCumulateValueChanging(value);
+                ReportPropertyChanging("CumulateValue");
+                _CumulateValue = StructuralObject.SetValidValue(value, "CumulateValue");
+                ReportPropertyChanged("CumulateValue");
+                OnCumulateValueChanged();
+            }
+        }
+        private Nullable<global::System.Double> _CumulateValue;
+        partial void OnCumulateValueChanging(Nullable<global::System.Double> value);
+        partial void OnCumulateValueChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Memo
+        {
+            get
+            {
+                return _Memo;
+            }
+            set
+            {
+                OnMemoChanging(value);
+                ReportPropertyChanging("Memo");
+                _Memo = StructuralObject.SetValidValue(value, true, "Memo");
+                ReportPropertyChanged("Memo");
+                OnMemoChanged();
+            }
+        }
+        private global::System.String _Memo;
+        partial void OnMemoChanging(global::System.String value);
+        partial void OnMemoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> WaterAlarmAvg
+        {
+            get
+            {
+                return _WaterAlarmAvg;
+            }
+            set
+            {
+                OnWaterAlarmAvgChanging(value);
+                ReportPropertyChanging("WaterAlarmAvg");
+                _WaterAlarmAvg = StructuralObject.SetValidValue(value, "WaterAlarmAvg");
+                ReportPropertyChanged("WaterAlarmAvg");
+                OnWaterAlarmAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _WaterAlarmAvg;
+        partial void OnWaterAlarmAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWaterAlarmAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmAvg
+        {
+            get
+            {
+                return _PowerAlarmAvg;
+            }
+            set
+            {
+                OnPowerAlarmAvgChanging(value);
+                ReportPropertyChanging("PowerAlarmAvg");
+                _PowerAlarmAvg = StructuralObject.SetValidValue(value, "PowerAlarmAvg");
+                ReportPropertyChanged("PowerAlarmAvg");
+                OnPowerAlarmAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmAvg;
+        partial void OnPowerAlarmAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> WaterAlarm
+        {
+            get
+            {
+                return _WaterAlarm;
+            }
+            set
+            {
+                OnWaterAlarmChanging(value);
+                ReportPropertyChanging("WaterAlarm");
+                _WaterAlarm = StructuralObject.SetValidValue(value, "WaterAlarm");
+                ReportPropertyChanged("WaterAlarm");
+                OnWaterAlarmChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _WaterAlarm;
+        partial void OnWaterAlarmChanging(Nullable<global::System.Boolean> value);
+        partial void OnWaterAlarmChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> PowerAlarm
+        {
+            get
+            {
+                return _PowerAlarm;
+            }
+            set
+            {
+                OnPowerAlarmChanging(value);
+                ReportPropertyChanging("PowerAlarm");
+                _PowerAlarm = StructuralObject.SetValidValue(value, "PowerAlarm");
+                ReportPropertyChanged("PowerAlarm");
+                OnPowerAlarmChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _PowerAlarm;
+        partial void OnPowerAlarmChanging(Nullable<global::System.Boolean> value);
+        partial void OnPowerAlarmChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> WaterConsume
+        {
+            get
+            {
+                return _WaterConsume;
+            }
+            set
+            {
+                OnWaterConsumeChanging(value);
+                ReportPropertyChanging("WaterConsume");
+                _WaterConsume = StructuralObject.SetValidValue(value, "WaterConsume");
+                ReportPropertyChanged("WaterConsume");
+                OnWaterConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _WaterConsume;
+        partial void OnWaterConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnWaterConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> KW24Avg
+        {
+            get
+            {
+                return _KW24Avg;
+            }
+            set
+            {
+                OnKW24AvgChanging(value);
+                ReportPropertyChanging("KW24Avg");
+                _KW24Avg = StructuralObject.SetValidValue(value, "KW24Avg");
+                ReportPropertyChanged("KW24Avg");
+                OnKW24AvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _KW24Avg;
+        partial void OnKW24AvgChanging(Nullable<global::System.Double> value);
+        partial void OnKW24AvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water24Consume
+        {
+            get
+            {
+                return _Water24Consume;
+            }
+            set
+            {
+                OnWater24ConsumeChanging(value);
+                ReportPropertyChanging("Water24Consume");
+                _Water24Consume = StructuralObject.SetValidValue(value, "Water24Consume");
+                ReportPropertyChanged("Water24Consume");
+                OnWater24ConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water24Consume;
+        partial void OnWater24ConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnWater24ConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> WaterAlarmBaseValue_LastYear
+        {
+            get
+            {
+                return _WaterAlarmBaseValue_LastYear;
+            }
+            set
+            {
+                OnWaterAlarmBaseValue_LastYearChanging(value);
+                ReportPropertyChanging("WaterAlarmBaseValue_LastYear");
+                _WaterAlarmBaseValue_LastYear = StructuralObject.SetValidValue(value, "WaterAlarmBaseValue_LastYear");
+                ReportPropertyChanged("WaterAlarmBaseValue_LastYear");
+                OnWaterAlarmBaseValue_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Double> _WaterAlarmBaseValue_LastYear;
+        partial void OnWaterAlarmBaseValue_LastYearChanging(Nullable<global::System.Double> value);
+        partial void OnWaterAlarmBaseValue_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> WaterAlarm_LastYear
+        {
+            get
+            {
+                return _WaterAlarm_LastYear;
+            }
+            set
+            {
+                OnWaterAlarm_LastYearChanging(value);
+                ReportPropertyChanging("WaterAlarm_LastYear");
+                _WaterAlarm_LastYear = StructuralObject.SetValidValue(value, "WaterAlarm_LastYear");
+                ReportPropertyChanged("WaterAlarm_LastYear");
+                OnWaterAlarm_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _WaterAlarm_LastYear;
+        partial void OnWaterAlarm_LastYearChanging(Nullable<global::System.Int16> value);
+        partial void OnWaterAlarm_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> kWh
+        {
+            get
+            {
+                return _kWh;
+            }
+            set
+            {
+                OnkWhChanging(value);
+                ReportPropertyChanging("kWh");
+                _kWh = StructuralObject.SetValidValue(value, "kWh");
+                ReportPropertyChanged("kWh");
+                OnkWhChanged();
+            }
+        }
+        private Nullable<global::System.Double> _kWh;
+        partial void OnkWhChanging(Nullable<global::System.Double> value);
+        partial void OnkWhChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerConsume
+        {
+            get
+            {
+                return _PowerConsume;
+            }
+            set
+            {
+                OnPowerConsumeChanging(value);
+                ReportPropertyChanging("PowerConsume");
+                _PowerConsume = StructuralObject.SetValidValue(value, "PowerConsume");
+                ReportPropertyChanged("PowerConsume");
+                OnPowerConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerConsume;
+        partial void OnPowerConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnPowerConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power24Consume
+        {
+            get
+            {
+                return _Power24Consume;
+            }
+            set
+            {
+                OnPower24ConsumeChanging(value);
+                ReportPropertyChanging("Power24Consume");
+                _Power24Consume = StructuralObject.SetValidValue(value, "Power24Consume");
+                ReportPropertyChanged("Power24Consume");
+                OnPower24ConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power24Consume;
+        partial void OnPower24ConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnPower24ConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_LastYear
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_LastYear;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_LastYearChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_LastYear");
+                _PowerAlarmBaseValue_LastYear = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_LastYear");
+                ReportPropertyChanged("PowerAlarmBaseValue_LastYear");
+                OnPowerAlarmBaseValue_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_LastYear;
+        partial void OnPowerAlarmBaseValue_LastYearChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_Yesterday
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_Yesterday;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_YesterdayChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_Yesterday");
+                _PowerAlarmBaseValue_Yesterday = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_Yesterday");
+                ReportPropertyChanged("PowerAlarmBaseValue_Yesterday");
+                OnPowerAlarmBaseValue_YesterdayChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_Yesterday;
+        partial void OnPowerAlarmBaseValue_YesterdayChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_YesterdayChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_LastHour
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_LastHour;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_LastHourChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_LastHour");
+                _PowerAlarmBaseValue_LastHour = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_LastHour");
+                ReportPropertyChanged("PowerAlarmBaseValue_LastHour");
+                OnPowerAlarmBaseValue_LastHourChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_LastHour;
+        partial void OnPowerAlarmBaseValue_LastHourChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_LastHourChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_LastYear
+        {
+            get
+            {
+                return _PowerAlarm_LastYear;
+            }
+            set
+            {
+                OnPowerAlarm_LastYearChanging(value);
+                ReportPropertyChanging("PowerAlarm_LastYear");
+                _PowerAlarm_LastYear = StructuralObject.SetValidValue(value, "PowerAlarm_LastYear");
+                ReportPropertyChanged("PowerAlarm_LastYear");
+                OnPowerAlarm_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_LastYear;
+        partial void OnPowerAlarm_LastYearChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_Yesterday
+        {
+            get
+            {
+                return _PowerAlarm_Yesterday;
+            }
+            set
+            {
+                OnPowerAlarm_YesterdayChanging(value);
+                ReportPropertyChanging("PowerAlarm_Yesterday");
+                _PowerAlarm_Yesterday = StructuralObject.SetValidValue(value, "PowerAlarm_Yesterday");
+                ReportPropertyChanged("PowerAlarm_Yesterday");
+                OnPowerAlarm_YesterdayChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_Yesterday;
+        partial void OnPowerAlarm_YesterdayChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_YesterdayChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_LastHour
+        {
+            get
+            {
+                return _PowerAlarm_LastHour;
+            }
+            set
+            {
+                OnPowerAlarm_LastHourChanging(value);
+                ReportPropertyChanging("PowerAlarm_LastHour");
+                _PowerAlarm_LastHour = StructuralObject.SetValidValue(value, "PowerAlarm_LastHour");
+                ReportPropertyChanged("PowerAlarm_LastHour");
+                OnPowerAlarm_LastHourChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_LastHour;
+        partial void OnPowerAlarm_LastHourChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_LastHourChanged();
 
         #endregion
 
@@ -25459,6 +27199,102 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _WorkInfo;
         partial void OnWorkInfoChanging(Nullable<global::System.Int32> value);
         partial void OnWorkInfoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MeterNo
+        {
+            get
+            {
+                return _MeterNo;
+            }
+            set
+            {
+                OnMeterNoChanging(value);
+                ReportPropertyChanging("MeterNo");
+                _MeterNo = StructuralObject.SetValidValue(value, true, "MeterNo");
+                ReportPropertyChanged("MeterNo");
+                OnMeterNoChanged();
+            }
+        }
+        private global::System.String _MeterNo;
+        partial void OnMeterNoChanging(global::System.String value);
+        partial void OnMeterNoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Area
+        {
+            get
+            {
+                return _Area;
+            }
+            set
+            {
+                OnAreaChanging(value);
+                ReportPropertyChanging("Area");
+                _Area = StructuralObject.SetValidValue(value, true, "Area");
+                ReportPropertyChanged("Area");
+                OnAreaChanged();
+            }
+        }
+        private global::System.String _Area;
+        partial void OnAreaChanging(global::System.String value);
+        partial void OnAreaChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Tel
+        {
+            get
+            {
+                return _Tel;
+            }
+            set
+            {
+                OnTelChanging(value);
+                ReportPropertyChanging("Tel");
+                _Tel = StructuralObject.SetValidValue(value, true, "Tel");
+                ReportPropertyChanged("Tel");
+                OnTelChanged();
+            }
+        }
+        private global::System.String _Tel;
+        partial void OnTelChanging(global::System.String value);
+        partial void OnTelChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserMemo
+        {
+            get
+            {
+                return _UserMemo;
+            }
+            set
+            {
+                OnUserMemoChanging(value);
+                ReportPropertyChanging("UserMemo");
+                _UserMemo = StructuralObject.SetValidValue(value, true, "UserMemo");
+                ReportPropertyChanged("UserMemo");
+                OnUserMemoChanged();
+            }
+        }
+        private global::System.String _UserMemo;
+        partial void OnUserMemoChanging(global::System.String value);
+        partial void OnUserMemoChanged();
 
         #endregion
 
@@ -27423,6 +29259,78 @@ namespace slSecure.Web
         private Nullable<global::System.Int32> _WorkInfo;
         partial void OnWorkInfoChanging(Nullable<global::System.Int32> value);
         partial void OnWorkInfoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MeterNo
+        {
+            get
+            {
+                return _MeterNo;
+            }
+            set
+            {
+                OnMeterNoChanging(value);
+                ReportPropertyChanging("MeterNo");
+                _MeterNo = StructuralObject.SetValidValue(value, true, "MeterNo");
+                ReportPropertyChanged("MeterNo");
+                OnMeterNoChanged();
+            }
+        }
+        private global::System.String _MeterNo;
+        partial void OnMeterNoChanging(global::System.String value);
+        partial void OnMeterNoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Area
+        {
+            get
+            {
+                return _Area;
+            }
+            set
+            {
+                OnAreaChanging(value);
+                ReportPropertyChanging("Area");
+                _Area = StructuralObject.SetValidValue(value, true, "Area");
+                ReportPropertyChanged("Area");
+                OnAreaChanged();
+            }
+        }
+        private global::System.String _Area;
+        partial void OnAreaChanging(global::System.String value);
+        partial void OnAreaChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Tel
+        {
+            get
+            {
+                return _Tel;
+            }
+            set
+            {
+                OnTelChanging(value);
+                ReportPropertyChanging("Tel");
+                _Tel = StructuralObject.SetValidValue(value, true, "Tel");
+                ReportPropertyChanged("Tel");
+                OnTelChanged();
+            }
+        }
+        private global::System.String _Tel;
+        partial void OnTelChanging(global::System.String value);
+        partial void OnTelChanged();
 
         #endregion
 
@@ -28250,6 +30158,797 @@ namespace slSecure.Web
     /// <summary>
     /// 沒有可用的中繼資料文件。
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="vwPowerAndWaterMeterYearMonthDailyAvg")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class vwPowerAndWaterMeterYearMonthDailyAvg : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 vwPowerAndWaterMeterYearMonthDailyAvg 物件。
+        /// </summary>
+        /// <param name="eRName">ERName 屬性的初始值。</param>
+        /// <param name="flowID">FlowID 屬性的初始值。</param>
+        /// <param name="yearsNo">YearsNo 屬性的初始值。</param>
+        /// <param name="eRID">ERID 屬性的初始值。</param>
+        public static vwPowerAndWaterMeterYearMonthDailyAvg CreatevwPowerAndWaterMeterYearMonthDailyAvg(global::System.String eRName, global::System.Int64 flowID, global::System.Int32 yearsNo, global::System.Int32 eRID)
+        {
+            vwPowerAndWaterMeterYearMonthDailyAvg vwPowerAndWaterMeterYearMonthDailyAvg = new vwPowerAndWaterMeterYearMonthDailyAvg();
+            vwPowerAndWaterMeterYearMonthDailyAvg.ERName = eRName;
+            vwPowerAndWaterMeterYearMonthDailyAvg.FlowID = flowID;
+            vwPowerAndWaterMeterYearMonthDailyAvg.YearsNo = yearsNo;
+            vwPowerAndWaterMeterYearMonthDailyAvg.ERID = eRID;
+            return vwPowerAndWaterMeterYearMonthDailyAvg;
+        }
+
+        #endregion
+
+        #region 簡單屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ERName
+        {
+            get
+            {
+                return _ERName;
+            }
+            set
+            {
+                if (_ERName != value)
+                {
+                    OnERNameChanging(value);
+                    ReportPropertyChanging("ERName");
+                    _ERName = StructuralObject.SetValidValue(value, false, "ERName");
+                    ReportPropertyChanged("ERName");
+                    OnERNameChanged();
+                }
+            }
+        }
+        private global::System.String _ERName;
+        partial void OnERNameChanging(global::System.String value);
+        partial void OnERNameChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 FlowID
+        {
+            get
+            {
+                return _FlowID;
+            }
+            set
+            {
+                if (_FlowID != value)
+                {
+                    OnFlowIDChanging(value);
+                    ReportPropertyChanging("FlowID");
+                    _FlowID = StructuralObject.SetValidValue(value, "FlowID");
+                    ReportPropertyChanged("FlowID");
+                    OnFlowIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _FlowID;
+        partial void OnFlowIDChanging(global::System.Int64 value);
+        partial void OnFlowIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 YearsNo
+        {
+            get
+            {
+                return _YearsNo;
+            }
+            set
+            {
+                if (_YearsNo != value)
+                {
+                    OnYearsNoChanging(value);
+                    ReportPropertyChanging("YearsNo");
+                    _YearsNo = StructuralObject.SetValidValue(value, "YearsNo");
+                    ReportPropertyChanged("YearsNo");
+                    OnYearsNoChanged();
+                }
+            }
+        }
+        private global::System.Int32 _YearsNo;
+        partial void OnYearsNoChanging(global::System.Int32 value);
+        partial void OnYearsNoChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ERID
+        {
+            get
+            {
+                return _ERID;
+            }
+            set
+            {
+                if (_ERID != value)
+                {
+                    OnERIDChanging(value);
+                    ReportPropertyChanging("ERID");
+                    _ERID = StructuralObject.SetValidValue(value, "ERID");
+                    ReportPropertyChanged("ERID");
+                    OnERIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ERID;
+        partial void OnERIDChanging(global::System.Int32 value);
+        partial void OnERIDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power1MonthDailyAvg
+        {
+            get
+            {
+                return _Power1MonthDailyAvg;
+            }
+            set
+            {
+                OnPower1MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power1MonthDailyAvg");
+                _Power1MonthDailyAvg = StructuralObject.SetValidValue(value, "Power1MonthDailyAvg");
+                ReportPropertyChanged("Power1MonthDailyAvg");
+                OnPower1MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power1MonthDailyAvg;
+        partial void OnPower1MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower1MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power2MonthDailyAvg
+        {
+            get
+            {
+                return _Power2MonthDailyAvg;
+            }
+            set
+            {
+                OnPower2MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power2MonthDailyAvg");
+                _Power2MonthDailyAvg = StructuralObject.SetValidValue(value, "Power2MonthDailyAvg");
+                ReportPropertyChanged("Power2MonthDailyAvg");
+                OnPower2MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power2MonthDailyAvg;
+        partial void OnPower2MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower2MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power3MonthDailyAvg
+        {
+            get
+            {
+                return _Power3MonthDailyAvg;
+            }
+            set
+            {
+                OnPower3MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power3MonthDailyAvg");
+                _Power3MonthDailyAvg = StructuralObject.SetValidValue(value, "Power3MonthDailyAvg");
+                ReportPropertyChanged("Power3MonthDailyAvg");
+                OnPower3MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power3MonthDailyAvg;
+        partial void OnPower3MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower3MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power4MonthDailyAvg
+        {
+            get
+            {
+                return _Power4MonthDailyAvg;
+            }
+            set
+            {
+                OnPower4MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power4MonthDailyAvg");
+                _Power4MonthDailyAvg = StructuralObject.SetValidValue(value, "Power4MonthDailyAvg");
+                ReportPropertyChanged("Power4MonthDailyAvg");
+                OnPower4MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power4MonthDailyAvg;
+        partial void OnPower4MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower4MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power5MonthDailyAvg
+        {
+            get
+            {
+                return _Power5MonthDailyAvg;
+            }
+            set
+            {
+                OnPower5MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power5MonthDailyAvg");
+                _Power5MonthDailyAvg = StructuralObject.SetValidValue(value, "Power5MonthDailyAvg");
+                ReportPropertyChanged("Power5MonthDailyAvg");
+                OnPower5MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power5MonthDailyAvg;
+        partial void OnPower5MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower5MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power6MonthDailyAvg
+        {
+            get
+            {
+                return _Power6MonthDailyAvg;
+            }
+            set
+            {
+                OnPower6MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power6MonthDailyAvg");
+                _Power6MonthDailyAvg = StructuralObject.SetValidValue(value, "Power6MonthDailyAvg");
+                ReportPropertyChanged("Power6MonthDailyAvg");
+                OnPower6MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power6MonthDailyAvg;
+        partial void OnPower6MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower6MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power7MonthDailyAvg
+        {
+            get
+            {
+                return _Power7MonthDailyAvg;
+            }
+            set
+            {
+                OnPower7MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power7MonthDailyAvg");
+                _Power7MonthDailyAvg = StructuralObject.SetValidValue(value, "Power7MonthDailyAvg");
+                ReportPropertyChanged("Power7MonthDailyAvg");
+                OnPower7MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power7MonthDailyAvg;
+        partial void OnPower7MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower7MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power8MonthDailyAvg
+        {
+            get
+            {
+                return _Power8MonthDailyAvg;
+            }
+            set
+            {
+                OnPower8MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power8MonthDailyAvg");
+                _Power8MonthDailyAvg = StructuralObject.SetValidValue(value, "Power8MonthDailyAvg");
+                ReportPropertyChanged("Power8MonthDailyAvg");
+                OnPower8MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power8MonthDailyAvg;
+        partial void OnPower8MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower8MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power9MonthDailyAvg
+        {
+            get
+            {
+                return _Power9MonthDailyAvg;
+            }
+            set
+            {
+                OnPower9MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power9MonthDailyAvg");
+                _Power9MonthDailyAvg = StructuralObject.SetValidValue(value, "Power9MonthDailyAvg");
+                ReportPropertyChanged("Power9MonthDailyAvg");
+                OnPower9MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power9MonthDailyAvg;
+        partial void OnPower9MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower9MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power10MonthDailyAvg
+        {
+            get
+            {
+                return _Power10MonthDailyAvg;
+            }
+            set
+            {
+                OnPower10MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power10MonthDailyAvg");
+                _Power10MonthDailyAvg = StructuralObject.SetValidValue(value, "Power10MonthDailyAvg");
+                ReportPropertyChanged("Power10MonthDailyAvg");
+                OnPower10MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power10MonthDailyAvg;
+        partial void OnPower10MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower10MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power11MonthDailyAvg
+        {
+            get
+            {
+                return _Power11MonthDailyAvg;
+            }
+            set
+            {
+                OnPower11MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power11MonthDailyAvg");
+                _Power11MonthDailyAvg = StructuralObject.SetValidValue(value, "Power11MonthDailyAvg");
+                ReportPropertyChanged("Power11MonthDailyAvg");
+                OnPower11MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power11MonthDailyAvg;
+        partial void OnPower11MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower11MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power12MonthDailyAvg
+        {
+            get
+            {
+                return _Power12MonthDailyAvg;
+            }
+            set
+            {
+                OnPower12MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power12MonthDailyAvg");
+                _Power12MonthDailyAvg = StructuralObject.SetValidValue(value, "Power12MonthDailyAvg");
+                ReportPropertyChanged("Power12MonthDailyAvg");
+                OnPower12MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power12MonthDailyAvg;
+        partial void OnPower12MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower12MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> PowerUpdateDate
+        {
+            get
+            {
+                return _PowerUpdateDate;
+            }
+            set
+            {
+                OnPowerUpdateDateChanging(value);
+                ReportPropertyChanging("PowerUpdateDate");
+                _PowerUpdateDate = StructuralObject.SetValidValue(value, "PowerUpdateDate");
+                ReportPropertyChanged("PowerUpdateDate");
+                OnPowerUpdateDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _PowerUpdateDate;
+        partial void OnPowerUpdateDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnPowerUpdateDateChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water1MonthDailyAvg
+        {
+            get
+            {
+                return _Water1MonthDailyAvg;
+            }
+            set
+            {
+                OnWater1MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water1MonthDailyAvg");
+                _Water1MonthDailyAvg = StructuralObject.SetValidValue(value, "Water1MonthDailyAvg");
+                ReportPropertyChanged("Water1MonthDailyAvg");
+                OnWater1MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water1MonthDailyAvg;
+        partial void OnWater1MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater1MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water2MonthDailyAvg
+        {
+            get
+            {
+                return _Water2MonthDailyAvg;
+            }
+            set
+            {
+                OnWater2MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water2MonthDailyAvg");
+                _Water2MonthDailyAvg = StructuralObject.SetValidValue(value, "Water2MonthDailyAvg");
+                ReportPropertyChanged("Water2MonthDailyAvg");
+                OnWater2MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water2MonthDailyAvg;
+        partial void OnWater2MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater2MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water3MonthDailyAvg
+        {
+            get
+            {
+                return _Water3MonthDailyAvg;
+            }
+            set
+            {
+                OnWater3MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water3MonthDailyAvg");
+                _Water3MonthDailyAvg = StructuralObject.SetValidValue(value, "Water3MonthDailyAvg");
+                ReportPropertyChanged("Water3MonthDailyAvg");
+                OnWater3MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water3MonthDailyAvg;
+        partial void OnWater3MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater3MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water4MonthDailyAvg
+        {
+            get
+            {
+                return _Water4MonthDailyAvg;
+            }
+            set
+            {
+                OnWater4MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water4MonthDailyAvg");
+                _Water4MonthDailyAvg = StructuralObject.SetValidValue(value, "Water4MonthDailyAvg");
+                ReportPropertyChanged("Water4MonthDailyAvg");
+                OnWater4MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water4MonthDailyAvg;
+        partial void OnWater4MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater4MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water5MonthDailyAvg
+        {
+            get
+            {
+                return _Water5MonthDailyAvg;
+            }
+            set
+            {
+                OnWater5MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water5MonthDailyAvg");
+                _Water5MonthDailyAvg = StructuralObject.SetValidValue(value, "Water5MonthDailyAvg");
+                ReportPropertyChanged("Water5MonthDailyAvg");
+                OnWater5MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water5MonthDailyAvg;
+        partial void OnWater5MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater5MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water6MonthDailyAvg
+        {
+            get
+            {
+                return _Water6MonthDailyAvg;
+            }
+            set
+            {
+                OnWater6MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water6MonthDailyAvg");
+                _Water6MonthDailyAvg = StructuralObject.SetValidValue(value, "Water6MonthDailyAvg");
+                ReportPropertyChanged("Water6MonthDailyAvg");
+                OnWater6MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water6MonthDailyAvg;
+        partial void OnWater6MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater6MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water7MonthDailyAvg
+        {
+            get
+            {
+                return _Water7MonthDailyAvg;
+            }
+            set
+            {
+                OnWater7MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water7MonthDailyAvg");
+                _Water7MonthDailyAvg = StructuralObject.SetValidValue(value, "Water7MonthDailyAvg");
+                ReportPropertyChanged("Water7MonthDailyAvg");
+                OnWater7MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water7MonthDailyAvg;
+        partial void OnWater7MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater7MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water8MonthDailyAvg
+        {
+            get
+            {
+                return _Water8MonthDailyAvg;
+            }
+            set
+            {
+                OnWater8MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water8MonthDailyAvg");
+                _Water8MonthDailyAvg = StructuralObject.SetValidValue(value, "Water8MonthDailyAvg");
+                ReportPropertyChanged("Water8MonthDailyAvg");
+                OnWater8MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water8MonthDailyAvg;
+        partial void OnWater8MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater8MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water9MonthDailyAvg
+        {
+            get
+            {
+                return _Water9MonthDailyAvg;
+            }
+            set
+            {
+                OnWater9MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water9MonthDailyAvg");
+                _Water9MonthDailyAvg = StructuralObject.SetValidValue(value, "Water9MonthDailyAvg");
+                ReportPropertyChanged("Water9MonthDailyAvg");
+                OnWater9MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water9MonthDailyAvg;
+        partial void OnWater9MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater9MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water10MonthDailyAvg
+        {
+            get
+            {
+                return _Water10MonthDailyAvg;
+            }
+            set
+            {
+                OnWater10MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water10MonthDailyAvg");
+                _Water10MonthDailyAvg = StructuralObject.SetValidValue(value, "Water10MonthDailyAvg");
+                ReportPropertyChanged("Water10MonthDailyAvg");
+                OnWater10MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water10MonthDailyAvg;
+        partial void OnWater10MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater10MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water11MonthDailyAvg
+        {
+            get
+            {
+                return _Water11MonthDailyAvg;
+            }
+            set
+            {
+                OnWater11MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water11MonthDailyAvg");
+                _Water11MonthDailyAvg = StructuralObject.SetValidValue(value, "Water11MonthDailyAvg");
+                ReportPropertyChanged("Water11MonthDailyAvg");
+                OnWater11MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water11MonthDailyAvg;
+        partial void OnWater11MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater11MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water12MonthDailyAvg
+        {
+            get
+            {
+                return _Water12MonthDailyAvg;
+            }
+            set
+            {
+                OnWater12MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water12MonthDailyAvg");
+                _Water12MonthDailyAvg = StructuralObject.SetValidValue(value, "Water12MonthDailyAvg");
+                ReportPropertyChanged("Water12MonthDailyAvg");
+                OnWater12MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water12MonthDailyAvg;
+        partial void OnWater12MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater12MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> WaterUpdateDate
+        {
+            get
+            {
+                return _WaterUpdateDate;
+            }
+            set
+            {
+                OnWaterUpdateDateChanging(value);
+                ReportPropertyChanging("WaterUpdateDate");
+                _WaterUpdateDate = StructuralObject.SetValidValue(value, "WaterUpdateDate");
+                ReportPropertyChanged("WaterUpdateDate");
+                OnWaterUpdateDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _WaterUpdateDate;
+        partial void OnWaterUpdateDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnWaterUpdateDateChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Memo
+        {
+            get
+            {
+                return _Memo;
+            }
+            set
+            {
+                OnMemoChanging(value);
+                ReportPropertyChanging("Memo");
+                _Memo = StructuralObject.SetValidValue(value, true, "Memo");
+                ReportPropertyChanged("Memo");
+                OnMemoChanged();
+            }
+        }
+        private global::System.String _Memo;
+        partial void OnMemoChanging(global::System.String value);
+        partial void OnMemoChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SecureDBModel", Name="vwPowerMeter")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -28264,13 +30963,23 @@ namespace slSecure.Web
         /// <param name="eRName">ERName 屬性的初始值。</param>
         /// <param name="rTU_IP">RTU_IP 屬性的初始值。</param>
         /// <param name="port">Port 屬性的初始值。</param>
-        public static vwPowerMeter CreatevwPowerMeter(global::System.Int32 eRID, global::System.String eRName, global::System.String rTU_IP, global::System.Int32 port)
+        /// <param name="powerAlarm_LastYearDetail">PowerAlarm_LastYearDetail 屬性的初始值。</param>
+        /// <param name="powerAlarm_YesterdayDetail">PowerAlarm_YesterdayDetail 屬性的初始值。</param>
+        /// <param name="powerAlarm_LastHourDetail">PowerAlarm_LastHourDetail 屬性的初始值。</param>
+        /// <param name="waterAlarm_LastYearDetail">WaterAlarm_LastYearDetail 屬性的初始值。</param>
+        /// <param name="powerAlarmDetail">PowerAlarmDetail 屬性的初始值。</param>
+        public static vwPowerMeter CreatevwPowerMeter(global::System.Int32 eRID, global::System.String eRName, global::System.String rTU_IP, global::System.Int32 port, global::System.String powerAlarm_LastYearDetail, global::System.String powerAlarm_YesterdayDetail, global::System.String powerAlarm_LastHourDetail, global::System.String waterAlarm_LastYearDetail, global::System.String powerAlarmDetail)
         {
             vwPowerMeter vwPowerMeter = new vwPowerMeter();
             vwPowerMeter.ERID = eRID;
             vwPowerMeter.ERName = eRName;
             vwPowerMeter.RTU_IP = rTU_IP;
             vwPowerMeter.Port = port;
+            vwPowerMeter.PowerAlarm_LastYearDetail = powerAlarm_LastYearDetail;
+            vwPowerMeter.PowerAlarm_YesterdayDetail = powerAlarm_YesterdayDetail;
+            vwPowerMeter.PowerAlarm_LastHourDetail = powerAlarm_LastHourDetail;
+            vwPowerMeter.WaterAlarm_LastYearDetail = waterAlarm_LastYearDetail;
+            vwPowerMeter.PowerAlarmDetail = powerAlarmDetail;
             return vwPowerMeter;
         }
 
@@ -29057,6 +31766,1173 @@ namespace slSecure.Web
         private Nullable<global::System.Double> _PowerSubtraction;
         partial void OnPowerSubtractionChanging(Nullable<global::System.Double> value);
         partial void OnPowerSubtractionChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> kWh
+        {
+            get
+            {
+                return _kWh;
+            }
+            set
+            {
+                OnkWhChanging(value);
+                ReportPropertyChanging("kWh");
+                _kWh = StructuralObject.SetValidValue(value, "kWh");
+                ReportPropertyChanged("kWh");
+                OnkWhChanged();
+            }
+        }
+        private Nullable<global::System.Double> _kWh;
+        partial void OnkWhChanging(Nullable<global::System.Double> value);
+        partial void OnkWhChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerConsume
+        {
+            get
+            {
+                return _PowerConsume;
+            }
+            set
+            {
+                OnPowerConsumeChanging(value);
+                ReportPropertyChanging("PowerConsume");
+                _PowerConsume = StructuralObject.SetValidValue(value, "PowerConsume");
+                ReportPropertyChanged("PowerConsume");
+                OnPowerConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerConsume;
+        partial void OnPowerConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnPowerConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power24Consume
+        {
+            get
+            {
+                return _Power24Consume;
+            }
+            set
+            {
+                OnPower24ConsumeChanging(value);
+                ReportPropertyChanging("Power24Consume");
+                _Power24Consume = StructuralObject.SetValidValue(value, "Power24Consume");
+                ReportPropertyChanged("Power24Consume");
+                OnPower24ConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power24Consume;
+        partial void OnPower24ConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnPower24ConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_LastYear
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_LastYear;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_LastYearChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_LastYear");
+                _PowerAlarmBaseValue_LastYear = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_LastYear");
+                ReportPropertyChanged("PowerAlarmBaseValue_LastYear");
+                OnPowerAlarmBaseValue_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_LastYear;
+        partial void OnPowerAlarmBaseValue_LastYearChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_Yesterday
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_Yesterday;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_YesterdayChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_Yesterday");
+                _PowerAlarmBaseValue_Yesterday = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_Yesterday");
+                ReportPropertyChanged("PowerAlarmBaseValue_Yesterday");
+                OnPowerAlarmBaseValue_YesterdayChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_Yesterday;
+        partial void OnPowerAlarmBaseValue_YesterdayChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_YesterdayChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_LastHour
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_LastHour;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_LastHourChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_LastHour");
+                _PowerAlarmBaseValue_LastHour = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_LastHour");
+                ReportPropertyChanged("PowerAlarmBaseValue_LastHour");
+                OnPowerAlarmBaseValue_LastHourChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_LastHour;
+        partial void OnPowerAlarmBaseValue_LastHourChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_LastHourChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_LastYear
+        {
+            get
+            {
+                return _PowerAlarm_LastYear;
+            }
+            set
+            {
+                OnPowerAlarm_LastYearChanging(value);
+                ReportPropertyChanging("PowerAlarm_LastYear");
+                _PowerAlarm_LastYear = StructuralObject.SetValidValue(value, "PowerAlarm_LastYear");
+                ReportPropertyChanged("PowerAlarm_LastYear");
+                OnPowerAlarm_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_LastYear;
+        partial void OnPowerAlarm_LastYearChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PowerAlarm_LastYearDetail
+        {
+            get
+            {
+                return _PowerAlarm_LastYearDetail;
+            }
+            set
+            {
+                if (_PowerAlarm_LastYearDetail != value)
+                {
+                    OnPowerAlarm_LastYearDetailChanging(value);
+                    ReportPropertyChanging("PowerAlarm_LastYearDetail");
+                    _PowerAlarm_LastYearDetail = StructuralObject.SetValidValue(value, false, "PowerAlarm_LastYearDetail");
+                    ReportPropertyChanged("PowerAlarm_LastYearDetail");
+                    OnPowerAlarm_LastYearDetailChanged();
+                }
+            }
+        }
+        private global::System.String _PowerAlarm_LastYearDetail;
+        partial void OnPowerAlarm_LastYearDetailChanging(global::System.String value);
+        partial void OnPowerAlarm_LastYearDetailChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_Yesterday
+        {
+            get
+            {
+                return _PowerAlarm_Yesterday;
+            }
+            set
+            {
+                OnPowerAlarm_YesterdayChanging(value);
+                ReportPropertyChanging("PowerAlarm_Yesterday");
+                _PowerAlarm_Yesterday = StructuralObject.SetValidValue(value, "PowerAlarm_Yesterday");
+                ReportPropertyChanged("PowerAlarm_Yesterday");
+                OnPowerAlarm_YesterdayChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_Yesterday;
+        partial void OnPowerAlarm_YesterdayChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_YesterdayChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PowerAlarm_YesterdayDetail
+        {
+            get
+            {
+                return _PowerAlarm_YesterdayDetail;
+            }
+            set
+            {
+                if (_PowerAlarm_YesterdayDetail != value)
+                {
+                    OnPowerAlarm_YesterdayDetailChanging(value);
+                    ReportPropertyChanging("PowerAlarm_YesterdayDetail");
+                    _PowerAlarm_YesterdayDetail = StructuralObject.SetValidValue(value, false, "PowerAlarm_YesterdayDetail");
+                    ReportPropertyChanged("PowerAlarm_YesterdayDetail");
+                    OnPowerAlarm_YesterdayDetailChanged();
+                }
+            }
+        }
+        private global::System.String _PowerAlarm_YesterdayDetail;
+        partial void OnPowerAlarm_YesterdayDetailChanging(global::System.String value);
+        partial void OnPowerAlarm_YesterdayDetailChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_LastHour
+        {
+            get
+            {
+                return _PowerAlarm_LastHour;
+            }
+            set
+            {
+                OnPowerAlarm_LastHourChanging(value);
+                ReportPropertyChanging("PowerAlarm_LastHour");
+                _PowerAlarm_LastHour = StructuralObject.SetValidValue(value, "PowerAlarm_LastHour");
+                ReportPropertyChanged("PowerAlarm_LastHour");
+                OnPowerAlarm_LastHourChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_LastHour;
+        partial void OnPowerAlarm_LastHourChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_LastHourChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PowerAlarm_LastHourDetail
+        {
+            get
+            {
+                return _PowerAlarm_LastHourDetail;
+            }
+            set
+            {
+                if (_PowerAlarm_LastHourDetail != value)
+                {
+                    OnPowerAlarm_LastHourDetailChanging(value);
+                    ReportPropertyChanging("PowerAlarm_LastHourDetail");
+                    _PowerAlarm_LastHourDetail = StructuralObject.SetValidValue(value, false, "PowerAlarm_LastHourDetail");
+                    ReportPropertyChanged("PowerAlarm_LastHourDetail");
+                    OnPowerAlarm_LastHourDetailChanged();
+                }
+            }
+        }
+        private global::System.String _PowerAlarm_LastHourDetail;
+        partial void OnPowerAlarm_LastHourDetailChanging(global::System.String value);
+        partial void OnPowerAlarm_LastHourDetailChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power1MonthDailyAvg
+        {
+            get
+            {
+                return _Power1MonthDailyAvg;
+            }
+            set
+            {
+                OnPower1MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power1MonthDailyAvg");
+                _Power1MonthDailyAvg = StructuralObject.SetValidValue(value, "Power1MonthDailyAvg");
+                ReportPropertyChanged("Power1MonthDailyAvg");
+                OnPower1MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power1MonthDailyAvg;
+        partial void OnPower1MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower1MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power2MonthDailyAvg
+        {
+            get
+            {
+                return _Power2MonthDailyAvg;
+            }
+            set
+            {
+                OnPower2MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power2MonthDailyAvg");
+                _Power2MonthDailyAvg = StructuralObject.SetValidValue(value, "Power2MonthDailyAvg");
+                ReportPropertyChanged("Power2MonthDailyAvg");
+                OnPower2MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power2MonthDailyAvg;
+        partial void OnPower2MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower2MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power3MonthDailyAvg
+        {
+            get
+            {
+                return _Power3MonthDailyAvg;
+            }
+            set
+            {
+                OnPower3MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power3MonthDailyAvg");
+                _Power3MonthDailyAvg = StructuralObject.SetValidValue(value, "Power3MonthDailyAvg");
+                ReportPropertyChanged("Power3MonthDailyAvg");
+                OnPower3MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power3MonthDailyAvg;
+        partial void OnPower3MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower3MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power4MonthDailyAvg
+        {
+            get
+            {
+                return _Power4MonthDailyAvg;
+            }
+            set
+            {
+                OnPower4MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power4MonthDailyAvg");
+                _Power4MonthDailyAvg = StructuralObject.SetValidValue(value, "Power4MonthDailyAvg");
+                ReportPropertyChanged("Power4MonthDailyAvg");
+                OnPower4MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power4MonthDailyAvg;
+        partial void OnPower4MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower4MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power5MonthDailyAvg
+        {
+            get
+            {
+                return _Power5MonthDailyAvg;
+            }
+            set
+            {
+                OnPower5MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power5MonthDailyAvg");
+                _Power5MonthDailyAvg = StructuralObject.SetValidValue(value, "Power5MonthDailyAvg");
+                ReportPropertyChanged("Power5MonthDailyAvg");
+                OnPower5MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power5MonthDailyAvg;
+        partial void OnPower5MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower5MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power6MonthDailyAvg
+        {
+            get
+            {
+                return _Power6MonthDailyAvg;
+            }
+            set
+            {
+                OnPower6MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power6MonthDailyAvg");
+                _Power6MonthDailyAvg = StructuralObject.SetValidValue(value, "Power6MonthDailyAvg");
+                ReportPropertyChanged("Power6MonthDailyAvg");
+                OnPower6MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power6MonthDailyAvg;
+        partial void OnPower6MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower6MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power7MonthDailyAvg
+        {
+            get
+            {
+                return _Power7MonthDailyAvg;
+            }
+            set
+            {
+                OnPower7MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power7MonthDailyAvg");
+                _Power7MonthDailyAvg = StructuralObject.SetValidValue(value, "Power7MonthDailyAvg");
+                ReportPropertyChanged("Power7MonthDailyAvg");
+                OnPower7MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power7MonthDailyAvg;
+        partial void OnPower7MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower7MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power8MonthDailyAvg
+        {
+            get
+            {
+                return _Power8MonthDailyAvg;
+            }
+            set
+            {
+                OnPower8MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power8MonthDailyAvg");
+                _Power8MonthDailyAvg = StructuralObject.SetValidValue(value, "Power8MonthDailyAvg");
+                ReportPropertyChanged("Power8MonthDailyAvg");
+                OnPower8MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power8MonthDailyAvg;
+        partial void OnPower8MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower8MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power9MonthDailyAvg
+        {
+            get
+            {
+                return _Power9MonthDailyAvg;
+            }
+            set
+            {
+                OnPower9MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power9MonthDailyAvg");
+                _Power9MonthDailyAvg = StructuralObject.SetValidValue(value, "Power9MonthDailyAvg");
+                ReportPropertyChanged("Power9MonthDailyAvg");
+                OnPower9MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power9MonthDailyAvg;
+        partial void OnPower9MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower9MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power10MonthDailyAvg
+        {
+            get
+            {
+                return _Power10MonthDailyAvg;
+            }
+            set
+            {
+                OnPower10MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power10MonthDailyAvg");
+                _Power10MonthDailyAvg = StructuralObject.SetValidValue(value, "Power10MonthDailyAvg");
+                ReportPropertyChanged("Power10MonthDailyAvg");
+                OnPower10MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power10MonthDailyAvg;
+        partial void OnPower10MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower10MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power11MonthDailyAvg
+        {
+            get
+            {
+                return _Power11MonthDailyAvg;
+            }
+            set
+            {
+                OnPower11MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power11MonthDailyAvg");
+                _Power11MonthDailyAvg = StructuralObject.SetValidValue(value, "Power11MonthDailyAvg");
+                ReportPropertyChanged("Power11MonthDailyAvg");
+                OnPower11MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power11MonthDailyAvg;
+        partial void OnPower11MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower11MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power12MonthDailyAvg
+        {
+            get
+            {
+                return _Power12MonthDailyAvg;
+            }
+            set
+            {
+                OnPower12MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Power12MonthDailyAvg");
+                _Power12MonthDailyAvg = StructuralObject.SetValidValue(value, "Power12MonthDailyAvg");
+                ReportPropertyChanged("Power12MonthDailyAvg");
+                OnPower12MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power12MonthDailyAvg;
+        partial void OnPower12MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnPower12MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SetThisPeriodkWh
+        {
+            get
+            {
+                return _SetThisPeriodkWh;
+            }
+            set
+            {
+                OnSetThisPeriodkWhChanging(value);
+                ReportPropertyChanging("SetThisPeriodkWh");
+                _SetThisPeriodkWh = StructuralObject.SetValidValue(value, "SetThisPeriodkWh");
+                ReportPropertyChanged("SetThisPeriodkWh");
+                OnSetThisPeriodkWhChanged();
+            }
+        }
+        private Nullable<global::System.Double> _SetThisPeriodkWh;
+        partial void OnSetThisPeriodkWhChanging(Nullable<global::System.Double> value);
+        partial void OnSetThisPeriodkWhChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water24Consume
+        {
+            get
+            {
+                return _Water24Consume;
+            }
+            set
+            {
+                OnWater24ConsumeChanging(value);
+                ReportPropertyChanging("Water24Consume");
+                _Water24Consume = StructuralObject.SetValidValue(value, "Water24Consume");
+                ReportPropertyChanged("Water24Consume");
+                OnWater24ConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water24Consume;
+        partial void OnWater24ConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnWater24ConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> WaterAlarmBaseValue_LastYear
+        {
+            get
+            {
+                return _WaterAlarmBaseValue_LastYear;
+            }
+            set
+            {
+                OnWaterAlarmBaseValue_LastYearChanging(value);
+                ReportPropertyChanging("WaterAlarmBaseValue_LastYear");
+                _WaterAlarmBaseValue_LastYear = StructuralObject.SetValidValue(value, "WaterAlarmBaseValue_LastYear");
+                ReportPropertyChanged("WaterAlarmBaseValue_LastYear");
+                OnWaterAlarmBaseValue_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Double> _WaterAlarmBaseValue_LastYear;
+        partial void OnWaterAlarmBaseValue_LastYearChanging(Nullable<global::System.Double> value);
+        partial void OnWaterAlarmBaseValue_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> WaterAlarm_LastYear
+        {
+            get
+            {
+                return _WaterAlarm_LastYear;
+            }
+            set
+            {
+                OnWaterAlarm_LastYearChanging(value);
+                ReportPropertyChanging("WaterAlarm_LastYear");
+                _WaterAlarm_LastYear = StructuralObject.SetValidValue(value, "WaterAlarm_LastYear");
+                ReportPropertyChanged("WaterAlarm_LastYear");
+                OnWaterAlarm_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _WaterAlarm_LastYear;
+        partial void OnWaterAlarm_LastYearChanging(Nullable<global::System.Int16> value);
+        partial void OnWaterAlarm_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String WaterAlarm_LastYearDetail
+        {
+            get
+            {
+                return _WaterAlarm_LastYearDetail;
+            }
+            set
+            {
+                if (_WaterAlarm_LastYearDetail != value)
+                {
+                    OnWaterAlarm_LastYearDetailChanging(value);
+                    ReportPropertyChanging("WaterAlarm_LastYearDetail");
+                    _WaterAlarm_LastYearDetail = StructuralObject.SetValidValue(value, false, "WaterAlarm_LastYearDetail");
+                    ReportPropertyChanged("WaterAlarm_LastYearDetail");
+                    OnWaterAlarm_LastYearDetailChanged();
+                }
+            }
+        }
+        private global::System.String _WaterAlarm_LastYearDetail;
+        partial void OnWaterAlarm_LastYearDetailChanging(global::System.String value);
+        partial void OnWaterAlarm_LastYearDetailChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water1MonthDailyAvg
+        {
+            get
+            {
+                return _Water1MonthDailyAvg;
+            }
+            set
+            {
+                OnWater1MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water1MonthDailyAvg");
+                _Water1MonthDailyAvg = StructuralObject.SetValidValue(value, "Water1MonthDailyAvg");
+                ReportPropertyChanged("Water1MonthDailyAvg");
+                OnWater1MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water1MonthDailyAvg;
+        partial void OnWater1MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater1MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water2MonthDailyAvg
+        {
+            get
+            {
+                return _Water2MonthDailyAvg;
+            }
+            set
+            {
+                OnWater2MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water2MonthDailyAvg");
+                _Water2MonthDailyAvg = StructuralObject.SetValidValue(value, "Water2MonthDailyAvg");
+                ReportPropertyChanged("Water2MonthDailyAvg");
+                OnWater2MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water2MonthDailyAvg;
+        partial void OnWater2MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater2MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water3MonthDailyAvg
+        {
+            get
+            {
+                return _Water3MonthDailyAvg;
+            }
+            set
+            {
+                OnWater3MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water3MonthDailyAvg");
+                _Water3MonthDailyAvg = StructuralObject.SetValidValue(value, "Water3MonthDailyAvg");
+                ReportPropertyChanged("Water3MonthDailyAvg");
+                OnWater3MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water3MonthDailyAvg;
+        partial void OnWater3MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater3MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water4MonthDailyAvg
+        {
+            get
+            {
+                return _Water4MonthDailyAvg;
+            }
+            set
+            {
+                OnWater4MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water4MonthDailyAvg");
+                _Water4MonthDailyAvg = StructuralObject.SetValidValue(value, "Water4MonthDailyAvg");
+                ReportPropertyChanged("Water4MonthDailyAvg");
+                OnWater4MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water4MonthDailyAvg;
+        partial void OnWater4MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater4MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water5MonthDailyAvg
+        {
+            get
+            {
+                return _Water5MonthDailyAvg;
+            }
+            set
+            {
+                OnWater5MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water5MonthDailyAvg");
+                _Water5MonthDailyAvg = StructuralObject.SetValidValue(value, "Water5MonthDailyAvg");
+                ReportPropertyChanged("Water5MonthDailyAvg");
+                OnWater5MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water5MonthDailyAvg;
+        partial void OnWater5MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater5MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water6MonthDailyAvg
+        {
+            get
+            {
+                return _Water6MonthDailyAvg;
+            }
+            set
+            {
+                OnWater6MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water6MonthDailyAvg");
+                _Water6MonthDailyAvg = StructuralObject.SetValidValue(value, "Water6MonthDailyAvg");
+                ReportPropertyChanged("Water6MonthDailyAvg");
+                OnWater6MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water6MonthDailyAvg;
+        partial void OnWater6MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater6MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water7MonthDailyAvg
+        {
+            get
+            {
+                return _Water7MonthDailyAvg;
+            }
+            set
+            {
+                OnWater7MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water7MonthDailyAvg");
+                _Water7MonthDailyAvg = StructuralObject.SetValidValue(value, "Water7MonthDailyAvg");
+                ReportPropertyChanged("Water7MonthDailyAvg");
+                OnWater7MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water7MonthDailyAvg;
+        partial void OnWater7MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater7MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water8MonthDailyAvg
+        {
+            get
+            {
+                return _Water8MonthDailyAvg;
+            }
+            set
+            {
+                OnWater8MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water8MonthDailyAvg");
+                _Water8MonthDailyAvg = StructuralObject.SetValidValue(value, "Water8MonthDailyAvg");
+                ReportPropertyChanged("Water8MonthDailyAvg");
+                OnWater8MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water8MonthDailyAvg;
+        partial void OnWater8MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater8MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water9MonthDailyAvg
+        {
+            get
+            {
+                return _Water9MonthDailyAvg;
+            }
+            set
+            {
+                OnWater9MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water9MonthDailyAvg");
+                _Water9MonthDailyAvg = StructuralObject.SetValidValue(value, "Water9MonthDailyAvg");
+                ReportPropertyChanged("Water9MonthDailyAvg");
+                OnWater9MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water9MonthDailyAvg;
+        partial void OnWater9MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater9MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water10MonthDailyAvg
+        {
+            get
+            {
+                return _Water10MonthDailyAvg;
+            }
+            set
+            {
+                OnWater10MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water10MonthDailyAvg");
+                _Water10MonthDailyAvg = StructuralObject.SetValidValue(value, "Water10MonthDailyAvg");
+                ReportPropertyChanged("Water10MonthDailyAvg");
+                OnWater10MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water10MonthDailyAvg;
+        partial void OnWater10MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater10MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water11MonthDailyAvg
+        {
+            get
+            {
+                return _Water11MonthDailyAvg;
+            }
+            set
+            {
+                OnWater11MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water11MonthDailyAvg");
+                _Water11MonthDailyAvg = StructuralObject.SetValidValue(value, "Water11MonthDailyAvg");
+                ReportPropertyChanged("Water11MonthDailyAvg");
+                OnWater11MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water11MonthDailyAvg;
+        partial void OnWater11MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater11MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water12MonthDailyAvg
+        {
+            get
+            {
+                return _Water12MonthDailyAvg;
+            }
+            set
+            {
+                OnWater12MonthDailyAvgChanging(value);
+                ReportPropertyChanging("Water12MonthDailyAvg");
+                _Water12MonthDailyAvg = StructuralObject.SetValidValue(value, "Water12MonthDailyAvg");
+                ReportPropertyChanged("Water12MonthDailyAvg");
+                OnWater12MonthDailyAvgChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water12MonthDailyAvg;
+        partial void OnWater12MonthDailyAvgChanging(Nullable<global::System.Double> value);
+        partial void OnWater12MonthDailyAvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SetThisPeriodWater
+        {
+            get
+            {
+                return _SetThisPeriodWater;
+            }
+            set
+            {
+                OnSetThisPeriodWaterChanging(value);
+                ReportPropertyChanging("SetThisPeriodWater");
+                _SetThisPeriodWater = StructuralObject.SetValidValue(value, "SetThisPeriodWater");
+                ReportPropertyChanged("SetThisPeriodWater");
+                OnSetThisPeriodWaterChanged();
+            }
+        }
+        private Nullable<global::System.Double> _SetThisPeriodWater;
+        partial void OnSetThisPeriodWaterChanging(Nullable<global::System.Double> value);
+        partial void OnSetThisPeriodWaterChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> CT
+        {
+            get
+            {
+                return _CT;
+            }
+            set
+            {
+                OnCTChanging(value);
+                ReportPropertyChanging("CT");
+                _CT = StructuralObject.SetValidValue(value, "CT");
+                ReportPropertyChanged("CT");
+                OnCTChanged();
+            }
+        }
+        private Nullable<global::System.Double> _CT;
+        partial void OnCTChanging(Nullable<global::System.Double> value);
+        partial void OnCTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SysThisPeriodWater
+        {
+            get
+            {
+                return _SysThisPeriodWater;
+            }
+            set
+            {
+                OnSysThisPeriodWaterChanging(value);
+                ReportPropertyChanging("SysThisPeriodWater");
+                _SysThisPeriodWater = StructuralObject.SetValidValue(value, "SysThisPeriodWater");
+                ReportPropertyChanged("SysThisPeriodWater");
+                OnSysThisPeriodWaterChanged();
+            }
+        }
+        private Nullable<global::System.Double> _SysThisPeriodWater;
+        partial void OnSysThisPeriodWaterChanging(Nullable<global::System.Double> value);
+        partial void OnSysThisPeriodWaterChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SysThisPeriodPower
+        {
+            get
+            {
+                return _SysThisPeriodPower;
+            }
+            set
+            {
+                OnSysThisPeriodPowerChanging(value);
+                ReportPropertyChanging("SysThisPeriodPower");
+                _SysThisPeriodPower = StructuralObject.SetValidValue(value, "SysThisPeriodPower");
+                ReportPropertyChanged("SysThisPeriodPower");
+                OnSysThisPeriodPowerChanged();
+            }
+        }
+        private Nullable<global::System.Double> _SysThisPeriodPower;
+        partial void OnSysThisPeriodPowerChanging(Nullable<global::System.Double> value);
+        partial void OnSysThisPeriodPowerChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> ThisPeriodWaterPCT
+        {
+            get
+            {
+                return _ThisPeriodWaterPCT;
+            }
+            set
+            {
+                OnThisPeriodWaterPCTChanging(value);
+                ReportPropertyChanging("ThisPeriodWaterPCT");
+                _ThisPeriodWaterPCT = StructuralObject.SetValidValue(value, "ThisPeriodWaterPCT");
+                ReportPropertyChanged("ThisPeriodWaterPCT");
+                OnThisPeriodWaterPCTChanged();
+            }
+        }
+        private Nullable<global::System.Double> _ThisPeriodWaterPCT;
+        partial void OnThisPeriodWaterPCTChanging(Nullable<global::System.Double> value);
+        partial void OnThisPeriodWaterPCTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> ThisPeriodPowerPCT
+        {
+            get
+            {
+                return _ThisPeriodPowerPCT;
+            }
+            set
+            {
+                OnThisPeriodPowerPCTChanging(value);
+                ReportPropertyChanging("ThisPeriodPowerPCT");
+                _ThisPeriodPowerPCT = StructuralObject.SetValidValue(value, "ThisPeriodPowerPCT");
+                ReportPropertyChanged("ThisPeriodPowerPCT");
+                OnThisPeriodPowerPCTChanged();
+            }
+        }
+        private Nullable<global::System.Double> _ThisPeriodPowerPCT;
+        partial void OnThisPeriodPowerPCTChanging(Nullable<global::System.Double> value);
+        partial void OnThisPeriodPowerPCTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PowerAlarmDetail
+        {
+            get
+            {
+                return _PowerAlarmDetail;
+            }
+            set
+            {
+                if (_PowerAlarmDetail != value)
+                {
+                    OnPowerAlarmDetailChanging(value);
+                    ReportPropertyChanging("PowerAlarmDetail");
+                    _PowerAlarmDetail = StructuralObject.SetValidValue(value, false, "PowerAlarmDetail");
+                    ReportPropertyChanged("PowerAlarmDetail");
+                    OnPowerAlarmDetailChanged();
+                }
+            }
+        }
+        private global::System.String _PowerAlarmDetail;
+        partial void OnPowerAlarmDetailChanging(global::System.String value);
+        partial void OnPowerAlarmDetailChanged();
 
         #endregion
 
@@ -29079,13 +32955,21 @@ namespace slSecure.Web
         /// <param name="eRName">ERName 屬性的初始值。</param>
         /// <param name="flowID">FlowID 屬性的初始值。</param>
         /// <param name="timestamp">Timestamp 屬性的初始值。</param>
-        public static vwPowerMeter1HourLog CreatevwPowerMeter1HourLog(global::System.Int32 eRID, global::System.String eRName, global::System.Int64 flowID, global::System.DateTime timestamp)
+        /// <param name="waterAlarm_LastYearDetail">WaterAlarm_LastYearDetail 屬性的初始值。</param>
+        /// <param name="powerAlarm_LastYearDetail">PowerAlarm_LastYearDetail 屬性的初始值。</param>
+        /// <param name="powerAlarm_YesterdayDetail">PowerAlarm_YesterdayDetail 屬性的初始值。</param>
+        /// <param name="powerAlarm_LastHourDetail">PowerAlarm_LastHourDetail 屬性的初始值。</param>
+        public static vwPowerMeter1HourLog CreatevwPowerMeter1HourLog(global::System.Int32 eRID, global::System.String eRName, global::System.Int64 flowID, global::System.DateTime timestamp, global::System.String waterAlarm_LastYearDetail, global::System.String powerAlarm_LastYearDetail, global::System.String powerAlarm_YesterdayDetail, global::System.String powerAlarm_LastHourDetail)
         {
             vwPowerMeter1HourLog vwPowerMeter1HourLog = new vwPowerMeter1HourLog();
             vwPowerMeter1HourLog.ERID = eRID;
             vwPowerMeter1HourLog.ERName = eRName;
             vwPowerMeter1HourLog.FlowID = flowID;
             vwPowerMeter1HourLog.Timestamp = timestamp;
+            vwPowerMeter1HourLog.WaterAlarm_LastYearDetail = waterAlarm_LastYearDetail;
+            vwPowerMeter1HourLog.PowerAlarm_LastYearDetail = powerAlarm_LastYearDetail;
+            vwPowerMeter1HourLog.PowerAlarm_YesterdayDetail = powerAlarm_YesterdayDetail;
+            vwPowerMeter1HourLog.PowerAlarm_LastHourDetail = powerAlarm_LastHourDetail;
             return vwPowerMeter1HourLog;
         }
 
@@ -29536,6 +33420,426 @@ namespace slSecure.Web
         private Nullable<global::System.Double> _KW24Avg;
         partial void OnKW24AvgChanging(Nullable<global::System.Double> value);
         partial void OnKW24AvgChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Water24Consume
+        {
+            get
+            {
+                return _Water24Consume;
+            }
+            set
+            {
+                OnWater24ConsumeChanging(value);
+                ReportPropertyChanging("Water24Consume");
+                _Water24Consume = StructuralObject.SetValidValue(value, "Water24Consume");
+                ReportPropertyChanged("Water24Consume");
+                OnWater24ConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Water24Consume;
+        partial void OnWater24ConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnWater24ConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> WaterAlarmBaseValue_LastYear
+        {
+            get
+            {
+                return _WaterAlarmBaseValue_LastYear;
+            }
+            set
+            {
+                OnWaterAlarmBaseValue_LastYearChanging(value);
+                ReportPropertyChanging("WaterAlarmBaseValue_LastYear");
+                _WaterAlarmBaseValue_LastYear = StructuralObject.SetValidValue(value, "WaterAlarmBaseValue_LastYear");
+                ReportPropertyChanged("WaterAlarmBaseValue_LastYear");
+                OnWaterAlarmBaseValue_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Double> _WaterAlarmBaseValue_LastYear;
+        partial void OnWaterAlarmBaseValue_LastYearChanging(Nullable<global::System.Double> value);
+        partial void OnWaterAlarmBaseValue_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> WaterAlarm_LastYear
+        {
+            get
+            {
+                return _WaterAlarm_LastYear;
+            }
+            set
+            {
+                OnWaterAlarm_LastYearChanging(value);
+                ReportPropertyChanging("WaterAlarm_LastYear");
+                _WaterAlarm_LastYear = StructuralObject.SetValidValue(value, "WaterAlarm_LastYear");
+                ReportPropertyChanged("WaterAlarm_LastYear");
+                OnWaterAlarm_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _WaterAlarm_LastYear;
+        partial void OnWaterAlarm_LastYearChanging(Nullable<global::System.Int16> value);
+        partial void OnWaterAlarm_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String WaterAlarm_LastYearDetail
+        {
+            get
+            {
+                return _WaterAlarm_LastYearDetail;
+            }
+            set
+            {
+                if (_WaterAlarm_LastYearDetail != value)
+                {
+                    OnWaterAlarm_LastYearDetailChanging(value);
+                    ReportPropertyChanging("WaterAlarm_LastYearDetail");
+                    _WaterAlarm_LastYearDetail = StructuralObject.SetValidValue(value, false, "WaterAlarm_LastYearDetail");
+                    ReportPropertyChanged("WaterAlarm_LastYearDetail");
+                    OnWaterAlarm_LastYearDetailChanged();
+                }
+            }
+        }
+        private global::System.String _WaterAlarm_LastYearDetail;
+        partial void OnWaterAlarm_LastYearDetailChanging(global::System.String value);
+        partial void OnWaterAlarm_LastYearDetailChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> kWh
+        {
+            get
+            {
+                return _kWh;
+            }
+            set
+            {
+                OnkWhChanging(value);
+                ReportPropertyChanging("kWh");
+                _kWh = StructuralObject.SetValidValue(value, "kWh");
+                ReportPropertyChanged("kWh");
+                OnkWhChanged();
+            }
+        }
+        private Nullable<global::System.Double> _kWh;
+        partial void OnkWhChanging(Nullable<global::System.Double> value);
+        partial void OnkWhChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerConsume
+        {
+            get
+            {
+                return _PowerConsume;
+            }
+            set
+            {
+                OnPowerConsumeChanging(value);
+                ReportPropertyChanging("PowerConsume");
+                _PowerConsume = StructuralObject.SetValidValue(value, "PowerConsume");
+                ReportPropertyChanged("PowerConsume");
+                OnPowerConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerConsume;
+        partial void OnPowerConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnPowerConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Power24Consume
+        {
+            get
+            {
+                return _Power24Consume;
+            }
+            set
+            {
+                OnPower24ConsumeChanging(value);
+                ReportPropertyChanging("Power24Consume");
+                _Power24Consume = StructuralObject.SetValidValue(value, "Power24Consume");
+                ReportPropertyChanged("Power24Consume");
+                OnPower24ConsumeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Power24Consume;
+        partial void OnPower24ConsumeChanging(Nullable<global::System.Double> value);
+        partial void OnPower24ConsumeChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_LastYear
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_LastYear;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_LastYearChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_LastYear");
+                _PowerAlarmBaseValue_LastYear = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_LastYear");
+                ReportPropertyChanged("PowerAlarmBaseValue_LastYear");
+                OnPowerAlarmBaseValue_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_LastYear;
+        partial void OnPowerAlarmBaseValue_LastYearChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_Yesterday
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_Yesterday;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_YesterdayChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_Yesterday");
+                _PowerAlarmBaseValue_Yesterday = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_Yesterday");
+                ReportPropertyChanged("PowerAlarmBaseValue_Yesterday");
+                OnPowerAlarmBaseValue_YesterdayChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_Yesterday;
+        partial void OnPowerAlarmBaseValue_YesterdayChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_YesterdayChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PowerAlarmBaseValue_LastHour
+        {
+            get
+            {
+                return _PowerAlarmBaseValue_LastHour;
+            }
+            set
+            {
+                OnPowerAlarmBaseValue_LastHourChanging(value);
+                ReportPropertyChanging("PowerAlarmBaseValue_LastHour");
+                _PowerAlarmBaseValue_LastHour = StructuralObject.SetValidValue(value, "PowerAlarmBaseValue_LastHour");
+                ReportPropertyChanged("PowerAlarmBaseValue_LastHour");
+                OnPowerAlarmBaseValue_LastHourChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PowerAlarmBaseValue_LastHour;
+        partial void OnPowerAlarmBaseValue_LastHourChanging(Nullable<global::System.Double> value);
+        partial void OnPowerAlarmBaseValue_LastHourChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_LastYear
+        {
+            get
+            {
+                return _PowerAlarm_LastYear;
+            }
+            set
+            {
+                OnPowerAlarm_LastYearChanging(value);
+                ReportPropertyChanging("PowerAlarm_LastYear");
+                _PowerAlarm_LastYear = StructuralObject.SetValidValue(value, "PowerAlarm_LastYear");
+                ReportPropertyChanged("PowerAlarm_LastYear");
+                OnPowerAlarm_LastYearChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_LastYear;
+        partial void OnPowerAlarm_LastYearChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_LastYearChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PowerAlarm_LastYearDetail
+        {
+            get
+            {
+                return _PowerAlarm_LastYearDetail;
+            }
+            set
+            {
+                if (_PowerAlarm_LastYearDetail != value)
+                {
+                    OnPowerAlarm_LastYearDetailChanging(value);
+                    ReportPropertyChanging("PowerAlarm_LastYearDetail");
+                    _PowerAlarm_LastYearDetail = StructuralObject.SetValidValue(value, false, "PowerAlarm_LastYearDetail");
+                    ReportPropertyChanged("PowerAlarm_LastYearDetail");
+                    OnPowerAlarm_LastYearDetailChanged();
+                }
+            }
+        }
+        private global::System.String _PowerAlarm_LastYearDetail;
+        partial void OnPowerAlarm_LastYearDetailChanging(global::System.String value);
+        partial void OnPowerAlarm_LastYearDetailChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_Yesterday
+        {
+            get
+            {
+                return _PowerAlarm_Yesterday;
+            }
+            set
+            {
+                OnPowerAlarm_YesterdayChanging(value);
+                ReportPropertyChanging("PowerAlarm_Yesterday");
+                _PowerAlarm_Yesterday = StructuralObject.SetValidValue(value, "PowerAlarm_Yesterday");
+                ReportPropertyChanged("PowerAlarm_Yesterday");
+                OnPowerAlarm_YesterdayChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_Yesterday;
+        partial void OnPowerAlarm_YesterdayChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_YesterdayChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PowerAlarm_YesterdayDetail
+        {
+            get
+            {
+                return _PowerAlarm_YesterdayDetail;
+            }
+            set
+            {
+                if (_PowerAlarm_YesterdayDetail != value)
+                {
+                    OnPowerAlarm_YesterdayDetailChanging(value);
+                    ReportPropertyChanging("PowerAlarm_YesterdayDetail");
+                    _PowerAlarm_YesterdayDetail = StructuralObject.SetValidValue(value, false, "PowerAlarm_YesterdayDetail");
+                    ReportPropertyChanged("PowerAlarm_YesterdayDetail");
+                    OnPowerAlarm_YesterdayDetailChanged();
+                }
+            }
+        }
+        private global::System.String _PowerAlarm_YesterdayDetail;
+        partial void OnPowerAlarm_YesterdayDetailChanging(global::System.String value);
+        partial void OnPowerAlarm_YesterdayDetailChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> PowerAlarm_LastHour
+        {
+            get
+            {
+                return _PowerAlarm_LastHour;
+            }
+            set
+            {
+                OnPowerAlarm_LastHourChanging(value);
+                ReportPropertyChanging("PowerAlarm_LastHour");
+                _PowerAlarm_LastHour = StructuralObject.SetValidValue(value, "PowerAlarm_LastHour");
+                ReportPropertyChanged("PowerAlarm_LastHour");
+                OnPowerAlarm_LastHourChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _PowerAlarm_LastHour;
+        partial void OnPowerAlarm_LastHourChanging(Nullable<global::System.Int16> value);
+        partial void OnPowerAlarm_LastHourChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PowerAlarm_LastHourDetail
+        {
+            get
+            {
+                return _PowerAlarm_LastHourDetail;
+            }
+            set
+            {
+                if (_PowerAlarm_LastHourDetail != value)
+                {
+                    OnPowerAlarm_LastHourDetailChanging(value);
+                    ReportPropertyChanging("PowerAlarm_LastHourDetail");
+                    _PowerAlarm_LastHourDetail = StructuralObject.SetValidValue(value, false, "PowerAlarm_LastHourDetail");
+                    ReportPropertyChanged("PowerAlarm_LastHourDetail");
+                    OnPowerAlarm_LastHourDetailChanged();
+                }
+            }
+        }
+        private global::System.String _PowerAlarm_LastHourDetail;
+        partial void OnPowerAlarm_LastHourDetailChanging(global::System.String value);
+        partial void OnPowerAlarm_LastHourDetailChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Memo
+        {
+            get
+            {
+                return _Memo;
+            }
+            set
+            {
+                OnMemoChanging(value);
+                ReportPropertyChanging("Memo");
+                _Memo = StructuralObject.SetValidValue(value, true, "Memo");
+                ReportPropertyChanged("Memo");
+                OnMemoChanged();
+            }
+        }
+        private global::System.String _Memo;
+        partial void OnMemoChanging(global::System.String value);
+        partial void OnMemoChanged();
 
         #endregion
 

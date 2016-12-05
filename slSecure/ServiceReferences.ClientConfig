@@ -44,6 +44,9 @@
       <!--<endpoint address="http://118.163.176.218:8080/sso/services/SsoWebService"
              binding="basicHttpBinding" bindingConfiguration="SsoWebServiceServiceSoapBinding"
              contract="SSOService.SsoWebService" name="SsoWebServicePort" />-->
+      <endpoint address="http://172.16.3.27/sso/services/SsoWebService"
+              binding="basicHttpBinding" bindingConfiguration="SsoWebServiceServiceSoapBinding"
+              contract="SSOService.SsoWebService" name="SsoWebServicePort" />
     </client>
     <!--<endpoint address="net.tcp://127.0.0.1:4502/" binding="customBinding"
          bindingConfiguration="CustomBinding_ISecureService" contract="RemoteService.ISecureService"

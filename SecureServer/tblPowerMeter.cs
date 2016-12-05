@@ -78,6 +78,88 @@ public partial class tblPowerMeter
 
     public Nullable<double> KW24Avg { get; set; }
 
+    public Nullable<double> kWh { get; set; }
+
+    public Nullable<double> PowerConsume { get; set; }
+
+    public Nullable<double> Power24Consume { get; set; }
+
+    public Nullable<double> PowerAlarmBaseValue_LastYear { get; set; }
+
+    public Nullable<double> PowerAlarmBaseValue_Yesterday { get; set; }
+
+    public Nullable<double> PowerAlarmBaseValue_LastHour { get; set; }
+
+    public Nullable<short> PowerAlarm_LastYear { get; set; }
+
+    public Nullable<short> PowerAlarm_Yesterday { get; set; }
+
+    public Nullable<short> PowerAlarm_LastHour { get; set; }
+
+    public Nullable<double> Power1MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power2MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power3MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power4MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power5MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power6MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power7MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power8MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power9MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power10MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power11MonthDailyAvg { get; set; }
+
+    public Nullable<double> Power12MonthDailyAvg { get; set; }
+
+    public Nullable<double> SetThisPeriodkWh { get; set; }
+
+    public Nullable<double> Water24Consume { get; set; }
+
+    public Nullable<double> WaterAlarmBaseValue_LastYear { get; set; }
+
+    public Nullable<short> WaterAlarm_LastYear { get; set; }
+
+    public Nullable<double> Water1MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water2MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water3MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water4MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water5MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water6MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water7MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water8MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water9MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water10MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water11MonthDailyAvg { get; set; }
+
+    public Nullable<double> Water12MonthDailyAvg { get; set; }
+
+    public Nullable<double> SetThisPeriodWater { get; set; }
+
+    public Nullable<double> CT { get; set; }
+
+    public Nullable<double> SysThisPeriodWater { get; set; }
+
+    public Nullable<double> SysThisPeriodPower { get; set; }
+
 }
 
 }

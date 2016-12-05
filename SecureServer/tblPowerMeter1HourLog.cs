@@ -42,6 +42,30 @@ public partial class tblPowerMeter1HourLog
 
     public Nullable<double> KW24Avg { get; set; }
 
+    public Nullable<double> Water24Consume { get; set; }
+
+    public Nullable<double> WaterAlarmBaseValue_LastYear { get; set; }
+
+    public Nullable<short> WaterAlarm_LastYear { get; set; }
+
+    public Nullable<double> kWh { get; set; }
+
+    public Nullable<double> PowerConsume { get; set; }
+
+    public Nullable<double> Power24Consume { get; set; }
+
+    public Nullable<double> PowerAlarmBaseValue_LastYear { get; set; }
+
+    public Nullable<double> PowerAlarmBaseValue_Yesterday { get; set; }
+
+    public Nullable<double> PowerAlarmBaseValue_LastHour { get; set; }
+
+    public Nullable<short> PowerAlarm_LastYear { get; set; }
+
+    public Nullable<short> PowerAlarm_Yesterday { get; set; }
+
+    public Nullable<short> PowerAlarm_LastHour { get; set; }
+
 }
 
 }

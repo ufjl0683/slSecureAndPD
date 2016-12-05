@@ -86,11 +86,17 @@ public partial class tblPDConfig
 
     public Nullable<int> WorkInfo { get; set; }
 
+    public string MeterNo { get; set; }
+
+    public string Area { get; set; }
+
+    public string Tel { get; set; }
 
 
-    public virtual ICollection<tblPDAlarmLog> tblPDAlarmLog { get; set; }
 
     public virtual tblEngineRoomConfig tblEngineRoomConfig { get; set; }
+
+    public virtual ICollection<tblPDAlarmLog> tblPDAlarmLog { get; set; }
 
 }
 

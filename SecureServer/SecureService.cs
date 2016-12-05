@@ -36,9 +36,11 @@ namespace SecureServer
         public  SecureService()
         {
 
+
 #if !R23
             nvr_mgr = new NVR.NVRManager();
 #endif
+        
             cctv_mgr = new CCTV.CCTVManager(this);
       
            card_mgr = new CardReaderManager(this);
@@ -56,10 +58,10 @@ namespace SecureServer
            itemgrp_mgr = new RTU.ItemGroupManager();
            plane_mgr = new PlaneManager();
            pd_mgr = new PD.PDManager();
-          
+
 #if R23
-           r23_pm_mgr = new Meter.PowerMeterManager();
-             pwr_mgr = new RTU.PowerControlManager();
+            r23_pm_mgr = new Meter.PowerMeterManager();
+            pwr_mgr = new RTU.PowerControlManager();
         
 #endif
            //#if !R23     

@@ -19,6 +19,7 @@ using slWCFModule;
 using slWCFModule.RemoteService;
 using System.Threading.Tasks;
 using System.Windows.Interactivity;
+using slSecureLib.Forms;
 
 namespace slSecure.Forms
 {
@@ -558,6 +559,11 @@ namespace slSecure.Forms
            //dialog.Width = 800;
            //dialog.Height = 600;
            dialog.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            new ItemGuide().Show();
         }
 
       

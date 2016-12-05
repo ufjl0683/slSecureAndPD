@@ -49,6 +49,7 @@
         <sdk:GridSplitter Grid.Column="1" HorizontalAlignment="Left"   Margin="0" Width="10"/>
         <TextBlock x:Name="txtTitle" HorizontalAlignment="Center" Margin="0,1,0,0" TextWrapping="Wrap" Text="{Binding PlaneName}" VerticalAlignment="Top" FontSize="18" Height="33" Foreground="#FFF8F5F5" Canvas.ZIndex="4"/>
         <ListBox x:Name="lstIOMenu" Grid.Column="1" Margin="16,248,6,3" ItemTemplate="{StaticResource DataTemplate1}"/>
+        <Button Content=" 圖例" Click="Button_Click_1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="85" Height="34" Grid.Column="1" Margin="0,3,116,0"/>
 
 
 

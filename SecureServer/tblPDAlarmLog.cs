@@ -30,6 +30,8 @@ public partial class tblPDAlarmLog
 
     public Nullable<int> Status { get; set; }
 
+    public string UserMemo { get; set; }
+
 
 
     public virtual tblPDConfig tblPDConfig { get; set; }

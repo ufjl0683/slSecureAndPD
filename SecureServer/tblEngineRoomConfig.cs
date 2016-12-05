@@ -27,11 +27,11 @@ public partial class tblEngineRoomConfig
 
         this.tblERPlane = new HashSet<tblERPlane>();
 
-        this.tblPDConfig = new HashSet<tblPDConfig>();
-
         this.tblCCTVConfig = new HashSet<tblCCTVConfig>();
 
         this.tblNVRConfig = new HashSet<tblNVRConfig>();
+
+        this.tblPDConfig = new HashSet<tblPDConfig>();
 
     }
 
@@ -60,11 +60,11 @@ public partial class tblEngineRoomConfig
 
     public virtual ICollection<tblERPlane> tblERPlane { get; set; }
 
-    public virtual ICollection<tblPDConfig> tblPDConfig { get; set; }
-
     public virtual ICollection<tblCCTVConfig> tblCCTVConfig { get; set; }
 
     public virtual ICollection<tblNVRConfig> tblNVRConfig { get; set; }
+
+    public virtual ICollection<tblPDConfig> tblPDConfig { get; set; }
 
 }
 

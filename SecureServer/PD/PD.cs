@@ -356,7 +356,7 @@ namespace SecureServer.PD
                                db.SaveChanges();
                            }
 
-                           db.tblPDAlarmLog.Add(new tblPDAlarmLog() { Timestamp = DateTime.Now, PDItem = "Comm_state", PDName = this.PDName, Status = IsConnected ? 1 : 0 });
+                           db.tblPDAlarmLog.Add(new tblPDAlarmLog() { Timestamp = DateTime.Now, PDItem = "Comm_state", PDName = this.PDName, Status = IsConnected ? 1 : 0 , UserMemo=pdc.Memo});
                            db.SaveChanges();
                        }
                    }
@@ -559,7 +559,7 @@ namespace SecureServer.PD
                }
                else  //abnormal
                {
-                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "R0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(0, tblpd) };
+                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "R0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(0, tblpd), UserMemo=tblpd.Memo };
                    db.tblPDAlarmLog.Add(log);
                    description += "R0 "+GetPDStatusDescription(0, tblpd);
                }
@@ -578,7 +578,7 @@ namespace SecureServer.PD
                else
                {
 
-                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "S0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(0, tblpd) };
+                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "S0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(0, tblpd), UserMemo = tblpd.Memo };
                    db.tblPDAlarmLog.Add(log);
 
                    description += "S0 " + GetPDStatusDescription(0, tblpd); ;
@@ -596,7 +596,7 @@ namespace SecureServer.PD
                }
                else
                {
-                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "T0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(0, tblpd) };
+                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "T0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(0, tblpd), UserMemo = tblpd.Memo };
                    db.tblPDAlarmLog.Add(log);
                    description += "T0 " + GetPDStatusDescription(0, tblpd); ;
                }
@@ -612,7 +612,7 @@ namespace SecureServer.PD
                }
                else
                {
-                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "R1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(1, tblpd) };
+                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "R1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(1, tblpd), UserMemo = tblpd.Memo };
                    db.tblPDAlarmLog.Add(log);
                    description += "R1 "+GetPDStatusDescription(1, tblpd);
                }
@@ -629,7 +629,7 @@ namespace SecureServer.PD
                }
                else
                {
-                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "S1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(1, tblpd) };
+                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "S1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(1, tblpd), UserMemo = tblpd.Memo };
                    db.tblPDAlarmLog.Add(log);
                    description += "S1 " + GetPDStatusDescription(1, tblpd);
                }
@@ -646,7 +646,7 @@ namespace SecureServer.PD
                }
                else
                {
-                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "T1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(1, tblpd) };
+                   tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "T1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, Memo = GetPDStatusDescription(1, tblpd), UserMemo = tblpd.Memo };
                    db.tblPDAlarmLog.Add(log);
                    description += "T1 " + GetPDStatusDescription(1, tblpd);
 
@@ -666,7 +666,7 @@ namespace SecureServer.PD
                    }
                    else
                    {
-                       tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
+                       tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L0", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, UserMemo = tblpd.Memo };
                        db.tblPDAlarmLog.Add(log);
                        description += "L0 ";
 
@@ -685,7 +685,7 @@ namespace SecureServer.PD
                   }
                   else
                   {
-                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
+                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L1", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, UserMemo = tblpd.Memo };
                       db.tblPDAlarmLog.Add(log);
                       description += "L1 ";
 
@@ -705,7 +705,7 @@ namespace SecureServer.PD
                   }
                   else
                   {
-                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L2", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
+                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L2", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, UserMemo = tblpd.Memo };
                       db.tblPDAlarmLog.Add(log);
                       description += "L2 ";
                   }
@@ -723,7 +723,7 @@ namespace SecureServer.PD
                   }
                   else
                   {
-                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L3", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
+                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L3", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, UserMemo = tblpd.Memo };
                       db.tblPDAlarmLog.Add(log);
                       description += "L3 ";
                   }
@@ -741,7 +741,7 @@ namespace SecureServer.PD
                   }
                   else
                   {
-                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L4", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0 };
+                      tblPDAlarmLog log = new tblPDAlarmLog() { PDItem = "L4", Timestamp = DateTime.Now, PDName = this.PDName, Status = 0, UserMemo = tblpd.Memo };
                       db.tblPDAlarmLog.Add(log);
                       description += "L4 ";
                   }

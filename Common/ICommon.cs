@@ -19,5 +19,6 @@ namespace Common
           string GetUserID();
           void SetMain(object main);
           void Navigate(Uri uri);
+          void ShowPowerWaterChart(int erid, bool IsPower);
     }
 }

@@ -56,10 +56,6 @@ public partial class SecureDBEntities1 : DbContext
 
     public DbSet<tblAIItem1HourLog> tblAIItem1HourLog { get; set; }
 
-    public DbSet<tblPDConfig> tblPDConfig { get; set; }
-
-    public DbSet<tblPDAlarmLog> tblPDAlarmLog { get; set; }
-
     public DbSet<tblAlarmLog> tblAlarmLog { get; set; }
 
     public DbSet<vwMagneticCard> vwMagneticCard { get; set; }
@@ -81,8 +77,6 @@ public partial class SecureDBEntities1 : DbContext
     public DbSet<tblSchConfig> tblSchConfig { get; set; }
 
     public DbSet<tblSchLog> tblSchLog { get; set; }
-
-    public DbSet<tblPowerMeter> tblPowerMeter { get; set; }
 
     public DbSet<tblCardReaderConfig> tblCardReaderConfig { get; set; }
 
@@ -152,8 +146,6 @@ public partial class SecureDBEntities1 : DbContext
 
     public DbSet<vwItemGroup> vwItemGroup { get; set; }
 
-    public DbSet<tblPowerMeter1HourLog> tblPowerMeter1HourLog { get; set; }
-
     public DbSet<tblCCTVConfig> tblCCTVConfig { get; set; }
 
     public DbSet<tblNVRConfig> tblNVRConfig { get; set; }
@@ -161,6 +153,14 @@ public partial class SecureDBEntities1 : DbContext
     public DbSet<vwCCTVState> vwCCTVState { get; set; }
 
     public DbSet<vwPDAlarmLoopDeviceLog> vwPDAlarmLoopDeviceLog { get; set; }
+
+    public DbSet<tblPowerMeter> tblPowerMeter { get; set; }
+
+    public DbSet<tblPowerMeter1HourLog> tblPowerMeter1HourLog { get; set; }
+
+    public DbSet<tblPDAlarmLog> tblPDAlarmLog { get; set; }
+
+    public DbSet<tblPDConfig> tblPDConfig { get; set; }
 
 }
 

@@ -224,12 +224,14 @@ namespace SecureServer
                                {
                                    if (this.Degree != 2)
                                        IsDegreeChange = true;
+
                                    this.Degree = 2;
                                }
                                else
                                {
                                    if (this.Degree != 0)
                                        IsDegreeChange = true;
+
                                    this.Degree = 0;
 
                                }

@@ -36,7 +36,7 @@ namespace MapControl
         {
             Pins.CotrolRoomPin pin = new Pins.CotrolRoomPin() { Width = 24, Height = 24 };
             pin.DataContext = info;
-          
+            
          ElementLayer.SetEnvelope(pin, new Envelope(new MapPoint(info.X, info.Y), new MapPoint(info.X, info.Y)));
         (this.map1.Layers["ElementLyr"] as ElementLayer).Children.Add(pin);
         }

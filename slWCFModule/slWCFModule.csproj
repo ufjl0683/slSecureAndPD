@@ -131,6 +131,9 @@
     <None Include="Service References\MCNSService\slWCFModule.MCNSService.GetProgressResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\MCNSService\slWCFModule.MCNSService.GetR23CardSendingResultResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\MCNSService\slWCFModule.MCNSService.GetR23DoorInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

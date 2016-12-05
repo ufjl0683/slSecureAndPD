@@ -22,7 +22,7 @@ namespace slSecure
             if (!App.Current.HasElevatedPermissions)
                 MessageBox.Show(" No Elevated trust!");
 
-
+        
      //       MessageBox.Show("http://" + App.Current.Host.Source.Host + ":" + App.Current.Host.Source.Port);
 
 
@@ -157,6 +157,12 @@ namespace slSecure
         public void SetMain(object main)
         {
             (App.Current as App).main = main as Main;
+        }
+
+
+        public void ShowPowerWaterChart(int erid, bool IsPower)
+        {
+            new Dialog.WaterPowerDiagram(erid, IsPower).Show();
         }
     }
 }

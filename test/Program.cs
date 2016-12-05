@@ -85,11 +85,23 @@ namespace test
             
         }
 
+        static void R23PowerMeterTest()
+        {
+            SecureServer.Meter.R23PowerMeter meter = new SecureServer.Meter.R23PowerMeter(3, "10.21.83.200", 502);
+            while (true)
+            {
+                Console.WriteLine("kwh:"+meter.kwh);
+                Console.WriteLine("CT:" + meter.CT);
+                System.Threading.Thread.Sleep(1000);
+            }
+               
+        }
         static void Main(string[] args)
         {
             //PDTest();
             //R13SmrTest();
-            BatteryPackTest();
+           // BatteryPackTest();
+            R23PowerMeterTest();
             Console.ReadLine();
 
             //SSOService.SsoWebServiceClient client = new SSOService.SsoWebServiceClient();

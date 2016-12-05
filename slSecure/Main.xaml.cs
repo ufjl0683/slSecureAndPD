@@ -58,7 +58,7 @@ namespace slSecure
                 EntityQuery<tblSysParameter> qry = db.GetTblSysParameterQuery().Where(n => n.VariableName == "TimeoutReturnPage");
 
                 var result = await db.LoadAsync(qry);
-
+                
                 tblSysParameter sysparam = result.FirstOrDefault();
                 if (sysparam != null)
                 {
@@ -355,9 +355,10 @@ namespace slSecure
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
+
             AlarmData alarmdata = (sender as StackPanel).DataContext as AlarmData;
             //   client.Dispose();
-
+           
             if (alarmdata.AlarmType == AlarmType.CARD) //未歸還卡片警告
             {
 #if !R23
@@ -390,12 +391,13 @@ namespace slSecure
 #if R23
                 else if (alarmdata.AlarmType == AlarmType.PowerMeter) 
                 {
-                     this.NavigationService.Navigate(new Uri("slSecureLib;component/Forms/R23/slPowerMeterAndWaterMeter.xaml?IsShowWaterOrPower=Power",UriKind.Relative));
+                    
+                     this.frameMain.Navigate(new Uri("/slSecureLib;component/Forms/R23/slPowerMeterAndWaterMeter.xaml?IsShowWaterOrPower=Power",UriKind.Relative));
                   
                 }
                 else if( alarmdata.AlarmType == AlarmType.WaterMeter)
                 {
-                     this.NavigationService.Navigate(new Uri("slSecureLib;component/Forms/R23/slPowerMeterAndWaterMeter.xaml?IsShowWaterOrPower=Water",UriKind.Relative));
+                     this.frameMain.Navigate(new Uri("/slSecureLib;component/Forms/R23/slPowerMeterAndWaterMeter.xaml?IsShowWaterOrPower=Water",UriKind.Relative));
                 }
 #endif
 

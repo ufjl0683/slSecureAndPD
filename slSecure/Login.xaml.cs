@@ -26,8 +26,8 @@ namespace slSecure
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
-             
 
+          
 
 
               
@@ -41,7 +41,7 @@ namespace slSecure
         {
 
 #if R23
-
+           // new Dialog.WaterPowerDiagram(1, true).Show();
             if (txtAccount.Text == "david" && pwdPassword.Password == "1234")
             {
                 (App.Current as App).UserID = "david";
@@ -54,7 +54,7 @@ namespace slSecure
                 {
                     if (a.Error != null)
                     {
-                        MessageBox.Show(a.Error.Message);
+                        MessageBox.Show("本機可能未授權或連線異常");
                         return;
                     }
                     var res = a.Result;
@@ -182,6 +182,11 @@ namespace slSecure
            
             //this.NavigationService.Navigate(new Uri(string.Format("/Main.xaml?userid={0}&username={1}", user.UserID, user.UserName), UriKind.Relative));
 
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            new Dialog.WaterPowerDiagram(1, false).Show();
         }
     }
 }

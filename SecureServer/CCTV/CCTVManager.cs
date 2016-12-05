@@ -63,34 +63,40 @@ namespace SecureServer.CCTV
 
             while (true)
             {
-
-                SecureDBEntities1 db = new SecureDBEntities1();  
-                Ping ping = new Ping();
-
-                var q = db.tblCCTVConfig;
-                foreach (tblCCTVConfig cctv in q)
+                try
                 {
+                    SecureDBEntities1 db = new SecureDBEntities1();
+                    Ping ping = new Ping();
+
+                    var q = db.tblCCTVConfig;
+                    foreach (tblCCTVConfig cctv in q)
+                    {
+                        try
+                        {
+                            if (ping.Send(cctv.IP).Status == IPStatus.Success)
+                            {
+                                if (cctv.Comm_state != 1)
+                                    cctv.Comm_state = 1;
+                            }
+                            else
+                            {
+                                if (cctv.Comm_state != 0)
+                                    cctv.Comm_state = 0;
+                            }
+                        }
+                        catch { ;}
+                    }
                     try
                     {
-                        if (ping.Send(cctv.IP).Status == IPStatus.Success)
-                        {
-                            if (cctv.Comm_state != 1)
-                                cctv.Comm_state = 1;
-                        }
-                        else
-                        {
-                            if(cctv.Comm_state!=0)
-                                 cctv.Comm_state = 0;
-                        }
+                        db.SaveChanges();
                     }
                     catch { ;}
                 }
-                try
-                {
-                    db.SaveChanges();
-                }
                 catch { ;}
-                System.Threading.Thread.Sleep(60000);
+                finally
+                {
+                    System.Threading.Thread.Sleep(60000);
+                }
             }
         }
         public BindingData.CCTVBindingData[] GetAllCCTVBindingData(int PlaneID)

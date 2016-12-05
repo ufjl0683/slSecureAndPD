@@ -102,6 +102,8 @@ public partial class vwAlarmLog
 
     public Nullable<bool> Suppress { get; set; }
 
+    public string Classify { get; set; }
+
 }
 
 }

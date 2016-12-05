@@ -387,6 +387,345 @@ namespace slSecure.Web
            
         }
 
+
+        #region ==== 用水用電功能Start =====
+        #region "取得機房，並以 DataTable 方式回傳"
+        public static DataTable GetAllERNameDate()
+        {
+            clsDBComm commDB = new clsDBComm();
+            DataTable DT = new DataTable();
+
+            try
+            {
+                string selectCmd = "";
+                selectCmd += "select ERID";
+                selectCmd += " From tblPowerMeter";
+                DT = commDB.SelectDBData(selectCmd);
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message + "," + ex.StackTrace;
+                throw ex;
+            }
+            return DT;
+        }
+        #endregion
+
+        #region "取得本期起始日期，並以 DataTable 方式回傳"
+        public static DataTable GetThisPeriodStartDay()
+        {
+            clsDBComm commDB = new clsDBComm();
+            DataTable DT = new DataTable();
+
+            try
+            {
+                string selectCmd = "";
+                selectCmd += "select VariableValue";
+                selectCmd += " From tblSysParameter";
+                selectCmd += " where  VariableName='ThisPeriodStartDay'";
+                DT = commDB.SelectDBData(selectCmd);
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message + "," + ex.StackTrace;
+                throw ex;
+            }
+            return DT;
+        }
+        #endregion
+
+        #region "取得本期結束日期，並以 DataTable 方式回傳"
+        public static DataTable GetThisPeriodEndDay()
+        {
+            clsDBComm commDB = new clsDBComm();
+            DataTable DT = new DataTable();
+
+            try
+            {
+                string selectCmd = "";
+                selectCmd += "select VariableValue";
+                selectCmd += " From tblSysParameter";
+                selectCmd += " where  VariableName='ThisPeriodEndDay'";
+                DT = commDB.SelectDBData(selectCmd);
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message + "," + ex.StackTrace;
+                throw ex;
+            }
+            return DT;
+        }
+        #endregion
+
+
+        static DataTable dt = GetAllERNameDate();
+
+        //static DataTable dtStartDay = GetThisPeriodStartDay();
+        //static string sStartDay = dtStartDay.Rows[0]["VariableValue"].ToString() + " 00:00:00";
+        //static DataTable dtEndDay = GetThisPeriodEndDay();
+        //static string sEndDay = dtEndDay.Rows[0]["VariableValue"].ToString() + " 23:59:59";
+        //static string s_year = DateTime.Now.AddYears(-1).Year.ToString();
+
+        //public static void YearData()
+        //{
+        //    if (s_year == "2015")
+        //        s_year = "2016";
+        //}
+
+        //計算去年度用電每月日平均累積值
+
+            [WebMethod]
+        public void PowerBaseValueDailyAvg(string s_year)
+        {
+            clsDBComm commDB = new clsDBComm();
+            DataTable dtYear = new DataTable();
+            bool IsSuccess = false;
+            string cmd = "";
+
+            //YearData();
+            string sSelect = "(select  CASE MAX(kWh) - MIN(kWh) when 0 then MAX(kWh) - MIN(kWh) else CAST(( (MAX(kWh) - MIN(kWh))/30 ) AS decimal(18, 3)) END   AS KWAlarm from vwPowerMeter1HourLog where (1=1)  and year(Timestamp)= ";
+            for (int ExeCount = 0; ExeCount < dt.Rows.Count; ExeCount++)
+            {
+                //先判別是否為新的年份
+                cmd = string.Format("select * from tblPowerAndWaterMeterYearMonthDailyAvg where YearsNo='{0}' and ERID={1};", s_year, dt.Rows[ExeCount]["ERID"].ToString());
+                dtYear = commDB.SelectDBData(cmd);
+                if (dtYear.Rows.Count > 0)
+                {
+                    try
+                    {
+                        string text = "UPDATE tblPowerAndWaterMeterYearMonthDailyAvg SET  ";
+
+                        text += " Power1MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=1 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power2MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=2 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power3MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=3 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power4MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=4 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power5MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=5 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power6MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=6 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power7MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=7 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power8MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=8 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power9MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=9 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power10MonthDailyAvg = " + sSelect + s_year + " and month(Timestamp)=10 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power11MonthDailyAvg = " + sSelect + s_year + " and month(Timestamp)=11 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Power12MonthDailyAvg = " + sSelect + s_year + " and month(Timestamp)=12 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+
+                        text += ",[PowerUpdateDate] = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                        text += ",[Memo] = 'SYS' ";
+                        text += " WHERE [YearsNo] = " + s_year + " and [ERID] = " + dt.Rows[ExeCount]["ERID"].ToString();
+
+                        IsSuccess = commDB.ModifyDBData(text);
+                    }
+                    catch (Exception ex)
+                    {
+                        var message = ex.Message + "," + ex.StackTrace;
+                        throw ex;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        string text = "INSERT INTO tblPowerAndWaterMeterYearMonthDailyAvg (YearsNo,ERID,Power1MonthDailyAvg,Power2MonthDailyAvg,Power3MonthDailyAvg,Power4MonthDailyAvg,Power5MonthDailyAvg,Power6MonthDailyAvg,Power7MonthDailyAvg,Power8MonthDailyAvg,Power9MonthDailyAvg,Power10MonthDailyAvg,Power11MonthDailyAvg,Power12MonthDailyAvg,PowerUpdateDate,Memo)VALUES  ";
+
+                        text += "(" + s_year + "," + dt.Rows[ExeCount]["ERID"].ToString();
+                        text += "," + sSelect + s_year + " and month(Timestamp)=1 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=2 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=3 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=4 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=5 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=6 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=7 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=8 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=9 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=10 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=11 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=12 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+
+                        text += ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                        text += ",'SYS') ";
+
+
+                        IsSuccess = commDB.ModifyDBData(text);
+                    }
+                    catch (Exception ex)
+                    {
+                        var message = ex.Message + "," + ex.StackTrace;
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        //計算去年度用水每月日平均累積值
+        [WebMethod]
+        public void WaterBaseValueDailyAvg(string s_year)
+        {
+            clsDBComm commDB = new clsDBComm();
+            DataTable dtYear = new DataTable();
+            bool IsSuccess = false;
+            string cmd = "";
+
+            //YearData();
+            string sSelect = "(select  CASE MAX(CumulateValueAlarm) - MIN(CumulateValueAlarm) when 0 then MAX(CumulateValueAlarm) - MIN(CumulateValueAlarm) else CAST(( (MAX(CumulateValueAlarm) - MIN(CumulateValueAlarm))/30 ) AS decimal(18, 3)) END   AS CumulateValueAlarm from vwPowerMeter1HourLog where (1=1)and ERID != 4 and year(Timestamp)= ";
+            for (int ExeCount = 0; ExeCount < dt.Rows.Count; ExeCount++)
+            {
+                //先判別是否為新的年份
+                cmd = string.Format("select * from tblPowerAndWaterMeterYearMonthDailyAvg where YearsNo='{0}' and ERID={1};", s_year, dt.Rows[ExeCount]["ERID"].ToString());
+                dtYear = commDB.SelectDBData(cmd);
+                if (dtYear.Rows.Count > 0)
+                {
+                    try
+                    {
+                        string text = "UPDATE tblPowerAndWaterMeterYearMonthDailyAvg SET  ";
+                        text += " Water1MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=1 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water2MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=2 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water3MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=3 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water4MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=4 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water5MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=5 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water6MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=6 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water7MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=7 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water8MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=8 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water9MonthDailyAvg  = " + sSelect + s_year + " and month(Timestamp)=9 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water10MonthDailyAvg = " + sSelect + s_year + " and month(Timestamp)=10 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water11MonthDailyAvg = " + sSelect + s_year + " and month(Timestamp)=11 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += ",Water12MonthDailyAvg = " + sSelect + s_year + " and month(Timestamp)=12 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+
+                        text += ",[WaterUpdateDate] = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                        text += ",[Memo] = 'SYS' ";
+                        text += " WHERE [YearsNo] = " + s_year + " and [ERID] = " + dt.Rows[ExeCount]["ERID"].ToString();
+
+                        IsSuccess = commDB.ModifyDBData(text);
+                    }
+                    catch (Exception ex)
+                    {
+                        var message = ex.Message + "," + ex.StackTrace;
+                        throw ex;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        string text = "INSERT INTO tblPowerAndWaterMeterYearMonthDailyAvg (YearsNo,ERID,Water1MonthDailyAvg,Water2MonthDailyAvg,Water3MonthDailyAvg,Water4MonthDailyAvg,Water5MonthDailyAvg,Water6MonthDailyAvg,Water7MonthDailyAvg,Water8MonthDailyAvg,Water9MonthDailyAvg,Water10MonthDailyAvg,Water11MonthDailyAvg,Water12MonthDailyAvg,WaterUpdateDate,Memo)VALUES  ";
+
+                        text += "(" + s_year + "," + dt.Rows[ExeCount]["ERID"].ToString();
+                        text += "," + sSelect + s_year + " and month(Timestamp)=1 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=2 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=3 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=4 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=5 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=6 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=7 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=8 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=9 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=10 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=11 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                        text += "," + sSelect + s_year + " and month(Timestamp)=12 and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+
+                        text += ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                        text += ",'SYS') ";
+
+
+                        IsSuccess = commDB.ModifyDBData(text);
+                    }
+                    catch (Exception ex)
+                    {
+                        var message = ex.Message + "," + ex.StackTrace;
+                        throw ex;
+                    }
+                }
+
+
+            }
+        }
+
+        //計算去年度用電每月累積值
+        [WebMethod]
+        public void PowerThisPeriodValue()
+        {
+            //DataTable dtStartDay = GetThisPeriodStartDay();
+            //DateTime tmp_StartDate = Convert.ToDateTime(dtStartDay.Rows[0]["VariableValue"]);
+            //string sStartDay = tmp_StartDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            //DataTable dtEndDay = GetThisPeriodEndDay();
+            //DateTime tmp_EndDate = Convert.ToDateTime(dtEndDay.Rows[0]["VariableValue"]);
+            //string sEndDay = tmp_EndDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+
+            DataTable dtStartDay = GetThisPeriodStartDay();
+            string sStartDay = dtStartDay.Rows[0]["VariableValue"].ToString() + " 00:00:00";
+            DataTable dtEndDay = GetThisPeriodEndDay();
+            string sEndDay = dtEndDay.Rows[0]["VariableValue"].ToString() + " 23:59:59";
+
+            clsDBComm commDB = new clsDBComm();
+            //DataTable DT = new DataTable();
+            bool IsSuccess = false;
+
+            string sSelect = "(select  CASE MAX(kWh) - MIN(kWh) when 0 then MAX(kWh) - MIN(kWh) else CAST(( (MAX(kWh) - MIN(kWh)) ) AS decimal(18, 3)) END   AS KWAlarm from vwPowerMeter1HourLog where (1=1) and  (Timestamp) >= '";
+            for (int ExeCount = 0; ExeCount < dt.Rows.Count; ExeCount++)
+            {
+                try
+                {
+                    string text = "UPDATE tblPowerMeter SET  ";
+
+                    text += " SysThisPeriodPower  = " + sSelect + sStartDay + "' and (Timestamp) <= '" + sEndDay + "' and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                    text += " WHERE [ERID] = " + dt.Rows[ExeCount]["ERID"].ToString();
+
+                    IsSuccess = commDB.ModifyDBData(text);
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message + "," + ex.StackTrace;
+                    throw ex;
+                }
+            }
+        }
+
+        //計算去年度用水每月累積值
+        [WebMethod]
+        public void WaterThisPeriodValue()
+        {
+            //DataTable dtStartDay = GetThisPeriodStartDay();
+            //DateTime tmp_StartDate = Convert.ToDateTime(dtStartDay.Rows[0]["VariableValue"]);
+            //string sStartDay = tmp_StartDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            //DataTable dtEndDay = GetThisPeriodEndDay();
+            //DateTime tmp_EndDate = Convert.ToDateTime(dtEndDay.Rows[0]["VariableValue"]);
+            //string sEndDay = tmp_EndDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DataTable dtStartDay = GetThisPeriodStartDay();
+            string sStartDay = dtStartDay.Rows[0]["VariableValue"].ToString() + " 00:00:00";
+            DataTable dtEndDay = GetThisPeriodEndDay();
+            string sEndDay = dtEndDay.Rows[0]["VariableValue"].ToString() + " 23:59:59";
+
+            clsDBComm commDB = new clsDBComm();
+            //DataTable DT = new DataTable();
+            bool IsSuccess = false;
+
+            string sSelect = "(select  CASE MAX(CumulateValueAlarm) - MIN(CumulateValueAlarm) when 0 then MAX(CumulateValueAlarm) - MIN(CumulateValueAlarm) else CAST(( (MAX(CumulateValueAlarm) - MIN(CumulateValueAlarm)) ) AS decimal(18, 3)) END   AS CumulateValueAlarm from vwPowerMeter1HourLog where (1=1)and ERID != 4  and  (Timestamp) >= '";
+            for (int ExeCount = 0; ExeCount < dt.Rows.Count; ExeCount++)
+            {
+                try
+                {
+                    string text = "UPDATE tblPowerMeter SET  ";
+                    text += " SysThisPeriodWater  = " + sSelect + sStartDay + "' and (Timestamp) <= '" + sEndDay + "' and ERID=" + dt.Rows[ExeCount]["ERID"].ToString() + " GROUP BY ERID,ERName )";
+                    text += " WHERE [ERID] = " + dt.Rows[ExeCount]["ERID"].ToString();
+
+                    IsSuccess = commDB.ModifyDBData(text);
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message + "," + ex.StackTrace;
+                    throw ex;
+                }
+            }
+        }
+
+        #endregion ==== 用水用電功能End =====
+
+
+
+
+
         public static string GetWEG(string ABA)
         {
             uint aba = Convert.ToUInt32(ABA);
