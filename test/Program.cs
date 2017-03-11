@@ -101,7 +101,13 @@ namespace test
             //PDTest();
             //R13SmrTest();
            // BatteryPackTest();
-            R23PowerMeterTest();
+            //String Voltage : 53.02 V
+            Regex regx = new Regex(@"String Voltage :\s*(?<v>-*[0-9]+.[0-9]+)\s*V");
+            string s= System.IO.File.OpenText("batterypack.txt").ReadToEnd();
+            double volt=double.Parse(regx.Match(s).Groups[1].Value);
+            regx = new Regex(@"String Current :\s*(?<v>-*[0-9]+.[0-9]+)\s*A");
+            double a = double.Parse(regx.Match(s).Groups[1].Value);
+          //  R23PowerMeterTest();
             Console.ReadLine();
 
             //SSOService.SsoWebServiceClient client = new SSOService.SsoWebServiceClient();

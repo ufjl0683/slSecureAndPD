@@ -57,6 +57,9 @@ namespace SecureServer
                 }
            itemgrp_mgr = new RTU.ItemGroupManager();
            plane_mgr = new PlaneManager();
+
+        //   plane_mgr.GetAllPlaneDegree();
+
            pd_mgr = new PD.PDManager();
 
 #if R23

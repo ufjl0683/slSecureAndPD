@@ -7,7 +7,7 @@
 <tr><td><p>String 1</p>
 <p>
 <font color="#000000">String Voltage : 54.08 V<br>
-</font><font color="#000000">String Current : 0.19 A<br>
+</font><font color="#000000">String Current : -0.19 A<br>
 </font><font color="#000000">String Temperature : 24.4&deg;C<br>
 </font></p><br>
 <table border="1" cellpadding="5" cellspacing="0">

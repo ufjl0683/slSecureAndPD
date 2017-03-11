@@ -29,7 +29,7 @@ namespace SecureServer
        {
            SecureDBEntities1 db = new SecureDBEntities1();
 
-           var q =from n in db.tblERPlane select n;
+           var q =from n in db.tblERPlane    select n  ;
 
          //  System.Collections.Generic.List<Plane> list = new List<Plane>();
 

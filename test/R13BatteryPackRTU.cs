@@ -83,23 +83,43 @@ namespace SecureServer.RTU
                         s = client.DownloadString("http://" + IP + ":" + Port + "/stringindex?0_0");
                         Comm_state = 1;
                     }
-                    catch(Exception ex)
-
+                    catch
                     {
-                        Console.WriteLine(ex.Message + "," + ex.StackTrace);
                         Comm_state = 0;
+                        continue;
                     }
 
-                    Regex regex = new Regex(@"(?<v>[0-9]+.[0-9]+)\s*V|(?<temp>[0-9]+.[0-9]+)&deg;C");
+                  //Regex regex = new Regex(@">(?<v>[0-9]+.[0-9]+)\s*V|>(?<temp>[0-9]+.[0-9]+)&deg;C");
+                    Regex regx = new Regex(@"String Voltage :\s*(?<v>[0-9]+.[0-9]+)\s*V");
+                    
+                    double volt = double.Parse(regx.Match(s).Groups[1].Value);
+
+                    data[0] = (byte)((volt * 100) / 256);
+                    data[1] = (byte)((volt * 100) % 256);
+
+                   
+                    regx = new Regex(@"String Current :\s*(?<v>-*[0-9]+.[0-9]+)\s*A");
+
+                    double a = double.Parse(regx.Match(s).Groups[1].Value);
+                    data[2] = (byte)((a * 100) / 256);
+                    data[3] = (byte)((a * 100) % 256);
+                    Regex regex = new Regex(@">(?<v>[0-9]+.[0-9]+)\s*V|>(?<temp>[0-9]+.[0-9]+)&deg;C");
                     MatchCollection collection = regex.Matches(s);
                     byte[] temp = new byte[2];
-                    Console.WriteLine("count="+collection.Count);
                     for (int i = 0; i < collection.Count; i++)
                     {
-                        double val = double.Parse(collection[i].Groups[(i % 2) + 1].Value);
+                        double val=0;
+                        try
+                        {
+                            val = double.Parse(collection[i].Groups[(i % 2) + 1].Value);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(collection[i].Groups[(i % 2) + 1].Value + ",Parse error!");
+                        }
                         temp[0] = (byte)(((short)(val * 100)) / 256);
                         temp[1] = (byte)(((short)(val * 100)) % 256);
-                        Array.Copy(temp, 0, data, i * 2, 2);
+                        Array.Copy(temp, 0, data, 4+i * 2, 2);
                         //  Console.WriteLine(collection[i].Groups[(i % 2) + 1].Value);
 
                     }

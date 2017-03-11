@@ -10,7 +10,7 @@ namespace SecureServer
     public delegate void ItemDegreeChangeEventHandler(Item sender, int? NewValue);
    public  class Item
     {
-       ModbusTCP.IRTU rtu;
+      public  ModbusTCP.IRTU rtu;
       internal  tblItemConfig ItemConfig;
        public int ItemID { get; set; }
        public string ItemType { get; set; }

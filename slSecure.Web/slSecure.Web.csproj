@@ -89,6 +89,7 @@
     <Content Include="ClientBin\slSecure.xap" />
     <Content Include="ClientBin\slWCFModule.xap" />
     <Content Include="GetCCTVGridData.aspx" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="MCNSService.asmx" />
     <None Include="Properties\PublishProfiles\R23.pubxml" />
     <None Include="Service References\SecureService\Arrays.xsd">
@@ -128,6 +129,7 @@
     </Compile>
     <Compile Include="GetCCTVGridData.aspx.cs">
       <DependentUpon>GetCCTVGridData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GetCCTVGridData.aspx.designer.cs">
       <DependentUpon>GetCCTVGridData.aspx</DependentUpon>
