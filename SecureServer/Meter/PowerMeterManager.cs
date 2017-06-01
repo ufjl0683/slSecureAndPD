@@ -84,9 +84,9 @@ namespace SecureServer.Meter
               else if (month == 5)
                   return meter.Power5MonthDailyAvg ?? 0;
               else if (month == 6)
-                  return meter.Water6MonthDailyAvg ?? 0;
+                  return meter.Power6MonthDailyAvg ?? 0;
               else if (month == 7)
-                  return meter.Water7MonthDailyAvg ?? 0;
+                  return meter.Power7MonthDailyAvg ?? 0;
               else if (month == 8)
                   return meter.Power8MonthDailyAvg ?? 0;
               else if (month == 9)
