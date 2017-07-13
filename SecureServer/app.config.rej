@@ -1,10 +1,49 @@
 diff a/SecureServer/app.config b/SecureServer/app.config	(rejected hunks)
-@@ -56,7 +56,7 @@
-     <!--<add name="SecureDBEntities" connectionString="metadata=res://*/DB.csdl|res://*/DB.ssdl|res://*/DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=10.2.10.134\R13;initial catalog=SecureDB;user id=secure;password=secure;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-     <add name="SecureDBEntities1" connectionString="metadata=res://*/DB.csdl|res://*/DB.ssdl|res://*/DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=10.2.10.134\R13;initial catalog=SecureDB;user id=secure;password=secure;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />-->
-     <add name="SecureDBEntities" connectionString="metadata=res://*/DB.csdl|res://*/DB.ssdl|res://*/DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=10.21.99.80;initial catalog=SecureDB;user id=secure;password=secure;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
--    <add name="SecureDBEntities1" connectionString="metadata=res://*/DB.csdl|res://*/DB.ssdl|res://*/DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=10.21.99.80;initial catalog=SecureDB;user id=secure;password=secure;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-+    <add name="SecureDBEntities1" connectionString="metadata=res://*/DB.csdl|res://*/DB.ssdl|res://*/DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=192.192.85.64,1357;initial catalog=SecureDB;user id=secure;password=secure;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-   </connectionStrings>
-   <entityFramework>
-     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+@@ -4,47 +4,6 @@
+     <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+     <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+   </configSections>
+-  <system.serviceModel>
+-    <client />
+-    <behaviors>
+-      <!--<endpointBehaviors>
+-        <behavior name="RestBehavior">
+-          <webHttp />
+-        </behavior>
+-      </endpointBehaviors>-->
+-      <serviceBehaviors>
+-        <behavior name="NewBehavior0">
+-          <serviceMetadata httpGetEnabled="true" httpsGetEnabled="false" />
+-          <serviceDebug includeExceptionDetailInFaults="true" />
+-        </behavior>
+-        <behavior name="">
+-          <serviceMetadata httpGetEnabled="true" />
+-          <serviceDebug includeExceptionDetailInFaults="false" />
+-        </behavior>
+-      </serviceBehaviors>
+-    </behaviors>
+-    <bindings>
+-      <customBinding>
+-        <binding name="customBinding">
+-          <binaryMessageEncoding />
+-          <tcpTransport maxBufferPoolSize="2147483647" maxReceivedMessageSize="2147483647">
+-            <connectionPoolSettings leaseTimeout="05:00:00" idleTimeout="10:02:00" maxOutboundConnectionsPerEndpoint="100" />
+-          </tcpTransport>
+-        </binding>
+-      </customBinding>
+-    </bindings>
+-    <services>
+-      <service behaviorConfiguration="NewBehavior0" name="SecureServer.SecureService">
+-        <endpoint address="net.tcp://localhost:4502" binding="customBinding" bindingConfiguration="customBinding" contract="SecureServer.ISecureService" />
+-        <endpoint address="mex" binding="mexHttpBinding" bindingConfiguration="" contract="IMetadataExchange" />
+-        <host>
+-          <baseAddresses>
+-            <add baseAddress="http://localhost:8080" />
+-          </baseAddresses>
+-        </host>
+-      </service>
+-    </services>
+-  </system.serviceModel>
+   <startup>
+     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+   </startup>
